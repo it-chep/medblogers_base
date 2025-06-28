@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+package ;
+
+service Doctors {
+  rpc DoctorDetail(DoctorDetailRequest) returns(DoctorDetailResponse){
+    option (google.api.http) = {
+      get: "/v1/{slug}"
+    };
+  }
+  rpc Settings(SettingsRequest) returns(SettingsResponse){}
+  rpc DoctorsList(DoctorsListRequest) returns(DoctorsListResponse){}
+  rpc DoctorsFilter(DoctorsFilterRequest) returns(DoctorsFilterResponse){}
+  rpc SearchDoctor(SearchDoctorRequest) returns(SearchDoctorResponse){}
+  rpc CreateDoctor(CreateDoctorRequest) returns(CreateDoctorResponse){}
+}
+
+message DoctorDetailRequest{}
+
+message DoctorDetailResponse{}
+
+message SettingsRequest{}
+
+message SettingsResponse{}
+
+message DoctorsListRequest{}
+
+message DoctorsListResponse{}
+
+message DoctorsFilterRequest{}
+
+message DoctorsFilterResponse{}
+
+message SearchDoctorRequest{}
+
+message SearchDoctorResponse{}
+
+message CreateDoctorRequest{}
+
+message CreateDoctorResponse{}
