@@ -18,7 +18,7 @@ func NewRepository() *Repository {
 
 // GetDoctorInfo получает информацию о докторе
 func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.Doctor, error) {
-	sql := fmt.Sprintf(`
+	sql := `
 		select 
 			id, name, slug, 
 			inst_url, vk_url, dzen_url, tg_url,youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
@@ -26,7 +26,7 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 			city_id, speciallity_id
 		from docstar_site_doctor
 		where id = $1
-	`)
+	`
 
 	var doctorDAO dao.DoctorDAO
 	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &doctorDAO, sql, doctorID); err != nil {
