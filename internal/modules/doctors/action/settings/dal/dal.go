@@ -2,6 +2,8 @@ package dal
 
 import (
 	"context"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {

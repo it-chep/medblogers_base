@@ -4,6 +4,8 @@ import (
 	"context"
 	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 // Repository специальности

@@ -9,6 +9,8 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {

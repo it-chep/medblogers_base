@@ -2,10 +2,10 @@ package dal
 
 import (
 	"context"
-	"fmt"
-	"github.com/georgysavva/scany/v2/pgxscan"
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {

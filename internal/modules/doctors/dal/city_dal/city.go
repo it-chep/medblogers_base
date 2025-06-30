@@ -2,9 +2,10 @@ package city_dal
 
 import (
 	"context"
-	"fmt"
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/city"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 // Repository города
