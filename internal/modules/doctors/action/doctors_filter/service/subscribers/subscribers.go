@@ -1,4 +1,4 @@
-package enricher
+package subscribers
 
 import (
 	"context"
@@ -9,6 +9,7 @@ import (
 
 // SubscribersGetter получение информации о подписчиках
 type SubscribersGetter interface {
+	GetDoctorsByFilter(ctx context.Context, request indto.GetDoctorsByFilterRequest) ([]indto.GetDoctorsByFilterResponse, error)
 	GetSubscribersByDoctorIDs(ctx context.Context, medblogersIDs doctor.MedblogersIDs) (map[doctor.MedblogersID]indto.GetSubscribersByDoctorIDsResponse, error)
 }
 
@@ -28,6 +29,12 @@ func (s *Service) EnrichSubscribers(ctx context.Context, doctorsIDs doctor.Medbl
 	if err != nil {
 		return err
 	}
+}
 
-	return nil
+// FilterDoctorsBySubscribers - фильтрация по количеству подписчиков
+func (s *Service) FilterDoctorsBySubscribers(ctx context.Context) {
+	filter, err := s.getter.GetDoctorsByFilter(ctx, fil)
+	if err != nil {
+		return
+	}
 }

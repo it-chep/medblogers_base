@@ -17,7 +17,8 @@ func NewRepository() *Repository {
 	return &Repository{}
 }
 
-func (r Repository) GetCities(ctx context.Context) ([]*city.City, error) {
+// GetCitiesWithDoctorsCount получение списка городов с количеством докторов
+func (r Repository) GetCitiesWithDoctorsCount(ctx context.Context) ([]*city.City, error) {
 	sql := `
 		select c.id                      as city_id,
 			   c.name                    as city_name,
@@ -28,6 +29,7 @@ func (r Repository) GetCities(ctx context.Context) ([]*city.City, error) {
 									 join docstar_site_doctor d on dc.doctor_id = d.id
 							where d.is_active = true) as combined on c.id = combined.city_id
 		group by c.id, c.name
+		having count(distinct doctor_id) != 0
 		order by c.name
 	`
 

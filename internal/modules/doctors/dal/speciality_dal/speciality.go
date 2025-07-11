@@ -17,7 +17,8 @@ func NewRepository() *Repository {
 	return &Repository{}
 }
 
-func (r Repository) GetSpecialities(ctx context.Context) ([]*speciality.Speciality, error) {
+// GetSpecialitiesWithDoctorsCount получение списка специальностей с количеством докторов
+func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*speciality.Speciality, error) {
 	sql := `
 		select s.id                      as speciality_id,
 			   s.name                    as speciality_name,
@@ -28,6 +29,7 @@ func (r Repository) GetSpecialities(ctx context.Context) ([]*speciality.Speciali
 									 join docstar_site_doctor d on dc.doctor_id = d.id
 							where d.is_active = true) as combined on s.id = combined.speciallity_id
 		group by s.id, s.name
+		having count(distinct doctor_id) != 0
 		order by s.name
 	`
 

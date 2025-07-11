@@ -3,7 +3,9 @@ package dal
 import (
 	"context"
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
+	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
+	"medblogers_base/internal/modules/doctors/domain/speciality"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
@@ -35,3 +37,28 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 
 	return doctorDAO.ToDomain(), nil
 }
+
+// GetCitiesByIDs получение информации о городах доктора
+func (r Repository) GetCitiesByIDs(ctx context.Context, citiesIDs []int64) ([]*city.City, error) {
+	sql := `
+		select c.id, c.name 
+		from docstar_site_city c 
+		where c.id = any($1)
+	`
+
+}
+
+// GetSpecialitiesByIDs получение информации о специальностях доктора
+func (r Repository) GetSpecialitiesByIDs(ctx context.Context, specialitiesIDs []int64) ([]*speciality.Speciality, error) {
+	sql := `
+		select s.id, s.name 
+		from docstar_site_speciallity s 
+		where s.id = any($1)
+	`
+
+}
+
+const (
+	manyToManyCity       = `select city_id from docstar_site_doctor_additional_cities where doctor_id = $1`
+	manyToManySpeciality = `select speciallity_id from docstar_site_doctor_additional_specialties where doctor_id = $1`
+) // todo

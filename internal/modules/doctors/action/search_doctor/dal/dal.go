@@ -59,6 +59,7 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 							where d.is_active = true) as combined on c.id = combined.city_id
 		where c.name ilike $1                   
 		group by c.id, c.name
+		having count(distinct doctor_id) != 0
 		order by c.name
 		limit $2;
 	`
@@ -91,6 +92,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 							where d.is_active = true) as combined on s.id = combined.speciallity_id
 		where s.name ilike $1                   
 		group by s.id, s.name
+		having count(distinct doctor_id) != 0
 		order by s.name
 		limit $2;
 	`
