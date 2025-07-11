@@ -2,10 +2,11 @@ package doctor_detail
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/doctor_detail/dal"
-	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
-	"medblogers_base/internal/modules/doctors/action/doctor_detail/service/enricher"
-	"medblogers_base/internal/modules/doctors/client"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail/dal"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail/service/enricher"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client"
 )
 
 // Action получение детальной информации о докторе

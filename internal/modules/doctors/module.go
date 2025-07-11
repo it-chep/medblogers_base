@@ -1,6 +1,6 @@
 package doctors
 
-import "medblogers_base/internal/modules/doctors/action"
+import "github.com/it-chep/medblogers_base/internal/modules/doctors/action"
 
 // Module модуль отвечающий за работу модуля докторов
 type Module struct {

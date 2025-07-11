@@ -1,7 +1,7 @@
 package action
 
 import (
-	"medblogers_base/internal/modules/admin/action/create_doctor"
+	"github.com/it-chep/medblogers_base/internal/modules/admin/action/create_doctor"
 )
 
 // Aggregator собирает все процессы модуля в одно целое

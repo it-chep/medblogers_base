@@ -2,8 +2,9 @@ package speciality_dal
 
 import (
 	"context"
-	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+
+	specialityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 
 	"github.com/georgysavva/scany/pgxscan"
 )

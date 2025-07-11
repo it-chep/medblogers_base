@@ -2,10 +2,11 @@ package doctor
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
-	"medblogers_base/internal/pkg/async"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
+	"github.com/it-chep/medblogers_base/internal/pkg/async"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage,DoctorsStorage

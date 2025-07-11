@@ -2,10 +2,11 @@ package internal
 
 import (
 	"context"
-	"medblogers_base/internal/config"
 
-	moduleadmin "medblogers_base/internal/modules/admin"
-	moduledoctors "medblogers_base/internal/modules/doctors"
+	"github.com/it-chep/medblogers_base/internal/config"
+
+	moduleadmin "github.com/it-chep/medblogers_base/internal/modules/admin"
+	moduledoctors "github.com/it-chep/medblogers_base/internal/modules/doctors"
 
 	databasepg "gitlab.ozon.ru/platform/go/database-pg/v2"
 	"gitlab.ozon.ru/platform/go/database-pg/v2/roles"

@@ -2,9 +2,10 @@ package enricher
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
-	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers/indto"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
 // SubscribersGetter получение информации о подписчиках

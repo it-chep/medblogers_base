@@ -3,12 +3,13 @@ package dal
 import (
 	"context"
 	"fmt"
-	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
-	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
-	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+
+	cityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
+	specialityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 
 	"github.com/georgysavva/scany/pgxscan"
 )

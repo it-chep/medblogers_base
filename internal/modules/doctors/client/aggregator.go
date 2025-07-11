@@ -1,9 +1,9 @@
 package client
 
 import (
-	"medblogers_base/internal/modules/doctors/client/s3"
-	"medblogers_base/internal/modules/doctors/client/salebot"
-	"medblogers_base/internal/modules/doctors/client/subscribers"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/s3"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/salebot"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers"
 )
 
 type Aggregator struct {
