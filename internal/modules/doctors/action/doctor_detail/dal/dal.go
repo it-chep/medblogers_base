@@ -17,8 +17,10 @@ type Repository struct {
 }
 
 // NewRepository создает новый репозиторий по работе с докторами
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 // GetDoctorInfo получает информацию о докторе
