@@ -2,6 +2,7 @@ package dal
 
 import (
 	"context"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 
 	"github.com/georgysavva/scany/pgxscan"
 	cityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal/dao"
@@ -9,11 +10,14 @@ import (
 )
 
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе с городами
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 // GetAllCities все города
@@ -27,7 +31,7 @@ func (r Repository) GetAllCities(ctx context.Context) ([]*city.City, error) {
 	`
 
 	var citiesDAO []cityDAO.CityDAO
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &citiesDAO, sql); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &citiesDAO, sql); err != nil {
 		return nil, err
 	}
 

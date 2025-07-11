@@ -2,6 +2,7 @@ package dal
 
 import (
 	"context"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 
 	"github.com/georgysavva/scany/pgxscan"
 	specialityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
@@ -9,11 +10,14 @@ import (
 )
 
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
-// NewRepository создает новый репозиторий по работе с городами
-func NewRepository() *Repository {
-	return &Repository{}
+// NewRepository создает новый репозиторий по работе со специальностями
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 // GetAllSpecialities все специальности
@@ -27,7 +31,7 @@ func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speci
 	`
 
 	var specialitiesDAO []specialityDAO.SpecialityDAO
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &specialitiesDAO, sql); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &specialitiesDAO, sql); err != nil {
 		return nil, err
 	}
 

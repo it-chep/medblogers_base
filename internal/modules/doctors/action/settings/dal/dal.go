@@ -2,16 +2,20 @@ package dal
 
 import (
 	"context"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе с докторами
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 func (r Repository) GetDoctorsCount(ctx context.Context) (int64, error) {
@@ -22,7 +26,7 @@ func (r Repository) GetDoctorsCount(ctx context.Context) (int64, error) {
 	`
 
 	var count int64
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &count, sql); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &count, sql); err != nil {
 		return 0, err
 	}
 

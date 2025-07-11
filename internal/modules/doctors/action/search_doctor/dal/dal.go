@@ -3,6 +3,7 @@ package dal
 import (
 	"context"
 	"fmt"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 
 	cityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
@@ -15,11 +16,14 @@ import (
 )
 
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе с докторами
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 // SearchDoctors поиск докторов
@@ -35,7 +39,7 @@ func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 	var doctors []*dao.DoctorDAO
 	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &doctors, sql, query, 30); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &doctors, sql, query, 30); err != nil {
 		return []*doctor.Doctor{}, err
 	}
 
@@ -68,7 +72,7 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 
 	var cities []*cityDAO.CityDAO
 	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &cities, sql, query, 5); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, 5); err != nil {
 		return []*city.City{}, err
 	}
 
@@ -101,7 +105,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 
 	var specialities []*specialityDAO.SpecialityDAO
 	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &specialities, sql, query, 5); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, 5); err != nil {
 		return []*speciality.Speciality{}, err
 	}
 
