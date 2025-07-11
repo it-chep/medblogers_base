@@ -2,6 +2,7 @@ package dal
 
 import (
 	"context"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 
 	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
 	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
@@ -12,6 +13,7 @@ import (
 )
 
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе с докторами
@@ -32,7 +34,7 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 	`
 
 	var doctorDAO dao.DoctorDAO
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &doctorDAO, sql, doctorID); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &doctorDAO, sql, doctorID); err != nil {
 		return nil, err
 	}
 

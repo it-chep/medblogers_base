@@ -5,9 +5,6 @@ import (
 
 	"github.com/it-chep/medblogers_base/internal/modules/admin"
 	"github.com/it-chep/medblogers_base/internal/modules/doctors"
-
-	databasepg "gitlab.ozon.ru/platform/go/database-pg/v2"
-	"gitlab.ozon.ru/platform/go/database-pg/v2/types"
 )
 
 type modules struct {
@@ -18,12 +15,8 @@ type modules struct {
 type App struct {
 	grpcConn map[string]googlegrpc.ClientConnInterface
 	//nolint
-	postgresConn types.Pool
 
 	modules modules
-
-	controllers     сщтекщддукы
-	postgresCluster *databasepg.BucketsCluster
 
 	settings *config.Settings
 }
