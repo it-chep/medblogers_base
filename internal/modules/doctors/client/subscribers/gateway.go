@@ -7,21 +7,29 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
-	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"net/http"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers/dto"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers/indto"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
 // todo indto переделать
 
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . HTTPClient
+
+// HTTPClient ...
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+
 // Gateway в сервис subscribers
 type Gateway struct {
-	client *http.Client
+	client HTTPClient
 }
 
 // NewGateway - конструктор
-func NewGateway(client *http.Client) *Gateway {
+func NewGateway(client HTTPClient) *Gateway {
 	return &Gateway{
 		client: client,
 	}

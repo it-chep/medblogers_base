@@ -1,6 +1,6 @@
 package admin
 
-import "medblogers_base/internal/modules/admin/action"
+import "github.com/it-chep/medblogers_base/internal/modules/admin/action"
 
 // Module модуль отвечающий за работу админки
 type Module struct {

@@ -2,8 +2,10 @@ package dal
 
 import (
 	"context"
-	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/city"
+
+	"github.com/georgysavva/scany/pgxscan"
+	cityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
 )
 
 type Repository struct {

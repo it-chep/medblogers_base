@@ -1,9 +1,10 @@
 package doctor
 
 import (
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"time"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 )
 
 // CooperationType - Типы размещения врачей

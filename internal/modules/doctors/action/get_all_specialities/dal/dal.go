@@ -2,8 +2,10 @@ package dal
 
 import (
 	"context"
-	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+
+	"github.com/georgysavva/scany/pgxscan"
+	specialityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 )
 
 type Repository struct {

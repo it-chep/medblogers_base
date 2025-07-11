@@ -1,12 +1,12 @@
 package action
 
 import (
-	"medblogers_base/internal/modules/doctors/action/create_doctor"
-	"medblogers_base/internal/modules/doctors/action/doctor_detail"
-	"medblogers_base/internal/modules/doctors/action/doctors_filter"
-	"medblogers_base/internal/modules/doctors/action/doctors_list"
-	"medblogers_base/internal/modules/doctors/action/search_doctor"
-	"medblogers_base/internal/modules/doctors/action/settings"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/create_doctor"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctors_filter"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctors_list"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/search_doctor"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings"
 )
 
 // Aggregator собирает все процессы модуля в одно целое

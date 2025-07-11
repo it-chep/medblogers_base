@@ -2,7 +2,8 @@ package search_doctor
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/search_doctor/service/doctor"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/search_doctor/service/doctor"
 )
 
 // Action поиск доктора по фио, специальности, города

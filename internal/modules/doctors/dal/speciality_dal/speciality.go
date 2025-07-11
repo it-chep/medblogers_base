@@ -2,19 +2,24 @@ package speciality_dal
 
 import (
 	"context"
-	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+
+	specialityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
 
 // Repository специальности
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе со специальностями
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 // GetSpecialitiesWithDoctorsCount получение списка специальностей с количеством докторов
@@ -34,7 +39,7 @@ func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*spe
 	`
 
 	var specialitiesDAO []specialityDAO.SpecialityDAO
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &specialitiesDAO, sql); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &specialitiesDAO, sql); err != nil {
 		return nil, err
 	}
 

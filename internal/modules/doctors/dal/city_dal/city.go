@@ -2,19 +2,22 @@ package city_dal
 
 import (
 	"context"
-	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/city"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+
+	cityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
 
 // Repository города
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе с городами
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{db: db}
 }
 
 // GetCitiesWithDoctorsCount получение списка городов с количеством докторов
@@ -34,7 +37,7 @@ func (r Repository) GetCitiesWithDoctorsCount(ctx context.Context) ([]*city.City
 	`
 
 	var citiesDAO []cityDAO.CityDAO
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &citiesDAO, sql); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &citiesDAO, sql); err != nil {
 		return nil, err
 	}
 

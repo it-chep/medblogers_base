@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 )
 
 type SpecialityDAO struct {

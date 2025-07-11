@@ -2,20 +2,25 @@ package dal
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {
+	db postgres.PoolWrapper
 }
 
 // NewRepository создает новый репозиторий по работе с докторами
-func NewRepository() *Repository {
-	return &Repository{}
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
 // GetDoctorInfo получает информацию о докторе
@@ -31,7 +36,7 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 	`
 
 	var doctorDAO dao.DoctorDAO
-	if err := pgxscan.Select(ctx, r.db.Pool(ctx), &doctorDAO, sql, doctorID); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &doctorDAO, sql, doctorID); err != nil {
 		return nil, err
 	}
 

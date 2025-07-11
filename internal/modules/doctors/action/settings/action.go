@@ -2,7 +2,8 @@ package settings
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/settings/service/settings"
+
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings/service/settings"
 )
 
 // Action получение настроек главной страницы
