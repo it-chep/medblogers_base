@@ -1,6 +1,9 @@
 package doctors
 
-import "github.com/it-chep/medblogers_base/internal/modules/doctors/action"
+import (
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/action"
+	"github.com/it-chep/medblogers_base/internal/modules/doctors/client"
+)
 
 // Module модуль отвечающий за работу модуля докторов
 type Module struct {
@@ -8,7 +11,9 @@ type Module struct {
 }
 
 func New() *Module {
-	actions := action.NewAggregator()
+	clients := client.NewAggregator()
+
+	actions := action.NewAggregator(clients)
 
 	return &Module{
 		Actions: actions,

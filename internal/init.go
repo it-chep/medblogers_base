@@ -2,23 +2,17 @@ package internal
 
 import (
 	"context"
-
 	"github.com/it-chep/medblogers_base/internal/config"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"net/http"
+	"time"
 
 	moduleadmin "github.com/it-chep/medblogers_base/internal/modules/admin"
 	moduledoctors "github.com/it-chep/medblogers_base/internal/modules/doctors"
 )
 
 func (a *App) initPostgres(ctx context.Context) *App {
-	host, buckets := config.GetPostgresHost(ctx, a.scratch)
-
-	if err != nil {
-		logger.Fatalf(ctx, "[APP][POSTGRES] не удалось создать кластер базы данных: %s", err)
-	}
-
-	a.postgresCluster = cluster
-	a.postgresConn = databasepg.WrapBucketsCluster(cluster)
-
+	postgres.NewPoolWrapper()
 	// todo gracefull
 	//	a.postgresConn.Close()
 	//
@@ -26,8 +20,8 @@ func (a *App) initPostgres(ctx context.Context) *App {
 	return a
 }
 
-func (a *App) initConfig(context.Context) *App {
-	a.settings = config.NewSettings()
+func (a *App) initConfig(_ context.Context) *App {
+	a.config = config.NewConfig()
 	return a
 }
 
@@ -38,4 +32,18 @@ func (a *App) initModules(_ context.Context) *App {
 	}
 
 	return a
+}
+
+func (a *App) initCache(_ context.Context) *App {
+	return a
+}
+
+func (a *App) initServer(_ context.Context) *App {
+
+	a.server = &http.Server{
+		Addr:         a.config.HTTPServer.Address,
+		Handler:      ,// a.controller.telegramWebhookController,
+		ReadTimeout:  2 * time.Minute,
+		WriteTimeout: 10 * time.Second,
+	}
 }

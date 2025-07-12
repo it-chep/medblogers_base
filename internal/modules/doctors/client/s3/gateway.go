@@ -4,6 +4,8 @@ import (
 	"context"
 )
 
+// https://yandex.cloud/ru/docs/storage/tools/aws-sdk-go
+
 type Gateway struct {
 }
 
