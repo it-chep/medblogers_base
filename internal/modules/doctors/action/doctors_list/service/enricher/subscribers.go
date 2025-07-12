@@ -8,6 +8,8 @@ import (
 	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . SubscribersGetter
+
 // SubscribersGetter получение информации о подписчиках
 type SubscribersGetter interface {
 	GetSubscribersByDoctorIDs(ctx context.Context, medblogersIDs doctor.MedblogersIDs) (map[doctor.MedblogersID]indto.GetSubscribersByDoctorIDsResponse, error)
@@ -25,7 +27,7 @@ func New(getter SubscribersGetter) *Service {
 
 // EnrichSubscribers - обогащение подписчиками в миниатюры докторов
 func (s *Service) EnrichSubscribers(ctx context.Context, doctorsIDs doctor.MedblogersIDs, docDTO dto.DoctorDTO) error {
-	ds, err := s.getter.GetSubscribersByDoctorIDs(ctx, doctorsIDs)
+	_, err := s.getter.GetSubscribersByDoctorIDs(ctx, doctorsIDs)
 	if err != nil {
 		return err
 	}

@@ -8,6 +8,8 @@ import (
 	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . SubscribersGetter
+
 // SubscribersGetter получение информации о подписчиках
 type SubscribersGetter interface {
 	GetDoctorsByFilter(ctx context.Context, request indto.GetDoctorsByFilterRequest) ([]indto.GetDoctorsByFilterResponse, error)
@@ -26,16 +28,18 @@ func New(getter SubscribersGetter) *Service {
 
 // EnrichSubscribers - обогащение подписчиками в миниатюры докторов
 func (s *Service) EnrichSubscribers(ctx context.Context, doctorsIDs doctor.MedblogersIDs, docDTO dto.DoctorDTO) error {
-	ds, err := s.getter.GetSubscribersByDoctorIDs(ctx, doctorsIDs)
+	_, err := s.getter.GetSubscribersByDoctorIDs(ctx, doctorsIDs)
 	if err != nil {
 		return err
 	}
+	return nil
 }
 
 // FilterDoctorsBySubscribers - фильтрация по количеству подписчиков
 func (s *Service) FilterDoctorsBySubscribers(ctx context.Context) {
-	filter, err := s.getter.GetDoctorsByFilter(ctx, fil)
+	_, err := s.getter.GetDoctorsByFilter(ctx, indto.GetDoctorsByFilterRequest{})
 	if err != nil {
 		return
 	}
+	return
 }

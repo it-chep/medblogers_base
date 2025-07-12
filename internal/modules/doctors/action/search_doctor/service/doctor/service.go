@@ -48,7 +48,7 @@ func (s *Service) Search(ctx context.Context, query string) error {
 
 	// получение городов
 	g.Go(func() {
-		cities, err := s.cityStorage.SearchCities(ctx, query)
+		_, err := s.cityStorage.SearchCities(ctx, query)
 		if err != nil {
 			//	todo log
 		}
@@ -56,7 +56,7 @@ func (s *Service) Search(ctx context.Context, query string) error {
 
 	// получение специальностей
 	g.Go(func() {
-		specialities, err := s.specialityStory.SearchSpecialities(ctx, query)
+		_, err := s.specialityStory.SearchSpecialities(ctx, query)
 		if err != nil {
 			//	todo log
 		}
@@ -64,11 +64,13 @@ func (s *Service) Search(ctx context.Context, query string) error {
 
 	// получение количества докторов
 	g.Go(func() {
-		doctors, err := s.doctorsStorage.SearchDoctors(ctx, query)
+		_, err := s.doctorsStorage.SearchDoctors(ctx, query)
 		if err != nil {
 			//	todo log
 		}
 	})
 
 	g.Wait()
+
+	return nil
 }

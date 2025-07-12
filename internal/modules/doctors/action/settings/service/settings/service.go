@@ -9,7 +9,7 @@ import (
 	"github.com/it-chep/medblogers_base/internal/pkg/async"
 )
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage,DoctorsStorage
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage,DoctorsStorage,SubscribersGetter
 
 // CityStorage .
 type CityStorage interface {
@@ -54,7 +54,7 @@ func (s *Service) GetSettings(ctx context.Context) error {
 
 	// получение городов
 	g.Go(func() {
-		cities, err := s.cityStorage.GetCitiesWithDoctorsCount(ctx)
+		_, err := s.cityStorage.GetCitiesWithDoctorsCount(ctx)
 		if err != nil {
 			//	todo log
 		}
@@ -62,7 +62,7 @@ func (s *Service) GetSettings(ctx context.Context) error {
 
 	// получение специальностей
 	g.Go(func() {
-		specialities, err := s.specialityStory.GetSpecialitiesWithDoctorsCount(ctx)
+		_, err := s.specialityStory.GetSpecialitiesWithDoctorsCount(ctx)
 		if err != nil {
 			//	todo log
 		}
@@ -70,14 +70,14 @@ func (s *Service) GetSettings(ctx context.Context) error {
 
 	// получение количества докторов
 	g.Go(func() {
-		doctorsCount, err := s.doctorsStorage.GetDoctorsCount(ctx)
+		_, err := s.doctorsStorage.GetDoctorsCount(ctx)
 		if err != nil {
 			//	todo log
 		}
 	})
 
 	g.Go(func() {
-		subscribersInfo, err := s.subscribersGetter.GetAllSubscribersInfo(ctx)
+		_, err := s.subscribersGetter.GetAllSubscribersInfo(ctx)
 		if err != nil {
 			//	todo log
 		}
