@@ -2,6 +2,7 @@ package v1
 
 import (
 	"github.com/go-chi/chi/v5"
+	"medblogers_base/internal/app/middleware"
 	"medblogers_base/internal/modules/doctors"
 	"net/http"
 )
@@ -16,8 +17,9 @@ func NewService(doctors *doctors.Module) *Service {
 		doctors: doctors,
 		router:  chi.NewRouter(),
 	}
-
+	s.setupMiddlewares()
 	s.setupRoutes()
+
 	return s
 }
 
@@ -28,6 +30,10 @@ func (s *Service) setupRoutes() {
 			r.Get("/", s.DoctorDetail) // GET /api/v1/doctors/{id}
 		})
 	})
+}
+
+func (s *Service) setupMiddlewares() {
+	s.router.Use(middleware.LoggerMiddleware)
 }
 
 func (s *Service) ServeHTTP(writer http.ResponseWriter, request *http.Request) {

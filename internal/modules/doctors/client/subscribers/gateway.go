@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"medblogers_base/internal/pkg/logger"
 	"net/http"
 	"net/url"
 
@@ -45,6 +46,8 @@ func NewGateway(host string, client HTTPClient) *Gateway {
 
 // GetDoctorSubscribers - Получение количества подписчиков у доктора
 func (g *Gateway) GetDoctorSubscribers(ctx context.Context, medblogersID doctor.MedblogersID) (indto.GetDoctorSubscribersResponse, error) {
+	logger.Message(ctx, fmt.Sprintf("[GW subs] Получение подписчиков доктора %d", medblogersID))
+
 	var response dto.GetDoctorSubscribersResponse
 
 	if medblogersID == 0 {
@@ -119,6 +122,8 @@ func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest
 
 // GetDoctorsByFilter - получение докторов по переданным фильтрам
 func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDoctorsByFilterRequest) ([]indto.GetDoctorsByFilterResponse, error) {
+	logger.Message(ctx, "[GW subs] Получение подписчиков по фильтрам")
+
 	endpointURL := g.configureFilterRequest(request)
 
 	var response dto.GetDoctorsByFilterResponse
@@ -162,6 +167,7 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 	ctx context.Context,
 	medblogersIDs doctor.MedblogersIDs,
 ) (map[doctor.MedblogersID]indto.GetSubscribersByDoctorIDsResponse, error) {
+	logger.Message(ctx, "[GW subs] Получение подписчиков по ID докторов")
 	var response dto.GetSubscribersByDoctorIDsResponse
 	if len(medblogersIDs) == 0 {
 		return nil, errors.New("medblogersIDs is required")
@@ -210,6 +216,8 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 
 // GetAllSubscribersInfo - получение информации об общем количестве подписчиков
 func (g *Gateway) GetAllSubscribersInfo(ctx context.Context) (indto.GetAllSubscribersInfoResponse, error) {
+	logger.Message(ctx, "[GW subs] Получение данных об общем количестве подписчиков")
+
 	var response dto.GetAllSubscribersInfoResponse
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
@@ -247,6 +255,8 @@ func (g *Gateway) GetAllSubscribersInfo(ctx context.Context) (indto.GetAllSubscr
 
 // GetFilterInfo - получение информации о доступных фильтрах
 func (g *Gateway) GetFilterInfo(ctx context.Context) ([]indto.FilterInfoResponse, error) {
+	logger.Message(ctx, "[GW subs] Получение информации о доступных фильтрах")
+
 	var response dto.FilterInfoResponse
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
@@ -290,6 +300,8 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	if medblogersID == 0 {
 		return 0, errors.New("medblogersID is required")
 	}
+	logger.Message(ctx, fmt.Sprintf("[GW subs] Создание доктора в сервисе подписчиков %d, параметры: %v", medblogersID, request))
+
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,
@@ -322,6 +334,8 @@ func (g *Gateway) UpdateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	if medblogersID == 0 {
 		return 0, errors.New("medblogersID is required")
 	}
+	logger.Message(ctx, fmt.Sprintf("[GW subs] Обновление доктора в сервисе подписчиков %d, параметры: %v", medblogersID, request))
+
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,

@@ -4,33 +4,15 @@ import (
 	"context"
 	"fmt"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 	v1 "medblogers_base/internal/app/api/doctors/v1"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
-	"os"
 	"time"
 
 	moduleadmin "medblogers_base/internal/modules/admin"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 )
-
-func (a *App) initLogger(_ context.Context) *App {
-	encoderCfg := zap.NewProductionEncoderConfig()
-	encoderCfg.TimeKey = "timestamp"
-	encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
-
-	core := zapcore.NewCore(
-		zapcore.NewJSONEncoder(encoderCfg),
-		zapcore.AddSync(os.Stdout),
-		zapcore.DebugLevel,
-	)
-
-	a.logger = zap.New(core)
-	return a
-}
 
 func (a *App) initPostgres(ctx context.Context) *App {
 

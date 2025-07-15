@@ -2,6 +2,7 @@ package speciality_dal
 
 import (
 	"context"
+	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 
 	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
@@ -24,6 +25,8 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // GetSpecialitiesWithDoctorsCount получение списка специальностей с количеством докторов
 func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*speciality.Speciality, error) {
+	logger.Message(ctx, "[DAL] Запрос специальностей")
+
 	sql := `
 		select s.id                      as id,
 			   s.name                    as name,

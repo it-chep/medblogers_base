@@ -1,5 +1,6 @@
 package dto
 
+// FilterItem - todo доделать
 type FilterItem struct {
 	Name string `json:"name"`
 	Slug string `json:"slug"`

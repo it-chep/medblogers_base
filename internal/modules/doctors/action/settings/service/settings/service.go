@@ -3,6 +3,7 @@ package settings
 import (
 	"context"
 	"medblogers_base/internal/modules/doctors/action/settings/dto"
+	"medblogers_base/internal/pkg/logger"
 
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
@@ -64,7 +65,7 @@ func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) 
 	g.Go(func() {
 		cities, err = s.cityStorage.GetCitiesWithDoctorsCount(ctx)
 		if err != nil {
-			//	todo log
+			logger.Error(ctx, "[Settings] Ошибка при получении городов", err)
 		}
 	})
 
@@ -72,7 +73,7 @@ func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) 
 	g.Go(func() {
 		specialities, err = s.specialityStory.GetSpecialitiesWithDoctorsCount(ctx)
 		if err != nil {
-			//	todo log
+			logger.Error(ctx, "[Settings] Ошибка при получении специальностей", err)
 		}
 	})
 
@@ -80,14 +81,14 @@ func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) 
 	g.Go(func() {
 		doctorsCount, err = s.doctorsStorage.GetDoctorsCount(ctx)
 		if err != nil {
-			//	todo log
+			logger.Error(ctx, "[Settings] Ошибка при получении количества докторов", err)
 		}
 	})
 
 	g.Go(func() {
 		subscribersCountResponse, err = s.subscribersGetter.GetAllSubscribersInfo(ctx)
 		if err != nil {
-			//	todo log
+			logger.Error(ctx, "[Settings] Ошибка при получении количества подписчиков", err)
 		}
 	})
 

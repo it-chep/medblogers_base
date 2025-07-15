@@ -2,7 +2,7 @@ package internal
 
 import (
 	"context"
-	"go.uber.org/zap"
+	"fmt"
 	v1 "medblogers_base/internal/app/api/doctors/v1"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/postgres"
@@ -22,7 +22,6 @@ type controllers struct {
 }
 
 type App struct {
-	logger   *zap.Logger
 	postgres postgres.PoolWrapper
 
 	modules modules
@@ -43,7 +42,6 @@ func New(ctx context.Context) *App {
 	a := &App{}
 
 	a.initConfig(ctx).
-		initLogger(ctx).
 		initPostgres(ctx).
 		initModules(ctx).
 		initControllers(ctx).
@@ -56,14 +54,14 @@ func New(ctx context.Context) *App {
 func (a *App) Run(ctx context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
-			a.logger.Error("application recovered from panic")
+			fmt.Println("application recovered from panic")
 		}
 	}()
 
-	a.logger.Info("[APP] Запуск приложения")
+	fmt.Println("[APP] Запуск приложения")
 	//a.workerPool.Run(ctx)
 
 	if err := a.server.ListenAndServe(); err != nil {
-		a.logger.Fatal("[APP] Не удалось запустить приложение: %s", zap.Error(err))
+		fmt.Printf("[APP] Не удалось запустить приложение: %e", err)
 	}
 }

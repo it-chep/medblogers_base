@@ -2,6 +2,7 @@ package city_dal
 
 import (
 	"context"
+	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
@@ -22,6 +23,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // GetCitiesWithDoctorsCount получение списка городов с количеством докторов
 func (r Repository) GetCitiesWithDoctorsCount(ctx context.Context) ([]*city.City, error) {
+	logger.Message(ctx, "[DAL] Запрос городов")
 	sql := `
 		select c.id                      as id,
 			   c.name                    as name,
@@ -45,5 +47,6 @@ func (r Repository) GetCitiesWithDoctorsCount(ctx context.Context) ([]*city.City
 	for _, dao := range citiesDAO {
 		cities = append(cities, dao.ToDomain())
 	}
+
 	return cities, nil
 }

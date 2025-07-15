@@ -23,8 +23,8 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetAllSpecialities все специальности
 func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speciality, error) {
 	sql := `
-		select s.id                      as speciality_id,
-			   s.name                    as speciality_name
+		select s.id                      as id,
+			   s.name                    as name
 		from docstar_site_speciallity s
 		group by s.id, s.name
 		order by s.name
