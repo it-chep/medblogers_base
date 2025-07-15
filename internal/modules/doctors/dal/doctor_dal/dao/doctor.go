@@ -1,6 +1,6 @@
 package dao
 
-import "github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+import "medblogers_base/internal/modules/doctors/domain/doctor"
 
 // DoctorDAO .
 type DoctorDAO struct {

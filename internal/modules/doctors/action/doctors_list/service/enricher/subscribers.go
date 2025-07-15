@@ -3,9 +3,9 @@ package enricher
 import (
 	"context"
 
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers/indto"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
+	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . SubscribersGetter

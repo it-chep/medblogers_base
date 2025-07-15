@@ -2,8 +2,10 @@ package search_doctor
 
 import (
 	"context"
+	"medblogers_base/internal/modules/doctors/action/search_doctor/dal"
+	"medblogers_base/internal/pkg/postgres"
 
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/search_doctor/service/doctor"
+	"medblogers_base/internal/modules/doctors/action/search_doctor/service/doctor"
 )
 
 // Action поиск доктора по фио, специальности, города
@@ -12,9 +14,9 @@ type Action struct {
 }
 
 // New .
-func New() *Action {
+func New(pool postgres.PoolWrapper) *Action {
 	return &Action{
-		doctor: doctor.NewSearchService(),
+		doctor: doctor.NewSearchService(dal.NewRepository(pool)),
 	}
 }
 

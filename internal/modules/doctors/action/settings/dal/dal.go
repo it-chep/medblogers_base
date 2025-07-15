@@ -2,7 +2,7 @@ package dal
 
 import (
 	"context"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/postgres"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
@@ -26,7 +26,7 @@ func (r Repository) GetDoctorsCount(ctx context.Context) (int64, error) {
 	`
 
 	var count int64
-	if err := pgxscan.Select(ctx, r.db, &count, sql); err != nil {
+	if err := pgxscan.Get(ctx, r.db, &count, sql); err != nil {
 		return 0, err
 	}
 

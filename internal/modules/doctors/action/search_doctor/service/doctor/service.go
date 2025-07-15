@@ -3,42 +3,30 @@ package doctor
 import (
 	"context"
 
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
-	"github.com/it-chep/medblogers_base/internal/pkg/async"
+	"medblogers_base/internal/modules/doctors/domain/city"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
+	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"medblogers_base/internal/pkg/async"
 )
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage,DoctorsStorage
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . SearchStorage
 
-// CityStorage .
-type CityStorage interface {
+// SearchStorage .
+type SearchStorage interface {
 	SearchCities(ctx context.Context, query string) ([]*city.City, error)
-}
-
-// SpecialityStorage .
-type SpecialityStorage interface {
 	SearchSpecialities(ctx context.Context, query string) ([]*speciality.Speciality, error)
-}
-
-// DoctorsStorage .
-type DoctorsStorage interface {
 	SearchDoctors(ctx context.Context, query string) ([]*doctor.Doctor, error)
 }
 
 // Service .
 type Service struct {
-	cityStorage     CityStorage
-	specialityStory SpecialityStorage
-	doctorsStorage  DoctorsStorage
+	searchStorage SearchStorage
 }
 
 // NewSearchService .
-func NewSearchService(cityStorage CityStorage, specialityStory SpecialityStorage, doctorsStorage DoctorsStorage) *Service {
+func NewSearchService(searchStorage SearchStorage) *Service {
 	return &Service{
-		cityStorage:     cityStorage,
-		specialityStory: specialityStory,
-		doctorsStorage:  doctorsStorage,
+		searchStorage: searchStorage,
 	}
 }
 
@@ -48,7 +36,7 @@ func (s *Service) Search(ctx context.Context, query string) error {
 
 	// получение городов
 	g.Go(func() {
-		_, err := s.cityStorage.SearchCities(ctx, query)
+		_, err := s.searchStorage.SearchCities(ctx, query)
 		if err != nil {
 			//	todo log
 		}
@@ -56,7 +44,7 @@ func (s *Service) Search(ctx context.Context, query string) error {
 
 	// получение специальностей
 	g.Go(func() {
-		_, err := s.specialityStory.SearchSpecialities(ctx, query)
+		_, err := s.searchStorage.SearchSpecialities(ctx, query)
 		if err != nil {
 			//	todo log
 		}
@@ -64,7 +52,7 @@ func (s *Service) Search(ctx context.Context, query string) error {
 
 	// получение количества докторов
 	g.Go(func() {
-		_, err := s.doctorsStorage.SearchDoctors(ctx, query)
+		_, err := s.searchStorage.SearchDoctors(ctx, query)
 		if err != nil {
 			//	todo log
 		}

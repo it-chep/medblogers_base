@@ -1,6 +1,6 @@
 package dao
 
-import "github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
+import "medblogers_base/internal/modules/doctors/domain/city"
 
 type CityDAO struct {
 	ID           int64  `db:"id" json:"id"`

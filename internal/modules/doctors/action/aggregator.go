@@ -1,14 +1,14 @@
 package action
 
 import (
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/create_doctor"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctor_detail"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctors_filter"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/doctors_list"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/search_doctor"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/modules/doctors/action/create_doctor"
+	"medblogers_base/internal/modules/doctors/action/doctor_detail"
+	"medblogers_base/internal/modules/doctors/action/doctors_filter"
+	"medblogers_base/internal/modules/doctors/action/doctors_list"
+	"medblogers_base/internal/modules/doctors/action/search_doctor"
+	"medblogers_base/internal/modules/doctors/action/settings"
+	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/pkg/postgres"
 )
 
 // Aggregator собирает все процессы модуля в одно целое
@@ -28,7 +28,7 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *Aggre
 		DoctorDetail:  doctor_detail.New(clients),
 		DoctorsFilter: doctors_filter.New(),
 		DoctorsList:   doctors_list.New(),
-		SearchDoctor:  search_doctor.New(),
+		SearchDoctor:  search_doctor.New(pool),
 		Settings:      settings.New(clients, pool),
 	}
 }

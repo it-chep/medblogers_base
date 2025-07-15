@@ -2,10 +2,10 @@ package speciality_dal
 
 import (
 	"context"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/postgres"
 
-	specialityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
+	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	"medblogers_base/internal/modules/doctors/domain/speciality"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
@@ -25,8 +25,8 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetSpecialitiesWithDoctorsCount получение списка специальностей с количеством докторов
 func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*speciality.Speciality, error) {
 	sql := `
-		select s.id                      as speciality_id,
-			   s.name                    as speciality_name,
+		select s.id                      as id,
+			   s.name                    as name,
 			   count(distinct doctor_id) as doctors_count
 		from docstar_site_speciallity s
 				 left join (select dc.speciallity_id, dc.doctor_id

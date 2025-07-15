@@ -2,14 +2,14 @@ package settings
 
 import (
 	"context"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings/dal"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings/dto"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/speciality_dal"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/modules/doctors/action/settings/dal"
+	"medblogers_base/internal/modules/doctors/action/settings/dto"
+	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/modules/doctors/dal/city_dal"
+	"medblogers_base/internal/modules/doctors/dal/speciality_dal"
+	"medblogers_base/internal/pkg/postgres"
 
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings/service/settings"
+	"medblogers_base/internal/modules/doctors/action/settings/service/settings"
 )
 
 // Action получение настроек главной страницы
@@ -29,11 +29,11 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	}
 }
 
-func (s *Action) Do(ctx context.Context) (dto.Settings, error) {
-	err := s.settings.GetSettings(ctx)
+func (s *Action) Do(ctx context.Context) (*dto.Settings, error) {
+	settingsDTO, err := s.settings.GetSettings(ctx)
 	if err != nil {
-		return dto.Settings{}, err
+		return &dto.Settings{}, err
 	}
 
-	return dto.Settings{}, nil
+	return settingsDTO, nil
 }

@@ -18,3 +18,15 @@ func BuildCity(options ...Option) *City {
 	}
 	return e
 }
+
+func (c *City) ID() CityID {
+	return c.id
+}
+
+func (c *City) Name() string {
+	return c.name
+}
+
+func (c *City) DoctorsCount() int64 {
+	return c.doctorsCount
+}

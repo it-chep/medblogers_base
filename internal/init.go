@@ -3,18 +3,18 @@ package internal
 import (
 	"context"
 	"fmt"
-	v1 "github.com/it-chep/medblogers_base/internal/app/api/doctors/v1"
-	"github.com/it-chep/medblogers_base/internal/config"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	v1 "medblogers_base/internal/app/api/doctors/v1"
+	"medblogers_base/internal/config"
+	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 	"os"
 	"time"
 
-	moduleadmin "github.com/it-chep/medblogers_base/internal/modules/admin"
-	moduledoctors "github.com/it-chep/medblogers_base/internal/modules/doctors"
+	moduleadmin "medblogers_base/internal/modules/admin"
+	moduledoctors "medblogers_base/internal/modules/doctors"
 )
 
 func (a *App) initLogger(_ context.Context) *App {
@@ -65,7 +65,7 @@ func (a *App) initConfig(_ context.Context) *App {
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
 		admin:   moduleadmin.New(),
-		doctors: moduledoctors.New(a.postgres),
+		doctors: moduledoctors.New(a.config, a.postgres),
 	}
 
 	return a

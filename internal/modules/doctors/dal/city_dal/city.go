@@ -2,10 +2,10 @@ package city_dal
 
 import (
 	"context"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/postgres"
 
-	cityDAO "github.com/it-chep/medblogers_base/internal/modules/doctors/dal/city_dal/dao"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
+	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
+	"medblogers_base/internal/modules/doctors/domain/city"
 
 	"github.com/georgysavva/scany/pgxscan"
 )
@@ -23,8 +23,8 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetCitiesWithDoctorsCount получение списка городов с количеством докторов
 func (r Repository) GetCitiesWithDoctorsCount(ctx context.Context) ([]*city.City, error) {
 	sql := `
-		select c.id                      as city_id,
-			   c.name                    as city_name,
+		select c.id                      as id,
+			   c.name                    as name,
 			   count(distinct doctor_id) as doctors_count
 		from docstar_site_city c
 				 left join (select dc.city_id, dc.doctor_id

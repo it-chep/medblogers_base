@@ -2,9 +2,9 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/it-chep/medblogers_base/internal/app/api/doctors/v1/dto"
-	indto "github.com/it-chep/medblogers_base/internal/modules/doctors/action/settings/dto"
 	"github.com/samber/lo"
+	"medblogers_base/internal/app/api/doctors/v1/dto"
+	indto "medblogers_base/internal/modules/doctors/action/settings/dto"
 	"net/http"
 )
 
@@ -30,7 +30,7 @@ func (s *Service) Settings(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp)
 }
 
-func (s *Service) newSettingsResponse(settings indto.Settings) dto.SettingsDTO {
+func (s *Service) newSettingsResponse(settings *indto.Settings) dto.SettingsDTO {
 	return dto.SettingsDTO{
 		DoctorsCount:     settings.DoctorsCount,
 		SubscribersCount: settings.SubscribersCount,

@@ -1,9 +1,11 @@
 package client
 
 import (
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/s3"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/salebot"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers"
+	"fmt"
+	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/doctors/client/s3"
+	"medblogers_base/internal/modules/doctors/client/salebot"
+	"medblogers_base/internal/modules/doctors/client/subscribers"
 	"net/http"
 	"time"
 )
@@ -14,11 +16,13 @@ type Aggregator struct {
 	Salebot     *salebot.Gateway
 }
 
-func NewAggregator() *Aggregator {
+func NewAggregator(config *config.Config) *Aggregator {
 	return &Aggregator{
-		Subscribers: subscribers.NewGateway(&http.Client{
-			Timeout: 3 * time.Second,
-		}),
+		Subscribers: subscribers.NewGateway(
+			fmt.Sprintf("%s:%s", config.SubscribersClient.Host, config.SubscribersClient.Port),
+			&http.Client{
+				Timeout: 3 * time.Second,
+			}),
 		S3: s3.NewGateway(),
 		Salebot: salebot.NewGateway(&http.Client{
 			Timeout: 3 * time.Second,

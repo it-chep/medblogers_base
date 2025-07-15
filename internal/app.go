@@ -2,14 +2,14 @@ package internal
 
 import (
 	"context"
-	v1 "github.com/it-chep/medblogers_base/internal/app/api/doctors/v1"
-	"github.com/it-chep/medblogers_base/internal/config"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
 	"go.uber.org/zap"
+	v1 "medblogers_base/internal/app/api/doctors/v1"
+	"medblogers_base/internal/config"
+	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 
-	"github.com/it-chep/medblogers_base/internal/modules/admin"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors"
+	"medblogers_base/internal/modules/admin"
+	"medblogers_base/internal/modules/doctors"
 )
 
 type modules struct {

@@ -20,6 +20,7 @@ func NewGroup() *Group {
 func (g *Group) Go(f func()) {
 	g.wg.Add(1)
 	go func() {
+		defer g.wg.Done()
 		f()
 	}()
 }

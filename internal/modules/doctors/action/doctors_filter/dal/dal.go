@@ -2,7 +2,7 @@ package dal
 
 import (
 	"context"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/postgres"
 )
 
 type Repository struct {

@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+import "medblogers_base/internal/modules/doctors/domain/doctor"
 
 type DoctorDTO struct {
 	Name string `json:"name"`

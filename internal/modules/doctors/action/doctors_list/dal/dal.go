@@ -1,6 +1,6 @@
 package dal
 
-import "github.com/it-chep/medblogers_base/internal/pkg/postgres"
+import "medblogers_base/internal/pkg/postgres"
 
 type Repository struct {
 	db postgres.PoolWrapper

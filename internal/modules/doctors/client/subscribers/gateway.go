@@ -8,15 +8,21 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers/dto"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client/subscribers/indto"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
+	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
+	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
 // todo indto переделать
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . HTTPClient
+
+const (
+	defaultScheme = "http"
+	secureScheme  = "https"
+)
 
 // HTTPClient ...
 type HTTPClient interface {
@@ -25,12 +31,14 @@ type HTTPClient interface {
 
 // Gateway в сервис subscribers
 type Gateway struct {
+	host   string
 	client HTTPClient
 }
 
 // NewGateway - конструктор
-func NewGateway(client HTTPClient) *Gateway {
+func NewGateway(host string, client HTTPClient) *Gateway {
 	return &Gateway{
+		host:   host,
 		client: client,
 	}
 }
@@ -42,10 +50,13 @@ func (g *Gateway) GetDoctorSubscribers(ctx context.Context, medblogersID doctor.
 	if medblogersID == 0 {
 		return indto.GetDoctorSubscribersResponse{}, errors.New("medblogersID is required")
 	}
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   fmt.Sprintf("/subscribers/%d", int64(medblogersID)),
+	}
 
-	endpointURL := fmt.Sprintf("/subscribers/%d", int64(medblogersID))
-
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
 	if err != nil {
 		return indto.GetDoctorSubscribersResponse{}, err
 	}
@@ -77,7 +88,12 @@ func (g *Gateway) GetDoctorSubscribers(ctx context.Context, medblogersID doctor.
 }
 
 func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest) string {
-	endpointURL := "/doctors/filter/"
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   "/doctors/filter/",
+	}
+
 	if request.MinSubscribers != 0 {
 
 	}
@@ -98,7 +114,7 @@ func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest
 
 	}
 
-	return endpointURL
+	return endpointURL.String()
 }
 
 // GetDoctorsByFilter - получение докторов по переданным фильтрам
@@ -150,12 +166,15 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 	if len(medblogersIDs) == 0 {
 		return nil, errors.New("medblogersIDs is required")
 	}
-
-	endpointURL := fmt.Sprintf("/doctors/by_ids/?doctor_ids=%s", medblogersIDs.String())
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   fmt.Sprintf("/doctors/by_ids/?doctor_ids=%s", medblogersIDs.String()),
+	}
 
 	resultMap := make(map[doctor.MedblogersID]indto.GetSubscribersByDoctorIDsResponse, len(medblogersIDs))
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
 	if err != nil {
 		return resultMap, err
 	}
@@ -192,9 +211,13 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 // GetAllSubscribersInfo - получение информации об общем количестве подписчиков
 func (g *Gateway) GetAllSubscribersInfo(ctx context.Context) (indto.GetAllSubscribersInfoResponse, error) {
 	var response dto.GetAllSubscribersInfoResponse
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   "/subscribers/count/",
+	}
 
-	endpointURL := "/subscribers/count/"
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
 	if err != nil {
 		return indto.GetAllSubscribersInfoResponse{}, err
 	}
@@ -225,9 +248,13 @@ func (g *Gateway) GetAllSubscribersInfo(ctx context.Context) (indto.GetAllSubscr
 // GetFilterInfo - получение информации о доступных фильтрах
 func (g *Gateway) GetFilterInfo(ctx context.Context) ([]indto.FilterInfoResponse, error) {
 	var response dto.FilterInfoResponse
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   "/filter/info/",
+	}
 
-	endpointURL := "/filter/info/"
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
 	if err != nil {
 		return []indto.FilterInfoResponse{}, err
 	}
@@ -263,6 +290,11 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	if medblogersID == 0 {
 		return 0, errors.New("medblogersID is required")
 	}
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   fmt.Sprintf("/doctors/%d", int(medblogersID)),
+	}
 
 	body, err := json.Marshal(dto.UpdateDoctorRequest{
 		Telegram:  request.Telegram,
@@ -272,8 +304,7 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 		return 0, err
 	}
 
-	endpointURL := fmt.Sprintf("/doctors/%d", int64(medblogersID))
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, endpointURL, bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, endpointURL.String(), bytes.NewReader(body))
 	if err != nil {
 		return 0, err
 	}
@@ -291,6 +322,11 @@ func (g *Gateway) UpdateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	if medblogersID == 0 {
 		return 0, errors.New("medblogersID is required")
 	}
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   fmt.Sprintf("/doctors/%d", int(medblogersID)),
+	}
 
 	body, err := json.Marshal(dto.UpdateDoctorRequest{
 		Telegram:  request.Telegram,
@@ -300,8 +336,7 @@ func (g *Gateway) UpdateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 		return 0, err
 	}
 
-	endpointURL := fmt.Sprintf("/doctors/%d", int64(medblogersID))
-	req, err := http.NewRequestWithContext(ctx, http.MethodPatch, endpointURL, bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPatch, endpointURL.String(), bytes.NewReader(body))
 	if err != nil {
 		return 0, err
 	}

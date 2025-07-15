@@ -2,7 +2,7 @@ package v1
 
 import (
 	"github.com/go-chi/chi/v5"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors"
+	"medblogers_base/internal/modules/doctors"
 	"net/http"
 )
 

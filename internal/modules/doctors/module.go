@@ -1,9 +1,10 @@
 package doctors
 
 import (
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/action"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/client"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/doctors/action"
+	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/pkg/postgres"
 )
 
 // Module модуль отвечающий за работу модуля докторов
@@ -11,8 +12,8 @@ type Module struct {
 	Actions *action.Aggregator
 }
 
-func New(pool postgres.PoolWrapper) *Module {
-	clients := client.NewAggregator()
+func New(config *config.Config, pool postgres.PoolWrapper) *Module {
+	clients := client.NewAggregator(config)
 
 	actions := action.NewAggregator(clients, pool)
 

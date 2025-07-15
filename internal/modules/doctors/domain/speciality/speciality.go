@@ -10,6 +10,8 @@ type Speciality struct {
 	doctorsCount int64
 }
 
+type Specialities []*Speciality
+
 // BuildSpeciality создать специальность
 func BuildSpeciality(options ...Option) *Speciality {
 	e := &Speciality{}
@@ -17,4 +19,16 @@ func BuildSpeciality(options ...Option) *Speciality {
 		option(e)
 	}
 	return e
+}
+
+func (c *Speciality) ID() SpecialityID {
+	return c.id
+}
+
+func (c *Speciality) Name() string {
+	return c.name
+}
+
+func (c *Speciality) DoctorsCount() int64 {
+	return c.doctorsCount
 }

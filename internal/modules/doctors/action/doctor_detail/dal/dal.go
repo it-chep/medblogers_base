@@ -2,14 +2,11 @@ package dal
 
 import (
 	"context"
-	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
-
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/city"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/doctor"
-	"github.com/it-chep/medblogers_base/internal/modules/doctors/domain/speciality"
+	"medblogers_base/internal/pkg/postgres"
 
 	"github.com/georgysavva/scany/pgxscan"
+	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
 type Repository struct {
@@ -43,25 +40,31 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 	return doctorDAO.ToDomain(), nil
 }
 
-// GetCitiesByIDs получение информации о городах доктора
-func (r Repository) GetCitiesByIDs(ctx context.Context, citiesIDs []int64) ([]*city.City, error) {
-	sql := `
-		select c.id, c.name 
-		from docstar_site_city c 
-		where c.id = any($1)
-	`
+//// GetCitiesByIDs получение информации о городах доктора
+//func (r Repository) GetCitiesByIDs(ctx context.Context, citiesIDs []int64) ([]*city.City, error) {
+//	sql := `
+//		select c.id, c.name
+//		from docstar_site_city c
+//		where c.id = any($1)
+//	`
+//
+//	var cityDAO cityDAO.CityDAO
+//	if err := pgxscan.Select(ctx, r.db, &cityDAO, sql, citiesIDs); err != nil {
+//		return nil, err
+//	}
+//
+//	return cityDAO.ToDomain(), nil
+//}
 
-}
-
-// GetSpecialitiesByIDs получение информации о специальностях доктора
-func (r Repository) GetSpecialitiesByIDs(ctx context.Context, specialitiesIDs []int64) ([]*speciality.Speciality, error) {
-	sql := `
-		select s.id, s.name 
-		from docstar_site_speciallity s 
-		where s.id = any($1)
-	`
-
-}
+//// GetSpecialitiesByIDs получение информации о специальностях доктора
+//func (r Repository) GetSpecialitiesByIDs(ctx context.Context, specialitiesIDs []int64) ([]*speciality.Speciality, error) {
+//	sql := `
+//		select s.id, s.name
+//		from docstar_site_speciallity s
+//		where s.id = any($1)
+//	`
+//
+//}
 
 const (
 	manyToManyCity       = `select city_id from docstar_site_doctor_additional_cities where doctor_id = $1`

@@ -4,12 +4,14 @@ import (
 	"log"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 )
 
 type Config struct {
-	Storage Storage `mapstructure:"db"`
-	Server  Server  `mapstructure:"server"`
+	Storage           Storage           `mapstructure:"db"`
+	Server            Server            `mapstructure:"server"`
+	SubscribersClient SubscribersClient `mapstructure:"subscribers"`
 }
 
 type Server struct {
@@ -29,7 +31,17 @@ type Storage struct {
 	RetryTimeout time.Duration `mapstructure:"retry_timeout"`
 }
 
+// SubscribersClient todo тк нет serivce discovery и сервис 1 то делаем пока хардкод
+type SubscribersClient struct {
+	Host string `mapstructure:"host"`
+	Port string `mapstructure:"port"`
+}
+
 func NewConfig() *Config {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	// 1. Загружаем .env файл (если есть)
 	_ = viper.BindEnv("CONFIG_PATH") // Читаем из переменной окружения
 
