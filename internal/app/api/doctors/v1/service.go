@@ -3,6 +3,7 @@ package v1
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/it-chep/medblogers_base/internal/modules/doctors"
+	"net/http"
 )
 
 type Service struct {
@@ -27,4 +28,8 @@ func (s *Service) setupRoutes() {
 			r.Get("/", s.DoctorDetail) // GET /api/v1/doctors/{id}
 		})
 	})
+}
+
+func (s *Service) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
+	s.router.ServeHTTP(writer, request)
 }

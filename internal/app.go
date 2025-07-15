@@ -2,8 +2,10 @@ package internal
 
 import (
 	"context"
+	v1 "github.com/it-chep/medblogers_base/internal/app/api/doctors/v1"
 	"github.com/it-chep/medblogers_base/internal/config"
-	"log/slog"
+	"github.com/it-chep/medblogers_base/internal/pkg/postgres"
+	"go.uber.org/zap"
 	"net/http"
 
 	"github.com/it-chep/medblogers_base/internal/modules/admin"
@@ -15,16 +17,19 @@ type modules struct {
 	doctors *doctors.Module
 }
 
-type App struct {
-	// logger  *slog.Logger
+type controllers struct {
+	restController *v1.Service
+}
 
-	// postgres
+type App struct {
+	logger   *zap.Logger
+	postgres postgres.PoolWrapper
 
 	modules modules
 
 	// http сервер
-	// controllers
-	server *http.Server
+	controllers controllers
+	server      *http.Server
 
 	config *config.Config
 
@@ -38,6 +43,7 @@ func New(ctx context.Context) *App {
 	a := &App{}
 
 	a.initConfig(ctx).
+		initLogger(ctx).
 		initPostgres(ctx).
 		initModules(ctx).
 		initControllers(ctx).
@@ -50,14 +56,14 @@ func New(ctx context.Context) *App {
 func (a *App) Run(ctx context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
-			a.logger.Error("application recovered from panic", slog.Any("error", r))
+			a.logger.Error("application recovered from panic")
 		}
 	}()
 
-	a.logger.Info("Запуск приложения")
-	a.workerPool.Run(ctx)
+	a.logger.Info("[APP] Запуск приложения")
+	//a.workerPool.Run(ctx)
 
 	if err := a.server.ListenAndServe(); err != nil {
-		a.logger.Fatalf(ctx, "Не удалось запустить приложение: %s", err)
+		a.logger.Fatal("[APP] Не удалось запустить приложение: %s", zap.Error(err))
 	}
 }
