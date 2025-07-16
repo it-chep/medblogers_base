@@ -15,6 +15,12 @@ import (
 	"github.com/georgysavva/scany/pgxscan"
 )
 
+const (
+	defaultDoctorsLimit      = 30
+	defaultCitiesLimit       = 5
+	defaultSpecialitiesLimit = 5
+)
+
 type Repository struct {
 	db postgres.PoolWrapper
 }
@@ -39,7 +45,7 @@ func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 	var doctors []*dao.DoctorDAO
 	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db, &doctors, sql, query, 30); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &doctors, sql, query, defaultDoctorsLimit); err != nil {
 		return []*doctor.Doctor{}, err
 	}
 
@@ -54,8 +60,8 @@ func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.
 // SearchCities поиск городов
 func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.City, error) {
 	sql := `
-		select c.id 					 as city_id,
-			   c.name                    as city_name,
+		select c.id 					 as id,
+			   c.name                    as name,
 			   count(distinct doctor_id) as doctors_count
 		from docstar_site_city c
 				 left join (select dc.city_id, dc.doctor_id
@@ -71,8 +77,7 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 
 	var cities []*cityDAO.CityDAOWithDoctorsCount
-	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, 5); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, defaultCitiesLimit); err != nil {
 		return []*city.City{}, err
 	}
 
@@ -87,8 +92,8 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 // SearchSpecialities поиск специальностей
 func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*speciality.Speciality, error) {
 	sql := `
-		select s.id                      as speciality_id,
-			   s.name                    as speciality_name,
+		select s.id                      as id,
+			   s.name                    as name,
 			   count(distinct doctor_id) as doctors_count
 		from docstar_site_speciallity s
 				 left join (select dc.speciallity_id, dc.doctor_id
@@ -105,7 +110,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 
 	var specialities []*specialityDAO.SpecialityDAOWithDoctorsCount
 	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, 5); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, defaultSpecialitiesLimit); err != nil {
 		return []*speciality.Speciality{}, err
 	}
 

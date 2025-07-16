@@ -4,11 +4,14 @@ import (
 	"context"
 	"fmt"
 	"github.com/aws/aws-sdk-go-v2/credentials"
+	"github.com/samber/lo"
 	"io"
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/pkg/logger"
 	"mime"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -55,8 +58,29 @@ func NewGateway(bucketName string, cfg config.S3Config) *Gateway {
 }
 
 // GetUserPhotos получение фотографий врачей
-func (g *Gateway) GetUserPhotos(ctx context.Context) error {
-	return nil
+func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) {
+	logger.Message(ctx, "[S3] Получение фотографий пользователей")
+	resp, err := g.client.ListObjectsV2(ctx, &s3.ListObjectsV2Input{
+		Bucket: aws.String(g.bucketName),
+		Prefix: aws.String("images/user_"),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	objects := resp.Contents
+	filesMap := make(map[string]string, len(objects))
+	for _, object := range objects {
+		key := lo.FromPtr(object.Key)
+		if len(key) == 0 {
+			continue
+		}
+
+		slug := strings.Split(key, "_")[1]
+		filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, key)
+	}
+
+	return filesMap, nil
 }
 
 // GeneratePresignedURL .
