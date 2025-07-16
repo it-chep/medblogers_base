@@ -3,7 +3,6 @@ package search_doctor
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/dal"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/dto"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/service/city"
@@ -11,6 +10,8 @@ import (
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/samber/lo"
 
 	"medblogers_base/internal/modules/doctors/action/search_doctor/service/doctor"
 	cityDomain "medblogers_base/internal/modules/doctors/domain/city"

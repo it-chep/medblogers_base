@@ -2,10 +2,11 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto/get_all_specialities"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"net/http"
+
+	"github.com/samber/lo"
 )
 
 // AllSpecialities - /api/v1/specialities_list [GET]

@@ -3,8 +3,6 @@ package s3
 import (
 	"context"
 	"fmt"
-	"github.com/aws/aws-sdk-go-v2/credentials"
-	"github.com/samber/lo"
 	"io"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/logger"
@@ -13,6 +11,9 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/aws/aws-sdk-go-v2/credentials"
+	"github.com/samber/lo"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	s3config "github.com/aws/aws-sdk-go-v2/config"

@@ -2,10 +2,11 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto/get_all_cities"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"net/http"
+
+	"github.com/samber/lo"
 )
 
 // AllCities - /api/v1/cities_list [GET]

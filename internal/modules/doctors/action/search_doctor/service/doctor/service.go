@@ -2,9 +2,10 @@ package doctor
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/dto"
 	"medblogers_base/internal/pkg/logger"
+
+	"github.com/samber/lo"
 
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 )
