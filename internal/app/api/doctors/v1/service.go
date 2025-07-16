@@ -27,11 +27,21 @@ func NewService(doctors *doctors.Module) *Service {
 func (s *Service) setupRoutes() {
 	s.router.Route("/api/v1", func(r chi.Router) {
 		r.Get("/settings", s.Settings) // GET /api/v1/settings
+		r.Get("/cities_list", s.AllCities)
+		r.Get("/specialities_list", s.AllSpecialities)
 
 		r.Route("/doctors", func(r chi.Router) {
 			r.Get("/{doctor_id}", s.DoctorDetail)  // Обрабатывает /api/v1/doctors/23
 			r.Get("/{doctor_id}/", s.DoctorDetail) // Обрабатывает /api/v1/doctors/23/
+
+			//r.Get() // search
+			//r.Get() // filter
+
+			//r.Get("/") // дефолт список (мб заменить на фильтр)
 		})
+
+		//r.Post("/create_new_doctor" )
+
 	})
 }
 

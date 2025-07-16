@@ -24,14 +24,14 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetAllCities все города
 func (r Repository) GetAllCities(ctx context.Context) ([]*city.City, error) {
 	sql := `
-		select c.id   as city_id,
-			   c.name as city_name
+		select c.id   as id,
+			   c.name as name
 		from docstar_site_city c
 		group by c.id, c.name
 		order by c.name
 	`
 
-	var citiesDAO []cityDAO.CityDAOWithDoctorsCount
+	var citiesDAO []cityDAO.CityDAO
 	if err := pgxscan.Select(ctx, r.db, &citiesDAO, sql); err != nil {
 		return nil, err
 	}
@@ -40,5 +40,6 @@ func (r Repository) GetAllCities(ctx context.Context) ([]*city.City, error) {
 	for _, dao := range citiesDAO {
 		cities = append(cities, dao.ToDomain())
 	}
+
 	return cities, nil
 }
