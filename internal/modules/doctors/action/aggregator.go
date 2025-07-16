@@ -32,7 +32,7 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *Aggre
 		DoctorDetail:    doctor_detail.New(clients, pool),
 		DoctorsFilter:   doctors_filter.New(),
 		DoctorsList:     doctors_list.New(),
-		SearchDoctor:    search_doctor.New(pool),
+		SearchDoctor:    search_doctor.New(clients, pool),
 		Settings:        settings.New(clients, pool),
 		AllCities:       get_all_cities.New(pool),
 		AllSpecialities: get_all_specialities.New(pool),

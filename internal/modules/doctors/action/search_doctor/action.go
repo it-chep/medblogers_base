@@ -7,6 +7,7 @@ import (
 	"medblogers_base/internal/modules/doctors/action/search_doctor/dto"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/service/city"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/service/speciality"
+	"medblogers_base/internal/modules/doctors/client"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -26,15 +27,15 @@ type Action struct {
 }
 
 // New .
-func New(pool postgres.PoolWrapper) *Action {
+func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
-		doctor:     doctor.NewSearchService(dal.NewRepository(pool)),
+		doctor:     doctor.NewSearchService(dal.NewRepository(pool), clients.S3),
 		city:       city.NewSearchService(dal.NewRepository(pool)),
 		speciality: speciality.NewSearchService(dal.NewRepository(pool)),
 	}
 }
 
-func (a *Action) SearchDoctors(ctx context.Context, query string) (dto.SearchDTO, error) {
+func (a *Action) Do(ctx context.Context, query string) (dto.SearchDTO, error) {
 	logger.Message(ctx, fmt.Sprintf("[Search] Запуск сценария поиска. Query: %s", query))
 	searchResult := dto.SearchDTO{}
 	// Делаем обычную группу, чтобы если 1 из фильров не работает, он не ломал нам весь сайт
@@ -70,7 +71,7 @@ func (a *Action) SearchDoctors(ctx context.Context, query string) (dto.SearchDTO
 		})
 	})
 
-	// получение количества докторов
+	// получение докторов
 	g.Go(func() {
 		doctors, err := a.doctor.Search(ctx, query)
 		if err != nil {

@@ -7,7 +7,6 @@ import (
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/logger"
 	"mime"
-	"os"
 	"path/filepath"
 	"strings"
 	"time"
@@ -35,14 +34,13 @@ func NewGateway(bucketName string, cfg config.S3Config) *Gateway {
 		s3config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(
 			cfg.AccessKey, cfg.SecretKey, "",
 		)),
-		s3config.WithEndpointResolverWithOptions(
-			aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
-				return aws.Endpoint{
-					URL:           os.Getenv(cfg.Endpoint),
-					SigningRegion: os.Getenv(cfg.Region),
-				}, nil
-			}),
-		),
+		//s3config.WithEndpointResolverWithOptions(
+		//	aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
+		//		return aws.Endpoint{
+		//			URL: os.Getenv(cfg.Endpoint),
+		//		}, nil
+		//	}),
+		//),
 	)
 	if err != nil {
 		return nil

@@ -54,8 +54,8 @@ func (s *Service) Search(ctx context.Context, query string) ([]dto.DoctorItem, e
 		return dto.DoctorItem{
 			Name: item.GetName(),
 			Slug: item.GetSlug(),
-			//CityName:       ,
-			//SpecialityName: ,
+			//CityName:       , //todo подумать как сюда вытянуть название города
+			//SpecialityName: , //todo подумать как сюда вытянуть название специальности
 			S3Image: usersPhotosMap[item.GetSlug()],
 		}
 	})

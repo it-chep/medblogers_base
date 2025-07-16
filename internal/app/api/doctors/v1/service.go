@@ -31,10 +31,11 @@ func (s *Service) setupRoutes() {
 		r.Get("/specialities_list", s.AllSpecialities)
 
 		r.Route("/doctors", func(r chi.Router) {
+			r.Get("/search", s.Search) // /api/v1/doctors/search
+
 			r.Get("/{doctor_id}", s.DoctorDetail)  // Обрабатывает /api/v1/doctors/23
 			r.Get("/{doctor_id}/", s.DoctorDetail) // Обрабатывает /api/v1/doctors/23/
 
-			//r.Get() // search
 			//r.Get() // filter
 
 			//r.Get("/") // дефолт список (мб заменить на фильтр)
