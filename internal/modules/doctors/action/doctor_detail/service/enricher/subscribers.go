@@ -26,7 +26,7 @@ func NewSubscribersEnricher(getter SubscribersGetter) *SubscribersEnricher {
 }
 
 // Enrich - обогащение подписчиками
-func (e *SubscribersEnricher) Enrich(ctx context.Context, doctorID doctor.MedblogersID, docDTO dto.DoctorDTO) (dto.DoctorDTO, error) {
+func (e *SubscribersEnricher) Enrich(ctx context.Context, doctorID doctor.MedblogersID, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
 	logger.Message(ctx, "Обогащение доктора подписчиками")
 
 	subscribersInfo, err := e.getter.GetDoctorSubscribers(ctx, doctorID)

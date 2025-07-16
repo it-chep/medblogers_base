@@ -1,4 +1,4 @@
-package dto
+package settings
 
 // FilterItem - todo доделать
 type FilterItem struct {

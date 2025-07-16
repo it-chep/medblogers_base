@@ -31,7 +31,7 @@ func (r Repository) GetAllCities(ctx context.Context) ([]*city.City, error) {
 		order by c.name
 	`
 
-	var citiesDAO []cityDAO.CityDAO
+	var citiesDAO []cityDAO.CityDAOWithDoctorsCount
 	if err := pgxscan.Select(ctx, r.db, &citiesDAO, sql); err != nil {
 		return nil, err
 	}

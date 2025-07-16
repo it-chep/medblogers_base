@@ -12,6 +12,19 @@ type Config struct {
 	Storage           Storage           `mapstructure:"db"`
 	Server            Server            `mapstructure:"server"`
 	SubscribersClient SubscribersClient `mapstructure:"subscribers"`
+	S3Client          S3Config          `mapstructure:"s3"`
+}
+
+type S3Config struct {
+	Region    string   `mapstructure:"region"`
+	Endpoint  string   `mapstructure:"endpoint"`
+	AccessKey string   `mapstructure:"access_key"`
+	SecretKey string   `mapstructure:"secret_key"`
+	Bucket    S3Bucket `mapstructure:"bucket"`
+}
+
+type S3Bucket struct {
+	UsersPhotos string `mapstructure:"photos"`
 }
 
 type Server struct {

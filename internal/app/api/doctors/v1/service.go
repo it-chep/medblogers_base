@@ -27,8 +27,10 @@ func NewService(doctors *doctors.Module) *Service {
 func (s *Service) setupRoutes() {
 	s.router.Route("/api/v1", func(r chi.Router) {
 		r.Get("/settings", s.Settings) // GET /api/v1/settings
-		r.Route("/{doctorID}", func(r chi.Router) {
-			r.Get("/", s.DoctorDetail) // GET /api/v1/doctors/{id}
+
+		r.Route("/doctors", func(r chi.Router) {
+			r.Get("/{doctor_id}", s.DoctorDetail)  // Обрабатывает /api/v1/doctors/23
+			r.Get("/{doctor_id}/", s.DoctorDetail) // Обрабатывает /api/v1/doctors/23/
 		})
 	})
 }

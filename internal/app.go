@@ -58,7 +58,7 @@ func (a *App) Run(ctx context.Context) {
 		}
 	}()
 
-	fmt.Println("[APP] Запуск приложения")
+	fmt.Printf("[APP] Запуск приложения, подключение http://localhost%s \n", a.config.Server.Address)
 	//a.workerPool.Run(ctx)
 
 	if err := a.server.ListenAndServe(); err != nil {

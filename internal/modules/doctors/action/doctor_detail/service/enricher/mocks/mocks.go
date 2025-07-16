@@ -6,10 +6,9 @@ package mocks
 
 import (
 	context "context"
-	reflect "reflect"
-
 	indto "medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	doctor "medblogers_base/internal/modules/doctors/domain/doctor"
+	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
 )

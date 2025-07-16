@@ -2,7 +2,7 @@ package v1
 
 import (
 	"encoding/json"
-	"medblogers_base/internal/app/api/doctors/v1/dto"
+	"medblogers_base/internal/app/api/doctors/v1/dto/settings"
 	indto "medblogers_base/internal/modules/doctors/action/settings/dto"
 	"net/http"
 
@@ -13,13 +13,13 @@ import (
 func (s *Service) Settings(w http.ResponseWriter, r *http.Request) {
 
 	// Получаем данные из модуля
-	settings, err := s.doctors.Actions.Settings.Do(r.Context())
+	settingsDomain, err := s.doctors.Actions.Settings.Do(r.Context())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	// Преобразуем в структуру с JSON тегами
-	settingsDTO := s.newSettingsResponse(settings)
+	settingsDTO := s.newSettingsResponse(settingsDomain)
 
 	resp, err := json.Marshal(settingsDTO)
 	if err != nil {
@@ -31,26 +31,26 @@ func (s *Service) Settings(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp)
 }
 
-func (s *Service) newSettingsResponse(settings *indto.Settings) dto.SettingsDTO {
-	return dto.SettingsDTO{
-		DoctorsCount:     settings.DoctorsCount,
-		SubscribersCount: settings.SubscribersCount,
-		NewDoctorBanner:  settings.NewDoctorBanner,
-		FilterInfo: lo.Map(settings.FilterInfo, func(filterItem indto.FilterItem, _ int) dto.FilterItem {
-			return dto.FilterItem{
+func (s *Service) newSettingsResponse(settingsDomain *indto.Settings) settings.SettingsDTO {
+	return settings.SettingsDTO{
+		DoctorsCount:     settingsDomain.DoctorsCount,
+		SubscribersCount: settingsDomain.SubscribersCount,
+		NewDoctorBanner:  settingsDomain.NewDoctorBanner,
+		FilterInfo: lo.Map(settingsDomain.FilterInfo, func(filterItem indto.FilterItem, _ int) settings.FilterItem {
+			return settings.FilterItem{
 				Name: filterItem.Name,
 				Slug: filterItem.Slug,
 			}
 		}),
-		Cities: lo.Map(settings.Cities, func(cityItem indto.CityItem, _ int) dto.CityItem {
-			return dto.CityItem{
+		Cities: lo.Map(settingsDomain.Cities, func(cityItem indto.CityItem, _ int) settings.CityItem {
+			return settings.CityItem{
 				ID:           cityItem.ID,
 				Name:         cityItem.Name,
 				DoctorsCount: cityItem.DoctorsCount,
 			}
 		}),
-		Specialities: lo.Map(settings.Specialities, func(specialityItem indto.SpecialityItem, _ int) dto.SpecialityItem {
-			return dto.SpecialityItem{
+		Specialities: lo.Map(settingsDomain.Specialities, func(specialityItem indto.SpecialityItem, _ int) settings.SpecialityItem {
+			return settings.SpecialityItem{
 				ID:           specialityItem.ID,
 				Name:         specialityItem.Name,
 				DoctorsCount: specialityItem.DoctorsCount,

@@ -70,7 +70,7 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 
-	var cities []*cityDAO.CityDAO
+	var cities []*cityDAO.CityDAOWithDoctorsCount
 	// todo сделать лимит нормально
 	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, 5); err != nil {
 		return []*city.City{}, err
@@ -103,7 +103,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 
-	var specialities []*specialityDAO.SpecialityDAO
+	var specialities []*specialityDAO.SpecialityDAOWithDoctorsCount
 	// todo сделать лимит нормально
 	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, 5); err != nil {
 		return []*speciality.Speciality{}, err

@@ -25,7 +25,7 @@ type Aggregator struct {
 func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *Aggregator {
 	return &Aggregator{
 		CreateDoctor:  create_doctor.New(),
-		DoctorDetail:  doctor_detail.New(clients),
+		DoctorDetail:  doctor_detail.New(clients, pool),
 		DoctorsFilter: doctors_filter.New(),
 		DoctorsList:   doctors_list.New(),
 		SearchDoctor:  search_doctor.New(pool),

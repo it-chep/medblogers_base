@@ -2,32 +2,77 @@ package dto
 
 import "medblogers_base/internal/modules/doctors/domain/doctor"
 
-type DoctorDTO struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
-
-	// соц.сети
-	InstURL      string `json:"inst_url"`
-	VkURL        string `json:"vk_url"`
-	DzenURL      string `json:"dzen_url"`
-	TgURL        string `json:"tg_url"`
-	TgChannelURL string `json:"tg_channel_url"`
-	YoutubeURL   string `json:"youtube_url"`
-	TiktokURL    string `json:"tiktok_url"`
-	SiteLink     string `json:"prodoctorov"`
-
-	Cities       []string `json:"cities"`       // Города
-	Specialities []string `json:"specialities"` // Специальности // todo не забыть про основную и тут надо вложенный структуры чтобы были ссылки
-
-	// Подписчики
-	TgSubsCount         string `json:"tg_subs_count"`
-	TgSubsCountText     string `json:"tg_subs_count_text"`
-	TgLastUpdatedDate   string `json:"tg_last_updated_date"`
-	InstSubsCount       string `json:"inst_subs_count"`
-	InstSubsCountText   string `json:"inst_subs_count_text"`
-	InstLastUpdatedDate string `json:"inst_last_updated_date"`
+// CityItem .
+type CityItem struct {
+	ID   int64
+	Name string
 }
 
-func New(doc *doctor.Doctor) DoctorDTO {
-	return DoctorDTO{}
+// SpecialityItem .
+type SpecialityItem struct {
+	ID   int64
+	Name string
+}
+
+// DoctorDTO представление доктора для детальной страницы
+type DoctorDTO struct {
+	Name string
+	Slug string
+
+	// соц.сети
+	InstURL      string
+	VkURL        string
+	DzenURL      string
+	TgURL        string
+	TgChannelURL string
+	YoutubeURL   string
+	TiktokURL    string
+	SiteLink     string
+
+	Cities       []CityItem       // доп Города
+	Specialities []SpecialityItem // доп Специальности
+
+	// основной город
+	MainCityID int64
+	MainCity   CityItem
+	// основная специальность
+	MainSpecialityID int64
+	MainSpeciality   SpecialityItem
+
+	// Подписчики
+	TgSubsCount         string
+	TgSubsCountText     string
+	TgLastUpdatedDate   string
+	InstSubsCount       string
+	InstSubsCountText   string
+	InstLastUpdatedDate string
+
+	// фотка
+	Image string
+
+	MainBlogTheme    string
+	MedicalDirection string
+}
+
+// New .
+func New(doc *doctor.Doctor) *DoctorDTO {
+	return &DoctorDTO{
+		Name: doc.GetName(),
+		Slug: doc.GetSlug(),
+
+		InstURL:      doc.GetInstURL(),
+		VkURL:        doc.GetVkURL(),
+		DzenURL:      doc.GetDzenURL(),
+		TgURL:        doc.GetTgURL(),
+		TgChannelURL: doc.GetTgChannelURL(),
+		TiktokURL:    doc.GetTiktokURL(),
+		YoutubeURL:   doc.GetYoutubeURL(),
+		SiteLink:     doc.GetSiteLink(),
+
+		MainCityID:       int64(doc.GetMainCityID()),
+		MainSpecialityID: int64(doc.GetMainSpecialityID()),
+
+		MainBlogTheme:    doc.GetMainBlogTheme(),
+		MedicalDirection: doc.GetMedicalDirection(),
+	}
 }

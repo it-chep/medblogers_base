@@ -23,7 +23,7 @@ func NewAggregator(config *config.Config) *Aggregator {
 			&http.Client{
 				Timeout: 3 * time.Second,
 			}),
-		S3: s3.NewGateway(),
+		S3: s3.NewGateway(config.S3Client.Bucket.UsersPhotos, config.S3Client),
 		Salebot: salebot.NewGateway(&http.Client{
 			Timeout: 3 * time.Second,
 		}),

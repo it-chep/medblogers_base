@@ -2,6 +2,14 @@ package dal
 
 import (
 	"context"
+	"fmt"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
+	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
+	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	"medblogers_base/internal/modules/doctors/domain/city"
+	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
@@ -26,48 +34,68 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 	sql := `
 		select 
 			id, name, slug, 
-			inst_url, vk_url, dzen_url, tg_url,youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
-			s3_image, cooperation_type, is_active, medical_directions, main_blog_theme, 
+			inst_url, vk_url, dzen_url, tg_url, youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
+			s3_image, is_active, medical_directions, main_blog_theme, 
 			city_id, speciallity_id
 		from docstar_site_doctor
 		where id = $1
 	`
 
 	var doctorDAO dao.DoctorDAO
-	if err := pgxscan.Select(ctx, r.db, &doctorDAO, sql, doctorID); err != nil {
-		return nil, err
+	err := pgxscan.Get(ctx, r.db, &doctorDAO, sql, doctorID)
+	switch {
+	case errors.Is(err, pgx.ErrNoRows):
+		return nil, fmt.Errorf("doctor with ID %d not found", doctorID)
+	case err != nil:
+		return nil, fmt.Errorf("failed to get doctor: %w", err)
 	}
 
 	return doctorDAO.ToDomain(), nil
 }
 
-//// GetCitiesByIDs получение информации о городах доктора
-//func (r Repository) GetCitiesByIDs(ctx context.Context, citiesIDs []int64) ([]*city.City, error) {
-//	sql := `
-//		select c.id, c.name
-//		from docstar_site_city c
-//		where c.id = any($1)
-//	`
-//
-//	var cityDAO cityDAO.CityDAO
-//	if err := pgxscan.Select(ctx, r.db, &cityDAO, sql, citiesIDs); err != nil {
-//		return nil, err
-//	}
-//
-//	return cityDAO.ToDomain(), nil
-//}
+// GetDoctorAdditionalCities получение информации о городах доктора
+func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doctor.MedblogersID) (map[city.CityID]*city.City, error) {
+	logger.Message(ctx, "[Dal] Получение дополнительных городов доктора")
+	sql := `
+		select c.id, c.name
+        from docstar_site_city c
+        inner join docstar_site_doctor_additional_cities dc ON c.id = dc.city_id
+        where dc.doctor_id = $1
+        order by c.name
+	`
 
-//// GetSpecialitiesByIDs получение информации о специальностях доктора
-//func (r Repository) GetSpecialitiesByIDs(ctx context.Context, specialitiesIDs []int64) ([]*speciality.Speciality, error) {
-//	sql := `
-//		select s.id, s.name
-//		from docstar_site_speciallity s
-//		where s.id = any($1)
-//	`
-//
-//}
+	var cities []*cityDAO.CityDAO
+	if err := pgxscan.Select(ctx, r.db, &cities, sql, doctorID); err != nil {
+		return nil, err
+	}
 
-const (
-	manyToManyCity       = `select city_id from docstar_site_doctor_additional_cities where doctor_id = $1`
-	manyToManySpeciality = `select speciallity_id from docstar_site_doctor_additional_specialties where doctor_id = $1`
-) // todo
+	result := make(map[city.CityID]*city.City, len(cities))
+	for _, c := range cities {
+		result[city.CityID(c.ID)] = c.ToDomain()
+	}
+
+	return result, nil
+}
+
+// GetDoctorAdditionalSpecialities получение информации о специальностях доктора
+func (r Repository) GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) (map[speciality.SpecialityID]*speciality.Speciality, error) {
+	sql := `
+		select s.id, s.name
+		from docstar_site_speciallity s
+		inner join docstar_site_doctor_additional_specialties dc ON s.id = dc.speciallity_id
+		where dc.doctor_id = $1
+        order by s.name
+	`
+
+	var specialities []*specialityDAO.SpecialityDAO
+	if err := pgxscan.Select(ctx, r.db, &specialities, sql, doctorID); err != nil {
+		return nil, err
+	}
+
+	result := make(map[speciality.SpecialityID]*speciality.Speciality, len(specialities))
+	for _, s := range specialities {
+		result[speciality.SpecialityID(s.ID)] = s.ToDomain()
+	}
+
+	return result, nil
+}

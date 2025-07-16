@@ -58,7 +58,7 @@ type Doctor struct {
 	tgChannelURL string // канал тг
 	youtubeURL   string // ютуб
 	tiktokURL    string // тикток
-	prodoctorov  string // Ссылка на личный сайт
+	siteLink     string // Ссылка на личный сайт
 
 	cityID                    city.CityID             // Основной город
 	additionalCitiesIDs       []int64                 // Доп.Города
@@ -72,4 +72,12 @@ type Doctor struct {
 	birthDate time.Time // дата рождения
 
 	cooperationType CooperationType // Тип размещения
+}
+
+func New(options ...Option) *Doctor {
+	d := &Doctor{}
+	for _, option := range options {
+		option(d)
+	}
+	return d
 }

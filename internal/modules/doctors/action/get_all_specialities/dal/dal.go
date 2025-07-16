@@ -31,7 +31,7 @@ func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speci
 		order by s.name
 	`
 
-	var specialitiesDAO []specialityDAO.SpecialityDAO
+	var specialitiesDAO []specialityDAO.SpecialityDAOWithDoctorsCount
 	if err := pgxscan.Select(ctx, r.db, &specialitiesDAO, sql); err != nil {
 		return nil, err
 	}
