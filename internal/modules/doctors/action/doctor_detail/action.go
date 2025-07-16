@@ -2,6 +2,8 @@ package doctor_detail
 
 import (
 	"context"
+	"fmt"
+	"medblogers_base/internal/pkg/logger"
 
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/dal"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
@@ -23,6 +25,7 @@ func New(clients *client.Aggregator) *Action {
 }
 
 func (a Action) Do(ctx context.Context, doctorID int64) (dto.DoctorDTO, error) {
+	logger.Message(ctx, fmt.Sprintf("[DoctorDetail] Получение данных о докторе %d", doctorID))
 	doc, err := a.doctorStorage.GetDoctorInfo(ctx, doctorID)
 	if err != nil {
 		return dto.DoctorDTO{}, err // 404 not found

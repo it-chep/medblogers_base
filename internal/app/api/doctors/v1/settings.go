@@ -2,10 +2,11 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto"
 	indto "medblogers_base/internal/modules/doctors/action/settings/dto"
 	"net/http"
+
+	"github.com/samber/lo"
 )
 
 // Settings - /api/v1/settings [GET]

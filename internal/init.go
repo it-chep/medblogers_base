@@ -3,12 +3,13 @@ package internal
 import (
 	"context"
 	"fmt"
-	"github.com/jackc/pgx/v4/pgxpool"
 	v1 "medblogers_base/internal/app/api/doctors/v1"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 	"time"
+
+	"github.com/jackc/pgx/v4/pgxpool"
 
 	moduleadmin "medblogers_base/internal/modules/admin"
 	moduledoctors "medblogers_base/internal/modules/doctors"

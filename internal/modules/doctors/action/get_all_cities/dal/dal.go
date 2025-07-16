@@ -4,9 +4,10 @@ import (
 	"context"
 	"medblogers_base/internal/pkg/postgres"
 
-	"github.com/georgysavva/scany/pgxscan"
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/city"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {

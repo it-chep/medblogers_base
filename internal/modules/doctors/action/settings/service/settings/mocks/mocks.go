@@ -8,10 +8,11 @@ import (
 	context "context"
 	reflect "reflect"
 
-	gomock "github.com/golang/mock/gomock"
 	indto "medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	city "medblogers_base/internal/modules/doctors/domain/city"
 	speciality "medblogers_base/internal/modules/doctors/domain/speciality"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockCityStorage is a mock of CityStorage interface.

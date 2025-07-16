@@ -1,10 +1,11 @@
 package v1
 
 import (
-	"github.com/go-chi/chi/v5"
 	"medblogers_base/internal/app/middleware"
 	"medblogers_base/internal/modules/doctors"
 	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type Service struct {

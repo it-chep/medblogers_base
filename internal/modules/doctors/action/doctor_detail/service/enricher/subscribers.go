@@ -2,6 +2,7 @@ package enricher
 
 import (
 	"context"
+	"medblogers_base/internal/pkg/logger"
 
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
@@ -26,6 +27,7 @@ func NewSubscribersEnricher(getter SubscribersGetter) *SubscribersEnricher {
 
 // Enrich - обогащение подписчиками
 func (e *SubscribersEnricher) Enrich(ctx context.Context, doctorID doctor.MedblogersID, docDTO dto.DoctorDTO) (dto.DoctorDTO, error) {
+	logger.Message(ctx, "Обогащение доктора подписчиками")
 
 	subscribersInfo, err := e.getter.GetDoctorSubscribers(ctx, doctorID)
 	if err != nil {

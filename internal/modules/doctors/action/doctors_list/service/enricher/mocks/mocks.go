@@ -8,9 +8,10 @@ import (
 	context "context"
 	reflect "reflect"
 
-	gomock "github.com/golang/mock/gomock"
 	indto "medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	doctor "medblogers_base/internal/modules/doctors/domain/doctor"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockSubscribersGetter is a mock of SubscribersGetter interface.

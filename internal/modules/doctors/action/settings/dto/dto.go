@@ -1,9 +1,10 @@
 package dto
 
 import (
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
+
+	"github.com/samber/lo"
 )
 
 type FilterItem struct {

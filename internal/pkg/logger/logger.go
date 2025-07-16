@@ -2,9 +2,10 @@ package logger
 
 import (
 	"context"
+	"os"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"os"
 )
 
 // todo сделать вложенность в логах
