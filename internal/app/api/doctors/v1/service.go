@@ -48,6 +48,8 @@ func (s *Service) setupRoutes() {
 
 func (s *Service) setupMiddlewares() {
 	s.router.Use(middleware.LoggerMiddleware)
+	s.router.Use(middleware.RateLimitMiddleware)
+	s.router.Use(middleware.ResponseTimeMiddleware)
 }
 
 func (s *Service) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
