@@ -79,5 +79,6 @@ func (s *Service) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) doctor_
 
 		MainBlogTheme:    doctorDomain.MainBlogTheme,
 		MedicalDirection: doctorDomain.MedicalDirection,
+		Image:            doctorDomain.Image,
 	}
 }

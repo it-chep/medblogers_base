@@ -46,6 +46,8 @@ func (s *Service) setupRoutes() {
 }
 
 func (s *Service) setupMiddlewares() {
+	s.router.Use(middleware.CORSMiddleware)
+	//s.router.Use(middleware.CSRFMiddleware)
 	s.router.Use(middleware.LoggerMiddleware)
 	s.router.Use(middleware.RateLimitMiddleware)
 	s.router.Use(middleware.ResponseTimeMiddleware)

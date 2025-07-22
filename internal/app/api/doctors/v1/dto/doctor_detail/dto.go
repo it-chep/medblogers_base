@@ -40,4 +40,6 @@ type DoctorDTO struct {
 
 	MainBlogTheme    string `json:"main_blog_theme"`
 	MedicalDirection string `json:"medical_direction"`
+
+	Image string `json:"image"`
 }
