@@ -1,6 +1,7 @@
 package action
 
 import (
+	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/doctors/action/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter"
@@ -24,9 +25,9 @@ type Aggregator struct {
 }
 
 // NewAggregator конструктор
-func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *Aggregator {
+func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config *config.Config) *Aggregator {
 	return &Aggregator{
-		CreateDoctor:    create_doctor.New(),
+		CreateDoctor:    create_doctor.New(clients, pool, config),
 		DoctorDetail:    doctor_detail.New(clients, pool),
 		DoctorsFilter:   doctors_filter.New(clients, pool),
 		SearchDoctor:    search_doctor.New(clients, pool),

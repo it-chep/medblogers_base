@@ -2,6 +2,8 @@ package dal
 
 import (
 	"context"
+	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -16,6 +18,77 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) CreateDoctor(ctx context.Context) error {
+func (r *Repository) CreateDoctor(ctx context.Context, createDTO dto.CreateDoctorRequest) (doctor.MedblogersID, error) {
+	sql := `
+		insert into docstar_site_doctor (
+		                                 name, slug, email, inst_url, vk_url, dzen_url, tg_url, 
+		                                 main_blog_theme, prodoctorov, city_id, speciallity_id, youtube_url, 
+		                                 is_active, date_created, birth_date, tg_channel_url, tiktok_url
+		                                 )
+		values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, false, now(), $13, $14, $15, $16)
+		on conflict (name, email) do nothing	
+		returning id
+	`
+
+	args := []any{
+		createDTO.FullName,
+		createDTO.Slug,
+		createDTO.Email,
+		createDTO.InstagramUsername,
+		createDTO.VKUsername,
+		createDTO.DzenUsername,
+		createDTO.TelegramUsername,
+		createDTO.MainBlogTheme,
+		createDTO.SiteLink,
+		createDTO.CityID,
+		createDTO.SpecialityID,
+		createDTO.YoutubeUsername,
+		createDTO.BirthDate, // todo сделать в time
+		createDTO.TelegramChannel,
+		createDTO.TikTokURL,
+	}
+
+	var doctorID int64
+	err := r.db.QueryRow(ctx, sql, args...).Scan(&doctorID)
+	if err != nil {
+		return 0, err
+	}
+
+	return doctor.MedblogersID(doctorID), nil
+}
+
+func (r *Repository) CreateAdditionalCities(ctx context.Context, medblogersID doctor.MedblogersID, citiesIDs []int64) error {
+	if len(citiesIDs) == 0 {
+		return nil
+	}
+
+	sql := `
+	insert into docstar_site_doctor_additional_cities (doctor_id, city_id)
+		select $1, unnest($2::bigint[])
+		on conflict (doctor_id, city_id) do nothing`
+
+	_, err := r.db.Exec(ctx, sql, medblogersID, citiesIDs)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *Repository) CreateAdditionalSpecialities(ctx context.Context, medblogersID doctor.MedblogersID, specialitiesIDs []int64) error {
+	if len(specialitiesIDs) == 0 {
+		return nil
+	}
+
+	sql := `
+	insert into docstar_site_doctor_additional_specialties (doctor_id, speciallity_id)
+		select $1, unnest($2::bigint[])
+		on conflict (doctor_id, speciallity_id) do nothing`
+
+	_, err := r.db.Exec(ctx, sql, medblogersID, specialitiesIDs)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

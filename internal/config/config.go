@@ -9,10 +9,11 @@ import (
 )
 
 type Config struct {
-	Storage           Storage           `mapstructure:"db"`
-	Server            Server            `mapstructure:"server"`
-	SubscribersClient SubscribersClient `mapstructure:"subscribers"`
-	S3Client          S3Config          `mapstructure:"s3"`
+	Storage           Storage            `mapstructure:"db"`
+	Server            Server             `mapstructure:"server"`
+	SubscribersClient SubscribersClient  `mapstructure:"subscribers"`
+	S3Client          S3Config           `mapstructure:"s3"`
+	Notification      NotificationConfig `mapstructure:"notification"`
 }
 
 type S3Config struct {
@@ -42,6 +43,14 @@ type Storage struct {
 	MaxRetry     int           `mapstructure:"max_retry"`
 	MaxConnects  int           `mapstructure:"max_connects"`
 	RetryTimeout time.Duration `mapstructure:"retry_timeout"`
+}
+
+type NotificationConfig struct {
+	NotificreateAdminID int64 `mapstructure:"notificreate_admin_id"`
+}
+
+func (s Config) GetCreateNotificationChatID() int64 {
+	return s.Notification.NotificreateAdminID
 }
 
 // SubscribersClient todo тк нет serivce discovery и сервис 1 то делаем пока хардкод

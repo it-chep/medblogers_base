@@ -18,7 +18,7 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
-// todo indto переделать
+// todo indto переделать ?
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . HTTPClient
 
