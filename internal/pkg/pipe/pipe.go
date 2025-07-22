@@ -3,11 +3,12 @@ package pipe
 import (
 	"context"
 	"fmt"
-	"github.com/pkg/errors"
-	"golang.org/x/sync/errgroup"
 	"medblogers_base/internal/pkg/logger"
 	"sync"
 	"time"
+
+	"github.com/pkg/errors"
+	"golang.org/x/sync/errgroup"
 )
 
 // Func шаблон функции

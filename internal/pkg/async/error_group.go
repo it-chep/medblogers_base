@@ -3,8 +3,9 @@ package async
 import (
 	"context"
 	"fmt"
-	eg "golang.org/x/sync/errgroup"
 	"medblogers_base/internal/pkg/logger"
+
+	eg "golang.org/x/sync/errgroup"
 )
 
 type ErrGroup struct {

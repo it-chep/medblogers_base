@@ -2,13 +2,14 @@ package doctor
 
 import (
 	"context"
-	"github.com/rainycape/unidecode"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"regexp"
 	"strings"
+
+	"github.com/rainycape/unidecode"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage
