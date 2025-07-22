@@ -2,16 +2,17 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto/doctors_filter"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	indto "medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/samber/lo"
 )
 
-// Filter - /api/v1/doctors/Filter [GET]
+// Filter - /api/v1/doctors/filter [GET]
 func (s *Service) Filter(w http.ResponseWriter, r *http.Request) {
 	filter := s.requestToFilterDTO(r)
 	// Получаем данные из модуля
@@ -38,25 +39,33 @@ func (s *Service) requestToFilterDTO(r *http.Request) *indto.Filter {
 	minSubscribers, _ := strconv.Atoi(r.URL.Query().Get("min_subscribers"))
 	socialMedia := strings.Split(r.URL.Query().Get("social_media"), ",")
 
-	citiesStrings := strings.Split(r.URL.Query().Get("city"), ",")
-	cities := lo.Map(citiesStrings, func(cityString string, _ int) int64 {
-		cityID, err := strconv.Atoi(cityString)
-		if err != nil {
-			return 0
-		}
-		return int64(cityID)
-	})
-	uniqueCities := lo.Uniq(cities)
+	cityParam := r.URL.Query().Get("city")
+	var uniqueCities []int64
+	if len(cityParam) != 0 {
+		citiesStrings := strings.Split(r.URL.Query().Get("city"), ",")
+		cities := lo.Map(citiesStrings, func(cityString string, _ int) int64 {
+			cityID, err := strconv.Atoi(cityString)
+			if err != nil {
+				return 0
+			}
+			return int64(cityID)
+		})
+		uniqueCities = lo.Uniq(cities)
+	}
 
-	specialitiesStrings := strings.Split(r.URL.Query().Get("speciality"), ",")
-	specialities := lo.Map(specialitiesStrings, func(specialityString string, _ int) int64 {
-		specialityID, err := strconv.Atoi(specialityString)
-		if err != nil {
-			return 0
-		}
-		return int64(specialityID)
-	})
-	uniqueSpec := lo.Uniq(specialities)
+	specialityParam := r.URL.Query().Get("speciality")
+	var uniqueSpec []int64
+	if len(specialityParam) != 0 {
+		specialitiesStrings := strings.Split(r.URL.Query().Get("speciality"), ",")
+		specialities := lo.Map(specialitiesStrings, func(specialityString string, _ int) int64 {
+			specialityID, err := strconv.Atoi(specialityString)
+			if err != nil {
+				return 0
+			}
+			return int64(specialityID)
+		})
+		uniqueSpec = lo.Uniq(specialities)
+	}
 
 	page, _ := strconv.Atoi(r.URL.Query().Get("page"))
 	if page == 0 {

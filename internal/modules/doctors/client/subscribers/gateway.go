@@ -10,6 +10,8 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
 
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
@@ -163,10 +165,7 @@ func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDocto
 }
 
 // GetSubscribersByDoctorIDs - получение количества подписчиков для миниатюр по переданным IDs
-func (g *Gateway) GetSubscribersByDoctorIDs(
-	ctx context.Context,
-	medblogersIDs doctor.MedblogersIDs,
-) (map[int64]indto.GetSubscribersByDoctorIDsResponse, error) {
+func (g *Gateway) GetSubscribersByDoctorIDs(ctx context.Context, medblogersIDs []int64) (map[int64]indto.GetSubscribersByDoctorIDsResponse, error) {
 	logger.Message(ctx, "[GW subs] Получение подписчиков по ID докторов")
 	var response dto.GetSubscribersByDoctorIDsResponse
 	if len(medblogersIDs) == 0 {
@@ -175,8 +174,17 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,
-		Path:   fmt.Sprintf("/doctors/by_ids/?doctor_ids=%s", medblogersIDs.String()),
+		Path:   "/doctors/by_ids/",
 	}
+
+	// Подготовка query параметров
+	q := endpointURL.Query()
+	idsStr := make([]string, 0, len(medblogersIDs))
+	for _, id := range medblogersIDs {
+		idsStr = append(idsStr, strconv.FormatInt(id, 10))
+	}
+	q.Set("doctor_ids", strings.Join(idsStr, ","))
+	endpointURL.RawQuery = q.Encode()
 
 	resultMap := make(map[int64]indto.GetSubscribersByDoctorIDsResponse, len(medblogersIDs))
 

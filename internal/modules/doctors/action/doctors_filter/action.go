@@ -3,7 +3,6 @@ package doctors_filter
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dal"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
@@ -12,6 +11,8 @@ import (
 	"medblogers_base/internal/modules/doctors/client"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/samber/lo"
 )
 
 const firstPage = 1
@@ -26,7 +27,12 @@ type Action struct {
 func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
 		subscribersFilter: subscribers.New(clients.Subscribers),
-		doctorsFilter:     doctor.New(dal.NewRepository(pool)),
+		doctorsFilter: doctor.New(
+			dal.NewRepository(pool),
+			dal.NewRepository(pool),
+			clients.S3,
+			clients.Subscribers,
+		),
 	}
 }
 

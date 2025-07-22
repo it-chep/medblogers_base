@@ -15,6 +15,13 @@ func WithID(id int64) Option {
 	}
 }
 
+// WithSlug .
+func WithSlug(slug string) Option {
+	return func(s *Doctor) {
+		s.slug = slug
+	}
+}
+
 // WithName .
 func WithName(name string) Option {
 	return func(s *Doctor) {

@@ -1,8 +1,9 @@
 package middleware
 
 import (
-	"go.uber.org/ratelimit"
 	"net/http"
+
+	"go.uber.org/ratelimit"
 )
 
 // todo вынести в конфиг

@@ -3,7 +3,7 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/georgysavva/scany/pgxscan"
+	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
@@ -14,6 +14,8 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {
@@ -85,7 +87,7 @@ func (r *Repository) GetDoctors(ctx context.Context, limit, offset int64) (map[d
 	logger.Message(ctx, "[Repo] Селект докторов из базы без фильтров")
 	sql := `
 		select 
-			id, name, slug, inst_url, city_id, speciality_id, tg_channel_url, s3_image
+			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url
 		from docstar_site_doctor d
 		where d.is_active = true
 		order by d.name asc 
@@ -112,9 +114,16 @@ func (r *Repository) FilterDoctors(ctx context.Context, filter *dto.Filter) (map
 	sql, phValues := sqlStmt(filter)
 
 	var doctors []dao.DoctorMiniatureDAO
-	err := pgxscan.Select(ctx, r.db, &doctors, sql, phValues)
-	if err != nil {
-		return nil, err
+	if phValues == nil {
+		err := pgxscan.Select(ctx, r.db, &doctors, sql, consts.LimitDoctorsOnPage)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		err := pgxscan.Select(ctx, r.db, &doctors, sql, consts.LimitDoctorsOnPage, phValues)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	result := make(map[doctor.MedblogersID]*doctor.Doctor, len(doctors))
@@ -129,7 +138,7 @@ func (r *Repository) GetDoctorsByIDs(ctx context.Context, ids []int64) (map[doct
 	logger.Message(ctx, "[Repo] Селект докторов из базы по IDs")
 	sql := `
 		select 
-			id, name, slug, inst_url, city_id, speciality_id, tg_channel_url, s3_image
+			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url
 		from docstar_site_doctor d
 		where d.is_active = true and d.id = any($1::bigint[])
 		order by d.name asc 
@@ -154,7 +163,7 @@ func (r *Repository) GetDoctorsByIDs(ctx context.Context, ids []int64) (map[doct
 // sqlStmt к-ор запроса
 func sqlStmt(filter *dto.Filter) (_ string, phValues []any) {
 	whereStmtBuilder := strings.Builder{}
-	phCounter := 1 // Счетчик для плейсхолдеров
+	phCounter := 2 // Счетчик для плейсхолдеров
 
 	if len(filter.Cities) != 0 {
 		if whereStmtBuilder.Len() > 0 {
@@ -175,10 +184,10 @@ func sqlStmt(filter *dto.Filter) (_ string, phValues []any) {
 			whereStmtBuilder.WriteString(" and ")
 		}
 		whereStmtBuilder.WriteString(fmt.Sprintf(`
-            (d.speciality_id = any($%d) or
+            (d.speciallity_id = any($%d) or
             exists (
                 select 1 from docstar_site_doctor_specialities ds 
-                where ds.doctor_id = d.id and ds.speciality_id = any($%d))
+                where ds.doctor_id = d.id and ds.speciallity_id = any($%d))
         `, phCounter, phCounter))
 		phValues = append(phValues, filter.Specialities)
 		phCounter++
@@ -191,11 +200,12 @@ func sqlStmt(filter *dto.Filter) (_ string, phValues []any) {
 	}
 
 	return fmt.Sprintf(`
-        SELECT 
-            id, name, slug, inst_url, city_id, speciality_id, 
-            tg_channel_url, s3_image
-        FROM docstar_site_doctor d
-        WHERE %s
-        ORDER BY d.name ASC
+        select 
+            id, name, slug, inst_url, city_id, speciallity_id, 
+            tg_channel_url
+        from docstar_site_doctor d
+        where %s
+        order by d.name asc
+        limit $1
     `, baseWhere), phValues
 }

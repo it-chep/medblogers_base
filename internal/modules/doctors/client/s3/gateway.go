@@ -12,7 +12,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/credentials"
-	"github.com/samber/lo"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	s3config "github.com/aws/aws-sdk-go-v2/config"
@@ -28,19 +27,18 @@ type Gateway struct {
 
 // NewGateway .
 func NewGateway(bucketName string, cfg config.S3Config) *Gateway {
-	s3Cfg, err := s3config.LoadDefaultConfig(
-		context.Background(),
+	s3Cfg, err := s3config.LoadDefaultConfig(context.Background(),
 		s3config.WithRegion(cfg.Region),
 		s3config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(
 			cfg.AccessKey, cfg.SecretKey, "",
 		)),
-		//s3config.WithEndpointResolverWithOptions(
-		//	aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
-		//		return aws.Endpoint{
-		//			URL: os.Getenv(cfg.Endpoint),
-		//		}, nil
-		//	}),
-		//),
+		s3config.WithEndpointResolver(aws.EndpointResolverFunc(
+			func(service, region string) (aws.Endpoint, error) {
+				return aws.Endpoint{
+					URL:           cfg.Endpoint,
+					SigningRegion: cfg.Region,
+				}, nil
+			})),
 	)
 	if err != nil {
 		return nil
@@ -56,27 +54,37 @@ func NewGateway(bucketName string, cfg config.S3Config) *Gateway {
 	}
 }
 
-// GetUserPhotos получение фотографий врачей
+// GetUserPhotos получение фотографий врачей из Yandex Object Storage
 func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) {
-	logger.Message(ctx, "[S3] Получение фотографий пользователей")
+	logger.Message(ctx, "[S3] Получение фотографий пользователей из Yandex Storage")
+
+	// Получаем список объектов
 	resp, err := g.client.ListObjectsV2(ctx, &s3.ListObjectsV2Input{
 		Bucket: aws.String(g.bucketName),
 		Prefix: aws.String("images/user_"),
 	})
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to list objects: %w", err)
 	}
 
-	objects := resp.Contents
-	filesMap := make(map[string]string, len(objects))
-	for _, object := range objects {
-		key := lo.FromPtr(object.Key)
-		if len(key) == 0 {
+	// Обрабатываем результаты
+	filesMap := make(map[string]string)
+	for _, object := range resp.Contents {
+		key := aws.ToString(object.Key)
+		if key == "" {
 			continue
 		}
 
-		slug := strings.Split(key, "_")[1]
-		filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, key)
+		// Извлекаем slug из имени файла
+		parts := strings.Split(key, "_")
+		if len(parts) < 2 {
+			continue
+		}
+		slug := parts[1]
+
+		// Формируем публичный URL
+		filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s",
+			g.bucketName, key)
 	}
 
 	return filesMap, nil
@@ -91,7 +99,7 @@ func (g *Gateway) GeneratePresignedURL(ctx context.Context, s3Key string) (strin
 		opts.Expires = time.Hour
 	})
 	if err != nil {
-		return "", fmt.Errorf("failed to generate presigned URL: %w", err)
+		return "", fmt.Errorf("ошибка при генерации presigned URL: %w", err)
 	}
 
 	return req.URL, nil

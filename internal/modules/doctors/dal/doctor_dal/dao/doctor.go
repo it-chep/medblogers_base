@@ -31,6 +31,7 @@ func (d DoctorDAO) ToDomain() *doctor.Doctor {
 	return doctor.New(
 		doctor.WithID(d.ID),
 		doctor.WithName(d.Name),
+		doctor.WithSlug(d.Slug),
 		doctor.WithS3Image(d.S3Image),
 		doctor.WithTgURL(d.TgURL.String),
 		doctor.WithInstURL(d.InstURL.String),
@@ -53,7 +54,6 @@ type DoctorMiniatureDAO struct {
 	Slug         string         `db:"slug"`
 	InstURL      sql.NullString `db:"inst_url"`
 	TgChannelURL sql.NullString `db:"tg_channel_url"`
-	S3Image      string         `db:"s3_image"`
 	CityID       int64          `db:"city_id"`
 	SpecialityID int64          `db:"speciallity_id"`
 }
@@ -62,8 +62,8 @@ type DoctorMiniatureDAO struct {
 func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
 	return doctor.New(
 		doctor.WithID(d.ID),
+		doctor.WithSlug(d.Slug),
 		doctor.WithName(d.Name),
-		doctor.WithS3Image(d.S3Image),
 		doctor.WithInstURL(d.InstURL.String),
 		doctor.WithTgChannelURL(d.TgChannelURL.String),
 		doctor.WithMainSpecialityID(d.SpecialityID),

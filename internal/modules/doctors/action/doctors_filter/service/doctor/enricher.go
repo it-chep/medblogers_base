@@ -2,7 +2,7 @@ package doctor
 
 import (
 	"context"
-	"github.com/samber/lo"
+	"fmt"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
@@ -10,13 +10,16 @@ import (
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"strings"
+	"sync"
+
+	"github.com/samber/lo"
 )
 
 // enrichSubscribers - обогащение подписчиками в миниатюры докторов
 func (s *Service) enrichSubscribers(ctx context.Context, doctorsMap map[int64]dto.Doctor, subscribersMap map[int64]indto.GetSubscribersByDoctorIDsResponse) {
 	logger.Message(ctx, "[Filter] Обогащение подписчиками")
 
-	for _, doc := range lo.Values(doctorsMap) {
+	for id, doc := range doctorsMap {
 		subsInfo, ok := subscribersMap[doc.ID]
 		if !ok {
 			continue
@@ -26,6 +29,8 @@ func (s *Service) enrichSubscribers(ctx context.Context, doctorsMap map[int64]dt
 		doc.TgSubsCountText = subsInfo.TgSubsCountText
 		doc.InstSubsCount = subsInfo.InstSubsCount
 		doc.InstSubsCountText = subsInfo.InstSubsCountText
+
+		doctorsMap[id] = doc
 	}
 }
 
@@ -109,60 +114,87 @@ func (s *Service) enrichAdditionalSpecialities(ctx context.Context, doctorsMap m
 func (s *Service) enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos map[string]string) {
 	logger.Message(ctx, "[Filter] Обогащение фотографиями")
 
-	for _, doc := range lo.Values(doctorsMap) {
+	for id, doc := range doctorsMap {
 		photo, ok := photos[doc.Slug]
 		if !ok {
-			// todo дефолт значение
+			// Устанавливаем дефолтное значение
+			doc.Image = "https://storage.yandexcloud.net/medblogers-photos/zag.jpg"
+			doctorsMap[id] = doc
 			continue
 		}
 
 		doc.Image = photo
+		doctorsMap[id] = doc
 	}
 }
 
 func (s *Service) enrichFacade(ctx context.Context, doctorsMap map[int64]dto.Doctor) {
 	var (
-		err             error
-		subscribersMap  = make(map[int64]indto.GetSubscribersByDoctorIDsResponse)
-		imageMap        = make(map[string]string)
-		citiesMap       = make(map[int64][]*city.City)
-		specialitiesMap = make(map[int64][]*speciality.Speciality)
+		subscribersMap  map[int64]indto.GetSubscribersByDoctorIDsResponse
+		imageMap        map[string]string
+		citiesMap       map[int64][]*city.City
+		specialitiesMap map[int64][]*speciality.Speciality
+		mu              sync.Mutex
+		errs            []error
 	)
 	g := async.NewGroup()
 
 	// Получаем количество подписчиков
 	g.Go(func() {
-		subscribersMap, err = s.subscribersGetter.GetSubscribersByDoctorIDs(ctx, lo.Keys(doctorsMap))
+		subs, err := s.subscribersGetter.GetSubscribersByDoctorIDs(ctx, lo.Keys(doctorsMap))
+		mu.Lock()
+		defer mu.Unlock()
 		if err != nil {
-			logger.Error(ctx, "[Filter] Ошибка при обогащении подписчиками", err)
+			errs = append(errs, fmt.Errorf("ошибка при получении подписчиков: %w", err))
+			return
 		}
+		subscribersMap = subs
 	})
 
 	// Получаем фотки
 	g.Go(func() {
-		imageMap, err = s.imageGetter.GetUserPhotos(ctx)
+		imgs, err := s.imageGetter.GetUserPhotos(ctx)
+		mu.Lock()
+		defer mu.Unlock()
 		if err != nil {
-			logger.Error(ctx, "[Filter] Ошибка при обогащении фотографией", err)
+			errs = append(errs, fmt.Errorf("ошибка при получении фотографий: %w", err))
+			return
 		}
+		imageMap = imgs
 	})
 
 	// Получаем доп города
 	g.Go(func() {
-		citiesMap, err = s.additionalStorage.GetDoctorAdditionalCities(ctx, lo.Keys(doctorsMap))
+		cities, err := s.additionalStorage.GetDoctorAdditionalCities(ctx, lo.Keys(doctorsMap))
+		mu.Lock()
+		defer mu.Unlock()
 		if err != nil {
-			logger.Error(ctx, "[Filter] Ошибка при обогащении доп специальностями и городами", err)
+			errs = append(errs, fmt.Errorf("ошибка при получении городов: %w", err))
+			return
 		}
+		citiesMap = cities
 	})
 
 	// Получаем доп специальности
 	g.Go(func() {
-		specialitiesMap, err = s.additionalStorage.GetDoctorAdditionalSpecialities(ctx, lo.Keys(doctorsMap))
+		specs, err := s.additionalStorage.GetDoctorAdditionalSpecialities(ctx, lo.Keys(doctorsMap))
+		mu.Lock()
+		defer mu.Unlock()
 		if err != nil {
-			logger.Error(ctx, "[Filter] Ошибка при обогащении доп специальностями и городами", err)
+			errs = append(errs, fmt.Errorf("ошибка при получении специальностей: %w", err))
+			return
 		}
+		specialitiesMap = specs
 	})
 
 	g.Wait()
+
+	// Обрабатываем все ошибки
+	if len(errs) > 0 {
+		for _, e := range errs {
+			logger.Error(ctx, "[Filter] Ошибка обогащения", e)
+		}
+	}
 
 	// обогащаем всеми данными
 	s.enrichImages(ctx, doctorsMap, imageMap)

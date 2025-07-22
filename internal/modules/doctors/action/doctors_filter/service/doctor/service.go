@@ -39,9 +39,12 @@ type Service struct {
 	subscribersGetter SubscribersEnricher
 }
 
-func New(storage Storage) *Service {
+func New(storage Storage, additionalStorage AdditionalStorage, imageGetter ImageEnricher, subscribersGetter SubscribersEnricher) *Service {
 	return &Service{
-		storage: storage,
+		storage:           storage,
+		additionalStorage: additionalStorage,
+		imageGetter:       imageGetter,
+		subscribersGetter: subscribersGetter,
 	}
 }
 

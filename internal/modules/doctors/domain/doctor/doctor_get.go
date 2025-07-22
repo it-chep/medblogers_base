@@ -3,6 +3,7 @@ package doctor
 import (
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"strings"
 )
 
 // GetID .
@@ -52,15 +53,42 @@ func (d *Doctor) GetVkURL() string {
 
 // GetTgURL .
 func (d *Doctor) GetTgURL() string {
-	return d.tgURL
+	if d.tgURL == "" {
+		return ""
+	}
+
+	// Удаляем @ в начале, если есть
+	tgURL := strings.TrimPrefix(d.tgChannelURL, "@")
+
+	// Если URL не содержит http/https, формируем полный URL
+	if !strings.HasPrefix(tgURL, "http") {
+		tgURL = "https://t.me/" + tgURL
+	}
+
+	return tgURL
 }
 
-// GetTgChannelURL .
+// GetTgChannelURL возвращает полноценную ссылку на тг
 func (d *Doctor) GetTgChannelURL() string {
+	if d.tgChannelURL == "" {
+		return ""
+	}
+
+	// Удаляем @ в начале, если есть
+	tgURL := strings.TrimPrefix(d.tgChannelURL, "@")
+
+	// Если URL не содержит http/https, формируем полный URL
+	if !strings.HasPrefix(tgURL, "http") {
+		tgURL = "https://t.me/" + tgURL
+	}
+
+	return tgURL
+}
+
+// GetTgChannelUsername .
+func (d *Doctor) GetTgChannelUsername() string {
 	return d.tgChannelURL
 }
-
-// todo сделать "https валидацию"
 
 // GetSiteLink .
 func (d *Doctor) GetSiteLink() string {

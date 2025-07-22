@@ -2,11 +2,12 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto/search_doctor"
 	"medblogers_base/internal/modules/doctors/action/search_doctor/dto"
 	"net/http"
 	"strings"
+
+	"github.com/samber/lo"
 )
 
 // Search - /api/v1/doctors/search [GET]
