@@ -121,7 +121,7 @@ func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest
 }
 
 // GetDoctorsByFilter - получение докторов по переданным фильтрам
-func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDoctorsByFilterRequest) ([]indto.GetDoctorsByFilterResponse, error) {
+func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDoctorsByFilterRequest) (map[int64]indto.GetDoctorsByFilterResponse, error) {
 	logger.Message(ctx, "[GW subs] Получение подписчиков по фильтрам")
 
 	endpointURL := g.configureFilterRequest(request)
@@ -129,34 +129,34 @@ func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDocto
 	var response dto.GetDoctorsByFilterResponse
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL, nil)
 	if err != nil {
-		return []indto.GetDoctorsByFilterResponse{}, err
+		return map[int64]indto.GetDoctorsByFilterResponse{}, err
 	}
 
 	resp, err := g.client.Do(req)
 	if err != nil {
-		return []indto.GetDoctorsByFilterResponse{}, err
+		return map[int64]indto.GetDoctorsByFilterResponse{}, err
 	}
 
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return []indto.GetDoctorsByFilterResponse{}, err
+		return map[int64]indto.GetDoctorsByFilterResponse{}, err
 	}
 
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		return []indto.GetDoctorsByFilterResponse{}, err
+		return map[int64]indto.GetDoctorsByFilterResponse{}, err
 	}
 
-	result := make([]indto.GetDoctorsByFilterResponse, 0, len(response.Doctors))
+	result := make(map[int64]indto.GetDoctorsByFilterResponse, len(response.Doctors))
 	for _, doc := range response.Doctors {
-		result = append(result, indto.GetDoctorsByFilterResponse{
+		result[doc.DoctorID] = indto.GetDoctorsByFilterResponse{
 			DoctorID:          doc.DoctorID,
 			TgSubsCount:       doc.TgSubsCount,
 			TgSubsCountText:   doc.TgSubsCountText,
 			InstSubsCount:     doc.InstSubsCount,
 			InstSubsCountText: doc.InstSubsCountText,
-		})
+		}
 	}
 
 	return result, nil
@@ -166,7 +166,7 @@ func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDocto
 func (g *Gateway) GetSubscribersByDoctorIDs(
 	ctx context.Context,
 	medblogersIDs doctor.MedblogersIDs,
-) (map[doctor.MedblogersID]indto.GetSubscribersByDoctorIDsResponse, error) {
+) (map[int64]indto.GetSubscribersByDoctorIDsResponse, error) {
 	logger.Message(ctx, "[GW subs] Получение подписчиков по ID докторов")
 	var response dto.GetSubscribersByDoctorIDsResponse
 	if len(medblogersIDs) == 0 {
@@ -178,7 +178,7 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 		Path:   fmt.Sprintf("/doctors/by_ids/?doctor_ids=%s", medblogersIDs.String()),
 	}
 
-	resultMap := make(map[doctor.MedblogersID]indto.GetSubscribersByDoctorIDsResponse, len(medblogersIDs))
+	resultMap := make(map[int64]indto.GetSubscribersByDoctorIDsResponse, len(medblogersIDs))
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
 	if err != nil {
@@ -202,7 +202,7 @@ func (g *Gateway) GetSubscribersByDoctorIDs(
 	}
 
 	for doctorID, doctorData := range response.Data {
-		resultMap[doctor.MedblogersID(doctorID)] = indto.GetSubscribersByDoctorIDsResponse{
+		resultMap[doctorID] = indto.GetSubscribersByDoctorIDsResponse{
 			DoctorID:          doctorID,
 			TgSubsCount:       doctorData.TgSubsCount,
 			TgSubsCountText:   doctorData.TgSubsCountText,

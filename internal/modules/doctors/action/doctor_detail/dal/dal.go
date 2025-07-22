@@ -80,6 +80,7 @@ func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doct
 
 // GetDoctorAdditionalSpecialities получение информации о специальностях доктора
 func (r Repository) GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) (map[speciality.SpecialityID]*speciality.Speciality, error) {
+	logger.Message(ctx, "[Dal] Получение дополнительных специальностей доктора")
 	sql := `
 		select s.id, s.name
 		from docstar_site_speciallity s

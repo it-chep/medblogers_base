@@ -45,3 +45,28 @@ func (d DoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithMedicalDirection(d.MedicalDirections),
 	)
 }
+
+// DoctorMiniatureDAO .
+type DoctorMiniatureDAO struct {
+	ID           int64          `db:"id"`
+	Name         string         `db:"name"`
+	Slug         string         `db:"slug"`
+	InstURL      sql.NullString `db:"inst_url"`
+	TgChannelURL sql.NullString `db:"tg_channel_url"`
+	S3Image      string         `db:"s3_image"`
+	CityID       int64          `db:"city_id"`
+	SpecialityID int64          `db:"speciallity_id"`
+}
+
+// ToDomain конвертирует DAO в доменный объект
+func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
+	return doctor.New(
+		doctor.WithID(d.ID),
+		doctor.WithName(d.Name),
+		doctor.WithS3Image(d.S3Image),
+		doctor.WithInstURL(d.InstURL.String),
+		doctor.WithTgChannelURL(d.TgChannelURL.String),
+		doctor.WithMainSpecialityID(d.SpecialityID),
+		doctor.WithMainCityID(d.CityID),
+	)
+}

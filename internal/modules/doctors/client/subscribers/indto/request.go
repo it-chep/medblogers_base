@@ -2,9 +2,17 @@ package indto
 
 // Абстракция для бизнес-логики
 
+type SocialMedia string
+
+// todo int64
+const (
+	Telegram  SocialMedia = "tg"
+	Instagram SocialMedia = "inst"
+)
+
 type GetDoctorsByFilterRequest struct {
 	// соц.сеть
-	SocialMedia []string
+	SocialMedia []SocialMedia
 	// офсет
 	Offset int64
 	// лимит
