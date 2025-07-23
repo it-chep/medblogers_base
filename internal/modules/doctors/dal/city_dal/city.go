@@ -50,3 +50,26 @@ func (r Repository) GetCitiesWithDoctorsCount(ctx context.Context) ([]*city.City
 
 	return cities, nil
 }
+
+// GetAllCities все города
+func (r Repository) GetAllCities(ctx context.Context) ([]*city.City, error) {
+	sql := `
+		select c.id   as id,
+			   c.name as name
+		from docstar_site_city c
+		group by c.id, c.name
+		order by c.name
+	`
+
+	var citiesDAO []cityDAO.CityDAO
+	if err := pgxscan.Select(ctx, r.db, &citiesDAO, sql); err != nil {
+		return nil, err
+	}
+
+	cities := make([]*city.City, 0, len(citiesDAO))
+	for _, dao := range citiesDAO {
+		cities = append(cities, dao.ToDomain())
+	}
+
+	return cities, nil
+}

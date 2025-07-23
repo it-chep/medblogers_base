@@ -53,3 +53,26 @@ func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*spe
 
 	return specialities, nil
 }
+
+// GetAllSpecialities все специальности
+func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speciality, error) {
+	sql := `
+		select s.id                      as id,
+			   s.name                    as name
+		from docstar_site_speciallity s
+		group by s.id, s.name
+		order by s.name
+	`
+
+	var specialitiesDAO []specialityDAO.SpecialityDAO
+	if err := pgxscan.Select(ctx, r.db, &specialitiesDAO, sql); err != nil {
+		return nil, err
+	}
+
+	specialities := make([]*speciality.Speciality, 0, len(specialitiesDAO))
+	for _, dao := range specialitiesDAO {
+		specialities = append(specialities, dao.ToDomain())
+	}
+
+	return specialities, nil
+}

@@ -7,22 +7,27 @@ type CreateDoctorRequest struct {
 	Slug     string
 	FullName string
 
-	Email                 string
-	LastName              string
-	FirstName             string
-	MiddleName            string
-	BirthDate             string
+	AgreePolicy bool
+
+	CityID       int64
+	SpecialityID int64
+
+	Email      string
+	LastName   string
+	FirstName  string
+	MiddleName string
+	BirthDate  string
+
+	InstagramUsername string
+	VKUsername        string
+	TelegramUsername  string
+	DzenUsername      string
+	YoutubeUsername   string
+	TelegramChannel   string
+
+	MainBlogTheme string
+	SiteLink      string
+
 	AdditionalCities      []int64
 	AdditionalSpecialties []int64
-	InstagramUsername     string
-	VKUsername            string
-	TelegramUsername      string
-	DzenUsername          string
-	YoutubeUsername       string
-	TelegramChannel       string
-	CityID                int64
-	SpecialityID          int64
-	MainBlogTheme         string
-	SiteLink              string
-	AgreePolicy           bool
 }

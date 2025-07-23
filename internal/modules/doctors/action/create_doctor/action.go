@@ -8,7 +8,10 @@ import (
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/service/doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/service/external"
+	"medblogers_base/internal/modules/doctors/action/create_doctor/service/validate"
 	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/modules/doctors/dal/city_dal"
+	"medblogers_base/internal/modules/doctors/dal/speciality_dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/pipe"
 	"medblogers_base/internal/pkg/postgres"
@@ -16,22 +19,24 @@ import (
 
 // Action создание врача в базе
 type Action struct {
-	doctorService   *doctor.Service
-	externalService *external.Service
+	doctorService     *doctor.Service
+	externalService   *external.Service
+	validationService *validate.Service
 }
 
 // New .
 func New(clients *client.Aggregator, pool postgres.PoolWrapper, config *config.Config) *Action {
 	return &Action{
-		doctorService:   doctor.NewService(dal.NewRepository(pool)),
-		externalService: external.NewService(clients.Subscribers, clients.Salebot, clients, config),
+		doctorService:     doctor.NewService(dal.NewRepository(pool)),
+		externalService:   external.NewService(clients.Subscribers, clients.Salebot, config),
+		validationService: validate.NewService(city_dal.NewRepository(pool), speciality_dal.NewRepository(pool)),
 	}
 }
 
 func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) error {
 	logger.Message(ctx, fmt.Sprintf("[Create] Создание доктора. Фамилия: %s", createDTO.LastName))
 
-	errors, err := pipe.With(a.doctorService.ValidateDoctor).
+	errors, err := pipe.With(a.validationService.ValidateDoctor).
 		With(a.doctorService.CreateOrUpdate).
 		With(a.externalService.NotificatorAdmins).
 		With(a.externalService.SendToSubscribers).

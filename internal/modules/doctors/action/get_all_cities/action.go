@@ -2,7 +2,7 @@ package get_all_cities
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/get_all_cities/dal"
+	"medblogers_base/internal/modules/doctors/dal/city_dal"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -20,7 +20,7 @@ type Action struct {
 // New .
 func New(pool postgres.PoolWrapper) *Action {
 	return &Action{
-		storage: dal.NewRepository(pool),
+		storage: city_dal.NewRepository(pool),
 	}
 }
 

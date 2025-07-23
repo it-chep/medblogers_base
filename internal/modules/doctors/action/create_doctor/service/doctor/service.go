@@ -3,7 +3,6 @@ package doctor
 import (
 	"context"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
-	"medblogers_base/internal/modules/doctors/action/create_doctor/service/doctor/rules"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
@@ -29,15 +28,6 @@ func NewService(storage Storage) *Service {
 	return &Service{
 		storage: storage,
 	}
-}
-
-func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctorRequest) (_ dto.CreateDoctorRequest, err error) {
-	spec := rules.RuleValidTgChannelURL()
-	if _, err = spec.IsSatisfied(ctx, T); err != nil {
-		logger.Error(ctx, "Ошибка валидации доктора", err)
-		return T, err
-	}
-	return createDTO, nil
 }
 
 func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateDoctorRequest) (_ dto.CreateDoctorRequest, err error) {
