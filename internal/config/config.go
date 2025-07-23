@@ -12,6 +12,7 @@ type Config struct {
 	Storage           Storage            `mapstructure:"db"`
 	Server            Server             `mapstructure:"server"`
 	SubscribersClient SubscribersClient  `mapstructure:"subscribers"`
+	SalebotClient     SalebotClient      `mapstructure:"salebot"`
 	S3Client          S3Config           `mapstructure:"s3"`
 	Notification      NotificationConfig `mapstructure:"notification"`
 }
@@ -26,6 +27,10 @@ type S3Config struct {
 
 type S3Bucket struct {
 	UsersPhotos string `mapstructure:"photos"`
+}
+
+type SalebotClient struct {
+	Host string `mapstructure:"host"`
 }
 
 type Server struct {

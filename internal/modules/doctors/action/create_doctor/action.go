@@ -13,7 +13,6 @@ import (
 	"medblogers_base/internal/modules/doctors/dal/city_dal"
 	"medblogers_base/internal/modules/doctors/dal/speciality_dal"
 	"medblogers_base/internal/pkg/logger"
-	"medblogers_base/internal/pkg/pipe"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -33,12 +32,21 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper, config *config.C
 	}
 }
 
-func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) error {
+func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
 	logger.Message(ctx, fmt.Sprintf("[Create] Создание доктора. Фамилия: %s", createDTO.LastName))
 
-	errors, err := pipe.With(a.validationService.ValidateDoctor).
-		With(a.doctorService.CreateOrUpdate).
-		With(a.externalService.NotificatorAdmins).
-		With(a.externalService.SendToSubscribers).
-		Run(ctx, createDTO).Get()
+	validationErrors, err := a.validationService.ValidateDoctor(ctx, createDTO)
+	if len(validationErrors) > 0 {
+		return validationErrors, nil
+	}
+
+	err = a.doctorService.CreateOrUpdate(ctx, createDTO)
+	if err != nil {
+		return nil, err
+	}
+
+	a.externalService.NotificatorAdmins(ctx, createDTO)
+	a.externalService.SendToSubscribers(ctx, createDTO)
+
+	return []dto.ValidationError{}, nil
 }

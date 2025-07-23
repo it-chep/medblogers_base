@@ -26,12 +26,12 @@ type CreateDoctorRequest struct {
 	AdditionalSpecialties []int64 `json:"additional_specialties"`
 }
 
-type ValidationErrors struct {
+type ValidationError struct {
 	Code  int    `json:"code"`
 	Text  string `json:"text"`
 	Field string `json:"field"`
 }
 
 type Response struct {
-	Errors []ValidationErrors `json:"errors"`
+	Errors []ValidationError `json:"errors"`
 }

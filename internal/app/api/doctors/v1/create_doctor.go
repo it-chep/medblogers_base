@@ -2,12 +2,12 @@ package v1
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/go-playground/validator/v10"
-	"github.com/pkg/errors"
+	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"net/http"
+
+	"github.com/go-playground/validator/v10"
 )
 
 // CreateDoctor /api/v1/doctors/create [POST]
@@ -16,21 +16,40 @@ func (s *Service) CreateDoctor(w http.ResponseWriter, r *http.Request) {
 
 	// Декодируем JSON тело запроса
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	// todo валидация запроса по обязательным параметрам
+	requestErrors := validateRequest(req)
+	if len(requestErrors) > 0 {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(create_doctor.Response{
+			Errors: requestErrors,
+		})
+		return
+	}
 
 	createDTO := s.requestToCreateDoctorDTO(req)
-	err := s.doctors.Actions.CreateDoctor.Create(r.Context(), createDTO)
+	domainValidationErrors, err := s.doctors.Actions.CreateDoctor.Create(r.Context(), createDTO)
 	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	if len(domainValidationErrors) > 0 {
+		w.Header().Set("Content-Type", "application/json")
+		response := s.configureResponse(domainValidationErrors)
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(response)
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(create_doctor.Response{})
 }
 
-func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []error {
+func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []create_doctor.ValidationError {
 	validate := validator.New()
 
 	err := validate.Struct(reqDTO)
@@ -38,20 +57,32 @@ func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []error {
 		return nil
 	}
 
-	var validationErrors []error
+	var validationErrors []create_doctor.ValidationError
 	for _, err := range err.(validator.ValidationErrors) {
-		var errMsg string
+		var validationError create_doctor.ValidationError
 		switch err.Tag() {
 		case "required":
-			errMsg = fmt.Sprintf("Обязательное поле", err.Field())
+			validationError = create_doctor.ValidationError{
+				Field: err.Field(),
+				Text:  "Обязательное поле",
+			}
 		case "email":
-			errMsg = fmt.Sprintf("Невалидный email", err.Field())
+			validationError = create_doctor.ValidationError{
+				Field: err.Field(),
+				Text:  "Невалидный email",
+			}
 		case "max":
-			errMsg = fmt.Sprintf("Текст нужно сократить", err.Field(), err.Param())
+			validationError = create_doctor.ValidationError{
+				Field: err.Field(),
+				Text:  "Текст нужно сократить",
+			}
 		default:
-			errMsg = fmt.Sprintf("Неправильное значение", err.Field())
+			validationError = create_doctor.ValidationError{
+				Field: err.Field(),
+				Text:  "Неправильное значение",
+			}
 		}
-		validationErrors = append(validationErrors, errors.New(errMsg))
+		validationErrors = append(validationErrors, validationError)
 	}
 
 	return validationErrors
@@ -77,5 +108,16 @@ func (s *Service) requestToCreateDoctorDTO(reqDTO create_doctor.CreateDoctorRequ
 		MainBlogTheme:         reqDTO.MainBlogTheme,
 		SiteLink:              reqDTO.SiteLink,
 		AgreePolicy:           reqDTO.AgreePolicy,
+	}
+}
+
+func (s *Service) configureResponse(errors []dto.ValidationError) create_doctor.Response {
+	return create_doctor.Response{
+		Errors: lo.Map(errors, func(item dto.ValidationError, _ int) create_doctor.ValidationError {
+			return create_doctor.ValidationError{
+				Field: item.Field,
+				Text:  item.Text,
+			}
+		}),
 	}
 }

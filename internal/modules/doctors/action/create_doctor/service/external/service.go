@@ -36,17 +36,15 @@ func NewService(subscribersClient SubscribersClient, notificationClient Notifica
 	}
 }
 
-func (s *Service) NotificatorAdmins(ctx context.Context, createDTO dto.CreateDoctorRequest) (_ dto.CreateDoctorRequest, err error) {
+func (s *Service) NotificatorAdmins(ctx context.Context, createDTO dto.CreateDoctorRequest) {
 	go func() {
 		s.notificationClient.NotificatorCreateDoctor(ctx, createDTO, s.config.GetCreateNotificationChatID())
 	}()
-
-	return createDTO, nil
 }
 
-func (s *Service) SendToSubscribers(ctx context.Context, createDTO dto.CreateDoctorRequest) (_ dto.CreateDoctorRequest, err error) {
+func (s *Service) SendToSubscribers(ctx context.Context, createDTO dto.CreateDoctorRequest) {
 	go func() {
-		_, err = s.subscribersClient.CreateDoctor(ctx, createDTO.ID, indto.CreateDoctorRequest{
+		_, err := s.subscribersClient.CreateDoctor(ctx, createDTO.ID, indto.CreateDoctorRequest{
 			Telegram:  createDTO.TelegramChannel,
 			Instagram: createDTO.InstagramUsername,
 		})
@@ -55,6 +53,4 @@ func (s *Service) SendToSubscribers(ctx context.Context, createDTO dto.CreateDoc
 			return
 		}
 	}()
-
-	return createDTO, nil
 }

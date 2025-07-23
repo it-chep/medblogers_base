@@ -7,9 +7,10 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
+	"medblogers_base/internal/pkg/spec"
 )
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage,CityStorage,SpecialityStorage
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage
 
 type CityStorage interface {
 	GetAllCities(ctx context.Context) ([]*city.City, error)
@@ -31,31 +32,42 @@ func NewService(cityStorage CityStorage, specialityStorage SpecialityStorage) *S
 	}
 }
 
-func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctorRequest) (_ dto.CreateDoctorRequest, err error) {
+func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
 	citiesIDs, err := s.getCitiesIDs(ctx)
 	if err != nil {
-		return createDTO, err
+		return nil, err
 	}
 
 	specialitiesIDs, err := s.getSpecialitiesIDs(ctx)
 	if err != nil {
-		return createDTO, err
+		return nil, err
 	}
 
-	spec := rules.RuleAtLeastOneSocialMedia().
-		And(rules.RuleValidCityID(citiesIDs)).
-		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs)).
-		And(rules.RuleValidSpecialityID(specialitiesIDs)).
-		And(rules.RuleValidSpecialitiesIDs(specialitiesIDs)).
-		And(rules.RuleValidSiteLink()).
-		And(rules.RuleValidBirthDate())
+	specification := spec.NewIndependentSpecification[*dto.CreateDoctorRequest]()
 
-	if _, err = spec.IsSatisfied(ctx, &createDTO); err != nil {
-		logger.Error(ctx, "Ошибка валидации доктора", err)
-		return createDTO, err
+	specification.And(rules.RuleValidSpecialityID(specialitiesIDs))
+	specification.And(rules.RuleValidSpecialitiesIDs(specialitiesIDs))
+	specification.And(rules.RuleValidCityID(citiesIDs))
+	specification.And(rules.RuleValidAdditionalCitiesIDs(citiesIDs))
+	specification.And(rules.RuleAtLeastOneSocialMedia())
+	specification.And(rules.RuleValidSiteLink())
+	specification.And(rules.RuleValidBirthDate())
+
+	specification.Validate(ctx, &createDTO)
+	validationErrors := specification.Errors()
+	if len(validationErrors) > 0 {
+		domainErrors := make([]dto.ValidationError, 0, len(validationErrors))
+		for _, validationError := range validationErrors {
+			domainErrors = append(domainErrors, dto.ValidationError{
+				Field: validationError.Field,
+				Text:  validationError.Message,
+			})
+		}
+
+		return domainErrors, nil
 	}
 
-	return createDTO, nil
+	return []dto.ValidationError{}, nil
 }
 
 func (s *Service) getCitiesIDs(ctx context.Context) ([]int64, error) {

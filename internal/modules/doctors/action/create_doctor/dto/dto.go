@@ -24,10 +24,17 @@ type CreateDoctorRequest struct {
 	DzenUsername      string
 	YoutubeUsername   string
 	TelegramChannel   string
+	TikTokURL         string
 
 	MainBlogTheme string
 	SiteLink      string
 
 	AdditionalCities      []int64
 	AdditionalSpecialties []int64
+}
+
+type ValidationError struct {
+	Code  int
+	Text  string
+	Field string
 }
