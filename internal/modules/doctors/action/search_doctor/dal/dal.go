@@ -3,6 +3,8 @@ package dal
 import (
 	"context"
 	"fmt"
+	"medblogers_base/internal/config"
+	pkgconfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
@@ -16,9 +18,9 @@ import (
 )
 
 const (
-	defaultDoctorsLimit      = 30
-	defaultCitiesLimit       = 5
-	defaultSpecialitiesLimit = 5
+	defaultDoctorsLimit      int64 = 30
+	defaultCitiesLimit       int64 = 5
+	defaultSpecialitiesLimit int64 = 5
 )
 
 type Repository struct {
@@ -43,9 +45,10 @@ func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.
 		limit $2;
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
+	limit := r.getLimit(ctx, defaultDoctorsLimit, config.SearchDoctorsLimit)
+
 	var doctors []*dao.DoctorDAO
-	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db, &doctors, sql, query, defaultDoctorsLimit); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &doctors, sql, query, limit); err != nil {
 		return []*doctor.Doctor{}, err
 	}
 
@@ -75,9 +78,10 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 		limit $2;
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
+	limit := r.getLimit(ctx, defaultCitiesLimit, config.SearchCitiesLimit)
 
 	var cities []*cityDAO.CityDAOWithDoctorsCount
-	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, defaultCitiesLimit); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, limit); err != nil {
 		return []*city.City{}, err
 	}
 
@@ -107,10 +111,10 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 		limit $2;
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
+	limit := r.getLimit(ctx, defaultSpecialitiesLimit, config.SearchSpecialitiesLimit)
 
 	var specialities []*specialityDAO.SpecialityDAOWithDoctorsCount
-	// todo сделать лимит нормально
-	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, defaultSpecialitiesLimit); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, limit); err != nil {
 		return []*speciality.Speciality{}, err
 	}
 
@@ -120,4 +124,16 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 	}
 
 	return result, nil
+}
+
+// getLimit получение лимита поиска из конфига базы с фолбеком на дефолтные значения из кода
+func (r Repository) getLimit(ctx context.Context, defaultVal int64, key pkgconfig.ConfigKey) int64 {
+	// todo мб вынести это на уровень модуля и как-то красиво сделать
+	limit := defaultVal
+	val, _ := pkgconfig.GetValue(ctx, key)
+	if val != nil {
+		limit = val.Int64()
+	}
+
+	return limit
 }

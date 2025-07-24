@@ -20,8 +20,13 @@ type Value interface {
 	MaybeInt64() (int64, error)
 
 	Float64() float64
+	MaybeFloat64() (float64, error)
+
 	Duration() time.Duration
+	MaybeDuration() (time.Duration, error)
+
 	String() string
+	MaybeString() (string, error)
 }
 
 // concreteValue реализация Value
@@ -46,18 +51,46 @@ func (v *concreteValue) MaybeInt64() (int64, error) {
 }
 
 func (v *concreteValue) Float64() float64 {
-	//TODO implement me
-	panic("implement me")
+	val, _ := v.MaybeFloat64()
+	return val
+}
+
+func (v *concreteValue) MaybeFloat64() (float64, error) {
+	raw := v.String()
+
+	val, err := strconv.ParseFloat(raw, 64)
+	if err != nil {
+		return 0, fmt.Errorf("value cannot be parsed as float64: %v", err)
+	}
+	return val, nil
 }
 
 func (v *concreteValue) Duration() time.Duration {
-	//TODO implement me
-	panic("implement me")
+	val, _ := v.MaybeDuration()
+	return val
+}
+
+func (v *concreteValue) MaybeDuration() (time.Duration, error) {
+	raw := v.String()
+
+	val, err := time.ParseDuration(raw)
+	if err != nil {
+		return 0, fmt.Errorf("value cannot be parsed as time.Duration: %v", err)
+	}
+	return val, nil
 }
 
 func (v *concreteValue) String() string {
-	//TODO implement me
-	panic("implement me")
+	raw, _ := v.MaybeString()
+	return raw
+}
+
+func (v *concreteValue) MaybeString() (string, error) {
+	if v.IsNil() {
+		return "", nil
+	}
+	s := v.Value.(string)
+	return s, nil
 }
 
 func (v *concreteValue) IsNil() bool {

@@ -8,12 +8,16 @@ import (
 	"github.com/pkg/errors"
 )
 
-type configKey string
+type ConfigKey string
 
-const contextConfigKey configKey = "config"
+type contextConfigKey string
 
+const contextKey contextConfigKey = "config"
+
+// Config Конфиг реального времени если можно так назвать предназначен, чтобы конфигурировать необходимые для бизнеса параметры
+// например различные фича флаги, лимиты, задержки. Код берет объект конфига из базы и пытается вычитать значение из json поля value
 type Config interface {
-	GetValue(ctx context.Context, key string) (Value, error)
+	GetValue(ctx context.Context, key ConfigKey) (Value, error)
 }
 
 type config struct {
@@ -27,7 +31,7 @@ func New(pool postgres.PoolWrapper) Config {
 	}
 }
 
-func (c *config) GetValue(ctx context.Context, key string) (Value, error) {
+func (c *config) GetValue(ctx context.Context, key ConfigKey) (Value, error) {
 	sql := `select value from config where key = $1`
 
 	var jsonData []byte
@@ -46,18 +50,18 @@ func (c *config) GetValue(ctx context.Context, key string) (Value, error) {
 
 // ContextWithConfig прокинуть конфиг в контекст
 func ContextWithConfig(ctx context.Context, cfg Config) context.Context {
-	return context.WithValue(ctx, contextConfigKey, cfg)
+	return context.WithValue(ctx, contextKey, cfg)
 }
 
 func fromContext(ctx context.Context) Config {
-	l, ok := ctx.Value(contextConfigKey).(Config)
+	l, ok := ctx.Value(contextKey).(Config)
 	if ok {
 		return l
 	}
 	return nil
 }
 
-func GetValue(ctx context.Context, key string) (Value, error) {
+func GetValue(ctx context.Context, key ConfigKey) (Value, error) {
 	cfg := fromContext(ctx)
 	return cfg.GetValue(ctx, key)
 }
