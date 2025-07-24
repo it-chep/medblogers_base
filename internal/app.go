@@ -5,6 +5,8 @@ import (
 	"fmt"
 	v1 "medblogers_base/internal/app/api/doctors/v1"
 	"medblogers_base/internal/config"
+	pkgConfig "medblogers_base/internal/pkg/config"
+
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 
@@ -30,7 +32,9 @@ type App struct {
 	controllers controllers
 	server      *http.Server
 
-	config *config.Config
+	// конфиги
+	config        *config.Config
+	mutableConfig pkgConfig.Config
 
 	// периодические задачи
 	//tasks
@@ -43,6 +47,7 @@ func New(ctx context.Context) *App {
 
 	a.initConfig(ctx).
 		initPostgres(ctx).
+		initMutableConfig(ctx).
 		initModules(ctx).
 		initControllers(ctx).
 		initServer(ctx)

@@ -3,21 +3,26 @@ package v1
 import (
 	"medblogers_base/internal/app/middleware"
 	"medblogers_base/internal/modules/doctors"
+	"medblogers_base/internal/pkg/config"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
 )
 
 type Service struct {
+	mutableConfig config.Config
+
 	doctors *doctors.Module
 	router  *chi.Mux
 }
 
-func NewService(doctors *doctors.Module) *Service {
+func NewService(doctors *doctors.Module, mutableConfig config.Config) *Service {
 	s := &Service{
-		doctors: doctors,
-		router:  chi.NewRouter(),
+		doctors:       doctors,
+		mutableConfig: mutableConfig,
+		router:        chi.NewRouter(),
 	}
+
 	s.setupMiddlewares()
 	s.setupRoutes()
 
@@ -45,6 +50,7 @@ func (s *Service) setupRoutes() {
 func (s *Service) setupMiddlewares() {
 	s.router.Use(middleware.CORSMiddleware)
 	//s.router.Use(middleware.CSRFMiddleware)
+	s.router.Use(middleware.ConfigMiddleware(s.mutableConfig))
 	s.router.Use(middleware.LoggerMiddleware)
 	s.router.Use(middleware.RateLimitMiddleware)
 	s.router.Use(middleware.ResponseTimeMiddleware)

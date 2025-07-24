@@ -3,8 +3,8 @@ package config
 import (
 	"context"
 	"encoding/json"
+	"medblogers_base/internal/pkg/postgres"
 
-	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/pkg/errors"
 )
 
@@ -17,11 +17,11 @@ type Config interface {
 }
 
 type config struct {
-	pool *pgxpool.Pool
+	pool postgres.PoolWrapper
 }
 
 // New ...
-func New(pool *pgxpool.Pool) Config {
+func New(pool postgres.PoolWrapper) Config {
 	return &config{
 		pool: pool,
 	}

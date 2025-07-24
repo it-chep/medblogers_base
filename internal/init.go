@@ -5,6 +5,7 @@ import (
 	"fmt"
 	v1 "medblogers_base/internal/app/api/doctors/v1"
 	"medblogers_base/internal/config"
+	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 	"time"
@@ -45,6 +46,11 @@ func (a *App) initConfig(_ context.Context) *App {
 	return a
 }
 
+func (a *App) initMutableConfig(ctx context.Context) *App {
+	a.mutableConfig = pkgConfig.New(a.postgres)
+	return a
+}
+
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
 		admin:   moduleadmin.New(),
@@ -60,7 +66,7 @@ func (a *App) initCache(_ context.Context) *App {
 }
 
 func (a *App) initControllers(_ context.Context) *App {
-	a.controllers.restController = v1.NewService(a.modules.doctors)
+	a.controllers.restController = v1.NewService(a.modules.doctors, a.mutableConfig)
 	return a
 }
 
