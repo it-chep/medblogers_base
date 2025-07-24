@@ -2,10 +2,11 @@ package v1
 
 import (
 	"encoding/json"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/dto/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"net/http"
+
+	"github.com/samber/lo"
 
 	"github.com/go-playground/validator/v10"
 )

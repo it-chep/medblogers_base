@@ -6,7 +6,8 @@ run:
 
 output:
   # Формат вывода
-  format: colored-line-number
+  formats:
+    - format: colored-line-number
   # Показывать только новые проблемы
   new: false
 
