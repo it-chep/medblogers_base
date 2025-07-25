@@ -35,7 +35,7 @@ func (g *Gateway) NotificatorCreateDoctor(ctx context.Context, createDTO indto.C
 	logger.Message(ctx, "[Notificator] Уведомление о создании доктора")
 	// Подготавливаем данные для запроса
 	requestData := dto.CreateDoctorNotification{
-		URL:      "", // todo сделать ссылку
+		URL:      createDTO.Slug,
 		Name:     createDTO.FullName,
 		InstURL:  createDTO.InstagramUsername,
 		TgURL:    createDTO.TelegramUsername,
@@ -63,4 +63,8 @@ func (g *Gateway) NotificatorCreateDoctor(ctx context.Context, createDTO indto.C
 		logger.Error(ctx, "Ошибка при отправке запроса", err)
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode == http.StatusOK {
+		logger.Message(ctx, "[Notificator] Уведомление успешно отправлено")
+	}
 }

@@ -6,9 +6,12 @@ import (
 
 // todo сделать нормальный cors
 var allowedOrigins = map[string]bool{
-	"https://example.com":     true,
-	"https://api.example.com": true,
-	"http://localhost:3000":   true, // для разработки
+	"https://doctors.readyschool.ru": true,
+	"http://localhost:3000":          true, // для разработки
+	"http://localhost:8080":          true, // для разработки
+	"http://127.0.0.1:8080":          true, // для разработки
+	"http://0.0.0.0:8080":            true, // для разработки
+
 }
 
 func CORSMiddleware(next http.Handler) http.Handler {
