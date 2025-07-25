@@ -73,7 +73,4 @@ type GetDoctorByFilter struct {
 
 type GetDoctorsByFilterResponse struct {
 	Doctors []GetDoctorByFilter `json:"doctors"` // todo какая-то кринжа надо переделать
-	MinSubs int64               `json:"min_subscribers"`
-	MaxSubs int64               `json:"max_subscribers"`
-	Offset  int64               `json:"offset"`
 }

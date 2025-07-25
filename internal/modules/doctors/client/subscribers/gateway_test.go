@@ -123,13 +123,15 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 		deps := p(t)
 		mockResponseBody := `{
             "doctors": [
-                {
-                    "doctor_id": 1,
-                    "telegram_short": "123",
-                    "telegram_text": "подписчика",
-                    "inst_short": "123",
-                    "inst_text": "подписчика"
-                }
+				{
+					"doctor": {
+						"doctor_id": 1,
+						"telegram_short": "123",
+						"telegram_text": "подписчика",
+						"inst_short": "123",
+						"inst_text": "подписчика"
+					}
+				}
             ]
         }`
 

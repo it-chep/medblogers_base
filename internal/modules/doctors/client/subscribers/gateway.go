@@ -102,7 +102,7 @@ func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest
 	query := endpointURL.Query()
 
 	// Добавляем параметры только если они не нулевые/пустые
-	if !lo.Contains(request.SocialMedia, indto.All) {
+	if !lo.Contains(request.SocialMedia, indto.All) && len(request.SocialMedia) > 0 && request.SocialMedia != nil {
 		// Конвертируем enum SocialMedia в строковые значения
 		var socials []string
 		for _, sm := range request.SocialMedia {

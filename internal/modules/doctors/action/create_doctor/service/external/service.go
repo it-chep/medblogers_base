@@ -37,20 +37,16 @@ func NewService(subscribersClient SubscribersClient, notificationClient Notifica
 }
 
 func (s *Service) NotificatorAdmins(ctx context.Context, createDTO dto.CreateDoctorRequest) {
-	go func() {
-		s.notificationClient.NotificatorCreateDoctor(ctx, createDTO, s.config.GetCreateNotificationChatID())
-	}()
+	s.notificationClient.NotificatorCreateDoctor(ctx, createDTO, s.config.GetCreateNotificationChatID())
 }
 
 func (s *Service) SendToSubscribers(ctx context.Context, createDTO dto.CreateDoctorRequest) {
-	go func() {
-		_, err := s.subscribersClient.CreateDoctor(ctx, createDTO.ID, indto.CreateDoctorRequest{
-			Telegram:  createDTO.TelegramChannel,
-			Instagram: createDTO.InstagramUsername,
-		})
-		if err != nil {
-			logger.Error(ctx, "[Create] Ошибка при создании врача в subscribers", err)
-			return
-		}
-	}()
+	_, err := s.subscribersClient.CreateDoctor(ctx, createDTO.ID, indto.CreateDoctorRequest{
+		Telegram:  createDTO.TelegramChannel,
+		Instagram: createDTO.InstagramUsername,
+	})
+	if err != nil {
+		logger.Error(ctx, "[Create] Ошибка при создании врача в subscribers", err)
+		return
+	}
 }

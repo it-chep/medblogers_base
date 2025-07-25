@@ -77,8 +77,17 @@ func (s *Service) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) doctor_
 			}
 		}),
 
-		MainBlogTheme:    doctorDomain.MainBlogTheme,
-		MedicalDirection: doctorDomain.MedicalDirection,
-		Image:            doctorDomain.Image,
+		MainCity: doctor_detail.CityItem{
+			ID:   doctorDomain.MainCity.ID,
+			Name: doctorDomain.MainCity.Name,
+		},
+
+		MainSpeciality: doctor_detail.SpecialityItem{
+			ID:   doctorDomain.MainSpeciality.ID,
+			Name: doctorDomain.MainSpeciality.Name,
+		},
+
+		MainBlogTheme: doctorDomain.MainBlogTheme,
+		Image:         doctorDomain.Image,
 	}
 }

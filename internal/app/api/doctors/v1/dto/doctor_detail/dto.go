@@ -22,7 +22,7 @@ type DoctorDTO struct {
 	TgChannelURL string `json:"tg_channel_url"`
 	YoutubeURL   string `json:"youtube_url"`
 	TiktokURL    string `json:"tiktok_url"`
-	SiteLink     string `json:"prodoctorov"`
+	SiteLink     string `json:"site_link"`
 
 	Cities       []CityItem       `json:"cities"`
 	Specialities []SpecialityItem `json:"specialities"`
@@ -38,8 +38,7 @@ type DoctorDTO struct {
 	InstSubsCountText   string `json:"inst_subs_count_text"`
 	InstLastUpdatedDate string `json:"inst_last_updated_date"`
 
-	MainBlogTheme    string `json:"main_blog_theme"`
-	MedicalDirection string `json:"medical_direction"`
+	MainBlogTheme string `json:"main_blog_theme"`
 
 	Image string `json:"image"`
 }

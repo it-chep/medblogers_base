@@ -55,7 +55,7 @@ func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctor
 
 	domainErrors := make([]dto.ValidationError, 0)
 	for _, validationError := range specification.Validate(ctx, &createDTO) {
-		var errV *dto.ValidationError
+		var errV dto.ValidationError
 		ok := errors.As(validationError, &errV)
 		if ok {
 			domainErrors = append(domainErrors, dto.ValidationError{

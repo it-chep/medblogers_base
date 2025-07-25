@@ -55,22 +55,24 @@ func (a Action) Do(ctx context.Context, doctorID int64) (*dto.DoctorDTO, error) 
 
 	// получаем доп города
 	g.Go(func() {
-		cities, err := a.additionalItemsService.GetAdditionalCities(ctx, doc.GetID(), doc.GetMainCityID())
+		mainCity, cities, err := a.additionalItemsService.GetAdditionalCities(ctx, doc.GetID(), doc.GetMainCityID())
 		if err != nil {
 			logger.Error(ctx, "Ошибка при получении дополнительных городов", err)
 		}
 		// при ошибке будет пустой список
 		docDTO.Cities = cities
+		docDTO.MainCity = mainCity
 	})
 
 	// получаем доп специальности
 	g.Go(func() {
-		specialities, err := a.additionalItemsService.GetAdditionalSpecialities(ctx, doc.GetID(), doc.GetMainSpecialityID())
+		mainSpeciality, specialities, err := a.additionalItemsService.GetAdditionalSpecialities(ctx, doc.GetID(), doc.GetMainSpecialityID())
 		if err != nil {
 			logger.Error(ctx, "Ошибка при получении дополнительных специальностей", err)
 		}
 		// при ошибке будет пустой список
 		docDTO.Specialities = specialities
+		docDTO.MainSpeciality = mainSpeciality
 	})
 
 	// обогащение фоткой с S3

@@ -25,8 +25,21 @@ func (r *Repository) CreateDoctor(ctx context.Context, createDTO dto.CreateDocto
 		                                 main_blog_theme, prodoctorov, city_id, speciallity_id, youtube_url, 
 		                                 is_active, date_created, birth_date, tg_channel_url, tiktok_url
 		                                 )
-		values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, false, now(), $13, $14, $15, $16)
-		on conflict (name, email) do nothing	
+		values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, false, now(), $13, $14, $15)
+		on conflict (name, email) do update set 
+			slug = excluded.slug,
+			inst_url = excluded.inst_url,
+			vk_url = excluded.vk_url,
+			dzen_url = excluded.dzen_url,
+			tg_url = excluded.tg_url,
+			main_blog_theme = excluded.main_blog_theme,
+			prodoctorov = excluded.prodoctorov,
+			city_id = excluded.city_id,
+			speciallity_id = excluded.speciallity_id,
+			youtube_url = excluded.youtube_url,
+			birth_date = excluded.birth_date,
+			tg_channel_url = excluded.tg_channel_url,
+			tiktok_url = excluded.tiktok_url
 		returning id
 	`
 
@@ -43,7 +56,7 @@ func (r *Repository) CreateDoctor(ctx context.Context, createDTO dto.CreateDocto
 		createDTO.CityID,
 		createDTO.SpecialityID,
 		createDTO.YoutubeUsername,
-		createDTO.BirthDate, // todo сделать в time
+		createDTO.BirthDateTime,
 		createDTO.TelegramChannel,
 		createDTO.TikTokURL,
 	}

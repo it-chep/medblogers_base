@@ -5,6 +5,8 @@ import (
 	"medblogers_base/internal/app/api/doctors/v1/dto/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"net/http"
+	"reflect"
+	"strings"
 
 	"github.com/samber/lo"
 
@@ -61,25 +63,33 @@ func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []create_doctor.V
 	var validationErrors []create_doctor.ValidationError
 	for _, err := range err.(validator.ValidationErrors) {
 		var validationError create_doctor.ValidationError
+
+		field := err.Field()
+		if f, ok := reflect.TypeOf(create_doctor.CreateDoctorRequest{}).FieldByName(err.Field()); ok {
+			if jsonTag := f.Tag.Get("json"); jsonTag != "" {
+				field = jsonTag
+			}
+		}
+
 		switch err.Tag() {
 		case "required":
 			validationError = create_doctor.ValidationError{
-				Field: err.Field(),
+				Field: strings.ToLower(field),
 				Text:  "Обязательное поле",
 			}
 		case "email":
 			validationError = create_doctor.ValidationError{
-				Field: err.Field(),
+				Field: strings.ToLower(field),
 				Text:  "Невалидный email",
 			}
 		case "max":
 			validationError = create_doctor.ValidationError{
-				Field: err.Field(),
+				Field: strings.ToLower(field),
 				Text:  "Текст нужно сократить",
 			}
 		default:
 			validationError = create_doctor.ValidationError{
-				Field: err.Field(),
+				Field: strings.ToLower(field),
 				Text:  "Неправильное значение",
 			}
 		}
@@ -95,7 +105,7 @@ func (s *Service) requestToCreateDoctorDTO(reqDTO create_doctor.CreateDoctorRequ
 		LastName:              reqDTO.LastName,
 		FirstName:             reqDTO.FirstName,
 		MiddleName:            reqDTO.MiddleName,
-		BirthDate:             reqDTO.BirthDate,
+		BirthDateString:       reqDTO.BirthDate,
 		AdditionalCities:      reqDTO.AdditionalCities,
 		AdditionalSpecialties: reqDTO.AdditionalSpecialties,
 		InstagramUsername:     reqDTO.InstagramUsername,

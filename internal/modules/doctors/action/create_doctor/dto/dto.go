@@ -1,6 +1,9 @@
 package dto
 
-import "medblogers_base/internal/modules/doctors/domain/doctor"
+import (
+	"medblogers_base/internal/modules/doctors/domain/doctor"
+	"time"
+)
 
 type CreateDoctorRequest struct {
 	ID       doctor.MedblogersID
@@ -16,7 +19,9 @@ type CreateDoctorRequest struct {
 	LastName   string
 	FirstName  string
 	MiddleName string
-	BirthDate  string
+
+	BirthDateTime   time.Time // поле заполняется при валидации
+	BirthDateString string
 
 	InstagramUsername string
 	VKUsername        string

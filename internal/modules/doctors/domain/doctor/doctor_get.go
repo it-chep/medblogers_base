@@ -58,7 +58,7 @@ func (d *Doctor) GetTgURL() string {
 	}
 
 	// Удаляем @ в начале, если есть
-	tgURL := strings.TrimPrefix(d.tgChannelURL, "@")
+	tgURL := strings.TrimPrefix(d.tgURL, "@")
 
 	// Если URL не содержит http/https, формируем полный URL
 	if !strings.HasPrefix(tgURL, "http") {

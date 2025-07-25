@@ -30,15 +30,17 @@ func NewService(storage Storage) *Service {
 	}
 }
 
-func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateDoctorRequest) error {
+func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateDoctorRequest) (dto.CreateDoctorRequest, error) {
 	logger.Message(ctx, "[Create] Создание слага и имени")
 
 	createDTO.FullName = s.createName(createDTO.LastName, createDTO.FirstName, createDTO.MiddleName)
 	createDTO.Slug = s.createSlug(createDTO.FullName)
-
 	logger.Message(ctx, "[Create] Сохранение доктора в базе")
 
 	medblogersID, err := s.storage.CreateDoctor(ctx, createDTO)
+	if err != nil {
+		return dto.CreateDoctorRequest{}, err
+	}
 
 	createDTO.ID = medblogersID
 	createDTO.AdditionalCities = append(createDTO.AdditionalCities, createDTO.CityID)
@@ -62,7 +64,7 @@ func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateDoctor
 
 	g.Wait()
 
-	return nil
+	return createDTO, nil
 }
 
 func (s *Service) createName(lastName, firstName, middleName string) string {
