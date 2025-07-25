@@ -33,7 +33,7 @@ func (s *Service) FilterDoctorsBySubscribers(ctx context.Context, filter *dto.Fi
 			MinSubscribers: filter.MinSubscribers,
 			MaxSubscribers: filter.MaxSubscribers,
 			SocialMedia: lo.Map(filter.SocialMedia, func(socialMedia string, index int) indto.SocialMedia {
-				return indto.SocialMedia(socialMedia)
+				return indto.NewSocialMedia(socialMedia)
 			}),
 		},
 	)

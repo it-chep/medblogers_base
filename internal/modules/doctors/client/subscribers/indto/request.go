@@ -2,13 +2,34 @@ package indto
 
 // Абстракция для бизнес-логики
 
-type SocialMedia string
+type SocialMedia int64
 
-// todo int64
 const (
-	Telegram  SocialMedia = "tg"
-	Instagram SocialMedia = "inst"
+	Telegram SocialMedia = 1 + iota
+	Instagram
 )
+
+func (sm SocialMedia) String() string {
+	switch sm {
+	case Telegram:
+		return "tg"
+	case Instagram:
+		return "inst"
+	}
+
+	return ""
+}
+
+func NewSocialMedia(sm string) SocialMedia {
+	switch sm {
+	case "tg":
+		return Telegram
+	case "inst":
+		return Instagram
+	}
+
+	return Telegram
+}
 
 type GetDoctorsByFilterRequest struct {
 	// соц.сеть

@@ -3,6 +3,8 @@ package s3
 import (
 	"context"
 	"fmt"
+	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
+	"github.com/samber/lo"
 	"io"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/logger"
@@ -18,15 +20,46 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . S3Client,S3PresignClient
+
+type S3Client interface {
+	ListObjectsV2(ctx context.Context, params *s3.ListObjectsV2Input, optFns ...func(*s3.Options)) (*s3.ListObjectsV2Output, error)
+	PutObject(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error)
+}
+
+type S3PresignClient interface {
+	PresignGetObject(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.PresignOptions)) (*v4.PresignedHTTPRequest, error)
+}
+
 // Gateway клиент к S3
 type Gateway struct {
 	bucketName    string
-	client        *s3.Client
-	presignClient *s3.PresignClient
+	client        S3Client
+	presignClient S3PresignClient
 }
 
-// NewGateway .
-func NewGateway(bucketName string, cfg config.S3Config) *Gateway {
+func NewS3Client(cfg config.S3Config) S3Client {
+	s3Cfg, err := s3config.LoadDefaultConfig(context.Background(),
+		s3config.WithRegion(cfg.Region),
+		s3config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(
+			cfg.AccessKey, cfg.SecretKey, "",
+		)),
+		s3config.WithEndpointResolver(aws.EndpointResolverFunc(
+			func(service, region string) (aws.Endpoint, error) {
+				return aws.Endpoint{
+					URL:           cfg.Endpoint,
+					SigningRegion: cfg.Region,
+				}, nil
+			})),
+	)
+	if err != nil {
+		return nil
+	}
+
+	return s3.NewFromConfig(s3Cfg)
+}
+
+func NewPresignClient(cfg config.S3Config) S3PresignClient {
 	s3Cfg, err := s3config.LoadDefaultConfig(context.Background(),
 		s3config.WithRegion(cfg.Region),
 		s3config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(
@@ -45,8 +78,11 @@ func NewGateway(bucketName string, cfg config.S3Config) *Gateway {
 	}
 
 	client := s3.NewFromConfig(s3Cfg)
-	presignClient := s3.NewPresignClient(client)
+	return s3.NewPresignClient(client)
+}
 
+// NewGateway .
+func NewGateway(bucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
 	return &Gateway{
 		client:        client,
 		presignClient: presignClient,
@@ -106,20 +142,20 @@ func (g *Gateway) GeneratePresignedURL(ctx context.Context, s3Key string) (strin
 }
 
 // PutObject загружает фотографию врача в хранилище
-func (g *Gateway) PutObject(ctx context.Context, file io.Reader, filename string) (string, error) {
+func (g *Gateway) PutObject(ctx context.Context, file io.Reader, filename, slug string) (string, error) {
 	// Генерируем уникальный ключ для файла
 	ext := filepath.Ext(filename)
 	contentType := mime.TypeByExtension(ext)
 	if contentType == "" {
 		contentType = "application/octet-stream"
 	}
-	// todo
-	//objectKey := fmt.Sprintf("doctors/%s%s", uuid.New().String(), ext)
+
+	objectKey := fmt.Sprintf("images/user_%s_%s", slug, filename)
 
 	// Загружаем файл в S3
 	_, err := g.client.PutObject(ctx, &s3.PutObjectInput{
 		Bucket:      aws.String(g.bucketName),
-		Key:         aws.String(""), // todo сделать
+		Key:         lo.ToPtr(objectKey),
 		Body:        file,
 		ContentType: aws.String(contentType),
 		Metadata: map[string]string{
@@ -131,5 +167,5 @@ func (g *Gateway) PutObject(ctx context.Context, file io.Reader, filename string
 		return "", fmt.Errorf("failed to upload file: %w", err)
 	}
 
-	return "objectKey", nil
+	return objectKey, nil
 }

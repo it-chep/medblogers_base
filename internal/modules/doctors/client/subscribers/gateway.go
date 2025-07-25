@@ -56,7 +56,7 @@ func (g *Gateway) GetDoctorSubscribers(ctx context.Context, medblogersID doctor.
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,
-		Path:   fmt.Sprintf("/subscribers/%d", int64(medblogersID)),
+		Path:   fmt.Sprintf("/subscribers/%d/", int64(medblogersID)),
 	}
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
@@ -97,25 +97,36 @@ func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest
 		Path:   "/doctors/filter/",
 	}
 
-	if request.MinSubscribers != 0 {
+	query := endpointURL.Query()
 
+	// Добавляем параметры только если они не нулевые/пустые
+	if len(request.SocialMedia) > 0 {
+		// Конвертируем enum SocialMedia в строковые значения
+		var socials []string
+		for _, sm := range request.SocialMedia {
+			socials = append(socials, sm.String())
+		}
+		socialMediaJSON, _ := json.Marshal(socials)
+		query.Add("social_media", string(socialMediaJSON))
 	}
 
-	if request.MaxSubscribers != 0 {
-
+	if request.MinSubscribers > 0 {
+		query.Add("min_subscribers", strconv.FormatInt(request.MinSubscribers, 10))
 	}
 
-	if request.Limit != 0 {
-
+	if request.MaxSubscribers > 0 {
+		query.Add("max_subscribers", strconv.FormatInt(request.MaxSubscribers, 10))
 	}
 
-	if request.Offset != 0 {
-
+	if request.Offset > 0 {
+		query.Add("offset", strconv.FormatInt(request.Offset, 10))
 	}
 
-	if len(request.SocialMedia) != 0 {
-
+	if request.Limit > 0 {
+		query.Add("limit", strconv.FormatInt(request.Limit, 10))
 	}
+
+	endpointURL.RawQuery = query.Encode()
 
 	return endpointURL.String()
 }
@@ -311,7 +322,7 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,
-		Path:   fmt.Sprintf("/doctors/%d", int(medblogersID)),
+		Path:   "/doctors/create/",
 	}
 
 	body, err := json.Marshal(dto.UpdateDoctorRequest{
@@ -326,6 +337,7 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	if err != nil {
 		return 0, err
 	}
+	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := g.client.Do(req)
 	if err != nil {
@@ -345,7 +357,7 @@ func (g *Gateway) UpdateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,
-		Path:   fmt.Sprintf("/doctors/%d", int(medblogersID)),
+		Path:   fmt.Sprintf("/doctors/%d/", int(medblogersID)),
 	}
 
 	body, err := json.Marshal(dto.UpdateDoctorRequest{
@@ -360,6 +372,7 @@ func (g *Gateway) UpdateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 	if err != nil {
 		return 0, err
 	}
+	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := g.client.Do(req)
 	if err != nil {
