@@ -38,3 +38,7 @@ type ValidationError struct {
 	Text  string
 	Field string
 }
+
+func (e ValidationError) Error() string {
+	return e.Text
+}

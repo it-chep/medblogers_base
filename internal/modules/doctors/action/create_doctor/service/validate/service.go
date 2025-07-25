@@ -2,6 +2,7 @@ package validate
 
 import (
 	"context"
+	"errors"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/service/validate/rules"
 	"medblogers_base/internal/modules/doctors/domain/city"
@@ -43,31 +44,30 @@ func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctor
 		return nil, err
 	}
 
-	specification := spec.NewIndependentSpecification[*dto.CreateDoctorRequest]()
+	specification := spec.NewIndependentSpecification[*dto.CreateDoctorRequest]().
+		And(rules.RuleValidSpecialityID(specialitiesIDs)).
+		And(rules.RuleValidSpecialitiesIDs(specialitiesIDs)).
+		And(rules.RuleValidCityID(citiesIDs)).
+		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs)).
+		And(rules.RuleAtLeastOneSocialMedia()).
+		And(rules.RuleValidSiteLink()).
+		And(rules.RuleValidBirthDate())
 
-	specification.And(rules.RuleValidSpecialityID(specialitiesIDs))
-	specification.And(rules.RuleValidSpecialitiesIDs(specialitiesIDs))
-	specification.And(rules.RuleValidCityID(citiesIDs))
-	specification.And(rules.RuleValidAdditionalCitiesIDs(citiesIDs))
-	specification.And(rules.RuleAtLeastOneSocialMedia())
-	specification.And(rules.RuleValidSiteLink())
-	specification.And(rules.RuleValidBirthDate())
-
-	specification.Validate(ctx, &createDTO)
-	validationErrors := specification.Errors()
-	if len(validationErrors) > 0 {
-		domainErrors := make([]dto.ValidationError, 0, len(validationErrors))
-		for _, validationError := range validationErrors {
+	domainErrors := make([]dto.ValidationError, 0)
+	for _, validationError := range specification.Validate(ctx, &createDTO) {
+		var errV *dto.ValidationError
+		ok := errors.As(validationError, &errV)
+		if ok {
 			domainErrors = append(domainErrors, dto.ValidationError{
-				Field: validationError.Field,
-				Text:  validationError.Message,
+				Field: errV.Field,
+				Text:  errV.Text,
 			})
+			continue
 		}
-
-		return domainErrors, nil
+		return nil, err
 	}
 
-	return []dto.ValidationError{}, nil
+	return domainErrors, nil
 }
 
 func (s *Service) getCitiesIDs(ctx context.Context) ([]int64, error) {
