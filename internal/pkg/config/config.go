@@ -20,6 +20,7 @@ type Config interface {
 	GetValue(ctx context.Context, key ConfigKey) (Value, error)
 }
 
+// config ...
 type config struct {
 	pool postgres.PoolWrapper
 }
@@ -31,6 +32,15 @@ func New(pool postgres.PoolWrapper) Config {
 	}
 }
 
+// GetValue получает конфиг из таблицы config
+// create table if not exists config (
+//
+//	key text primary key,
+//	value jsonb not null,
+//	description text not null
+//
+//
+// );
 func (c *config) GetValue(ctx context.Context, key ConfigKey) (Value, error) {
 	sql := `select value from config where key = $1`
 
@@ -53,6 +63,7 @@ func ContextWithConfig(ctx context.Context, cfg Config) context.Context {
 	return context.WithValue(ctx, contextKey, cfg)
 }
 
+// fromContext получение конфига из контекста
 func fromContext(ctx context.Context) Config {
 	l, ok := ctx.Value(contextKey).(Config)
 	if ok {
@@ -61,6 +72,7 @@ func fromContext(ctx context.Context) Config {
 	return nil
 }
 
+// GetValue получает структуру конфига из контекста и возвращает значение из базы
 func GetValue(ctx context.Context, key ConfigKey) (Value, error) {
 	cfg := fromContext(ctx)
 	return cfg.GetValue(ctx, key)

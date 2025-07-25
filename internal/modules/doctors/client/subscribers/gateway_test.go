@@ -196,12 +196,71 @@ func TestGetAllSubscribersInfo(t *testing.T) {
 func TestGetFilterInfo(t *testing.T) {
 	t.Parallel()
 
+	t.Run("Успешное получение информации по фильтрам", func(t *testing.T) {
+		t.Parallel()
+		deps := p(t)
+
+		mockResponseBody := `{
+			"messengers": [
+				{"name": "Телеграм", "slug": "tg"},
+				{"name": "Инстаграм", "slug": "inst"}
+			]
+        }`
+		deps.http.EXPECT().Do(gomock.Any()).Return(&http.Response{
+			StatusCode: http.StatusOK,
+			Body:       io.NopCloser(bytes.NewBufferString(mockResponseBody)),
+		}, nil)
+
+		expectedResult := []indto.FilterInfoResponse{
+			{Name: "Телеграм", Slug: "tg"},
+			{Name: "Инстаграм", Slug: "inst"},
+		}
+		gw := NewGateway("", deps.http)
+		res, err := gw.GetFilterInfo(context.Background())
+
+		require.NoError(t, err)
+		require.Equal(t, expectedResult, res)
+	})
 }
 
 func TestCreateDoctor(t *testing.T) {
 	t.Parallel()
+
+	t.Run("Успешное создание доктора", func(t *testing.T) {
+		t.Parallel()
+		deps := p(t)
+
+		deps.http.EXPECT().Do(gomock.Any()).Return(&http.Response{
+			StatusCode: http.StatusOK,
+		})
+		gw := NewGateway("", deps.http)
+		statusCode, err := gw.CreateDoctor(context.Background(), doctor.MedblogersID(1), indto.CreateDoctorRequest{
+			Telegram:  "telegram",
+			Instagram: "instagram",
+		})
+
+		require.NoError(t, err)
+		require.Equal(t, http.StatusOK, statusCode)
+	})
 }
 
 func TestUpdateDoctor(t *testing.T) {
 	t.Parallel()
+
+	t.Run("Успешное обновление доктора", func(t *testing.T) {
+		t.Parallel()
+		deps := p(t)
+
+		deps.http.EXPECT().Do(gomock.Any()).Return(&http.Response{
+			StatusCode: http.StatusOK,
+		})
+		gw := NewGateway("", deps.http)
+		statusCode, err := gw.UpdateDoctor(context.Background(), doctor.MedblogersID(1), indto.UpdateDoctorRequest{
+			Telegram:  "telegram",
+			Instagram: "instagram",
+		})
+
+		require.NoError(t, err)
+		require.Equal(t, http.StatusOK, statusCode)
+	})
 }
