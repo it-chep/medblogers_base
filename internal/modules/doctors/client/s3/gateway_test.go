@@ -2,6 +2,9 @@ package s3
 
 import (
 	"context"
+	"medblogers_base/internal/modules/doctors/client/s3/mocks"
+	"testing"
+
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
@@ -9,8 +12,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"medblogers_base/internal/modules/doctors/client/s3/mocks"
-	"testing"
 )
 
 type fields struct {

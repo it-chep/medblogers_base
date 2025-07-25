@@ -3,8 +3,6 @@ package s3
 import (
 	"context"
 	"fmt"
-	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
-	"github.com/samber/lo"
 	"io"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/pkg/logger"
@@ -12,6 +10,9 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
+	"github.com/samber/lo"
 
 	"github.com/aws/aws-sdk-go-v2/credentials"
 

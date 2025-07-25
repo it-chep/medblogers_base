@@ -6,13 +6,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/samber/lo"
 	"io"
 	"medblogers_base/internal/pkg/logger"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
+
+	"github.com/samber/lo"
 
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"

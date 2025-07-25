@@ -4,10 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io"
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
@@ -16,6 +12,11 @@ import (
 	"net/http"
 	"net/url"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 type fields struct {

@@ -39,7 +39,6 @@ func New(pool postgres.PoolWrapper) Config {
 //	value jsonb not null,
 //	description text not null
 //
-//
 // );
 func (c *config) GetValue(ctx context.Context, key ConfigKey) (Value, error) {
 	sql := `select value from config where key = $1`

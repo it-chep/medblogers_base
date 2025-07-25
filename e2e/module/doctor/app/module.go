@@ -1,9 +1,10 @@
 package app
 
 import (
-	"github.com/golang/mock/gomock"
 	"medblogers_base/internal/modules/doctors"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/golang/mock/gomock"
 )
 
 type TestableModule struct {

@@ -3,7 +3,6 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/lib/pq"
 	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
@@ -15,6 +14,8 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
+
+	"github.com/lib/pq"
 
 	"github.com/georgysavva/scany/pgxscan"
 )

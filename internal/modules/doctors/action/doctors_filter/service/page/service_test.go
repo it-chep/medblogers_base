@@ -2,12 +2,13 @@ package page
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/page/mocks"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestService_GetPagesCount(t *testing.T) {
