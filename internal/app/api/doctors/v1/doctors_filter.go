@@ -81,6 +81,7 @@ func (s *Service) requestToFilterDTO(r *http.Request) indto.Filter {
 		SocialMedia:    socialMedia,
 	}
 }
+
 func (s *Service) newFilterResponse(filterDomain dto.Response) doctors_filter.Response {
 	return doctors_filter.Response{
 		Doctors: lo.Map(filterDomain.Doctors, func(item dto.Doctor, _ int) doctors_filter.DoctorItem {

@@ -96,3 +96,7 @@ xo:
 
 	rm $(XO_OUTPUT_PATH)/goosedbversion.xo.go
 	rm $(XO_OUTPUT_PATH)/xo_db.xo.go
+
+
+.PHONY: generate
+.generate:
