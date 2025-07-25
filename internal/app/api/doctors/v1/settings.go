@@ -33,9 +33,7 @@ func (s *Service) Settings(w http.ResponseWriter, r *http.Request) {
 
 func (s *Service) newSettingsResponse(settingsDomain *indto.Settings) settings.SettingsDTO {
 	return settings.SettingsDTO{
-		DoctorsCount:     settingsDomain.DoctorsCount,
-		SubscribersCount: settingsDomain.SubscribersCount,
-		NewDoctorBanner:  settingsDomain.NewDoctorBanner,
+		NewDoctorBanner: settingsDomain.NewDoctorBanner,
 		FilterInfo: lo.Map(settingsDomain.FilterInfo, func(filterItem indto.FilterItem, _ int) settings.FilterItem {
 			return settings.FilterItem{
 				Name: filterItem.Name,

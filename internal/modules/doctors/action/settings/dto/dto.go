@@ -1,6 +1,7 @@
 package dto
 
 import (
+	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 
@@ -25,19 +26,20 @@ type SpecialityItem struct {
 }
 
 type Settings struct {
-	DoctorsCount     int64
-	SubscribersCount string
-	FilterInfo       []FilterItem
-	Cities           []CityItem
-	Specialities     []SpecialityItem
-	NewDoctorBanner  bool
+	FilterInfo      []FilterItem
+	Cities          []CityItem
+	Specialities    []SpecialityItem
+	NewDoctorBanner bool
 }
 
-func NewSettings(cities []*city.City, specialities []*speciality.Speciality, doctorsCount int64, subscribersCount string) *Settings {
+func NewSettings(cities []*city.City, specialities []*speciality.Speciality, filters []indto.FilterInfoResponse) *Settings {
 	return &Settings{
-		DoctorsCount:     doctorsCount,
-		SubscribersCount: subscribersCount,
-		FilterInfo:       []FilterItem{},
+		FilterInfo: lo.Map(filters, func(item indto.FilterInfoResponse, index int) FilterItem {
+			return FilterItem{
+				Name: item.Name,
+				Slug: item.Slug,
+			}
+		}),
 		Cities: lo.Map(cities, func(cityItem *city.City, _ int) CityItem {
 			return CityItem{
 				ID:           int64(cityItem.ID()),

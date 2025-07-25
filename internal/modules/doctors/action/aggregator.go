@@ -2,6 +2,7 @@ package action
 
 import (
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/doctors/action/counters_info"
 	"medblogers_base/internal/modules/doctors/action/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter"
@@ -16,6 +17,7 @@ import (
 // Aggregator собирает все процессы модуля в одно целое
 type Aggregator struct {
 	CreateDoctor    *create_doctor.Action
+	CounterInfo     *counters_info.Action
 	DoctorDetail    *doctor_detail.Action
 	DoctorsFilter   *doctors_filter.Action
 	SearchDoctor    *search_doctor.Action
@@ -28,6 +30,7 @@ type Aggregator struct {
 func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config *config.Config) *Aggregator {
 	return &Aggregator{
 		CreateDoctor:    create_doctor.New(clients, pool, config),
+		CounterInfo:     counters_info.New(clients, pool),
 		DoctorDetail:    doctor_detail.New(clients, pool),
 		DoctorsFilter:   doctors_filter.New(clients, pool),
 		SearchDoctor:    search_doctor.New(clients, pool),

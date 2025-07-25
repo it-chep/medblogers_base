@@ -11,7 +11,7 @@ import (
 	"medblogers_base/internal/pkg/async"
 )
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage,DoctorsStorage,SubscribersGetter
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage,SubscribersGetter
 
 // CityStorage .
 type CityStorage interface {
@@ -23,29 +23,23 @@ type SpecialityStorage interface {
 	GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*speciality.Speciality, error)
 }
 
-// DoctorsStorage .
-type DoctorsStorage interface {
-	GetDoctorsCount(ctx context.Context) (int64, error)
-}
-
+// SubscribersGetter .
 type SubscribersGetter interface {
-	GetAllSubscribersInfo(ctx context.Context) (indto.GetAllSubscribersInfoResponse, error)
+	GetFilterInfo(ctx context.Context) ([]indto.FilterInfoResponse, error)
 }
 
 // Service .
 type Service struct {
 	cityStorage       CityStorage
 	specialityStory   SpecialityStorage
-	doctorsStorage    DoctorsStorage
 	subscribersGetter SubscribersGetter
 }
 
 // NewSettingsService .
-func NewSettingsService(cityStorage CityStorage, specialityStory SpecialityStorage, doctorsStorage DoctorsStorage, subscribersGetter SubscribersGetter) *Service {
+func NewSettingsService(cityStorage CityStorage, specialityStory SpecialityStorage, subscribersGetter SubscribersGetter) *Service {
 	return &Service{
 		cityStorage:       cityStorage,
 		specialityStory:   specialityStory,
-		doctorsStorage:    doctorsStorage,
 		subscribersGetter: subscribersGetter,
 	}
 }
@@ -53,10 +47,9 @@ func NewSettingsService(cityStorage CityStorage, specialityStory SpecialityStora
 // GetSettings - получение настроек для главной страницы
 func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) {
 	var (
-		cities                   []*city.City
-		specialities             []*speciality.Speciality
-		doctorsCount             int64
-		subscribersCountResponse indto.GetAllSubscribersInfoResponse
+		cities         []*city.City
+		specialities   []*speciality.Speciality
+		enabledFilters []indto.FilterInfoResponse
 	)
 	// Делаем обычную группу, чтобы если 1 из фильров не работает, он не ломал нам весь сайт
 	g := async.NewGroup()
@@ -77,24 +70,16 @@ func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) 
 		}
 	})
 
-	// получение количества докторов
 	g.Go(func() {
-		doctorsCount, err = s.doctorsStorage.GetDoctorsCount(ctx)
+		enabledFilters, err = s.subscribersGetter.GetFilterInfo(ctx)
 		if err != nil {
-			logger.Error(ctx, "[Settings] Ошибка при получении количества докторов", err)
-		}
-	})
-
-	g.Go(func() {
-		subscribersCountResponse, err = s.subscribersGetter.GetAllSubscribersInfo(ctx)
-		if err != nil {
-			logger.Error(ctx, "[Settings] Ошибка при получении количества подписчиков", err)
+			logger.Error(ctx, "[Settings] Ошибка при получении специальностей", err)
 		}
 	})
 
 	g.Wait()
 
-	settings := dto.NewSettings(cities, specialities, doctorsCount, subscribersCountResponse.SubscribersCount)
+	settings := dto.NewSettings(cities, specialities, enabledFilters)
 
 	return settings, nil
 }

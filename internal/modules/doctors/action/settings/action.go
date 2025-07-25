@@ -2,7 +2,6 @@ package settings
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/settings/dal"
 	"medblogers_base/internal/modules/doctors/action/settings/dto"
 	"medblogers_base/internal/modules/doctors/client"
 	"medblogers_base/internal/modules/doctors/dal/city_dal"
@@ -24,7 +23,6 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 		settings: settings.NewSettingsService(
 			city_dal.NewRepository(pool),
 			speciality_dal.NewRepository(pool),
-			dal.NewRepository(pool),
 			clients.Subscribers,
 		),
 	}
