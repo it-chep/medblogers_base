@@ -38,8 +38,10 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.Doctor, error) {
 	sql := `
 		select 
-			name, slug
+			d.id, d.name, d.slug, c.name as "city_name", s.name as "speciality_name"
 		from docstar_site_doctor d
+		join docstar_site_city c on d.city_id = c.id
+		join docstar_site_speciallity s on d.speciallity_id = s.id
 		where d.is_active = true and d.name ilike $1
 		order by d.name
 		limit $2;
@@ -47,7 +49,7 @@ func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 	limit := r.getLimit(ctx, defaultDoctorsLimit, config.SearchDoctorsLimit)
 
-	var doctors []*dao.DoctorDAO
+	var doctors []*dao.DoctorSearchDAO
 	if err := pgxscan.Select(ctx, r.db, &doctors, sql, query, limit); err != nil {
 		return []*doctor.Doctor{}, err
 	}

@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"strconv"
+	"sync/atomic"
 	"time"
 
 	"github.com/pkg/errors"
@@ -33,6 +34,8 @@ type Value interface {
 type concreteValue struct {
 	Type  string `json:"type"`
 	Value any    `json:"value"`
+
+	asStringPtr atomic.Pointer[string]
 }
 
 func (v *concreteValue) Int64() int64 {
@@ -89,7 +92,14 @@ func (v *concreteValue) MaybeString() (string, error) {
 	if v.IsNil() {
 		return "", nil
 	}
-	s := v.Value.(string)
+	if sPtr := v.asStringPtr.Load(); sPtr != nil && *sPtr != "" {
+		return *sPtr, nil
+	}
+
+	var s string
+	s = fmt.Sprintf("%v", v.Value)
+
+	v.asStringPtr.Store(&s)
 	return s, nil
 }
 

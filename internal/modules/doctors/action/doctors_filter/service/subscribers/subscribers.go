@@ -27,7 +27,7 @@ func New(getter SubscribersGetter) *Service {
 }
 
 // FilterDoctorsBySubscribers - фильтрация по количеству подписчиков
-func (s *Service) FilterDoctorsBySubscribers(ctx context.Context, filter *dto.Filter) (map[int64]dto.SubscribersInfoDTO, error) {
+func (s *Service) FilterDoctorsBySubscribers(ctx context.Context, filter dto.Filter) (map[int64]dto.SubscribersInfoDTO, error) {
 	response, err := s.getter.GetDoctorsByFilter(
 		ctx, indto.GetDoctorsByFilterRequest{
 			MinSubscribers: filter.MinSubscribers,

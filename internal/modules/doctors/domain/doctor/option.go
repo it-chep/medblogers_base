@@ -29,6 +29,20 @@ func WithName(name string) Option {
 	}
 }
 
+// WithCityName .
+func WithCityName(name string) Option {
+	return func(s *Doctor) {
+		s.cityName = name
+	}
+}
+
+// WithSpecialityName .
+func WithSpecialityName(name string) Option {
+	return func(s *Doctor) {
+		s.specialityName = name
+	}
+}
+
 // WithS3Image .
 func WithS3Image(s3key string) Option {
 	return func(s *Doctor) {

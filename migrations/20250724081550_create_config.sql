@@ -2,7 +2,7 @@
 -- +goose StatementBegin
 create table if not exists config (
     key text primary key,
-    value jsonb not null,
+    value json not null,
     description text not null
 );
 -- +goose StatementEnd

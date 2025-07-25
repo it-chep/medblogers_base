@@ -34,7 +34,7 @@ func (s *Service) Filter(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp)
 }
 
-func (s *Service) requestToFilterDTO(r *http.Request) *indto.Filter {
+func (s *Service) requestToFilterDTO(r *http.Request) indto.Filter {
 	maxSubscribers, _ := strconv.Atoi(r.URL.Query().Get("max_subscribers"))
 	minSubscribers, _ := strconv.Atoi(r.URL.Query().Get("min_subscribers"))
 	socialMedia := strings.Split(r.URL.Query().Get("social_media"), ",")
@@ -72,7 +72,7 @@ func (s *Service) requestToFilterDTO(r *http.Request) *indto.Filter {
 		page = 1
 	}
 
-	return &indto.Filter{
+	return indto.Filter{
 		MaxSubscribers: int64(maxSubscribers),
 		MinSubscribers: int64(minSubscribers),
 		Page:           int64(page),

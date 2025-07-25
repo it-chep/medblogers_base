@@ -2,21 +2,25 @@ package doctor
 
 import (
 	"context"
+	"fmt"
+	"github.com/samber/lo"
 	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
+	"sync"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage,ImageEnricher,SubscribersEnricher,AdditionalStorage
 
 type Storage interface {
-	FilterDoctors(ctx context.Context, filter *dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error)
+	FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error)
 	GetDoctors(ctx context.Context, limit, offset int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
-	GetDoctorsByIDs(ctx context.Context, ids []int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
+	GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
 }
 
 type ImageEnricher interface {
@@ -49,31 +53,9 @@ func New(storage Storage, additionalStorage AdditionalStorage, imageGetter Image
 }
 
 // GetDoctorsByFilter - фильтрация докторов по полям в базе
-func (s *Service) GetDoctorsByFilter(ctx context.Context, filter *dto.Filter) (map[int64]dto.Doctor, error) {
+func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (map[int64]dto.Doctor, error) {
 	logger.Message(ctx, "[Filter][Service] Получение докторов по фильтрам")
 	doctorsMap, err := s.storage.FilterDoctors(ctx, filter)
-	if err != nil {
-		return nil, err
-	}
-
-	// конвертация в DTO
-	dtoMap := s.convertToDTOMap(doctorsMap)
-
-	// обогащение необходимыми сущностями
-	s.enrichFacade(ctx, dtoMap)
-
-	return dtoMap, nil
-}
-
-// GetDoctorsByIDs - получение докторов по переданным IDs
-func (s *Service) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[int64]dto.Doctor, error) {
-	if len(ids) == 0 {
-		return s.GetDoctors(ctx, currentPage)
-	}
-	logger.Message(ctx, "[Filter][Service] Получение докторов по IDs")
-
-	// Запрос докторов
-	doctorsMap, err := s.storage.GetDoctorsByIDs(ctx, ids)
 	if err != nil {
 		return nil, err
 	}
@@ -101,6 +83,85 @@ func (s *Service) GetDoctors(ctx context.Context, currentPage int64) (map[int64]
 
 	// обогащение необходимыми сущностями
 	s.enrichFacade(ctx, dtoMap)
+
+	return dtoMap, nil
+}
+
+// GetDoctorsByIDs - получение докторов по переданным IDs
+func (s *Service) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[int64]dto.Doctor, error) {
+	if len(ids) == 0 {
+		return s.GetDoctors(ctx, currentPage)
+	}
+	logger.Message(ctx, "[Filter][Service] Получение докторов по IDs")
+
+	// Запрос докторов
+	doctorsMap, err := s.storage.GetDoctorsByIDs(ctx, currentPage, ids)
+	if err != nil {
+		return nil, err
+	}
+
+	// конвертация в DTO
+	dtoMap := s.convertToDTOMap(doctorsMap)
+	// todo переделать, пиздец не нравится
+	// Обогащение специальностями, фотографиями и городами
+	var (
+		imageMap        map[string]string
+		citiesMap       map[int64][]*city.City
+		specialitiesMap map[int64][]*speciality.Speciality
+		mu              sync.Mutex
+		errs            []error
+	)
+	g := async.NewGroup()
+
+	// Получаем фотки
+	g.Go(func() {
+		imgs, err := s.imageGetter.GetUserPhotos(ctx)
+		mu.Lock()
+		defer mu.Unlock()
+		if err != nil {
+			errs = append(errs, fmt.Errorf("ошибка при получении фотографий: %w", err))
+			return
+		}
+		imageMap = imgs
+	})
+
+	// Получаем доп города
+	g.Go(func() {
+		cities, err := s.additionalStorage.GetDoctorAdditionalCities(ctx, lo.Keys(dtoMap))
+		mu.Lock()
+		defer mu.Unlock()
+		if err != nil {
+			errs = append(errs, fmt.Errorf("ошибка при получении городов: %w", err))
+			return
+		}
+		citiesMap = cities
+	})
+
+	// Получаем доп специальности
+	g.Go(func() {
+		specs, err := s.additionalStorage.GetDoctorAdditionalSpecialities(ctx, lo.Keys(dtoMap))
+		mu.Lock()
+		defer mu.Unlock()
+		if err != nil {
+			errs = append(errs, fmt.Errorf("ошибка при получении специальностей: %w", err))
+			return
+		}
+		specialitiesMap = specs
+	})
+
+	g.Wait()
+
+	// Обрабатываем все ошибки
+	if len(errs) > 0 {
+		for _, e := range errs {
+			logger.Error(ctx, "[Filter] Ошибка обогащения", e)
+		}
+	}
+
+	// обогащаем всеми данными
+	s.enrichImages(ctx, dtoMap, imageMap)
+	s.enrichAdditionalSpecialities(ctx, dtoMap, specialitiesMap)
+	s.enrichAdditionalCities(ctx, dtoMap, citiesMap)
 
 	return dtoMap, nil
 }

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/samber/lo"
 	"io"
 	"medblogers_base/internal/pkg/logger"
 	"net/http"
@@ -100,10 +101,13 @@ func (g *Gateway) configureFilterRequest(request indto.GetDoctorsByFilterRequest
 	query := endpointURL.Query()
 
 	// Добавляем параметры только если они не нулевые/пустые
-	if len(request.SocialMedia) > 0 {
+	if !lo.Contains(request.SocialMedia, indto.All) {
 		// Конвертируем enum SocialMedia в строковые значения
 		var socials []string
 		for _, sm := range request.SocialMedia {
+			if sm.String() == "" {
+				continue
+			}
 			socials = append(socials, sm.String())
 		}
 		socialMediaJSON, _ := json.Marshal(socials)
@@ -161,12 +165,12 @@ func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDocto
 
 	result := make(map[int64]indto.GetDoctorsByFilterResponse, len(response.Doctors))
 	for _, doc := range response.Doctors {
-		result[doc.DoctorID] = indto.GetDoctorsByFilterResponse{
-			DoctorID:          doc.DoctorID,
-			TgSubsCount:       doc.TgSubsCount,
-			TgSubsCountText:   doc.TgSubsCountText,
-			InstSubsCount:     doc.InstSubsCount,
-			InstSubsCountText: doc.InstSubsCountText,
+		result[doc.Doctor.DoctorID] = indto.GetDoctorsByFilterResponse{
+			DoctorID:          doc.Doctor.DoctorID,
+			TgSubsCount:       doc.Doctor.TgSubsCount,
+			TgSubsCountText:   doc.Doctor.TgSubsCountText,
+			InstSubsCount:     doc.Doctor.InstSubsCount,
+			InstSubsCountText: doc.Doctor.InstSubsCountText,
 		}
 	}
 

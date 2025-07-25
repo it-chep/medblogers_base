@@ -60,10 +60,12 @@ type Doctor struct {
 	tiktokURL    string // тикток
 	siteLink     string // Ссылка на личный сайт
 
-	cityID                    city.CityID             // Основной город
+	cityID                    city.CityID // Основной город
+	cityName                  string
 	additionalCitiesIDs       []int64                 // Доп.Города
 	specialityID              speciality.SpecialityID // Основная специальность
-	additionalSpecialitiesIDs []int64                 // Доп.Специальности
+	specialityName            string
+	additionalSpecialitiesIDs []int64 // Доп.Специальности
 
 	medicalDirection string // Направление медицины
 	mainBlogTheme    string // Тематика блога

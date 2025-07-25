@@ -41,6 +41,7 @@ func (s *Service) newSearchResponse(searchResultDomain dto.SearchDTO) search_doc
 	return search_doctor.SearchDTO{
 		Doctors: lo.Map(searchResultDomain.Doctors, func(item dto.DoctorItem, _ int) search_doctor.DoctorItem {
 			return search_doctor.DoctorItem{
+				ID:             item.ID,
 				Name:           item.Name,
 				Slug:           item.Slug,
 				CityName:       item.CityName,

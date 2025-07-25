@@ -67,6 +67,13 @@ type GetDoctorsByFilter struct {
 	InstSubsCountText string `json:"inst_text"`
 }
 
+type GetDoctorByFilter struct {
+	Doctor GetDoctorsByFilter `json:"doctor"`
+}
+
 type GetDoctorsByFilterResponse struct {
-	Doctors []GetDoctorsByFilter `json:"doctors"`
+	Doctors []GetDoctorByFilter `json:"doctors"` // todo какая-то кринжа надо переделать
+	MinSubs int64               `json:"min_subscribers"`
+	MaxSubs int64               `json:"max_subscribers"`
+	Offset  int64               `json:"offset"`
 }

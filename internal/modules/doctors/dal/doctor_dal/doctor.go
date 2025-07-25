@@ -1,10 +1,9 @@
-package dal
+package doctor_dal
 
 import (
 	"context"
-	"medblogers_base/internal/pkg/postgres"
-
 	"github.com/georgysavva/scany/pgxscan"
+	"medblogers_base/internal/pkg/postgres"
 )
 
 type Repository struct {

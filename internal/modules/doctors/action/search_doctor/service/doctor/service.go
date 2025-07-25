@@ -52,11 +52,12 @@ func (s *Service) Search(ctx context.Context, query string) ([]dto.DoctorItem, e
 
 	doctorsDTO := lo.Map(doctors, func(item *doctor.Doctor, _ int) dto.DoctorItem {
 		return dto.DoctorItem{
-			Name: item.GetName(),
-			Slug: item.GetSlug(),
-			//CityName:       , //todo подумать как сюда вытянуть название города
-			//SpecialityName: , //todo подумать как сюда вытянуть название специальности
-			S3Image: usersPhotosMap[item.GetSlug()],
+			ID:             int64(item.GetID()),
+			Name:           item.GetName(),
+			Slug:           item.GetSlug(),
+			CityName:       item.GetMainCityName(),
+			SpecialityName: item.GetMainSpecialityName(),
+			S3Image:        usersPhotosMap[item.GetSlug()],
 		}
 	})
 

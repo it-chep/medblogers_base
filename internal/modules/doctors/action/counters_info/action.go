@@ -2,10 +2,10 @@ package counters_info
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/action/counters_info/dal"
 	"medblogers_base/internal/modules/doctors/action/counters_info/dto"
 	"medblogers_base/internal/modules/doctors/action/counters_info/service/counters"
 	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/modules/doctors/dal/doctor_dal"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -20,7 +20,7 @@ type Action struct {
 func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
 		counters: counters.NewService(
-			dal.NewRepository(pool),
+			doctor_dal.NewRepository(pool),
 			clients.Subscribers,
 		),
 	}

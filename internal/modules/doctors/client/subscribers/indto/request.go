@@ -5,7 +5,8 @@ package indto
 type SocialMedia int64
 
 const (
-	Telegram SocialMedia = 1 + iota
+	All SocialMedia = iota
+	Telegram
 	Instagram
 )
 
@@ -15,9 +16,9 @@ func (sm SocialMedia) String() string {
 		return "tg"
 	case Instagram:
 		return "inst"
+	default:
+		return ""
 	}
-
-	return ""
 }
 
 func NewSocialMedia(sm string) SocialMedia {
@@ -28,7 +29,7 @@ func NewSocialMedia(sm string) SocialMedia {
 		return Instagram
 	}
 
-	return Telegram
+	return All
 }
 
 type GetDoctorsByFilterRequest struct {

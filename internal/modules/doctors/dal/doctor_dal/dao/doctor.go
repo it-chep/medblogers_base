@@ -70,3 +70,23 @@ func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
 		doctor.WithMainCityID(d.CityID),
 	)
 }
+
+// DoctorSearchDAO .
+type DoctorSearchDAO struct {
+	ID             int64  `db:"id"`
+	Name           string `db:"name"`
+	Slug           string `db:"slug"`
+	CityName       string `db:"city_name"`
+	SpecialityName string `db:"speciality_name"`
+}
+
+// ToDomain конвертирует DAO в доменный объект
+func (d DoctorSearchDAO) ToDomain() *doctor.Doctor {
+	return doctor.New(
+		doctor.WithID(d.ID),
+		doctor.WithSlug(d.Slug),
+		doctor.WithName(d.Name),
+		doctor.WithCityName(d.CityName),
+		doctor.WithSpecialityName(d.SpecialityName),
+	)
+}

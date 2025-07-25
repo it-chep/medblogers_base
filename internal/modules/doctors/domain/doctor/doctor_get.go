@@ -125,6 +125,16 @@ func (d *Doctor) GetMainCityID() city.CityID {
 	return d.cityID
 }
 
+// GetMainCityName основной город
+func (d *Doctor) GetMainCityName() string {
+	return d.cityName
+}
+
+// GetMainSpecialityName основной город
+func (d *Doctor) GetMainSpecialityName() string {
+	return d.specialityName
+}
+
 // GetS3Key получение ключа для доступа к фото
 func (d *Doctor) GetS3Key() string {
 	return d.s3Image
