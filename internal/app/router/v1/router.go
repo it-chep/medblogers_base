@@ -26,7 +26,6 @@ func NewRouter(mutableConfig config.Config) *Router {
 }
 
 func (r *Router) setupMiddlewares() {
-	r.Router.Use(middleware.MetadataMiddleware)
 	r.Router.Use(base_middleware.Recoverer)
 	r.Router.Use(middleware.CORSMiddleware)
 	//s.router.Use(middleware.CSRFMiddleware)

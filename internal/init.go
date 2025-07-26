@@ -3,20 +3,20 @@ package internal
 import (
 	"context"
 	"fmt"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/jackc/pgx/v4/pgxpool"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	"medblogers_base/internal/app/interceptor"
 	httpV1 "medblogers_base/internal/app/router/v1"
 	"medblogers_base/internal/config"
+	moduleadmin "medblogers_base/internal/modules/admin"
+	moduledoctors "medblogers_base/internal/modules/doctors"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 
-	moduleadmin "medblogers_base/internal/modules/admin"
-	moduledoctors "medblogers_base/internal/modules/doctors"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/jackc/pgx/v4/pgxpool"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func (a *App) initPostgres(ctx context.Context) *App {

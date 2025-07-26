@@ -112,4 +112,8 @@ generate:
 		--go-grpc_out=./internal/pb/medblogers_base \
 		--grpc-gateway_out=./internal/pb/medblogers_base \
 		--validate_out="lang=go:./internal/pb/medblogers_base" \
+		--openapiv2_out=./internal/pb/medblogers_base \
+		--openapiv2_opt logtostderr=true \
+		--openapiv2_opt allow_merge=true \
+		--openapiv2_opt merge_file_name=medblogers_api \
 		./api/doctors/v1/doctors.proto

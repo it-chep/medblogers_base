@@ -12,26 +12,10 @@ type CreateDoctorRequest struct {
 
 	CityID       int64 `json:"city_id" validate:"required"`
 	SpecialityID int64 `json:"speciality_id" validate:"required"`
-
-	InstagramUsername string `json:"instagram_username"`
-	VKUsername        string `json:"vk_username"`
-	DzenUsername      string `json:"dzen_username"`
-	YoutubeUsername   string `json:"youtube_username"`
-	TelegramChannel   string `json:"telegram_channel"`
-	SiteLink          string `json:"site_link"`
-
-	MainBlogTheme string `json:"main_blog_theme"`
-
-	AdditionalCities      []int64 `json:"additional_cities"`
-	AdditionalSpecialties []int64 `json:"additional_specialties"`
 }
 
 type ValidationError struct {
 	Code  int    `json:"code"`
 	Text  string `json:"text"`
 	Field string `json:"field"`
-}
-
-type Response struct {
-	Errors []ValidationError `json:"errors"`
 }

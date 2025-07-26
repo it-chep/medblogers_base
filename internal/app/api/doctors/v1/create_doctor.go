@@ -2,7 +2,7 @@ package v1
 
 import (
 	"context"
-	"medblogers_base/internal/app/api/doctors/v1/dto/create_doctor"
+	"medblogers_base/internal/app/api/doctors/v1/validate/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	"reflect"
@@ -15,6 +15,18 @@ import (
 
 // CreateDoctor /api/v1/doctors/create [POST]
 func (i *Implementation) CreateDoctor(ctx context.Context, req *desc.CreateDoctorRequest) (*desc.CreateDoctorResponse, error) {
+	requestErrors := validateRequest(req)
+	if len(requestErrors) > 0 {
+		return &desc.CreateDoctorResponse{
+			Errors: lo.Map(requestErrors, func(item create_doctor.ValidationError, index int) *desc.CreateDoctorResponse_ValidationError {
+				return &desc.CreateDoctorResponse_ValidationError{
+					Text:  item.Text,
+					Field: item.Field,
+				}
+			}),
+		}, nil
+	}
+
 	createDTO := i.requestToCreateDoctorDTO(req)
 
 	domainValidationErrors, err := i.doctors.Actions.CreateDoctor.Create(ctx, createDTO)
@@ -63,18 +75,19 @@ func (i *Implementation) configureResponse(errors []dto.ValidationError) *desc.C
 	}
 }
 
-func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []create_doctor.ValidationError {
+func validateRequest(req *desc.CreateDoctorRequest) []create_doctor.ValidationError {
+	reqDTO := create_doctor.CreateDoctorRequest{
+		Email:            req.Email,
+		LastName:         req.LastName,
+		FirstName:        req.FirstName,
+		MiddleName:       req.MiddleName,
+		BirthDate:        req.BirthDate,
+		TelegramUsername: req.TelegramUsername,
+		AgreePolicy:      req.AgreePolicy,
+		CityID:           req.CityId,
+		SpecialityID:     req.SpecialityId,
+	}
 
-	//requestErrors := validateRequest(req)
-	//if len(requestErrors) > 0 {
-	//	w.Header().Set("Content-Type", "application/json")
-	//	w.WriteHeader(http.StatusBadRequest)
-	//	json.NewEncoder(w).Encode(create_doctor.Response{
-	//		Errors: requestErrors,
-	//	})
-	//	return
-	//}
-	//
 	validate := validator.New()
 
 	err := validate.Struct(reqDTO)
