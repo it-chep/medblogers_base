@@ -2,8 +2,9 @@ package interceptor
 
 import (
 	"context"
-	"google.golang.org/grpc"
 	"medblogers_base/internal/pkg/logger"
+
+	"google.golang.org/grpc"
 )
 
 // LoggerInterceptor добавляет логгер в контекст gRPC вызова

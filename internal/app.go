@@ -3,12 +3,13 @@ package internal
 import (
 	"context"
 	"fmt"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	httpV1 "medblogers_base/internal/app/router/v1"
 	"net"
+
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 
 	"medblogers_base/internal/config"
 	v1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"

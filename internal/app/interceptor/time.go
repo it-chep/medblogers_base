@@ -3,9 +3,10 @@ package interceptor
 import (
 	"context"
 	"fmt"
-	"google.golang.org/grpc"
 	"medblogers_base/internal/pkg/logger"
 	"time"
+
+	"google.golang.org/grpc"
 )
 
 // ResponseTimeInterceptor логирует время выполнения запроса и статус ответа

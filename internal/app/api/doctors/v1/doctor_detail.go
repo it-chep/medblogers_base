@@ -2,10 +2,11 @@ package v1
 
 import (
 	"context"
-	"github.com/pkg/errors"
 	indto "medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	"strconv"
+
+	"github.com/pkg/errors"
 
 	"github.com/samber/lo"
 )

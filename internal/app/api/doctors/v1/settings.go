@@ -2,9 +2,10 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	indto "medblogers_base/internal/modules/doctors/action/settings/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+
+	"github.com/samber/lo"
 )
 
 // GetSettings - /api/v1/settings [GET]

@@ -1,10 +1,11 @@
 package v1
 
 import (
-	"github.com/go-chi/chi/v5"
-	base_middleware "github.com/go-chi/chi/v5/middleware"
 	"medblogers_base/internal/app/middleware"
 	"medblogers_base/internal/pkg/config"
+
+	"github.com/go-chi/chi/v5"
+	base_middleware "github.com/go-chi/chi/v5/middleware"
 )
 
 type Router struct {

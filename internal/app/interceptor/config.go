@@ -2,8 +2,9 @@ package interceptor
 
 import (
 	"context"
-	"google.golang.org/grpc"
 	pkgConfig "medblogers_base/internal/pkg/config"
+
+	"google.golang.org/grpc"
 )
 
 func ConfigInterceptor(config pkgConfig.Config) grpc.UnaryServerInterceptor {

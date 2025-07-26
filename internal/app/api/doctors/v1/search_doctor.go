@@ -2,11 +2,12 @@ package v1
 
 import (
 	"context"
+	"medblogers_base/internal/modules/doctors/action/search_doctor/dto"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+
 	"github.com/samber/lo"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"medblogers_base/internal/modules/doctors/action/search_doctor/dto"
-	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 )
 
 // Search - /api/v1/doctors/search [GET]
