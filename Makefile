@@ -6,10 +6,15 @@ export PATH := $(PATH):$(LOCAL_BIN)
 
 .PHONY: deps
 deps:
-	GOBIN=$(LOCAL_BIN) go install gitlab.ozon.ru/whc/go/libs/xo@v1.0.2
+	#GOBIN=$(LOCAL_BIN) go install gitlab.ozon.ru/whc/go/libs/xo@v1.0.2 // todo временно
 	GOBIN=$(LOCAL_BIN) go install github.com/pressly/goose/v3/cmd/goose@latest
 	GOBIN=$(LOCAL_BIN) go install gotest.tools/gotestsum@latest
 	GOBIN=$(LOCAL_BIN) go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	GOBIN=$(LOCAL_BIN) go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+	GOBIN=$(LOCAL_BIN) go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+	GOBIN=$(LOCAL_BIN) go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	GOBIN=$(LOCAL_BIN) go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	GOBIN=$(LOCAL_BIN) go install github.com/envoyproxy/protoc-gen-validate@latest
 
 .PHONY: infra
 infra:
@@ -99,4 +104,12 @@ xo:
 
 
 .PHONY: generate
-.generate:
+generate:
+	protoc \
+		-I ./api \
+		-I ./vendor.protogen \
+		--go_out=./internal/pb/medblogers_base \
+		--go-grpc_out=./internal/pb/medblogers_base \
+		--grpc-gateway_out=./internal/pb/medblogers_base \
+		--validate_out="lang=go:./internal/pb/medblogers_base" \
+		./api/doctors/v1/doctors.proto

@@ -6,6 +6,7 @@
 .DS_Store
 /.idea
 /.vscode
+/vendor.protogen
 
 /k8s/values.yaml
 /unit.coverage.out.tmp

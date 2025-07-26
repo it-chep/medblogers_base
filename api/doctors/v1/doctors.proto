@@ -3,6 +3,8 @@ syntax = "proto3";
 package doctor.v1;
 
 import "google/api/annotations.proto";
+import "validate/validate.proto";
+option go_package = "api/doctors/v1";
 
 // Сервис для работы с докторами
 service DoctorService {
@@ -28,7 +30,7 @@ service DoctorService {
   }
   rpc Search(SearchRequest) returns (SearchResponse) {
     option (google.api.http) = {
-      get: "/v1/doctors/search?query={query}"
+      get: "/v1/doctors/search"
     };
   }
   rpc Filter(FilterRequest) returns (FilterResponse) {

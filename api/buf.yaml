@@ -1,0 +1,21 @@
+version: v1
+name: buf.build/username/medblogers_base
+deps:
+  - google/api/annotations.proto@master
+  - google/api/field_behavior.proto@master
+  - google/protobuf/empty.proto@master
+  - google/protobuf/struct.proto@master
+  - google/protobuf/timestamp.proto@master
+  - google/protobuf/wrappers.proto@master
+  - google/type/date.proto@master
+  - google/type/decimal.proto@master
+  - google/type/interval.proto@master
+  - google/type/latlng.proto@master
+  - protoc-gen-openapiv2/options/annotations.proto@master
+  - protoc-gen-openapiv2/options/openapiv2.proto@master
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
