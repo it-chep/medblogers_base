@@ -86,11 +86,8 @@ func (a *App) Run(ctx context.Context) {
 		return
 	}
 
-	opts := []grpc.DialOption{
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-	}
-
-	err = v1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, opts)
+	httpProxyOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
+	err = v1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
 	if err != nil {
 		fmt.Printf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err)
 		return

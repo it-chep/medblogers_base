@@ -293,7 +293,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCounters", runtime.WithHTTPPathPattern("/v1/counters_info"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCounters", runtime.WithHTTPPathPattern("/api/v1/counters_info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -318,7 +318,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCities", runtime.WithHTTPPathPattern("/v1/cities_list"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCities", runtime.WithHTTPPathPattern("/api/v1/cities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -343,7 +343,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetSpecialities", runtime.WithHTTPPathPattern("/v1/specialities_list"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetSpecialities", runtime.WithHTTPPathPattern("/api/v1/specialities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -368,7 +368,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/Search", runtime.WithHTTPPathPattern("/v1/doctors/search"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/Search", runtime.WithHTTPPathPattern("/api/v1/doctors/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -393,7 +393,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/Filter", runtime.WithHTTPPathPattern("/v1/doctors/filter"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/Filter", runtime.WithHTTPPathPattern("/api/v1/doctors/filter"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -418,7 +418,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/CreateDoctor", runtime.WithHTTPPathPattern("/v1/doctors/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/CreateDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -443,7 +443,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/v1/doctors/{doctor_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -529,7 +529,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCounters", runtime.WithHTTPPathPattern("/v1/counters_info"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCounters", runtime.WithHTTPPathPattern("/api/v1/counters_info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -551,7 +551,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCities", runtime.WithHTTPPathPattern("/v1/cities_list"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetCities", runtime.WithHTTPPathPattern("/api/v1/cities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -573,7 +573,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetSpecialities", runtime.WithHTTPPathPattern("/v1/specialities_list"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetSpecialities", runtime.WithHTTPPathPattern("/api/v1/specialities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -595,7 +595,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/Search", runtime.WithHTTPPathPattern("/v1/doctors/search"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/Search", runtime.WithHTTPPathPattern("/api/v1/doctors/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -617,7 +617,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/Filter", runtime.WithHTTPPathPattern("/v1/doctors/filter"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/Filter", runtime.WithHTTPPathPattern("/api/v1/doctors/filter"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -639,7 +639,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/CreateDoctor", runtime.WithHTTPPathPattern("/v1/doctors/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/CreateDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -661,7 +661,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/v1/doctors/{doctor_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -683,19 +683,19 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 var (
 	pattern_DoctorService_GetSettings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "settings"}, ""))
 
-	pattern_DoctorService_GetCounters_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "counters_info"}, ""))
+	pattern_DoctorService_GetCounters_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "counters_info"}, ""))
 
-	pattern_DoctorService_GetCities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "cities_list"}, ""))
+	pattern_DoctorService_GetCities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "cities_list"}, ""))
 
-	pattern_DoctorService_GetSpecialities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "specialities_list"}, ""))
+	pattern_DoctorService_GetSpecialities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "specialities_list"}, ""))
 
-	pattern_DoctorService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "doctors", "search"}, ""))
+	pattern_DoctorService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "doctors", "search"}, ""))
 
-	pattern_DoctorService_Filter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "doctors", "filter"}, ""))
+	pattern_DoctorService_Filter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "doctors", "filter"}, ""))
 
-	pattern_DoctorService_CreateDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "doctors", "create"}, ""))
+	pattern_DoctorService_CreateDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "doctors", "create"}, ""))
 
-	pattern_DoctorService_GetDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "doctors", "doctor_id"}, ""))
+	pattern_DoctorService_GetDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "doctors", "doctor_id"}, ""))
 )
 
 var (

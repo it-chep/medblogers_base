@@ -5,8 +5,8 @@ import (
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 )
 
-// CountersInfo - /api/v1/counters_info [GET]
-func (i *Implementation) CountersInfo(ctx context.Context, _ *desc.GetCountersRequest) (*desc.GetCountersResponse, error) {
+// GetCounters - /api/v1/counters_info [GET]
+func (i *Implementation) GetCounters(ctx context.Context, _ *desc.GetCountersRequest) (*desc.GetCountersResponse, error) {
 	countersDomain, err := i.doctors.Actions.CounterInfo.Do(ctx)
 	if err != nil {
 		return nil, err
