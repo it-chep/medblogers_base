@@ -1,58 +1,42 @@
 package v1
 
 import (
-	"encoding/json"
-	"medblogers_base/internal/app/api/doctors/v1/dto/doctor_detail"
+	"context"
+	"github.com/pkg/errors"
 	indto "medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
-	"net/http"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	"strconv"
 
 	"github.com/samber/lo"
-
-	"github.com/go-chi/chi/v5"
 )
 
-// DoctorDetail - /api/v1/doctors/{doctor_id} [GET]
-func (s *Service) DoctorDetail(w http.ResponseWriter, r *http.Request) {
-	// Извлекаем ID из URL
-	idStr := chi.URLParam(r, "doctor_id")
-	id, err := strconv.Atoi(idStr)
+// GetDoctor - /api/v1/doctors/{doctor_id} [GET]
+func (i *Implementation) GetDoctor(ctx context.Context, req *desc.GetDoctorRequest) (*desc.GetDoctorResponse, error) {
+	id, err := strconv.Atoi(req.DoctorId)
 	if err != nil || id <= 0 {
-		http.Error(w, "Invalid doctor ID", http.StatusBadRequest)
-		return
+		return nil, errors.New("invalid doctor_id")
 	}
 
-	// Получаем данные из модуля
-	doctorDomain, err := s.doctors.Actions.DoctorDetail.Do(r.Context(), int64(id))
+	doctorDomain, err := i.doctors.Actions.DoctorDetail.Do(ctx, int64(id))
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return nil, err
 	}
 
-	doctorDTO := s.newDoctorDetailResponse(doctorDomain)
-	resp, err := json.Marshal(doctorDTO)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(resp)
+	return i.newDoctorDetailResponse(doctorDomain), nil
 }
 
-func (s *Service) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) doctor_detail.DoctorDTO {
-	return doctor_detail.DoctorDTO{
+func (i *Implementation) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) *desc.GetDoctorResponse {
+	return &desc.GetDoctorResponse{
 		Name: doctorDomain.Name,
 		Slug: doctorDomain.Slug,
 
-		InstURL:      doctorDomain.InstURL,
-		VkURL:        doctorDomain.VkURL,
-		DzenURL:      doctorDomain.DzenURL,
-		YoutubeURL:   doctorDomain.YoutubeURL,
-		TgURL:        doctorDomain.TgURL,
-		TgChannelURL: doctorDomain.TgChannelURL,
-		TiktokURL:    doctorDomain.TiktokURL,
+		InstUrl:      doctorDomain.InstURL,
+		VkUrl:        doctorDomain.VkURL,
+		DzenUrl:      doctorDomain.DzenURL,
+		YoutubeUrl:   doctorDomain.YoutubeURL,
+		TgUrl:        doctorDomain.TgURL,
+		TgChannelUrl: doctorDomain.TgChannelURL,
+		TiktokUrl:    doctorDomain.TiktokURL,
 		SiteLink:     doctorDomain.SiteLink,
 
 		TgLastUpdatedDate: doctorDomain.TgLastUpdatedDate,
@@ -63,27 +47,27 @@ func (s *Service) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) doctor_
 		InstSubsCountText:   doctorDomain.InstSubsCountText,
 		InstLastUpdatedDate: doctorDomain.InstLastUpdatedDate,
 
-		Cities: lo.Map(doctorDomain.Cities, func(item indto.CityItem, _ int) doctor_detail.CityItem {
-			return doctor_detail.CityItem{
-				ID:   item.ID,
+		Cities: lo.Map(doctorDomain.Cities, func(item indto.CityItem, _ int) *desc.GetDoctorResponse_CityItem {
+			return &desc.GetDoctorResponse_CityItem{
+				Id:   item.ID,
 				Name: item.Name,
 			}
 		}),
 
-		Specialities: lo.Map(doctorDomain.Specialities, func(item indto.SpecialityItem, _ int) doctor_detail.SpecialityItem {
-			return doctor_detail.SpecialityItem{
-				ID:   item.ID,
+		Specialities: lo.Map(doctorDomain.Specialities, func(item indto.SpecialityItem, _ int) *desc.GetDoctorResponse_SpecialityItem {
+			return &desc.GetDoctorResponse_SpecialityItem{
+				Id:   item.ID,
 				Name: item.Name,
 			}
 		}),
 
-		MainCity: doctor_detail.CityItem{
-			ID:   doctorDomain.MainCity.ID,
+		MainCity: &desc.GetDoctorResponse_CityItem{
+			Id:   doctorDomain.MainCity.ID,
 			Name: doctorDomain.MainCity.Name,
 		},
 
-		MainSpeciality: doctor_detail.SpecialityItem{
-			ID:   doctorDomain.MainSpeciality.ID,
+		MainSpeciality: &desc.GetDoctorResponse_SpecialityItem{
+			Id:   doctorDomain.MainSpeciality.ID,
 			Name: doctorDomain.MainSpeciality.Name,
 		},
 

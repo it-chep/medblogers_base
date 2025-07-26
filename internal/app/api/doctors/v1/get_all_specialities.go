@@ -1,41 +1,25 @@
 package v1
 
 import (
-	"encoding/json"
-	"medblogers_base/internal/app/api/doctors/v1/dto/get_all_specialities"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
-	"net/http"
-
+	"context"
 	"github.com/samber/lo"
+	"medblogers_base/internal/modules/doctors/domain/speciality"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 )
 
-// AllSpecialities - /api/v1/specialities_list [GET]
-func (s *Service) AllSpecialities(w http.ResponseWriter, r *http.Request) {
-
-	// Получаем данные из модуля
-	specialities, err := s.doctors.Actions.AllSpecialities.Do(r.Context())
+// GetSpecialities - /api/v1/specialities_list [GET]
+func (i *Implementation) GetSpecialities(ctx context.Context, _ *desc.GetSpecialitiesRequest) (*desc.SpecialitiesResponse, error) {
+	specialities, err := i.doctors.Actions.AllSpecialities.Do(ctx)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return nil, err
 	}
 
-	resp, err := json.Marshal(s.getSpecialitiesResponse(specialities))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(resp)
-}
-
-func (s *Service) getSpecialitiesResponse(specialitiesDomain []*speciality.Speciality) get_all_specialities.SpecialitiesResponse {
-	return get_all_specialities.SpecialitiesResponse{
-		Specialities: lo.Map(specialitiesDomain, func(item *speciality.Speciality, _ int) get_all_specialities.SpecialityItem {
-			return get_all_specialities.SpecialityItem{
-				ID:   int64(item.ID()),
-				Name: item.Name(),
+	return &desc.SpecialitiesResponse{
+		Specialities: lo.Map(specialities, func(item *speciality.Speciality, _ int) *desc.SpecialitiesResponse_SpecialityItem {
+			return &desc.SpecialitiesResponse_SpecialityItem{
+				SpecialityId:   int64(item.ID()),
+				SpecialityName: item.Name(),
 			}
 		}),
-	}
+	}, nil
 }

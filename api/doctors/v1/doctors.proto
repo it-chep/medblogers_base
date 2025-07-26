@@ -10,43 +10,43 @@ option go_package = "api/doctors/v1";
 service DoctorService {
   rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
     option (google.api.http) = {
-      get: "/v1/settings"
+      get: "/api/v1/settings"
     };
   }
   rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
     option (google.api.http) = {
-      get: "/v1/counters_info"
+      get: "/api/v1/counters_info"
     };
   }
   rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
     option (google.api.http) = {
-      get: "/v1/cities_list"
+      get: "/api/v1/cities_list"
     };
   }
   rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
     option (google.api.http) = {
-      get: "/v1/specialities_list"
+      get: "/api/v1/specialities_list"
     };
   }
   rpc Search(SearchRequest) returns (SearchResponse) {
     option (google.api.http) = {
-      get: "/v1/doctors/search"
+      get: "/api/v1/doctors/search"
     };
   }
   rpc Filter(FilterRequest) returns (FilterResponse) {
     option (google.api.http) = {
-      get: "/v1/doctors/filter"
+      get: "/api/v1/doctors/filter"
     };
   }
   rpc CreateDoctor(CreateDoctorRequest) returns (CreateDoctorResponse) {
     option (google.api.http) = {
-      post: "/v1/doctors/create"
+      post: "/api/v1/doctors/create"
       body: "*"
     };
   }
   rpc GetDoctor(GetDoctorRequest) returns (GetDoctorResponse) {
     option (google.api.http) = {
-      get: "/v1/doctors/{doctor_id}"
+      get: "/api/v1/doctors/{doctor_id}"
     };
   }
 }

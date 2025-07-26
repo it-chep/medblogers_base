@@ -35,6 +35,7 @@ type SalebotClient struct {
 
 type Server struct {
 	Address     string        `mapstructure:"address"`
+	GrpcAddress string        `mapstructure:"grpc_address"`
 	Timeout     time.Duration `mapstructure:"timeout"`
 	IdleTimeout time.Duration `mapstructure:"idle_timeout"`
 }

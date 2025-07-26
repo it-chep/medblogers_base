@@ -1,55 +1,42 @@
 package v1
 
 import (
-	"encoding/json"
-	"medblogers_base/internal/app/api/doctors/v1/dto/settings"
-	indto "medblogers_base/internal/modules/doctors/action/settings/dto"
-	"net/http"
-
+	"context"
 	"github.com/samber/lo"
+	indto "medblogers_base/internal/modules/doctors/action/settings/dto"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 )
 
-// Settings - /api/v1/settings [GET]
-func (s *Service) Settings(w http.ResponseWriter, r *http.Request) {
-
-	// Получаем данные из модуля
-	settingsDomain, err := s.doctors.Actions.Settings.Do(r.Context())
+// GetSettings - /api/v1/settings [GET]
+func (i *Implementation) GetSettings(ctx context.Context, _ *desc.GetSettingsRequest) (*desc.GetSettingsResponse, error) {
+	settingsDomain, err := i.doctors.Actions.Settings.Do(ctx)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return nil, err
 	}
-	// Преобразуем в структуру с JSON тегами
-	settingsDTO := s.newSettingsResponse(settingsDomain)
 
-	resp, err := json.Marshal(settingsDTO)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(resp)
+	settingsResponse := i.newSettingsResponse(settingsDomain)
+	return settingsResponse, nil
 }
 
-func (s *Service) newSettingsResponse(settingsDomain *indto.Settings) settings.SettingsDTO {
-	return settings.SettingsDTO{
+func (i *Implementation) newSettingsResponse(settingsDomain *indto.Settings) *desc.GetSettingsResponse {
+	return &desc.GetSettingsResponse{
 		NewDoctorBanner: settingsDomain.NewDoctorBanner,
-		FilterInfo: lo.Map(settingsDomain.FilterInfo, func(filterItem indto.FilterItem, _ int) settings.FilterItem {
-			return settings.FilterItem{
+		FilterInfo: lo.Map(settingsDomain.FilterInfo, func(filterItem indto.FilterItem, _ int) *desc.GetSettingsResponse_FilterItem {
+			return &desc.GetSettingsResponse_FilterItem{
 				Name: filterItem.Name,
 				Slug: filterItem.Slug,
 			}
 		}),
-		Cities: lo.Map(settingsDomain.Cities, func(cityItem indto.CityItem, _ int) settings.CityItem {
-			return settings.CityItem{
-				ID:           cityItem.ID,
+		Cities: lo.Map(settingsDomain.Cities, func(cityItem indto.CityItem, _ int) *desc.GetSettingsResponse_CityItem {
+			return &desc.GetSettingsResponse_CityItem{
+				Id:           cityItem.ID,
 				Name:         cityItem.Name,
 				DoctorsCount: cityItem.DoctorsCount,
 			}
 		}),
-		Specialities: lo.Map(settingsDomain.Specialities, func(specialityItem indto.SpecialityItem, _ int) settings.SpecialityItem {
-			return settings.SpecialityItem{
-				ID:           specialityItem.ID,
+		Specialities: lo.Map(settingsDomain.Specialities, func(specialityItem indto.SpecialityItem, _ int) *desc.GetSettingsResponse_SpecialityItem {
+			return &desc.GetSettingsResponse_SpecialityItem{
+				Id:           specialityItem.ID,
 				Name:         specialityItem.Name,
 				DoctorsCount: specialityItem.DoctorsCount,
 			}

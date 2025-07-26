@@ -1,40 +1,25 @@
 package v1
 
 import (
-	"encoding/json"
-	"medblogers_base/internal/app/api/doctors/v1/dto/get_all_cities"
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"net/http"
-
+	"context"
 	"github.com/samber/lo"
+	"medblogers_base/internal/modules/doctors/domain/city"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 )
 
-// AllCities - /api/v1/cities_list [GET]
-func (s *Service) AllCities(w http.ResponseWriter, r *http.Request) {
-	// Получаем данные из модуля
-	cities, err := s.doctors.Actions.AllCities.Do(r.Context())
+// GetCities - /api/v1/cities_list [GET]
+func (i *Implementation) GetCities(ctx context.Context, _ *desc.GetCitiesRequest) (*desc.CitiesResponse, error) {
+	cities, err := i.doctors.Actions.AllCities.Do(ctx)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		return nil, err
 	}
 
-	resp, err := json.Marshal(s.getCitiesResponse(cities))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(resp)
-}
-
-func (s *Service) getCitiesResponse(citiesDomain []*city.City) get_all_cities.CitiesResponse {
-	return get_all_cities.CitiesResponse{
-		Cities: lo.Map(citiesDomain, func(item *city.City, _ int) get_all_cities.CityItem {
-			return get_all_cities.CityItem{
-				ID:   int64(item.ID()),
-				Name: item.Name(),
+	return &desc.CitiesResponse{
+		Cities: lo.Map(cities, func(item *city.City, _ int) *desc.CitiesResponse_CityItem {
+			return &desc.CitiesResponse_CityItem{
+				CityId:   int64(item.ID()),
+				CityName: item.Name(),
 			}
 		}),
-	}
+	}, nil
 }

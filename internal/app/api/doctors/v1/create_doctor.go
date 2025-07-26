@@ -1,10 +1,10 @@
 package v1
 
 import (
-	"encoding/json"
+	"context"
 	"medblogers_base/internal/app/api/doctors/v1/dto/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
-	"net/http"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	"reflect"
 	"strings"
 
@@ -14,45 +14,67 @@ import (
 )
 
 // CreateDoctor /api/v1/doctors/create [POST]
-func (s *Service) CreateDoctor(w http.ResponseWriter, r *http.Request) {
-	var req create_doctor.CreateDoctorRequest
+func (i *Implementation) CreateDoctor(ctx context.Context, req *desc.CreateDoctorRequest) (*desc.CreateDoctorResponse, error) {
+	createDTO := i.requestToCreateDoctorDTO(req)
 
-	// Декодируем JSON тело запроса
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	requestErrors := validateRequest(req)
-	if len(requestErrors) > 0 {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(create_doctor.Response{
-			Errors: requestErrors,
-		})
-		return
-	}
-
-	createDTO := s.requestToCreateDoctorDTO(req)
-	domainValidationErrors, err := s.doctors.Actions.CreateDoctor.Create(r.Context(), createDTO)
+	domainValidationErrors, err := i.doctors.Actions.CreateDoctor.Create(ctx, createDTO)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-	if len(domainValidationErrors) > 0 {
-		w.Header().Set("Content-Type", "application/json")
-		response := s.configureResponse(domainValidationErrors)
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(response)
-		return
+		return nil, err
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(create_doctor.Response{})
+	if len(domainValidationErrors) > 0 {
+		return i.configureResponse(domainValidationErrors), nil
+	}
+
+	return nil, nil
+}
+
+func (i *Implementation) requestToCreateDoctorDTO(req *desc.CreateDoctorRequest) dto.CreateDoctorRequest {
+	return dto.CreateDoctorRequest{
+		Email:                 req.Email,
+		LastName:              req.LastName,
+		FirstName:             req.FirstName,
+		MiddleName:            req.MiddleName,
+		BirthDateString:       req.BirthDate,
+		AdditionalCities:      req.AdditionalCities,
+		AdditionalSpecialties: req.AdditionalSpecialties,
+		InstagramUsername:     req.InstagramUsername,
+		VKUsername:            req.VkUsername,
+		TelegramUsername:      req.TelegramUsername,
+		DzenUsername:          req.DzenUsername,
+		YoutubeUsername:       req.YoutubeUsername,
+		TelegramChannel:       req.TelegramChannel,
+		CityID:                req.CityId,
+		SpecialityID:          req.SpecialityId,
+		MainBlogTheme:         req.MainBlogTheme,
+		SiteLink:              req.SiteLink,
+		AgreePolicy:           req.AgreePolicy,
+	}
+}
+
+func (i *Implementation) configureResponse(errors []dto.ValidationError) *desc.CreateDoctorResponse {
+	return &desc.CreateDoctorResponse{
+		Errors: lo.Map(errors, func(item dto.ValidationError, _ int) *desc.CreateDoctorResponse_ValidationError {
+			return &desc.CreateDoctorResponse_ValidationError{
+				Field: item.Field,
+				Text:  item.Text,
+			}
+		}),
+	}
 }
 
 func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []create_doctor.ValidationError {
+
+	//requestErrors := validateRequest(req)
+	//if len(requestErrors) > 0 {
+	//	w.Header().Set("Content-Type", "application/json")
+	//	w.WriteHeader(http.StatusBadRequest)
+	//	json.NewEncoder(w).Encode(create_doctor.Response{
+	//		Errors: requestErrors,
+	//	})
+	//	return
+	//}
+	//
 	validate := validator.New()
 
 	err := validate.Struct(reqDTO)
@@ -97,38 +119,4 @@ func validateRequest(reqDTO create_doctor.CreateDoctorRequest) []create_doctor.V
 	}
 
 	return validationErrors
-}
-
-func (s *Service) requestToCreateDoctorDTO(reqDTO create_doctor.CreateDoctorRequest) dto.CreateDoctorRequest {
-	return dto.CreateDoctorRequest{
-		Email:                 reqDTO.Email,
-		LastName:              reqDTO.LastName,
-		FirstName:             reqDTO.FirstName,
-		MiddleName:            reqDTO.MiddleName,
-		BirthDateString:       reqDTO.BirthDate,
-		AdditionalCities:      reqDTO.AdditionalCities,
-		AdditionalSpecialties: reqDTO.AdditionalSpecialties,
-		InstagramUsername:     reqDTO.InstagramUsername,
-		VKUsername:            reqDTO.VKUsername,
-		TelegramUsername:      reqDTO.TelegramUsername,
-		DzenUsername:          reqDTO.DzenUsername,
-		YoutubeUsername:       reqDTO.YoutubeUsername,
-		TelegramChannel:       reqDTO.TelegramChannel,
-		CityID:                reqDTO.CityID,
-		SpecialityID:          reqDTO.SpecialityID,
-		MainBlogTheme:         reqDTO.MainBlogTheme,
-		SiteLink:              reqDTO.SiteLink,
-		AgreePolicy:           reqDTO.AgreePolicy,
-	}
-}
-
-func (s *Service) configureResponse(errors []dto.ValidationError) create_doctor.Response {
-	return create_doctor.Response{
-		Errors: lo.Map(errors, func(item dto.ValidationError, _ int) create_doctor.ValidationError {
-			return create_doctor.ValidationError{
-				Field: item.Field,
-				Text:  item.Text,
-			}
-		}),
-	}
 }

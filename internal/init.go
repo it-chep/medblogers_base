@@ -3,14 +3,17 @@ package internal
 import (
 	"context"
 	"fmt"
-	v1 "medblogers_base/internal/app/api/doctors/v1"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/jackc/pgx/v4/pgxpool"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
+	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	"medblogers_base/internal/app/interceptor"
+	httpV1 "medblogers_base/internal/app/router/v1"
 	"medblogers_base/internal/config"
+	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
-	"net/http"
-	"time"
-
-	"github.com/jackc/pgx/v4/pgxpool"
 
 	moduleadmin "medblogers_base/internal/modules/admin"
 	moduledoctors "medblogers_base/internal/modules/doctors"
@@ -66,17 +69,32 @@ func (a *App) initCache(_ context.Context) *App {
 }
 
 func (a *App) initControllers(_ context.Context) *App {
-	a.controllers.restController = v1.NewService(a.modules.doctors, a.mutableConfig)
+	a.controllers.doctorsController = doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)
+	return a
+}
+
+func (a *App) initRouters(_ context.Context) *App {
+	a.mux = runtime.NewServeMux()
+	a.router.routerV1 = httpV1.NewRouter(a.mutableConfig)
+	a.router.routerV1.Router.Mount("/", a.mux)
 	return a
 }
 
 func (a *App) initServer(_ context.Context) *App {
+	grpcServer := grpc.NewServer(
+		grpc.ChainUnaryInterceptor(
+			interceptor.AuthInterceptor,
+			interceptor.ConfigInterceptor(a.mutableConfig),
+			interceptor.LoggerInterceptor,
+			interceptor.RateLimitInterceptor,
+			interceptor.ResponseTimeInterceptor,
+		),
+	)
+	desc.RegisterDoctorServiceServer(grpcServer, a.controllers.doctorsController)
+	reflection.Register(grpcServer)
 
-	a.server = &http.Server{
-		Addr:         a.config.Server.Address,
-		Handler:      a.controllers.restController,
-		ReadTimeout:  2 * time.Minute,
-		WriteTimeout: 10 * time.Second,
+	a.server = &Server{
+		grpcServer: grpcServer,
 	}
 
 	return a

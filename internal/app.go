@@ -3,10 +3,16 @@ package internal
 import (
 	"context"
 	"fmt"
-	v1 "medblogers_base/internal/app/api/doctors/v1"
-	"medblogers_base/internal/config"
-	pkgConfig "medblogers_base/internal/pkg/config"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	httpV1 "medblogers_base/internal/app/router/v1"
+	"net"
 
+	"medblogers_base/internal/config"
+	v1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 
@@ -19,18 +25,28 @@ type modules struct {
 	doctors *doctors.Module
 }
 
+type router struct {
+	routerV1 *httpV1.Router
+}
+
 type controllers struct {
-	restController *v1.Service
+	doctorsController *doctorsV1.Implementation
+}
+
+type Server struct {
+	grpcServer *grpc.Server
 }
 
 type App struct {
+	mux      *runtime.ServeMux
 	postgres postgres.PoolWrapper
 
 	modules modules
 
 	// http сервер
 	controllers controllers
-	server      *http.Server
+	router      router
+	server      *Server
 
 	// конфиги
 	config        *config.Config
@@ -49,6 +65,7 @@ func New(ctx context.Context) *App {
 		initPostgres(ctx).
 		initMutableConfig(ctx).
 		initModules(ctx).
+		initRouters(ctx).
 		initControllers(ctx).
 		initServer(ctx)
 
@@ -62,11 +79,33 @@ func (a *App) Run(ctx context.Context) {
 			fmt.Println("application recovered from panic")
 		}
 	}()
+	listen, err := net.Listen("tcp", a.config.Server.GrpcAddress)
+	if err != nil {
+		fmt.Printf("[APP] Не удалось создать listen: %e", err)
+		return
+	}
 
-	fmt.Printf("[APP] Запуск приложения, подключение http://localhost%s \n", a.config.Server.Address)
+	opts := []grpc.DialOption{
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	}
+
+	err = v1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, opts)
+	if err != nil {
+		fmt.Printf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err)
+		return
+	}
+
+	go func() {
+		if err := a.server.grpcServer.Serve(listen); err != nil {
+			fmt.Printf("[APP][GPRC] Не удалось запустить приложение: %v", err)
+		}
+	}()
+
+	fmt.Printf("[APP] Запуск приложения, подключение HTTP: %s, GRPC: %s \n", a.config.Server.Address, a.config.Server.GrpcAddress)
 	//a.workerPool.Run(ctx)
 
-	if err := a.server.ListenAndServe(); err != nil {
+	if err := http.ListenAndServe(a.config.Server.Address, a.router.routerV1.Router); err != nil {
 		fmt.Printf("[APP] Не удалось запустить приложение: %e", err)
+		return
 	}
 }
