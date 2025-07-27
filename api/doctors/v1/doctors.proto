@@ -22,25 +22,48 @@ service DoctorService {
     option (google.api.http) = {
       get: "/api/v1/counters_info"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение информации по счетчикам (количество докторов в базе, количество подписчиков)"
+    };
+  }
+  rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/preliminary_filter_count"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Предрасчет докторов попадающих под фильтр"
+    };
   }
   rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
     option (google.api.http) = {
       get: "/api/v1/cities_list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение городов для регистрации"
     };
   }
   rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
     option (google.api.http) = {
       get: "/api/v1/specialities_list"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение специальностей для регистрации"
+    };
   }
   rpc Search(SearchRequest) returns (SearchResponse) {
     option (google.api.http) = {
       get: "/api/v1/doctors/search"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Поиск доктора, города, специальности по переданным значениям"
+    };
   }
   rpc Filter(FilterRequest) returns (FilterResponse) {
     option (google.api.http) = {
       get: "/api/v1/doctors/filter"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Фильтрация докторов по доступным фильтрам"
     };
   }
   rpc CreateDoctor(CreateDoctorRequest) returns (CreateDoctorResponse) {
@@ -48,10 +71,16 @@ service DoctorService {
       post: "/api/v1/doctors/create"
       body: "*"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Регистрация доктора"
+    };
   }
   rpc GetDoctor(GetDoctorRequest) returns (GetDoctorResponse) {
     option (google.api.http) = {
       get: "/api/v1/doctors/{doctor_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение детальной информации про доктора"
     };
   }
 }
@@ -275,3 +304,18 @@ message GetDoctorResponse {
   }
 }
 
+// ===== Предрасчет докторов попадающих под фильтр =====
+
+message PreliminaryFilterCountRequest{
+  // todo вынести в common
+  int64 max_subscribers = 1;
+  int64 min_subscribers = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+  int64 page = 6;
+}
+
+message PreliminaryFilterCountResponse{
+  int64 doctors_count = 1;
+}

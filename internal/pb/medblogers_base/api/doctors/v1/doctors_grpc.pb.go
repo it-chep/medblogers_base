@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DoctorService_GetSettings_FullMethodName     = "/doctor.v1.DoctorService/GetSettings"
-	DoctorService_GetCounters_FullMethodName     = "/doctor.v1.DoctorService/GetCounters"
-	DoctorService_GetCities_FullMethodName       = "/doctor.v1.DoctorService/GetCities"
-	DoctorService_GetSpecialities_FullMethodName = "/doctor.v1.DoctorService/GetSpecialities"
-	DoctorService_Search_FullMethodName          = "/doctor.v1.DoctorService/Search"
-	DoctorService_Filter_FullMethodName          = "/doctor.v1.DoctorService/Filter"
-	DoctorService_CreateDoctor_FullMethodName    = "/doctor.v1.DoctorService/CreateDoctor"
-	DoctorService_GetDoctor_FullMethodName       = "/doctor.v1.DoctorService/GetDoctor"
+	DoctorService_GetSettings_FullMethodName               = "/doctor.v1.DoctorService/GetSettings"
+	DoctorService_GetCounters_FullMethodName               = "/doctor.v1.DoctorService/GetCounters"
+	DoctorService_GetPreliminaryFilterCount_FullMethodName = "/doctor.v1.DoctorService/GetPreliminaryFilterCount"
+	DoctorService_GetCities_FullMethodName                 = "/doctor.v1.DoctorService/GetCities"
+	DoctorService_GetSpecialities_FullMethodName           = "/doctor.v1.DoctorService/GetSpecialities"
+	DoctorService_Search_FullMethodName                    = "/doctor.v1.DoctorService/Search"
+	DoctorService_Filter_FullMethodName                    = "/doctor.v1.DoctorService/Filter"
+	DoctorService_CreateDoctor_FullMethodName              = "/doctor.v1.DoctorService/CreateDoctor"
+	DoctorService_GetDoctor_FullMethodName                 = "/doctor.v1.DoctorService/GetDoctor"
 )
 
 // DoctorServiceClient is the client API for DoctorService service.
@@ -37,6 +38,7 @@ const (
 type DoctorServiceClient interface {
 	GetSettings(ctx context.Context, in *GetSettingsRequest, opts ...grpc.CallOption) (*GetSettingsResponse, error)
 	GetCounters(ctx context.Context, in *GetCountersRequest, opts ...grpc.CallOption) (*GetCountersResponse, error)
+	GetPreliminaryFilterCount(ctx context.Context, in *PreliminaryFilterCountRequest, opts ...grpc.CallOption) (*PreliminaryFilterCountResponse, error)
 	GetCities(ctx context.Context, in *GetCitiesRequest, opts ...grpc.CallOption) (*CitiesResponse, error)
 	GetSpecialities(ctx context.Context, in *GetSpecialitiesRequest, opts ...grpc.CallOption) (*SpecialitiesResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
@@ -67,6 +69,16 @@ func (c *doctorServiceClient) GetCounters(ctx context.Context, in *GetCountersRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetCountersResponse)
 	err := c.cc.Invoke(ctx, DoctorService_GetCounters_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorServiceClient) GetPreliminaryFilterCount(ctx context.Context, in *PreliminaryFilterCountRequest, opts ...grpc.CallOption) (*PreliminaryFilterCountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PreliminaryFilterCountResponse)
+	err := c.cc.Invoke(ctx, DoctorService_GetPreliminaryFilterCount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -141,6 +153,7 @@ func (c *doctorServiceClient) GetDoctor(ctx context.Context, in *GetDoctorReques
 type DoctorServiceServer interface {
 	GetSettings(context.Context, *GetSettingsRequest) (*GetSettingsResponse, error)
 	GetCounters(context.Context, *GetCountersRequest) (*GetCountersResponse, error)
+	GetPreliminaryFilterCount(context.Context, *PreliminaryFilterCountRequest) (*PreliminaryFilterCountResponse, error)
 	GetCities(context.Context, *GetCitiesRequest) (*CitiesResponse, error)
 	GetSpecialities(context.Context, *GetSpecialitiesRequest) (*SpecialitiesResponse, error)
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
@@ -162,6 +175,9 @@ func (UnimplementedDoctorServiceServer) GetSettings(context.Context, *GetSetting
 }
 func (UnimplementedDoctorServiceServer) GetCounters(context.Context, *GetCountersRequest) (*GetCountersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCounters not implemented")
+}
+func (UnimplementedDoctorServiceServer) GetPreliminaryFilterCount(context.Context, *PreliminaryFilterCountRequest) (*PreliminaryFilterCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPreliminaryFilterCount not implemented")
 }
 func (UnimplementedDoctorServiceServer) GetCities(context.Context, *GetCitiesRequest) (*CitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCities not implemented")
@@ -234,6 +250,24 @@ func _DoctorService_GetCounters_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DoctorServiceServer).GetCounters(ctx, req.(*GetCountersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorService_GetPreliminaryFilterCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PreliminaryFilterCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).GetPreliminaryFilterCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_GetPreliminaryFilterCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).GetPreliminaryFilterCount(ctx, req.(*PreliminaryFilterCountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -360,6 +394,10 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCounters",
 			Handler:    _DoctorService_GetCounters_Handler,
+		},
+		{
+			MethodName: "GetPreliminaryFilterCount",
+			Handler:    _DoctorService_GetPreliminaryFilterCount_Handler,
 		},
 		{
 			MethodName: "GetCities",

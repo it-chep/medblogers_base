@@ -2455,6 +2455,220 @@ var _ interface {
 	ErrorName() string
 } = GetDoctorResponseValidationError{}
 
+// Validate checks the field values on PreliminaryFilterCountRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *PreliminaryFilterCountRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on PreliminaryFilterCountRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// PreliminaryFilterCountRequestMultiError, or nil if none found.
+func (m *PreliminaryFilterCountRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *PreliminaryFilterCountRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for MaxSubscribers
+
+	// no validation rules for MinSubscribers
+
+	// no validation rules for Page
+
+	if len(errors) > 0 {
+		return PreliminaryFilterCountRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// PreliminaryFilterCountRequestMultiError is an error wrapping multiple
+// validation errors returned by PreliminaryFilterCountRequest.ValidateAll()
+// if the designated constraints aren't met.
+type PreliminaryFilterCountRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m PreliminaryFilterCountRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m PreliminaryFilterCountRequestMultiError) AllErrors() []error { return m }
+
+// PreliminaryFilterCountRequestValidationError is the validation error
+// returned by PreliminaryFilterCountRequest.Validate if the designated
+// constraints aren't met.
+type PreliminaryFilterCountRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e PreliminaryFilterCountRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e PreliminaryFilterCountRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e PreliminaryFilterCountRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e PreliminaryFilterCountRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e PreliminaryFilterCountRequestValidationError) ErrorName() string {
+	return "PreliminaryFilterCountRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e PreliminaryFilterCountRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sPreliminaryFilterCountRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = PreliminaryFilterCountRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = PreliminaryFilterCountRequestValidationError{}
+
+// Validate checks the field values on PreliminaryFilterCountResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *PreliminaryFilterCountResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on PreliminaryFilterCountResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// PreliminaryFilterCountResponseMultiError, or nil if none found.
+func (m *PreliminaryFilterCountResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *PreliminaryFilterCountResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for DoctorsCount
+
+	if len(errors) > 0 {
+		return PreliminaryFilterCountResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// PreliminaryFilterCountResponseMultiError is an error wrapping multiple
+// validation errors returned by PreliminaryFilterCountResponse.ValidateAll()
+// if the designated constraints aren't met.
+type PreliminaryFilterCountResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m PreliminaryFilterCountResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m PreliminaryFilterCountResponseMultiError) AllErrors() []error { return m }
+
+// PreliminaryFilterCountResponseValidationError is the validation error
+// returned by PreliminaryFilterCountResponse.Validate if the designated
+// constraints aren't met.
+type PreliminaryFilterCountResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e PreliminaryFilterCountResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e PreliminaryFilterCountResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e PreliminaryFilterCountResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e PreliminaryFilterCountResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e PreliminaryFilterCountResponseValidationError) ErrorName() string {
+	return "PreliminaryFilterCountResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e PreliminaryFilterCountResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sPreliminaryFilterCountResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = PreliminaryFilterCountResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = PreliminaryFilterCountResponseValidationError{}
+
 // Validate checks the field values on GetSettingsResponse_FilterItem with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
