@@ -6,7 +6,7 @@ import (
 	"medblogers_base/internal/pkg/logger"
 )
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage,ImageEnricher,SubscribersEnricher,AdditionalStorage
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage
 
 type Storage interface {
 	CountFilterDoctors(ctx context.Context, filter dto.Filter) (int64, error)

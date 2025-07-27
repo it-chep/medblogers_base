@@ -47,6 +47,7 @@ func (g *Gateway) NotificatorCreateDoctor(ctx context.Context, createDTO indto.C
 	jsonData, err := json.Marshal(requestData)
 	if err != nil {
 		logger.Error(ctx, "Ошибка при декодировании в json", err)
+		return
 	}
 
 	// Создаем HTTP запрос
@@ -62,9 +63,14 @@ func (g *Gateway) NotificatorCreateDoctor(ctx context.Context, createDTO indto.C
 	if err != nil {
 		logger.Error(ctx, "Ошибка при отправке запроса", err)
 	}
-	defer resp.Body.Close()
+	defer func(resp *http.Response) {
+		if resp == nil {
+			return
+		}
+		resp.Body.Close()
+	}(resp)
 
-	if resp.StatusCode == http.StatusOK {
+	if resp != nil && resp.StatusCode == http.StatusOK {
 		logger.Message(ctx, "[Notificator] Уведомление успешно отправлено")
 	}
 }
