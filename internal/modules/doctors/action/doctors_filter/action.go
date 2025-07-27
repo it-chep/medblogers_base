@@ -68,7 +68,7 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 	}
 	doctorsMap, err := a.doctorsFilter.GetDoctorsByIDs(ctx, filter.Page, lo.Keys(subsResponse))
 	if err != nil {
-		logger.Error(ctx, "[Filter] Ошибка при обогащении фотографией", err)
+		logger.Error(ctx, "[Filter] Ошибка при обогащении данными", err)
 	}
 
 	// метчим 2 мапы с разными данными
