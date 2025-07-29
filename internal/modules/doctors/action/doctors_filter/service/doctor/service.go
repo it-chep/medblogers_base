@@ -3,7 +3,6 @@ package doctor
 import (
 	"context"
 	"fmt"
-	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
@@ -20,7 +19,7 @@ import (
 
 type Storage interface {
 	FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error)
-	GetDoctors(ctx context.Context, limit, offset int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
+	GetDoctors(ctx context.Context, currentPage int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
 	GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
 }
 
@@ -74,7 +73,7 @@ func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (ma
 func (s *Service) GetDoctors(ctx context.Context, currentPage int64) (map[int64]dto.Doctor, error) {
 	logger.Message(ctx, "[Filter][Service] Дефолтное получение докторов")
 	// Получаем докторов
-	doctorsMap, err := s.storage.GetDoctors(ctx, consts.LimitDoctorsOnPage, currentPage*consts.LimitDoctorsOnPage)
+	doctorsMap, err := s.storage.GetDoctors(ctx, currentPage)
 	if err != nil {
 		return nil, err
 	}
@@ -160,9 +159,9 @@ func (s *Service) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []
 	}
 
 	// обогащаем всеми данными
-	s.enrichImages(ctx, dtoMap, imageMap)
-	s.enrichAdditionalSpecialities(ctx, dtoMap, specialitiesMap)
-	s.enrichAdditionalCities(ctx, dtoMap, citiesMap)
+	enrichImages(ctx, dtoMap, imageMap)
+	enrichAdditionalSpecialities(ctx, dtoMap, specialitiesMap)
+	enrichAdditionalCities(ctx, dtoMap, citiesMap)
 
 	return dtoMap, nil
 }

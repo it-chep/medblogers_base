@@ -16,7 +16,7 @@ import (
 )
 
 // enrichSubscribers - обогащение подписчиками в миниатюры докторов
-func (s *Service) enrichSubscribers(ctx context.Context, doctorsMap map[int64]dto.Doctor, subscribersMap map[int64]indto.GetSubscribersByDoctorIDsResponse) {
+func enrichSubscribers(ctx context.Context, doctorsMap map[int64]dto.Doctor, subscribersMap map[int64]indto.GetSubscribersByDoctorIDsResponse) {
 	logger.Message(ctx, "[Filter] Обогащение подписчиками")
 
 	for id, doc := range doctorsMap {
@@ -35,7 +35,7 @@ func (s *Service) enrichSubscribers(ctx context.Context, doctorsMap map[int64]dt
 }
 
 // enrichAdditionalCities - обогащение доп городами
-func (s *Service) enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalCitiesMap map[int64][]*city.City) {
+func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalCitiesMap map[int64][]*city.City) {
 	logger.Message(ctx, "[Filter] Обогащение доп городами")
 
 	for doctorID, cities := range additionalCitiesMap {
@@ -73,7 +73,7 @@ func (s *Service) enrichAdditionalCities(ctx context.Context, doctorsMap map[int
 }
 
 // enrichAdditionalSpecialities - обогащение доп специальностями и доп городами
-func (s *Service) enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalSpecialitiesMap map[int64][]*speciality.Speciality) {
+func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalSpecialitiesMap map[int64][]*speciality.Speciality) {
 	logger.Message(ctx, "[Filter] Обогащение доп специальностями")
 
 	for doctorID, specialities := range additionalSpecialitiesMap {
@@ -111,7 +111,7 @@ func (s *Service) enrichAdditionalSpecialities(ctx context.Context, doctorsMap m
 }
 
 // enrichImages - обогащение фотографиями в миниатюры докторов
-func (s *Service) enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos map[string]string) {
+func enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos map[string]string) {
 	logger.Message(ctx, "[Filter] Обогащение фотографиями")
 
 	for id, doc := range doctorsMap {
@@ -197,8 +197,8 @@ func (s *Service) enrichFacade(ctx context.Context, doctorsMap map[int64]dto.Doc
 	}
 
 	// обогащаем всеми данными
-	s.enrichImages(ctx, doctorsMap, imageMap)
-	s.enrichAdditionalSpecialities(ctx, doctorsMap, specialitiesMap)
-	s.enrichAdditionalCities(ctx, doctorsMap, citiesMap)
-	s.enrichSubscribers(ctx, doctorsMap, subscribersMap)
+	enrichImages(ctx, doctorsMap, imageMap)
+	enrichAdditionalSpecialities(ctx, doctorsMap, specialitiesMap)
+	enrichAdditionalCities(ctx, doctorsMap, citiesMap)
+	enrichSubscribers(ctx, doctorsMap, subscribersMap)
 }

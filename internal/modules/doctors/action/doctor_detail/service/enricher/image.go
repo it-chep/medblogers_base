@@ -2,7 +2,7 @@ package enricher
 
 import "context"
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . ImageGetter
+//go:generate mockgen -destination=mocks/image_mocks.go -package=mocks . ImageGetter
 
 type ImageGetter interface {
 	GeneratePresignedURL(ctx context.Context, s3Key string) (string, error)

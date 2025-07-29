@@ -30,6 +30,7 @@ func (s *Service) GetAdditionalCities(ctx context.Context, doctorID doctor.Medbl
 	if err != nil {
 		return dto.CityItem{}, []dto.CityItem{}, err
 	}
+
 	mainCity := dto.CityItem{}
 	cities := make([]dto.CityItem, 0, len(citiesMap))
 	for _, c := range citiesMap {

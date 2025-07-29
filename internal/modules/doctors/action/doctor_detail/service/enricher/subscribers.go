@@ -9,7 +9,7 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 )
 
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . SubscribersGetter
+//go:generate mockgen -destination=mocks/subs_mocks.go -package=mocks . SubscribersGetter
 
 type SubscribersGetter interface {
 	GetDoctorSubscribers(ctx context.Context, medblogersID doctor.MedblogersID) (indto.GetDoctorSubscribersResponse, error)

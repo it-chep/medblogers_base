@@ -85,7 +85,7 @@ func (r *Repository) GetDoctorAdditionalSpecialities(ctx context.Context, medblo
 	return result, nil
 }
 
-func (r *Repository) GetDoctors(ctx context.Context, limit, offset int64) (map[doctor.MedblogersID]*doctor.Doctor, error) {
+func (r *Repository) GetDoctors(ctx context.Context, currentPage int64) (map[doctor.MedblogersID]*doctor.Doctor, error) {
 	logger.Message(ctx, "[Repo] Селект докторов из базы без фильтров")
 	sql := `
 		select 
@@ -98,7 +98,9 @@ func (r *Repository) GetDoctors(ctx context.Context, limit, offset int64) (map[d
 	`
 
 	var doctors []dao.DoctorMiniatureDAO
-	err := pgxscan.Select(ctx, r.db, &doctors, sql, limit, offset)
+	offset := (currentPage - 1) * consts.LimitDoctorsOnPage
+
+	err := pgxscan.Select(ctx, r.db, &doctors, sql, consts.LimitDoctorsOnPage, offset)
 	if err != nil {
 		return nil, err
 	}
