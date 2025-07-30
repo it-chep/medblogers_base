@@ -2,14 +2,15 @@ package enricher
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/service/enricher/mocks"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 )
 
 func fs(t *testing.T) fieldsSubs {

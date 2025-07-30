@@ -56,25 +56,28 @@ func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) 
 
 	// получение городов
 	g.Go(func() {
-		cities, err = s.cityStorage.GetCitiesWithDoctorsCount(ctx)
-		if err != nil {
+		gCities, gErr := s.cityStorage.GetCitiesWithDoctorsCount(ctx)
+		if gErr != nil {
 			logger.Error(ctx, "[Settings] Ошибка при получении городов", err)
 		}
+		cities = gCities
 	})
 
 	// получение специальностей
 	g.Go(func() {
-		specialities, err = s.specialityStory.GetSpecialitiesWithDoctorsCount(ctx)
-		if err != nil {
+		gSpecialities, gErr := s.specialityStory.GetSpecialitiesWithDoctorsCount(ctx)
+		if gErr != nil {
 			logger.Error(ctx, "[Settings] Ошибка при получении специальностей", err)
 		}
+		specialities = gSpecialities
 	})
 
 	g.Go(func() {
-		enabledFilters, err = s.subscribersGetter.GetFilterInfo(ctx)
-		if err != nil {
+		gEnabledFilters, gErr := s.subscribersGetter.GetFilterInfo(ctx)
+		if gErr != nil {
 			logger.Error(ctx, "[Settings] Ошибка при получении специальностей", err)
 		}
+		enabledFilters = gEnabledFilters
 	})
 
 	g.Wait()

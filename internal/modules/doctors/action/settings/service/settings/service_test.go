@@ -2,15 +2,16 @@ package settings
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/settings/dto"
 	"medblogers_base/internal/modules/doctors/action/settings/service/settings/mocks"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 )
 
 type fields struct {

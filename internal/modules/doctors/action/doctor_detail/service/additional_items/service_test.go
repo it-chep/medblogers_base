@@ -2,14 +2,15 @@ package additional_items
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/service/additional_items/mocks"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 )
 
 type fields struct {

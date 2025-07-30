@@ -2,11 +2,12 @@ package doctor
 
 import (
 	"context"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestEnrichSubscribers(t *testing.T) {

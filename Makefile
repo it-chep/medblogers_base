@@ -18,7 +18,7 @@ deps:
 
 .PHONY: infra
 infra:
-	docker-compose up -d --build
+	docker-compose up -d --build --force-recreate --wait
 
 .PHONY: minfra
 minfra-up: infra
@@ -40,6 +40,11 @@ endif
 .PHONY: migration
 migration:
 	$(LOCAL_BIN)/goose -dir=./migrations create $(MIGRATION_ARGS) sql
+
+
+.PRONY: migrations-e2e-up ## накатывает миграции на базу данных для тестов
+migrations-e2e-up:
+	$(LOCAL_BIN)/goose postgres 'host=localhost port=5432 user=${DB_USER} sslmode=disable dbname=${E2E_DB_NAME}' --verbose=false --allow-missing -d ${MIGRATION_FOLDER}
 
 # golangci-lint
 GOLANGCI_BIN := $(LOCAL_BIN)/golangci-lint
@@ -89,6 +94,10 @@ test-cover: .test
 	grep -vE '$(GO_UNIT_TEST_COVER_EXCLUDE)' $(GO_UNIT_TEST_COVER_PROFILE).tmp > $(GO_UNIT_TEST_COVER_PROFILE)
 	rm $(GO_UNIT_TEST_COVER_PROFILE).tmp
 
+.PHONY: print-test-cover
+print-test-cover:
+	go tool cover -func=$(GO_UNIT_TEST_COVER_PROFILE) | grep total:
+
 
 XO_OUTPUT_PATH=./tools/xo
 XO_TEMPLATE_PATH=./tools/xo_templates
@@ -117,3 +126,24 @@ generate:
 		--openapiv2_opt allow_merge=true \
 		--openapiv2_opt merge_file_name=medblogers_api \
 		./api/doctors/v1/doctors.proto
+
+
+.PHONY: e2e ## запускает локальные интеграционные тесты
+e2e: infra e2e-run
+
+# Вы можете включить:
+#	- сжатый режим с помощью ginkgo --succinct,
+#	- подробный режим с помощью ginkgo -v
+#	- очень подробный режим с помощью ginkgo -vv.
+.PHONY: e2e-run  ## запускает интеграционные тесты
+e2e-run:
+	O3_SERVICE_NAME=e2e $(LOCAL_BIN)/ginkgo \
+		--junit-report=./junit.xml \
+		-tags=e2e -cover -covermode=count \
+		-coverprofile=$(GO_INTEGRATION_TEST_COVER_PROFILE).tmp \
+		-coverpkg=$(GO_INTEGRATION_TEST_COVER_PKG) -succinct ./e2e/...
+
+.PHONY: e2e-cover
+e2e-cover:
+	grep -vE '$(GO_INTEGRATION_TEST_COVER_EXCLUDE)' $(GO_INTEGRATION_TEST_COVER_PROFILE).tmp > $(GO_INTEGRATION_TEST_COVER_PROFILE)
+	rm $(GO_INTEGRATION_TEST_COVER_PROFILE).tmp

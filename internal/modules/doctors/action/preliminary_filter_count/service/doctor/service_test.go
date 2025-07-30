@@ -2,12 +2,13 @@ package doctor
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/dto"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/service/doctor/mocks"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 )
 
 type fields struct {

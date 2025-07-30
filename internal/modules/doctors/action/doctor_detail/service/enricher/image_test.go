@@ -3,10 +3,11 @@ package enricher
 import (
 	"context"
 	"errors"
-	"github.com/golang/mock/gomock"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/service/enricher/mocks"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/stretchr/testify/assert"
 )
 
 func p(t *testing.T) fields {

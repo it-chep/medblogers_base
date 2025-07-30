@@ -2,12 +2,13 @@ package salebot
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
 	indto "medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"medblogers_base/internal/modules/doctors/client/salebot/mocks"
 	"net/http"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
 )
 
 type fields struct {

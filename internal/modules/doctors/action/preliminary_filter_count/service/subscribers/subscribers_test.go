@@ -2,14 +2,15 @@ package subscribers
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	"github.com/pkg/errors"
-	"github.com/samber/lo"
-	"github.com/stretchr/testify/assert"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/dto"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/service/subscribers/mocks"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"testing"
+
+	"github.com/golang/mock/gomock"
+	"github.com/pkg/errors"
+	"github.com/samber/lo"
+	"github.com/stretchr/testify/assert"
 )
 
 type fields struct {
