@@ -18,28 +18,22 @@ import (
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
+	pkgHttp "medblogers_base/internal/pkg/http"
 )
-
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . HTTPClient
 
 const (
 	defaultScheme = "http"
 	secureScheme  = "https"
 )
 
-// HTTPClient ...
-type HTTPClient interface {
-	Do(req *http.Request) (*http.Response, error)
-}
-
 // Gateway в сервис subscribers
 type Gateway struct {
 	host   string
-	client HTTPClient
+	client pkgHttp.Executor
 }
 
 // NewGateway - конструктор
-func NewGateway(host string, client HTTPClient) *Gateway {
+func NewGateway(host string, client pkgHttp.Executor) *Gateway {
 	return &Gateway{
 		host:   host,
 		client: client,

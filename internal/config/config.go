@@ -8,6 +8,21 @@ import (
 	"github.com/spf13/viper"
 )
 
+//go:generate mockgen -destination=mocks/mocks.go -package=mocks . AppConfig
+
+type AppConfig interface {
+	GetCreateNotificationChatID() int64
+	GetSubscribersHost() string
+	GetSubscribersPort() string
+	GetUserPhotosBucket() string
+	GetSalebotHost() string
+	GetS3Region() string
+	GetS3Endpoint() string
+	GetS3SecretKey() string
+	GetS3AccessKey() string
+	GetS3Config() S3Config
+}
+
 type Config struct {
 	Storage           Storage            `mapstructure:"db"`
 	Server            Server             `mapstructure:"server"`
@@ -55,10 +70,6 @@ type NotificationConfig struct {
 	NotificreateAdminID int64 `mapstructure:"notificreate_admin_id"`
 }
 
-func (s Config) GetCreateNotificationChatID() int64 {
-	return s.Notification.NotificreateAdminID
-}
-
 // SubscribersClient todo тк нет serivce discovery и сервис 1 то делаем пока хардкод
 type SubscribersClient struct {
 	Host string `mapstructure:"host"`
@@ -97,4 +108,44 @@ func NewConfig() *Config {
 	}
 
 	return &cfg
+}
+
+func (s Config) GetCreateNotificationChatID() int64 {
+	return s.Notification.NotificreateAdminID
+}
+
+func (s Config) GetSubscribersHost() string {
+	return s.SubscribersClient.Host
+}
+
+func (s Config) GetSubscribersPort() string {
+	return s.SubscribersClient.Port
+}
+
+func (s Config) GetUserPhotosBucket() string {
+	return s.S3Client.Bucket.UsersPhotos
+}
+
+func (s Config) GetSalebotHost() string {
+	return s.SalebotClient.Host
+}
+
+func (s Config) GetS3Region() string {
+	return s.S3Client.Region
+}
+
+func (s Config) GetS3Endpoint() string {
+	return s.S3Client.Endpoint
+}
+
+func (s Config) GetS3SecretKey() string {
+	return s.S3Client.SecretKey
+}
+
+func (s Config) GetS3AccessKey() string {
+	return s.S3Client.AccessKey
+}
+
+func (s Config) GetS3Config() S3Config {
+	return s.S3Client
 }

@@ -15,6 +15,7 @@ deps:
 	GOBIN=$(LOCAL_BIN) go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	GOBIN=$(LOCAL_BIN) go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	GOBIN=$(LOCAL_BIN) go install github.com/envoyproxy/protoc-gen-validate@latest
+	GOBIN=$(LOCAL_BIN) go install github.com/onsi/ginkgo/v2/ginkgo@latest
 
 .PHONY: infra
 infra:
@@ -44,7 +45,7 @@ migration:
 
 .PRONY: migrations-e2e-up ## накатывает миграции на базу данных для тестов
 migrations-e2e-up:
-	$(LOCAL_BIN)/goose postgres 'host=localhost port=5432 user=${DB_USER} sslmode=disable dbname=${E2E_DB_NAME}' --verbose=false --allow-missing -d ${MIGRATION_FOLDER}
+	$(LOCAL_BIN)/goose -dir ${MIGRATION_FOLDER} postgres "host=localhost port=5432 user=${DB_USER} password=${DB_PASSWORD} dbname=${E2E_DB_NAME} sslmode=disable" up
 
 # golangci-lint
 GOLANGCI_BIN := $(LOCAL_BIN)/golangci-lint
@@ -59,7 +60,7 @@ lint:
 		--max-same-issues=1000 \
 		./...
 
-MIGRATION_FOLDER=./tools/migrations
+MIGRATION_FOLDER=./migrations
 
 
 # ==================================================================================== #
@@ -137,7 +138,7 @@ e2e: infra e2e-run
 #	- очень подробный режим с помощью ginkgo -vv.
 .PHONY: e2e-run  ## запускает интеграционные тесты
 e2e-run:
-	O3_SERVICE_NAME=e2e $(LOCAL_BIN)/ginkgo \
+	SERVICE_NAME=e2e $(LOCAL_BIN)/ginkgo \
 		--junit-report=./junit.xml \
 		-tags=e2e -cover -covermode=count \
 		-coverprofile=$(GO_INTEGRATION_TEST_COVER_PROFILE).tmp \

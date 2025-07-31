@@ -7,8 +7,8 @@ import (
 	"io"
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
-	"medblogers_base/internal/modules/doctors/client/subscribers/mocks"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
+	"medblogers_base/internal/pkg/http/mocks"
 	"net/http"
 	"net/url"
 	"testing"
@@ -20,12 +20,12 @@ import (
 )
 
 type fields struct {
-	http *mocks.MockHTTPClient
+	http *mocks.MockExecutor
 }
 
 func p(t *testing.T) fields {
 	f := fields{
-		http: mocks.NewMockHTTPClient(gomock.NewController(t)),
+		http: mocks.NewMockExecutor(gomock.NewController(t)),
 	}
 	return f
 }

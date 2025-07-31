@@ -5,6 +5,7 @@ import (
 	"fmt"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	httpV1 "medblogers_base/internal/app/router/v1"
+	pkgHttp "medblogers_base/internal/pkg/http"
 	"net"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -42,6 +43,8 @@ type App struct {
 	mux      *runtime.ServeMux
 	postgres postgres.PoolWrapper
 
+	httpConns map[string]pkgHttp.Executor
+
 	modules modules
 
 	// http сервер
@@ -65,6 +68,7 @@ func New(ctx context.Context) *App {
 	a.initConfig(ctx).
 		initPostgres(ctx).
 		initMutableConfig(ctx).
+		initHttpConns(ctx).
 		initModules(ctx).
 		initRouters(ctx).
 		initControllers(ctx).

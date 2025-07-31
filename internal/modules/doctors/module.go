@@ -4,6 +4,7 @@ import (
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/doctors/action"
 	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -12,8 +13,8 @@ type Module struct {
 	Actions *action.Aggregator
 }
 
-func New(config *config.Config, pool postgres.PoolWrapper) *Module {
-	clients := client.NewAggregator(config)
+func New(httpConns map[string]http.Executor, config config.AppConfig, pool postgres.PoolWrapper) *Module {
+	clients := client.NewAggregator(httpConns, config)
 
 	actions := action.NewAggregator(clients, pool, config)
 

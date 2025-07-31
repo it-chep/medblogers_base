@@ -8,23 +8,18 @@ import (
 	"medblogers_base/internal/modules/doctors/client/salebot/dto"
 	"medblogers_base/internal/pkg/logger"
 	"net/http"
+
+	pkgHttp "medblogers_base/internal/pkg/http"
 )
-
-//go:generate mockgen -destination=mocks/mocks.go -package=mocks . HTTPClient
-
-// HTTPClient ...
-type HTTPClient interface {
-	Do(req *http.Request) (*http.Response, error)
-}
 
 // Gateway в сервис нотификации
 type Gateway struct {
 	host   string
-	client HTTPClient
+	client pkgHttp.Executor
 }
 
 // NewGateway - конструктор
-func NewGateway(host string, client HTTPClient) *Gateway {
+func NewGateway(host string, client pkgHttp.Executor) *Gateway {
 	return &Gateway{
 		host:   host,
 		client: client,

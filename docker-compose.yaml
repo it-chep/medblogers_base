@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+  db:
+    image: postgres:14
+    container_name: postgres
+    restart: always
+    environment:
+        POSTGRES_USER: "postgres"
+        POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./${DUMP_DIR}:/tmp/dumps
+      - ./${DUMP_DIR}/${DB_DUMP}:/docker-entrypoint-initdb.d/02dump.sql
+
+volumes:
+  pg_data:

@@ -6,8 +6,7 @@ import (
 	"medblogers_base/internal/modules/doctors/client/s3"
 	"medblogers_base/internal/modules/doctors/client/salebot"
 	"medblogers_base/internal/modules/doctors/client/subscribers"
-	"net/http"
-	"time"
+	pkgHttp "medblogers_base/internal/pkg/http"
 )
 
 type Aggregator struct {
@@ -16,18 +15,16 @@ type Aggregator struct {
 	Salebot     *salebot.Gateway
 }
 
-func NewAggregator(config *config.Config) *Aggregator {
+func NewAggregator(httpConns map[string]pkgHttp.Executor, cfg config.AppConfig) *Aggregator {
 	return &Aggregator{
 		Subscribers: subscribers.NewGateway(
-			fmt.Sprintf("%s:%s", config.SubscribersClient.Host, config.SubscribersClient.Port),
-			&http.Client{
-				Timeout: 3 * time.Second,
-			}),
-		S3: s3.NewGateway(config.S3Client.Bucket.UsersPhotos, s3.NewS3Client(config.S3Client), s3.NewPresignClient(config.S3Client)),
+			fmt.Sprintf("%s:%s", cfg.GetSubscribersHost(), cfg.GetSubscribersPort()),
+			httpConns[config.Subscribers],
+		),
+		S3: s3.NewGateway(cfg.GetUserPhotosBucket(), s3.NewS3Client(cfg.GetS3Config()), s3.NewPresignClient(cfg.GetS3Config())),
 		Salebot: salebot.NewGateway(
-			config.SalebotClient.Host,
-			&http.Client{
-				Timeout: 3 * time.Second,
-			}),
+			cfg.GetSalebotHost(),
+			httpConns[config.Salebot],
+		),
 	}
 }

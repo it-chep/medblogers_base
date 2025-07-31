@@ -29,7 +29,7 @@ type Aggregator struct {
 }
 
 // NewAggregator конструктор
-func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config *config.Config) *Aggregator {
+func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config config.AppConfig) *Aggregator {
 	return &Aggregator{
 		CreateDoctor:           create_doctor.New(clients, pool, config),
 		CounterInfo:            counters_info.New(clients, pool),

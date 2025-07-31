@@ -25,7 +25,7 @@ type Action struct {
 }
 
 // New .
-func New(clients *client.Aggregator, pool postgres.PoolWrapper, config *config.Config) *Action {
+func New(clients *client.Aggregator, pool postgres.PoolWrapper, config config.AppConfig) *Action {
 	return &Action{
 		doctorService:     doctor.NewService(dal.NewRepository(pool)),
 		externalService:   external.NewService(clients.Subscribers, clients.Salebot, config),

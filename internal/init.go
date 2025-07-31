@@ -11,7 +11,10 @@ import (
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
+	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
+	"net/http"
+	"time"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/jackc/pgx/v4/pgxpool"
@@ -54,10 +57,22 @@ func (a *App) initMutableConfig(ctx context.Context) *App {
 	return a
 }
 
+func (a *App) initHttpConns(_ context.Context) *App {
+	a.httpConns = map[string]pkgHttp.Executor{
+		config.Subscribers: &http.Client{
+			Timeout: time.Second * 3,
+		},
+		config.Salebot: &http.Client{
+			Timeout: time.Second * 3,
+		},
+	}
+	return a
+}
+
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
 		admin:   moduleadmin.New(),
-		doctors: moduledoctors.New(a.config, a.postgres),
+		doctors: moduledoctors.New(a.httpConns, a.config, a.postgres),
 	}
 
 	return a

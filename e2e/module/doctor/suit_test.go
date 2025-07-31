@@ -18,13 +18,11 @@ func TestShiftModule(t *testing.T) {
 	RunSpecs(t, "Тестирование модуля докторов")
 }
 
-var (
-	poolWrapper postgres.PoolWrapper
-)
+var conn postgres.PoolWrapper
 
 var _ = BeforeSuite(func(ctx SpecContext) {
 	commonfixture.SetupDatabase(ctx, 6)
-	poolWrapper = commonfixture.SetupPoolConnections(ctx, 6)
+	conn = commonfixture.SetupPoolConnections(ctx, 6)
 })
 
 var _ = AfterSuite(func() {

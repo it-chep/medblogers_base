@@ -33,7 +33,7 @@ var SetupDatabase = func(ctx context.Context, seed int64) {
 	cmd.Env = append(os.Environ(), fmt.Sprintf("E2E_DB_NAME=%s", dbName))
 	_, f, _, _ := runtime.Caller(0)
 	// Получаем рут директорию
-	cmd.Dir = strings.ReplaceAll(f, "/e2e/fixture/prepare_database.go", "")
+	cmd.Dir = strings.ReplaceAll(f, "/e2e/fixture/prepare_postgres.go", "")
 
 	Expect(err).NotTo(HaveOccurred())
 	_, err = cmd.Output()

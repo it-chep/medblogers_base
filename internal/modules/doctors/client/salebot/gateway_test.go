@@ -3,7 +3,7 @@ package salebot
 import (
 	"context"
 	indto "medblogers_base/internal/modules/doctors/action/create_doctor/dto"
-	"medblogers_base/internal/modules/doctors/client/salebot/mocks"
+	"medblogers_base/internal/pkg/http/mocks"
 	"net/http"
 	"testing"
 
@@ -12,12 +12,12 @@ import (
 )
 
 type fields struct {
-	http *mocks.MockHTTPClient
+	http *mocks.MockExecutor
 }
 
 func p(t *testing.T) fields {
 	f := fields{
-		http: mocks.NewMockHTTPClient(gomock.NewController(t)),
+		http: mocks.NewMockExecutor(gomock.NewController(t)),
 	}
 	return f
 }
