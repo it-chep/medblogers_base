@@ -5,6 +5,7 @@ package doctor
 
 import (
 	"context"
+	"medblogers_base/e2e/helper"
 	"medblogers_base/e2e/module/doctor/app"
 	"medblogers_base/e2e/module/doctor/fixture"
 
@@ -17,6 +18,9 @@ var _ = Describe("Пользователь запрашивает список �
 
 	BeforeEach(func(ctx context.Context) {
 		module = fixture.SetupModule(ctx, conn)
+		helper.AddCity(ctx, conn, "Москва")
+		helper.AddCity(ctx, conn, "Санкт-петербург")
+		helper.AddCity(ctx, conn, "Екатеринбург")
 	})
 
 	It("Успешное получение городов", func(ctx context.Context) {

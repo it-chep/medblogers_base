@@ -5,6 +5,7 @@ package doctor
 
 import (
 	"context"
+	"medblogers_base/e2e/helper"
 	"medblogers_base/e2e/module/doctor/app"
 	"medblogers_base/e2e/module/doctor/fixture"
 
@@ -17,6 +18,9 @@ var _ = Describe("Пользователь запрашивает список �
 
 	BeforeEach(func(ctx context.Context) {
 		module = fixture.SetupModule(ctx, conn)
+		helper.AddSpeciality(ctx, conn, "Хирург")
+		helper.AddSpeciality(ctx, conn, "Акушер-гинеколог")
+		helper.AddSpeciality(ctx, conn, "Терапевт")
 	})
 
 	It("Успешное получение специальностей", func(ctx context.Context) {

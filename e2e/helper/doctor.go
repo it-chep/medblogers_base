@@ -11,7 +11,7 @@ import (
 )
 
 var AddNewDoctor = func(ctx context.Context, pool postgres.PoolWrapper, doc *doctor.Doctor) *doctor.Doctor {
-	By("Создание нового доктора смены")
+	By("Создание нового доктора")
 
 	newDoctor := dao.DoctorDAO{}
 
