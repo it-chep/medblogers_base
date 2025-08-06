@@ -1,0 +1,72 @@
+run:
+  # Включить параллельную проверку
+  concurrency: 4
+  # Включить проверку тестов
+  tests: true
+
+output:
+  # Формат вывода
+  formats:
+    - format: colored-line-number
+  # Показывать только новые проблемы
+  new: false
+
+linters:
+  # Включенные линтеры
+  enable:
+    - errcheck
+    - goconst
+    - goimports
+    - gosec
+    - govet
+    - ineffassign
+    - revive
+    - typecheck
+    - unused # will be used insted of varcheck + deadcode + structcheck. More info https://github.com/golangci/golangci-lint/issues/1841
+    - ginkgolinter
+    - depguard
+    - tparallel
+    - paralleltest
+
+
+linters-settings:
+  dupl:
+    threshold: 100
+  goconst:
+    min-len:         2
+    min-occurrences: 2
+  gosec:
+    excludes:
+      # Flags for potentially-unsafe casting of ints, similar problem to globally-disabled G103
+      - G115
+  revive:
+    rules:
+      - name: dot-imports
+        arguments:
+          - allowedPackages:
+              - "github.com/onsi/ginkgo"
+              - "github.com/onsi/ginkgo/v2"
+              - "github.com/onsi/gomega"
+
+issues:
+  # Исключения
+  exclude-rules:
+    # Исключить проверку комментариев для тестов
+    - path: _test\.go
+      linters:
+        - revive
+      text: "exported.*should have comment or be unexported"
+
+    # Исключить проверку для автосгенерированных файлов
+    - path: .*\.pb\.go
+      linters:
+        - revive
+        - unused
+        - gosimple
+        - staticcheck
+  exclude-dirs:
+    - bin
+    - vendor
+    - var
+    - tmp
+    - .cache

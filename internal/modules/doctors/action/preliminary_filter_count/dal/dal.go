@@ -1,0 +1,113 @@
+package dal
+
+import (
+	"context"
+	"fmt"
+	"github.com/georgysavva/scany/pgxscan"
+	"github.com/lib/pq"
+	consts "medblogers_base/internal/dto"
+	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/dto"
+	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
+	"medblogers_base/internal/pkg/logger"
+	"medblogers_base/internal/pkg/postgres"
+	"strings"
+)
+
+type Repository struct {
+	db postgres.PoolWrapper
+}
+
+func NewRepository(db postgres.PoolWrapper) *Repository {
+	return &Repository{
+		db: db,
+	}
+}
+
+// FilterDoctors - **** Считаем без лимита, так как фильтрация идет по индексам и мы можем запылесосить всю базу **** //
+func (r *Repository) FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error) {
+	logger.Message(ctx, "[Repo] Селект докторов из базы по фильтрам")
+	// **** Считаем без лимита, так как фильтрация идет по индексам и мы можем запылесосить всю базу **** //
+	sql, phValues := sqlStmt(filter)
+
+	var doctors []dao.DoctorMiniatureDAO
+	err := pgxscan.Select(ctx, r.db, &doctors, sql, phValues...)
+	if err != nil {
+		return nil, err
+	}
+
+	result := make(map[doctor.MedblogersID]*doctor.Doctor, len(doctors))
+	for _, doctorDAO := range doctors {
+		result[doctor.MedblogersID(doctorDAO.ID)] = doctorDAO.ToDomain()
+	}
+
+	return result, nil
+}
+
+// sqlStmt к-ор запроса
+func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
+	defaultSql := `
+	select
+		d.id,
+		d.name,
+		d.slug,
+		d.inst_url,
+		d.city_id,
+		d.speciallity_id,
+		d.tg_channel_url
+	from
+    	docstar_site_doctor d
+	where 
+    	d.is_active = true
+        `
+
+	whereStmtBuilder := strings.Builder{}
+	phCounter := 1 // Счетчик для плейсхолдеров
+
+	if len(filter.Cities) != 0 {
+		whereStmtBuilder.WriteString(fmt.Sprintf(`
+		and (
+			d.city_id = any($%d::bigint[])
+				or exists (select 1
+						   from docstar_site_doctor_additional_cities dc
+						   where dc.doctor_id = d.id
+							 and dc.city_id = any($%d::bigint[]))
+			)`, phCounter, phCounter))
+		phValues = append(phValues, pq.Int64Array(filter.Cities))
+		phCounter++
+	}
+
+	if len(filter.Specialities) != 0 {
+		whereStmtBuilder.WriteString(fmt.Sprintf(`
+		and (
+			d.speciallity_id = any($%d::bigint[])
+				or exists (select 1
+						   from docstar_site_doctor_additional_specialties ds
+						   where ds.doctor_id = d.id
+							 and ds.speciallity_id = any($%d::bigint[]))
+			)`, phCounter, phCounter))
+		phValues = append(phValues, pq.Int64Array(filter.Specialities))
+		phCounter++
+	}
+
+	if filter.Page > 1 {
+		// делаем -1 тк вторая страница должна отразить после 30 * 1 врачей
+		offset := (filter.Page - 1) * consts.LimitDoctorsOnPage
+		return fmt.Sprintf(`
+			%s
+			%s
+			group by d.id, d.name
+			order by d.name asc
+			offset %d
+    	`, defaultSql, whereStmtBuilder.String(), offset), phValues
+	}
+
+	// возвращаем для первой страницы
+	return fmt.Sprintf(`
+		%s
+		%s
+		group by d.id, d.name
+        order by d.name asc
+		offset 0
+    `, defaultSql, whereStmtBuilder.String()), phValues
+}

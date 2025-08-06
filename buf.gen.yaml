@@ -1,0 +1,28 @@
+version: v1
+plugins:
+  - name: go
+    out: internal/pb/medblogers_base
+    opt:
+      - paths=source_relative
+    path: bin/protoc-gen-go
+    strategy: directory
+  - name: grpc-gateway
+    out: internal/pb/medblogers_base
+    opt:
+      - logtostderr=true
+      - paths=source_relative
+      - generate_unbound_methods=true
+    path: bin/protoc-gen-grpc-gateway
+    strategy: directory
+  - name: openapiv2
+    out: internal/pb/medblogers_base
+    opt:
+      - generate_unbound_methods=true
+    path: bin/protoc-gen-openapiv2
+    strategy: directory
+  - name: validate
+    out: internal/pb/medblogers_base
+    opt:
+      - lang=go
+      - paths=source_relative
+    path: bin/protoc-gen-validate
