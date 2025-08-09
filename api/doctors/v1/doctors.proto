@@ -77,7 +77,7 @@ service DoctorService {
   }
   rpc GetDoctor(GetDoctorRequest) returns (GetDoctorResponse) {
     option (google.api.http) = {
-      get: "/api/v1/doctors/{doctor_id}"
+      get: "/api/v1/doctors/{doctor_slug}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Получение детальной информации про доктора"
@@ -264,7 +264,7 @@ message CreateDoctorResponse {
 // ===== Детальная информация о докторе =====
 
 message GetDoctorRequest {
-  string doctor_id = 1;
+  string doctor_slug = 1;
 }
 
 message GetDoctorResponse {

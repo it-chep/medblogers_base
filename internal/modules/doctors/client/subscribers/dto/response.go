@@ -51,7 +51,7 @@ type GetDoctorSubscribersResponse struct {
 	//текст "подписчика", "подписчиков", "подписчик"
 	InstSubsCountText string `json:"instagram_text"`
 	//дата последнего обновления в сервисе
-	InstLastUpdatedDate string `json:"inst_last_updated_date"`
+	InstLastUpdatedDate string `json:"instagram_last_updated_date"`
 }
 
 type GetDoctorsByFilter struct {

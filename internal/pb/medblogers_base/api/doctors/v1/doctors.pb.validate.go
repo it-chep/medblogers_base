@@ -2115,7 +2115,7 @@ func (m *GetDoctorRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for DoctorId
+	// no validation rules for DoctorSlug
 
 	if len(errors) > 0 {
 		return GetDoctorRequestMultiError(errors)

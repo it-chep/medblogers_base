@@ -95,7 +95,7 @@
         ]
       }
     },
-    "/api/v1/doctors/{doctorId}": {
+    "/api/v1/doctors/{doctorSlug}": {
       "get": {
         "summary": "Получение детальной информации про доктора",
         "operationId": "DoctorService_GetDoctor",
@@ -115,7 +115,7 @@
         },
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "doctorSlug",
             "in": "path",
             "required": true,
             "type": "string"

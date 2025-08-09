@@ -82,7 +82,7 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 		logger.Error(ctx, "[Filter] Ошибка при фильтрации докторов по подписчиками, делаем дефолт", err)
 	}
 
-	doctorsMap, err := a.doctorsFilter.GetDoctorsByIDs(ctx, filter.Page, lo.Keys(subsResponse.Doctors))
+	doctorsMap, err := a.doctorsFilter.GetDoctorsByIDs(ctx, filter.Page, subsResponse.OrderedIDs)
 	if err != nil {
 		logger.Error(ctx, "[Filter] Ошибка при обогащении данными", err)
 	}
@@ -92,7 +92,7 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 	// Маппим данные подписчиков и докторов
 	mappedDoctors := a.subscribersFilter.MapDoctorsWithSubscribers(doctorsMap, subsResponse.Doctors, subsResponse.OrderedIDs)
-	pagesCount := a.pageService.GetPagesCountBySubscribersFilter(subsResponse.DoctorsCount)
+	pagesCount := a.pageService.GetPagesCountBySubscribersFilter(subsResponse.DoctorsCount) // todo учесть кейс с вкл/выкл врача
 
 	return dto.Response{
 		Doctors:          mappedDoctors,

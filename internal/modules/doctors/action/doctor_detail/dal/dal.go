@@ -31,7 +31,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 // GetDoctorInfo получает информацию о докторе
-func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.Doctor, error) {
+func (r Repository) GetDoctorInfo(ctx context.Context, slug string) (*doctor.Doctor, error) {
 	sql := `
 		select 
 			id, name, slug, 
@@ -39,14 +39,14 @@ func (r Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.
 			s3_image, is_active, medical_directions, main_blog_theme, 
 			city_id, speciallity_id
 		from docstar_site_doctor
-		where id = $1
+		where slug = $1
 	`
 
 	var doctorDAO dao.DoctorDAO
-	err := pgxscan.Get(ctx, r.db, &doctorDAO, sql, doctorID)
+	err := pgxscan.Get(ctx, r.db, &doctorDAO, sql, slug)
 	switch {
 	case errors.Is(err, pgx.ErrNoRows):
-		return nil, fmt.Errorf("doctor with ID %d not found", doctorID)
+		return nil, fmt.Errorf("doctor with slug %s not found", slug)
 	case err != nil:
 		return nil, fmt.Errorf("failed to get doctor: %w", err)
 	}

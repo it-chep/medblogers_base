@@ -9,7 +9,7 @@ import (
 
 // Storage .
 type Storage interface {
-	GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.Doctor, error)
+	GetDoctorInfo(ctx context.Context, slug string) (*doctor.Doctor, error)
 }
 
 // Service сервис получения данных о докторе
@@ -25,6 +25,6 @@ func New(storage Storage) *Service {
 }
 
 // GetDoctorInfo получение информации о докторе
-func (s *Service) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor.Doctor, error) {
-	return s.storage.GetDoctorInfo(ctx, doctorID)
+func (s *Service) GetDoctorInfo(ctx context.Context, slug string) (*doctor.Doctor, error) {
+	return s.storage.GetDoctorInfo(ctx, slug)
 }

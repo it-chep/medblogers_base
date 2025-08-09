@@ -34,9 +34,9 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	}
 }
 
-func (a Action) Do(ctx context.Context, doctorID int64) (*dto.DoctorDTO, error) {
-	logger.Message(ctx, fmt.Sprintf("[DoctorDetail] Получение данных о докторе %d", doctorID))
-	doc, err := a.doctorService.GetDoctorInfo(ctx, doctorID)
+func (a Action) Do(ctx context.Context, slug string) (*dto.DoctorDTO, error) {
+	logger.Message(ctx, fmt.Sprintf("[DoctorDetail] Получение данных о докторе %s", slug))
+	doc, err := a.doctorService.GetDoctorInfo(ctx, slug)
 	if err != nil {
 		logger.Error(ctx, "Ошибка при получении доктора", err)
 		return &dto.DoctorDTO{}, err // 404 not found

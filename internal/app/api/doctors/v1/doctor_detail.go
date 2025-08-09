@@ -2,23 +2,14 @@ package v1
 
 import (
 	"context"
+	"github.com/samber/lo"
 	indto "medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
-	"strconv"
-
-	"github.com/pkg/errors"
-
-	"github.com/samber/lo"
 )
 
 // GetDoctor - /api/v1/doctors/{doctor_id} [GET]
 func (i *Implementation) GetDoctor(ctx context.Context, req *desc.GetDoctorRequest) (*desc.GetDoctorResponse, error) {
-	id, err := strconv.Atoi(req.DoctorId)
-	if err != nil || id <= 0 {
-		return nil, errors.New("invalid doctor_id")
-	}
-
-	doctorDomain, err := i.doctors.Actions.DoctorDetail.Do(ctx, int64(id))
+	doctorDomain, err := i.doctors.Actions.DoctorDetail.Do(ctx, req.DoctorSlug)
 	if err != nil {
 		return nil, err
 	}

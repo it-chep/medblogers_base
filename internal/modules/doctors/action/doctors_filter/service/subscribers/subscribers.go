@@ -3,7 +3,6 @@ package subscribers
 import (
 	"context"
 	"github.com/samber/lo"
-
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 )
@@ -69,6 +68,10 @@ func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, sub
 		doctorData := doctorsMap[doctorID]
 		subs := subsMap[doctorID]
 
+		if doctorData.ID == 0 { // todo заменить на mo ?
+			continue
+		}
+
 		mappedDoctors = append(mappedDoctors, dto.Doctor{
 			InstLink:          doctorData.InstLink,
 			InstSubsCount:     subs.InstSubsCount,
@@ -78,12 +81,16 @@ func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, sub
 			TgSubsCount:     subs.TgSubsCount,
 			TgSubsCountText: subs.TgSubsCountText,
 
-			ID:   doctorData.ID,
-			Name: doctorData.Name,
-			Slug: doctorData.Slug,
+			ID:    doctorData.ID,
+			Name:  doctorData.Name,
+			Slug:  doctorData.Slug,
+			Image: doctorData.Image,
 
 			MainCityID:       doctorData.MainCityID,
 			MainSpecialityID: doctorData.MainSpecialityID,
+
+			Speciality: doctorData.Speciality,
+			City:       doctorData.City,
 		})
 	}
 

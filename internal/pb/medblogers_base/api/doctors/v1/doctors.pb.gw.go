@@ -248,14 +248,14 @@ func request_DoctorService_GetDoctor_0(ctx context.Context, marshaler runtime.Ma
 		_   = err
 	)
 
-	val, ok = pathParams["doctor_id"]
+	val, ok = pathParams["doctor_slug"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "doctor_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "doctor_slug")
 	}
 
-	protoReq.DoctorId, err = runtime.String(val)
+	protoReq.DoctorSlug, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "doctor_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "doctor_slug", err)
 	}
 
 	msg, err := client.GetDoctor(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -274,14 +274,14 @@ func local_request_DoctorService_GetDoctor_0(ctx context.Context, marshaler runt
 		_   = err
 	)
 
-	val, ok = pathParams["doctor_id"]
+	val, ok = pathParams["doctor_slug"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "doctor_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "doctor_slug")
 	}
 
-	protoReq.DoctorId, err = runtime.String(val)
+	protoReq.DoctorSlug, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "doctor_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "doctor_slug", err)
 	}
 
 	msg, err := server.GetDoctor(ctx, &protoReq)
@@ -504,7 +504,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_slug}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -744,7 +744,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctor", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_slug}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -780,7 +780,7 @@ var (
 
 	pattern_DoctorService_CreateDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "doctors", "create"}, ""))
 
-	pattern_DoctorService_GetDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "doctors", "doctor_id"}, ""))
+	pattern_DoctorService_GetDoctor_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "doctors", "doctor_slug"}, ""))
 )
 
 var (

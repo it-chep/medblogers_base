@@ -37,6 +37,7 @@ func (e *SubscribersEnricher) Enrich(ctx context.Context, doctorID doctor.Medblo
 	docDTO.TgSubsCount = subscribersInfo.TgSubsCount
 	docDTO.TgSubsCountText = subscribersInfo.TgSubsCountText
 	docDTO.TgLastUpdatedDate = subscribersInfo.TgLastUpdatedDate
+
 	docDTO.InstSubsCount = subscribersInfo.InstSubsCount
 	docDTO.InstSubsCountText = subscribersInfo.InstSubsCountText
 	docDTO.InstLastUpdatedDate = subscribersInfo.InstLastUpdatedDate
