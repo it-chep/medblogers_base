@@ -5,6 +5,7 @@ import (
 	"fmt"
 	grpcrecovery "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	seoV1 "medblogers_base/internal/app/api/seo/v1"
 	"medblogers_base/internal/app/interceptor"
 	httpV1 "medblogers_base/internal/app/router/v1"
 	"medblogers_base/internal/config"
@@ -87,6 +88,7 @@ func (a *App) initCache(_ context.Context) *App {
 
 func (a *App) initControllers(_ context.Context) *App {
 	a.controllers.doctorsController = doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)
+	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors)
 	return a
 }
 

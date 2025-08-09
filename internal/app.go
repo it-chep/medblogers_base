@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	seoV1 "medblogers_base/internal/app/api/seo/v1"
 	httpV1 "medblogers_base/internal/app/router/v1"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"net"
@@ -33,6 +34,7 @@ type router struct {
 
 type controllers struct {
 	doctorsController *doctorsV1.Implementation
+	seoController     *seoV1.Implementation
 }
 
 type Server struct {

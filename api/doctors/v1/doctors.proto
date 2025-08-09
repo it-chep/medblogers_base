@@ -85,6 +85,7 @@ service DoctorService {
   }
 }
 
+
 // ===== Настройки фильтров =====
 
 message GetSettingsRequest {}
@@ -201,8 +202,7 @@ message FilterRequest {
 message FilterResponse {
   repeated DoctorItem doctors = 1;
   int64 pages = 2;
-  int64 current_page = 3;
-  string subscribers_count = 4;
+  string subscribers_count = 3;
 
   message DoctorItem {
     int64 id = 1;

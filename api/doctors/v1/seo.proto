@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package doctor.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/seo/v1";
+
+service Seo {
+  rpc GetDoctorSeoData(GetDoctorSeoDataRequest) returns (GetDoctorSeoDataResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/seo/{doctor_slug}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение SEO информации для карточки врача"
+    };
+  }
+}
+
+message GetDoctorSeoDataRequest {
+  string doctor_slug = 1;
+}
+
+message GetDoctorSeoDataResponse {
+  string header = 1;
+  string description = 2;
+}

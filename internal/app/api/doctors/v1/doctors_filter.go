@@ -57,7 +57,6 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 
 	return &desc.FilterResponse{
 		Doctors:          doctorsResponse,
-		CurrentPage:      filterDomain.CurrentPage,
 		Pages:            filterDomain.Pages,
 		SubscribersCount: filterDomain.SubscribersCount,
 	}

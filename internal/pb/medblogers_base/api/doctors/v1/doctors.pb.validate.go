@@ -1493,8 +1493,6 @@ func (m *FilterResponse) validate(all bool) error {
 
 	// no validation rules for Pages
 
-	// no validation rules for CurrentPage
-
 	// no validation rules for SubscribersCount
 
 	if len(errors) > 0 {

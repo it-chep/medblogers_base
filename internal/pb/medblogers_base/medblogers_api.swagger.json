@@ -7,6 +7,9 @@
   "tags": [
     {
       "name": "DoctorService"
+    },
+    {
+      "name": "Seo"
     }
   ],
   "consumes": [
@@ -325,6 +328,37 @@
         ]
       }
     },
+    "/api/v1/seo/{doctorSlug}": {
+      "get": {
+        "summary": "Получение SEO информации для карточки врача",
+        "operationId": "Seo_GetDoctorSeoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDoctorSeoDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Seo"
+        ]
+      }
+    },
     "/api/v1/settings": {
       "get": {
         "summary": "Доступные фильтры",
@@ -550,10 +584,6 @@
           "type": "string",
           "format": "int64"
         },
-        "currentPage": {
-          "type": "string",
-          "format": "int64"
-        },
         "subscribersCount": {
           "type": "string"
         }
@@ -715,6 +745,17 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetDoctorSeoDataResponse": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "type": "string"
+        },
+        "description": {
           "type": "string"
         }
       }

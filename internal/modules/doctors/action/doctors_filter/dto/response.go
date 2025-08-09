@@ -25,6 +25,5 @@ type Doctor struct {
 type Response struct {
 	Doctors          []Doctor
 	Pages            int64
-	CurrentPage      int64
 	SubscribersCount string
 }

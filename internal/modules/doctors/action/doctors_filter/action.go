@@ -69,7 +69,6 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 		return dto.Response{
 			Doctors:          mappedDoctors,
-			CurrentPage:      filter.Page,
 			Pages:            pagesCount,
 			SubscribersCount: subsResponse.SubsCount,
 		}, nil
@@ -96,7 +95,6 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 	return dto.Response{
 		Doctors:          mappedDoctors,
-		CurrentPage:      filter.Page,
 		Pages:            pagesCount,
 		SubscribersCount: subsResponse.SubsCount,
 	}, nil
