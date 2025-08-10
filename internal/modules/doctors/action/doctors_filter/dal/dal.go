@@ -140,15 +140,10 @@ func (r *Repository) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids
 			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url
 		from docstar_site_doctor d
 		where d.is_active = true and d.id = any($1::bigint[])
-		order by d.name asc 
-		offset $2
-		limit $3
 	`
-
 	var doctors []dao.DoctorMiniatureDAO
-	offset := (currentPage - 1) * consts.LimitDoctorsOnPage
 
-	err := pgxscan.Select(ctx, r.db, &doctors, sql, ids, offset, consts.LimitDoctorsOnPage)
+	err := pgxscan.Select(ctx, r.db, &doctors, sql, ids)
 	if err != nil {
 		return nil, err
 	}
@@ -158,7 +153,23 @@ func (r *Repository) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids
 		result[doctor.MedblogersID(doctorDAO.ID)] = doctorDAO.ToDomain()
 	}
 
-	return result, nil
+	newRes := make(map[doctor.MedblogersID]*doctor.Doctor, consts.LimitDoctorsOnPage)
+	counter := int64(0)
+	for _, id := range ids {
+		if counter == consts.LimitDoctorsOnPage {
+			break
+		}
+
+		doc, ok := result[doctor.MedblogersID(id)]
+		if !ok {
+			continue // если доктор неактивен или его нет в базе докторов, чего не должно быть по сути
+		}
+
+		newRes[doctor.MedblogersID(id)] = doc
+		counter++
+	}
+
+	return newRes, nil
 }
 
 // sqlStmt к-ор запроса

@@ -18,6 +18,14 @@ func (i *Implementation) GetDoctor(ctx context.Context, req *desc.GetDoctorReque
 }
 
 func (i *Implementation) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) *desc.GetDoctorResponse {
+	if doctorDomain.InstSubsCount == "0" {
+		doctorDomain.InstSubsCount = ""
+	}
+
+	if doctorDomain.TgSubsCount == "0" {
+		doctorDomain.TgSubsCount = ""
+	}
+
 	return &desc.GetDoctorResponse{
 		Name: doctorDomain.Name,
 		Slug: doctorDomain.Slug,

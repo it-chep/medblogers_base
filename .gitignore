@@ -19,3 +19,6 @@
 /junit.xml
 /cover.out.tmp
 .env
+
+*.sh
+/dumps/*

@@ -25,9 +25,19 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) dto.Filter 
 		page = 1
 	}
 
+	maxSubscribers := req.MaxSubscribers
+	if maxSubscribers <= 0 {
+		maxSubscribers = 400_000
+	}
+
+	minSubscribers := req.MinSubscribers
+	if minSubscribers <= 0 {
+		minSubscribers = 100
+	}
+
 	return dto.Filter{
-		MaxSubscribers: req.MaxSubscribers,
-		MinSubscribers: req.MinSubscribers,
+		MaxSubscribers: maxSubscribers,
+		MinSubscribers: minSubscribers,
 		Page:           page,
 		Cities:         req.Cities,
 		Specialities:   req.Specialities,
@@ -39,6 +49,14 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) dto.Filter 
 func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.FilterResponse {
 	doctorsResponse := make([]*desc.FilterResponse_DoctorItem, 0, len(filterDomain.Doctors))
 	for _, item := range filterDomain.Doctors {
+		if item.InstSubsCount == "0" {
+			item.InstSubsCount = ""
+		}
+
+		if item.TgSubsCount == "0" {
+			item.TgSubsCount = ""
+		}
+
 		doctorsResponse = append(doctorsResponse, &desc.FilterResponse_DoctorItem{
 			Id:                item.ID,
 			Name:              item.Name,

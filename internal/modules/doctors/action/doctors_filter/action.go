@@ -42,7 +42,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error) {
 	logger.Message(ctx, fmt.Sprintf(
 		"[Filter] Фильтрация докторов: MaxSubs: %d, MinSubs: %d, SocialMedia: %v, Cities: %v, Specialities: %v, Page: %d, Sort: %s",
-		filter.MinSubscribers, filter.MinSubscribers, filter.SocialMedia, filter.Cities, filter.Specialities, filter.Page, filter.Sort,
+		filter.MaxSubscribers, filter.MinSubscribers, filter.SocialMedia, filter.Cities, filter.Specialities, filter.Page, filter.Sort,
 	))
 
 	// Получение по фильтрам из базы если есть
