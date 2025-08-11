@@ -752,7 +752,7 @@
     "v1GetDoctorSeoDataResponse": {
       "type": "object",
       "properties": {
-        "header": {
+        "title": {
           "type": "string"
         },
         "description": {

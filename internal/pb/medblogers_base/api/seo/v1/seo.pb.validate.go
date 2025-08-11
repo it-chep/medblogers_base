@@ -161,7 +161,7 @@ func (m *GetDoctorSeoDataResponse) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Header
+	// no validation rules for Title
 
 	// no validation rules for Description
 
