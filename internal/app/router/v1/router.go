@@ -33,7 +33,7 @@ func NewRouter(
 
 func (r *Router) setupMiddlewares() {
 	r.Router.Use(base_middleware.Recoverer)
-	r.Router.Use(middleware.CORSMiddleware(r.staticConfig))
+	//r.Router.Use(middleware.CORSMiddleware(r.staticConfig)) // todo вернуть
 	//s.router.Use(middleware.CSRFMiddleware)
 	r.Router.Use(middleware.ConfigMiddleware(r.mutableConfig))
 	r.Router.Use(middleware.LoggerMiddleware(logger.New()))
