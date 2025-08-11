@@ -2,19 +2,19 @@ package v1
 
 import (
 	"context"
+	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/validate/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	"medblogers_base/internal/pkg/logger"
 	"reflect"
-	"strings"
-
-	"github.com/samber/lo"
 
 	"github.com/go-playground/validator/v10"
 )
 
 // CreateDoctor /api/v1/doctors/create [POST]
 func (i *Implementation) CreateDoctor(ctx context.Context, req *desc.CreateDoctorRequest) (*desc.CreateDoctorResponse, error) {
+	logger.Message(ctx, "Валидация запроса создания доктора")
 	requestErrors := validateRequest(req)
 	if len(requestErrors) > 0 {
 		return &desc.CreateDoctorResponse{
@@ -109,22 +109,22 @@ func validateRequest(req *desc.CreateDoctorRequest) []create_doctor.ValidationEr
 		switch err.Tag() {
 		case "required":
 			validationError = create_doctor.ValidationError{
-				Field: strings.ToLower(field),
+				Field: field,
 				Text:  "Обязательное поле",
 			}
 		case "email":
 			validationError = create_doctor.ValidationError{
-				Field: strings.ToLower(field),
+				Field: field,
 				Text:  "Невалидный email",
 			}
 		case "max":
 			validationError = create_doctor.ValidationError{
-				Field: strings.ToLower(field),
+				Field: field,
 				Text:  "Текст нужно сократить",
 			}
 		default:
 			validationError = create_doctor.ValidationError{
-				Field: strings.ToLower(field),
+				Field: field,
 				Text:  "Неправильное значение",
 			}
 		}
