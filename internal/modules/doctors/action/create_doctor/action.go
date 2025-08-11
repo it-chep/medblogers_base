@@ -12,7 +12,6 @@ import (
 	"medblogers_base/internal/modules/doctors/client"
 	"medblogers_base/internal/modules/doctors/dal/city_dal"
 	"medblogers_base/internal/modules/doctors/dal/speciality_dal"
-	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -41,22 +40,22 @@ func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) 
 		return validationErrors, nil
 	}
 
-	createdDoctor, err := a.doctorService.CreateOrUpdate(ctx, createDTO)
+	_, err = a.doctorService.CreateOrUpdate(ctx, createDTO)
 	if err != nil {
 		logger.Error(ctx, "Ошибка при сохранении доктора в базе", err)
 		return nil, err
 	}
-
-	g := async.NewGroup()
-	g.Go(func() {
-		a.externalService.NotificatorAdmins(ctx, createdDoctor)
-	})
-
-	g.Go(func() {
-		a.externalService.SendToSubscribers(ctx, createdDoctor)
-	})
-
-	g.Wait()
+	// todo вернуть
+	//g := async.NewGroup()
+	//g.Go(func() {
+	//	a.externalService.NotificatorAdmins(ctx, createdDoctor)
+	//})
+	//
+	//g.Go(func() {
+	//	a.externalService.SendToSubscribers(ctx, createdDoctor)
+	//})
+	//
+	//g.Wait()
 
 	return []dto.ValidationError{}, nil
 }
