@@ -12,8 +12,8 @@ func New() *Service {
 	return &Service{}
 }
 
-// GetPagesCountBySubscribersFilter получение количества страниц для пагинации фильтра с подписчиками
-func (s *Service) GetPagesCountBySubscribersFilter(doctorsFromSubsCount int64) int64 {
+// GetPagesCount получение количества страниц для пагинации фильтра с подписчиками
+func (s *Service) GetPagesCount(doctorsFromSubsCount int64) int64 {
 	return s.countPages(doctorsFromSubsCount)
 }
 

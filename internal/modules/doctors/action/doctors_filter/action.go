@@ -10,9 +10,12 @@ import (
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/page"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/subscribers"
 	"medblogers_base/internal/modules/doctors/client"
+	"medblogers_base/internal/modules/doctors/dal/doctor_dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
+
+// todo как-то улучшить а то выглядит говном
 
 // Action фильтрация докторов
 type Action struct {
@@ -30,6 +33,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 			dal.NewRepository(pool),
 			clients.S3,
 			clients.Subscribers,
+			doctor_dal.NewRepository(pool),
 		),
 		pageService: page.New(),
 	}
@@ -47,43 +51,20 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 	// Получение по фильтрам из базы если есть
 	if len(filter.Cities) != 0 || len(filter.Specialities) != 0 {
-		// Получаем всех докторов без лимита, так как у нас стоят индексы и идем сокращать выборку в подписчиков
-		doctorsMap, err := a.doctorsFilter.GetDoctorsByFilter(ctx, filter)
-		if err != nil {
-			logger.Error(ctx, "[Filter] Ошибка при получении докторов", err)
-			return dto.Response{}, err
-		}
-
-		// Фильтруем и сортируем в подписчиках
-		subsResponse, err := a.subscribersFilter.FilterDoctorsBySubscribersWithDoctorsIDs(ctx, filter, lo.Keys(doctorsMap))
-		if err != nil {
-			return dto.Response{}, err
-		}
-
-		// Обогащаем данными только нужных докторов
-		a.doctorsFilter.EnrichFacade(ctx, doctorsMap, lo.Keys(subsResponse.Doctors))
-
-		// Маппим данные подписчиков и докторов
-		mappedDoctors := a.subscribersFilter.MapDoctorsWithSubscribers(doctorsMap, subsResponse.Doctors, subsResponse.OrderedIDs)
-		pagesCount := a.pageService.GetPagesCountBySubscribersFilter(subsResponse.DoctorsCount)
-
-		return dto.Response{
-			Doctors:          mappedDoctors,
-			Pages:            pagesCount,
-			SubscribersCount: subsResponse.SubsCount,
-		}, nil
+		return a.getDoctorsByCitiesAndSpecialitiesFilter(ctx, filter)
 	}
 
 	// Фильтр только по подписчикам
 	logger.Message(ctx, "[Filter] Фильтруем по подписчикам")
 	subsResponse, err := a.subscribersFilter.FilterDoctorsBySubscribers(ctx, filter)
 	if err != nil {
-		logger.Error(ctx, "[Filter] Ошибка при фильтрации докторов по подписчиками, делаем дефолт", err)
+		logger.Error(ctx, "[ERROR] Ошибка при фильтрации докторов по подписчиками, делаем фолбек", err)
+		return a.fallbackDoctorsOnlySubsFilter(ctx, filter)
 	}
 
 	doctorsMap, err := a.doctorsFilter.GetDoctorsByIDs(ctx, filter.Page, subsResponse.OrderedIDs)
 	if err != nil {
-		logger.Error(ctx, "[Filter] Ошибка при обогащении данными", err)
+		logger.Error(ctx, "[ERROR] Ошибка при обогащении данными", err)
 	}
 
 	// Обогащаем данными только нужных докторов
@@ -91,11 +72,65 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 	// Маппим данные подписчиков и докторов
 	mappedDoctors := a.subscribersFilter.MapDoctorsWithSubscribers(doctorsMap, subsResponse.Doctors, subsResponse.OrderedIDs)
-	pagesCount := a.pageService.GetPagesCountBySubscribersFilter(subsResponse.DoctorsCount) // todo учесть кейс с вкл/выкл врача
+	pagesCount := a.pageService.GetPagesCount(subsResponse.DoctorsCount)
 
 	return dto.Response{
 		Doctors:          mappedDoctors,
 		Pages:            pagesCount,
 		SubscribersCount: subsResponse.SubsCount,
+	}, nil
+}
+
+func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, filter dto.Filter) (dto.Response, error) {
+	// Получаем всех докторов без лимита, так как у нас стоят индексы и идем сокращать выборку в подписчиков
+	doctorsMap, err := a.doctorsFilter.GetDoctorsByFilter(ctx, filter)
+	if err != nil {
+		logger.Error(ctx, "[ERROR] Ошибка при получении докторов", err)
+		return dto.Response{}, err
+	}
+
+	// Фильтруем и сортируем в подписчиках
+	subsResponse, err := a.subscribersFilter.FilterDoctorsBySubscribersWithDoctorsIDs(ctx, filter, lo.Keys(doctorsMap))
+	if err != nil {
+		// фолбек
+		logger.Error(ctx, "[ERROR] Ошибка при сортировке по подписчиками, делаем фолбек", err)
+
+		trimmedDoctors := a.doctorsFilter.TrimFallbackDoctors(filter, doctorsMap)
+		a.doctorsFilter.EnrichFacade(ctx, trimmedDoctors, lo.Keys(trimmedDoctors))
+
+		pagesCount := a.pageService.GetPagesCount(int64(len(doctorsMap)))
+
+		return dto.Response{
+			Doctors: lo.Values(trimmedDoctors),
+			Pages:   pagesCount,
+		}, err
+	}
+
+	// Обогащаем данными только нужных докторов
+	a.doctorsFilter.EnrichFacade(ctx, doctorsMap, lo.Keys(subsResponse.Doctors))
+
+	// Маппим данные подписчиков и докторов
+	mappedDoctors := a.subscribersFilter.MapDoctorsWithSubscribers(doctorsMap, subsResponse.Doctors, subsResponse.OrderedIDs)
+	pagesCount := a.pageService.GetPagesCount(subsResponse.DoctorsCount)
+
+	return dto.Response{
+		Doctors:          mappedDoctors,
+		Pages:            pagesCount,
+		SubscribersCount: subsResponse.SubsCount,
+	}, nil
+}
+
+func (a Action) fallbackDoctorsOnlySubsFilter(ctx context.Context, filter dto.Filter) (dto.Response, error) {
+	doctorsMap, doctorsCount, err := a.doctorsFilter.GetDoctors(ctx, filter.Page)
+	if err != nil {
+		logger.Error(ctx, "[ERROR] Ошибка при получении докторов на фолбеке", err)
+		return dto.Response{}, err
+	}
+
+	pagesCount := a.pageService.GetPagesCount(doctorsCount)
+
+	return dto.Response{
+		Doctors: lo.Values(doctorsMap),
+		Pages:   pagesCount,
 	}, nil
 }
