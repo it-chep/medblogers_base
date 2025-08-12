@@ -83,7 +83,7 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, filter dto.Filter) (dto.Response, error) {
 	// Получаем всех докторов без лимита, так как у нас стоят индексы и идем сокращать выборку в подписчиков
-	doctorsMap, err := a.doctorsFilter.GetDoctorsByFilter(ctx, filter)
+	doctorsMap, orderedIDs, err := a.doctorsFilter.GetDoctorsByFilter(ctx, filter)
 	if err != nil {
 		logger.Error(ctx, "[ERROR] Ошибка при получении докторов", err)
 		return dto.Response{}, err
@@ -95,15 +95,15 @@ func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, fil
 		// фолбек
 		logger.Error(ctx, "[ERROR] Ошибка при сортировке по подписчиками, делаем фолбек", err)
 
-		trimmedDoctors := a.doctorsFilter.TrimFallbackDoctors(filter, doctorsMap)
-		a.doctorsFilter.EnrichFacade(ctx, trimmedDoctors, lo.Keys(trimmedDoctors))
+		a.doctorsFilter.EnrichFacade(ctx, doctorsMap, orderedIDs)
 
+		trimmedDoctors := a.doctorsFilter.TrimFallbackDoctors(filter, doctorsMap, orderedIDs)
 		pagesCount := a.pageService.GetPagesCount(int64(len(doctorsMap)))
 
 		return dto.Response{
-			Doctors: lo.Values(trimmedDoctors),
+			Doctors: trimmedDoctors,
 			Pages:   pagesCount,
-		}, err
+		}, nil
 	}
 
 	// Обогащаем данными только нужных докторов

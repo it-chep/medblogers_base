@@ -2,6 +2,7 @@ package doctor
 
 import (
 	"context"
+	"github.com/samber/lo"
 	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
@@ -14,7 +15,7 @@ import (
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage,ImageEnricher,SubscribersEnricher,AdditionalStorage
 
 type Storage interface {
-	FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error)
+	FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, []int64, error)
 	GetDoctors(ctx context.Context, currentPage int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
 	GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
 }
@@ -55,17 +56,17 @@ func New(storage Storage, additionalStorage AdditionalStorage, imageGetter Image
 }
 
 // GetDoctorsByFilter - фильтрация докторов по полям в базе
-func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (map[int64]dto.Doctor, error) {
+func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (map[int64]dto.Doctor, []int64, error) {
 	logger.Message(ctx, "[Filter][Service] Получение докторов по фильтрам")
-	doctorsMap, err := s.storage.FilterDoctors(ctx, filter)
+	doctorsMap, orderedIDs, err := s.storage.FilterDoctors(ctx, filter)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	// конвертация в DTO
 	dtoMap := s.convertToDTOMap(doctorsMap)
 
-	return dtoMap, nil
+	return dtoMap, orderedIDs, nil
 }
 
 // GetDoctors - дефолтное получение докторов без фильтров
@@ -124,29 +125,29 @@ func (s *Service) convertToDTOMap(doctorsMap map[doctor.MedblogersID]*doctor.Doc
 	return dtoMap
 }
 
-func (s *Service) TrimFallbackDoctors(filter dto.Filter, doctorsMap map[int64]dto.Doctor) map[int64]dto.Doctor {
+func (s *Service) TrimFallbackDoctors(filter dto.Filter, doctorsMap map[int64]dto.Doctor, orderedIDs []int64) []dto.Doctor {
 	if len(doctorsMap) == 0 {
-		return doctorsMap
+		return []dto.Doctor{}
 	}
 
 	offset := (filter.Page - 1) * consts.LimitDoctorsOnPage
 	limit := consts.LimitDoctorsOnPage
 
 	if offset >= int64(len(doctorsMap)) {
-		return doctorsMap
+		return []dto.Doctor{}
 	}
 
 	if offset == 0 && limit >= int64(len(doctorsMap)) {
-		return doctorsMap
+		return lo.Values(doctorsMap)
 	}
 
-	result := make(map[int64]dto.Doctor, limit)
+	result := make([]dto.Doctor, 0, limit)
 	count := int64(0)
 
 	// Итерируемся по map напрямую
-	for id, doc := range doctorsMap {
+	for _, id := range orderedIDs {
 		if count >= offset && count < offset+limit {
-			result[id] = doc
+			result = append(result, doctorsMap[id])
 		}
 		count++
 

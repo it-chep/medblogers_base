@@ -114,7 +114,7 @@ func (r *Repository) GetDoctors(ctx context.Context, currentPage int64) (map[doc
 }
 
 // FilterDoctors - **** Считаем без лимита, так как фильтрация идет по индексам и мы можем запылесосить всю базу **** //
-func (r *Repository) FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error) {
+func (r *Repository) FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, []int64, error) {
 	logger.Message(ctx, "[Repo] Селект докторов из базы по фильтрам")
 	// **** Считаем без лимита, так как фильтрация идет по индексам и мы можем запылесосить всю базу **** //
 	sql, phValues := sqlStmt(filter)
@@ -122,15 +122,17 @@ func (r *Repository) FilterDoctors(ctx context.Context, filter dto.Filter) (map[
 	var doctors []dao.DoctorMiniatureDAO
 	err := pgxscan.Select(ctx, r.db, &doctors, sql, phValues...)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	result := make(map[doctor.MedblogersID]*doctor.Doctor, len(doctors))
+	orderedIDs := make([]int64, 0, len(doctors))
 	for _, doctorDAO := range doctors {
 		result[doctor.MedblogersID(doctorDAO.ID)] = doctorDAO.ToDomain()
+		orderedIDs = append(orderedIDs, doctorDAO.ID)
 	}
 
-	return result, nil
+	return result, orderedIDs, nil
 }
 
 func (r *Repository) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[doctor.MedblogersID]*doctor.Doctor, error) {
