@@ -1,18 +1,28 @@
+# More info on config here: https://golangci-lint.run/usage/configuration/#config-file
 run:
-  # Включить параллельную проверку
-  concurrency: 4
-  # Включить проверку тестов
+  concurrency: 8
+  timeout: 10m
+  issues-exit-code: 1
   tests: true
 
 output:
-  # Формат вывода
-  formats:
-    - format: colored-line-number
-  # Показывать только новые проблемы
-  new: false
+  formats: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters-settings:
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  gosec:
+    excludes:
+      # Flags for potentially-unsafe casting of ints, similar problem to globally-disabled G103
+      - G115
 
 linters:
-  # Включенные линтеры
+  disable-all: true
   enable:
     - errcheck
     - goconst
@@ -22,51 +32,35 @@ linters:
     - ineffassign
     - revive
     - typecheck
-    - unused # will be used insted of varcheck + deadcode + structcheck. More info https://github.com/golangci/golangci-lint/issues/1841
+    - unused
     - ginkgolinter
     - depguard
     - tparallel
-    - paralleltest
-
-
-linters-settings:
-  dupl:
-    threshold: 100
-  goconst:
-    min-len:         2
-    min-occurrences: 2
-  gosec:
-    excludes:
-      # Flags for potentially-unsafe casting of ints, similar problem to globally-disabled G103
-      - G115
-  revive:
-    rules:
-      - name: dot-imports
-        arguments:
-          - allowedPackages:
-              - "github.com/onsi/ginkgo"
-              - "github.com/onsi/ginkgo/v2"
-              - "github.com/onsi/gomega"
 
 issues:
-  # Исключения
-  exclude-rules:
-    # Исключить проверку комментариев для тестов
-    - path: _test\.go
-      linters:
-        - revive
-      text: "exported.*should have comment or be unexported"
-
-    # Исключить проверку для автосгенерированных файлов
-    - path: .*\.pb\.go
-      linters:
-        - revive
-        - unused
-        - gosimple
-        - staticcheck
+  exclude-use-default: false
+  exclude:
+    # _ instead of err checks
+    - G104
+    # for "public interface + private struct implementation" cases only!
+    - exported func .* returns unexported type .*, which can be annoying to use
+    # can be removed in the development phase
+    # - (comment on exported (method|function|type|const)|should have( a package)? comment|comment should be of the form)
+    # not for the active development - can be removed in the stable phase
+    - should have a package comment
+    - don't use an underscore in package name
+    # EXC0001 errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
+    - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*print(f|ln)?|os\.(Un)?Setenv). is not checked
+    - should check returned error before deferring
+  exclude-files:
+    - \.pb\.go$
+    - \.pb\.gw\.go$
+    - \.pb\.scratch\.go$
+    - \.pb\.goclay\.go$
   exclude-dirs:
     - bin
     - vendor
     - var
     - tmp
     - .cache
+    - e2e

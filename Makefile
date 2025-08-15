@@ -53,15 +53,18 @@ migrations-e2e-up:
 # golangci-lint
 GOLANGCI_BIN := $(LOCAL_BIN)/golangci-lint
 
+.PRONY: lint
 lint:
 	$(info Running lint against changed files...)
 	$(LOCAL_BIN)/golangci-lint run \
-		--new-from-rev=origin/master \
-		--config=.golangci.yaml \
-		--sort-results \
-		--max-issues-per-linter=1000 \
-		--max-same-issues=1000 \
-		./...
+	--new-from-rev=origin/master \
+	--config=.golangci.yaml \
+	--sort-results \
+	--max-issues-per-linter=1000 \
+	--max-same-issues=1000 \
+	--verbose \
+	./...
+
 
 MIGRATION_FOLDER=./migrations
 
