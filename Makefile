@@ -16,6 +16,10 @@ deps:
 	GOBIN=$(LOCAL_BIN) go install github.com/envoyproxy/protoc-gen-validate@latest
 	GOBIN=$(LOCAL_BIN) go install github.com/onsi/ginkgo/v2/ginkgo@latest
 
+.PHONY: build
+build:
+	go build -o bin/app cmd/main.go
+
 .PHONY: infra
 infra:
 	docker-compose up -d --build --force-recreate --wait
@@ -87,8 +91,8 @@ GO_INTEGRATION_TEST_COVER_EXCLUDE:=${GO_UNIT_TEST_COVER_EXCLUDE}
 # TESTS
 # ==================================================================================== #
 
-.PHONY: .test
-.test:
+.PHONY: test
+test:
 	$(LOCAL_BIN)/gotestsum \
 		--format pkgname-and-test-fails \
 		--format-hide-empty-pkg \
@@ -97,7 +101,7 @@ GO_INTEGRATION_TEST_COVER_EXCLUDE:=${GO_UNIT_TEST_COVER_EXCLUDE}
 		-- -cover -covermode=atomic -coverprofile=$(GO_UNIT_TEST_COVER_PROFILE).tmp --race -coverpkg=$(GO_UNIT_TEST_COVER_PKG)
 
 .PHONY: test-cover
-test-cover: .test
+test-cover: test
 	grep -vE '$(GO_UNIT_TEST_COVER_EXCLUDE)' $(GO_UNIT_TEST_COVER_PROFILE).tmp > $(GO_UNIT_TEST_COVER_PROFILE)
 	rm $(GO_UNIT_TEST_COVER_PROFILE).tmp
 

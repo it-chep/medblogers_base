@@ -162,11 +162,11 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 		require.NoError(t, err, "Не должно быть ошибки")
 		require.NotNil(t, result, "Результат не должен быть nil")
 		require.Len(t, result, 1, "Должен вернуться один доктор")
-		assert.Equal(t, expectedResult[1].DoctorID, result[1].DoctorID, "ID доктора не совпадает")
-		assert.Equal(t, expectedResult[1].TgSubsCount, result[1].TgSubsCount, "Количество подписчиков TG не совпадает")
-		assert.Equal(t, expectedResult[1].TgSubsCountText, result[1].TgSubsCountText, "Текст подписчиков TG не совпадает")
-		assert.Equal(t, expectedResult[1].InstSubsCount, result[1].InstSubsCount, "Количество подписчиков Instagram не совпадает")
-		assert.Equal(t, expectedResult[1].InstSubsCountText, result[1].InstSubsCountText, "Текст подписчиков Instagram не совпадает")
+		assert.Equal(t, expectedResult[1].DoctorID, result.Doctors[1].DoctorID, "ID доктора не совпадает")
+		assert.Equal(t, expectedResult[1].TgSubsCount, result.Doctors[1].TgSubsCount, "Количество подписчиков TG не совпадает")
+		assert.Equal(t, expectedResult[1].TgSubsCountText, result.Doctors[1].TgSubsCountText, "Текст подписчиков TG не совпадает")
+		assert.Equal(t, expectedResult[1].InstSubsCount, result.Doctors[1].InstSubsCount, "Количество подписчиков Instagram не совпадает")
+		assert.Equal(t, expectedResult[1].InstSubsCountText, result.Doctors[1].InstSubsCountText, "Текст подписчиков Instagram не совпадает")
 	})
 
 	t.Run("Ошибка при получении данных", func(t *testing.T) {
