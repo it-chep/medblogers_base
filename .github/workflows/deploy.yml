@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Deploy
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Production
+    name: Deploy
     runs-on: ubuntu-latest
     environment: production
     
@@ -22,22 +22,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.24.4'
-        cache: true
-
-    - name: Build binary
-      run: |
-        go build -o bin/app cmd/main.go
-
     - name: Deploy to server
       run: |
         echo "Deploying to production..."
         
         # Подключение к серверу и выполнение команд
-        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+        sshpass -p ${{ secrets.SERVER_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
           cd /home/medblogers_base
           git pull 
           docker-compose up --build -d

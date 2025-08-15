@@ -1,4 +1,4 @@
-name: Database Migrations
+name: Migrations
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ on:
 
 jobs:
   migrations:
-    name: Run Database Migrations
+    name: Run Migrations
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     
