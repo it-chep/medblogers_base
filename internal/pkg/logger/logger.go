@@ -23,6 +23,7 @@ type Logger struct {
 func New() *Logger {
 	encoderCfg := zap.NewProductionEncoderConfig()
 	encoderCfg.TimeKey = "timestamp"
+	encoderCfg.MessageKey = "short_message"
 	encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
 
 	core := zapcore.NewCore(

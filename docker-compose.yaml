@@ -41,14 +41,16 @@ services:
 #  frontend:
 
 #  fluentbit:
-#    image: fluent/fluent-bit:2.2
+#    image: fluent/fluent-bit:2.2.0
 #    container_name: fluentbit
 #    ports:
-#      - "24224:24224"  # Исправлен порт (было 2424)
+#      - "24224:24224"
 #      - "24224:24224/udp"
-#      - "2020:2020"
 #    volumes:
-#      - ./fluentbit:/fluent-bit/etc  # Конфигурация с хоста
+#      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+#      - ./fluentbit/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+#      - ./fluentbit/parsers.conf:/fluent-bit/etc/parsers.conf
+#    restart: unless-stopped
 
 volumes:
   pg_data:
