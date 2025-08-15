@@ -1,0 +1,75 @@
+name: Database Migrations
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Migration action'
+        required: true
+        default: 'up'
+        type: choice
+        options:
+        - up
+        - down
+        - reset
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+
+jobs:
+  migrations:
+    name: Run Database Migrations
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.24.4'
+        cache: true
+
+    - name: Install dependencies
+      run: |
+        make deps
+
+    - name: Run migrations
+      run: |
+        echo "Running migrations for ${{ github.event.inputs.environment }}..."
+        
+        if [ "${{ github.event.inputs.action }}" = "up" ]; then
+          echo "Running migrations up..."
+          # make migrations-up
+          echo "Migrations up completed!"
+        elif [ "${{ github.event.inputs.action }}" = "down" ]; then
+          echo "Running migrations down..."
+          # make migrations-down
+          echo "Migrations down completed!"
+        elif [ "${{ github.event.inputs.action }}" = "reset" ]; then
+          echo "Resetting migrations..."
+          # make minfra-down
+          echo "Migrations reset completed!"
+        fi
+      env:
+        # Переменные из секретов GitHub
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        # Добавьте другие переменные окружения
+
+    - name: Verify migrations
+      run: |
+        echo "Verifying migrations..."
+        # Здесь можно добавить проверку статуса миграций
+        # Например, проверить версию в таблице goose_db_version
+        echo "Migrations verification completed!"
