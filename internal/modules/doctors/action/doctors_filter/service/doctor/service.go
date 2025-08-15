@@ -2,7 +2,6 @@ package doctor
 
 import (
 	"context"
-	"github.com/samber/lo"
 	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
@@ -10,6 +9,8 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
+
+	"github.com/samber/lo"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage,ImageEnricher,SubscribersEnricher,AdditionalStorage

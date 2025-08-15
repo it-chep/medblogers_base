@@ -5,9 +5,6 @@ package doctor
 
 import (
 	"context"
-	. "github.com/onsi/ginkgo/v2"
-	. "github.com/onsi/gomega"
-	"github.com/pkg/errors"
 	"medblogers_base/e2e/helper"
 	"medblogers_base/e2e/module/doctor/app"
 	"medblogers_base/e2e/module/doctor/fixture"
@@ -15,6 +12,10 @@ import (
 	respDTO "medblogers_base/internal/modules/doctors/action/settings/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
+
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
+	"github.com/pkg/errors"
 )
 
 var _ = Describe("Пользователь запрашивает список доступных фильтров", Label("rega", "get_all_cities"), func() {

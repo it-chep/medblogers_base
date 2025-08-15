@@ -2,9 +2,10 @@ package helper
 
 import (
 	"context"
+	"medblogers_base/internal/pkg/postgres"
+
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"medblogers_base/internal/pkg/postgres"
 )
 
 var AddCity = func(ctx context.Context, pool postgres.PoolWrapper, cityName string) int64 {

@@ -3,7 +3,6 @@ package doctors_filter
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dal"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/doctor"
@@ -13,6 +12,8 @@ import (
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/samber/lo"
 )
 
 // todo как-то улучшить а то выглядит говном

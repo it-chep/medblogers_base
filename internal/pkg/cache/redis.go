@@ -2,8 +2,9 @@ package cache
 
 import (
 	"context"
-	redis "github.com/redis/go-redis/v9"
 	"time"
+
+	redis "github.com/redis/go-redis/v9"
 )
 
 //todo сделать generic

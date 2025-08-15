@@ -2,9 +2,10 @@ package subscribers
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
+
+	"github.com/samber/lo"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . SubscribersGetter

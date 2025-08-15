@@ -2,8 +2,6 @@ package fixture
 
 import (
 	"context"
-	"github.com/golang/mock/gomock"
-	. "github.com/onsi/ginkgo/v2"
 	"medblogers_base/e2e/module/doctor/app"
 	"medblogers_base/internal/config"
 	configMock "medblogers_base/internal/config/mocks"
@@ -11,6 +9,9 @@ import (
 	pkgHttp "medblogers_base/internal/pkg/http"
 	pkgHttpMocks "medblogers_base/internal/pkg/http/mocks"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/golang/mock/gomock"
+	. "github.com/onsi/ginkgo/v2"
 )
 
 var SetupModule = func(ctx context.Context, pool postgres.PoolWrapper) *app.TestableModule {

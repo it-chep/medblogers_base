@@ -3,8 +3,6 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/georgysavva/scany/pgxscan"
-	"github.com/lib/pq"
 	consts "medblogers_base/internal/dto"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/dto"
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
@@ -12,6 +10,9 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
+
+	"github.com/georgysavva/scany/pgxscan"
+	"github.com/lib/pq"
 )
 
 type Repository struct {

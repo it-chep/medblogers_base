@@ -2,12 +2,13 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/doctors/v1/validate/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	"medblogers_base/internal/pkg/logger"
 	"reflect"
+
+	"github.com/samber/lo"
 
 	"github.com/go-playground/validator/v10"
 )

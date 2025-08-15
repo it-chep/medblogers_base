@@ -3,7 +3,6 @@ package internal
 import (
 	"context"
 	"fmt"
-	grpcrecovery "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
 	"medblogers_base/internal/app/interceptor"
@@ -18,6 +17,8 @@ import (
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 	"time"
+
+	grpcrecovery "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/jackc/pgx/v4/pgxpool"

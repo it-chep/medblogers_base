@@ -3,12 +3,13 @@ package helper
 import (
 	"context"
 	"fmt"
-	. "github.com/onsi/ginkgo/v2"
-	. "github.com/onsi/gomega"
 	"math/rand"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/postgres"
 	"time"
+
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 )
 
 var AddNewDoctor = func(ctx context.Context, pool postgres.PoolWrapper, doc *doctor.Doctor) int64 {

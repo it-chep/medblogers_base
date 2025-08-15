@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/golang/mock/gomock"
-	. "github.com/onsi/ginkgo/v2"
 	"io"
 	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
 	"medblogers_base/internal/pkg/http/mocks"
 	"net/http"
 	"strings"
+
+	"github.com/golang/mock/gomock"
+	. "github.com/onsi/ginkgo/v2"
 )
 
 // ExpectGetAllSubscribersInfo - мок для HTTP-ручки получения информации о подписчиках

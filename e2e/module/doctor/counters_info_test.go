@@ -2,13 +2,14 @@ package doctor
 
 import (
 	"context"
-	. "github.com/onsi/ginkgo/v2"
-	. "github.com/onsi/gomega"
 	"medblogers_base/e2e/helper"
 	"medblogers_base/e2e/module/doctor/app"
 	"medblogers_base/e2e/module/doctor/fixture"
 	"medblogers_base/e2e/shared_behavior"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
+
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 )
 
 var _ = Describe("Пользователь запрашивает список количество докторов и подписчиков", Label("rega", "counters_info"), func() {

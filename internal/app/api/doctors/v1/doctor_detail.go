@@ -2,9 +2,10 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	indto "medblogers_base/internal/modules/doctors/action/doctor_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+
+	"github.com/samber/lo"
 )
 
 // GetDoctor - /api/v1/doctors/{doctor_id} [GET]
