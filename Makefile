@@ -1,6 +1,6 @@
 LOCAL_BIN := $(CURDIR)/bin
 
-include ./.env
+include ./.env.example
 
 export PATH := $(PATH):$(LOCAL_BIN)
 
