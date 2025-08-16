@@ -21,7 +21,7 @@ var RuleAtLeastOneSocialMedia = func() func(_ context.Context, req *dto.CreateDo
 			req.YoutubeUsername == "" {
 			return false, dto.ValidationError{
 				Text:  "Обязательно нужно указать хотя бы 1 вашу соцсеть",
-				Field: "instagram_username",
+				Field: "instagramUsername",
 			}
 		}
 		return true, dto.ValidationError{}
@@ -34,7 +34,7 @@ var RuleValidCityID = func(citiesIDs []int64) func(_ context.Context, req *dto.C
 		if !lo.Contains(citiesIDs, req.CityID) {
 			return false, dto.ValidationError{
 				Text:  "Выбранного города не существует",
-				Field: "city_id",
+				Field: "cityId",
 			}
 		}
 
@@ -64,7 +64,7 @@ var RuleValidAdditionalCitiesIDs = func(citiesIDs []int64) func(_ context.Contex
 		if len(invalidCities) > 0 {
 			return false, dto.ValidationError{
 				Text:  "Содержатся недопустимые дополнительные города",
-				Field: "additional_cities",
+				Field: "additionalCities",
 			}
 		}
 
@@ -78,7 +78,7 @@ var RuleValidSpecialityID = func(specialitiesIDs []int64) func(ctx context.Conte
 		if !lo.Contains(specialitiesIDs, req.SpecialityID) {
 			return false, dto.ValidationError{
 				Text:  "Выбранной специальности не существует",
-				Field: "speciality_id",
+				Field: "specialityId",
 			}
 		}
 
@@ -108,7 +108,7 @@ var RuleValidSpecialitiesIDs = func(specialitiesIDs []int64) func(ctx context.Co
 		if len(invalidSpecialities) > 0 {
 			return false, dto.ValidationError{
 				Text:  "Содержатся недопустимые дополнительные специальности",
-				Field: "additional_specialities",
+				Field: "additionalSpecialities",
 			}
 		}
 
@@ -137,7 +137,7 @@ var RuleValidSiteLink = func() func(ctx context.Context, t *dto.CreateDoctorRequ
 			if strings.Contains(req.SiteLink, domain) {
 				return false, dto.ValidationError{
 					Text:  "Пожалуйста, укажите ссылку на сайт, а не на соц.сеть",
-					Field: "site_link",
+					Field: "siteLink",
 				}
 			}
 		}
@@ -145,7 +145,7 @@ var RuleValidSiteLink = func() func(ctx context.Context, t *dto.CreateDoctorRequ
 		if !strings.HasPrefix(req.SiteLink, "http") {
 			return false, dto.ValidationError{
 				Text:  "Пожалуйста, укажите ссылку на сайт, ссылка должна содержать http",
-				Field: "site_link",
+				Field: "siteLink",
 			}
 		}
 
@@ -161,7 +161,7 @@ var RuleValidBirthDate = func() func(_ context.Context, req *dto.CreateDoctorReq
 		if birthDateStr == "" {
 			return false, dto.ValidationError{
 				Text:  "Дата рождения обязательна",
-				Field: "birth_date",
+				Field: "birthDate",
 			}
 		}
 
@@ -169,7 +169,7 @@ var RuleValidBirthDate = func() func(_ context.Context, req *dto.CreateDoctorReq
 		if !dateRegex.MatchString(birthDateStr) {
 			return false, dto.ValidationError{
 				Text:  "Неверный формат даты. ожидается ДД.ММ.ГГГГ",
-				Field: "birth_date",
+				Field: "birthDate",
 			}
 		}
 
@@ -177,7 +177,7 @@ var RuleValidBirthDate = func() func(_ context.Context, req *dto.CreateDoctorReq
 		if err != nil {
 			return false, dto.ValidationError{
 				Text:  "Некорректная дата рождения",
-				Field: "birth_date",
+				Field: "birthDate",
 			}
 		}
 
@@ -187,7 +187,7 @@ var RuleValidBirthDate = func() func(_ context.Context, req *dto.CreateDoctorReq
 		if birthDate.After(today) {
 			return false, dto.ValidationError{
 				Text:  "Дата рождения не может быть в будущем",
-				Field: "birth_date",
+				Field: "birthDate",
 			}
 		}
 
@@ -195,7 +195,7 @@ var RuleValidBirthDate = func() func(_ context.Context, req *dto.CreateDoctorReq
 		if birthDate.Before(maxAgeDate) {
 			return false, dto.ValidationError{
 				Text:  "Дата рождения не должна быть старше 120 лет",
-				Field: "birth_date",
+				Field: "birthDate",
 			}
 		}
 		req.BirthDateTime = birthDate
