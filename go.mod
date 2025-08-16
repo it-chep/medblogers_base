@@ -39,6 +39,7 @@ require (
 	cloud.google.com/go/auth v0.9.5 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.4 // indirect
 	cloud.google.com/go/compute/metadata v0.5.2 // indirect
+	github.com/Graylog2/go-gelf v0.0.0-20170811154226-7ebf4f536d8f // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.5 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.14 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.18 // indirect

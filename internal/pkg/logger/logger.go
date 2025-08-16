@@ -2,6 +2,10 @@ package logger
 
 import (
 	"context"
+	"fmt"
+	"github.com/Graylog2/go-gelf/gelf"
+	"github.com/joho/godotenv"
+	"log"
 	"os"
 
 	"go.uber.org/zap"
@@ -19,22 +23,54 @@ type Logger struct {
 	zap *zap.Logger
 }
 
+// todo доделать sidecar fluentbit
+
 // New ...
 func New() *Logger {
-	encoderCfg := zap.NewProductionEncoderConfig()
-	encoderCfg.TimeKey = "timestamp"
-	encoderCfg.MessageKey = "short_message"
-	encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	logHost := os.Getenv("LOG_HOST")
+	logPort := os.Getenv("LOG_PORT")
+
+	gelfWriter, err := gelf.NewWriter(fmt.Sprintf("%s:%s", logHost, logPort))
+	if err != nil {
+		panic(fmt.Sprintf("Ошибка создания логера GRAYLOG: %v", err))
+	}
+
+	encoderCfg := zapcore.EncoderConfig{
+		TimeKey:        "timestamp",
+		LevelKey:       "level",
+		NameKey:        "logger",
+		CallerKey:      "caller",
+		FunctionKey:    zapcore.OmitKey,
+		MessageKey:     "short_message",
+		StacktraceKey:  "stacktrace",
+		LineEnding:     zapcore.DefaultLineEnding,
+		EncodeLevel:    zapcore.LowercaseLevelEncoder,
+		EncodeTime:     zapcore.ISO8601TimeEncoder,
+		EncodeDuration: zapcore.StringDurationEncoder,
+		EncodeCaller:   zapcore.ShortCallerEncoder,
+	}
 
 	core := zapcore.NewCore(
 		zapcore.NewJSONEncoder(encoderCfg),
-		zapcore.AddSync(os.Stdout),
+		zapcore.NewMultiWriteSyncer(
+			zapcore.AddSync(os.Stdout),
+			zapcore.AddSync(gelfWriter),
+		),
 		zapcore.DebugLevel,
 	)
 
-	return &Logger{
-		zap: zap.New(core),
-	}
+	logger := zap.New(core,
+		zap.AddCaller(),
+		zap.AddStacktrace(zapcore.ErrorLevel),
+	).With(
+		zap.String("app", "medblogers_base"),
+	)
+
+	return &Logger{zap: logger}
 }
 
 // ContextWithLogger прокинуть логер в контекст

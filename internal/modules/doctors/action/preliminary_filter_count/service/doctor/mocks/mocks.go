@@ -7,7 +7,6 @@ package mocks
 import (
 	context "context"
 	dto "medblogers_base/internal/modules/doctors/action/preliminary_filter_count/dto"
-	doctor "medblogers_base/internal/modules/doctors/domain/doctor"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
@@ -36,17 +35,32 @@ func (m *MockStorage) EXPECT() *MockStorageMockRecorder {
 	return m.recorder
 }
 
-// FilterDoctors mocks base method.
-func (m *MockStorage) FilterDoctors(arg0 context.Context, arg1 dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, error) {
+// CountByFilterAndIDs mocks base method.
+func (m *MockStorage) CountByFilterAndIDs(arg0 context.Context, arg1 dto.Filter, arg2 []int64) (int64, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "FilterDoctors", arg0, arg1)
-	ret0, _ := ret[0].(map[doctor.MedblogersID]*doctor.Doctor)
+	ret := m.ctrl.Call(m, "CountByFilterAndIDs", arg0, arg1, arg2)
+	ret0, _ := ret[0].(int64)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// FilterDoctors indicates an expected call of FilterDoctors.
-func (mr *MockStorageMockRecorder) FilterDoctors(arg0, arg1 interface{}) *gomock.Call {
+// CountByFilterAndIDs indicates an expected call of CountByFilterAndIDs.
+func (mr *MockStorageMockRecorder) CountByFilterAndIDs(arg0, arg1, arg2 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FilterDoctors", reflect.TypeOf((*MockStorage)(nil).FilterDoctors), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CountByFilterAndIDs", reflect.TypeOf((*MockStorage)(nil).CountByFilterAndIDs), arg0, arg1, arg2)
+}
+
+// CountFilterDoctors mocks base method.
+func (m *MockStorage) CountFilterDoctors(arg0 context.Context, arg1 dto.Filter) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CountFilterDoctors", arg0, arg1)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CountFilterDoctors indicates an expected call of CountFilterDoctors.
+func (mr *MockStorageMockRecorder) CountFilterDoctors(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CountFilterDoctors", reflect.TypeOf((*MockStorage)(nil).CountFilterDoctors), arg0, arg1)
 }
