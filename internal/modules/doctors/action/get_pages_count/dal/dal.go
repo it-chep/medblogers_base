@@ -47,13 +47,7 @@ func (r *Repository) FilterDoctors(ctx context.Context, filter dto.Filter) ([]in
 func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 	defaultSql := `
 	select
-		d.id,
-		d.name,
-		d.slug,
-		d.inst_url,
-		d.city_id,
-		d.speciallity_id,
-		d.tg_channel_url
+		d.id
 	from
     	docstar_site_doctor d
 	where 
@@ -93,7 +87,6 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 	return fmt.Sprintf(`
 		%s
 		%s
-		group by d.id, d.name
-        order by d.name asc
+		group by d.id
     `, defaultSql, whereStmtBuilder.String()), phValues
 }
