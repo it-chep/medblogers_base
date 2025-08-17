@@ -218,6 +218,77 @@
         ]
       }
     },
+    "/api/v1/pages_count": {
+      "get": {
+        "summary": "Получение страниц страниц для фильтрации",
+        "operationId": "DoctorService_GetPagesCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PagesCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "maxSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "minSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "socialMedia",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/preliminary_filter_count": {
       "get": {
         "summary": "Предрасчет докторов попадающих под фильтр",
@@ -580,10 +651,6 @@
             "$ref": "#/definitions/v1FilterResponseDoctorItem"
           }
         },
-        "pages": {
-          "type": "string",
-          "format": "int64"
-        },
         "subscribersCount": {
           "type": "string"
         }
@@ -816,6 +883,15 @@
           "type": "string"
         },
         "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1PagesCountResponse": {
+      "type": "object",
+      "properties": {
+        "pagesCount": {
           "type": "string",
           "format": "int64"
         }

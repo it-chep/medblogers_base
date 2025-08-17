@@ -34,25 +34,19 @@ type AdditionalStorage interface {
 	GetDoctorAdditionalSpecialities(ctx context.Context, medblogersIDs []int64) (map[int64][]*speciality.Speciality, error)
 }
 
-type CommonDal interface {
-	GetDoctorsCount(ctx context.Context) (int64, error)
-}
-
 type Service struct {
 	storage           Storage
 	additionalStorage AdditionalStorage
 	imageGetter       ImageEnricher
 	subscribersGetter SubscribersEnricher
-	commonDal         CommonDal
 }
 
-func New(storage Storage, additionalStorage AdditionalStorage, imageGetter ImageEnricher, subscribersGetter SubscribersEnricher, commonDal CommonDal) *Service {
+func New(storage Storage, additionalStorage AdditionalStorage, imageGetter ImageEnricher, subscribersGetter SubscribersEnricher) *Service {
 	return &Service{
 		storage:           storage,
 		additionalStorage: additionalStorage,
 		imageGetter:       imageGetter,
 		subscribersGetter: subscribersGetter,
-		commonDal:         commonDal,
 	}
 }
 
@@ -71,21 +65,16 @@ func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (ma
 }
 
 // GetDoctors - дефолтное получение докторов без фильтров
-func (s *Service) GetDoctors(ctx context.Context, currentPage int64) ([]dto.Doctor, int64, error) {
+func (s *Service) GetDoctors(ctx context.Context, currentPage int64) ([]dto.Doctor, error) {
 	logger.Message(ctx, "[Filter][Service] Дефолтное получение докторов")
 	// Получаем докторов
 	doctorsMap, orderedIDs, err := s.storage.GetDoctors(ctx, currentPage)
 	if err != nil {
-		return nil, 0, err
+		return nil, err
 	}
 
 	// конвертация в DTO
 	dtoMap := s.convertToDTOMap(doctorsMap)
-
-	doctorsCount, err := s.commonDal.GetDoctorsCount(ctx)
-	if err != nil {
-		return lo.Values(dtoMap), 0, err
-	}
 
 	// обогащение необходимыми сущностями
 	s.enrichWithSubscribersFacade(ctx, dtoMap)
@@ -97,7 +86,7 @@ func (s *Service) GetDoctors(ctx context.Context, currentPage int64) ([]dto.Doct
 		result = append(result, dtoMap[id])
 	}
 
-	return result, doctorsCount, nil
+	return result, nil
 }
 
 // GetDoctorsByIDs - получение докторов по переданным IDs

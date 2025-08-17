@@ -34,6 +34,14 @@ service DoctorService {
       summary: "Предрасчет докторов попадающих под фильтр"
     };
   }
+  rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/pages_count"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение страниц страниц для фильтрации"
+    };
+  }
   rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
     option (google.api.http) = {
       get: "/api/v1/cities_list"
@@ -201,7 +209,6 @@ message FilterRequest {
 
 message FilterResponse {
   repeated DoctorItem doctors = 1;
-  int64 pages = 2;
   string subscribers_count = 3;
 
   message DoctorItem {
@@ -324,4 +331,16 @@ message PreliminaryFilterCountRequest{
 
 message PreliminaryFilterCountResponse{
   int64 doctors_count = 1;
+}
+
+message PagesCountRequest {
+  int64 max_subscribers = 1;
+  int64 min_subscribers = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+}
+
+message PagesCountResponse {
+  int64 pages_count = 1;
 }

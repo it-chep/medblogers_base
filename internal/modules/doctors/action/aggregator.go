@@ -8,6 +8,7 @@ import (
 	"medblogers_base/internal/modules/doctors/action/doctors_filter"
 	"medblogers_base/internal/modules/doctors/action/get_all_cities"
 	"medblogers_base/internal/modules/doctors/action/get_all_specialities"
+	"medblogers_base/internal/modules/doctors/action/get_pages_count"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count"
 	"medblogers_base/internal/modules/doctors/action/search_doctor"
 	"medblogers_base/internal/modules/doctors/action/settings"
@@ -26,6 +27,7 @@ type Aggregator struct {
 	AllCities              *get_all_cities.Action
 	AllSpecialities        *get_all_specialities.Action
 	PreliminaryFilterCount *preliminary_filter_count.Action
+	GetPagesCount          *get_pages_count.Action
 }
 
 // NewAggregator конструктор
@@ -40,5 +42,6 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 		AllCities:              get_all_cities.New(pool),
 		AllSpecialities:        get_all_specialities.New(pool),
 		PreliminaryFilterCount: preliminary_filter_count.New(clients, pool),
+		GetPagesCount:          get_pages_count.New(clients, pool),
 	}
 }

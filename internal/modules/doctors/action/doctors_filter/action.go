@@ -6,10 +6,8 @@ import (
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dal"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/doctor"
-	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/page"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/service/subscribers"
 	"medblogers_base/internal/modules/doctors/client"
-	"medblogers_base/internal/modules/doctors/dal/doctor_dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 
@@ -22,7 +20,6 @@ import (
 type Action struct {
 	subscribersFilter *subscribers.Service
 	doctorsFilter     *doctor.Service
-	pageService       *page.Service
 }
 
 // New .
@@ -34,9 +31,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 			dal.NewRepository(pool),
 			clients.S3,
 			clients.Subscribers,
-			doctor_dal.NewRepository(pool),
 		),
-		pageService: page.New(),
 	}
 }
 
@@ -73,11 +68,9 @@ func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error)
 
 	// Маппим данные подписчиков и докторов
 	mappedDoctors := a.subscribersFilter.MapDoctorsWithSubscribers(doctorsMap, subsResponse.Doctors, subsResponse.OrderedIDs)
-	pagesCount := a.pageService.GetPagesCount(subsResponse.DoctorsCount)
 
 	return dto.Response{
 		Doctors:          mappedDoctors,
-		Pages:            pagesCount,
 		SubscribersCount: subsResponse.SubsCount,
 	}, nil
 }
@@ -99,11 +92,9 @@ func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, fil
 		a.doctorsFilter.EnrichFacade(ctx, doctorsMap, orderedIDs)
 
 		trimmedDoctors := a.doctorsFilter.TrimFallbackDoctors(filter, doctorsMap, orderedIDs)
-		pagesCount := a.pageService.GetPagesCount(int64(len(doctorsMap)))
 
 		return dto.Response{
 			Doctors: trimmedDoctors,
-			Pages:   pagesCount,
 		}, nil
 	}
 
@@ -112,26 +103,21 @@ func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, fil
 
 	// Маппим данные подписчиков и докторов
 	mappedDoctors := a.subscribersFilter.MapDoctorsWithSubscribers(doctorsMap, subsResponse.Doctors, subsResponse.OrderedIDs)
-	pagesCount := a.pageService.GetPagesCount(subsResponse.DoctorsCount)
 
 	return dto.Response{
 		Doctors:          mappedDoctors,
-		Pages:            pagesCount,
 		SubscribersCount: subsResponse.SubsCount,
 	}, nil
 }
 
 func (a Action) fallbackDoctorsOnlySubsFilter(ctx context.Context, filter dto.Filter) (dto.Response, error) {
-	doctors, doctorsCount, err := a.doctorsFilter.GetDoctors(ctx, filter.Page)
+	doctors, err := a.doctorsFilter.GetDoctors(ctx, filter.Page)
 	if err != nil {
 		logger.Error(ctx, "[ERROR] Ошибка при получении докторов на фолбеке", err)
 		return dto.Response{}, err
 	}
 
-	pagesCount := a.pageService.GetPagesCount(doctorsCount)
-
 	return dto.Response{
 		Doctors: doctors,
-		Pages:   pagesCount,
 	}, nil
 }

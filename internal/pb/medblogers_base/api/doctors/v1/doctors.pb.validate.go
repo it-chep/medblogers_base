@@ -1491,8 +1491,6 @@ func (m *FilterResponse) validate(all bool) error {
 
 	}
 
-	// no validation rules for Pages
-
 	// no validation rules for SubscribersCount
 
 	if len(errors) > 0 {
@@ -2670,6 +2668,216 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = PreliminaryFilterCountResponseValidationError{}
+
+// Validate checks the field values on PagesCountRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *PagesCountRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on PagesCountRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// PagesCountRequestMultiError, or nil if none found.
+func (m *PagesCountRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *PagesCountRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for MaxSubscribers
+
+	// no validation rules for MinSubscribers
+
+	if len(errors) > 0 {
+		return PagesCountRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// PagesCountRequestMultiError is an error wrapping multiple validation errors
+// returned by PagesCountRequest.ValidateAll() if the designated constraints
+// aren't met.
+type PagesCountRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m PagesCountRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m PagesCountRequestMultiError) AllErrors() []error { return m }
+
+// PagesCountRequestValidationError is the validation error returned by
+// PagesCountRequest.Validate if the designated constraints aren't met.
+type PagesCountRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e PagesCountRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e PagesCountRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e PagesCountRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e PagesCountRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e PagesCountRequestValidationError) ErrorName() string {
+	return "PagesCountRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e PagesCountRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sPagesCountRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = PagesCountRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = PagesCountRequestValidationError{}
+
+// Validate checks the field values on PagesCountResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *PagesCountResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on PagesCountResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// PagesCountResponseMultiError, or nil if none found.
+func (m *PagesCountResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *PagesCountResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for PagesCount
+
+	if len(errors) > 0 {
+		return PagesCountResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// PagesCountResponseMultiError is an error wrapping multiple validation errors
+// returned by PagesCountResponse.ValidateAll() if the designated constraints
+// aren't met.
+type PagesCountResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m PagesCountResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m PagesCountResponseMultiError) AllErrors() []error { return m }
+
+// PagesCountResponseValidationError is the validation error returned by
+// PagesCountResponse.Validate if the designated constraints aren't met.
+type PagesCountResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e PagesCountResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e PagesCountResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e PagesCountResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e PagesCountResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e PagesCountResponseValidationError) ErrorName() string {
+	return "PagesCountResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e PagesCountResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sPagesCountResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = PagesCountResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = PagesCountResponseValidationError{}
 
 // Validate checks the field values on GetSettingsResponse_FilterItem with the
 // rules defined in the proto definition for this message. If any rules are

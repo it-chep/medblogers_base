@@ -189,7 +189,7 @@ func (g *Gateway) GetDoctorsByFilterWithIDs(ctx context.Context, request indto.G
 	endpointURL := &url.URL{
 		Scheme: defaultScheme,
 		Host:   g.host,
-		Path:   fmt.Sprintf("/doctors/filters/"),
+		Path:   fmt.Sprintf("/doctors/filter/"),
 	}
 
 	var socials []string

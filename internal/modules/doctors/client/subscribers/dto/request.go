@@ -17,14 +17,14 @@ type UpdateDoctorRequest struct {
 }
 
 type DoctorsFilterWithIDsRequest struct {
-	SocialMedia []string `json:"social_media"`
+	SocialMedia []string `json:"social_media,omitempty"`
 
-	MaxSubscribers int64 `json:"max_subscribers"`
-	MinSubscribers int64 `json:"min_subscribers"`
+	MaxSubscribers int64 `json:"max_subscribers,omitempty"`
+	MinSubscribers int64 `json:"min_subscribers,omitempty"`
 
-	Limit       int64  `json:"limit"`
-	CurrentPage int64  `json:"current_page"`
-	Sort        string `json:"sort"`
+	Limit       int64  `json:"limit,omitempty"`
+	CurrentPage int64  `json:"current_page,omitempty"`
+	Sort        string `json:"sort,omitempty"`
 
-	DoctorIDs []int64 `json:"doctor_ids"`
+	DoctorIDs []int64 `json:"doctor_ids,omitempty"`
 }
