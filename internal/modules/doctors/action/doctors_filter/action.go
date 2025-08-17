@@ -122,7 +122,7 @@ func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, fil
 }
 
 func (a Action) fallbackDoctorsOnlySubsFilter(ctx context.Context, filter dto.Filter) (dto.Response, error) {
-	doctorsMap, doctorsCount, err := a.doctorsFilter.GetDoctors(ctx, filter.Page)
+	doctors, doctorsCount, err := a.doctorsFilter.GetDoctors(ctx, filter.Page)
 	if err != nil {
 		logger.Error(ctx, "[ERROR] Ошибка при получении докторов на фолбеке", err)
 		return dto.Response{}, err
@@ -131,7 +131,7 @@ func (a Action) fallbackDoctorsOnlySubsFilter(ctx context.Context, filter dto.Fi
 	pagesCount := a.pageService.GetPagesCount(doctorsCount)
 
 	return dto.Response{
-		Doctors: lo.Values(doctorsMap),
+		Doctors: doctors,
 		Pages:   pagesCount,
 	}, nil
 }

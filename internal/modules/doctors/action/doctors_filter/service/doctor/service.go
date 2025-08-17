@@ -17,7 +17,7 @@ import (
 
 type Storage interface {
 	FilterDoctors(ctx context.Context, filter dto.Filter) (map[doctor.MedblogersID]*doctor.Doctor, []int64, error)
-	GetDoctors(ctx context.Context, currentPage int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
+	GetDoctors(ctx context.Context, currentPage int64) (map[doctor.MedblogersID]*doctor.Doctor, []int64, error)
 	GetDoctorsByIDs(ctx context.Context, currentPage int64, ids []int64) (map[doctor.MedblogersID]*doctor.Doctor, error)
 }
 
@@ -71,10 +71,10 @@ func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (ma
 }
 
 // GetDoctors - дефолтное получение докторов без фильтров
-func (s *Service) GetDoctors(ctx context.Context, currentPage int64) (map[int64]dto.Doctor, int64, error) {
+func (s *Service) GetDoctors(ctx context.Context, currentPage int64) ([]dto.Doctor, int64, error) {
 	logger.Message(ctx, "[Filter][Service] Дефолтное получение докторов")
 	// Получаем докторов
-	doctorsMap, err := s.storage.GetDoctors(ctx, currentPage)
+	doctorsMap, orderedIDs, err := s.storage.GetDoctors(ctx, currentPage)
 	if err != nil {
 		return nil, 0, err
 	}
@@ -84,13 +84,20 @@ func (s *Service) GetDoctors(ctx context.Context, currentPage int64) (map[int64]
 
 	doctorsCount, err := s.commonDal.GetDoctorsCount(ctx)
 	if err != nil {
-		return dtoMap, 0, err
+		return lo.Values(dtoMap), 0, err
 	}
 
 	// обогащение необходимыми сущностями
 	s.enrichWithSubscribersFacade(ctx, dtoMap)
 
-	return dtoMap, doctorsCount, nil
+	// Делаем правильный порядок докторов
+	result := make([]dto.Doctor, 0, len(dtoMap))
+	// Итерируемся по map напрямую
+	for _, id := range orderedIDs {
+		result = append(result, dtoMap[id])
+	}
+
+	return result, doctorsCount, nil
 }
 
 // GetDoctorsByIDs - получение докторов по переданным IDs

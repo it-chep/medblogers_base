@@ -75,7 +75,7 @@ func (s *Service) GetSettings(ctx context.Context) (_ *dto.Settings, err error) 
 	g.Go(func() {
 		gEnabledFilters, gErr := s.subscribersGetter.GetFilterInfo(ctx)
 		if gErr != nil {
-			logger.Error(ctx, "[Settings] Ошибка при получении специальностей", err)
+			logger.Error(ctx, "[Settings] Ошибка при доступных соц.сетей", err)
 		}
 		enabledFilters = gEnabledFilters
 	})
