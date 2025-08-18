@@ -91,37 +91,41 @@ func NewGateway(bucketName string, client S3Client, presignClient S3PresignClien
 	}
 }
 
+// todo закрыть это место кешом, чтобы не было постоянных проходок
+
 // GetUserPhotos получение фотографий врачей из Yandex Object Storage
 func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) {
 	logger.Message(ctx, "[S3] Получение фотографий пользователей из Yandex Storage")
 
-	// Получаем список объектов
-	resp, err := g.client.ListObjectsV2(ctx, &s3.ListObjectsV2Input{
+	filesMap := make(map[string]string)
+	paginator := s3.NewListObjectsV2Paginator(g.client, &s3.ListObjectsV2Input{
 		Bucket: aws.String(g.bucketName),
 		Prefix: aws.String("images/user_"),
 	})
-	if err != nil {
-		return nil, fmt.Errorf("failed to list objects: %w", err)
-	}
 
-	// Обрабатываем результаты
-	filesMap := make(map[string]string)
-	for _, object := range resp.Contents {
-		key := aws.ToString(object.Key)
-		if key == "" {
-			continue
+	// Обрабатываем все страницы результатов
+	for paginator.HasMorePages() {
+		resp, err := paginator.NextPage(ctx)
+		if err != nil {
+			return nil, fmt.Errorf("failed to list objects: %w", err)
 		}
 
-		// Извлекаем slug из имени файла
-		parts := strings.Split(key, "_")
-		if len(parts) < 2 {
-			continue
-		}
-		slug := parts[1]
+		// Обрабатываем объекты на текущей странице
+		for _, object := range resp.Contents {
+			key := aws.ToString(object.Key)
+			if key == "" {
+				continue
+			}
 
-		// Формируем публичный URL
-		filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s",
-			g.bucketName, key)
+			parts := strings.Split(key, "_")
+			if len(parts) < 2 {
+				continue
+			}
+			slug := parts[1]
+
+			filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s",
+				g.bucketName, key)
+		}
 	}
 
 	return filesMap, nil
