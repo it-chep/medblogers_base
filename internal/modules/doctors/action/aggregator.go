@@ -9,6 +9,7 @@ import (
 	"medblogers_base/internal/modules/doctors/action/get_all_cities"
 	"medblogers_base/internal/modules/doctors/action/get_all_specialities"
 	"medblogers_base/internal/modules/doctors/action/get_pages_count"
+	"medblogers_base/internal/modules/doctors/action/get_seo_detail"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count"
 	"medblogers_base/internal/modules/doctors/action/search_doctor"
 	"medblogers_base/internal/modules/doctors/action/settings"
@@ -18,6 +19,7 @@ import (
 
 // Aggregator собирает все процессы модуля в одно целое
 type Aggregator struct {
+	// Doctors
 	CreateDoctor           *create_doctor.Action
 	CounterInfo            *counters_info.Action
 	DoctorDetail           *doctor_detail.Action
@@ -28,11 +30,15 @@ type Aggregator struct {
 	AllSpecialities        *get_all_specialities.Action
 	PreliminaryFilterCount *preliminary_filter_count.Action
 	GetPagesCount          *get_pages_count.Action
+
+	// Seo
+	GetSeoDetail *get_seo_detail.Action
 }
 
 // NewAggregator конструктор
 func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config config.AppConfig) *Aggregator {
 	return &Aggregator{
+		// Doctors
 		CreateDoctor:           create_doctor.New(clients, pool, config),
 		CounterInfo:            counters_info.New(clients, pool),
 		DoctorDetail:           doctor_detail.New(clients, pool),
@@ -43,5 +49,8 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 		AllSpecialities:        get_all_specialities.New(pool),
 		PreliminaryFilterCount: preliminary_filter_count.New(clients, pool),
 		GetPagesCount:          get_pages_count.New(clients, pool),
+
+		// Seo
+		GetSeoDetail: get_seo_detail.NewAction(pool),
 	}
 }

@@ -10,7 +10,8 @@ import (
 	"medblogers_base/internal/config"
 	moduleadmin "medblogers_base/internal/modules/admin"
 	moduledoctors "medblogers_base/internal/modules/doctors"
-	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/logger"
@@ -111,7 +112,8 @@ func (a *App) initServer(_ context.Context) *App {
 			interceptor.ResponseTimeInterceptor,
 		),
 	)
-	desc.RegisterDoctorServiceServer(grpcServer, a.controllers.doctorsController)
+	descDoctorsV1.RegisterDoctorServiceServer(grpcServer, a.controllers.doctorsController)
+	descSeoV1.RegisterSeoServer(grpcServer, a.controllers.seoController)
 	reflection.Register(grpcServer)
 
 	a.server = &Server{

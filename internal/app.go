@@ -14,7 +14,9 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	"medblogers_base/internal/config"
-	v1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
+
 	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
@@ -93,7 +95,12 @@ func (a *App) Run(ctx context.Context) {
 	}
 
 	httpProxyOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-	err = v1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
+	err = descDoctorsV1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
+	if err != nil {
+		fmt.Printf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err)
+		return
+	}
+	err = descSeoV1.RegisterSeoHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
 	if err != nil {
 		fmt.Printf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err)
 		return
