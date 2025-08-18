@@ -33,7 +33,7 @@ func NewService(cityStorage CityStorage, specialityStorage SpecialityStorage) *S
 	}
 }
 
-func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
+func (s *Service) ValidateDoctor(ctx context.Context, createDTO *dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
 	citiesIDs, err := s.getCitiesIDs(ctx)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func (s *Service) ValidateDoctor(ctx context.Context, createDTO dto.CreateDoctor
 		And(rules.RuleValidBirthDate())
 
 	domainErrors := make([]dto.ValidationError, 0)
-	for _, validationError := range specification.Validate(ctx, &createDTO) {
+	for _, validationError := range specification.Validate(ctx, createDTO) {
 		var errV dto.ValidationError
 		ok := errors.As(validationError, &errV)
 		if ok {

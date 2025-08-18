@@ -3,6 +3,7 @@ package dto
 // Абстракция над HTTP
 
 type CreateDoctorRequest struct {
+	DoctorID int64 `json:"doctor_id"`
 	// username telegram
 	Telegram string `json:"telegram"`
 	// username telegram

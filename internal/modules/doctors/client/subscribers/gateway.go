@@ -409,7 +409,8 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 		Path:   "/doctors/create/",
 	}
 
-	body, err := json.Marshal(dto.UpdateDoctorRequest{
+	body, err := json.Marshal(dto.CreateDoctorRequest{
+		DoctorID:  int64(medblogersID),
 		Telegram:  request.Telegram,
 		Instagram: request.Instagram,
 	})

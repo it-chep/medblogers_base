@@ -10,8 +10,8 @@ type CreateDoctorRequest struct {
 
 	AgreePolicy bool `json:"agreePolicy" validate:"required"`
 
-	CityID       int64 `json:"cityId" validate:"required"`
-	SpecialityID int64 `json:"specialityId" validate:"required"`
+	CityID       int64 `json:"cityID" validate:"required"`
+	SpecialityID int64 `json:"specialityID" validate:"required"`
 }
 
 type ValidationError struct {

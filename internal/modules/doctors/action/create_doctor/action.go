@@ -35,7 +35,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper, config config.Ap
 func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
 	logger.Message(ctx, fmt.Sprintf("[Create] Создание доктора. Фамилия: %s", createDTO.LastName))
 
-	validationErrors, err := a.validationService.ValidateDoctor(ctx, createDTO)
+	validationErrors, err := a.validationService.ValidateDoctor(ctx, &createDTO)
 	if len(validationErrors) > 0 {
 		return validationErrors, nil
 	}
