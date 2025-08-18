@@ -104,6 +104,9 @@ message GetSettingsResponse {
   repeated SpecialityItem specialities = 3;
   bool new_doctor_banner = 4;
 
+  int64 min_subscribers = 5;
+  int64 max_subscribers = 6;
+
   message FilterItem {
     string name = 1;
     string slug = 2;

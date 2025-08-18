@@ -42,5 +42,7 @@ func (i *Implementation) newSettingsResponse(settingsDomain *indto.Settings) *de
 				DoctorsCount: specialityItem.DoctorsCount,
 			}
 		}),
+		MinSubscribers: 100,     // todo вынести в конфиг
+		MaxSubscribers: 400_000, // todo вынести в конфиг
 	}
 }

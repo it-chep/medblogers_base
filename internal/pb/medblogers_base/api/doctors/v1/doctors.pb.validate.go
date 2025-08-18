@@ -263,6 +263,10 @@ func (m *GetSettingsResponse) validate(all bool) error {
 
 	// no validation rules for NewDoctorBanner
 
+	// no validation rules for MinSubscribers
+
+	// no validation rules for MaxSubscribers
+
 	if len(errors) > 0 {
 		return GetSettingsResponseMultiError(errors)
 	}

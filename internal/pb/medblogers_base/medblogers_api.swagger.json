@@ -853,6 +853,14 @@
         },
         "newDoctorBanner": {
           "type": "boolean"
+        },
+        "minSubscribers": {
+          "type": "string",
+          "format": "int64"
+        },
+        "maxSubscribers": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
