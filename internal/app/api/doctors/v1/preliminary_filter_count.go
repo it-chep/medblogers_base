@@ -21,9 +21,19 @@ func (i *Implementation) GetPreliminaryFilterCount(ctx context.Context, req *des
 }
 
 func (i *Implementation) requestToPreliminaryFilterDTO(req *desc.PreliminaryFilterCountRequest) dto.Filter {
+	maxSubscribers := req.MaxSubscribers
+	if maxSubscribers <= 0 {
+		maxSubscribers = 400_000
+	}
+
+	minSubscribers := req.MinSubscribers
+	if minSubscribers <= 0 {
+		minSubscribers = 100
+	}
+
 	return dto.Filter{
-		MaxSubscribers: req.MaxSubscribers,
-		MinSubscribers: req.MinSubscribers,
+		MaxSubscribers: maxSubscribers,
+		MinSubscribers: minSubscribers,
 		Page:           req.Page,
 		Cities:         req.Cities,
 		Specialities:   req.Specialities,
