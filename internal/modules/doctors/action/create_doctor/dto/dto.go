@@ -31,8 +31,9 @@ type CreateDoctorRequest struct {
 	TelegramChannel   string
 	TikTokURL         string
 
-	MainBlogTheme string
-	SiteLink      string
+	MainBlogTheme        string
+	MarketingPreferences string
+	SiteLink             string
 
 	AdditionalCities      []int64
 	AdditionalSpecialties []int64

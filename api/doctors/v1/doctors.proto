@@ -260,6 +260,8 @@ message CreateDoctorRequest {
 
   repeated int64 additional_cities = 17 [(validate.rules).repeated.unique = true];
   repeated int64 additional_specialties = 18 [(validate.rules).repeated.unique = true];
+
+  string marketing_preferences = 19  [(validate.rules).string.max_len = 300];
 }
 
 message CreateDoctorResponse {

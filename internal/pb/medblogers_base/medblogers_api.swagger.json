@@ -626,6 +626,9 @@
             "type": "string",
             "format": "int64"
           }
+        },
+        "marketingPreferences": {
+          "type": "string"
         }
       }
     },

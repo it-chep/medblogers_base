@@ -62,6 +62,7 @@ func (i *Implementation) requestToCreateDoctorDTO(req *desc.CreateDoctorRequest)
 		MainBlogTheme:         req.MainBlogTheme,
 		SiteLink:              req.SiteLink,
 		AgreePolicy:           req.AgreePolicy,
+		MarketingPreferences:  req.MarketingPreferences,
 	}
 }
 

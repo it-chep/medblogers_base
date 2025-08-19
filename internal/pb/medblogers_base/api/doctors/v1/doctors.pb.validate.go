@@ -1827,6 +1827,17 @@ func (m *CreateDoctorRequest) validate(all bool) error {
 		// no validation rules for AdditionalSpecialties[idx]
 	}
 
+	if utf8.RuneCountInString(m.GetMarketingPreferences()) > 300 {
+		err := CreateDoctorRequestValidationError{
+			field:  "MarketingPreferences",
+			reason: "value length must be at most 300 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return CreateDoctorRequestMultiError(errors)
 	}

@@ -23,9 +23,9 @@ func (r *Repository) CreateDoctor(ctx context.Context, createDTO dto.CreateDocto
 		insert into docstar_site_doctor (
 		                                 name, slug, email, inst_url, vk_url, dzen_url, tg_url, 
 		                                 main_blog_theme, prodoctorov, city_id, speciallity_id, youtube_url, 
-		                                 is_active, date_created, birth_date, tg_channel_url, tiktok_url
+		                                 is_active, date_created, birth_date, tg_channel_url, tiktok_url, marketing_preferences
 		                                 )
-		values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, false, now(), $13, $14, $15)
+		values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, false, now(), $13, $14, $15, $16)
 		on conflict (name, email) do update set 
 			slug = excluded.slug,
 			inst_url = excluded.inst_url,
@@ -39,7 +39,8 @@ func (r *Repository) CreateDoctor(ctx context.Context, createDTO dto.CreateDocto
 			youtube_url = excluded.youtube_url,
 			birth_date = excluded.birth_date,
 			tg_channel_url = excluded.tg_channel_url,
-			tiktok_url = excluded.tiktok_url
+			tiktok_url = excluded.tiktok_url,
+			marketing_preferences = excluded.marketing_preferences
 		returning id
 	`
 
@@ -59,6 +60,7 @@ func (r *Repository) CreateDoctor(ctx context.Context, createDTO dto.CreateDocto
 		createDTO.BirthDateTime,
 		createDTO.TelegramChannel,
 		createDTO.TikTokURL,
+		createDTO.MarketingPreferences,
 	}
 
 	var doctorID int64
