@@ -76,7 +76,7 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 		where c.name ilike $1                   
 		group by c.id, c.name
 		having count(distinct doctor_id) != 0
-		order by c.name
+		order by doctors_count desc
 		limit $2;
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
@@ -109,7 +109,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 		where s.name ilike $1                   
 		group by s.id, s.name
 		having count(distinct doctor_id) != 0
-		order by s.name
+		order by doctors_count desc 
 		limit $2;
 	`
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
