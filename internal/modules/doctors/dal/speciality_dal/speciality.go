@@ -28,28 +28,19 @@ func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*spe
 	logger.Message(ctx, "[DAL] Запрос специальностей")
 
 	sql := `
-		select s.id as id,
-			   s.name as name,
-			   COUNT(distinct d.id) as doctors_count
-		from docstar_site_speciallity s
-		left join (
-			-- Основные города докторов
-			select d.id, d.speciallity_id 
-			from docstar_site_doctor d
-			where is_active = true and speciallity_id is not null
-			
-			union 
-			
-			-- Дополнительные города
-			select dc.speciallity_id, dc.doctor_id
-							from docstar_site_doctor_additional_specialties dc
-									 join docstar_site_doctor d on dc.doctor_id = d.id
-							where d.is_active = true
-		) as combined on s.id = combined.speciallity_id
-		left join docstar_site_doctor d ON d.id = combined.id
-		group by s.id, s.name
-		having count(distinct d.id) > 0
-		order by s.name
+	with active_doctors_in_specialities as (select ds.speciallity_id,
+												   ds.doctor_id
+											from docstar_site_doctor_additional_specialties ds
+													 join docstar_site_doctor d on ds.doctor_id = d.id
+											where d.is_active = true)
+	select s.id                         as id,
+		   s.name                       as name,
+		   count(distinct ad.doctor_id) as doctors_count
+	from docstar_site_speciallity s
+			 left join active_doctors_in_specialities ad on s.id = ad.speciallity_id
+	group by s.id, s.name
+	having count(distinct ad.doctor_id) > 0
+	order by s.name
 	`
 
 	var specialitiesDAO []specialityDAO.SpecialityDAOWithDoctorsCount

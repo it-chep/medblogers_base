@@ -2,7 +2,6 @@ package subscribers
 
 import (
 	"context"
-	"fmt"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count/dto"
 
 	"github.com/samber/lo"
@@ -62,22 +61,5 @@ func (s *Service) FilterDoctorsBySubscribersWithDoctorsIDs(ctx context.Context, 
 		return 0, err
 	}
 
-	uniqueIDs := difference(doctorsIDs, response.OrderedIDs)
-	fmt.Println(uniqueIDs)
 	return response.DoctorsCount, nil
-}
-
-func difference(a, b []int64) []int64 {
-	set := make(map[int64]struct{}, len(b))
-	for _, x := range b {
-		set[x] = struct{}{}
-	}
-
-	var diff []int64
-	for _, x := range a {
-		if _, found := set[x]; !found {
-			diff = append(diff, x)
-		}
-	}
-	return diff
 }
