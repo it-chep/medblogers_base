@@ -1,10 +1,7 @@
 package middleware
 
 import (
-	"fmt"
-	"medblogers_base/internal/pkg/logger"
 	"net/http"
-	"time"
 )
 
 // ResponseTimeMiddleware логирует время выполнения запроса и статус ответа
