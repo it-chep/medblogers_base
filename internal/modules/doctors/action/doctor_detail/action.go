@@ -79,7 +79,7 @@ func (a Action) Do(ctx context.Context, slug string) (*dto.DoctorDTO, error) {
 	g.Go(func() {
 		image, err := a.imagesEnricher.Enrich(ctx, doc.GetS3Key())
 		if err != nil {
-			// todo дефолт при заглушку
+			image = "https://storage.yandexcloud.net/medblogers-photos/images/zag.png"
 			logger.Error(ctx, "Ошибка при получении дополнительных специальностей", err)
 		}
 		docDTO.Image = image
