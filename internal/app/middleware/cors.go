@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"net/http"
+	"net/url"
 )
 
 type CorsConfig interface {
@@ -16,26 +17,20 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			//origin := r.Header.Get("Origin")
-			//
-			//if origin != "" {
-			//	if u, err := url.Parse(origin); err == nil {
-			//		host := u.Host
-			//
-			//		if _, exists := allowedHosts[host]; exists {
-			//			w.Header().Set("Access-Control-Allow-Origin", origin)
-			//			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
-			//			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
-			//			w.Header().Set("Access-Control-Allow-Credentials", "true")
-			//		}
-			//	}
-			//}
 			origin := r.Header.Get("Origin")
 
-			w.Header().Set("Access-Control-Allow-Origin", origin)
-			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
-			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
-			w.Header().Set("Access-Control-Allow-Credentials", "true")
+			if origin != "" {
+				if u, err := url.Parse(origin); err == nil {
+					host := u.Host
+
+					if _, exists := allowedHosts[host]; exists {
+						w.Header().Set("Access-Control-Allow-Origin", origin)
+						w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
+						w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+						w.Header().Set("Access-Control-Allow-Credentials", "true")
+					}
+				}
+			}
 
 			if r.Method == "OPTIONS" {
 				w.WriteHeader(http.StatusNoContent)
