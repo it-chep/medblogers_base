@@ -84,7 +84,7 @@ func (a Action) getDoctorsByCitiesAndSpecialitiesFilter(ctx context.Context, fil
 	}
 
 	// Фильтруем и сортируем в подписчиках
-	subsResponse, err := a.subscribersFilter.FilterDoctorsBySubscribersWithDoctorsIDs(ctx, filter, lo.Keys(doctorsMap))
+	subsResponse, err := a.subscribersFilter.FilterDoctorsBySubscribersWithDoctorsIDs(ctx, filter, orderedIDs)
 	if err != nil {
 		// фолбек
 		logger.Error(ctx, "[ERROR] Ошибка при сортировке по подписчиками, делаем фолбек", err)

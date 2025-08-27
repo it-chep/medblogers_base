@@ -222,18 +222,6 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 		phCounter++
 	}
 
-	if filter.Page > 1 {
-		// делаем -1 тк вторая страница должна отразить после 30 * 1 врачей
-		offset := (filter.Page - 1) * consts.LimitDoctorsOnPage
-		return fmt.Sprintf(`
-			%s
-			%s
-			group by d.id, d.name
-			order by d.name asc
-			offset %d
-    	`, defaultSql, whereStmtBuilder.String(), offset), phValues
-	}
-
 	// возвращаем для первой страницы
 	return fmt.Sprintf(`
 		%s
