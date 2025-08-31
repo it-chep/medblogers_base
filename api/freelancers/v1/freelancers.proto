@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+package freelancers.v1;
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/freelancers/v1";
+
+
+// Сервис для работы с фрилансерами
+service FreelancerService {
+  rpc GetFreelancers(GetFreelancersRequest) returns (GetFreelancersResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers"
+    };
+  }
+  rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/settings"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Доступные фильтры"
+    };
+  }
+  rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/counters_info"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение информации по счетчикам (количество фрилансеров в базе)"
+    };
+  }
+  rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/preliminary_filter_count"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Предрасчет фрилансеров попадающих под фильтр"
+    };
+  }
+  rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/pages_count"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение страниц страниц для фильтрации"
+    };
+  }
+  rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/cities_list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение городов для регистрации"
+    };
+  }
+  rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/specialities_list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение специальностей для регистрации"
+    };
+  }
+  rpc Search(SearchRequest) returns (SearchResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Поиск фрилансера, города, специальности по переданным значениям"
+    };
+  }
+  rpc Filter(FilterRequest) returns (FilterResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/filter"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Фильтрация фрилансеров по доступным фильтрам"
+    };
+  }
+  rpc CreateDoctor(CreateFreelancersRequest) returns (CreateFreelancersResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/freelancers/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Регистрация фрилансера"
+    };
+  }
+  rpc GetFreelancer(GetFreelancerRequest) returns (GetFreelancerResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/{freelancer_slug}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение детальной информации про фрилансера"
+    };
+  }
+}
+
+message GetFreelancersRequest {
+
+}
+message GetFreelancersResponse {
+
+}
+message  GetSettingsRequest {
+
+}
+message  GetSettingsResponse {
+
+}
+message  GetCountersRequest {
+
+}
+message  GetCountersResponse {
+
+}
+message  PreliminaryFilterCountRequest {
+
+}
+message  PreliminaryFilterCountResponse {
+
+}
+message  PagesCountRequest {
+
+}
+message  PagesCountResponse {
+
+}
+message  GetCitiesRequest {
+
+}
+message CitiesResponse {
+
+}
+message GetSpecialitiesRequest {
+
+}
+message SpecialitiesResponse {
+
+}
+message SearchRequest {
+
+}
+message SearchResponse {
+
+}
+message FilterRequest {
+
+}
+message FilterResponse {
+
+}
+message CreateFreelancersRequest {
+
+}
+message CreateFreelancersResponse {
+
+}
+message GetFreelancerRequest {
+  string freelancer_slug = 1;
+}
+message GetFreelancerResponse {
+
+}

@@ -1,0 +1,1 @@
+package freelancer_detail
