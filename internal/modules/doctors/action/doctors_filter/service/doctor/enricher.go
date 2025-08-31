@@ -116,13 +116,18 @@ func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor
 			}
 		}
 
+		counter := 0
 		// Добавляем остальные города через запятую
 		for _, c := range cities {
+			if counter == 2 {
+				break
+			}
 			if int64(c.ID()) != doctor.MainCityID {
 				if builder.Len() > 0 {
 					builder.WriteString(", ")
 				}
 				builder.WriteString(c.Name())
+				counter++
 			}
 		}
 
@@ -154,13 +159,18 @@ func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.
 			}
 		}
 
+		counter := 0
 		// Добавляем остальные специальности через запятую
 		for _, spec := range specialities {
+			if counter == 2 {
+				break
+			}
 			if int64(spec.ID()) != doctor.MainSpecialityID {
 				if builder.Len() > 0 {
 					builder.WriteString(", ")
 				}
 				builder.WriteString(spec.Name())
+				counter++
 			}
 		}
 
