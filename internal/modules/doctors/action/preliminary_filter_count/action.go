@@ -31,6 +31,10 @@ func (a *Action) Do(ctx context.Context, filter dto.Filter) (int64, error) {
 		filter.MinSubscribers, filter.MinSubscribers, filter.SocialMedia, filter.Cities, filter.Specialities, filter.Page,
 	))
 
+	if a.defaultFilter(filter) {
+		return a.fallbackDoctorsOnlySubsFilter(ctx)
+	}
+
 	// Получение по фильтрам из базы если есть
 	if len(filter.Cities) != 0 || len(filter.Specialities) != 0 {
 		return a.getDoctorsByCitiesAndSpecialitiesFilter(ctx, filter)
@@ -75,4 +79,16 @@ func (a *Action) fallbackDoctorsOnlySubsFilter(ctx context.Context) (int64, erro
 	}
 
 	return doctorsCount, nil
+}
+
+func (a *Action) defaultFilter(filter dto.Filter) bool {
+	if len(filter.Cities) == 0 &&
+		len(filter.Specialities) == 0 &&
+		len(filter.SocialMedia) == 0 &&
+		filter.MaxSubscribers == 400_000 &&
+		filter.MinSubscribers == 100 {
+
+		return true
+	}
+	return false
 }
