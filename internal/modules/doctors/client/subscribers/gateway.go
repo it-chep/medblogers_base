@@ -426,7 +426,7 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 
 	resp, err := g.client.Do(req)
 	if err != nil {
-		return int64(resp.StatusCode), err
+		return 0, err
 	}
 
 	return int64(resp.StatusCode), nil

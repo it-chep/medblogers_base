@@ -51,7 +51,9 @@ func (s *Service) ValidateDoctor(ctx context.Context, createDTO *dto.CreateDocto
 		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs)).
 		And(rules.RuleAtLeastOneSocialMedia()).
 		And(rules.RuleValidSiteLink()).
-		And(rules.RuleValidBirthDate())
+		And(rules.RuleValidBirthDate()).
+		And(rules.RuleValidInstagramLink()).
+		And(rules.RuleValidTgChannelLink())
 
 	domainErrors := make([]dto.ValidationError, 0)
 	for _, validationError := range specification.Validate(ctx, createDTO) {

@@ -6,6 +6,8 @@ import (
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/logger"
+	"regexp"
+	"strings"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Config,NotificationClient,SubscribersClient
@@ -41,12 +43,66 @@ func (s *Service) NotificatorAdmins(ctx context.Context, createDTO dto.CreateDoc
 }
 
 func (s *Service) SendToSubscribers(ctx context.Context, createDTO dto.CreateDoctorRequest) {
+	tgLink := validateTGChannelURL(createDTO.TelegramChannel)
+	instagramLink := validateInstagramURL(createDTO.InstagramUsername)
+
 	_, err := s.subscribersClient.CreateDoctor(ctx, createDTO.ID, indto.CreateDoctorRequest{
-		Telegram:  createDTO.TelegramChannel,
-		Instagram: createDTO.InstagramUsername,
+		Telegram:  tgLink,
+		Instagram: instagramLink,
 	})
+
 	if err != nil {
 		logger.Error(ctx, "[Create] Ошибка при создании врача в subscribers", err)
 		return
 	}
+}
+
+func validateTGChannelURL(url string) string {
+	if url == "" {
+		return ""
+	}
+
+	// Если это ссылка на супергруппу/канал с +
+	if strings.Contains(url, "https://t.me/+") {
+		return url
+	}
+
+	patterns := []string{
+		`https?://t\.me/([a-zA-Z0-9_]+)`, // https://t.me/username
+		`t\.me/([a-zA-Z0-9_]+)`,          // t.me/username
+		`@?([a-zA-Z0-9_]+)`,              // @username или username
+	}
+
+	for _, pattern := range patterns {
+		re := regexp.MustCompile(pattern)
+		matches := re.FindStringSubmatch(strings.TrimSpace(url))
+		if len(matches) > 1 {
+			return matches[1]
+		}
+	}
+
+	return strings.TrimSpace(url)
+}
+
+func validateInstagramURL(url string) string {
+	if url == "" {
+		return ""
+	}
+
+	patterns := []string{
+		`https?://(?:www\.)?instagram\.com/([a-zA-Z0-9_.]+)/?`, // https://instagram.com/username/
+		`(?:www\.)?instagram\.com/([a-zA-Z0-9_.]+)/?`,          //  instagram.com/username
+		`@?([a-zA-Z0-9_.]+)`,                                   // @username или username
+		`([a-zA-Z0-9_.]+)`,                                     // username как последний fallback
+	}
+
+	for _, pattern := range patterns {
+		re := regexp.MustCompile(pattern)
+		matches := re.FindStringSubmatch(strings.TrimSpace(url))
+		if len(matches) > 1 {
+			return matches[1]
+		}
+	}
+
+	return strings.TrimSpace(url)
 }
