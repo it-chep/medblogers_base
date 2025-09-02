@@ -35,6 +35,14 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper, config config.Ap
 
 func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
 	logger.Message(ctx, fmt.Sprintf("[Create] Создание доктора. Фамилия: %s", createDTO.LastName))
+	logger.Message(ctx, fmt.Sprintf(
+		"[Create] Поля: CityID=%d, SpecialityID=%d, Email=%s, LastName=%s, FirstName=%s, MiddleName=%s, BirthDateString=%s, InstagramUsername=%s, VKUsername=%s, TelegramUsername=%s, DzenUsername=%s, YoutubeUsername=%s, TelegramChannel=%s, TikTokURL=%s, MainBlogTheme=%s, MarketingPreferences=%s, SiteLink=%s, AdditionalCities=%v, AdditionalSpecialties=%v",
+		createDTO.CityID, createDTO.SpecialityID, createDTO.Email, createDTO.LastName, createDTO.FirstName,
+		createDTO.MiddleName, createDTO.BirthDateString, createDTO.InstagramUsername, createDTO.VKUsername,
+		createDTO.TelegramUsername, createDTO.DzenUsername, createDTO.YoutubeUsername, createDTO.TelegramChannel,
+		createDTO.TikTokURL, createDTO.MainBlogTheme, createDTO.MarketingPreferences, createDTO.SiteLink,
+		createDTO.AdditionalCities, createDTO.AdditionalSpecialties,
+	))
 
 	validationErrors, err := a.validationService.ValidateDoctor(ctx, &createDTO)
 	if len(validationErrors) > 0 {

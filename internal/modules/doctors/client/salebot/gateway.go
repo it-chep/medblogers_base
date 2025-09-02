@@ -68,4 +68,7 @@ func (g *Gateway) NotificatorCreateDoctor(ctx context.Context, createDTO indto.C
 	if resp != nil && resp.StatusCode == http.StatusOK {
 		logger.Message(ctx, "[Notificator] Уведомление успешно отправлено")
 	}
+	if resp != nil && resp.StatusCode != http.StatusOK {
+		logger.Message(ctx, "[Notificator] Ошибка при отправке уведомления")
+	}
 }

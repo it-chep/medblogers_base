@@ -3,13 +3,14 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/georgysavva/scany/pgxscan"
-	"github.com/lib/pq"
 	"medblogers_base/internal/modules/doctors/action/get_pages_count/dto"
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
+
+	"github.com/georgysavva/scany/pgxscan"
+	"github.com/lib/pq"
 )
 
 type Repository struct {

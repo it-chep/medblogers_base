@@ -3,12 +3,14 @@ package validate
 import (
 	"context"
 	"errors"
+	"fmt"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/service/validate/rules"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/spec"
+	"strings"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage
@@ -56,6 +58,7 @@ func (s *Service) ValidateDoctor(ctx context.Context, createDTO *dto.CreateDocto
 		And(rules.RuleValidTgChannelLink())
 
 	domainErrors := make([]dto.ValidationError, 0)
+	sb := strings.Builder{}
 	for _, validationError := range specification.Validate(ctx, createDTO) {
 		var errV dto.ValidationError
 		ok := errors.As(validationError, &errV)
@@ -64,9 +67,13 @@ func (s *Service) ValidateDoctor(ctx context.Context, createDTO *dto.CreateDocto
 				Field: errV.Field,
 				Text:  errV.Text,
 			})
+			sb.WriteString(errV.Text)
 			continue
 		}
-		return nil, err
+		return nil, nil
+	}
+	if len(domainErrors) > 0 {
+		logger.Message(ctx, fmt.Sprintf("Ошибки валидации: %s", sb.String()))
 	}
 
 	return domainErrors, nil
