@@ -220,7 +220,7 @@ message SearchResponse {
     // Опыт работы с врачами
     bool experience_with_doctors = 7;
     // Ценовая категория
-    string price_category = 8;
+    int64 price_category = 8;
     repeated SocialNetworkItem social_networks = 9;
 
     message SocialNetworkItem {
@@ -268,7 +268,7 @@ message FilterResponse {
     // Опыт работы с врачами
     bool experience_with_doctors = 6;
     // Ценовая категория
-    string price_category = 7;
+    int64 price_category = 7;
     // Соцсети
     repeated SocialNetworkItem social_networks = 8;
 
@@ -333,7 +333,7 @@ message GetFreelancerResponse {
   // Опыт работы с врачами
   bool experience_with_doctors = 4;
   // Ценовая категория
-  string price_category = 5;
+  int64 price_category = 5;
   // Портфолио
   string portfolio_link = 6;
   // Фотка

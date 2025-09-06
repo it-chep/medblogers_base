@@ -31,6 +31,21 @@ create table if not exists freelancer_city_m2m
     freelancer_id bigint
 );
 
+-- Справочник Социальные сети
+create table if not exists social_networks
+(
+    id   bigserial,
+    name varchar(30) -- название соцсети
+);
+
+-- Социальные сети фрилансера
+create table if not exists freelancer_social_networks_m2m
+(
+    id                bigserial,
+    social_network_id bigint,
+    freelancer_id     bigint
+);
+
 -- Прайс-лист фрилансера
 create table if not exists freelancers_price_list
 (
@@ -51,9 +66,9 @@ create table if not exists freelancer
     is_worked_with_doctors bool,         -- есть ли опыт работы с врачами
     tg_username            varchar(255), -- ссылка на личный тг для связи
     portfolio_link         varchar(255), -- ссылка на портфолио
-    where_work             int[],        -- соцсети в которых работает фрилансер
     speciality_id          bigint,       -- id основной специальности фрилансера
-    city_id                bigint        -- id основного города фрилансера
+    city_id                bigint,       -- id основного города фрилансера
+    price_category         int           -- ценовая категория фрилансера, определяется на основе прайс-листа или руками
 );
 -- +goose StatementEnd
 
@@ -65,4 +80,6 @@ drop table if exists freelancers_city;
 drop table if exists freelancer_city_m2m;
 drop table if exists freelancers_price_list;
 drop table if exists freelancer;
+drop table if exists social_networks;
+drop table if exists freelancer_social_networks_m2m;
 -- +goose StatementEnd

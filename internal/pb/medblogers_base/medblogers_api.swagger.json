@@ -1724,6 +1724,7 @@
         },
         "priceCategory": {
           "type": "string",
+          "format": "int64",
           "title": "Ценовая категория"
         },
         "socialNetworks": {
@@ -1884,6 +1885,7 @@
         },
         "priceCategory": {
           "type": "string",
+          "format": "int64",
           "title": "Ценовая категория"
         },
         "portfolioLink": {
@@ -2037,6 +2039,7 @@
         },
         "priceCategory": {
           "type": "string",
+          "format": "int64",
           "title": "Ценовая категория"
         },
         "socialNetworks": {
