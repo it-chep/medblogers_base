@@ -99,69 +99,274 @@ service FreelancerService {
   }
 }
 
-message GetFreelancersRequest {
+message GetFreelancersRequest {}
+message GetFreelancersResponse {}
 
-}
-message GetFreelancersResponse {
 
-}
-message  GetSettingsRequest {
+// ===== Настройки фильтров =====
 
-}
+message  GetSettingsRequest {}
+
 message  GetSettingsResponse {
+  repeated SocietyItem societies = 1;
+  repeated CityItem cities = 2;
+  repeated SpecialityItem specialities = 3;
+  repeated PriceCategoryItem price_categories = 4;
 
-}
-message  GetCountersRequest {
+  message SocietyItem {
+    int64 id = 1;
+    string name = 2;
+  }
 
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
+
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
+
+  message PriceCategoryItem {
+    int64 id = 1;
+    string name = 2;
+  }
 }
+
+// ===== Счетчики фрилансеров =====
+
+message  GetCountersRequest {}
 message  GetCountersResponse {
-
+  int64 freelancers_count = 1;
 }
+
+// ===== Предрасчет фрилансеров попадающих под фильтр =====
+
 message  PreliminaryFilterCountRequest {
+  repeated int64 societies = 1;
+  repeated int64 price_category = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+  bool experience_with_doctors = 6;
 
+  int64 page = 7;
 }
+
 message  PreliminaryFilterCountResponse {
-
+  int64 freelancers_count = 1;
 }
+
+// ===== Предрасчет количества страниц =====
+
 message  PagesCountRequest {
-
+  repeated int64 societies = 1;
+  repeated int64 price_category = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+  bool experience_with_doctors = 6;
 }
+
 message  PagesCountResponse {
-
+  int64 pages_count = 1;
 }
-message  GetCitiesRequest {
 
-}
+// ===== Получение городов для регистрации =====
+
+message  GetCitiesRequest {}
 message CitiesResponse {
+  repeated CityItem cities = 1;
 
+  message CityItem {
+    int64 city_id = 1;
+    string city_name = 2;
+  }
 }
-message GetSpecialitiesRequest {
 
-}
+// ===== Получение специальностей для регистрации =====
+
+message GetSpecialitiesRequest {}
+
 message SpecialitiesResponse {
+  repeated SpecialityItem specialities = 1;
 
+  message SpecialityItem {
+    int64 speciality_id = 1;
+    string speciality_name = 2;
+  }
 }
-message SearchRequest {
 
+// ===== Получение специальностей для регистрации =====
+
+message SearchRequest {
+  string query = 1;
 }
 message SearchResponse {
+  repeated FreelancerItem freelancers = 1;
+  repeated CityItem cities = 2;
+  repeated SpecialityItem specialities = 3;
 
+  message FreelancerItem {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
+    string city_name = 4;
+    string speciality_name = 5;
+    string image = 6;
+    // Опыт работы с врачами
+    bool experience_with_doctors = 7;
+    // Ценовая категория
+    string price_category = 8;
+    repeated SocialNetworkItem social_networks = 9;
+
+    message SocialNetworkItem {
+      int64 id = 1;
+      string name = 2;
+    }
+  }
+
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
+
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
 }
-message FilterRequest {
 
+// ===== Фильтрация специалистов =====
+
+message FilterRequest {
+  repeated int64 societies = 1;
+  repeated int64 price_category = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+  bool experience_with_doctors = 6;
+
+  int64 page = 7;
 }
 message FilterResponse {
+  repeated FreelancerItem freelancers = 1;
 
+  message FreelancerItem {
+    string name = 1;
+    string slug = 2;
+
+    string speciality = 3;
+    string city = 4;
+
+    string image = 5;
+    // Опыт работы с врачами
+    bool experience_with_doctors = 6;
+    // Ценовая категория
+    string price_category = 7;
+    // Соцсети
+    repeated SocialNetworkItem social_networks = 8;
+
+    message SocialNetworkItem {
+      int64 id = 1;
+      string name = 2;
+    }
+  }
 }
+
+// ===== Создание Фрилансера =====
+
 message CreateFreelancersRequest {
+  string email = 1 [(validate.rules).string = {email: true, max_len: 255}];
+  string last_name = 2 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string first_name = 3 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string middle_name = 4 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string telegram_username = 5 [(validate.rules).string = {min_len: 1, max_len: 100}];
 
+  bool agree_policy = 6 [(validate.rules).bool.const = true];
+  bool experience_with_doctors = 7 [(validate.rules).bool.const = true];
+
+  int64 city_id = 8 [(validate.rules).int64.gt = 0];
+  int64 speciality_id = 9 [(validate.rules).int64.gt = 0];
+
+  repeated int64 additional_cities = 10 [(validate.rules).repeated.unique = true];
+  repeated int64 additional_specialties = 11 [(validate.rules).repeated.unique = true];
+  repeated int64 social_networks = 12 [(validate.rules).repeated.unique = true];
+  string portfolio_link = 13 [(validate.rules).string.max_len = 255];
+
+  // Прайс-лист
+  repeated PriceListItem price_list = 14;
+
+  message PriceListItem {
+    // Название услуги
+    string name = 1;
+    // Стоимость услуги
+    int64 amount = 2;
+  }
 }
+
 message CreateFreelancersResponse {
+  repeated ValidationError errors = 1;
 
+  message ValidationError {
+    string field = 1;
+    string text = 2;
+  }
 }
+
+// ===== Получение детальной информации по фрилансеру =====
+
 message GetFreelancerRequest {
   string freelancer_slug = 1;
 }
 message GetFreelancerResponse {
+  string name = 1;
+  string slug = 2;
 
+  // Связаться
+  string tg_url = 3;
+  // Опыт работы с врачами
+  bool experience_with_doctors = 4;
+  // Ценовая категория
+  string price_category = 5;
+  // Портфолио
+  string portfolio_link = 6;
+  // Фотка
+  string image = 7;
+  // Города и специализации
+  repeated CityItem cities = 8;
+  repeated SpecialityItem specialities = 9;
+  CityItem main_city = 10;
+  SpecialityItem main_speciality = 11;
+  // Соцсети
+  repeated SocialNetworkItem social_networks = 12;
+  // Прайс-лист
+  repeated PriceListItem price_list = 13;
+
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+  }
+
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+  }
+
+  message SocialNetworkItem {
+    int64 id = 1;
+    string name = 2;
+  }
+
+  message PriceListItem {
+    // Название услуги
+    string name = 1;
+    // Стоимость услуги
+    string amount = 2;
+  }
 }

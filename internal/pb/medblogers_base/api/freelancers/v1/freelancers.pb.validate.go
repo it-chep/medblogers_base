@@ -363,6 +363,142 @@ func (m *GetSettingsResponse) validate(all bool) error {
 
 	var errors []error
 
+	for idx, item := range m.GetSocieties() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("Societies[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("Societies[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetSettingsResponseValidationError{
+					field:  fmt.Sprintf("Societies[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetCities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetSettingsResponseValidationError{
+					field:  fmt.Sprintf("Cities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetSpecialities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetSettingsResponseValidationError{
+					field:  fmt.Sprintf("Specialities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetPriceCategories() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("PriceCategories[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetSettingsResponseValidationError{
+						field:  fmt.Sprintf("PriceCategories[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetSettingsResponseValidationError{
+					field:  fmt.Sprintf("PriceCategories[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return GetSettingsResponseMultiError(errors)
 	}
@@ -567,6 +703,8 @@ func (m *GetCountersResponse) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for FreelancersCount
+
 	if len(errors) > 0 {
 		return GetCountersResponseMultiError(errors)
 	}
@@ -668,6 +806,10 @@ func (m *PreliminaryFilterCountRequest) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for ExperienceWithDoctors
+
+	// no validation rules for Page
 
 	if len(errors) > 0 {
 		return PreliminaryFilterCountRequestMultiError(errors)
@@ -772,6 +914,8 @@ func (m *PreliminaryFilterCountResponse) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for FreelancersCount
+
 	if len(errors) > 0 {
 		return PreliminaryFilterCountResponseMultiError(errors)
 	}
@@ -875,6 +1019,8 @@ func (m *PagesCountRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for ExperienceWithDoctors
+
 	if len(errors) > 0 {
 		return PagesCountRequestMultiError(errors)
 	}
@@ -976,6 +1122,8 @@ func (m *PagesCountResponse) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for PagesCount
 
 	if len(errors) > 0 {
 		return PagesCountResponseMultiError(errors)
@@ -1179,6 +1327,40 @@ func (m *CitiesResponse) validate(all bool) error {
 
 	var errors []error
 
+	for idx, item := range m.GetCities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CitiesResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CitiesResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CitiesResponseValidationError{
+					field:  fmt.Sprintf("Cities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return CitiesResponseMultiError(errors)
 	}
@@ -1381,6 +1563,40 @@ func (m *SpecialitiesResponse) validate(all bool) error {
 
 	var errors []error
 
+	for idx, item := range m.GetSpecialities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, SpecialitiesResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, SpecialitiesResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return SpecialitiesResponseValidationError{
+					field:  fmt.Sprintf("Specialities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return SpecialitiesResponseMultiError(errors)
 	}
@@ -1483,6 +1699,8 @@ func (m *SearchRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for Query
+
 	if len(errors) > 0 {
 		return SearchRequestMultiError(errors)
 	}
@@ -1582,6 +1800,108 @@ func (m *SearchResponse) validate(all bool) error {
 	}
 
 	var errors []error
+
+	for idx, item := range m.GetFreelancers() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, SearchResponseValidationError{
+						field:  fmt.Sprintf("Freelancers[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, SearchResponseValidationError{
+						field:  fmt.Sprintf("Freelancers[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return SearchResponseValidationError{
+					field:  fmt.Sprintf("Freelancers[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetCities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, SearchResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, SearchResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return SearchResponseValidationError{
+					field:  fmt.Sprintf("Cities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetSpecialities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, SearchResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, SearchResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return SearchResponseValidationError{
+					field:  fmt.Sprintf("Specialities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	if len(errors) > 0 {
 		return SearchResponseMultiError(errors)
@@ -1683,6 +2003,10 @@ func (m *FilterRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for ExperienceWithDoctors
+
+	// no validation rules for Page
+
 	if len(errors) > 0 {
 		return FilterRequestMultiError(errors)
 	}
@@ -1782,6 +2106,40 @@ func (m *FilterResponse) validate(all bool) error {
 	}
 
 	var errors []error
+
+	for idx, item := range m.GetFreelancers() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, FilterResponseValidationError{
+						field:  fmt.Sprintf("Freelancers[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, FilterResponseValidationError{
+						field:  fmt.Sprintf("Freelancers[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return FilterResponseValidationError{
+					field:  fmt.Sprintf("Freelancers[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	if len(errors) > 0 {
 		return FilterResponseMultiError(errors)
@@ -1883,11 +2241,280 @@ func (m *CreateFreelancersRequest) validate(all bool) error {
 
 	var errors []error
 
+	if utf8.RuneCountInString(m.GetEmail()) > 255 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "Email",
+			reason: "value length must be at most 255 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if err := m._validateEmail(m.GetEmail()); err != nil {
+		err = CreateFreelancersRequestValidationError{
+			field:  "Email",
+			reason: "value must be a valid email address",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if l := utf8.RuneCountInString(m.GetLastName()); l < 1 || l > 100 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "LastName",
+			reason: "value length must be between 1 and 100 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if l := utf8.RuneCountInString(m.GetFirstName()); l < 1 || l > 100 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "FirstName",
+			reason: "value length must be between 1 and 100 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if l := utf8.RuneCountInString(m.GetMiddleName()); l < 1 || l > 100 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "MiddleName",
+			reason: "value length must be between 1 and 100 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if l := utf8.RuneCountInString(m.GetTelegramUsername()); l < 1 || l > 100 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "TelegramUsername",
+			reason: "value length must be between 1 and 100 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetAgreePolicy() != true {
+		err := CreateFreelancersRequestValidationError{
+			field:  "AgreePolicy",
+			reason: "value must equal true",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetExperienceWithDoctors() != true {
+		err := CreateFreelancersRequestValidationError{
+			field:  "ExperienceWithDoctors",
+			reason: "value must equal true",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetCityId() <= 0 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "CityId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetSpecialityId() <= 0 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "SpecialityId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	_CreateFreelancersRequest_AdditionalCities_Unique := make(map[int64]struct{}, len(m.GetAdditionalCities()))
+
+	for idx, item := range m.GetAdditionalCities() {
+		_, _ = idx, item
+
+		if _, exists := _CreateFreelancersRequest_AdditionalCities_Unique[item]; exists {
+			err := CreateFreelancersRequestValidationError{
+				field:  fmt.Sprintf("AdditionalCities[%v]", idx),
+				reason: "repeated value must contain unique items",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		} else {
+			_CreateFreelancersRequest_AdditionalCities_Unique[item] = struct{}{}
+		}
+
+		// no validation rules for AdditionalCities[idx]
+	}
+
+	_CreateFreelancersRequest_AdditionalSpecialties_Unique := make(map[int64]struct{}, len(m.GetAdditionalSpecialties()))
+
+	for idx, item := range m.GetAdditionalSpecialties() {
+		_, _ = idx, item
+
+		if _, exists := _CreateFreelancersRequest_AdditionalSpecialties_Unique[item]; exists {
+			err := CreateFreelancersRequestValidationError{
+				field:  fmt.Sprintf("AdditionalSpecialties[%v]", idx),
+				reason: "repeated value must contain unique items",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		} else {
+			_CreateFreelancersRequest_AdditionalSpecialties_Unique[item] = struct{}{}
+		}
+
+		// no validation rules for AdditionalSpecialties[idx]
+	}
+
+	_CreateFreelancersRequest_SocialNetworks_Unique := make(map[int64]struct{}, len(m.GetSocialNetworks()))
+
+	for idx, item := range m.GetSocialNetworks() {
+		_, _ = idx, item
+
+		if _, exists := _CreateFreelancersRequest_SocialNetworks_Unique[item]; exists {
+			err := CreateFreelancersRequestValidationError{
+				field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+				reason: "repeated value must contain unique items",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		} else {
+			_CreateFreelancersRequest_SocialNetworks_Unique[item] = struct{}{}
+		}
+
+		// no validation rules for SocialNetworks[idx]
+	}
+
+	if utf8.RuneCountInString(m.GetPortfolioLink()) > 255 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "PortfolioLink",
+			reason: "value length must be at most 255 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	for idx, item := range m.GetPriceList() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CreateFreelancersRequestValidationError{
+						field:  fmt.Sprintf("PriceList[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CreateFreelancersRequestValidationError{
+						field:  fmt.Sprintf("PriceList[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CreateFreelancersRequestValidationError{
+					field:  fmt.Sprintf("PriceList[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return CreateFreelancersRequestMultiError(errors)
 	}
 
 	return nil
+}
+
+func (m *CreateFreelancersRequest) _validateHostname(host string) error {
+	s := strings.ToLower(strings.TrimSuffix(host, "."))
+
+	if len(host) > 253 {
+		return errors.New("hostname cannot exceed 253 characters")
+	}
+
+	for _, part := range strings.Split(s, ".") {
+		if l := len(part); l == 0 || l > 63 {
+			return errors.New("hostname part must be non-empty and cannot exceed 63 characters")
+		}
+
+		if part[0] == '-' {
+			return errors.New("hostname parts cannot begin with hyphens")
+		}
+
+		if part[len(part)-1] == '-' {
+			return errors.New("hostname parts cannot end with hyphens")
+		}
+
+		for _, r := range part {
+			if (r < 'a' || r > 'z') && (r < '0' || r > '9') && r != '-' {
+				return fmt.Errorf("hostname parts can only contain alphanumeric characters or hyphens, got %q", string(r))
+			}
+		}
+	}
+
+	return nil
+}
+
+func (m *CreateFreelancersRequest) _validateEmail(addr string) error {
+	a, err := mail.ParseAddress(addr)
+	if err != nil {
+		return err
+	}
+	addr = a.Address
+
+	if len(addr) > 254 {
+		return errors.New("email addresses cannot exceed 254 characters")
+	}
+
+	parts := strings.SplitN(addr, "@", 2)
+
+	if len(parts[0]) > 64 {
+		return errors.New("email address local phrase cannot exceed 64 characters")
+	}
+
+	return m._validateHostname(parts[1])
 }
 
 // CreateFreelancersRequestMultiError is an error wrapping multiple validation
@@ -1984,6 +2611,40 @@ func (m *CreateFreelancersResponse) validate(all bool) error {
 	}
 
 	var errors []error
+
+	for idx, item := range m.GetErrors() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CreateFreelancersResponseValidationError{
+						field:  fmt.Sprintf("Errors[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CreateFreelancersResponseValidationError{
+						field:  fmt.Sprintf("Errors[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CreateFreelancersResponseValidationError{
+					field:  fmt.Sprintf("Errors[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	if len(errors) > 0 {
 		return CreateFreelancersResponseMultiError(errors)
@@ -2191,6 +2852,214 @@ func (m *GetFreelancerResponse) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for Name
+
+	// no validation rules for Slug
+
+	// no validation rules for TgUrl
+
+	// no validation rules for ExperienceWithDoctors
+
+	// no validation rules for PriceCategory
+
+	// no validation rules for PortfolioLink
+
+	// no validation rules for Image
+
+	for idx, item := range m.GetCities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("Cities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetFreelancerResponseValidationError{
+					field:  fmt.Sprintf("Cities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetSpecialities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetFreelancerResponseValidationError{
+					field:  fmt.Sprintf("Specialities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if all {
+		switch v := interface{}(m.GetMainCity()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetFreelancerResponseValidationError{
+					field:  "MainCity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetFreelancerResponseValidationError{
+					field:  "MainCity",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetMainCity()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetFreelancerResponseValidationError{
+				field:  "MainCity",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetMainSpeciality()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetFreelancerResponseValidationError{
+					field:  "MainSpeciality",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetFreelancerResponseValidationError{
+					field:  "MainSpeciality",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetMainSpeciality()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetFreelancerResponseValidationError{
+				field:  "MainSpeciality",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	for idx, item := range m.GetSocialNetworks() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetFreelancerResponseValidationError{
+					field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetPriceList() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("PriceList[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetFreelancerResponseValidationError{
+						field:  fmt.Sprintf("PriceList[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetFreelancerResponseValidationError{
+					field:  fmt.Sprintf("PriceList[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return GetFreelancerResponseMultiError(errors)
 	}
@@ -2270,3 +3139,2060 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetFreelancerResponseValidationError{}
+
+// Validate checks the field values on GetSettingsResponse_SocietyItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetSettingsResponse_SocietyItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetSettingsResponse_SocietyItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// GetSettingsResponse_SocietyItemMultiError, or nil if none found.
+func (m *GetSettingsResponse_SocietyItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSettingsResponse_SocietyItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetSettingsResponse_SocietyItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSettingsResponse_SocietyItemMultiError is an error wrapping multiple
+// validation errors returned by GetSettingsResponse_SocietyItem.ValidateAll()
+// if the designated constraints aren't met.
+type GetSettingsResponse_SocietyItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSettingsResponse_SocietyItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSettingsResponse_SocietyItemMultiError) AllErrors() []error { return m }
+
+// GetSettingsResponse_SocietyItemValidationError is the validation error
+// returned by GetSettingsResponse_SocietyItem.Validate if the designated
+// constraints aren't met.
+type GetSettingsResponse_SocietyItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSettingsResponse_SocietyItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSettingsResponse_SocietyItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSettingsResponse_SocietyItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSettingsResponse_SocietyItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSettingsResponse_SocietyItemValidationError) ErrorName() string {
+	return "GetSettingsResponse_SocietyItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSettingsResponse_SocietyItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSettingsResponse_SocietyItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSettingsResponse_SocietyItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSettingsResponse_SocietyItemValidationError{}
+
+// Validate checks the field values on GetSettingsResponse_CityItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetSettingsResponse_CityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetSettingsResponse_CityItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetSettingsResponse_CityItemMultiError, or nil if none found.
+func (m *GetSettingsResponse_CityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSettingsResponse_CityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for FreelancersCount
+
+	if len(errors) > 0 {
+		return GetSettingsResponse_CityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSettingsResponse_CityItemMultiError is an error wrapping multiple
+// validation errors returned by GetSettingsResponse_CityItem.ValidateAll() if
+// the designated constraints aren't met.
+type GetSettingsResponse_CityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSettingsResponse_CityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSettingsResponse_CityItemMultiError) AllErrors() []error { return m }
+
+// GetSettingsResponse_CityItemValidationError is the validation error returned
+// by GetSettingsResponse_CityItem.Validate if the designated constraints
+// aren't met.
+type GetSettingsResponse_CityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSettingsResponse_CityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSettingsResponse_CityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSettingsResponse_CityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSettingsResponse_CityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSettingsResponse_CityItemValidationError) ErrorName() string {
+	return "GetSettingsResponse_CityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSettingsResponse_CityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSettingsResponse_CityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSettingsResponse_CityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSettingsResponse_CityItemValidationError{}
+
+// Validate checks the field values on GetSettingsResponse_SpecialityItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetSettingsResponse_SpecialityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetSettingsResponse_SpecialityItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetSettingsResponse_SpecialityItemMultiError, or nil if none found.
+func (m *GetSettingsResponse_SpecialityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSettingsResponse_SpecialityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for FreelancersCount
+
+	if len(errors) > 0 {
+		return GetSettingsResponse_SpecialityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSettingsResponse_SpecialityItemMultiError is an error wrapping multiple
+// validation errors returned by
+// GetSettingsResponse_SpecialityItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetSettingsResponse_SpecialityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSettingsResponse_SpecialityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSettingsResponse_SpecialityItemMultiError) AllErrors() []error { return m }
+
+// GetSettingsResponse_SpecialityItemValidationError is the validation error
+// returned by GetSettingsResponse_SpecialityItem.Validate if the designated
+// constraints aren't met.
+type GetSettingsResponse_SpecialityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSettingsResponse_SpecialityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSettingsResponse_SpecialityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSettingsResponse_SpecialityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSettingsResponse_SpecialityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSettingsResponse_SpecialityItemValidationError) ErrorName() string {
+	return "GetSettingsResponse_SpecialityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSettingsResponse_SpecialityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSettingsResponse_SpecialityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSettingsResponse_SpecialityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSettingsResponse_SpecialityItemValidationError{}
+
+// Validate checks the field values on GetSettingsResponse_PriceCategoryItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetSettingsResponse_PriceCategoryItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetSettingsResponse_PriceCategoryItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetSettingsResponse_PriceCategoryItemMultiError, or nil if none found.
+func (m *GetSettingsResponse_PriceCategoryItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSettingsResponse_PriceCategoryItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetSettingsResponse_PriceCategoryItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSettingsResponse_PriceCategoryItemMultiError is an error wrapping
+// multiple validation errors returned by
+// GetSettingsResponse_PriceCategoryItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetSettingsResponse_PriceCategoryItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSettingsResponse_PriceCategoryItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSettingsResponse_PriceCategoryItemMultiError) AllErrors() []error { return m }
+
+// GetSettingsResponse_PriceCategoryItemValidationError is the validation error
+// returned by GetSettingsResponse_PriceCategoryItem.Validate if the
+// designated constraints aren't met.
+type GetSettingsResponse_PriceCategoryItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSettingsResponse_PriceCategoryItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSettingsResponse_PriceCategoryItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSettingsResponse_PriceCategoryItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSettingsResponse_PriceCategoryItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSettingsResponse_PriceCategoryItemValidationError) ErrorName() string {
+	return "GetSettingsResponse_PriceCategoryItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSettingsResponse_PriceCategoryItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSettingsResponse_PriceCategoryItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSettingsResponse_PriceCategoryItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSettingsResponse_PriceCategoryItemValidationError{}
+
+// Validate checks the field values on CitiesResponse_CityItem with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CitiesResponse_CityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CitiesResponse_CityItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// CitiesResponse_CityItemMultiError, or nil if none found.
+func (m *CitiesResponse_CityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CitiesResponse_CityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for CityId
+
+	// no validation rules for CityName
+
+	if len(errors) > 0 {
+		return CitiesResponse_CityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// CitiesResponse_CityItemMultiError is an error wrapping multiple validation
+// errors returned by CitiesResponse_CityItem.ValidateAll() if the designated
+// constraints aren't met.
+type CitiesResponse_CityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CitiesResponse_CityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CitiesResponse_CityItemMultiError) AllErrors() []error { return m }
+
+// CitiesResponse_CityItemValidationError is the validation error returned by
+// CitiesResponse_CityItem.Validate if the designated constraints aren't met.
+type CitiesResponse_CityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CitiesResponse_CityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CitiesResponse_CityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CitiesResponse_CityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CitiesResponse_CityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CitiesResponse_CityItemValidationError) ErrorName() string {
+	return "CitiesResponse_CityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CitiesResponse_CityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCitiesResponse_CityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CitiesResponse_CityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CitiesResponse_CityItemValidationError{}
+
+// Validate checks the field values on SpecialitiesResponse_SpecialityItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *SpecialitiesResponse_SpecialityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SpecialitiesResponse_SpecialityItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// SpecialitiesResponse_SpecialityItemMultiError, or nil if none found.
+func (m *SpecialitiesResponse_SpecialityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SpecialitiesResponse_SpecialityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for SpecialityId
+
+	// no validation rules for SpecialityName
+
+	if len(errors) > 0 {
+		return SpecialitiesResponse_SpecialityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// SpecialitiesResponse_SpecialityItemMultiError is an error wrapping multiple
+// validation errors returned by
+// SpecialitiesResponse_SpecialityItem.ValidateAll() if the designated
+// constraints aren't met.
+type SpecialitiesResponse_SpecialityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SpecialitiesResponse_SpecialityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SpecialitiesResponse_SpecialityItemMultiError) AllErrors() []error { return m }
+
+// SpecialitiesResponse_SpecialityItemValidationError is the validation error
+// returned by SpecialitiesResponse_SpecialityItem.Validate if the designated
+// constraints aren't met.
+type SpecialitiesResponse_SpecialityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SpecialitiesResponse_SpecialityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SpecialitiesResponse_SpecialityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SpecialitiesResponse_SpecialityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SpecialitiesResponse_SpecialityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SpecialitiesResponse_SpecialityItemValidationError) ErrorName() string {
+	return "SpecialitiesResponse_SpecialityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SpecialitiesResponse_SpecialityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSpecialitiesResponse_SpecialityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SpecialitiesResponse_SpecialityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SpecialitiesResponse_SpecialityItemValidationError{}
+
+// Validate checks the field values on SearchResponse_FreelancerItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *SearchResponse_FreelancerItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SearchResponse_FreelancerItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// SearchResponse_FreelancerItemMultiError, or nil if none found.
+func (m *SearchResponse_FreelancerItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SearchResponse_FreelancerItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for Slug
+
+	// no validation rules for CityName
+
+	// no validation rules for SpecialityName
+
+	// no validation rules for Image
+
+	// no validation rules for ExperienceWithDoctors
+
+	// no validation rules for PriceCategory
+
+	for idx, item := range m.GetSocialNetworks() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, SearchResponse_FreelancerItemValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, SearchResponse_FreelancerItemValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return SearchResponse_FreelancerItemValidationError{
+					field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return SearchResponse_FreelancerItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// SearchResponse_FreelancerItemMultiError is an error wrapping multiple
+// validation errors returned by SearchResponse_FreelancerItem.ValidateAll()
+// if the designated constraints aren't met.
+type SearchResponse_FreelancerItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SearchResponse_FreelancerItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SearchResponse_FreelancerItemMultiError) AllErrors() []error { return m }
+
+// SearchResponse_FreelancerItemValidationError is the validation error
+// returned by SearchResponse_FreelancerItem.Validate if the designated
+// constraints aren't met.
+type SearchResponse_FreelancerItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SearchResponse_FreelancerItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SearchResponse_FreelancerItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SearchResponse_FreelancerItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SearchResponse_FreelancerItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SearchResponse_FreelancerItemValidationError) ErrorName() string {
+	return "SearchResponse_FreelancerItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SearchResponse_FreelancerItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSearchResponse_FreelancerItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SearchResponse_FreelancerItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SearchResponse_FreelancerItemValidationError{}
+
+// Validate checks the field values on SearchResponse_CityItem with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *SearchResponse_CityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SearchResponse_CityItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// SearchResponse_CityItemMultiError, or nil if none found.
+func (m *SearchResponse_CityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SearchResponse_CityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for FreelancersCount
+
+	if len(errors) > 0 {
+		return SearchResponse_CityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// SearchResponse_CityItemMultiError is an error wrapping multiple validation
+// errors returned by SearchResponse_CityItem.ValidateAll() if the designated
+// constraints aren't met.
+type SearchResponse_CityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SearchResponse_CityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SearchResponse_CityItemMultiError) AllErrors() []error { return m }
+
+// SearchResponse_CityItemValidationError is the validation error returned by
+// SearchResponse_CityItem.Validate if the designated constraints aren't met.
+type SearchResponse_CityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SearchResponse_CityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SearchResponse_CityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SearchResponse_CityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SearchResponse_CityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SearchResponse_CityItemValidationError) ErrorName() string {
+	return "SearchResponse_CityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SearchResponse_CityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSearchResponse_CityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SearchResponse_CityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SearchResponse_CityItemValidationError{}
+
+// Validate checks the field values on SearchResponse_SpecialityItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *SearchResponse_SpecialityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SearchResponse_SpecialityItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// SearchResponse_SpecialityItemMultiError, or nil if none found.
+func (m *SearchResponse_SpecialityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SearchResponse_SpecialityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for FreelancersCount
+
+	if len(errors) > 0 {
+		return SearchResponse_SpecialityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// SearchResponse_SpecialityItemMultiError is an error wrapping multiple
+// validation errors returned by SearchResponse_SpecialityItem.ValidateAll()
+// if the designated constraints aren't met.
+type SearchResponse_SpecialityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SearchResponse_SpecialityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SearchResponse_SpecialityItemMultiError) AllErrors() []error { return m }
+
+// SearchResponse_SpecialityItemValidationError is the validation error
+// returned by SearchResponse_SpecialityItem.Validate if the designated
+// constraints aren't met.
+type SearchResponse_SpecialityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SearchResponse_SpecialityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SearchResponse_SpecialityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SearchResponse_SpecialityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SearchResponse_SpecialityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SearchResponse_SpecialityItemValidationError) ErrorName() string {
+	return "SearchResponse_SpecialityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SearchResponse_SpecialityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSearchResponse_SpecialityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SearchResponse_SpecialityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SearchResponse_SpecialityItemValidationError{}
+
+// Validate checks the field values on
+// SearchResponse_FreelancerItem_SocialNetworkItem with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *SearchResponse_FreelancerItem_SocialNetworkItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// SearchResponse_FreelancerItem_SocialNetworkItem with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// SearchResponse_FreelancerItem_SocialNetworkItemMultiError, or nil if none found.
+func (m *SearchResponse_FreelancerItem_SocialNetworkItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SearchResponse_FreelancerItem_SocialNetworkItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return SearchResponse_FreelancerItem_SocialNetworkItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// SearchResponse_FreelancerItem_SocialNetworkItemMultiError is an error
+// wrapping multiple validation errors returned by
+// SearchResponse_FreelancerItem_SocialNetworkItem.ValidateAll() if the
+// designated constraints aren't met.
+type SearchResponse_FreelancerItem_SocialNetworkItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SearchResponse_FreelancerItem_SocialNetworkItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SearchResponse_FreelancerItem_SocialNetworkItemMultiError) AllErrors() []error { return m }
+
+// SearchResponse_FreelancerItem_SocialNetworkItemValidationError is the
+// validation error returned by
+// SearchResponse_FreelancerItem_SocialNetworkItem.Validate if the designated
+// constraints aren't met.
+type SearchResponse_FreelancerItem_SocialNetworkItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SearchResponse_FreelancerItem_SocialNetworkItemValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e SearchResponse_FreelancerItem_SocialNetworkItemValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e SearchResponse_FreelancerItem_SocialNetworkItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SearchResponse_FreelancerItem_SocialNetworkItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SearchResponse_FreelancerItem_SocialNetworkItemValidationError) ErrorName() string {
+	return "SearchResponse_FreelancerItem_SocialNetworkItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SearchResponse_FreelancerItem_SocialNetworkItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSearchResponse_FreelancerItem_SocialNetworkItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SearchResponse_FreelancerItem_SocialNetworkItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SearchResponse_FreelancerItem_SocialNetworkItemValidationError{}
+
+// Validate checks the field values on FilterResponse_FreelancerItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *FilterResponse_FreelancerItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on FilterResponse_FreelancerItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// FilterResponse_FreelancerItemMultiError, or nil if none found.
+func (m *FilterResponse_FreelancerItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *FilterResponse_FreelancerItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Name
+
+	// no validation rules for Slug
+
+	// no validation rules for Speciality
+
+	// no validation rules for City
+
+	// no validation rules for Image
+
+	// no validation rules for ExperienceWithDoctors
+
+	// no validation rules for PriceCategory
+
+	for idx, item := range m.GetSocialNetworks() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, FilterResponse_FreelancerItemValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, FilterResponse_FreelancerItemValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return FilterResponse_FreelancerItemValidationError{
+					field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return FilterResponse_FreelancerItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// FilterResponse_FreelancerItemMultiError is an error wrapping multiple
+// validation errors returned by FilterResponse_FreelancerItem.ValidateAll()
+// if the designated constraints aren't met.
+type FilterResponse_FreelancerItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m FilterResponse_FreelancerItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m FilterResponse_FreelancerItemMultiError) AllErrors() []error { return m }
+
+// FilterResponse_FreelancerItemValidationError is the validation error
+// returned by FilterResponse_FreelancerItem.Validate if the designated
+// constraints aren't met.
+type FilterResponse_FreelancerItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e FilterResponse_FreelancerItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e FilterResponse_FreelancerItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e FilterResponse_FreelancerItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e FilterResponse_FreelancerItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e FilterResponse_FreelancerItemValidationError) ErrorName() string {
+	return "FilterResponse_FreelancerItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e FilterResponse_FreelancerItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sFilterResponse_FreelancerItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = FilterResponse_FreelancerItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = FilterResponse_FreelancerItemValidationError{}
+
+// Validate checks the field values on
+// FilterResponse_FreelancerItem_SocialNetworkItem with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *FilterResponse_FreelancerItem_SocialNetworkItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// FilterResponse_FreelancerItem_SocialNetworkItem with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// FilterResponse_FreelancerItem_SocialNetworkItemMultiError, or nil if none found.
+func (m *FilterResponse_FreelancerItem_SocialNetworkItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *FilterResponse_FreelancerItem_SocialNetworkItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return FilterResponse_FreelancerItem_SocialNetworkItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// FilterResponse_FreelancerItem_SocialNetworkItemMultiError is an error
+// wrapping multiple validation errors returned by
+// FilterResponse_FreelancerItem_SocialNetworkItem.ValidateAll() if the
+// designated constraints aren't met.
+type FilterResponse_FreelancerItem_SocialNetworkItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m FilterResponse_FreelancerItem_SocialNetworkItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m FilterResponse_FreelancerItem_SocialNetworkItemMultiError) AllErrors() []error { return m }
+
+// FilterResponse_FreelancerItem_SocialNetworkItemValidationError is the
+// validation error returned by
+// FilterResponse_FreelancerItem_SocialNetworkItem.Validate if the designated
+// constraints aren't met.
+type FilterResponse_FreelancerItem_SocialNetworkItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e FilterResponse_FreelancerItem_SocialNetworkItemValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e FilterResponse_FreelancerItem_SocialNetworkItemValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e FilterResponse_FreelancerItem_SocialNetworkItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e FilterResponse_FreelancerItem_SocialNetworkItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e FilterResponse_FreelancerItem_SocialNetworkItemValidationError) ErrorName() string {
+	return "FilterResponse_FreelancerItem_SocialNetworkItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e FilterResponse_FreelancerItem_SocialNetworkItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sFilterResponse_FreelancerItem_SocialNetworkItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = FilterResponse_FreelancerItem_SocialNetworkItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = FilterResponse_FreelancerItem_SocialNetworkItemValidationError{}
+
+// Validate checks the field values on CreateFreelancersRequest_PriceListItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *CreateFreelancersRequest_PriceListItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// CreateFreelancersRequest_PriceListItem with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// CreateFreelancersRequest_PriceListItemMultiError, or nil if none found.
+func (m *CreateFreelancersRequest_PriceListItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CreateFreelancersRequest_PriceListItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Name
+
+	// no validation rules for Amount
+
+	if len(errors) > 0 {
+		return CreateFreelancersRequest_PriceListItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// CreateFreelancersRequest_PriceListItemMultiError is an error wrapping
+// multiple validation errors returned by
+// CreateFreelancersRequest_PriceListItem.ValidateAll() if the designated
+// constraints aren't met.
+type CreateFreelancersRequest_PriceListItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CreateFreelancersRequest_PriceListItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CreateFreelancersRequest_PriceListItemMultiError) AllErrors() []error { return m }
+
+// CreateFreelancersRequest_PriceListItemValidationError is the validation
+// error returned by CreateFreelancersRequest_PriceListItem.Validate if the
+// designated constraints aren't met.
+type CreateFreelancersRequest_PriceListItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateFreelancersRequest_PriceListItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateFreelancersRequest_PriceListItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateFreelancersRequest_PriceListItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateFreelancersRequest_PriceListItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateFreelancersRequest_PriceListItemValidationError) ErrorName() string {
+	return "CreateFreelancersRequest_PriceListItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateFreelancersRequest_PriceListItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateFreelancersRequest_PriceListItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateFreelancersRequest_PriceListItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateFreelancersRequest_PriceListItemValidationError{}
+
+// Validate checks the field values on
+// CreateFreelancersResponse_ValidationError with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *CreateFreelancersResponse_ValidationError) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// CreateFreelancersResponse_ValidationError with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// CreateFreelancersResponse_ValidationErrorMultiError, or nil if none found.
+func (m *CreateFreelancersResponse_ValidationError) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CreateFreelancersResponse_ValidationError) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Field
+
+	// no validation rules for Text
+
+	if len(errors) > 0 {
+		return CreateFreelancersResponse_ValidationErrorMultiError(errors)
+	}
+
+	return nil
+}
+
+// CreateFreelancersResponse_ValidationErrorMultiError is an error wrapping
+// multiple validation errors returned by
+// CreateFreelancersResponse_ValidationError.ValidateAll() if the designated
+// constraints aren't met.
+type CreateFreelancersResponse_ValidationErrorMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CreateFreelancersResponse_ValidationErrorMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CreateFreelancersResponse_ValidationErrorMultiError) AllErrors() []error { return m }
+
+// CreateFreelancersResponse_ValidationErrorValidationError is the validation
+// error returned by CreateFreelancersResponse_ValidationError.Validate if the
+// designated constraints aren't met.
+type CreateFreelancersResponse_ValidationErrorValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateFreelancersResponse_ValidationErrorValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateFreelancersResponse_ValidationErrorValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateFreelancersResponse_ValidationErrorValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateFreelancersResponse_ValidationErrorValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateFreelancersResponse_ValidationErrorValidationError) ErrorName() string {
+	return "CreateFreelancersResponse_ValidationErrorValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateFreelancersResponse_ValidationErrorValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateFreelancersResponse_ValidationError.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateFreelancersResponse_ValidationErrorValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateFreelancersResponse_ValidationErrorValidationError{}
+
+// Validate checks the field values on GetFreelancerResponse_CityItem with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetFreelancerResponse_CityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetFreelancerResponse_CityItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// GetFreelancerResponse_CityItemMultiError, or nil if none found.
+func (m *GetFreelancerResponse_CityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerResponse_CityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetFreelancerResponse_CityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerResponse_CityItemMultiError is an error wrapping multiple
+// validation errors returned by GetFreelancerResponse_CityItem.ValidateAll()
+// if the designated constraints aren't met.
+type GetFreelancerResponse_CityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerResponse_CityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerResponse_CityItemMultiError) AllErrors() []error { return m }
+
+// GetFreelancerResponse_CityItemValidationError is the validation error
+// returned by GetFreelancerResponse_CityItem.Validate if the designated
+// constraints aren't met.
+type GetFreelancerResponse_CityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerResponse_CityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerResponse_CityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerResponse_CityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerResponse_CityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerResponse_CityItemValidationError) ErrorName() string {
+	return "GetFreelancerResponse_CityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerResponse_CityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerResponse_CityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerResponse_CityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerResponse_CityItemValidationError{}
+
+// Validate checks the field values on GetFreelancerResponse_SpecialityItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetFreelancerResponse_SpecialityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetFreelancerResponse_SpecialityItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetFreelancerResponse_SpecialityItemMultiError, or nil if none found.
+func (m *GetFreelancerResponse_SpecialityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerResponse_SpecialityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetFreelancerResponse_SpecialityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerResponse_SpecialityItemMultiError is an error wrapping multiple
+// validation errors returned by
+// GetFreelancerResponse_SpecialityItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetFreelancerResponse_SpecialityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerResponse_SpecialityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerResponse_SpecialityItemMultiError) AllErrors() []error { return m }
+
+// GetFreelancerResponse_SpecialityItemValidationError is the validation error
+// returned by GetFreelancerResponse_SpecialityItem.Validate if the designated
+// constraints aren't met.
+type GetFreelancerResponse_SpecialityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerResponse_SpecialityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerResponse_SpecialityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerResponse_SpecialityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerResponse_SpecialityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerResponse_SpecialityItemValidationError) ErrorName() string {
+	return "GetFreelancerResponse_SpecialityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerResponse_SpecialityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerResponse_SpecialityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerResponse_SpecialityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerResponse_SpecialityItemValidationError{}
+
+// Validate checks the field values on GetFreelancerResponse_SocialNetworkItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetFreelancerResponse_SocialNetworkItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetFreelancerResponse_SocialNetworkItem with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// GetFreelancerResponse_SocialNetworkItemMultiError, or nil if none found.
+func (m *GetFreelancerResponse_SocialNetworkItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerResponse_SocialNetworkItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetFreelancerResponse_SocialNetworkItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerResponse_SocialNetworkItemMultiError is an error wrapping
+// multiple validation errors returned by
+// GetFreelancerResponse_SocialNetworkItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetFreelancerResponse_SocialNetworkItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerResponse_SocialNetworkItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerResponse_SocialNetworkItemMultiError) AllErrors() []error { return m }
+
+// GetFreelancerResponse_SocialNetworkItemValidationError is the validation
+// error returned by GetFreelancerResponse_SocialNetworkItem.Validate if the
+// designated constraints aren't met.
+type GetFreelancerResponse_SocialNetworkItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerResponse_SocialNetworkItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerResponse_SocialNetworkItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerResponse_SocialNetworkItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerResponse_SocialNetworkItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerResponse_SocialNetworkItemValidationError) ErrorName() string {
+	return "GetFreelancerResponse_SocialNetworkItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerResponse_SocialNetworkItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerResponse_SocialNetworkItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerResponse_SocialNetworkItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerResponse_SocialNetworkItemValidationError{}
+
+// Validate checks the field values on GetFreelancerResponse_PriceListItem with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetFreelancerResponse_PriceListItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetFreelancerResponse_PriceListItem
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetFreelancerResponse_PriceListItemMultiError, or nil if none found.
+func (m *GetFreelancerResponse_PriceListItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerResponse_PriceListItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Name
+
+	// no validation rules for Amount
+
+	if len(errors) > 0 {
+		return GetFreelancerResponse_PriceListItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerResponse_PriceListItemMultiError is an error wrapping multiple
+// validation errors returned by
+// GetFreelancerResponse_PriceListItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetFreelancerResponse_PriceListItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerResponse_PriceListItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerResponse_PriceListItemMultiError) AllErrors() []error { return m }
+
+// GetFreelancerResponse_PriceListItemValidationError is the validation error
+// returned by GetFreelancerResponse_PriceListItem.Validate if the designated
+// constraints aren't met.
+type GetFreelancerResponse_PriceListItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerResponse_PriceListItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerResponse_PriceListItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerResponse_PriceListItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerResponse_PriceListItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerResponse_PriceListItemValidationError) ErrorName() string {
+	return "GetFreelancerResponse_PriceListItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerResponse_PriceListItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerResponse_PriceListItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerResponse_PriceListItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerResponse_PriceListItemValidationError{}
