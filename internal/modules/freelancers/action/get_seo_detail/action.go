@@ -1,0 +1,1 @@
+package get_seo_detail
