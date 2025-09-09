@@ -5,9 +5,13 @@ import (
 	"fmt"
 	"github.com/georgysavva/scany/pgxscan"
 	"medblogers_base/internal/config"
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
+	cityDao "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
+	specialityDAO "medblogers_base/internal/modules/freelancers/dal/speciality_dal/dao"
+	"medblogers_base/internal/modules/freelancers/domain/city"
+	"medblogers_base/internal/modules/freelancers/domain/speciality"
+
+	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
+	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 
 	pkgconfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
@@ -31,13 +35,13 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 // SearchFreelancers поиск фрилансеров
-func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*doctor.Doctor, error) {
+func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*freelancer.Freelancer, error) {
 	sql := `
 		select 
 			f.id, f.name, f.slug, f.price_category, f.is_worked_with_freelancers, c.name as "city_name", s.name as "speciality_name"
 		from freelancer f
 		join freelancers_city c on f.city_id = c.id
-		join freelancers_speciality s on f.speciallity_id = s.id
+		join freelancers_speciality s on f.speciality_id = s.id
 		where f.is_active = true and f.name ilike $1
 		order by f.name
 		limit $2;
@@ -45,14 +49,14 @@ func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*doc
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 	limit := r.getLimit(ctx, defaultFreelancersLimit, config.SearchDoctorsLimit)
 
-	var freelancers []*dao.freelancersearchDAO
+	var freelancers []*dao.FreelancerSearch
 	if err := pgxscan.Select(ctx, r.db, &freelancers, sql, query, limit); err != nil {
-		return []*doctor.Doctor{}, err
+		return []*freelancer.Freelancer{}, err
 	}
 
-	result := make([]*doctor.Doctor, 0, len(freelancers))
-	for _, doctorDAO := range freelancers {
-		result = append(result, doctorDAO.ToDomain())
+	result := make([]*freelancer.Freelancer, 0, len(freelancers))
+	for _, freelancerDAO := range freelancers {
+		result = append(result, freelancerDAO.ToDomain())
 	}
 
 	return result, nil
@@ -78,7 +82,7 @@ func (r Repository) SearchCities(ctx context.Context, query string) ([]*city.Cit
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 	limit := r.getLimit(ctx, defaultCitiesLimit, config.SearchCitiesLimit)
 
-	var cities []*cityDAO.CityDAOWithfreelancersCount
+	var cities []*cityDao.CityDAOWithFreelancersCount
 	if err := pgxscan.Select(ctx, r.db, &cities, sql, query, limit); err != nil {
 		return []*city.City{}, err
 	}
@@ -111,7 +115,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 	query = fmt.Sprintf("%s%s%s", "%", query, "%")
 	limit := r.getLimit(ctx, defaultSpecialitiesLimit, config.SearchSpecialitiesLimit)
 
-	var specialities []*specialityDAO.SpecialityDAOWithfreelancersCount
+	var specialities []*specialityDAO.SpecialityDAOWithFreelancersCount
 	if err := pgxscan.Select(ctx, r.db, &specialities, sql, query, limit); err != nil {
 		return []*speciality.Speciality{}, err
 	}
