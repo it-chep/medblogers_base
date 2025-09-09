@@ -116,6 +116,7 @@ message  GetSettingsResponse {
   message SocietyItem {
     int64 id = 1;
     string name = 2;
+    int64 freelancers_count = 3;
   }
 
   message CityItem {
@@ -133,6 +134,7 @@ message  GetSettingsResponse {
   message PriceCategoryItem {
     int64 id = 1;
     string name = 2;
+    int64 freelancers_count = 3;
   }
 }
 

@@ -64,12 +64,20 @@ create table if not exists freelancer
     last_name              varchar(255),
     middle_name            varchar(255),
     is_worked_with_doctors bool,         -- есть ли опыт работы с врачами
+    is_active              bool,         -- признак активности
     tg_username            varchar(255), -- ссылка на личный тг для связи
     portfolio_link         varchar(255), -- ссылка на портфолио
     speciality_id          bigint,       -- id основной специальности фрилансера
     city_id                bigint,       -- id основного города фрилансера
     price_category         int           -- ценовая категория фрилансера, определяется на основе прайс-листа или руками
 );
+
+select price_category,
+       count(*) as freelancers_count
+from freelancer
+where is_active is true
+group by price_category
+order by price_category;
 -- +goose StatementEnd
 
 -- +goose Down
