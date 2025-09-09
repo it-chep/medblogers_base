@@ -22,15 +22,15 @@ type FreelancerItem struct {
 }
 
 type CityItem struct {
-	ID           int64
-	Name         string
-	DoctorsCount int64
+	ID               int64
+	Name             string
+	FreelancersCount int64
 }
 
 type SpecialityItem struct {
-	ID           int64
-	Name         string
-	DoctorsCount int64
+	ID               int64
+	Name             string
+	FreelancersCount int64
 }
 
 type SearchDTO struct {
