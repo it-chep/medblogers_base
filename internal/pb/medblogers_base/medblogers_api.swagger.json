@@ -414,6 +414,29 @@
         ]
       }
     },
+    "/api/v1/freelancers/networks_list": {
+      "get": {
+        "summary": "Получение соц сетей для регистрации",
+        "operationId": "FreelancerService_GetSocialNetworks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSocialNetworksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
     "/api/v1/freelancers/pages_count": {
       "get": {
         "summary": "Получение страниц страниц для фильтрации",
@@ -987,6 +1010,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -999,6 +1026,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1986,6 +2017,30 @@
     },
     "v1GetFreelancersResponse": {
       "type": "object"
+    },
+    "v1GetSocialNetworksResponse": {
+      "type": "object",
+      "properties": {
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GetSocialNetworksResponseSocialNetworkItem"
+          }
+        }
+      }
+    },
+    "v1GetSocialNetworksResponseSocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
     },
     "v1SearchResponseDoctorItem": {
       "type": "object",

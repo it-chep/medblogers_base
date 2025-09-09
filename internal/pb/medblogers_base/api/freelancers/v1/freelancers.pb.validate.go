@@ -3140,6 +3140,244 @@ var _ interface {
 	ErrorName() string
 } = GetFreelancerResponseValidationError{}
 
+// Validate checks the field values on GetSocialNetworksRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetSocialNetworksRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetSocialNetworksRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetSocialNetworksRequestMultiError, or nil if none found.
+func (m *GetSocialNetworksRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSocialNetworksRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetSocialNetworksRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSocialNetworksRequestMultiError is an error wrapping multiple validation
+// errors returned by GetSocialNetworksRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetSocialNetworksRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSocialNetworksRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSocialNetworksRequestMultiError) AllErrors() []error { return m }
+
+// GetSocialNetworksRequestValidationError is the validation error returned by
+// GetSocialNetworksRequest.Validate if the designated constraints aren't met.
+type GetSocialNetworksRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSocialNetworksRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSocialNetworksRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSocialNetworksRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSocialNetworksRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSocialNetworksRequestValidationError) ErrorName() string {
+	return "GetSocialNetworksRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSocialNetworksRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSocialNetworksRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSocialNetworksRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSocialNetworksRequestValidationError{}
+
+// Validate checks the field values on GetSocialNetworksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetSocialNetworksResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetSocialNetworksResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetSocialNetworksResponseMultiError, or nil if none found.
+func (m *GetSocialNetworksResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSocialNetworksResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetSocialNetworks() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetSocialNetworksResponseValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetSocialNetworksResponseValidationError{
+						field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetSocialNetworksResponseValidationError{
+					field:  fmt.Sprintf("SocialNetworks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetSocialNetworksResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSocialNetworksResponseMultiError is an error wrapping multiple validation
+// errors returned by GetSocialNetworksResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetSocialNetworksResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSocialNetworksResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSocialNetworksResponseMultiError) AllErrors() []error { return m }
+
+// GetSocialNetworksResponseValidationError is the validation error returned by
+// GetSocialNetworksResponse.Validate if the designated constraints aren't met.
+type GetSocialNetworksResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSocialNetworksResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSocialNetworksResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSocialNetworksResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSocialNetworksResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSocialNetworksResponseValidationError) ErrorName() string {
+	return "GetSocialNetworksResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSocialNetworksResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSocialNetworksResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSocialNetworksResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSocialNetworksResponseValidationError{}
+
 // Validate checks the field values on GetSettingsResponse_SocietyItem with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -3165,6 +3403,8 @@ func (m *GetSettingsResponse_SocietyItem) validate(all bool) error {
 	// no validation rules for Id
 
 	// no validation rules for Name
+
+	// no validation rules for FreelancersCount
 
 	if len(errors) > 0 {
 		return GetSettingsResponse_SocietyItemMultiError(errors)
@@ -3493,6 +3733,8 @@ func (m *GetSettingsResponse_PriceCategoryItem) validate(all bool) error {
 	// no validation rules for Id
 
 	// no validation rules for Name
+
+	// no validation rules for FreelancersCount
 
 	if len(errors) > 0 {
 		return GetSettingsResponse_PriceCategoryItemMultiError(errors)
@@ -5196,3 +5438,113 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetFreelancerResponse_PriceListItemValidationError{}
+
+// Validate checks the field values on
+// GetSocialNetworksResponse_SocialNetworkItem with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *GetSocialNetworksResponse_SocialNetworkItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetSocialNetworksResponse_SocialNetworkItem with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// GetSocialNetworksResponse_SocialNetworkItemMultiError, or nil if none found.
+func (m *GetSocialNetworksResponse_SocialNetworkItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetSocialNetworksResponse_SocialNetworkItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	if len(errors) > 0 {
+		return GetSocialNetworksResponse_SocialNetworkItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetSocialNetworksResponse_SocialNetworkItemMultiError is an error wrapping
+// multiple validation errors returned by
+// GetSocialNetworksResponse_SocialNetworkItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetSocialNetworksResponse_SocialNetworkItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetSocialNetworksResponse_SocialNetworkItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetSocialNetworksResponse_SocialNetworkItemMultiError) AllErrors() []error { return m }
+
+// GetSocialNetworksResponse_SocialNetworkItemValidationError is the validation
+// error returned by GetSocialNetworksResponse_SocialNetworkItem.Validate if
+// the designated constraints aren't met.
+type GetSocialNetworksResponse_SocialNetworkItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetSocialNetworksResponse_SocialNetworkItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetSocialNetworksResponse_SocialNetworkItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetSocialNetworksResponse_SocialNetworkItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetSocialNetworksResponse_SocialNetworkItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetSocialNetworksResponse_SocialNetworkItemValidationError) ErrorName() string {
+	return "GetSocialNetworksResponse_SocialNetworkItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetSocialNetworksResponse_SocialNetworkItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetSocialNetworksResponse_SocialNetworkItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetSocialNetworksResponse_SocialNetworkItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetSocialNetworksResponse_SocialNetworkItemValidationError{}

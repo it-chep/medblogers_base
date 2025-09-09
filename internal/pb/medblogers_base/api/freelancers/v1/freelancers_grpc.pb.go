@@ -26,6 +26,7 @@ const (
 	FreelancerService_GetPagesCount_FullMethodName             = "/freelancers.v1.FreelancerService/GetPagesCount"
 	FreelancerService_GetCities_FullMethodName                 = "/freelancers.v1.FreelancerService/GetCities"
 	FreelancerService_GetSpecialities_FullMethodName           = "/freelancers.v1.FreelancerService/GetSpecialities"
+	FreelancerService_GetSocialNetworks_FullMethodName         = "/freelancers.v1.FreelancerService/GetSocialNetworks"
 	FreelancerService_Search_FullMethodName                    = "/freelancers.v1.FreelancerService/Search"
 	FreelancerService_Filter_FullMethodName                    = "/freelancers.v1.FreelancerService/Filter"
 	FreelancerService_CreateDoctor_FullMethodName              = "/freelancers.v1.FreelancerService/CreateDoctor"
@@ -45,6 +46,7 @@ type FreelancerServiceClient interface {
 	GetPagesCount(ctx context.Context, in *PagesCountRequest, opts ...grpc.CallOption) (*PagesCountResponse, error)
 	GetCities(ctx context.Context, in *GetCitiesRequest, opts ...grpc.CallOption) (*CitiesResponse, error)
 	GetSpecialities(ctx context.Context, in *GetSpecialitiesRequest, opts ...grpc.CallOption) (*SpecialitiesResponse, error)
+	GetSocialNetworks(ctx context.Context, in *GetSocialNetworksRequest, opts ...grpc.CallOption) (*GetSocialNetworksResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateDoctor(ctx context.Context, in *CreateFreelancersRequest, opts ...grpc.CallOption) (*CreateFreelancersResponse, error)
@@ -129,6 +131,16 @@ func (c *freelancerServiceClient) GetSpecialities(ctx context.Context, in *GetSp
 	return out, nil
 }
 
+func (c *freelancerServiceClient) GetSocialNetworks(ctx context.Context, in *GetSocialNetworksRequest, opts ...grpc.CallOption) (*GetSocialNetworksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSocialNetworksResponse)
+	err := c.cc.Invoke(ctx, FreelancerService_GetSocialNetworks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *freelancerServiceClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SearchResponse)
@@ -182,6 +194,7 @@ type FreelancerServiceServer interface {
 	GetPagesCount(context.Context, *PagesCountRequest) (*PagesCountResponse, error)
 	GetCities(context.Context, *GetCitiesRequest) (*CitiesResponse, error)
 	GetSpecialities(context.Context, *GetSpecialitiesRequest) (*SpecialitiesResponse, error)
+	GetSocialNetworks(context.Context, *GetSocialNetworksRequest) (*GetSocialNetworksResponse, error)
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateDoctor(context.Context, *CreateFreelancersRequest) (*CreateFreelancersResponse, error)
@@ -216,6 +229,9 @@ func (UnimplementedFreelancerServiceServer) GetCities(context.Context, *GetCitie
 }
 func (UnimplementedFreelancerServiceServer) GetSpecialities(context.Context, *GetSpecialitiesRequest) (*SpecialitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSpecialities not implemented")
+}
+func (UnimplementedFreelancerServiceServer) GetSocialNetworks(context.Context, *GetSocialNetworksRequest) (*GetSocialNetworksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSocialNetworks not implemented")
 }
 func (UnimplementedFreelancerServiceServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
@@ -376,6 +392,24 @@ func _FreelancerService_GetSpecialities_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FreelancerService_GetSocialNetworks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSocialNetworksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerServiceServer).GetSocialNetworks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerService_GetSocialNetworks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerServiceServer).GetSocialNetworks(ctx, req.(*GetSocialNetworksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FreelancerService_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchRequest)
 	if err := dec(in); err != nil {
@@ -482,6 +516,10 @@ var FreelancerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSpecialities",
 			Handler:    _FreelancerService_GetSpecialities_Handler,
+		},
+		{
+			MethodName: "GetSocialNetworks",
+			Handler:    _FreelancerService_GetSocialNetworks_Handler,
 		},
 		{
 			MethodName: "Search",

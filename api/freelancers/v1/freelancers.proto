@@ -64,6 +64,14 @@ service FreelancerService {
       summary: "Получение специальностей для регистрации"
     };
   }
+  rpc GetSocialNetworks(GetSocialNetworksRequest) returns (GetSocialNetworksResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/networks_list"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение соц сетей для регистрации"
+    };
+  }
   rpc Search(SearchRequest) returns (SearchResponse) {
     option (google.api.http) = {
       get: "/api/v1/freelancers/search"
@@ -370,5 +378,16 @@ message GetFreelancerResponse {
     string name = 1;
     // Стоимость услуги
     string amount = 2;
+  }
+}
+
+message GetSocialNetworksRequest{}
+
+message GetSocialNetworksResponse{
+  repeated SocialNetworkItem social_networks = 1;
+
+  message SocialNetworkItem {
+    int64 id = 1;
+    string name = 2;
   }
 }
