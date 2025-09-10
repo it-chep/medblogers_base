@@ -37,12 +37,19 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // SearchFreelancers поиск фрилансеров
 func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*freelancer.Freelancer, error) {
 	sql := `
-		select 
-			f.id, f.name, f.slug, f.price_category, f.is_worked_with_freelancers, c.name as "city_name", s.name as "speciality_name"
+		select f.id,
+			   f.name,
+			   f.slug,
+			   f.price_category,
+			   f.is_worked_with_doctors,
+			   f.s3_image,
+			   c.name as "city_name",
+			   s.name as "speciality_name"
 		from freelancer f
-		join freelancers_city c on f.city_id = c.id
-		join freelancers_speciality s on f.speciality_id = s.id
-		where f.is_active = true and f.name ilike $1
+				 join freelancers_city c on f.city_id = c.id
+				 join freelancers_speciality s on f.speciality_id = s.id
+		where f.is_active = true
+		  and f.name ilike $1
 		order by f.name
 		limit $2;
 	`
@@ -102,7 +109,7 @@ func (r Repository) SearchSpecialities(ctx context.Context, query string) ([]*sp
 			   s.name                    as name,
 			   count(distinct freelancer_id) as freelancers_count
 		from freelancers_speciality s
-				 left join (select fs.speciallity_id, fs.freelancer_id
+				 left join (select fs.speciality_id, fs.freelancer_id
 							from freelancer_speciality_m2m fs
 									 join freelancer f on fs.freelancer_id = f.id
 							where f.is_active = true) as combined on s.id = combined.speciality_id

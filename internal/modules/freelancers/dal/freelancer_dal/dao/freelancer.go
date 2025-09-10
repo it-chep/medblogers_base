@@ -25,9 +25,38 @@ func (f *FreelancerSeoInfo) ToDomain() *freelancer.Freelancer {
 }
 
 type FreelancerMiniature struct {
+	ID                       int64  `db:"id"`
+	Name                     string `db:"name"`
+	Slug                     string `db:"slug"`
+	S3Image                  string `db:"s3_image"`
+	PriceCategory            int64  `db:"price_category"`
+	HasExperienceWithDoctors bool   `db:"is_worked_with_doctors"`
+	CityName                 string `db:"city_name"`
+	SpecialityName           string `db:"speciality_name"`
 }
 
 type FreelancerSearch struct {
+	ID                       int64  `db:"id"`
+	Name                     string `db:"name"`
+	Slug                     string `db:"slug"`
+	S3Image                  string `db:"s3_image"`
+	PriceCategory            int64  `db:"price_category"`
+	HasExperienceWithDoctors bool   `db:"is_worked_with_doctors"`
+	CityName                 string `db:"city_name"`
+	SpecialityName           string `db:"speciality_name"`
+}
+
+func (f *FreelancerSearch) ToDomain() *freelancer.Freelancer {
+	return freelancer.New(
+		freelancer.WithID(f.ID),
+		freelancer.WithName(f.Name),
+		freelancer.WithSlug(f.Slug),
+		freelancer.WithPriceCategory(f.PriceCategory),
+		freelancer.WithExperienceWithDoctors(f.HasExperienceWithDoctors),
+		freelancer.WithS3Image(f.S3Image),
+		// cityName
+		// specaialityName
+	)
 }
 
 type PriceCategory struct {

@@ -2,11 +2,11 @@ package freelancers
 
 import (
 	"context"
-	"medblogers_base/internal/modules/freelancers/action/preliminary_filter_count/dto"
+	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 )
 
 type Storage interface {
-	FilterFreelancers(ctx context.Context, filter dto.Filter) (int64, error)
+	FreelancersCountByFilter(ctx context.Context, filter freelancer.Filter) (int64, error)
 }
 
 // Service .
@@ -22,6 +22,6 @@ func NewService(repository Storage) *Service {
 }
 
 // GetFreelancersCount селект количества врачей из базы
-func (s *Service) GetFreelancersCount(ctx context.Context, filter dto.Filter) (int64, error) {
-	return s.repository.FilterFreelancers(ctx, filter)
+func (s *Service) GetFreelancersCount(ctx context.Context, filter freelancer.Filter) (int64, error) {
+	return s.repository.FreelancersCountByFilter(ctx, filter)
 }

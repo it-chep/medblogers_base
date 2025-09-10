@@ -88,7 +88,7 @@ service FreelancerService {
       summary: "Фильтрация фрилансеров по доступным фильтрам"
     };
   }
-  rpc CreateDoctor(CreateFreelancersRequest) returns (CreateFreelancersResponse) {
+  rpc CreateFreelancer(CreateFreelancersRequest) returns (CreateFreelancersResponse) {
     option (google.api.http) = {
       post: "/api/v1/freelancers/create"
       body: "*"

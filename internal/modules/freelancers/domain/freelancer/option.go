@@ -72,3 +72,17 @@ func WithMainSpecialityID(mainSpecialityID int64) Option {
 		s.specialityID = mainSpecialityID
 	}
 }
+
+// WithPriceCategory .
+func WithPriceCategory(priceCategory int64) Option {
+	return func(s *Freelancer) {
+		s.priceCategory = priceCategory
+	}
+}
+
+// WithExperienceWithDoctors .
+func WithExperienceWithDoctors(hasExpWithDoc bool) Option {
+	return func(s *Freelancer) {
+		s.experienceWithDoctor = hasExpWithDoc
+	}
+}

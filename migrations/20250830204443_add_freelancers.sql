@@ -68,7 +68,8 @@ create table if not exists freelancer
     portfolio_link         varchar(255), -- ссылка на портфолио
     speciality_id          bigint,       -- id основной специальности фрилансера
     city_id                bigint,       -- id основного города фрилансера
-    price_category         int           -- ценовая категория фрилансера, определяется на основе прайс-листа или руками
+    price_category         int,          -- ценовая категория фрилансера, определяется на основе прайс-листа или руками
+    s3_image               text          -- фотография фрилансера
 );
 
 select price_category,

@@ -46,9 +46,9 @@ func (a *Action) Do(ctx context.Context, query string) (dto.SearchDTO, error) {
 		}
 		searchResult.Cities = lo.Map(cities, func(item *cityDomain.City, _ int) dto.CityItem {
 			return dto.CityItem{
-				ID:           item.ID(),
-				Name:         item.Name(),
-				DoctorsCount: item.FreelancersCount(),
+				ID:               item.ID(),
+				Name:             item.Name(),
+				FreelancersCount: item.FreelancersCount(),
 			}
 		})
 	})
@@ -61,9 +61,9 @@ func (a *Action) Do(ctx context.Context, query string) (dto.SearchDTO, error) {
 		}
 		searchResult.Specialities = lo.Map(specialities, func(item *specialityDomain.Speciality, _ int) dto.SpecialityItem {
 			return dto.SpecialityItem{
-				ID:           item.ID(),
-				Name:         item.Name(),
-				DoctorsCount: item.FreelancersCount(),
+				ID:               item.ID(),
+				Name:             item.Name(),
+				FreelancersCount: item.FreelancersCount(),
 			}
 		})
 	})
