@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/jackc/pgx/v4"
-	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
+	"github.com/pkg/errors"
 	cityDAO "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
+	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/freelancers/dal/speciality_dal/dao"
 	"medblogers_base/internal/modules/freelancers/domain/city"
+	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -27,27 +28,24 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 // GetFreelancerInfo получает информацию о докторе
-func (r Repository) GetFreelancerInfo(ctx context.Context, slug string) (*doctor.Doctor, error) {
+func (r Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	sql := `
 		select 
-			id, name, slug, 
-			inst_url, vk_url, dzen_url, tg_url, youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
-			s3_image, is_active, medical_directions, main_blog_theme, 
-			city_id, speciallity_id
+			id, name
 		from freelancer
 		where slug = $1
 	`
 
-	var doctorDAO dao.DoctorDAO
-	err := pgxscan.Get(ctx, r.db, &doctorDAO, sql, slug)
+	var freelancerDAO dao.FreelancerSeoInfo
+	err := pgxscan.Get(ctx, r.db, &freelancerDAO, sql, slug)
 	switch {
 	case errors.Is(err, pgx.ErrNoRows):
 		return nil, fmt.Errorf("freelancer with slug %s not found", slug)
 	case err != nil:
-		return nil, fmt.Errorf("failed to get doctor: %w", err)
+		return nil, fmt.Errorf("failed to get freelancer: %w", err)
 	}
 
-	return doctorDAO.ToDomain(), nil
+	return freelancerDAO.ToDomain(), nil
 }
 
 // GetFreelancerAdditionalCities получение информации о городах фрилансера

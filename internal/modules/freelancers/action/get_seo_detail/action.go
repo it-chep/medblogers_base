@@ -36,5 +36,4 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
 		Description: description,
 		Title:       frlcer.GetName(),
 	}, nil
-
 }

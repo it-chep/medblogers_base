@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/samber/lo"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/modules/freelancers/domain/city"
+	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 
 	"medblogers_base/internal/pkg/async"
@@ -15,7 +15,7 @@ import (
 
 // Storage .
 type Storage interface {
-	GetFreelancerInfo(ctx context.Context, slug string) (*doctor.Doctor, error)
+	GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error)
 	GetFreelancerAdditionalCities(ctx context.Context, freelancerID int64) (map[int64]*city.City, error)
 	GetFreelancerAdditionalSpecialities(ctx context.Context, freelancerID int64) (map[int64]*speciality.Speciality, error)
 }
@@ -33,7 +33,7 @@ func New(storage Storage) *Service {
 }
 
 // GetFreelancerInfo получение информации о докторе
-func (s *Service) GetFreelancerInfo(ctx context.Context, slug string) (*doctor.Doctor, error) {
+func (s *Service) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	return s.storage.GetFreelancerInfo(ctx, slug)
 }
 

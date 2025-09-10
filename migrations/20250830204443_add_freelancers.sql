@@ -60,9 +60,8 @@ create table if not exists freelancer
 (
     id                     bigserial,    -- id фрилансера в системе
     email                  varchar(255), -- email фрилансера
-    first_name             varchar(255),
-    last_name              varchar(255),
-    middle_name            varchar(255),
+    slug                   text         not null,
+    name                   varchar(255) not null,
     is_worked_with_doctors bool,         -- есть ли опыт работы с врачами
     is_active              bool,         -- признак активности
     tg_username            varchar(255), -- ссылка на личный тг для связи
