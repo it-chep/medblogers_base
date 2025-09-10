@@ -5,5 +5,7 @@ type Filter struct {
 	Specialities          []int64
 	SocialNetworks        []int64
 	PriceCategory         []int64
-	ExperienceWithDoctors bool
+	ExperienceWithDoctors *bool
+
+	Page int64
 }

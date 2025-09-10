@@ -26,3 +26,8 @@ func (s SpecialityDAOWithFreelancersCount) ToDomain() *speciality.Speciality {
 		speciality.WithFreelancersCount(s.FreelancersCount),
 	)
 }
+
+type SpecialityDAOWithFreelancerID struct {
+	SpecialityDAO
+	FreelancerID int64 `db:"freelancer_id" json:"freelancer_id"`
+}

@@ -38,3 +38,8 @@ func (s SocialNetworkWithFreelancersCount) ToDomain() *social_network.SocialNetw
 		social_network.WithFreelancersCount(s.FreelancersCount),
 	)
 }
+
+type SocialNetworkWithFreelancerID struct {
+	SocialNetworkDao
+	FreelancerID int64 `db:"freelancer_id" json:"freelancer_id"`
+}

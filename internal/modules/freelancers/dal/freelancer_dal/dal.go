@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/lib/pq"
+	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -60,13 +61,19 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	from
     	freelancer f
 	where 
-    	f.is_active = true and f.is_worked_with_doctors = $1
+    	f.is_active = true
         `
 
-	phValues = append(phValues, filter.ExperienceWithDoctors)
-
 	whereStmtBuilder := strings.Builder{}
-	phCounter := 2 // Счетчик для плейсхолдеров
+	phCounter := 1 // Счетчик для плейсхолдеров
+
+	if filter.ExperienceWithDoctors != nil {
+		whereStmtBuilder.WriteString(fmt.Sprintf(`
+			 and f.is_worked_with_doctors = $%d
+		`, phCounter))
+		phValues = append(phValues, lo.FromPtr(filter.ExperienceWithDoctors))
+		phCounter++
+	}
 
 	if len(filter.Cities) != 0 {
 		whereStmtBuilder.WriteString(fmt.Sprintf(`

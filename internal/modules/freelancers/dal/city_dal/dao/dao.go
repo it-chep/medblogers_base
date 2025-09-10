@@ -26,3 +26,16 @@ func (c CityDAOWithFreelancersCount) ToDomain() *city.City {
 		city.WithFreelancersCount(c.FreelancersCount),
 	)
 }
+
+type CityDAOWithFreelancerID struct {
+	CityDAO
+	FreelancerID int64 `db:"freelancer_id" json:"freelancer_id"`
+}
+
+func (c CityDAOWithFreelancerID) ToDomain() *city.City {
+	return city.BuildCity(
+		city.WithID(c.ID),
+		city.WithName(c.Name),
+		city.WithFreelancersCount(c.FreelancersCount),
+	)
+}

@@ -31,8 +31,26 @@ type FreelancerMiniature struct {
 	S3Image                  string `db:"s3_image"`
 	PriceCategory            int64  `db:"price_category"`
 	HasExperienceWithDoctors bool   `db:"is_worked_with_doctors"`
-	CityName                 string `db:"city_name"`
-	SpecialityName           string `db:"speciality_name"`
+}
+
+func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
+	return freelancer.New(
+		freelancer.WithID(m.ID),
+		freelancer.WithName(m.Name),
+		freelancer.WithSlug(m.Slug),
+		freelancer.WithPriceCategory(m.PriceCategory),
+		freelancer.WithExperienceWithDoctors(m.HasExperienceWithDoctors),
+	)
+}
+
+type Miniatures []FreelancerMiniature
+
+func (m Miniatures) ToDomain() []*freelancer.Freelancer {
+	domain := make([]*freelancer.Freelancer, 0, len(m))
+	for _, miniature := range m {
+		domain = append(domain, miniature.ToDomain())
+	}
+	return domain
 }
 
 type FreelancerSearch struct {
