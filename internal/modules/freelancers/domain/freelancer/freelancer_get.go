@@ -67,3 +67,11 @@ func (f *Freelancer) GetSocialNetworks() []int64 {
 func (f *Freelancer) GetS3Image() string {
 	return f.s3Image
 }
+
+func (f *Freelancer) GetMainCityID() int64 {
+	return f.cityID
+}
+
+func (f *Freelancer) GetMainSpecialityID() int64 {
+	return f.specialityID
+}
