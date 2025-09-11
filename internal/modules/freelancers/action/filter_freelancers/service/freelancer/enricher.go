@@ -3,20 +3,24 @@ package freelancer
 import (
 	"context"
 	"fmt"
-	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
-	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
+	"github.com/samber/lo"
+	"medblogers_base/internal/modules/freelancers/action/filter_freelancers/dto"
+	"medblogers_base/internal/modules/freelancers/domain/city"
+	"medblogers_base/internal/modules/freelancers/domain/social_network"
+	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"strings"
 	"sync"
 )
 
-func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor, doctorsIDs []int64) {
+func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Freelancer, freelancersIDs []int64) {
 	// Обогащение специальностями, фотографиями и городами
 	var (
 		imageMap        map[string]string
 		citiesMap       map[int64][]*city.City
 		specialitiesMap map[int64][]*speciality.Speciality
+		networksMap     map[int64][]*social_network.SocialNetwork
 		mu              sync.Mutex
 		errs            []error
 	)
@@ -24,7 +28,7 @@ func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor,
 
 	// Получаем фотки
 	g.Go(func() {
-		imgs, err := s.imageGetter.GetUserPhotos(ctx)
+		imgs, err := s.imageEnricher.GetUserPhotos(ctx)
 		mu.Lock()
 		defer mu.Unlock()
 		if err != nil {
@@ -36,7 +40,7 @@ func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor,
 
 	// Получаем доп города
 	g.Go(func() {
-		cities, err := s.additionalStorage.GetDoctorAdditionalCities(ctx, doctorsIDs)
+		cities, err := s.additionalStorage.GetAdditionalCities(ctx, freelancersIDs)
 		mu.Lock()
 		defer mu.Unlock()
 		if err != nil {
@@ -48,7 +52,7 @@ func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor,
 
 	// Получаем доп специальности
 	g.Go(func() {
-		specs, err := s.additionalStorage.GetDoctorAdditionalSpecialities(ctx, doctorsIDs)
+		specs, err := s.additionalStorage.GetAdditionalSpecialities(ctx, freelancersIDs)
 		mu.Lock()
 		defer mu.Unlock()
 		if err != nil {
@@ -56,6 +60,18 @@ func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor,
 			return
 		}
 		specialitiesMap = specs
+	})
+
+	// Получаем соц сетей
+	g.Go(func() {
+		networks, err := s.additionalStorage.GetSocialNetworks(ctx, freelancersIDs)
+		mu.Lock()
+		defer mu.Unlock()
+		if err != nil {
+			errs = append(errs, fmt.Errorf("ошибка при получении специальностей: %w", err))
+			return
+		}
+		networksMap = networks
 	})
 
 	g.Wait()
@@ -71,33 +87,15 @@ func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor,
 	enrichImages(ctx, dtoMap, imageMap)
 	enrichAdditionalSpecialities(ctx, dtoMap, specialitiesMap)
 	enrichAdditionalCities(ctx, dtoMap, citiesMap)
-}
-
-// enrichSubscribers - обогащение подписчиками в миниатюры докторов
-func enrichSubscribers(ctx context.Context, doctorsMap map[int64]dto.Doctor, subscribersMap map[int64]indto.GetSubscribersByDoctorIDsResponse) {
-	logger.Message(ctx, "[Filter] Обогащение подписчиками")
-
-	for id, doc := range doctorsMap {
-		subsInfo, ok := subscribersMap[doc.ID]
-		if !ok {
-			continue
-		}
-
-		doc.TgSubsCount = subsInfo.TgSubsCount
-		doc.TgSubsCountText = subsInfo.TgSubsCountText
-		doc.InstSubsCount = subsInfo.InstSubsCount
-		doc.InstSubsCountText = subsInfo.InstSubsCountText
-
-		doctorsMap[id] = doc
-	}
+	enrichSocialNetworks(ctx, dtoMap, networksMap)
 }
 
 // enrichAdditionalCities - обогащение доп городами
-func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalCitiesMap map[int64][]*city.City) {
+func enrichAdditionalCities(ctx context.Context, freelancersMap map[int64]dto.Freelancer, additionalCitiesMap map[int64][]*city.City) {
 	logger.Message(ctx, "[Filter] Обогащение доп городами")
 
-	for doctorID, cities := range additionalCitiesMap {
-		doctor, ok := doctorsMap[doctorID]
+	for freelancerID, cities := range additionalCitiesMap {
+		freelancer, ok := freelancersMap[freelancerID]
 		if !ok {
 			continue
 		}
@@ -106,7 +104,7 @@ func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor
 
 		// Сначала ищем основной город
 		for _, c := range cities {
-			if int64(c.ID()) == doctor.MainCityID {
+			if c.ID() == freelancer.MainCityID {
 				builder.WriteString(c.Name())
 				break
 			}
@@ -118,7 +116,7 @@ func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor
 			if counter == 2 {
 				break
 			}
-			if int64(c.ID()) != doctor.MainCityID {
+			if int64(c.ID()) != freelancer.MainCityID {
 				if builder.Len() > 0 {
 					builder.WriteString(", ")
 				}
@@ -129,18 +127,18 @@ func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor
 
 		// Обновляем данные доктора
 		if builder.Len() > 0 {
-			doctor.City = builder.String()
-			doctorsMap[doctorID] = doctor
+			freelancer.City = builder.String()
+			freelancersMap[freelancerID] = freelancer
 		}
 	}
 }
 
 // enrichAdditionalSpecialities - обогащение доп специальностями и доп городами
-func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalSpecialitiesMap map[int64][]*speciality.Speciality) {
+func enrichAdditionalSpecialities(ctx context.Context, freelancersMap map[int64]dto.Freelancer, additionalSpecialitiesMap map[int64][]*speciality.Speciality) {
 	logger.Message(ctx, "[Filter] Обогащение доп специальностями")
 
-	for doctorID, specialities := range additionalSpecialitiesMap {
-		doctor, ok := doctorsMap[doctorID]
+	for freelancerID, specialities := range additionalSpecialitiesMap {
+		freelancer, ok := freelancersMap[freelancerID]
 		if !ok {
 			continue
 		}
@@ -149,7 +147,7 @@ func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.
 
 		// Сначала ищем основной город
 		for _, spec := range specialities {
-			if int64(spec.ID()) == doctor.MainSpecialityID {
+			if spec.ID() == freelancer.MainSpecialityID {
 				builder.WriteString(spec.Name())
 				break
 			}
@@ -161,7 +159,7 @@ func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.
 			if counter == 2 {
 				break
 			}
-			if int64(spec.ID()) != doctor.MainSpecialityID {
+			if spec.ID() != freelancer.MainSpecialityID {
 				if builder.Len() > 0 {
 					builder.WriteString(", ")
 				}
@@ -172,26 +170,47 @@ func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.
 
 		// Обновляем данные доктора
 		if builder.Len() > 0 {
-			doctor.Speciality = builder.String()
-			doctorsMap[doctorID] = doctor
+			freelancer.Speciality = builder.String()
+			freelancersMap[freelancerID] = freelancer
 		}
 	}
 }
 
 // enrichImages - обогащение фотографиями в миниатюры докторов
-func enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos map[string]string) {
+func enrichImages(ctx context.Context, freelancersMap map[int64]dto.Freelancer, photos map[string]string) {
 	logger.Message(ctx, "[Filter] Обогащение фотографиями")
 
-	for id, doc := range doctorsMap {
-		photo, ok := photos[doc.Slug]
+	for id, freelancer := range freelancersMap {
+		photo, ok := photos[freelancer.Slug]
 		if !ok {
 			// Устанавливаем дефолтное значение
-			doc.Image = "https://storage.yandexcloud.net/medblogers-photos/zag.jpg"
-			doctorsMap[id] = doc
+			freelancer.Image = "https://storage.yandexcloud.net/medblogers-photos/zag.jpg"
+			freelancersMap[id] = freelancer
 			continue
 		}
 
-		doc.Image = photo
-		doctorsMap[id] = doc
+		freelancer.Image = photo
+		freelancersMap[id] = freelancer
+	}
+}
+
+// enrichSocialNetworks - обогащение соц сетями
+func enrichSocialNetworks(ctx context.Context, freelancersMap map[int64]dto.Freelancer, socialNetworks map[int64][]*social_network.SocialNetwork) {
+	logger.Message(ctx, "[Filter] Обогащение доп соцсетями")
+
+	for freelancerID, networks := range socialNetworks {
+		freelancer, ok := freelancersMap[freelancerID]
+		if !ok {
+			continue
+		}
+
+		freelancer.Networks = lo.Map(networks, func(item *social_network.SocialNetwork, _ int) dto.NetworkItem {
+			return dto.NetworkItem{
+				ID:   item.ID(),
+				Name: item.Name(),
+			}
+		})
+
+		freelancersMap[freelancerID] = freelancer
 	}
 }

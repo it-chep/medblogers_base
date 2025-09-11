@@ -9,9 +9,8 @@ import (
 	consts "medblogers_base/internal/dto"
 	cityDAO "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
 	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
-	socia
 	socialDao "medblogers_base/internal/modules/freelancers/dal/society_dal/dao"
-	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
+	specialityDAO "medblogers_base/internal/modules/freelancers/dal/speciality_dal/dao"
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/modules/freelancers/domain/social_network"
@@ -33,7 +32,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 // GetFreelancers получение фрилансеров без фильтров
-func (r *Repository) GetFreelancers(ctx context.Context, filter *freelancer.Filter) (map[int64]*freelancer.Freelancer, []int64, error) {
+func (r *Repository) GetFreelancers(ctx context.Context, filter freelancer.Filter) (map[int64]*freelancer.Freelancer, []int64, error) {
 	sql := `
 	select 
 	    id, name, slug, s3_image, price_category, is_worked_with_doctors
