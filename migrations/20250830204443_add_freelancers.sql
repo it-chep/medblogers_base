@@ -72,12 +72,6 @@ create table if not exists freelancer
     s3_image               text          -- фотография фрилансера
 );
 
-select price_category,
-       count(*) as freelancers_count
-from freelancer
-where is_active is true
-group by price_category
-order by price_category;
 -- +goose StatementEnd
 
 -- +goose Down
