@@ -3,10 +3,11 @@ package logger
 import (
 	"context"
 	"fmt"
-	"github.com/Graylog2/go-gelf/gelf"
-	"github.com/joho/godotenv"
 	"log"
 	"os"
+
+	"github.com/Graylog2/go-gelf/gelf"
+	"github.com/joho/godotenv"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

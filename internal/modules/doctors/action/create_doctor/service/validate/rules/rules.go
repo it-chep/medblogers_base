@@ -2,6 +2,7 @@ package rules
 
 import (
 	"context"
+	"fmt"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
 	"regexp"
 	"strings"
@@ -199,6 +200,28 @@ var RuleValidBirthDate = func() func(_ context.Context, req *dto.CreateDoctorReq
 			}
 		}
 		req.BirthDateTime = birthDate
+		return true, dto.ValidationError{}
+	}
+}
+
+// RuleValidInstagramLink валидирует ссылку на инстаграм
+var RuleValidInstagramLink = func() func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
+	return func(_ context.Context, req *dto.CreateDoctorRequest) (bool, error) {
+		if !strings.HasPrefix(req.InstagramUsername, "https://instagram.com") {
+			req.InstagramUsername = fmt.Sprintf("https://instagram.com/%s", req.InstagramUsername)
+		}
+
+		return true, dto.ValidationError{}
+	}
+}
+
+// RuleValidTgChannelLink валидирует ссылку на тг канал
+var RuleValidTgChannelLink = func() func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
+	return func(_ context.Context, req *dto.CreateDoctorRequest) (bool, error) {
+		if !strings.HasPrefix(req.TelegramChannel, "https://t.me") {
+			req.TelegramChannel = fmt.Sprintf("https://t.me/%s", req.TelegramChannel)
+		}
+
 		return true, dto.ValidationError{}
 	}
 }
