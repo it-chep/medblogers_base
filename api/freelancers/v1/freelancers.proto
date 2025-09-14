@@ -161,8 +161,6 @@ message  PreliminaryFilterCountRequest {
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
   optional bool experience_with_doctors = 5;
-
-  int64 page = 6;
 }
 
 message  PreliminaryFilterCountResponse {

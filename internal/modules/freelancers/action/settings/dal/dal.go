@@ -32,12 +32,11 @@ func (r *Repository) GetPriceCategoriesInfo(ctx context.Context) ([]dto.PriceCat
        		count(*) as freelancers_count
 		from freelancer
 		where is_active is true
-		group by id
-		order by id
+		group by price_category
 	`
 
 	var categories []PriceCategoryDAO
-	err := pgxscan.Select(ctx, r.db, categories, sql)
+	err := pgxscan.Select(ctx, r.db, &categories, sql)
 	if err != nil {
 		return nil, err
 	}

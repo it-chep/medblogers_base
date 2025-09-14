@@ -4,7 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/georgysavva/scany/pgxscan"
+	"github.com/jackc/pgx/v4"
 	"github.com/lib/pq"
+	"github.com/pkg/errors"
 	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/logger"
@@ -33,6 +35,9 @@ func (r *Repository) GetFreelancersCount(ctx context.Context) (int64, error) {
 
 	var count int64
 	if err := pgxscan.Get(ctx, r.db, &count, sql); err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return 0, nil
+		}
 		return 0, err
 	}
 
@@ -47,6 +52,9 @@ func (r *Repository) FreelancersCountByFilter(ctx context.Context, filter freela
 	var count int64
 	err := pgxscan.Get(ctx, r.db, &count, sql, phValues...)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return 0, nil
+		}
 		return 0, err
 	}
 
@@ -107,7 +115,6 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 				select 1 from freelancer_social_networks_m2m fs
 				where fs.freelancer_id = f.id
 				and fs.social_network_id = any($%d::bigint[]))
-			)
 		`, phCounter))
 		phValues = append(phValues, pq.Int64Array(filter.SocialNetworks))
 		phCounter++
@@ -115,7 +122,7 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 
 	if len(filter.PriceCategory) != 0 {
 		whereStmtBuilder.WriteString(fmt.Sprintf(`
-			and f.price_category_id = any($%d::bigint[])
+			and f.price_category = any($%d::bigint[])
 		`, phCounter))
 		phValues = append(phValues, pq.Int64Array(filter.PriceCategory))
 		phCounter++
@@ -125,6 +132,6 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	return fmt.Sprintf(`
 		%s
 		%s
-		group by d.id
+		group by f.id
     `, defaultSql, whereStmtBuilder.String()), phValues
 }

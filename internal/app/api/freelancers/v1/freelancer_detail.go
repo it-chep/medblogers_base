@@ -5,6 +5,7 @@ import (
 	"github.com/samber/lo"
 	indto "medblogers_base/internal/modules/freelancers/action/freelancer_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+	"strconv"
 )
 
 func (i *Implementation) GetFreelancer(ctx context.Context, request *desc.GetFreelancerRequest) (*desc.GetFreelancerResponse, error) {
@@ -22,7 +23,10 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 		Name: freelancer.Name,
 		Slug: freelancer.Slug,
 
-		TgUrl: freelancer.TgURL,
+		TgUrl:                 freelancer.TgURL,
+		ExperienceWithDoctors: freelancer.HasExperienceWithDoctor,
+		PriceCategory:         freelancer.PriceCategory,
+		PortfolioLink:         freelancer.PortfolioLink,
 
 		Cities: lo.Map(freelancer.Cities, func(item indto.CityItem, _ int) *desc.GetFreelancerResponse_CityItem {
 			return &desc.GetFreelancerResponse_CityItem{
@@ -35,6 +39,19 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 			return &desc.GetFreelancerResponse_SpecialityItem{
 				Id:   item.ID,
 				Name: item.Name,
+			}
+		}),
+
+		SocialNetworks: lo.Map(freelancer.SocialNetworks, func(item indto.SocialNetworkItem, index int) *desc.GetFreelancerResponse_SocialNetworkItem {
+			return &desc.GetFreelancerResponse_SocialNetworkItem{
+				Id:   item.ID,
+				Name: item.Name,
+			}
+		}),
+		PriceList: lo.Map(freelancer.PriceList, func(item indto.PriceListItem, index int) *desc.GetFreelancerResponse_PriceListItem {
+			return &desc.GetFreelancerResponse_PriceListItem{
+				Name:   item.Name,
+				Amount: lo.Ternary(item.Price > 0, strconv.FormatInt(item.Price, 10), "по договоренности"),
 			}
 		}),
 

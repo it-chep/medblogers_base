@@ -807,8 +807,6 @@ func (m *PreliminaryFilterCountRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Page
-
 	if m.ExperienceWithDoctors != nil {
 		// no validation rules for ExperienceWithDoctors
 	}

@@ -5,7 +5,6 @@ type CreateFreelancerRequest struct {
 	LastName         string `json:"lastName" validate:"required,max=100"`
 	FirstName        string `json:"firstName" validate:"required,max=100"`
 	MiddleName       string `json:"middleName" validate:"required,max=100"`
-	BirthDate        string `json:"birthDate" validate:"required"`
 	TelegramUsername string `json:"telegramUsername" validate:"required,max=100"`
 
 	AgreePolicy bool `json:"agreePolicy" validate:"required"`

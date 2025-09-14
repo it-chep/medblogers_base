@@ -15,8 +15,10 @@ type Freelancer struct {
 
 	Image string
 
-	MainCityID       int64
-	MainSpecialityID int64
+	MainCityID              int64
+	MainSpecialityID        int64
+	PriceCategory           int64
+	HasExperienceWithDoctor bool
 
 	Networks []NetworkItem
 }

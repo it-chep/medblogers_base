@@ -106,7 +106,7 @@ func sqlAddLimitOffset(sql string, phValues []any, filter freelancer.Filter) (_ 
 	phCounter++
 	// offset
 	whereStmtBuilder.WriteString(fmt.Sprintf(`
-			limit $%d
+			offset $%d
 		`, phCounter))
 	phValues = append(phValues, offset)
 	phCounter++
@@ -171,7 +171,6 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 				select 1 from freelancer_social_networks_m2m fs
 				where fs.freelancer_id = f.id
 				and fs.social_network_id = any($%d::bigint[]))
-			)
 		`, phCounter))
 		phValues = append(phValues, pq.Int64Array(filter.SocialNetworks))
 		phCounter++
@@ -179,7 +178,7 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 
 	if len(filter.PriceCategory) != 0 {
 		whereStmtBuilder.WriteString(fmt.Sprintf(`
-			and f.price_category_id = any($%d::bigint[])
+			and f.price_category = any($%d::bigint[])
 		`, phCounter))
 		phValues = append(phValues, pq.Int64Array(filter.PriceCategory))
 		phCounter++
@@ -189,7 +188,6 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	return fmt.Sprintf(`
 		%s
 		%s
-		group by d.id
     `, defaultSql, whereStmtBuilder.String()), phValues
 }
 

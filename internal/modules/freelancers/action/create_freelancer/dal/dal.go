@@ -109,7 +109,7 @@ func (r *Repository) CreatePriceList(ctx context.Context, freelancerID int64, pr
 	insert into freelancers_price_list (freelancer_id, name, price)
          select $1, name, price
          from unnest($2::text[], $3::bigint[]) as t(name, price)
-         on conflict (freelancer_id, name) do nothing`
+         on conflict (freelancer_id, name, price) do nothing`
 
 	_, err := r.db.Exec(ctx, sql, freelancerID, names, prices)
 	return err

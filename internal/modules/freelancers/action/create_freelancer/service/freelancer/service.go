@@ -19,6 +19,14 @@ type Storage interface {
 	CreatePriceList(ctx context.Context, freelancerID int64, priceList dto.PriceList) error
 }
 
+// todo сделать номрально
+var priceCategoriesMap = map[int64]int64{
+	1: 1000,
+	2: 20000,
+	3: 50000,
+	4: 100_000,
+}
+
 type Service struct {
 	storage Storage
 }
@@ -34,6 +42,8 @@ func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateReques
 
 	createDTO.Name = s.createName(createDTO.LastName, createDTO.FirstName, createDTO.MiddleName)
 	createDTO.Slug = slug.New(createDTO.Name)
+	createDTO.PriceCategory = s.definePriceCategory(createDTO.PriceList)
+
 	logger.Message(ctx, "[Create] Сохранение фрилансера в базе")
 
 	medblogersID, err := s.storage.CreateFreelancer(ctx, createDTO)
@@ -95,4 +105,33 @@ func (s *Service) createName(lastName, firstName, middleName string) string {
 	}
 
 	return strings.Join(nonEmptyParts, " ")
+}
+
+func (s *Service) definePriceCategory(priceList dto.PriceList) int64 {
+	if len(priceList) == 0 {
+		return 1
+	}
+
+	// Считаем общую сумму цен
+	var totalSum int64 = 0
+	for _, item := range priceList {
+		totalSum += item.Price
+	}
+
+	// Вычисляем среднюю цену
+	averagePrice := totalSum / int64(len(priceList))
+
+	// Определяем категорию на основе средней цены
+	var category int64 = 1
+
+	// Проходим по категориям от самой низкой к самой высокой
+	for cat, maxPrice := range priceCategoriesMap {
+		if averagePrice <= maxPrice {
+			category = cat
+			break
+		}
+		// Если цена превышает все категории, останется последняя проверенная
+	}
+
+	return category
 }

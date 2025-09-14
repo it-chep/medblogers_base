@@ -1,5 +1,7 @@
 package freelancer
 
+import "strings"
+
 func (f *Freelancer) GetID() int64 {
 	return f.id
 }
@@ -29,7 +31,19 @@ func (f *Freelancer) GetEmail() string {
 }
 
 func (f *Freelancer) GetTgURL() string {
-	return f.tgURL
+	if f.tgURL == "" {
+		return ""
+	}
+
+	// Удаляем @ в начале, если есть
+	tgURL := strings.TrimPrefix(f.tgURL, "@")
+
+	// Если URL не содержит http/https, формируем полный URL
+	if !strings.HasPrefix(tgURL, "http") {
+		tgURL = "https://t.me/" + tgURL
+	}
+
+	return tgURL
 }
 
 func (f *Freelancer) GetPortfolioLink() string {

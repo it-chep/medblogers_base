@@ -32,7 +32,10 @@ type FreelancerDTO struct {
 	Name string
 	Slug string
 
-	TgURL string
+	TgURL                   string
+	HasExperienceWithDoctor bool
+	PriceCategory           int64
+	PortfolioLink           string
 
 	Cities         []CityItem          // доп Города
 	Specialities   []SpecialityItem    // доп Специальности
@@ -56,7 +59,10 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 		Name: frlncr.GetName(),
 		Slug: frlncr.GetSlug(),
 
-		TgURL: frlncr.GetTgURL(),
+		TgURL:                   frlncr.GetTgURL(),
+		HasExperienceWithDoctor: frlncr.HasExperienceWithDoctor(),
+		PriceCategory:           frlncr.GetPriceCategory(),
+		PortfolioLink:           frlncr.GetPortfolioLink(),
 
 		MainCityID:       frlncr.GetMainCityID(),
 		MainSpecialityID: frlncr.GetMainSpecialityID(),

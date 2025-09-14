@@ -3,6 +3,7 @@ package preliminary_filter_count
 import (
 	"context"
 	"fmt"
+	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/preliminary_filter_count/service/freelancers"
 	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal"
 	domain "medblogers_base/internal/modules/freelancers/domain/freelancer"
@@ -23,7 +24,7 @@ func New(pool postgres.PoolWrapper) *Action {
 func (a *Action) Do(ctx context.Context, filter domain.Filter) (int64, error) {
 	logger.Message(ctx, fmt.Sprintf(
 		"[PreliminaryFilterCount] Предфильтрация фрилансеров: SocialNetworks: %v, Cities: %v, Specialities: %v, WorkDoc: %t, PriceCategory: %v,",
-		filter.SocialNetworks, filter.Cities, filter.Specialities, filter.ExperienceWithDoctors, filter.PriceCategory,
+		filter.SocialNetworks, filter.Cities, filter.Specialities, lo.FromPtr(filter.ExperienceWithDoctors), filter.PriceCategory,
 	))
 
 	freelancersCount, err := a.freelancersService.GetFreelancersCount(ctx, filter)

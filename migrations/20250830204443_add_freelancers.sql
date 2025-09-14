@@ -13,7 +13,9 @@ create table if not exists freelancer_speciality_m2m
 (
     id            bigserial,
     speciality_id bigint,
-    freelancer_id bigint
+    freelancer_id bigint,
+
+    unique (speciality_id, freelancer_id)
 );
 
 -- Справочник город фрилансера
@@ -28,7 +30,9 @@ create table if not exists freelancer_city_m2m
 (
     id            bigserial,
     city_id       bigint,
-    freelancer_id bigint
+    freelancer_id bigint,
+
+    unique (city_id, freelancer_id)
 );
 
 -- Справочник Социальные сети
@@ -43,7 +47,9 @@ create table if not exists freelancer_social_networks_m2m
 (
     id                bigserial,
     social_network_id bigint,
-    freelancer_id     bigint
+    freelancer_id     bigint,
+
+    unique (social_network_id, freelancer_id)
 );
 
 -- Прайс-лист фрилансера
@@ -52,7 +58,9 @@ create table if not exists freelancers_price_list
     id            bigserial,
     freelancer_id bigint,       -- id фрилансера в системе
     name          varchar(255), -- название услуги
-    price         integer       -- стоимость услуги. Если 0, то по договоренности
+    price         integer,      -- стоимость услуги. Если 0, то по договоренности
+
+    unique (freelancer_id, name, price)
 );
 
 -- Фрилансер
@@ -69,7 +77,9 @@ create table if not exists freelancer
     speciality_id          bigint,       -- id основной специальности фрилансера
     city_id                bigint,       -- id основного города фрилансера
     price_category         int,          -- ценовая категория фрилансера, определяется на основе прайс-листа или руками
-    s3_image               text          -- фотография фрилансера
+    s3_image               text,         -- фотография фрилансера
+
+    unique (name, email)
 );
 
 -- +goose StatementEnd

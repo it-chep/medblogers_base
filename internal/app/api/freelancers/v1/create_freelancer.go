@@ -23,7 +23,7 @@ func (i *Implementation) CreateFreelancer(ctx context.Context, request *desc.Cre
 		}, nil
 	}
 
-	createDTO := i.requestToCreateDoctorDTO(request)
+	createDTO := i.requestToCreateDTO(request)
 
 	domainValidationErrors, err := i.freelancers.Actions.CreateFreelancer.Do(ctx, createDTO)
 	if err != nil {
@@ -37,16 +37,30 @@ func (i *Implementation) CreateFreelancer(ctx context.Context, request *desc.Cre
 	return nil, nil
 }
 
-func (i *Implementation) requestToCreateDoctorDTO(req *desc.CreateFreelancersRequest) dto.CreateRequest {
+func (i *Implementation) requestToCreateDTO(req *desc.CreateFreelancersRequest) dto.CreateRequest {
 	return dto.CreateRequest{
-		Email:                 req.Email,
-		LastName:              req.LastName,
-		FirstName:             req.FirstName,
-		MiddleName:            req.MiddleName,
+		Email:      req.Email,
+		LastName:   req.LastName,
+		FirstName:  req.FirstName,
+		MiddleName: req.MiddleName,
+		TgUsername: req.TelegramUsername,
+
+		MainCityID:       req.CityId,
+		MainSpecialityID: req.SpecialityId,
+
+		SocialNetworks:        req.SocialNetworks,
 		AdditionalCities:      req.AdditionalCities,
 		AdditionalSpecialties: req.AdditionalSpecialties,
-		MainCityID:            req.CityId,
-		MainSpecialityID:      req.SpecialityId,
+
+		PortfolioLink:            req.PortfolioLink,
+		HasExperienceWithDoctors: req.ExperienceWithDoctors,
+
+		PriceList: lo.Map(req.PriceList, func(item *desc.CreateFreelancersRequest_PriceListItem, index int) dto.PriceListItem {
+			return dto.PriceListItem{
+				Name:  item.GetName(),
+				Price: item.GetAmount(),
+			}
+		}),
 	}
 }
 

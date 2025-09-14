@@ -23,7 +23,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // GetCitiesWithFreelancersCount получение списка городов с количеством фрилансеров
 func (r Repository) GetCitiesWithFreelancersCount(ctx context.Context) ([]*social_network.SocialNetwork, error) {
-	logger.Message(ctx, "[DAL] Запрос городов")
+	logger.Message(ctx, "[DAL] Запрос соцсетей")
 	sql := `
 		with active_freelancers_in_media as (
 			select
@@ -64,7 +64,6 @@ func (r Repository) GetAllNetworks(ctx context.Context) ([]*social_network.Socia
 			   c.name as name
 		from social_networks c
 		group by c.id, c.name
-		order by c.name
 	`
 
 	var socialDao []dao.SocialNetworkWithFreelancersCount
