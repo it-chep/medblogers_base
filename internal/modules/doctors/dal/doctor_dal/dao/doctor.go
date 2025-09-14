@@ -18,7 +18,7 @@ type DoctorDAO struct {
 	Prodoctorov       sql.NullString `db:"prodoctorov"`
 	TgChannelURL      sql.NullString `db:"tg_channel_url"`
 	TiktokURL         sql.NullString `db:"tiktok_url"`
-	S3Image           string         `db:"s3_image"`
+	S3Image           sql.NullString `db:"s3_image"`
 	IsActive          bool           `db:"is_active"`
 	MedicalDirections sql.NullString `db:"medical_directions"`
 	MainBlogTheme     sql.NullString `db:"main_blog_theme"`
@@ -32,7 +32,7 @@ func (d DoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithID(d.ID),
 		doctor.WithName(d.Name),
 		doctor.WithSlug(d.Slug),
-		doctor.WithS3Image(d.S3Image),
+		doctor.WithS3Image(d.S3Image.String),
 		doctor.WithTgURL(d.TgURL.String),
 		doctor.WithInstURL(d.InstURL.String),
 		doctor.WithDzenURL(d.DzenURL.String),

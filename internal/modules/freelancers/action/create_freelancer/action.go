@@ -11,6 +11,7 @@ import (
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/service/validate"
 	"medblogers_base/internal/modules/freelancers/client"
 	"medblogers_base/internal/modules/freelancers/dal/city_dal"
+	"medblogers_base/internal/modules/freelancers/dal/society_dal"
 	"medblogers_base/internal/modules/freelancers/dal/speciality_dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -24,9 +25,13 @@ type Action struct {
 
 func New(clients *client.Aggregator, pool postgres.PoolWrapper, config config.AppConfig) *Action {
 	return &Action{
-		creationService:   freelancer.NewService(dal.NewRepository(pool)),
-		externalService:   external.NewService(clients.Salebot, config),
-		validationService: validate.NewService(city_dal.NewRepository(pool), speciality_dal.NewRepository(pool)),
+		creationService: freelancer.NewService(dal.NewRepository(pool)),
+		externalService: external.NewService(clients.Salebot, config),
+		validationService: validate.NewService(
+			city_dal.NewRepository(pool),
+			speciality_dal.NewRepository(pool),
+			society_dal.NewRepository(pool),
+		),
 	}
 }
 

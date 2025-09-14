@@ -160,10 +160,9 @@ message  PreliminaryFilterCountRequest {
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
-  repeated string social_media = 5;
-  bool experience_with_doctors = 6;
+  optional bool experience_with_doctors = 5;
 
-  int64 page = 7;
+  int64 page = 6;
 }
 
 message  PreliminaryFilterCountResponse {
@@ -177,8 +176,8 @@ message  PagesCountRequest {
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
-  repeated string social_media = 5;
-  bool experience_with_doctors = 6;
+
+  optional bool experience_with_doctors = 5;
 }
 
 message  PagesCountResponse {
@@ -259,10 +258,9 @@ message FilterRequest {
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
-  repeated string social_media = 5;
-  bool experience_with_doctors = 6;
+  optional bool experience_with_doctors = 5;
 
-  int64 page = 7;
+  int64 page = 6;
 }
 message FilterResponse {
   repeated FreelancerItem freelancers = 1;

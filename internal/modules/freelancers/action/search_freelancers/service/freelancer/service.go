@@ -50,15 +50,14 @@ func (s *Service) Search(ctx context.Context, query string) ([]dto.FreelancerIte
 
 	freelancersDTO := lo.Map(freelancers, func(item *freelancer.Freelancer, _ int) dto.FreelancerItem {
 		return dto.FreelancerItem{
-			ID:                    int64(item.GetID()),
+			ID:                    item.GetID(),
 			Name:                  item.GetName(),
 			Slug:                  item.GetSlug(),
-			CityName:              item.GetMainCityName(),
-			SpecialityName:        item.GetMainSpecialityName(),
+			CityName:              item.GetCityName(),
+			SpecialityName:        item.GetSpecialityName(),
 			S3Image:               usersPhotosMap[item.GetSlug()],
-			ExperienceWithDoctors: item.HasExperienceWithDoctors(),
+			ExperienceWithDoctors: item.HasExperienceWithDoctor(),
 			PriceCategory:         item.GetPriceCategory(),
-			SocialNetworks:        item.GetSocialNetworks(),
 		}
 	})
 

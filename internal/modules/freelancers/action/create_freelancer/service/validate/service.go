@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/dto"
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/service/validate/rules"
 	"medblogers_base/internal/modules/freelancers/domain/city"
+	"medblogers_base/internal/modules/freelancers/domain/social_network"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/spec"
@@ -21,15 +22,21 @@ type SpecialityStorage interface {
 	GetAllSpecialities(ctx context.Context) ([]*speciality.Speciality, error)
 }
 
+type SocialNetworkStorage interface {
+	GetAllNetworks(ctx context.Context) ([]*social_network.SocialNetwork, error)
+}
+
 type Service struct {
 	cityStorage       CityStorage
 	specialityStorage SpecialityStorage
+	networksStorage   SocialNetworkStorage
 }
 
-func NewService(cityStorage CityStorage, specialityStorage SpecialityStorage) *Service {
+func NewService(cityStorage CityStorage, specialityStorage SpecialityStorage, networksStorage SocialNetworkStorage) *Service {
 	return &Service{
 		cityStorage:       cityStorage,
 		specialityStorage: specialityStorage,
+		networksStorage:   networksStorage,
 	}
 }
 
@@ -44,11 +51,19 @@ func (s *Service) ValidateFreelancer(ctx context.Context, createDTO *dto.CreateR
 		return nil, err
 	}
 
+	networksIDs, err := s.getSocialNetworksIDs(ctx)
+	if err != nil {
+		return nil, err
+	}
+
 	specification := spec.NewIndependentSpecification[*dto.CreateRequest]().
 		And(rules.RuleValidSpecialityID(specialitiesIDs)).
 		And(rules.RuleValidSpecialitiesIDs(specialitiesIDs)).
 		And(rules.RuleValidCityID(citiesIDs)).
-		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs))
+		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs)).
+		And(rules.RuleValidSocialNetworksIDs(networksIDs)).
+		And(rules.RuleValidPortfolioLink()).
+		And(rules.RuleValidTgUsername())
 
 	domainErrors := make([]dto.ValidationError, 0)
 	for _, validationError := range specification.Validate(ctx, createDTO) {
@@ -94,4 +109,18 @@ func (s *Service) getSpecialitiesIDs(ctx context.Context) ([]int64, error) {
 	}
 
 	return specialitiesIDs, nil
+}
+
+func (s *Service) getSocialNetworksIDs(ctx context.Context) ([]int64, error) {
+	networks, err := s.networksStorage.GetAllNetworks(ctx)
+	if err != nil {
+		logger.Error(ctx, "Ошибка получении соц сетей при реге", err)
+		return nil, err
+	}
+
+	networksIDs := make([]int64, 0, len(networks))
+	for _, n := range networks {
+		networksIDs = append(networksIDs, n.ID())
+	}
+	return networksIDs, nil
 }

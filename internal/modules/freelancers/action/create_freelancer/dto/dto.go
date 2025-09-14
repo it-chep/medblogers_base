@@ -24,6 +24,7 @@ type CreateRequest struct {
 	MainCityID               int64
 	PriceCategory            int64
 
+	SocialNetworks        []int64
 	AdditionalCities      []int64
 	AdditionalSpecialties []int64
 

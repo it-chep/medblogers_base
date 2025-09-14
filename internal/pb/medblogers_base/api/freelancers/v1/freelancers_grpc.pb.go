@@ -29,7 +29,7 @@ const (
 	FreelancerService_GetSocialNetworks_FullMethodName         = "/freelancers.v1.FreelancerService/GetSocialNetworks"
 	FreelancerService_Search_FullMethodName                    = "/freelancers.v1.FreelancerService/Search"
 	FreelancerService_Filter_FullMethodName                    = "/freelancers.v1.FreelancerService/Filter"
-	FreelancerService_CreateDoctor_FullMethodName              = "/freelancers.v1.FreelancerService/CreateDoctor"
+	FreelancerService_CreateFreelancer_FullMethodName          = "/freelancers.v1.FreelancerService/CreateFreelancer"
 	FreelancerService_GetFreelancer_FullMethodName             = "/freelancers.v1.FreelancerService/GetFreelancer"
 )
 
@@ -49,7 +49,7 @@ type FreelancerServiceClient interface {
 	GetSocialNetworks(ctx context.Context, in *GetSocialNetworksRequest, opts ...grpc.CallOption) (*GetSocialNetworksResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
-	CreateDoctor(ctx context.Context, in *CreateFreelancersRequest, opts ...grpc.CallOption) (*CreateFreelancersResponse, error)
+	CreateFreelancer(ctx context.Context, in *CreateFreelancersRequest, opts ...grpc.CallOption) (*CreateFreelancersResponse, error)
 	GetFreelancer(ctx context.Context, in *GetFreelancerRequest, opts ...grpc.CallOption) (*GetFreelancerResponse, error)
 }
 
@@ -161,10 +161,10 @@ func (c *freelancerServiceClient) Filter(ctx context.Context, in *FilterRequest,
 	return out, nil
 }
 
-func (c *freelancerServiceClient) CreateDoctor(ctx context.Context, in *CreateFreelancersRequest, opts ...grpc.CallOption) (*CreateFreelancersResponse, error) {
+func (c *freelancerServiceClient) CreateFreelancer(ctx context.Context, in *CreateFreelancersRequest, opts ...grpc.CallOption) (*CreateFreelancersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateFreelancersResponse)
-	err := c.cc.Invoke(ctx, FreelancerService_CreateDoctor_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, FreelancerService_CreateFreelancer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -197,7 +197,7 @@ type FreelancerServiceServer interface {
 	GetSocialNetworks(context.Context, *GetSocialNetworksRequest) (*GetSocialNetworksResponse, error)
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
-	CreateDoctor(context.Context, *CreateFreelancersRequest) (*CreateFreelancersResponse, error)
+	CreateFreelancer(context.Context, *CreateFreelancersRequest) (*CreateFreelancersResponse, error)
 	GetFreelancer(context.Context, *GetFreelancerRequest) (*GetFreelancerResponse, error)
 	mustEmbedUnimplementedFreelancerServiceServer()
 }
@@ -239,8 +239,8 @@ func (UnimplementedFreelancerServiceServer) Search(context.Context, *SearchReque
 func (UnimplementedFreelancerServiceServer) Filter(context.Context, *FilterRequest) (*FilterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Filter not implemented")
 }
-func (UnimplementedFreelancerServiceServer) CreateDoctor(context.Context, *CreateFreelancersRequest) (*CreateFreelancersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDoctor not implemented")
+func (UnimplementedFreelancerServiceServer) CreateFreelancer(context.Context, *CreateFreelancersRequest) (*CreateFreelancersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFreelancer not implemented")
 }
 func (UnimplementedFreelancerServiceServer) GetFreelancer(context.Context, *GetFreelancerRequest) (*GetFreelancerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreelancer not implemented")
@@ -446,20 +446,20 @@ func _FreelancerService_Filter_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FreelancerService_CreateDoctor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FreelancerService_CreateFreelancer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateFreelancersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FreelancerServiceServer).CreateDoctor(ctx, in)
+		return srv.(FreelancerServiceServer).CreateFreelancer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FreelancerService_CreateDoctor_FullMethodName,
+		FullMethod: FreelancerService_CreateFreelancer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FreelancerServiceServer).CreateDoctor(ctx, req.(*CreateFreelancersRequest))
+		return srv.(FreelancerServiceServer).CreateFreelancer(ctx, req.(*CreateFreelancersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -530,8 +530,8 @@ var FreelancerService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FreelancerService_Filter_Handler,
 		},
 		{
-			MethodName: "CreateDoctor",
-			Handler:    _FreelancerService_CreateDoctor_Handler,
+			MethodName: "CreateFreelancer",
+			Handler:    _FreelancerService_CreateFreelancer_Handler,
 		},
 		{
 			MethodName: "GetFreelancer",

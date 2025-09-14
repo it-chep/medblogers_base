@@ -15,6 +15,8 @@ type Storage interface {
 	CreateFreelancer(ctx context.Context, createDTO dto.CreateRequest) (int64, error)
 	CreateAdditionalCities(ctx context.Context, medblogersID int64, citiesIDs []int64) error
 	CreateAdditionalSpecialities(ctx context.Context, medblogersID int64, specialitiesIDs []int64) error
+	CreateSocialNetworks(ctx context.Context, freelancerID int64, networkIDs []int64) error
+	CreatePriceList(ctx context.Context, freelancerID int64, priceList dto.PriceList) error
 }
 
 type Service struct {
@@ -43,6 +45,7 @@ func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateReques
 	createDTO.AdditionalCities = append(createDTO.AdditionalCities, createDTO.MainCityID)
 	createDTO.AdditionalSpecialties = append(createDTO.AdditionalSpecialties, createDTO.MainSpecialityID)
 
+	// todo транзакция
 	g := async.NewGroup()
 
 	logger.Message(ctx, "[Create] Сохранение дополнительных параметров")
@@ -56,6 +59,18 @@ func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateReques
 		err = s.storage.CreateAdditionalSpecialities(ctx, medblogersID, createDTO.AdditionalSpecialties)
 		if err != nil {
 			logger.Error(ctx, "[Create] Ошибка при сохранении доп специальностей ", err)
+		}
+	})
+	g.Go(func() {
+		err = s.storage.CreateSocialNetworks(ctx, medblogersID, createDTO.SocialNetworks)
+		if err != nil {
+			logger.Error(ctx, "[Create] Ошибка при сохранении соц сетей ", err)
+		}
+	})
+	g.Go(func() {
+		err = s.storage.CreatePriceList(ctx, medblogersID, createDTO.PriceList)
+		if err != nil {
+			logger.Error(ctx, "[Create] Ошибка при сохранении прайс листа", err)
 		}
 	})
 

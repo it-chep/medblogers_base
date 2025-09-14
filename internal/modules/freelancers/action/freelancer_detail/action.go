@@ -3,12 +3,12 @@ package freelancer_detail
 import (
 	"context"
 	"fmt"
-	"medblogers_base/internal/modules/doctors/client"
 	"medblogers_base/internal/modules/freelancers/action/freelancer_detail/dal"
 	"medblogers_base/internal/modules/freelancers/action/freelancer_detail/dto"
 	"medblogers_base/internal/modules/freelancers/action/freelancer_detail/service/additional_items"
 	"medblogers_base/internal/modules/freelancers/action/freelancer_detail/service/enricher"
 	"medblogers_base/internal/modules/freelancers/action/freelancer_detail/service/freelancer"
+	"medblogers_base/internal/modules/freelancers/client"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"

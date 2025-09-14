@@ -807,9 +807,11 @@ func (m *PreliminaryFilterCountRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for ExperienceWithDoctors
-
 	// no validation rules for Page
+
+	if m.ExperienceWithDoctors != nil {
+		// no validation rules for ExperienceWithDoctors
+	}
 
 	if len(errors) > 0 {
 		return PreliminaryFilterCountRequestMultiError(errors)
@@ -1019,7 +1021,9 @@ func (m *PagesCountRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for ExperienceWithDoctors
+	if m.ExperienceWithDoctors != nil {
+		// no validation rules for ExperienceWithDoctors
+	}
 
 	if len(errors) > 0 {
 		return PagesCountRequestMultiError(errors)
@@ -2003,9 +2007,11 @@ func (m *FilterRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for ExperienceWithDoctors
-
 	// no validation rules for Page
+
+	if m.ExperienceWithDoctors != nil {
+		// no validation rules for ExperienceWithDoctors
+	}
 
 	if len(errors) > 0 {
 		return FilterRequestMultiError(errors)

@@ -4,19 +4,16 @@ import (
 	"context"
 	"fmt"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
 	httpV1 "medblogers_base/internal/app/router/v1"
+	"medblogers_base/internal/modules/freelancers"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"net"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
-
 	"medblogers_base/internal/config"
-	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
-	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
-
 	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
@@ -26,8 +23,9 @@ import (
 )
 
 type modules struct {
-	admin   *admin.Module
-	doctors *doctors.Module
+	admin       *admin.Module
+	doctors     *doctors.Module
+	freelancers *freelancers.Module
 }
 
 type router struct {
@@ -35,8 +33,9 @@ type router struct {
 }
 
 type controllers struct {
-	doctorsController *doctorsV1.Implementation
-	seoController     *seoV1.Implementation
+	doctorsController     *doctorsV1.Implementation
+	seoController         *seoV1.Implementation
+	freelancersController *freelancersV1.Implementation
 }
 
 type Server struct {
@@ -76,33 +75,23 @@ func New(ctx context.Context) *App {
 		initModules(ctx).
 		initRouters(ctx).
 		initControllers(ctx).
+		initGRPCServiceHandlers(ctx).
 		initServer(ctx)
 
 	return a
 }
 
 // Run запускает приложение
-func (a *App) Run(ctx context.Context) {
+func (a *App) Run(_ context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("application recovered from panic")
 		}
 	}()
+
 	listen, err := net.Listen("tcp", a.config.Server.GrpcAddress)
 	if err != nil {
 		fmt.Printf("[APP] Не удалось создать listen: %e", err)
-		return
-	}
-
-	httpProxyOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-	err = descDoctorsV1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
-	if err != nil {
-		fmt.Printf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err)
-		return
-	}
-	err = descSeoV1.RegisterSeoHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
-	if err != nil {
-		fmt.Printf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err)
 		return
 	}
 
@@ -113,8 +102,8 @@ func (a *App) Run(ctx context.Context) {
 	}()
 
 	fmt.Printf("[APP] Запуск приложения, подключение HTTP: %s, GRPC: %s \n", a.config.Server.Address, a.config.Server.GrpcAddress)
-	//a.workerPool.Run(ctx)
 
+	//a.workerPool.Run(ctx)
 	if err := http.ListenAndServe(a.config.Server.Address, a.router.routerV1.Router); err != nil {
 		fmt.Printf("[APP] Не удалось запустить приложение: %e", err)
 		return
