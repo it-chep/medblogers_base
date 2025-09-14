@@ -2,10 +2,49 @@ package v1
 
 import (
 	"context"
+	"medblogers_base/internal/modules/freelancers/action/filter_freelancers/dto"
+	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
 )
 
 func (i *Implementation) Filter(ctx context.Context, request *desc.FilterRequest) (*desc.FilterResponse, error) {
-	//TODO implement me
-	panic("implement me")
+	filter := i.requestToFilterDTO(request)
+
+	filterResultDomain, err := i.freelancers.Actions.FilterFreelancers.Do(ctx, filter)
+	if err != nil {
+		return nil, err
+	}
+
+	filterDTO := i.newFilterResponse(filterResultDomain)
+	return filterDTO, nil
+}
+
+func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) freelancer.Filter {
+	page := req.Page
+	if page <= 0 {
+		page = 1
+	}
+
+	return freelancer.Filter{
+		Page: page,
+	}
+}
+
+func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.FilterResponse {
+	freelancersResponse := make([]*desc.FilterResponse_FreelancerItem, 0, len(freelancers))
+	for _, item := range freelancers {
+
+		freelancersResponse = append(freelancersResponse, &desc.FilterResponse_FreelancerItem{
+			Name: item.Name,
+			Slug: item.Slug,
+
+			Speciality: item.Speciality,
+			City:       item.City,
+			Image:      item.Image,
+		})
+	}
+
+	return &desc.FilterResponse{
+		Freelancers: freelancersResponse,
+	}
 }
