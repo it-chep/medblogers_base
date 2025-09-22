@@ -25,7 +25,7 @@ create table if not exists social_networks
 -- Тип размещения
 create table if not exists freelancers_cooperation_type
 (
-    id   serial,
+    id   serial primary key,
     name text -- Название типа
 );
 
@@ -164,7 +164,7 @@ create index if not exists idx_social_m2m_network on freelancer_social_networks_
 create index if not exists idx_social_m2m_freelancer on freelancer_social_networks_m2m (freelancer_id);
 
 create index if not exists idx_price_list_freelancer on freelancers_price_list (freelancer_id);
-
+create index if not exists idx_freelancer_cooperation_type on freelancer (cooperation_type_id);
 -- +goose StatementEnd
 
 -- +goose Down
