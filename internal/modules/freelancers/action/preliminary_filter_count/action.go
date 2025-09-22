@@ -3,12 +3,13 @@ package preliminary_filter_count
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/preliminary_filter_count/service/freelancers"
 	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal"
 	domain "medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/samber/lo"
 )
 
 type Action struct {

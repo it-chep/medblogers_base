@@ -3,15 +3,16 @@ package freelancer_dal
 import (
 	"context"
 	"fmt"
+	"medblogers_base/internal/modules/freelancers/domain/freelancer"
+	"medblogers_base/internal/pkg/logger"
+	"medblogers_base/internal/pkg/postgres"
+	"strings"
+
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/jackc/pgx/v4"
 	"github.com/lib/pq"
 	"github.com/pkg/errors"
 	"github.com/samber/lo"
-	"medblogers_base/internal/modules/freelancers/domain/freelancer"
-	"medblogers_base/internal/pkg/logger"
-	"medblogers_base/internal/pkg/postgres"
-	"strings"
 )
 
 type Repository struct {

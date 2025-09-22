@@ -1,5 +1,7 @@
 package freelancer
 
+import "time"
+
 // Option .
 type Option func(c *Freelancer)
 
@@ -42,6 +44,20 @@ func WithSpecialityName(name string) Option {
 func WithS3Image(s3key string) Option {
 	return func(s *Freelancer) {
 		s.s3Image = s3key
+	}
+}
+
+// WithHasCommand .
+func WithHasCommand(hasCommand bool) Option {
+	return func(s *Freelancer) {
+		s.hasCommand = hasCommand
+	}
+}
+
+// WithStartWorkingTime .
+func WithStartWorkingTime(startWorkingTime time.Time) Option {
+	return func(s *Freelancer) {
+		s.startWorking = startWorkingTime
 	}
 }
 

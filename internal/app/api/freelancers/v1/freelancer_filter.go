@@ -2,10 +2,11 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/filter_freelancers/dto"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) Filter(ctx context.Context, request *desc.FilterRequest) (*desc.FilterResponse, error) {
@@ -54,6 +55,7 @@ func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.F
 				}
 			}),
 			ExperienceWithDoctors: item.HasExperienceWithDoctor,
+			HasCommand:            item.HasCommand,
 		})
 	}
 

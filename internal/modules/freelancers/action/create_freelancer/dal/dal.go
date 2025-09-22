@@ -28,8 +28,10 @@ func (r *Repository) CreateFreelancer(ctx context.Context, createDTO dto.CreateR
 						portfolio_link,
 						speciality_id,
 						city_id,
-						price_category)
-		values ($1, $2, $3, $4, false, $5, $6, $7, $8, $9)
+						price_category,
+		                has_command,
+		                start_working_date)
+		values ($1, $2, $3, $4, false, $5, $6, $7, $8, $9, $10, $11)
 		returning id;
 	`
 
@@ -43,6 +45,8 @@ func (r *Repository) CreateFreelancer(ctx context.Context, createDTO dto.CreateR
 		createDTO.MainSpecialityID,
 		createDTO.MainCityID,
 		createDTO.PriceCategory,
+		createDTO.HasCommand,
+		createDTO.StartWorkingExperience,
 	}
 
 	var freelancerID int64

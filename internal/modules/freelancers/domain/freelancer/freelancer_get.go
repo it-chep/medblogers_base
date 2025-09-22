@@ -1,6 +1,10 @@
 package freelancer
 
-import "strings"
+import (
+	"medblogers_base/internal/pkg/declension"
+	"strings"
+	"time"
+)
 
 func (f *Freelancer) GetID() int64 {
 	return f.id
@@ -88,4 +92,17 @@ func (f *Freelancer) GetMainCityID() int64 {
 
 func (f *Freelancer) GetMainSpecialityID() int64 {
 	return f.specialityID
+}
+
+func (f *Freelancer) GetHasCommand() bool {
+	return f.hasCommand
+}
+
+func (f *Freelancer) GetWorkingExperience() string {
+	years := time.Now().Year() - f.startWorking.Year()
+	if years != 1 && years != 0 {
+		years++
+	}
+
+	return declension.YearsInString(years)
 }

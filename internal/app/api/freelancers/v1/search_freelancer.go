@@ -2,11 +2,12 @@ package v1
 
 import (
 	"context"
+	"medblogers_base/internal/modules/freelancers/action/search_freelancers/dto"
+	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+
 	"github.com/samber/lo"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"medblogers_base/internal/modules/freelancers/action/search_freelancers/dto"
-	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
 )
 
 func (i *Implementation) Search(ctx context.Context, request *desc.SearchRequest) (*desc.SearchResponse, error) {

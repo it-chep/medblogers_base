@@ -1612,6 +1612,15 @@
             "$ref": "#/definitions/v1CreateFreelancersRequestPriceListItem"
           },
           "title": "Прайс-лист"
+        },
+        "hasCommand": {
+          "type": "boolean",
+          "title": "Есть команда"
+        },
+        "workingExperience": {
+          "type": "string",
+          "format": "int64",
+          "title": "Опыт работы в годах"
         }
       }
     },
@@ -1715,6 +1724,10 @@
         "experienceWithDoctors": {
           "type": "boolean",
           "title": "Опыт работы с врачами"
+        },
+        "hasCommand": {
+          "type": "boolean",
+          "title": "Есть команда"
         },
         "priceCategory": {
           "type": "string",
@@ -1873,10 +1886,6 @@
           "type": "string",
           "title": "Связаться"
         },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
-        },
         "priceCategory": {
           "type": "string",
           "format": "int64",
@@ -1896,20 +1905,23 @@
             "type": "object",
             "$ref": "#/definitions/v1GetFreelancerResponseCityItem"
           },
-          "title": "Города и специализации"
+          "title": "Города"
         },
         "specialities": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1GetFreelancerResponseSpecialityItem"
-          }
+          },
+          "title": "Специализации"
         },
         "mainCity": {
-          "$ref": "#/definitions/v1GetFreelancerResponseCityItem"
+          "$ref": "#/definitions/v1GetFreelancerResponseCityItem",
+          "title": "Основной город"
         },
         "mainSpeciality": {
-          "$ref": "#/definitions/v1GetFreelancerResponseSpecialityItem"
+          "$ref": "#/definitions/v1GetFreelancerResponseSpecialityItem",
+          "title": "Основная специальность"
         },
         "socialNetworks": {
           "type": "array",
@@ -1926,6 +1938,18 @@
             "$ref": "#/definitions/v1GetFreelancerResponsePriceListItem"
           },
           "title": "Прайс-лист"
+        },
+        "workingExperience": {
+          "type": "string",
+          "title": "Опыт работы"
+        },
+        "hasCommand": {
+          "type": "boolean",
+          "title": "Есть команда"
+        },
+        "experienceWithDoctors": {
+          "type": "boolean",
+          "title": "Опыт работы с врачами"
         }
       }
     },

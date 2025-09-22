@@ -1,11 +1,15 @@
 package freelancer
 
+import "time"
+
 type Freelancer struct {
 	id int64
 
-	isActive             bool  // Признак активности фрилансера
-	experienceWithDoctor bool  // Опыт работы с врачами
-	priceCategory        int64 // Ценовая категория
+	isActive             bool      // Признак активности фрилансера
+	experienceWithDoctor bool      // Опыт работы с врачами
+	hasCommand           bool      // Есть своя команда
+	priceCategory        int64     // Ценовая категория
+	startWorking         time.Time // Примерная дата начала работы
 
 	name  string // Имя
 	slug  string // URL

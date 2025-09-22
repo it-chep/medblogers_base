@@ -273,10 +273,12 @@ message FilterResponse {
     string image = 5;
     // Опыт работы с врачами
     bool experience_with_doctors = 6;
+    // Есть команда
+    bool has_command = 7;
     // Ценовая категория
-    int64 price_category = 7;
+    int64 price_category = 8;
     // Соцсети
-    repeated SocialNetworkItem social_networks = 8;
+    repeated SocialNetworkItem social_networks = 9;
 
     message SocialNetworkItem {
       int64 id = 1;
@@ -307,6 +309,10 @@ message CreateFreelancersRequest {
 
   // Прайс-лист
   repeated PriceListItem price_list = 14;
+  // Есть команда
+  bool has_command = 15 [(validate.rules).bool.const = true];
+  // Опыт работы в годах
+  int64 working_experience = 16 [(validate.rules).int64.gt = 0];
 
   message PriceListItem {
     // Название услуги
@@ -336,23 +342,33 @@ message GetFreelancerResponse {
 
   // Связаться
   string tg_url = 3;
-  // Опыт работы с врачами
-  bool experience_with_doctors = 4;
   // Ценовая категория
-  int64 price_category = 5;
+  int64 price_category = 4;
   // Портфолио
-  string portfolio_link = 6;
+  string portfolio_link = 5;
   // Фотка
-  string image = 7;
-  // Города и специализации
-  repeated CityItem cities = 8;
-  repeated SpecialityItem specialities = 9;
-  CityItem main_city = 10;
-  SpecialityItem main_speciality = 11;
+  string image = 6;
+
+  // Города
+  repeated CityItem cities = 7;
+  // Специализации
+  repeated SpecialityItem specialities = 8;
+  // Основной город
+  CityItem main_city = 9;
+  // Основная специальность
+  SpecialityItem main_speciality = 10;
   // Соцсети
-  repeated SocialNetworkItem social_networks = 12;
+  repeated SocialNetworkItem social_networks = 11;
+
   // Прайс-лист
-  repeated PriceListItem price_list = 13;
+  repeated PriceListItem price_list = 12;
+
+  // Опыт работы
+  string working_experience = 13;
+  // Есть команда
+  bool has_command = 14;
+  // Опыт работы с врачами
+  bool experience_with_doctors = 15;
 
   message CityItem {
     int64 id = 1;

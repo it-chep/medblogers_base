@@ -19,6 +19,7 @@ type Freelancer struct {
 	MainSpecialityID        int64
 	PriceCategory           int64
 	HasExperienceWithDoctor bool
+	HasCommand              bool
 
 	Networks []NetworkItem
 }

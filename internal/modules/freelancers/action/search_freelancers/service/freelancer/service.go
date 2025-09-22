@@ -2,10 +2,11 @@ package freelancer
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/search_freelancers/dto"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/logger"
+
+	"github.com/samber/lo"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . SearchStorage,ImageGetter
@@ -58,6 +59,7 @@ func (s *Service) Search(ctx context.Context, query string) ([]dto.FreelancerIte
 			S3Image:               usersPhotosMap[item.GetSlug()],
 			ExperienceWithDoctors: item.HasExperienceWithDoctor(),
 			PriceCategory:         item.GetPriceCategory(),
+			HasCommand:            item.GetHasCommand(),
 		}
 	})
 

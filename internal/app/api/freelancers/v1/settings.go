@@ -2,9 +2,10 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	indto "medblogers_base/internal/modules/freelancers/action/settings/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetSettings(ctx context.Context, _ *desc.GetSettingsRequest) (*desc.GetSettingsResponse, error) {

@@ -34,6 +34,7 @@ type FreelancerMiniature struct {
 	S3Image                  sql.NullString `db:"s3_image"`
 	PriceCategory            int64          `db:"price_category"`
 	HasExperienceWithDoctors bool           `db:"is_worked_with_doctors"`
+	HasCommand               bool           `db:"has_command"`
 }
 
 func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
@@ -44,6 +45,7 @@ func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
 		freelancer.WithPriceCategory(m.PriceCategory),
 		freelancer.WithExperienceWithDoctors(m.HasExperienceWithDoctors),
 		freelancer.WithS3Image(m.S3Image.String),
+		freelancer.WithHasCommand(m.HasCommand),
 	)
 }
 
@@ -64,6 +66,7 @@ type FreelancerSearch struct {
 	S3Image                  sql.NullString `db:"s3_image"`
 	PriceCategory            int64          `db:"price_category"`
 	HasExperienceWithDoctors bool           `db:"is_worked_with_doctors"`
+	HasCommand               bool           `db:"has_command"`
 	CityName                 string         `db:"city_name"`
 	SpecialityName           string         `db:"speciality_name"`
 }
@@ -76,6 +79,7 @@ func (f *FreelancerSearch) ToDomain() *freelancer.Freelancer {
 		freelancer.WithPriceCategory(f.PriceCategory),
 		freelancer.WithExperienceWithDoctors(f.HasExperienceWithDoctors),
 		freelancer.WithS3Image(f.S3Image.String),
+		freelancer.WithHasCommand(f.HasCommand),
 		// cityName
 		// specaialityName
 	)
@@ -99,6 +103,8 @@ type FreelancerDetail struct {
 	PriceCategory            int64          `db:"price_category"`
 	HasExperienceWithDoctors bool           `db:"is_worked_with_doctors"`
 	S3Image                  sql.NullString `db:"s3_image"`
+	HasCommand               bool           `db:"has_command"`
+	StartWorking             sql.NullTime   `db:"start_working_date"`
 }
 
 func (f FreelancerDetail) ToDomain() *freelancer.Freelancer {
@@ -113,5 +119,7 @@ func (f FreelancerDetail) ToDomain() *freelancer.Freelancer {
 		freelancer.WithMainSpecialityID(f.SpecialityID),
 		freelancer.WithMainCityID(f.CityID),
 		freelancer.WithS3Image(f.S3Image.String),
+		freelancer.WithHasCommand(f.HasCommand),
+		freelancer.WithStartWorkingTime(f.StartWorking.Time),
 	)
 }

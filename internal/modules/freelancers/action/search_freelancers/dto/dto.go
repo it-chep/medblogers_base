@@ -17,6 +17,7 @@ type FreelancerItem struct {
 
 	ExperienceWithDoctors bool
 	PriceCategory         int64
+	HasCommand            bool
 
 	SocialNetworks []SocialNetworkItem
 }

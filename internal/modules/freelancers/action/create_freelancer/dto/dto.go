@@ -1,5 +1,7 @@
 package dto
 
+import "time"
+
 type PriceListItem struct {
 	Name  string
 	Price int64
@@ -14,15 +16,21 @@ type CreateRequest struct {
 	LastName   string
 	MiddleName string
 
-	Email                    string
-	Slug                     string
-	Name                     string
+	Email string
+	Slug  string
+	Name  string
+
 	HasExperienceWithDoctors bool
-	TgUsername               string
-	PortfolioLink            string
-	MainSpecialityID         int64
-	MainCityID               int64
-	PriceCategory            int64
+	HasCommand               bool
+	WorkingExperience        int64
+	StartWorkingExperience   time.Time
+
+	TgUsername    string
+	PortfolioLink string
+
+	MainSpecialityID int64
+	MainCityID       int64
+	PriceCategory    int64
 
 	SocialNetworks        []int64
 	AdditionalCities      []int64

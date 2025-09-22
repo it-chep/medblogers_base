@@ -3,9 +3,6 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/georgysavva/scany/pgxscan"
-	"github.com/lib/pq"
-	"github.com/samber/lo"
 	consts "medblogers_base/internal/dto"
 	cityDAO "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
 	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
@@ -18,6 +15,10 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
+
+	"github.com/georgysavva/scany/pgxscan"
+	"github.com/lib/pq"
+	"github.com/samber/lo"
 )
 
 type Repository struct {
@@ -35,7 +36,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) GetFreelancers(ctx context.Context, filter freelancer.Filter) (map[int64]*freelancer.Freelancer, []int64, error) {
 	sql := `
 	select 
-	    id, name, slug, s3_image, price_category, is_worked_with_doctors
+	    id, name, slug, s3_image, price_category, is_worked_with_doctors, has_command
 	from
     	freelancer f
 	where 
@@ -121,7 +122,7 @@ func sqlAddLimitOffset(sql string, phValues []any, filter freelancer.Filter) (_ 
 func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	defaultSql := `
 	select 
-	    id, name, slug, s3_image, price_category, is_worked_with_doctors
+	    id, name, slug, s3_image, price_category, is_worked_with_doctors, has_command
 	from
     	freelancer f
 	where 

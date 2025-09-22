@@ -2,10 +2,11 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	indto "medblogers_base/internal/modules/freelancers/action/freelancer_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
 	"strconv"
+
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetFreelancer(ctx context.Context, request *desc.GetFreelancerRequest) (*desc.GetFreelancerResponse, error) {
@@ -65,6 +66,8 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 			Name: freelancer.MainSpeciality.Name,
 		},
 
-		Image: freelancer.Image,
+		Image:             freelancer.Image,
+		HasCommand:        freelancer.HasCommand,
+		WorkingExperience: freelancer.WorkingExperience,
 	}
 }

@@ -51,6 +51,9 @@ type FreelancerDTO struct {
 
 	// фотка
 	Image string
+
+	HasCommand        bool
+	WorkingExperience string
 }
 
 // New .
@@ -66,5 +69,8 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 
 		MainCityID:       frlncr.GetMainCityID(),
 		MainSpecialityID: frlncr.GetMainSpecialityID(),
+
+		HasCommand:        frlncr.GetHasCommand(),
+		WorkingExperience: frlncr.GetWorkingExperience(),
 	}
 }

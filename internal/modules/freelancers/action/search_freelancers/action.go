@@ -3,7 +3,6 @@ package search_freelancers
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/search_freelancers/dal"
 	"medblogers_base/internal/modules/freelancers/action/search_freelancers/dto"
 	"medblogers_base/internal/modules/freelancers/action/search_freelancers/service/city"
@@ -15,6 +14,8 @@ import (
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/samber/lo"
 )
 
 type Action struct {

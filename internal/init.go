@@ -3,10 +3,11 @@ package internal
 import (
 	"context"
 	"fmt"
-	"google.golang.org/grpc/credentials/insecure"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
+	"google.golang.org/grpc/credentials/insecure"
 
 	"medblogers_base/internal/app/interceptor"
 	httpV1 "medblogers_base/internal/app/router/v1"

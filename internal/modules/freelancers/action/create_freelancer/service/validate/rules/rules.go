@@ -2,11 +2,12 @@ package rules
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/dto"
 	"regexp"
 	"strings"
 	"unicode/utf8"
+
+	"github.com/samber/lo"
 )
 
 // RuleValidCityID проверяет валидность выбранного города

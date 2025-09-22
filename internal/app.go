@@ -11,12 +11,13 @@ import (
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"net"
 
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"google.golang.org/grpc"
 	"medblogers_base/internal/config"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
+
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"google.golang.org/grpc"
 
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/doctors"

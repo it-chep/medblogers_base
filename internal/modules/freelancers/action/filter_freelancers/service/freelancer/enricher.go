@@ -3,7 +3,6 @@ package freelancer
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/filter_freelancers/dto"
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/social_network"
@@ -12,6 +11,8 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"strings"
 	"sync"
+
+	"github.com/samber/lo"
 )
 
 func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Freelancer, freelancersIDs []int64) {

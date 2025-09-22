@@ -1,9 +1,10 @@
 package slug
 
 import (
-	"github.com/rainycape/unidecode"
 	"regexp"
 	"strings"
+
+	"github.com/rainycape/unidecode"
 )
 
 // New создание нового URL-дружественный slug а с использованием unidecode

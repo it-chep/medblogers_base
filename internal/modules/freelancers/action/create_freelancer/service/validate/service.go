@@ -2,7 +2,6 @@ package validate
 
 import (
 	"context"
-	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/dto"
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/service/validate/rules"
 	"medblogers_base/internal/modules/freelancers/domain/city"
@@ -10,6 +9,8 @@ import (
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/spec"
+
+	"github.com/pkg/errors"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . CityStorage,SpecialityStorage

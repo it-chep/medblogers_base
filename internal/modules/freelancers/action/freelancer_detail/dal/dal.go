@@ -2,12 +2,13 @@ package dal
 
 import (
 	"context"
-	"github.com/georgysavva/scany/pgxscan"
 	cityDAO "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
 	freelancerDao "medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
 	priceListDao "medblogers_base/internal/modules/freelancers/dal/price_list/dao"
 	socialDao "medblogers_base/internal/modules/freelancers/dal/society_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/freelancers/dal/speciality_dal/dao"
+
+	"github.com/georgysavva/scany/pgxscan"
 
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
@@ -32,7 +33,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetFreelancerInfo детальная информация о фрилансере
 func (r *Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	sql := `
-		select id, slug, name, is_worked_with_doctors, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image
+		select id, slug, name, is_worked_with_doctors, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, has_command, start_working_date
 		    from freelancer
 		where slug = $1 and is_active = true
 	`

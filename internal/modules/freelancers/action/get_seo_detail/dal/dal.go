@@ -3,9 +3,6 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/georgysavva/scany/pgxscan"
-	"github.com/jackc/pgx/v4"
-	"github.com/pkg/errors"
 	cityDAO "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
 	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/freelancers/dal/speciality_dal/dao"
@@ -14,6 +11,10 @@ import (
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/georgysavva/scany/pgxscan"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
 )
 
 type Repository struct {

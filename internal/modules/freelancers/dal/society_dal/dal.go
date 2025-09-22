@@ -2,11 +2,12 @@ package society_dal
 
 import (
 	"context"
-	"github.com/georgysavva/scany/pgxscan"
 	"medblogers_base/internal/modules/freelancers/dal/society_dal/dao"
 	"medblogers_base/internal/modules/freelancers/domain/social_network"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 // Repository соц сети

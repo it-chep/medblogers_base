@@ -3,10 +3,11 @@ package freelancer
 import (
 	"context"
 	"fmt"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
+
+	"github.com/samber/lo"
 
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"

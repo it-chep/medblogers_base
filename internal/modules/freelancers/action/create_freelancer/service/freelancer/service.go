@@ -7,6 +7,7 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/slug"
 	"strings"
+	"time"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage
@@ -43,6 +44,7 @@ func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateReques
 	createDTO.Name = s.createName(createDTO.LastName, createDTO.FirstName, createDTO.MiddleName)
 	createDTO.Slug = slug.New(createDTO.Name)
 	createDTO.PriceCategory = s.definePriceCategory(createDTO.PriceList)
+	createDTO.StartWorkingExperience = s.getStartWorkingExp(createDTO.WorkingExperience)
 
 	logger.Message(ctx, "[Create] Сохранение фрилансера в базе")
 
@@ -134,4 +136,10 @@ func (s *Service) definePriceCategory(priceList dto.PriceList) int64 {
 	}
 
 	return category
+}
+
+func (s *Service) getStartWorkingExp(years int64) time.Time {
+	now := time.Now()
+	startDate := now.AddDate(-int(years), 0, 0)
+	return startDate
 }

@@ -2464,6 +2464,28 @@ func (m *CreateFreelancersRequest) validate(all bool) error {
 
 	}
 
+	if m.GetHasCommand() != true {
+		err := CreateFreelancersRequestValidationError{
+			field:  "HasCommand",
+			reason: "value must equal true",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetWorkingExperience() <= 0 {
+		err := CreateFreelancersRequestValidationError{
+			field:  "WorkingExperience",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return CreateFreelancersRequestMultiError(errors)
 	}
@@ -2862,8 +2884,6 @@ func (m *GetFreelancerResponse) validate(all bool) error {
 
 	// no validation rules for TgUrl
 
-	// no validation rules for ExperienceWithDoctors
-
 	// no validation rules for PriceCategory
 
 	// no validation rules for PortfolioLink
@@ -3063,6 +3083,12 @@ func (m *GetFreelancerResponse) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for WorkingExperience
+
+	// no validation rules for HasCommand
+
+	// no validation rules for ExperienceWithDoctors
 
 	if len(errors) > 0 {
 		return GetFreelancerResponseMultiError(errors)
@@ -4555,6 +4581,8 @@ func (m *FilterResponse_FreelancerItem) validate(all bool) error {
 	// no validation rules for Image
 
 	// no validation rules for ExperienceWithDoctors
+
+	// no validation rules for HasCommand
 
 	// no validation rules for PriceCategory
 

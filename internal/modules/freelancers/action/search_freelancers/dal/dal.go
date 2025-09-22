@@ -3,12 +3,13 @@ package dal
 import (
 	"context"
 	"fmt"
-	"github.com/georgysavva/scany/pgxscan"
 	"medblogers_base/internal/config"
 	cityDao "medblogers_base/internal/modules/freelancers/dal/city_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/freelancers/dal/speciality_dal/dao"
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
+
+	"github.com/georgysavva/scany/pgxscan"
 
 	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
@@ -44,7 +45,8 @@ func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*fre
 			   f.is_worked_with_doctors,
 			   f.s3_image,
 			   c.name as "city_name",
-			   s.name as "speciality_name"
+			   s.name as "speciality_name",
+			   f.has_command
 		from freelancer f
 				 join freelancers_city c on f.city_id = c.id
 				 join freelancers_speciality s on f.speciality_id = s.id

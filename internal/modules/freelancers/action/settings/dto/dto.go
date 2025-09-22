@@ -1,10 +1,11 @@
 package dto
 
 import (
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/social_network"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
+
+	"github.com/samber/lo"
 )
 
 type City struct {

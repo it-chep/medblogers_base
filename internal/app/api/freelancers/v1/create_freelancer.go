@@ -2,12 +2,13 @@ package v1
 
 import (
 	"context"
-	"github.com/go-playground/validator/v10"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/api/freelancers/v1/validate/create_freelancer"
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
 	"reflect"
+
+	"github.com/go-playground/validator/v10"
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) CreateFreelancer(ctx context.Context, request *desc.CreateFreelancersRequest) (*desc.CreateFreelancersResponse, error) {
@@ -54,6 +55,9 @@ func (i *Implementation) requestToCreateDTO(req *desc.CreateFreelancersRequest) 
 
 		PortfolioLink:            req.PortfolioLink,
 		HasExperienceWithDoctors: req.ExperienceWithDoctors,
+		HasCommand:               req.HasCommand,
+
+		WorkingExperience: req.WorkingExperience,
 
 		PriceList: lo.Map(req.PriceList, func(item *desc.CreateFreelancersRequest_PriceListItem, index int) dto.PriceListItem {
 			return dto.PriceListItem{

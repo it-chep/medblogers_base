@@ -2,10 +2,11 @@ package dal
 
 import (
 	"context"
-	"github.com/georgysavva/scany/pgxscan"
 	"medblogers_base/internal/modules/freelancers/action/settings/dto"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 // Repository специальности
