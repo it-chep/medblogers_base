@@ -22,6 +22,13 @@ create table if not exists social_networks
     name varchar(30) not null -- название соцсети
 );
 
+-- Тип размещения
+create table if not exists freelancers_cooperation_type
+(
+    id   serial,
+    name text -- Название типа
+);
+
 -- Фрилансер
 create table if not exists freelancer
 (
@@ -40,6 +47,7 @@ create table if not exists freelancer
     avatar                 varchar(100),          -- фотография для обратной совместимости
     has_command            bool,                  -- флаг наличия команды
     start_working_date     timestamp,             -- время начала работа на фрилансе для подсчета опыта
+    cooperation_type_id    int,                   -- тип размещения
 
     unique (name, email),
 
@@ -52,6 +60,11 @@ create table if not exists freelancer
     constraint fk_freelancer_city
         foreign key (city_id)
             references freelancers_city (id)
+            on delete set null,
+
+    constraint fk_freelancer_cooperation_type
+        foreign key (cooperation_type_id)
+            references freelancers_cooperation_type (id)
             on delete set null
 );
 
@@ -162,9 +175,9 @@ drop table if exists freelancers_price_list;
 drop table if exists freelancer_social_networks_m2m;
 drop table if exists freelancer_city_m2m;
 drop table if exists freelancer_speciality_m2m;
+drop table if exists freelancers_cooperation_type;
 drop table if exists freelancer;
 drop table if exists social_networks;
 drop table if exists freelancers_city;
 drop table if exists freelancers_speciality;
-
 -- +goose StatementEnd
