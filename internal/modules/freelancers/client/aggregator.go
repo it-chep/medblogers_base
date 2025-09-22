@@ -15,7 +15,7 @@ type Aggregator struct {
 func NewAggregator(httpConns map[string]pkgHttp.Executor, cfg config.AppConfig) *Aggregator {
 	return &Aggregator{
 		S3: s3.NewGateway(
-			cfg.GetUserPhotosBucket(),
+			cfg.GetFreelancersPhotosBucket(),
 			s3.NewS3Client(cfg.GetS3Config()),
 			s3.NewPresignClient(cfg.GetS3Config()),
 		),

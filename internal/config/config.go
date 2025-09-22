@@ -15,6 +15,7 @@ type AppConfig interface {
 	GetSubscribersHost() string
 	GetSubscribersPort() string
 	GetUserPhotosBucket() string
+	GetFreelancersPhotosBucket() string
 	GetSalebotHost() string
 	GetS3Region() string
 	GetS3Endpoint() string
@@ -44,6 +45,7 @@ type S3Config struct {
 
 type S3Bucket struct {
 	UsersPhotos string `mapstructure:"photos"`
+	Freelancers string `mapstructure:"freelancers"`
 }
 
 type SalebotClient struct {
@@ -154,4 +156,8 @@ func (c *Config) GetS3Config() S3Config {
 
 func (c *Config) GetAllowedHosts() []string {
 	return c.AllowedHosts
+}
+
+func (c *Config) GetFreelancersPhotosBucket() string {
+	return c.S3Client.Bucket.Freelancers
 }
