@@ -3,6 +3,7 @@ package middleware
 import (
 	"net/http"
 	"net/url"
+	"os"
 )
 
 type CorsConfig interface {
@@ -35,6 +36,13 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 			if r.Method == "OPTIONS" {
 				w.WriteHeader(http.StatusNoContent)
 				return
+			}
+
+			if os.Getenv("DEBUG") == "true" {
+				w.Header().Set("Access-Control-Allow-Origin", origin)
+				w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
+				w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+				w.Header().Set("Access-Control-Allow-Credentials", "true")
 			}
 
 			next.ServeHTTP(w, r)
