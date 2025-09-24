@@ -99,7 +99,7 @@ service FreelancerService {
   }
   rpc GetFreelancer(GetFreelancerRequest) returns (GetFreelancerResponse) {
     option (google.api.http) = {
-      get: "/api/v1/freelancers/{freelancer_slug}"
+      get: "/api/v1/freelancers/card/{freelancer_slug}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Получение детальной информации про фрилансера"

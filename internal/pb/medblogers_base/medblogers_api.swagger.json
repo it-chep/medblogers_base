@@ -243,6 +243,37 @@
         ]
       }
     },
+    "/api/v1/freelancers/card/{freelancerSlug}": {
+      "get": {
+        "summary": "Получение детальной информации про фрилансера",
+        "operationId": "FreelancerService_GetFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreelancerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
     "/api/v1/freelancers/cities_list": {
       "get": {
         "summary": "Получение городов для регистрации",
@@ -649,37 +680,6 @@
             }
           }
         },
-        "tags": [
-          "FreelancerService"
-        ]
-      }
-    },
-    "/api/v1/freelancers/{freelancerSlug}": {
-      "get": {
-        "summary": "Получение детальной информации про фрилансера",
-        "operationId": "FreelancerService_GetFreelancer",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetFreelancerResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "freelancerSlug",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "FreelancerService"
         ]
