@@ -52,6 +52,7 @@ func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.F
 				return &desc.FilterResponse_FreelancerItem_SocialNetworkItem{
 					Id:   item.ID,
 					Name: item.Name,
+					Slug: item.Slug,
 				}
 			}),
 			ExperienceWithDoctors: item.HasExperienceWithDoctor,

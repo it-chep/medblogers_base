@@ -129,10 +129,8 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 		phCounter++
 	}
 
-	// возвращаем для первой страницы
 	return fmt.Sprintf(`
-		%s
-		%s
-		group by f.id
+        %s
+        %s
     `, defaultSql, whereStmtBuilder.String()), phValues
 }

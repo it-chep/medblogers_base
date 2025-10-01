@@ -26,6 +26,7 @@ type PriceListItem struct {
 type SocialNetworkItem struct {
 	ID   int64
 	Name string
+	Slug string
 }
 
 type FreelancerDTO struct {

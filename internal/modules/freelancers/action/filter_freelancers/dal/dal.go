@@ -250,7 +250,7 @@ func (r *Repository) GetAdditionalSpecialities(ctx context.Context, medblogersID
 func (r *Repository) GetSocialNetworks(ctx context.Context, medblogersIDs []int64) (map[int64][]*social_network.SocialNetwork, error) {
 	logger.Message(ctx, "[Dal] Получение соц.сетей фрилансера")
 	sql := `
-	   select s.id, s.name, fs.freelancer_id as "freelancer_id"
+	   select s.id, s.name, s.slug, fs.freelancer_id as "freelancer_id"
 	   from freelancer_social_networks_m2m fs
 	       join social_networks s ON fs.social_network_id = s.id
 	   where fs.freelancer_id = any($1::bigint[])

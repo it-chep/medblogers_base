@@ -209,6 +209,7 @@ func enrichSocialNetworks(ctx context.Context, freelancersMap map[int64]dto.Free
 			return dto.NetworkItem{
 				ID:   item.ID(),
 				Name: item.Name(),
+				Slug: item.Slug(),
 			}
 		})
 

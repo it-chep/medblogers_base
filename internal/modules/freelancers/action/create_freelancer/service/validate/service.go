@@ -64,7 +64,8 @@ func (s *Service) ValidateFreelancer(ctx context.Context, createDTO *dto.CreateR
 		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs)).
 		And(rules.RuleValidSocialNetworksIDs(networksIDs)).
 		And(rules.RuleValidPortfolioLink()).
-		And(rules.RuleValidTgUsername())
+		And(rules.RuleValidTgUsername()).
+		And(rules.RuleValidatePriceList())
 
 	domainErrors := make([]dto.ValidationError, 0)
 	for _, validationError := range specification.Validate(ctx, createDTO) {

@@ -64,7 +64,7 @@ func (r *Repository) GetPriceList(ctx context.Context, freelancerID int64) (pric
 // GetSocialNetworks получение соц сетей
 func (r *Repository) GetSocialNetworks(ctx context.Context, freelancerID int64) (social_network.Networks, error) {
 	sql := `
-		select s.id, s.name
+		select s.id, s.name, s.slug
         from social_networks s
         inner join freelancer_social_networks_m2m fs ON s.id = fs.social_network_id
         where fs.freelancer_id = $1

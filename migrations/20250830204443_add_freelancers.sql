@@ -19,7 +19,8 @@ create table if not exists freelancers_city
 create table if not exists social_networks
 (
     id   bigserial primary key,
-    name varchar(30) not null -- название соцсети
+    name varchar(30) not null, -- название соцсети
+    slug varchar(30) not null
 );
 
 -- Тип размещения

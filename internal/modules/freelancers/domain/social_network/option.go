@@ -17,6 +17,13 @@ func WithName(name string) Option {
 	}
 }
 
+// WithSlug .
+func WithSlug(slug string) Option {
+	return func(s *SocialNetwork) {
+		s.slug = slug
+	}
+}
+
 // WithFreelancersCount .
 func WithFreelancersCount(freelancersCount int64) Option {
 	return func(s *SocialNetwork) {

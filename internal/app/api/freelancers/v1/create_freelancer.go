@@ -81,14 +81,15 @@ func (i *Implementation) configureResponse(errors []dto.ValidationError) *desc.C
 
 func validateRequest(req *desc.CreateFreelancersRequest) []create_freelancer.ValidationError {
 	reqDTO := create_freelancer.CreateFreelancerRequest{
-		Email:            req.Email,
-		LastName:         req.LastName,
-		FirstName:        req.FirstName,
-		MiddleName:       req.MiddleName,
-		TelegramUsername: req.TelegramUsername,
-		AgreePolicy:      req.AgreePolicy,
-		CityID:           req.CityId,
-		SpecialityID:     req.SpecialityId,
+		Email:             req.Email,
+		LastName:          req.LastName,
+		FirstName:         req.FirstName,
+		MiddleName:        req.MiddleName,
+		TelegramUsername:  req.TelegramUsername,
+		AgreePolicy:       req.AgreePolicy,
+		CityID:            req.CityId,
+		SpecialityID:      req.SpecialityId,
+		WorkingExperience: req.WorkingExperience,
 	}
 
 	validate := validator.New()

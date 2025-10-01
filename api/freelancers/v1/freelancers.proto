@@ -115,7 +115,7 @@ message GetFreelancersResponse {}
 
 message  GetSettingsRequest {}
 
-message  GetSettingsResponse {
+message GetSettingsResponse {
   repeated SocietyItem societies = 1;
   repeated CityItem cities = 2;
   repeated SpecialityItem specialities = 3;
@@ -125,6 +125,7 @@ message  GetSettingsResponse {
     int64 id = 1;
     string name = 2;
     int64 freelancers_count = 3;
+    string slug = 4;
   }
 
   message CityItem {
@@ -233,6 +234,7 @@ message SearchResponse {
     message SocialNetworkItem {
       int64 id = 1;
       string name = 2;
+      string slug = 3;
     }
   }
 
@@ -283,6 +285,7 @@ message FilterResponse {
     message SocialNetworkItem {
       int64 id = 1;
       string name = 2;
+      string slug = 3;
     }
   }
 }
@@ -383,13 +386,14 @@ message GetFreelancerResponse {
   message SocialNetworkItem {
     int64 id = 1;
     string name = 2;
+    string slug = 3;
   }
 
   message PriceListItem {
     // Название услуги
     string name = 1;
     // Стоимость услуги
-    string amount = 2;
+    int64 amount = 2;
   }
 }
 
@@ -401,5 +405,6 @@ message GetSocialNetworksResponse{
   message SocialNetworkItem {
     int64 id = 1;
     string name = 2;
+    string slug = 3;
   }
 }

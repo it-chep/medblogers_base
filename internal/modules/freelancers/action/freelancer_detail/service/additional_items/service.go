@@ -111,6 +111,7 @@ func (s *Service) GetSocialNetworks(ctx context.Context, freelancerID int64) ([]
 		dtoSocialNetworkItems = append(dtoSocialNetworkItems, dto.SocialNetworkItem{
 			ID:   n.ID(),
 			Name: n.Name(),
+			Slug: n.Slug(),
 		})
 	}
 

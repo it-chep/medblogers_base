@@ -37,6 +37,7 @@ func (r Repository) GetCitiesWithFreelancersCount(ctx context.Context) ([]*socia
 		select
 			n.id as id,
 			n.name as name,
+			n.slug as slug,
 			count(distinct af.freelancer_id) as freelancers_count
 		from social_networks n
 				 left join active_freelancers_in_media af on n.id = af.social_network_id
@@ -62,7 +63,8 @@ func (r Repository) GetCitiesWithFreelancersCount(ctx context.Context) ([]*socia
 func (r Repository) GetAllNetworks(ctx context.Context) ([]*social_network.SocialNetwork, error) {
 	sql := `
 		select c.id   as id,
-			   c.name as name
+			   c.name as name,
+			   c.slug as slug
 		from social_networks c
 		group by c.id, c.name
 	`

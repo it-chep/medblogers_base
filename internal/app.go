@@ -106,7 +106,7 @@ func (a *App) Run(_ context.Context) {
 
 	//a.workerPool.Run(ctx)
 	if err := http.ListenAndServe(a.config.Server.Address, a.router.routerV1.Router); err != nil {
-		fmt.Printf("[APP] Не удалось запустить приложение: %e", err)
+		fmt.Printf("[APP] Не удалось запустить приложение: %s", err)
 		return
 	}
 }

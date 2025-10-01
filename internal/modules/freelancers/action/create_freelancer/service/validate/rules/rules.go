@@ -173,3 +173,19 @@ var RuleValidTgUsername = func() func(ctx context.Context, t *dto.CreateRequest)
 		return true, nil
 	}
 }
+
+// RuleValidatePriceList валидирует прайс-лист
+var RuleValidatePriceList = func() func(ctx context.Context, t *dto.CreateRequest) (bool, error) {
+	return func(_ context.Context, req *dto.CreateRequest) (bool, error) {
+		for _, priceListItem := range req.PriceList {
+			if utf8.RuneCountInString(priceListItem.Name) == 0 {
+				return false, dto.ValidationError{
+					Text:  "Название услуги обязательно",
+					Field: "priceList",
+				}
+			}
+		}
+
+		return true, nil
+	}
+}

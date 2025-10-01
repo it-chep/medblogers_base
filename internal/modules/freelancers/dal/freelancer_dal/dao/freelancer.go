@@ -80,8 +80,8 @@ func (f *FreelancerSearch) ToDomain() *freelancer.Freelancer {
 		freelancer.WithExperienceWithDoctors(f.HasExperienceWithDoctors),
 		freelancer.WithS3Image(f.S3Image.String),
 		freelancer.WithHasCommand(f.HasCommand),
-		// cityName
-		// specaialityName
+		freelancer.WithCityName(f.CityName),
+		freelancer.WithSpecialityName(f.SpecialityName),
 	)
 }
 

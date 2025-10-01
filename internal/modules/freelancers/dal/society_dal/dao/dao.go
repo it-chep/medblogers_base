@@ -7,12 +7,14 @@ import (
 type SocialNetworkDao struct {
 	ID   int64  `db:"id" json:"id"`
 	Name string `db:"name" json:"name"`
+	Slug string `db:"slug" json:"slug"`
 }
 
 func (s SocialNetworkDao) ToDomain() *social_network.SocialNetwork {
 	return social_network.BuildSocialNetwork(
 		social_network.WithID(s.ID),
 		social_network.WithName(s.Name),
+		social_network.WithSlug(s.Slug),
 	)
 }
 
@@ -35,6 +37,7 @@ func (s SocialNetworkWithFreelancersCount) ToDomain() *social_network.SocialNetw
 	return social_network.BuildSocialNetwork(
 		social_network.WithID(s.ID),
 		social_network.WithName(s.Name),
+		social_network.WithSlug(s.Slug),
 		social_network.WithFreelancersCount(s.FreelancersCount),
 	)
 }

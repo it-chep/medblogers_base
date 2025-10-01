@@ -993,6 +993,9 @@
         "freelancersCount": {
           "type": "string",
           "format": "int64"
+        },
+        "slug": {
+          "type": "string"
         }
       }
     },
@@ -1753,6 +1756,9 @@
         },
         "name": {
           "type": "string"
+        },
+        "slug": {
+          "type": "string"
         }
       }
     },
@@ -1974,6 +1980,7 @@
         },
         "amount": {
           "type": "string",
+          "format": "int64",
           "title": "Стоимость услуги"
         }
       }
@@ -1986,6 +1993,9 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        },
+        "slug": {
           "type": "string"
         }
       }
@@ -2025,6 +2035,9 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        },
+        "slug": {
           "type": "string"
         }
       }
@@ -2101,6 +2114,9 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        },
+        "slug": {
           "type": "string"
         }
       }

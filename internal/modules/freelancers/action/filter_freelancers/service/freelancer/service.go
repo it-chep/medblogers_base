@@ -99,6 +99,7 @@ func (s *Service) convertToDTOMap(freelancersMap map[int64]*freelancer.Freelance
 			MainSpecialityID:        freelanc.GetMainSpecialityID(),
 			PriceCategory:           freelanc.GetPriceCategory(),
 			HasExperienceWithDoctor: freelanc.HasExperienceWithDoctor(),
+			HasCommand:              freelanc.GetHasCommand(),
 		}
 	}
 

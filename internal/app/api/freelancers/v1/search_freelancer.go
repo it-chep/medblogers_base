@@ -14,10 +14,12 @@ func (i *Implementation) Search(ctx context.Context, request *desc.SearchRequest
 	if request.Query == "" {
 		return nil, status.Error(codes.InvalidArgument, "query is required")
 	}
+
 	searchResultDomain, err := i.freelancers.Actions.SearchFreelancers.Do(ctx, request.Query)
 	if err != nil {
 		return nil, err
 	}
+
 	return i.newSearchResponse(searchResultDomain), nil
 }
 

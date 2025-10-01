@@ -4,6 +4,7 @@ package social_network
 type SocialNetwork struct {
 	id               int64
 	name             string
+	slug             string
 	freelancersCount int64
 }
 
@@ -24,6 +25,10 @@ func (c *SocialNetwork) ID() int64 {
 
 func (c *SocialNetwork) Name() string {
 	return c.name
+}
+
+func (c *SocialNetwork) Slug() string {
+	return c.slug
 }
 
 func (c *SocialNetwork) FreelancersCount() int64 {

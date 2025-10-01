@@ -3436,6 +3436,8 @@ func (m *GetSettingsResponse_SocietyItem) validate(all bool) error {
 
 	// no validation rules for FreelancersCount
 
+	// no validation rules for Slug
+
 	if len(errors) > 0 {
 		return GetSettingsResponse_SocietyItemMultiError(errors)
 	}
@@ -4461,6 +4463,8 @@ func (m *SearchResponse_FreelancerItem_SocialNetworkItem) validate(all bool) err
 
 	// no validation rules for Name
 
+	// no validation rules for Slug
+
 	if len(errors) > 0 {
 		return SearchResponse_FreelancerItem_SocialNetworkItemMultiError(errors)
 	}
@@ -4728,6 +4732,8 @@ func (m *FilterResponse_FreelancerItem_SocialNetworkItem) validate(all bool) err
 	// no validation rules for Id
 
 	// no validation rules for Name
+
+	// no validation rules for Slug
 
 	if len(errors) > 0 {
 		return FilterResponse_FreelancerItem_SocialNetworkItemMultiError(errors)
@@ -5280,6 +5286,8 @@ func (m *GetFreelancerResponse_SocialNetworkItem) validate(all bool) error {
 
 	// no validation rules for Name
 
+	// no validation rules for Slug
+
 	if len(errors) > 0 {
 		return GetFreelancerResponse_SocialNetworkItemMultiError(errors)
 	}
@@ -5498,6 +5506,8 @@ func (m *GetSocialNetworksResponse_SocialNetworkItem) validate(all bool) error {
 	// no validation rules for Id
 
 	// no validation rules for Name
+
+	// no validation rules for Slug
 
 	if len(errors) > 0 {
 		return GetSocialNetworksResponse_SocialNetworkItemMultiError(errors)

@@ -3,6 +3,7 @@ package dto
 type NetworkItem struct {
 	ID   int64
 	Name string
+	Slug string
 }
 
 type Freelancer struct {
