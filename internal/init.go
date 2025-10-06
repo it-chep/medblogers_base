@@ -4,13 +4,20 @@ import (
 	"context"
 	"fmt"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
+	"google.golang.org/grpc/credentials/insecure"
+
 	"medblogers_base/internal/app/interceptor"
 	httpV1 "medblogers_base/internal/app/router/v1"
 	"medblogers_base/internal/config"
 	moduleadmin "medblogers_base/internal/modules/admin"
 	moduledoctors "medblogers_base/internal/modules/doctors"
+	moduleFreelancers "medblogers_base/internal/modules/freelancers"
+
 	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	descFreelancersV1 "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
 	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -57,7 +64,7 @@ func (a *App) initConfig(_ context.Context) *App {
 	return a
 }
 
-func (a *App) initMutableConfig(ctx context.Context) *App {
+func (a *App) initMutableConfig(_ context.Context) *App {
 	a.mutableConfig = pkgConfig.New(a.postgres)
 	return a
 }
@@ -76,8 +83,9 @@ func (a *App) initHttpConns(_ context.Context) *App {
 
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
-		admin:   moduleadmin.New(),
-		doctors: moduledoctors.New(a.httpConns, a.config, a.postgres),
+		admin:       moduleadmin.New(),
+		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
+		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 	}
 
 	return a
@@ -91,6 +99,7 @@ func (a *App) initCache(_ context.Context) *App {
 func (a *App) initControllers(_ context.Context) *App {
 	a.controllers.doctorsController = doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)
 	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors)
+	a.controllers.freelancersController = freelancersV1.NewFreelancersService(a.modules.freelancers)
 	return a
 }
 
@@ -114,10 +123,33 @@ func (a *App) initServer(_ context.Context) *App {
 	)
 	descDoctorsV1.RegisterDoctorServiceServer(grpcServer, a.controllers.doctorsController)
 	descSeoV1.RegisterSeoServer(grpcServer, a.controllers.seoController)
+	descFreelancersV1.RegisterFreelancerServiceServer(grpcServer, a.controllers.freelancersController)
+
 	reflection.Register(grpcServer)
 
 	a.server = &Server{
 		grpcServer: grpcServer,
+	}
+
+	return a
+}
+
+func (a *App) initGRPCServiceHandlers(ctx context.Context) *App {
+	httpProxyOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
+
+	err := descDoctorsV1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
+	if err != nil {
+		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
+	}
+
+	err = descSeoV1.RegisterSeoHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
+	if err != nil {
+		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
+	}
+
+	err = descFreelancersV1.RegisterFreelancerServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
+	if err != nil {
+		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
 	}
 
 	return a
