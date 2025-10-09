@@ -27,7 +27,7 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) dto.Filter 
 
 	maxSubscribers := req.MaxSubscribers
 	if maxSubscribers <= 0 {
-		maxSubscribers = 400_000
+		maxSubscribers = 5_000_000
 	}
 
 	minSubscribers := req.MinSubscribers

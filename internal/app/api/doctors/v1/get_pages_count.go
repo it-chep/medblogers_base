@@ -23,7 +23,7 @@ func (i *Implementation) GetPagesCount(ctx context.Context, req *desc.PagesCount
 func (i *Implementation) requestToPagesCountDTO(req *desc.PagesCountRequest) dto.Filter {
 	maxSubscribers := req.MaxSubscribers
 	if maxSubscribers <= 0 {
-		maxSubscribers = 400_000
+		maxSubscribers = 5_000_000
 	}
 
 	minSubscribers := req.MinSubscribers
