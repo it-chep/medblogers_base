@@ -97,7 +97,7 @@ type FreelancerDetail struct {
 	Name                     string         `db:"name"`
 	Slug                     string         `db:"slug"`
 	TgUsername               string         `db:"tg_username"`
-	PortfolioLink            string         `db:"portfolio_link"`
+	PortfolioLink            sql.NullString `db:"portfolio_link"`
 	SpecialityID             int64          `db:"speciality_id"`
 	CityID                   int64          `db:"city_id"`
 	PriceCategory            int64          `db:"price_category"`
@@ -115,7 +115,7 @@ func (f FreelancerDetail) ToDomain() *freelancer.Freelancer {
 		freelancer.WithPriceCategory(f.PriceCategory),
 		freelancer.WithExperienceWithDoctors(f.HasExperienceWithDoctors),
 		freelancer.WithTgURL(f.TgUsername),
-		freelancer.WithPortfolioLink(f.PortfolioLink),
+		freelancer.WithPortfolioLink(f.PortfolioLink.String),
 		freelancer.WithMainSpecialityID(f.SpecialityID),
 		freelancer.WithMainCityID(f.CityID),
 		freelancer.WithS3Image(f.S3Image.String),
