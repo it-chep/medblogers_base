@@ -36,7 +36,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) GetFreelancers(ctx context.Context, filter freelancer.Filter) (map[int64]*freelancer.Freelancer, []int64, error) {
 	sql := `
 	select 
-	    id, name, slug, s3_image, price_category, is_worked_with_doctors, has_command
+	    id, name, slug, s3_image, price_category, is_worked_with_doctors, has_command, speciality_id, city_id
 	from
     	freelancer f
 	where 

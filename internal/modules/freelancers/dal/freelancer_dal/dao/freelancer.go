@@ -35,6 +35,8 @@ type FreelancerMiniature struct {
 	PriceCategory            int64          `db:"price_category"`
 	HasExperienceWithDoctors bool           `db:"is_worked_with_doctors"`
 	HasCommand               bool           `db:"has_command"`
+	SpecialityID             int64          `db:"speciality_id"`
+	CityID                   int64          `db:"city_id"`
 }
 
 func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
@@ -46,6 +48,8 @@ func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
 		freelancer.WithExperienceWithDoctors(m.HasExperienceWithDoctors),
 		freelancer.WithS3Image(m.S3Image.String),
 		freelancer.WithHasCommand(m.HasCommand),
+		freelancer.WithMainCityID(m.CityID),
+		freelancer.WithMainSpecialityID(m.SpecialityID),
 	)
 }
 
