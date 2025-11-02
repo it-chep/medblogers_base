@@ -8,6 +8,7 @@ package v1
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,7 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Seo_GetDoctorSeoData_FullMethodName = "/doctor.v1.Seo/GetDoctorSeoData"
+	Seo_GetDoctorSeoData_FullMethodName      = "/doctor.v1.Seo/GetDoctorSeoData"
+	Seo_GetFreelancersSeoData_FullMethodName = "/doctor.v1.Seo/GetFreelancersSeoData"
 )
 
 // SeoClient is the client API for Seo service.
@@ -27,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SeoClient interface {
 	GetDoctorSeoData(ctx context.Context, in *GetDoctorSeoDataRequest, opts ...grpc.CallOption) (*GetDoctorSeoDataResponse, error)
+	GetFreelancersSeoData(ctx context.Context, in *GetFreelancersSeoDataRequest, opts ...grpc.CallOption) (*GetFreelancersSeoDataResponse, error)
 }
 
 type seoClient struct {
@@ -47,11 +50,22 @@ func (c *seoClient) GetDoctorSeoData(ctx context.Context, in *GetDoctorSeoDataRe
 	return out, nil
 }
 
+func (c *seoClient) GetFreelancersSeoData(ctx context.Context, in *GetFreelancersSeoDataRequest, opts ...grpc.CallOption) (*GetFreelancersSeoDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancersSeoDataResponse)
+	err := c.cc.Invoke(ctx, Seo_GetFreelancersSeoData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SeoServer is the server API for Seo service.
 // All implementations must embed UnimplementedSeoServer
 // for forward compatibility.
 type SeoServer interface {
 	GetDoctorSeoData(context.Context, *GetDoctorSeoDataRequest) (*GetDoctorSeoDataResponse, error)
+	GetFreelancersSeoData(context.Context, *GetFreelancersSeoDataRequest) (*GetFreelancersSeoDataResponse, error)
 	mustEmbedUnimplementedSeoServer()
 }
 
@@ -64,6 +78,9 @@ type UnimplementedSeoServer struct{}
 
 func (UnimplementedSeoServer) GetDoctorSeoData(context.Context, *GetDoctorSeoDataRequest) (*GetDoctorSeoDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDoctorSeoData not implemented")
+}
+func (UnimplementedSeoServer) GetFreelancersSeoData(context.Context, *GetFreelancersSeoDataRequest) (*GetFreelancersSeoDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFreelancersSeoData not implemented")
 }
 func (UnimplementedSeoServer) mustEmbedUnimplementedSeoServer() {}
 func (UnimplementedSeoServer) testEmbeddedByValue()             {}
@@ -104,6 +121,24 @@ func _Seo_GetDoctorSeoData_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Seo_GetFreelancersSeoData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancersSeoDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeoServer).GetFreelancersSeoData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seo_GetFreelancersSeoData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeoServer).GetFreelancersSeoData(ctx, req.(*GetFreelancersSeoDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Seo_ServiceDesc is the grpc.ServiceDesc for Seo service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +149,10 @@ var Seo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDoctorSeoData",
 			Handler:    _Seo_GetDoctorSeoData_Handler,
+		},
+		{
+			MethodName: "GetFreelancersSeoData",
+			Handler:    _Seo_GetFreelancersSeoData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

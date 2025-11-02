@@ -16,6 +16,14 @@ service Seo {
       summary: "Получение SEO информации для карточки врача"
     };
   }
+  rpc GetFreelancersSeoData(GetFreelancersSeoDataRequest) returns (GetFreelancersSeoDataResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/seo/{freelancers_slug}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение SEO информации для карточки специалиста"
+    };
+  }
 }
 
 message GetDoctorSeoDataRequest {
@@ -25,4 +33,15 @@ message GetDoctorSeoDataRequest {
 message GetDoctorSeoDataResponse {
   string title = 1;
   string description = 2;
+  string image = 3;
+}
+
+message GetFreelancersSeoDataRequest{
+  string freelancers_slug = 1;
+}
+
+message GetFreelancersSeoDataResponse{
+  string title = 1;
+  string description = 2;
+  string image = 3;
 }

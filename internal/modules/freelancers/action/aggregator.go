@@ -50,7 +50,7 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 		GetAllNetworks:     get_all_networks.New(pool),
 		CreateFreelancer:   create_freelancer.New(clients, pool, config),
 
-		GetSeoDetail:     get_seo_detail.NewAction(pool),
+		GetSeoDetail:     get_seo_detail.NewAction(clients, pool),
 		FreelancerDetail: freelancer_detail.New(clients, pool),
 
 		SearchFreelancers: search_freelancers.NewAction(clients, pool),

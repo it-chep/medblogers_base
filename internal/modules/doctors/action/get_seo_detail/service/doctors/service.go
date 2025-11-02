@@ -20,15 +20,22 @@ type Storage interface {
 	GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) (map[speciality.SpecialityID]*speciality.Speciality, error)
 }
 
+// ImageGetter .
+type ImageGetter interface {
+	GetPhotoLink(s3Key string) string
+}
+
 // Service сервис получения данных о докторе
 type Service struct {
-	storage Storage
+	storage     Storage
+	imageGetter ImageGetter
 }
 
 // New к-ор
-func New(storage Storage) *Service {
+func New(storage Storage, imageGetter ImageGetter) *Service {
 	return &Service{
-		storage: storage,
+		storage:     storage,
+		imageGetter: imageGetter,
 	}
 }
 
@@ -66,7 +73,7 @@ func (s *Service) ConfigureDoctorDescription(ctx context.Context, doctorID docto
 
 	g.Wait()
 
-	description := fmt.Sprintf("Доктор ведет приемы в городах: %s. Доктор является специалистам по направлениям: %s", citiesStr, specialitiesStr)
+	description := fmt.Sprintf("Доктор ведет приемы в городах: %s. Доктор является специалистом по направлениям: %s", citiesStr, specialitiesStr)
 
 	return description, nil
 }
@@ -103,4 +110,9 @@ func (s *Service) getSpecialities(ctx context.Context, doctorID doctor.Medbloger
 	}
 
 	return builder.String(), nil
+}
+
+// GetDoctorImage получение фотографии врача
+func (s *Service) GetDoctorImage(s3Image string) string {
+	return s.imageGetter.GetPhotoLink(s3Image)
 }

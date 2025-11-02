@@ -16,14 +16,20 @@ type FreelancerDao struct {
 }
 
 type FreelancerSeoInfo struct {
-	ID   int64  `db:"id"`
-	Name string `db:"name"`
+	ID                       int64          `db:"id"`
+	Name                     string         `db:"name"`
+	S3Image                  sql.NullString `db:"s3_image"`
+	HasExperienceWithDoctors bool           `db:"is_worked_with_doctors"`
+	StartWorking             sql.NullTime   `db:"start_working_date"`
 }
 
 func (f *FreelancerSeoInfo) ToDomain() *freelancer.Freelancer {
 	return freelancer.New(
 		freelancer.WithID(f.ID),
 		freelancer.WithName(f.Name),
+		freelancer.WithExperienceWithDoctors(f.HasExperienceWithDoctors),
+		freelancer.WithS3Image(f.S3Image.String),
+		freelancer.WithStartWorkingTime(f.StartWorking.Time),
 	)
 }
 

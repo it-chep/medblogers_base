@@ -5,6 +5,7 @@ import (
 	"medblogers_base/internal/modules/doctors/action/get_seo_detail/dal"
 	"medblogers_base/internal/modules/doctors/action/get_seo_detail/dto"
 	"medblogers_base/internal/modules/doctors/action/get_seo_detail/service/doctors"
+	"medblogers_base/internal/modules/doctors/client"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -13,9 +14,9 @@ type Action struct {
 	doctorsService *doctors.Service
 }
 
-func NewAction(pool postgres.PoolWrapper) *Action {
+func NewAction(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
-		doctorsService: doctors.New(dal.NewRepository(pool)),
+		doctorsService: doctors.New(dal.NewRepository(pool), clients.S3),
 	}
 }
 
@@ -35,6 +36,6 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
 	return dto.Response{
 		Description: description,
 		Title:       doctor.GetName(),
+		ImageURL:    a.doctorsService.GetDoctorImage(doctor.GetS3Key()),
 	}, nil
-
 }
