@@ -22,7 +22,7 @@ type Storage interface {
 }
 
 type ImageEnricher interface {
-	GetUserPhotos(ctx context.Context) (map[string]string, error)
+	GetUserPhotos(ctx context.Context) (map[doctor.S3Key]string, error)
 }
 
 type SubscribersEnricher interface {
@@ -116,6 +116,7 @@ func (s *Service) convertToDTOMap(doctorsMap map[doctor.MedblogersID]*doctor.Doc
 			TgLink:           doc.GetTgChannelURL(),
 			MainCityID:       int64(doc.GetMainCityID()),
 			MainSpecialityID: int64(doc.GetMainSpecialityID()),
+			S3Key:            doc.GetS3Key().String(),
 		}
 	}
 

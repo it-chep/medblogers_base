@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
 	"medblogers_base/internal/modules/doctors/domain/city"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
@@ -18,7 +19,7 @@ import (
 func (s *Service) EnrichFacade(ctx context.Context, dtoMap map[int64]dto.Doctor, doctorsIDs []int64) {
 	// Обогащение специальностями, фотографиями и городами
 	var (
-		imageMap        map[string]string
+		imageMap        map[doctor.S3Key]string
 		citiesMap       map[int64][]*city.City
 		specialitiesMap map[int64][]*speciality.Speciality
 		mu              sync.Mutex
@@ -183,11 +184,11 @@ func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.
 }
 
 // enrichImages - обогащение фотографиями в миниатюры докторов
-func enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos map[string]string) {
+func enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos map[doctor.S3Key]string) {
 	logger.Message(ctx, "[Filter] Обогащение фотографиями")
 
 	for id, doc := range doctorsMap {
-		photo, ok := photos[doc.Slug]
+		photo, ok := photos[doctor.S3Key(doc.S3Key)]
 		if !ok {
 			// Устанавливаем дефолтное значение
 			doc.Image = "https://storage.yandexcloud.net/medblogers-photos/zag.jpg"
@@ -203,7 +204,7 @@ func enrichImages(ctx context.Context, doctorsMap map[int64]dto.Doctor, photos m
 func (s *Service) enrichWithSubscribersFacade(ctx context.Context, doctorsMap map[int64]dto.Doctor) {
 	var (
 		subscribersMap  map[int64]indto.GetSubscribersByDoctorIDsResponse
-		imageMap        map[string]string
+		imageMap        map[doctor.S3Key]string
 		citiesMap       map[int64][]*city.City
 		specialitiesMap map[int64][]*speciality.Speciality
 		mu              sync.Mutex

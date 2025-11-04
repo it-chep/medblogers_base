@@ -19,7 +19,7 @@ type SearchStorage interface {
 
 // ImageGetter .
 type ImageGetter interface {
-	GetUserPhotos(ctx context.Context) (map[string]string, error)
+	GetUserPhotos(ctx context.Context) (map[doctor.S3Key]string, error)
 }
 
 // Service .
@@ -57,7 +57,7 @@ func (s *Service) Search(ctx context.Context, query string) ([]dto.DoctorItem, e
 			Slug:           item.GetSlug(),
 			CityName:       item.GetMainCityName(),
 			SpecialityName: item.GetMainSpecialityName(),
-			S3Image:        usersPhotosMap[item.GetSlug()],
+			S3Image:        usersPhotosMap[item.GetS3Key()],
 		}
 	})
 

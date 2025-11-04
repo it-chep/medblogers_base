@@ -44,7 +44,7 @@ func WithSpecialityName(name string) Option {
 }
 
 // WithS3Image .
-func WithS3Image(s3key string) Option {
+func WithS3Image(s3key S3Key) Option {
 	return func(s *Doctor) {
 		s.s3Image = s3key
 	}

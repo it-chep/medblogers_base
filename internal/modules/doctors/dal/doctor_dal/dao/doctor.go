@@ -32,7 +32,7 @@ func (d DoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithID(d.ID),
 		doctor.WithName(d.Name),
 		doctor.WithSlug(d.Slug),
-		doctor.WithS3Image(d.S3Image.String),
+		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
 		doctor.WithTgURL(d.TgURL.String),
 		doctor.WithInstURL(d.InstURL.String),
 		doctor.WithDzenURL(d.DzenURL.String),
@@ -56,6 +56,7 @@ type DoctorMiniatureDAO struct {
 	TgChannelURL sql.NullString `db:"tg_channel_url"`
 	CityID       int64          `db:"city_id"`
 	SpecialityID int64          `db:"speciallity_id"`
+	S3Image      sql.NullString `db:"s3_image"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -68,16 +69,18 @@ func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
 		doctor.WithTgChannelURL(d.TgChannelURL.String),
 		doctor.WithMainSpecialityID(d.SpecialityID),
 		doctor.WithMainCityID(d.CityID),
+		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
 	)
 }
 
 // DoctorSearchDAO .
 type DoctorSearchDAO struct {
-	ID             int64  `db:"id"`
-	Name           string `db:"name"`
-	Slug           string `db:"slug"`
-	CityName       string `db:"city_name"`
-	SpecialityName string `db:"speciality_name"`
+	ID             int64          `db:"id"`
+	Name           string         `db:"name"`
+	Slug           string         `db:"slug"`
+	CityName       string         `db:"city_name"`
+	SpecialityName string         `db:"speciality_name"`
+	S3Image        sql.NullString `db:"s3_image"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -88,5 +91,6 @@ func (d DoctorSearchDAO) ToDomain() *doctor.Doctor {
 		doctor.WithName(d.Name),
 		doctor.WithCityName(d.CityName),
 		doctor.WithSpecialityName(d.SpecialityName),
+		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
 	)
 }

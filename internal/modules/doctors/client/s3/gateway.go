@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"io"
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/logger"
 	"mime"
 	"path/filepath"
-	"strings"
 	"time"
 
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
@@ -96,10 +96,10 @@ func NewGateway(bucketName string, client S3Client, presignClient S3PresignClien
 // todo закрыть это место кешом, чтобы не было постоянных проходок
 
 // GetUserPhotos получение фотографий врачей из Yandex Object Storage
-func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) {
+func (g *Gateway) GetUserPhotos(ctx context.Context) (map[doctor.S3Key]string, error) {
 	logger.Message(ctx, "[S3] Получение фотографий пользователей из Yandex Storage")
 
-	filesMap := make(map[string]string)
+	filesMap := make(map[doctor.S3Key]string)
 	paginator := s3.NewListObjectsV2Paginator(g.client, &s3.ListObjectsV2Input{
 		Bucket: aws.String(g.bucketName),
 		Prefix: aws.String("images/user_"),
@@ -119,14 +119,7 @@ func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) 
 				continue
 			}
 
-			parts := strings.Split(key, "_")
-			if len(parts) < 2 {
-				continue
-			}
-			slug := parts[1]
-
-			filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s",
-				g.bucketName, key)
+			filesMap[doctor.S3Key(key)] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, key)
 		}
 	}
 

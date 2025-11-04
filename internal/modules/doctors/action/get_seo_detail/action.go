@@ -36,6 +36,6 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
 	return dto.Response{
 		Description: description,
 		Title:       doctor.GetName(),
-		ImageURL:    a.doctorsService.GetDoctorImage(doctor.GetS3Key()),
+		ImageURL:    a.doctorsService.GetDoctorImage(doctor.GetS3Key().String()),
 	}, nil
 }

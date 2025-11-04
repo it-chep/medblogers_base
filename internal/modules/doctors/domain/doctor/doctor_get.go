@@ -136,6 +136,6 @@ func (d *Doctor) GetMainSpecialityName() string {
 }
 
 // GetS3Key получение ключа для доступа к фото
-func (d *Doctor) GetS3Key() string {
+func (d *Doctor) GetS3Key() S3Key {
 	return d.s3Image
 }
