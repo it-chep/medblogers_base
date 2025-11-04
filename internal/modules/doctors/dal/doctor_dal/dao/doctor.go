@@ -39,6 +39,7 @@ func (d DoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithTgChannelURL(d.TgChannelURL.String),
 		doctor.WithYoutubeURL(d.YoutubeURL.String),
 		doctor.WithVkURL(d.VkURL.String),
+		doctor.WithSiteLink(d.Prodoctorov.String),
 		doctor.WithTikTokURL(d.TiktokURL.String),
 		doctor.WithMainBlogTheme(d.MainBlogTheme.String),
 		doctor.WithMainSpecialityID(d.SpecialityID),
