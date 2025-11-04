@@ -9,7 +9,6 @@ import (
 
 	"github.com/samber/lo"
 
-	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"strings"
 )
@@ -21,15 +20,21 @@ type Storage interface {
 	GetFreelancerAdditionalSpecialities(ctx context.Context, freelancerID int64) (map[int64]*speciality.Speciality, error)
 }
 
+type ImageGetter interface {
+	GetPhotoLink(s3Key string) string
+}
+
 // Service сервис получения данных о докторе
 type Service struct {
-	storage Storage
+	storage     Storage
+	imageGetter ImageGetter
 }
 
 // New к-ор
-func New(storage Storage) *Service {
+func New(storage Storage, imageGetter ImageGetter) *Service {
 	return &Service{
-		storage: storage,
+		storage:     storage,
+		imageGetter: imageGetter,
 	}
 }
 
@@ -38,36 +43,23 @@ func (s *Service) GetFreelancerInfo(ctx context.Context, slug string) (*freelanc
 	return s.storage.GetFreelancerInfo(ctx, slug)
 }
 
-func (s *Service) ConfigureDoctorDescription(ctx context.Context, freelancerID int64) (string, error) {
+func (s *Service) ConfigureFreelancerDescription(ctx context.Context, frlncr *freelancer.Freelancer) (string, error) {
 	var (
-		citiesStr       string
 		specialitiesStr string
 	)
-	g := async.NewGroup()
 
-	// получаем города фрилансера
-	g.Go(func() {
-		cities, err := s.getCities(ctx, freelancerID)
-		if err != nil {
-			logger.Error(ctx, "[ERROR] Ошибка получения городов для SEO", err)
-			return
-		}
-		citiesStr = cities
-	})
+	specialitiesStr, err := s.getSpecialities(ctx, frlncr.GetID())
+	if err != nil {
+		logger.Error(ctx, "[ERROR] Ошибка получения специальностей для SEO", err)
+		return "", err
+	}
 
-	// получаем специальности фрилансера
-	g.Go(func() {
-		specialities, err := s.getSpecialities(ctx, freelancerID)
-		if err != nil {
-			logger.Error(ctx, "[ERROR] Ошибка получения специальностей для SEO", err)
-			return
-		}
-		specialitiesStr = specialities
-	})
-
-	g.Wait()
-
-	description := fmt.Sprintf("Работаю в городах: %s. Яляюсь специалистам по направлениям: %s", citiesStr, specialitiesStr)
+	description := fmt.Sprintf(
+		"Роли: %s. Опыт работы %s. %s",
+		specialitiesStr,
+		frlncr.GetWorkingExperience(),
+		lo.Ternary(frlncr.HasExperienceWithDoctor(), "Есть опыт работы с врачами.", ""),
+	)
 
 	return description, nil
 }
@@ -104,4 +96,9 @@ func (s *Service) getSpecialities(ctx context.Context, freelancerID int64) (_ st
 	}
 
 	return builder.String(), nil
+}
+
+// GetFreelancerPhoto получение фотки фрилансера
+func (s *Service) GetFreelancerPhoto(s3Key string) string {
+	return s.imageGetter.GetPhotoLink(s3Key)
 }

@@ -14,5 +14,6 @@ func (i *Implementation) GetDoctorSeoData(ctx context.Context, req *desc.GetDoct
 	return &desc.GetDoctorSeoDataResponse{
 		Title:       response.Title,
 		Description: response.Description,
+		Image:       response.ImageURL,
 	}, nil
 }

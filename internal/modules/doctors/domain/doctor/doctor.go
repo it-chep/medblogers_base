@@ -70,7 +70,7 @@ type Doctor struct {
 	medicalDirection string // Направление медицины
 	mainBlogTheme    string // Тематика блога
 
-	s3Image   string    // ссылка на S3
+	s3Image   S3Key     // ссылка на S3
 	birthDate time.Time // дата рождения
 
 	cooperationType CooperationType // Тип размещения

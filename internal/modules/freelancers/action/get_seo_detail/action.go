@@ -5,6 +5,7 @@ import (
 	"medblogers_base/internal/modules/freelancers/action/get_seo_detail/dal"
 	"medblogers_base/internal/modules/freelancers/action/get_seo_detail/dto"
 	"medblogers_base/internal/modules/freelancers/action/get_seo_detail/service/freelancer"
+	"medblogers_base/internal/modules/freelancers/client"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -13,9 +14,9 @@ type Action struct {
 	freelancerService *freelancer.Service
 }
 
-func NewAction(pool postgres.PoolWrapper) *Action {
+func NewAction(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
-		freelancerService: freelancer.New(dal.NewRepository(pool)),
+		freelancerService: freelancer.New(dal.NewRepository(pool), clients.S3),
 	}
 }
 
@@ -26,7 +27,7 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
 		return dto.Response{}, err
 	}
 
-	description, err := a.freelancerService.ConfigureDoctorDescription(ctx, frlcer.GetID())
+	description, err := a.freelancerService.ConfigureFreelancerDescription(ctx, frlcer)
 	if err != nil {
 		logger.Error(ctx, "Ошибка получения описания для SEO", err)
 		return dto.Response{}, err
@@ -35,5 +36,6 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
 	return dto.Response{
 		Description: description,
 		Title:       frlcer.GetName(),
+		ImageURL:    a.freelancerService.GetFreelancerPhoto(frlcer.GetS3Image()),
 	}, nil
 }

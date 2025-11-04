@@ -639,6 +639,37 @@
         ]
       }
     },
+    "/api/v1/freelancers/seo/{freelancersSlug}": {
+      "get": {
+        "summary": "Получение SEO информации для карточки специалиста",
+        "operationId": "Seo_GetFreelancersSeoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreelancersSeoDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancersSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Seo"
+        ]
+      }
+    },
     "/api/v1/freelancers/settings": {
       "get": {
         "summary": "Доступные фильтры",
@@ -1876,6 +1907,9 @@
         },
         "description": {
           "type": "string"
+        },
+        "image": {
+          "type": "string"
         }
       }
     },
@@ -2014,6 +2048,20 @@
     },
     "v1GetFreelancersResponse": {
       "type": "object"
+    },
+    "v1GetFreelancersSeoDataResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
     },
     "v1GetSocialNetworksResponse": {
       "type": "object",

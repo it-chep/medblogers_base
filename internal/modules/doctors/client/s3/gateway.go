@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"io"
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/logger"
 	"mime"
 	"path/filepath"
-	"strings"
 	"time"
 
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
@@ -23,11 +23,13 @@ import (
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . S3Client,S3PresignClient
 
+// S3Client .
 type S3Client interface {
 	ListObjectsV2(ctx context.Context, params *s3.ListObjectsV2Input, optFns ...func(*s3.Options)) (*s3.ListObjectsV2Output, error)
 	PutObject(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error)
 }
 
+// S3PresignClient .
 type S3PresignClient interface {
 	PresignGetObject(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.PresignOptions)) (*v4.PresignedHTTPRequest, error)
 }
@@ -94,10 +96,10 @@ func NewGateway(bucketName string, client S3Client, presignClient S3PresignClien
 // todo закрыть это место кешом, чтобы не было постоянных проходок
 
 // GetUserPhotos получение фотографий врачей из Yandex Object Storage
-func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) {
+func (g *Gateway) GetUserPhotos(ctx context.Context) (map[doctor.S3Key]string, error) {
 	logger.Message(ctx, "[S3] Получение фотографий пользователей из Yandex Storage")
 
-	filesMap := make(map[string]string)
+	filesMap := make(map[doctor.S3Key]string)
 	paginator := s3.NewListObjectsV2Paginator(g.client, &s3.ListObjectsV2Input{
 		Bucket: aws.String(g.bucketName),
 		Prefix: aws.String("images/user_"),
@@ -117,14 +119,7 @@ func (g *Gateway) GetUserPhotos(ctx context.Context) (map[string]string, error) 
 				continue
 			}
 
-			parts := strings.Split(key, "_")
-			if len(parts) < 2 {
-				continue
-			}
-			slug := parts[1]
-
-			filesMap[slug] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s",
-				g.bucketName, key)
+			filesMap[doctor.S3Key(key)] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, key)
 		}
 	}
 
@@ -144,6 +139,11 @@ func (g *Gateway) GeneratePresignedURL(ctx context.Context, s3Key string) (strin
 	}
 
 	return req.URL, nil
+}
+
+// GetPhotoLink .
+func (g *Gateway) GetPhotoLink(s3Key string) string {
+	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, s3Key)
 }
 
 // PutObject загружает фотографию врача в хранилище

@@ -51,6 +51,6 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 		GetPagesCount:          get_pages_count.New(clients, pool),
 
 		// Seo
-		GetSeoDetail: get_seo_detail.NewAction(pool),
+		GetSeoDetail: get_seo_detail.NewAction(clients, pool),
 	}
 }

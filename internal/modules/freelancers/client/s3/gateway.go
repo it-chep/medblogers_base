@@ -26,6 +26,7 @@ import (
 type S3Client interface {
 	ListObjectsV2(ctx context.Context, params *s3.ListObjectsV2Input, optFns ...func(*s3.Options)) (*s3.ListObjectsV2Output, error)
 	PutObject(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error)
+	GetObject(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.Options)) (*s3.GetObjectOutput, error)
 }
 
 type S3PresignClient interface {
@@ -35,6 +36,7 @@ type S3PresignClient interface {
 // Gateway клиент к S3
 type Gateway struct {
 	bucketName    string
+	region        string
 	client        S3Client
 	presignClient S3PresignClient
 }
@@ -173,4 +175,9 @@ func (g *Gateway) PutObject(ctx context.Context, file io.Reader, filename, slug 
 	}
 
 	return objectKey, nil
+}
+
+// GetPhotoLink .
+func (g *Gateway) GetPhotoLink(s3Key string) string {
+	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, s3Key)
 }

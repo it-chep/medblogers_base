@@ -98,7 +98,7 @@ func (a *App) initCache(_ context.Context) *App {
 
 func (a *App) initControllers(_ context.Context) *App {
 	a.controllers.doctorsController = doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)
-	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors)
+	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)
 	a.controllers.freelancersController = freelancersV1.NewFreelancersService(a.modules.freelancers)
 	return a
 }
