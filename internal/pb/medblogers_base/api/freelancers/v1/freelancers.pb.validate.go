@@ -3408,6 +3408,252 @@ var _ interface {
 	ErrorName() string
 } = GetSocialNetworksResponseValidationError{}
 
+// Validate checks the field values on GetFreelancerRecommendationsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetFreelancerRecommendationsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetFreelancerRecommendationsRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetFreelancerRecommendationsRequestMultiError, or nil if none found.
+func (m *GetFreelancerRecommendationsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerRecommendationsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for FreelancerId
+
+	if len(errors) > 0 {
+		return GetFreelancerRecommendationsRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerRecommendationsRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// GetFreelancerRecommendationsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetFreelancerRecommendationsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerRecommendationsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerRecommendationsRequestMultiError) AllErrors() []error { return m }
+
+// GetFreelancerRecommendationsRequestValidationError is the validation error
+// returned by GetFreelancerRecommendationsRequest.Validate if the designated
+// constraints aren't met.
+type GetFreelancerRecommendationsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerRecommendationsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerRecommendationsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerRecommendationsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerRecommendationsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerRecommendationsRequestValidationError) ErrorName() string {
+	return "GetFreelancerRecommendationsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerRecommendationsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerRecommendationsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerRecommendationsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerRecommendationsRequestValidationError{}
+
+// Validate checks the field values on GetFreelancerRecommendationsResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetFreelancerRecommendationsResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetFreelancerRecommendationsResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetFreelancerRecommendationsResponseMultiError, or nil if none found.
+func (m *GetFreelancerRecommendationsResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerRecommendationsResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetDoctors() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetFreelancerRecommendationsResponseValidationError{
+						field:  fmt.Sprintf("Doctors[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetFreelancerRecommendationsResponseValidationError{
+						field:  fmt.Sprintf("Doctors[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetFreelancerRecommendationsResponseValidationError{
+					field:  fmt.Sprintf("Doctors[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetFreelancerRecommendationsResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerRecommendationsResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// GetFreelancerRecommendationsResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetFreelancerRecommendationsResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerRecommendationsResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerRecommendationsResponseMultiError) AllErrors() []error { return m }
+
+// GetFreelancerRecommendationsResponseValidationError is the validation error
+// returned by GetFreelancerRecommendationsResponse.Validate if the designated
+// constraints aren't met.
+type GetFreelancerRecommendationsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerRecommendationsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerRecommendationsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerRecommendationsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerRecommendationsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerRecommendationsResponseValidationError) ErrorName() string {
+	return "GetFreelancerRecommendationsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerRecommendationsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerRecommendationsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerRecommendationsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerRecommendationsResponseValidationError{}
+
 // Validate checks the field values on GetSettingsResponse_SocietyItem with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -5590,3 +5836,121 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetSocialNetworksResponse_SocialNetworkItemValidationError{}
+
+// Validate checks the field values on
+// GetFreelancerRecommendationsResponse_Doctor with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *GetFreelancerRecommendationsResponse_Doctor) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetFreelancerRecommendationsResponse_Doctor with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// GetFreelancerRecommendationsResponse_DoctorMultiError, or nil if none found.
+func (m *GetFreelancerRecommendationsResponse_Doctor) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetFreelancerRecommendationsResponse_Doctor) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for Slug
+
+	// no validation rules for Speciality
+
+	// no validation rules for City
+
+	// no validation rules for Image
+
+	if len(errors) > 0 {
+		return GetFreelancerRecommendationsResponse_DoctorMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetFreelancerRecommendationsResponse_DoctorMultiError is an error wrapping
+// multiple validation errors returned by
+// GetFreelancerRecommendationsResponse_Doctor.ValidateAll() if the designated
+// constraints aren't met.
+type GetFreelancerRecommendationsResponse_DoctorMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetFreelancerRecommendationsResponse_DoctorMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetFreelancerRecommendationsResponse_DoctorMultiError) AllErrors() []error { return m }
+
+// GetFreelancerRecommendationsResponse_DoctorValidationError is the validation
+// error returned by GetFreelancerRecommendationsResponse_Doctor.Validate if
+// the designated constraints aren't met.
+type GetFreelancerRecommendationsResponse_DoctorValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetFreelancerRecommendationsResponse_DoctorValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetFreelancerRecommendationsResponse_DoctorValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetFreelancerRecommendationsResponse_DoctorValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetFreelancerRecommendationsResponse_DoctorValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetFreelancerRecommendationsResponse_DoctorValidationError) ErrorName() string {
+	return "GetFreelancerRecommendationsResponse_DoctorValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetFreelancerRecommendationsResponse_DoctorValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetFreelancerRecommendationsResponse_Doctor.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetFreelancerRecommendationsResponse_DoctorValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetFreelancerRecommendationsResponse_DoctorValidationError{}

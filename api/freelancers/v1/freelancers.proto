@@ -105,6 +105,14 @@ service FreelancerService {
       summary: "Получение детальной информации про фрилансера"
     };
   }
+  rpc GetFreelancerRecommendations(GetFreelancerRecommendationsRequest) returns (GetFreelancerRecommendationsResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/freelancers/card/{freelancer_id}/recommendations"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Получение рекомендаций фрилансера"
+    };
+  }
 }
 
 message GetFreelancersRequest {}
@@ -406,5 +414,24 @@ message GetSocialNetworksResponse{
     int64 id = 1;
     string name = 2;
     string slug = 3;
+  }
+}
+
+message GetFreelancerRecommendationsRequest{
+  int64 freelancer_id = 1;
+}
+
+message GetFreelancerRecommendationsResponse{
+  repeated Doctor doctors = 1;
+
+  message Doctor {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
+
+    string speciality = 4;
+    string city = 5;
+
+    string image = 6;
   }
 }
