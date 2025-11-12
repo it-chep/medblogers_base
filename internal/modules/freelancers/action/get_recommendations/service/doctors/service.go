@@ -57,8 +57,8 @@ func (s *Service) convertToDTOMap(doctorsMap map[doctor.MedblogersID]*doctor.Doc
 			ID:               int64(doc.GetID()),
 			Slug:             doc.GetSlug(),
 			Name:             doc.GetName(),
-			MainCityID:       int64(doc.GetMainCityID()),
-			MainSpecialityID: int64(doc.GetMainSpecialityID()),
+			MainCityID:       doc.GetMainCityID(),
+			MainSpecialityID: doc.GetMainSpecialityID(),
 			S3Key:            doc.GetS3Key().String(),
 		}
 	}

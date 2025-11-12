@@ -1,10 +1,5 @@
 package doctor
 
-import (
-	"medblogers_base/internal/modules/doctors/domain/city"
-	"medblogers_base/internal/modules/doctors/domain/speciality"
-)
-
 // GetID .
 func (d *Doctor) GetID() MedblogersID {
 	return d.medblogersID
@@ -31,12 +26,12 @@ func (d *Doctor) GetAdditionalSpecialitiesIDs() []int64 {
 }
 
 // GetMainSpecialityID основная специальность
-func (d *Doctor) GetMainSpecialityID() speciality.SpecialityID {
+func (d *Doctor) GetMainSpecialityID() int64 {
 	return d.specialityID
 }
 
 // GetMainCityID основной город
-func (d *Doctor) GetMainCityID() city.CityID {
+func (d *Doctor) GetMainCityID() int64 {
 	return d.cityID
 }
 

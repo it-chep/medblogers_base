@@ -1,12 +1,11 @@
 -- +goose Up
--- +goose StatementBegin
 -- +goose NO TRANSACTION
-create index concurrently if not exists idx_fr_recommendations_freelancer_id on freelancer_recommendation (freelancer_id);
-create index concurrently if not exists idx_fr_recommendations_doctor_id on freelancer_recommendation (doctor_id);
--- +goose StatementEnd
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_fr_recommendations_freelancer_id ON freelancer_recommendation (freelancer_id);
+-- +goose NO TRANSACTION
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_fr_recommendations_doctor_id ON freelancer_recommendation (doctor_id);
 
 -- +goose Down
--- +goose StatementBegin
-drop index if exists idx_fr_recommendations_freelancer_id;
-drop index if exists idx_fr_recommendations_doctor_id;
--- +goose StatementEnd
+-- +goose NO TRANSACTION
+DROP INDEX CONCURRENTLY IF EXISTS idx_fr_recommendations_freelancer_id;
+-- +goose NO TRANSACTION
+DROP INDEX CONCURRENTLY IF EXISTS idx_fr_recommendations_doctor_id;
