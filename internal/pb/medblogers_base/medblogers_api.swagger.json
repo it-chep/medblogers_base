@@ -243,15 +243,15 @@
         ]
       }
     },
-    "/api/v1/freelancers/card/{freelancerId}/recommendations": {
+    "/api/v1/freelancers/card/{freelancerSlug}": {
       "get": {
-        "summary": "Получение рекомендаций фрилансера",
-        "operationId": "FreelancerService_GetFreelancerRecommendations",
+        "summary": "Получение детальной информации про фрилансера",
+        "operationId": "FreelancerService_GetFreelancer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetFreelancerRecommendationsResponse"
+              "$ref": "#/definitions/v1GetFreelancerResponse"
             }
           },
           "default": {
@@ -263,11 +263,10 @@
         },
         "parameters": [
           {
-            "name": "freelancerId",
+            "name": "freelancerSlug",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "tags": [
@@ -275,15 +274,15 @@
         ]
       }
     },
-    "/api/v1/freelancers/card/{freelancerSlug}": {
+    "/api/v1/freelancers/card/{freelancerSlug}/recommendations": {
       "get": {
-        "summary": "Получение детальной информации про фрилансера",
-        "operationId": "FreelancerService_GetFreelancer",
+        "summary": "Получение рекомендаций фрилансера",
+        "operationId": "FreelancerService_GetFreelancerRecommendations",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetFreelancerResponse"
+              "$ref": "#/definitions/v1GetFreelancerRecommendationsResponse"
             }
           },
           "default": {
@@ -1019,10 +1018,6 @@
     "GetFreelancerRecommendationsResponseDoctor": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
         "name": {
           "type": "string"
         },

@@ -8,7 +8,7 @@ import (
 )
 
 func (i *Implementation) GetFreelancerRecommendations(ctx context.Context, req *desc.GetFreelancerRecommendationsRequest) (*desc.GetFreelancerRecommendationsResponse, error) {
-	resp, err := i.freelancers.Actions.GetRecommendations.Do(ctx, req.GetFreelancerId())
+	resp, err := i.freelancers.Actions.GetRecommendations.Do(ctx, req.GetFreelancerSlug())
 	if err != nil {
 		return nil, err
 	}
@@ -16,7 +16,6 @@ func (i *Implementation) GetFreelancerRecommendations(ctx context.Context, req *
 	return &desc.GetFreelancerRecommendationsResponse{
 		Doctors: lo.Map(resp.Doctors, func(item dto.Doctor, _ int) *desc.GetFreelancerRecommendationsResponse_Doctor {
 			return &desc.GetFreelancerRecommendationsResponse_Doctor{
-				Id:         item.ID,
 				Name:       item.Name,
 				Slug:       item.Slug,
 				Speciality: item.Speciality,

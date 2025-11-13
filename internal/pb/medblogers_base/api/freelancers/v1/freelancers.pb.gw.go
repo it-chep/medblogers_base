@@ -372,14 +372,14 @@ func request_FreelancerService_GetFreelancerRecommendations_0(ctx context.Contex
 		_   = err
 	)
 
-	val, ok = pathParams["freelancer_id"]
+	val, ok = pathParams["freelancer_slug"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_slug")
 	}
 
-	protoReq.FreelancerId, err = runtime.Int64(val)
+	protoReq.FreelancerSlug, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_slug", err)
 	}
 
 	msg, err := client.GetFreelancerRecommendations(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -398,14 +398,14 @@ func local_request_FreelancerService_GetFreelancerRecommendations_0(ctx context.
 		_   = err
 	)
 
-	val, ok = pathParams["freelancer_id"]
+	val, ok = pathParams["freelancer_slug"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_slug")
 	}
 
-	protoReq.FreelancerId, err = runtime.Int64(val)
+	protoReq.FreelancerSlug, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_slug", err)
 	}
 
 	msg, err := server.GetFreelancerRecommendations(ctx, &protoReq)
@@ -728,7 +728,7 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_id}/recommendations"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}/recommendations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1056,7 +1056,7 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_id}/recommendations"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}/recommendations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1100,7 +1100,7 @@ var (
 
 	pattern_FreelancerService_GetFreelancer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "freelancers", "card", "freelancer_slug"}, ""))
 
-	pattern_FreelancerService_GetFreelancerRecommendations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "freelancers", "card", "freelancer_id", "recommendations"}, ""))
+	pattern_FreelancerService_GetFreelancerRecommendations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "freelancers", "card", "freelancer_slug", "recommendations"}, ""))
 )
 
 var (

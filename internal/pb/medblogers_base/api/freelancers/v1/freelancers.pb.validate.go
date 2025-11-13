@@ -3431,7 +3431,7 @@ func (m *GetFreelancerRecommendationsRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for FreelancerId
+	// no validation rules for FreelancerSlug
 
 	if len(errors) > 0 {
 		return GetFreelancerRecommendationsRequestMultiError(errors)
@@ -5860,8 +5860,6 @@ func (m *GetFreelancerRecommendationsResponse_Doctor) validate(all bool) error {
 	}
 
 	var errors []error
-
-	// no validation rules for Id
 
 	// no validation rules for Name
 

@@ -7,6 +7,7 @@ import (
 	"medblogers_base/internal/modules/freelancers/action/get_recommendations/service/doctors"
 	"medblogers_base/internal/modules/freelancers/action/get_recommendations/service/freelancer"
 	"medblogers_base/internal/modules/freelancers/client"
+	"medblogers_base/internal/modules/freelancers/dal/freelancer_dal"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -18,7 +19,7 @@ type Action struct {
 func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
 		doctorService:     doctors.NewService(dal.NewRepository(pool), clients.S3),
-		freelancerService: freelancer.New(dal.NewRepository(pool)),
+		freelancerService: freelancer.New(dal.NewRepository(pool), freelancer_dal.NewRepository(pool)),
 	}
 }
 
@@ -28,8 +29,13 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 // 4. Обогащаем инфой о городах, специальностях и фотках
 // todo вообще в идеале не мешать докторов и фрилансеров и тут был бы крут API Gateway
 
-func (a *Action) Do(ctx context.Context, freelancerID int64) (dto.Response, error) {
-	recommendations, err := a.freelancerService.GetRecommendations(ctx, freelancerID)
+func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
+	frlncr, err := a.freelancerService.GetFreelancerInfo(ctx, slug)
+	if err != nil {
+		return dto.Response{}, err
+	}
+
+	recommendations, err := a.freelancerService.GetRecommendations(ctx, frlncr.GetID())
 	if err != nil {
 		return dto.Response{}, err
 	}
