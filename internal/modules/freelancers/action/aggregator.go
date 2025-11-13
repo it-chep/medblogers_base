@@ -10,6 +10,7 @@ import (
 	"medblogers_base/internal/modules/freelancers/action/get_all_networks"
 	"medblogers_base/internal/modules/freelancers/action/get_all_specialities"
 	"medblogers_base/internal/modules/freelancers/action/get_pages_count"
+	"medblogers_base/internal/modules/freelancers/action/get_recommendations"
 	"medblogers_base/internal/modules/freelancers/action/get_seo_detail"
 	"medblogers_base/internal/modules/freelancers/action/preliminary_filter_count"
 	"medblogers_base/internal/modules/freelancers/action/search_freelancers"
@@ -35,6 +36,8 @@ type Aggregator struct {
 
 	SearchFreelancers *search_freelancers.Action
 	FilterFreelancers *filter_freelancers.Action
+
+	GetRecommendations *get_recommendations.Action
 }
 
 // NewAggregator конструктор
@@ -55,5 +58,7 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 
 		SearchFreelancers: search_freelancers.NewAction(clients, pool),
 		FilterFreelancers: filter_freelancers.New(clients, pool),
+
+		GetRecommendations: get_recommendations.New(clients, pool),
 	}
 }

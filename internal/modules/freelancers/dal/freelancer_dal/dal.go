@@ -3,6 +3,7 @@ package freelancer_dal
 import (
 	"context"
 	"fmt"
+	freelancerDao "medblogers_base/internal/modules/freelancers/dal/freelancer_dal/dao"
 	"medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -133,4 +134,20 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
         %s
         %s
     `, defaultSql, whereStmtBuilder.String()), phValues
+}
+
+// GetFreelancerInfo детальная информация о фрилансере
+func (r *Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
+	sql := `
+		select id, slug, name, is_worked_with_doctors, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, has_command, start_working_date
+		    from freelancer
+		where slug = $1 and is_active = true
+	`
+
+	var fDao freelancerDao.FreelancerDetail
+	err := pgxscan.Get(ctx, r.db, &fDao, sql, slug)
+	if err != nil {
+		return nil, err
+	}
+	return fDao.ToDomain(), nil
 }
