@@ -6,10 +6,8 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
-	"regexp"
+	"medblogers_base/internal/pkg/slug"
 	"strings"
-
-	"github.com/rainycape/unidecode"
 )
 
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage
@@ -34,7 +32,7 @@ func (s *Service) CreateOrUpdate(ctx context.Context, createDTO dto.CreateDoctor
 	logger.Message(ctx, "[Create] Создание слага и имени")
 
 	createDTO.FullName = s.createName(createDTO.LastName, createDTO.FirstName, createDTO.MiddleName)
-	createDTO.Slug = s.createSlug(createDTO.FullName)
+	createDTO.Slug = slug.New(createDTO.FullName)
 	logger.Message(ctx, "[Create] Сохранение доктора в базе")
 
 	medblogersID, err := s.storage.CreateDoctor(ctx, createDTO)
@@ -83,20 +81,4 @@ func (s *Service) createName(lastName, firstName, middleName string) string {
 	}
 
 	return strings.Join(nonEmptyParts, " ")
-}
-
-// createSlug создает URL-дружественный slug с использованием unidecode
-func (s *Service) createSlug(fullName string) string {
-	// Транслитерация с unidecode (конвертирует кириллицу и другие символы в латиницу)
-	transliterated := unidecode.Unidecode(fullName)
-
-	// Заменяем все не-буквенно-цифровые символы на дефисы
-	reg := regexp.MustCompile(`[^a-zA-Z0-9]+`)
-	slug := reg.ReplaceAllString(transliterated, "-")
-
-	// Приводим к нижнему регистру и обрезаем дефисы по краям
-	slug = strings.ToLower(slug)
-	slug = strings.Trim(slug, "-")
-
-	return slug
 }

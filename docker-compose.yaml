@@ -36,7 +36,6 @@ services:
     container_name: app
     depends_on:
       - db
-#      - cache
 
 #  frontend:
 

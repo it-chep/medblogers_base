@@ -20,6 +20,8 @@ type Doctor struct {
 
 	MainCityID       int64
 	MainSpecialityID int64
+
+	S3Key string
 }
 
 type Response struct {

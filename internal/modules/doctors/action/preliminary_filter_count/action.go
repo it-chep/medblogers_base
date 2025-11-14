@@ -85,7 +85,7 @@ func (a *Action) defaultFilter(filter dto.Filter) bool {
 	if len(filter.Cities) == 0 &&
 		len(filter.Specialities) == 0 &&
 		len(filter.SocialMedia) == 0 &&
-		filter.MaxSubscribers == 400_000 &&
+		filter.MaxSubscribers == 5_000_000 &&
 		filter.MinSubscribers == 100 {
 
 		return true

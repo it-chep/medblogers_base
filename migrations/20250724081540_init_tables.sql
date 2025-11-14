@@ -57,9 +57,4 @@ create table if not exists docstar_site_doctor
 
 -- +goose Down
 -- +goose StatementBegin
-drop table if exists docstar_site_city;
-drop table if exists docstar_site_speciallity;
-drop table if exists docstar_site_doctor_additional_cities;
-drop table if exists docstar_site_doctor_additional_specialties;
-drop table if exists docstar_site_doctor;
 -- +goose StatementEnd

@@ -338,6 +338,8 @@ message PreliminaryFilterCountResponse{
   int64 doctors_count = 1;
 }
 
+// ===== Предрасчет количества страниц =====
+
 message PagesCountRequest {
   int64 max_subscribers = 1;
   int64 min_subscribers = 2;
