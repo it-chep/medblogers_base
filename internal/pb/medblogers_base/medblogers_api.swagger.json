@@ -13,6 +13,9 @@
     },
     {
       "name": "FreelancerService"
+    },
+    {
+      "name": "AuthService"
     }
   ],
   "consumes": [
@@ -22,6 +25,126 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/auth/login": {
+      "get": {
+        "summary": "Вход",
+        "operationId": "AuthService_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "get": {
+        "summary": "Выход",
+        "operationId": "AuthService_Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LogoutResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "get": {
+        "summary": "Рефреш токена",
+        "operationId": "AuthService_Refresh",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RefreshResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/api/v1/auth/register": {
+      "get": {
+        "summary": "Регистрация",
+        "operationId": "AuthService_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
     "/api/v1/cities_list": {
       "get": {
         "summary": "Получение городов для регистрации",
@@ -2089,6 +2212,18 @@
           "type": "string"
         }
       }
+    },
+    "v1LoginResponse": {
+      "type": "object"
+    },
+    "v1LogoutResponse": {
+      "type": "object"
+    },
+    "v1RefreshResponse": {
+      "type": "object"
+    },
+    "v1RegisterResponse": {
+      "type": "object"
     },
     "v1SearchResponseDoctorItem": {
       "type": "object",
