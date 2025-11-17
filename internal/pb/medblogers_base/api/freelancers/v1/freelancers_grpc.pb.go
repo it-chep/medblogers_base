@@ -8,7 +8,6 @@ package v1
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,18 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FreelancerService_GetFreelancers_FullMethodName            = "/freelancers.v1.FreelancerService/GetFreelancers"
-	FreelancerService_GetSettings_FullMethodName               = "/freelancers.v1.FreelancerService/GetSettings"
-	FreelancerService_GetCounters_FullMethodName               = "/freelancers.v1.FreelancerService/GetCounters"
-	FreelancerService_GetPreliminaryFilterCount_FullMethodName = "/freelancers.v1.FreelancerService/GetPreliminaryFilterCount"
-	FreelancerService_GetPagesCount_FullMethodName             = "/freelancers.v1.FreelancerService/GetPagesCount"
-	FreelancerService_GetCities_FullMethodName                 = "/freelancers.v1.FreelancerService/GetCities"
-	FreelancerService_GetSpecialities_FullMethodName           = "/freelancers.v1.FreelancerService/GetSpecialities"
-	FreelancerService_GetSocialNetworks_FullMethodName         = "/freelancers.v1.FreelancerService/GetSocialNetworks"
-	FreelancerService_Search_FullMethodName                    = "/freelancers.v1.FreelancerService/Search"
-	FreelancerService_Filter_FullMethodName                    = "/freelancers.v1.FreelancerService/Filter"
-	FreelancerService_CreateFreelancer_FullMethodName          = "/freelancers.v1.FreelancerService/CreateFreelancer"
-	FreelancerService_GetFreelancer_FullMethodName             = "/freelancers.v1.FreelancerService/GetFreelancer"
+	FreelancerService_GetFreelancers_FullMethodName               = "/freelancers.v1.FreelancerService/GetFreelancers"
+	FreelancerService_GetSettings_FullMethodName                  = "/freelancers.v1.FreelancerService/GetSettings"
+	FreelancerService_GetCounters_FullMethodName                  = "/freelancers.v1.FreelancerService/GetCounters"
+	FreelancerService_GetPreliminaryFilterCount_FullMethodName    = "/freelancers.v1.FreelancerService/GetPreliminaryFilterCount"
+	FreelancerService_GetPagesCount_FullMethodName                = "/freelancers.v1.FreelancerService/GetPagesCount"
+	FreelancerService_GetCities_FullMethodName                    = "/freelancers.v1.FreelancerService/GetCities"
+	FreelancerService_GetSpecialities_FullMethodName              = "/freelancers.v1.FreelancerService/GetSpecialities"
+	FreelancerService_GetSocialNetworks_FullMethodName            = "/freelancers.v1.FreelancerService/GetSocialNetworks"
+	FreelancerService_Search_FullMethodName                       = "/freelancers.v1.FreelancerService/Search"
+	FreelancerService_Filter_FullMethodName                       = "/freelancers.v1.FreelancerService/Filter"
+	FreelancerService_CreateFreelancer_FullMethodName             = "/freelancers.v1.FreelancerService/CreateFreelancer"
+	FreelancerService_GetFreelancer_FullMethodName                = "/freelancers.v1.FreelancerService/GetFreelancer"
+	FreelancerService_GetFreelancerRecommendations_FullMethodName = "/freelancers.v1.FreelancerService/GetFreelancerRecommendations"
 )
 
 // FreelancerServiceClient is the client API for FreelancerService service.
@@ -52,6 +52,7 @@ type FreelancerServiceClient interface {
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateFreelancer(ctx context.Context, in *CreateFreelancersRequest, opts ...grpc.CallOption) (*CreateFreelancersResponse, error)
 	GetFreelancer(ctx context.Context, in *GetFreelancerRequest, opts ...grpc.CallOption) (*GetFreelancerResponse, error)
+	GetFreelancerRecommendations(ctx context.Context, in *GetFreelancerRecommendationsRequest, opts ...grpc.CallOption) (*GetFreelancerRecommendationsResponse, error)
 }
 
 type freelancerServiceClient struct {
@@ -182,6 +183,16 @@ func (c *freelancerServiceClient) GetFreelancer(ctx context.Context, in *GetFree
 	return out, nil
 }
 
+func (c *freelancerServiceClient) GetFreelancerRecommendations(ctx context.Context, in *GetFreelancerRecommendationsRequest, opts ...grpc.CallOption) (*GetFreelancerRecommendationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerRecommendationsResponse)
+	err := c.cc.Invoke(ctx, FreelancerService_GetFreelancerRecommendations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FreelancerServiceServer is the server API for FreelancerService service.
 // All implementations must embed UnimplementedFreelancerServiceServer
 // for forward compatibility.
@@ -200,6 +211,7 @@ type FreelancerServiceServer interface {
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateFreelancer(context.Context, *CreateFreelancersRequest) (*CreateFreelancersResponse, error)
 	GetFreelancer(context.Context, *GetFreelancerRequest) (*GetFreelancerResponse, error)
+	GetFreelancerRecommendations(context.Context, *GetFreelancerRecommendationsRequest) (*GetFreelancerRecommendationsResponse, error)
 	mustEmbedUnimplementedFreelancerServiceServer()
 }
 
@@ -245,6 +257,9 @@ func (UnimplementedFreelancerServiceServer) CreateFreelancer(context.Context, *C
 }
 func (UnimplementedFreelancerServiceServer) GetFreelancer(context.Context, *GetFreelancerRequest) (*GetFreelancerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFreelancer not implemented")
+}
+func (UnimplementedFreelancerServiceServer) GetFreelancerRecommendations(context.Context, *GetFreelancerRecommendationsRequest) (*GetFreelancerRecommendationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFreelancerRecommendations not implemented")
 }
 func (UnimplementedFreelancerServiceServer) mustEmbedUnimplementedFreelancerServiceServer() {}
 func (UnimplementedFreelancerServiceServer) testEmbeddedByValue()                           {}
@@ -483,6 +498,24 @@ func _FreelancerService_GetFreelancer_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FreelancerService_GetFreelancerRecommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerRecommendationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerServiceServer).GetFreelancerRecommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerService_GetFreelancerRecommendations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerServiceServer).GetFreelancerRecommendations(ctx, req.(*GetFreelancerRecommendationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FreelancerService_ServiceDesc is the grpc.ServiceDesc for FreelancerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -537,6 +570,10 @@ var FreelancerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFreelancer",
 			Handler:    _FreelancerService_GetFreelancer_Handler,
+		},
+		{
+			MethodName: "GetFreelancerRecommendations",
+			Handler:    _FreelancerService_GetFreelancerRecommendations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/freelancers/domain/doctor"
 	"medblogers_base/internal/pkg/logger"
 	"mime"
 	"path/filepath"
@@ -35,10 +36,11 @@ type S3PresignClient interface {
 
 // Gateway клиент к S3
 type Gateway struct {
-	bucketName    string
-	region        string
-	client        S3Client
-	presignClient S3PresignClient
+	bucketName        string
+	doctorsBucketName string
+	region            string
+	client            S3Client
+	presignClient     S3PresignClient
 }
 
 func NewS3Client(cfg config.S3Config) S3Client {
@@ -85,11 +87,12 @@ func NewPresignClient(cfg config.S3Config) S3PresignClient {
 }
 
 // NewGateway .
-func NewGateway(bucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
+func NewGateway(bucketName, doctorsBucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
 	return &Gateway{
-		client:        client,
-		presignClient: presignClient,
-		bucketName:    bucketName,
+		client:            client,
+		presignClient:     presignClient,
+		bucketName:        bucketName,
+		doctorsBucketName: doctorsBucketName,
 	}
 }
 
@@ -180,4 +183,33 @@ func (g *Gateway) PutObject(ctx context.Context, file io.Reader, filename, slug 
 // GetPhotoLink .
 func (g *Gateway) GetPhotoLink(s3Key string) string {
 	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.bucketName, s3Key)
+}
+
+// GetDoctorsPhotos .
+func (g *Gateway) GetDoctorsPhotos(ctx context.Context) (map[doctor.S3Key]string, error) {
+	filesMap := make(map[doctor.S3Key]string)
+	paginator := s3.NewListObjectsV2Paginator(g.client, &s3.ListObjectsV2Input{
+		Bucket: aws.String(g.doctorsBucketName),
+		Prefix: aws.String("images/user_"),
+	})
+
+	// Обрабатываем все страницы результатов
+	for paginator.HasMorePages() {
+		resp, err := paginator.NextPage(ctx)
+		if err != nil {
+			return nil, fmt.Errorf("failed to list objects: %w", err)
+		}
+
+		// Обрабатываем объекты на текущей странице
+		for _, object := range resp.Contents {
+			key := aws.ToString(object.Key)
+			if key == "" {
+				continue
+			}
+
+			filesMap[doctor.S3Key(key)] = fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.doctorsBucketName, key)
+		}
+	}
+
+	return filesMap, nil
 }

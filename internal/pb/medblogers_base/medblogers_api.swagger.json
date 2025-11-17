@@ -274,6 +274,37 @@
         ]
       }
     },
+    "/api/v1/freelancers/card/{freelancerSlug}/recommendations": {
+      "get": {
+        "summary": "Получение рекомендаций фрилансера",
+        "operationId": "FreelancerService_GetFreelancerRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetFreelancerRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
     "/api/v1/freelancers/cities_list": {
       "get": {
         "summary": "Получение городов для регистрации",
@@ -983,6 +1014,26 @@
         "SUBSCRIBERS_ASC"
       ],
       "default": "SUBSCRIBERS_DESC"
+    },
+    "GetFreelancerRecommendationsResponseDoctor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "speciality": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
     },
     "GetSettingsResponseFilterItem": {
       "type": "object",
@@ -1910,6 +1961,18 @@
         },
         "image": {
           "type": "string"
+        }
+      }
+    },
+    "v1GetFreelancerRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetFreelancerRecommendationsResponseDoctor"
+          }
         }
       }
     },
