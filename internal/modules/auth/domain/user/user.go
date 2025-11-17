@@ -9,12 +9,16 @@ type User struct {
 	roleID   int64
 }
 
-func (u User) GetEmail() string {
+func (u *User) GetEmail() string {
 	return u.email
 }
 
-func (u User) GetPassword() string {
+func (u *User) GetPassword() string {
 	return u.password
+}
+
+func (u *User) GetRoleID() int64 {
+	return u.roleID
 }
 
 func New(options ...Option) *User {

@@ -15,7 +15,8 @@ type Aggregator struct {
 
 func NewAggregator(pool postgres.PoolWrapper) *Aggregator {
 	return &Aggregator{
-		GetUserInfo: get_user_info.New(pool),
-		Register:    register.New(pool),
+		GetUserInfo:      get_user_info.New(pool),
+		Register:         register.New(pool),
+		CheckPermissions: check_permissions.New(pool),
 	}
 }
