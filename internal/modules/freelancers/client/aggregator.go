@@ -16,6 +16,7 @@ func NewAggregator(httpConns map[string]pkgHttp.Executor, cfg config.AppConfig) 
 	return &Aggregator{
 		S3: s3.NewGateway(
 			cfg.GetFreelancersPhotosBucket(),
+			cfg.GetUserPhotosBucket(),
 			s3.NewS3Client(cfg.GetS3Config()),
 			s3.NewPresignClient(cfg.GetS3Config()),
 		),
