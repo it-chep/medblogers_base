@@ -2,14 +2,15 @@ package auth
 
 import (
 	"context"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/status"
 	desc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	"medblogers_base/internal/pkg/token"
 	"net/http"
 	"time"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 )
 
 // Logout выход из аккаунта

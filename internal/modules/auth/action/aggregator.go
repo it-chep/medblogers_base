@@ -4,6 +4,7 @@ import (
 	"medblogers_base/internal/modules/auth/action/check_permissions"
 	"medblogers_base/internal/modules/auth/action/get_user_info"
 	"medblogers_base/internal/modules/auth/action/register"
+	"medblogers_base/internal/pkg/postgres"
 )
 
 type Aggregator struct {
@@ -12,6 +13,9 @@ type Aggregator struct {
 	Register         *register.Action
 }
 
-func NewAggregator() *Aggregator {
-	return &Aggregator{}
+func NewAggregator(pool postgres.PoolWrapper) *Aggregator {
+	return &Aggregator{
+		GetUserInfo: get_user_info.New(pool),
+		Register:    register.New(pool),
+	}
 }

@@ -2,8 +2,9 @@ package interceptor
 
 import (
 	"context"
-	"google.golang.org/protobuf/proto"
 	"net/http"
+
+	"google.golang.org/protobuf/proto"
 )
 
 func CookieInterceptor(ctx context.Context, w http.ResponseWriter, resp proto.Message) error {

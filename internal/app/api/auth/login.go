@@ -2,11 +2,12 @@ package auth
 
 import (
 	"context"
+	desc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
+	"medblogers_base/internal/pkg/token"
+
 	"golang.org/x/crypto/bcrypt"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	desc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
-	"medblogers_base/internal/pkg/token"
 )
 
 func (i *Implementation) Login(ctx context.Context, req *desc.LoginRequest) (*desc.LoginResponse, error) {

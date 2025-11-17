@@ -3,13 +3,14 @@ package token
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"strings"
+	"time"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
-	"net/http"
-	"strings"
-	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
