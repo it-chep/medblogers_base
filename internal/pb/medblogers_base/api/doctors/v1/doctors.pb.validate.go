@@ -2390,6 +2390,8 @@ func (m *GetDoctorResponse) validate(all bool) error {
 
 	// no validation rules for Image
 
+	// no validation rules for IsKfDoctor
+
 	if len(errors) > 0 {
 		return GetDoctorResponseMultiError(errors)
 	}
@@ -3470,6 +3472,8 @@ func (m *SearchResponse_DoctorItem) validate(all bool) error {
 
 	// no validation rules for Image
 
+	// no validation rules for IsKfDoctor
+
 	if len(errors) > 0 {
 		return SearchResponse_DoctorItemMultiError(errors)
 	}
@@ -3812,6 +3816,8 @@ func (m *FilterResponse_DoctorItem) validate(all bool) error {
 	// no validation rules for City
 
 	// no validation rules for Image
+
+	// no validation rules for IsKfDoctor
 
 	if len(errors) > 0 {
 		return FilterResponse_DoctorItemMultiError(errors)
