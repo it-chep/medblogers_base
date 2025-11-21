@@ -74,6 +74,8 @@ type Doctor struct {
 	birthDate time.Time // дата рождения
 
 	cooperationType CooperationType // Тип размещения
+
+	isKFDoctor bool // доктор из клиники фомина
 }
 
 func New(options ...Option) *Doctor {

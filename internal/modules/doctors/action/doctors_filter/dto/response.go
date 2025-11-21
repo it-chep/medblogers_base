@@ -22,6 +22,8 @@ type Doctor struct {
 	MainSpecialityID int64
 
 	S3Key string
+
+	IsKFDoctor bool
 }
 
 type Response struct {

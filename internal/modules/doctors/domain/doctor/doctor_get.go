@@ -139,3 +139,8 @@ func (d *Doctor) GetMainSpecialityName() string {
 func (d *Doctor) GetS3Key() S3Key {
 	return d.s3Image
 }
+
+// GetIsKFDoctor получение инфы что врач из Клиники Фомина
+func (d *Doctor) GetIsKFDoctor() bool {
+	return d.isKFDoctor
+}

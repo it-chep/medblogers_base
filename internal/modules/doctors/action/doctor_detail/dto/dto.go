@@ -1,6 +1,8 @@
 package dto
 
-import "medblogers_base/internal/modules/doctors/domain/doctor"
+import (
+	"medblogers_base/internal/modules/doctors/domain/doctor"
+)
 
 // CityItem .
 type CityItem struct {
@@ -52,6 +54,8 @@ type DoctorDTO struct {
 
 	MainBlogTheme    string
 	MedicalDirection string
+
+	IsKFDoctor bool
 }
 
 // New .
@@ -74,5 +78,7 @@ func New(doc *doctor.Doctor) *DoctorDTO {
 
 		MainBlogTheme:    doc.GetMainBlogTheme(),
 		MedicalDirection: doc.GetMedicalDirection(),
+
+		IsKFDoctor: doc.GetIsKFDoctor(),
 	}
 }

@@ -32,6 +32,7 @@ func (i *Implementation) newSearchResponse(searchResultDomain dto.SearchDTO) *de
 				CityName:       item.CityName,
 				SpecialityName: item.SpecialityName,
 				Image:          item.S3Image,
+				IsKfDoctor:     item.IsKFDoctor,
 			}
 		}),
 		Cities: lo.Map(searchResultDomain.Cities, func(cityItem dto.CityItem, _ int) *desc.SearchResponse_CityItem {
