@@ -70,6 +70,7 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			Speciality:        item.Speciality,
 			City:              item.City,
 			Image:             item.Image,
+			IsKfDoctor:        item.IsKFDoctor,
 		})
 	}
 

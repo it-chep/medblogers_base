@@ -93,7 +93,8 @@ func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, sub
 			Speciality: doctorData.Speciality,
 			City:       doctorData.City,
 
-			S3Key: doctorData.S3Key,
+			S3Key:      doctorData.S3Key,
+			IsKFDoctor: doctorData.IsKFDoctor,
 		})
 	}
 

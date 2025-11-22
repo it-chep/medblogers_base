@@ -35,7 +35,7 @@ func (r Repository) GetDoctorInfo(ctx context.Context, slug string) (*doctor.Doc
 			id, name, slug, 
 			inst_url, vk_url, dzen_url, tg_url, youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
 			s3_image, is_active, medical_directions, main_blog_theme, 
-			city_id, speciallity_id
+			city_id, speciallity_id, is_kf_doctor
 		from docstar_site_doctor
 		where slug = $1
 	`
