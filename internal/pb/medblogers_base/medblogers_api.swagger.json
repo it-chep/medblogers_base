@@ -16,6 +16,9 @@
     },
     {
       "name": "AuthService"
+    },
+    {
+      "name": "AdminService"
     }
   ],
   "consumes": [
@@ -25,6 +28,192 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/admin/blog": {
+      "get": {
+        "summary": "Получение списка статей",
+        "operationId": "AdminService_GetBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/create": {
+      "post": {
+        "summary": "Создание черновика статьи",
+        "operationId": "AdminService_CreateDraftBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateDraftBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateDraftBlogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}": {
+      "get": {
+        "summary": "Получение информации о статье по ее ID",
+        "operationId": "AdminService_GetBlogByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBlogByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/auth/blog/delete_image": {
+      "post": {
+        "summary": "Удаление картинки для статьи",
+        "operationId": "AdminService_DeleteBlogImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteBlogImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteBlogImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/auth/blog/save_image": {
+      "post": {
+        "summary": "Сохранение картинки для статьи",
+        "operationId": "AdminService_SaveBlogImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SaveBlogImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SaveBlogImageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/auth/blog/update": {
+      "post": {
+        "summary": "Обновление статьи",
+        "operationId": "AdminService_UpdateDraftBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateDraftBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDraftBlogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
     "/api/v1/auth/login": {
       "get": {
         "summary": "Вход",
@@ -1130,6 +1319,18 @@
     }
   },
   "definitions": {
+    "CreateDraftBlogRequest": {
+      "type": "object"
+    },
+    "CreateDraftBlogResponse": {
+      "type": "object"
+    },
+    "DeleteBlogImageRequest": {
+      "type": "object"
+    },
+    "DeleteBlogImageResponse": {
+      "type": "object"
+    },
     "FilterRequestSort": {
       "type": "string",
       "enum": [
@@ -1137,6 +1338,12 @@
         "SUBSCRIBERS_ASC"
       ],
       "default": "SUBSCRIBERS_DESC"
+    },
+    "GetBlogByIDResponse": {
+      "type": "object"
+    },
+    "GetBlogsResponse": {
+      "type": "object"
     },
     "GetFreelancerRecommendationsResponseDoctor": {
       "type": "object",
@@ -1203,6 +1410,18 @@
           "type": "string"
         }
       }
+    },
+    "SaveBlogImageRequest": {
+      "type": "object"
+    },
+    "SaveBlogImageResponse": {
+      "type": "object"
+    },
+    "UpdateDraftBlogRequest": {
+      "type": "object"
+    },
+    "UpdateDraftBlogResponse": {
+      "type": "object"
     },
     "doctorv1CitiesResponse": {
       "type": "object",

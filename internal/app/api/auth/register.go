@@ -15,7 +15,7 @@ func (i *Implementation) Register(ctx context.Context, req *desc.RegisterRequest
 		return nil, err
 	}
 
-	err = token.SetTokenToCookie(ctx, token.GenerateTokenRequest{Email: req.GetEmail(), JwtKey: "i.jwt.JwtSecret", RefreshKey: "i.jwt.RefreshSecret"}) // todo надо доставать это из конфига
+	err = token.SetTokenToCookie(ctx, token.GenerateTokenRequest{Email: req.GetEmail(), JwtKey: i.config.JWTConfig.Secret, RefreshKey: i.config.JWTConfig.RefreshSecret})
 	if err != nil {
 		return nil, status.Error(codes.Unauthenticated, "Invalid credentials")
 	}

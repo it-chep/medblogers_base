@@ -27,7 +27,8 @@ service AdminService {
   }
   rpc CreateDraftBlog(CreateDraftBlogRequest) returns (CreateDraftBlogResponse) {
     option (google.api.http) = {
-      get: "/api/v1/admin/blog/create"
+      post: "/api/v1/admin/blog/create"
+      body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Создание черновика статьи"
@@ -35,7 +36,8 @@ service AdminService {
   }
   rpc UpdateDraftBlog(UpdateDraftBlogRequest) returns (UpdateDraftBlogResponse) {
     option (google.api.http) = {
-      get: "/api/v1/auth/blog/update"
+      post: "/api/v1/auth/blog/update"
+      body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Обновление статьи"
@@ -43,10 +45,20 @@ service AdminService {
   }
   rpc SaveBlogImage(SaveBlogImageRequest) returns (SaveBlogImageResponse) {
     option (google.api.http) = {
-      get: "/api/v1/auth/blog/save_image"
+      post: "/api/v1/auth/blog/save_image"
+      body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Сохранение картинки для статьи"
+    };
+  }
+  rpc DeleteBlogImage(DeleteBlogImageRequest) returns (DeleteBlogImageResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/auth/blog/delete_image"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Удаление картинки для статьи"
     };
   }
   // todo поиск, фильтрация
@@ -62,7 +74,7 @@ message GetBlogsResponse {
 }
 
 message GetBlogByIDRequest {
-
+  string blog_id = 1;
 }
 
 message GetBlogByIDResponse {
@@ -90,6 +102,13 @@ message SaveBlogImageRequest {
 }
 
 message SaveBlogImageResponse {
+
+}
+
+message DeleteBlogImageRequest{
+
+}
+message DeleteBlogImageResponse{
 
 }
 

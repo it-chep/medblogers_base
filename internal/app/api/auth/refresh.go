@@ -10,7 +10,7 @@ import (
 )
 
 func (i *Implementation) Refresh(ctx context.Context, req *desc.RefreshRequest) (*desc.RefreshResponse, error) {
-	claims, err := token.RefreshClaimsFromContext(ctx, "")
+	claims, err := token.RefreshClaimsFromContext(ctx, i.config.JWTConfig.RefreshSecret)
 	if err != nil {
 		return nil, err
 	}
@@ -20,8 +20,8 @@ func (i *Implementation) Refresh(ctx context.Context, req *desc.RefreshRequest) 
 
 	err = token.SetTokenToCookie(ctx, token.GenerateTokenRequest{
 		Email:      claims.Email,
-		JwtKey:     "",
-		RefreshKey: "",
+		JwtKey:     i.config.JWTConfig.Secret,
+		RefreshKey: i.config.JWTConfig.RefreshSecret,
 	})
 	if err != nil {
 		return nil, err

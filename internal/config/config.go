@@ -33,6 +33,7 @@ type Config struct {
 	S3Client          S3Config           `mapstructure:"s3"`
 	Notification      NotificationConfig `mapstructure:"notification"`
 	AllowedHosts      []string           `mapstructure:"allowed_hosts"`
+	JWTConfig         JWTConfig          `mapstructure:"jwt"`
 }
 
 type S3Config struct {
@@ -72,6 +73,11 @@ type Storage struct {
 
 type NotificationConfig struct {
 	NotificreateAdminID int64 `mapstructure:"notificreate_admin_id"`
+}
+
+type JWTConfig struct {
+	Secret        string `mapstructure:"secret"`
+	RefreshSecret string `mapstructure:"refresh_secret"`
 }
 
 // SubscribersClient todo тк нет serivce discovery и сервис 1 то делаем пока хардкод

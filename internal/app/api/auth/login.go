@@ -24,7 +24,7 @@ func (i *Implementation) Login(ctx context.Context, req *desc.LoginRequest) (*de
 		return nil, status.Error(codes.Internal, "Please try again later")
 	}
 
-	err = token.SetTokenToCookie(ctx, token.GenerateTokenRequest{Email: user.GetEmail(), JwtKey: "i.jwt.JwtSecret", RefreshKey: "i.jwt.RefreshSecret"}) // todo надо доставать это из конфига
+	err = token.SetTokenToCookie(ctx, token.GenerateTokenRequest{Email: user.GetEmail(), JwtKey: i.config.JWTConfig.Secret, RefreshKey: i.config.JWTConfig.RefreshSecret})
 	if err != nil {
 		return nil, status.Error(codes.Unauthenticated, "Invalid credentials")
 	}
