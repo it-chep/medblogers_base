@@ -58,6 +58,7 @@ func (s *Service) Search(ctx context.Context, query string) ([]dto.DoctorItem, e
 			CityName:       item.GetMainCityName(),
 			SpecialityName: item.GetMainSpecialityName(),
 			S3Image:        usersPhotosMap[item.GetS3Key()],
+			IsKFDoctor:     item.GetIsKFDoctor(),
 		}
 	})
 

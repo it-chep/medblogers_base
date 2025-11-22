@@ -1908,6 +1908,9 @@
         },
         "image": {
           "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
         }
       }
     },
@@ -2046,6 +2049,9 @@
         },
         "image": {
           "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
         }
       }
     },
@@ -2309,6 +2315,9 @@
         },
         "image": {
           "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
         }
       }
     },

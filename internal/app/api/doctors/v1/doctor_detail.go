@@ -74,5 +74,6 @@ func (i *Implementation) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) 
 
 		MainBlogTheme: doctorDomain.MainBlogTheme,
 		Image:         doctorDomain.Image,
+		IsKfDoctor:    doctorDomain.IsKFDoctor,
 	}
 }

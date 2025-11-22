@@ -133,3 +133,10 @@ func WithMedicalDirection(medicalDirection string) Option {
 		s.medicalDirection = medicalDirection
 	}
 }
+
+// WithIsKFDoctor .
+func WithIsKFDoctor(isKFDoctor bool) Option {
+	return func(s *Doctor) {
+		s.isKFDoctor = isKFDoctor
+	}
+}

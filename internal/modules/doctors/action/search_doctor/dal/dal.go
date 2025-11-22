@@ -38,7 +38,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r Repository) SearchDoctors(ctx context.Context, query string) ([]*doctor.Doctor, error) {
 	sql := `
 		select 
-			d.id, d.name, d.slug, c.name as "city_name", s.name as "speciality_name", d.s3_image
+			d.id, d.name, d.slug, c.name as "city_name", s.name as "speciality_name", d.s3_image, d.is_kf_doctor
 		from docstar_site_doctor d
 		join docstar_site_city c on d.city_id = c.id
 		join docstar_site_speciallity s on d.speciallity_id = s.id

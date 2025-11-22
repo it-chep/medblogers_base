@@ -8,7 +8,8 @@ type DoctorItem struct {
 	CityName       string
 	SpecialityName string
 
-	S3Image string
+	S3Image    string
+	IsKFDoctor bool
 }
 
 type CityItem struct {

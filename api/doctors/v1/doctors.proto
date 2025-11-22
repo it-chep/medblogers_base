@@ -178,6 +178,7 @@ message SearchResponse {
     string city_name = 4;
     string speciality_name = 5;
     string image = 6;
+    bool is_kf_doctor = 7;
   }
 
   message CityItem {
@@ -231,6 +232,7 @@ message FilterResponse {
     string city = 11;
 
     string image = 12;
+    bool is_kf_doctor = 13;
   }
 }
 
@@ -310,6 +312,7 @@ message GetDoctorResponse {
   string main_blog_theme = 21;
   string image = 22;
 
+  bool is_kf_doctor = 23;
 
   message CityItem {
     int64 id = 1;

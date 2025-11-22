@@ -24,6 +24,7 @@ type DoctorDAO struct {
 	MainBlogTheme     sql.NullString `db:"main_blog_theme"`
 	CityID            int64          `db:"city_id"`
 	SpecialityID      int64          `db:"speciallity_id"`
+	IsKFDoctor        sql.NullBool   `db:"is_kf_doctor"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -45,6 +46,7 @@ func (d DoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithMainSpecialityID(d.SpecialityID),
 		doctor.WithMainCityID(d.CityID),
 		doctor.WithMedicalDirection(d.MedicalDirections.String),
+		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),
 	)
 }
 
@@ -58,6 +60,7 @@ type DoctorMiniatureDAO struct {
 	CityID       int64          `db:"city_id"`
 	SpecialityID int64          `db:"speciallity_id"`
 	S3Image      sql.NullString `db:"s3_image"`
+	IsKFDoctor   sql.NullBool   `db:"is_kf_doctor"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -71,6 +74,7 @@ func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
 		doctor.WithMainSpecialityID(d.SpecialityID),
 		doctor.WithMainCityID(d.CityID),
 		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
+		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),
 	)
 }
 
@@ -82,6 +86,7 @@ type DoctorSearchDAO struct {
 	CityName       string         `db:"city_name"`
 	SpecialityName string         `db:"speciality_name"`
 	S3Image        sql.NullString `db:"s3_image"`
+	IsKFDoctor     sql.NullBool   `db:"is_kf_doctor"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -93,5 +98,6 @@ func (d DoctorSearchDAO) ToDomain() *doctor.Doctor {
 		doctor.WithCityName(d.CityName),
 		doctor.WithSpecialityName(d.SpecialityName),
 		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
+		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),
 	)
 }
