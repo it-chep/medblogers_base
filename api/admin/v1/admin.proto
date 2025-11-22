@@ -70,7 +70,7 @@ message GetBlogsRequest {
 }
 
 message GetBlogsResponse {
-
+  string blog_id = 1;
 }
 
 message GetBlogByIDRequest {

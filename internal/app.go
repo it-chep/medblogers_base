@@ -3,6 +3,7 @@ package internal
 import (
 	"context"
 	"fmt"
+	adminV1 "medblogers_base/internal/app/api/admin/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
@@ -41,6 +42,7 @@ type controllers struct {
 	seoController         *seoV1.Implementation
 	freelancersController *freelancersV1.Implementation
 	authController        *authV1.Implementation
+	adminController       *adminV1.Implementation
 }
 
 type Server struct {

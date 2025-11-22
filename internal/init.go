@@ -3,6 +3,7 @@ package internal
 import (
 	"context"
 	"fmt"
+	adminV1 "medblogers_base/internal/app/api/admin/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
@@ -18,10 +19,10 @@ import (
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
 
+	descAdminV1 "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
 	descAuthV1 "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	descFreelancersV1 "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
-
 	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -106,6 +107,7 @@ func (a *App) initControllers(_ context.Context) *App {
 	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)
 	a.controllers.freelancersController = freelancersV1.NewFreelancersService(a.modules.freelancers)
 	a.controllers.authController = authV1.NewAuthService(a.modules.auth, a.config)
+	a.controllers.adminController = adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)
 
 	return a
 }
@@ -123,6 +125,7 @@ func (a *App) initServer(_ context.Context) *App {
 			grpcrecovery.UnaryServerInterceptor(),
 			interceptor.AuthInterceptor,
 			interceptor.ConfigInterceptor(a.mutableConfig),
+			interceptor.EmailInterceptor(a.config),
 			interceptor.LoggerInterceptor(logger.New()),
 			interceptor.RateLimitInterceptor,
 			interceptor.ResponseTimeInterceptor,
@@ -132,6 +135,7 @@ func (a *App) initServer(_ context.Context) *App {
 	descSeoV1.RegisterSeoServer(grpcServer, a.controllers.seoController)
 	descFreelancersV1.RegisterFreelancerServiceServer(grpcServer, a.controllers.freelancersController)
 	descAuthV1.RegisterAuthServiceServer(grpcServer, a.controllers.authController)
+	descAdminV1.RegisterAdminServiceServer(grpcServer, a.controllers.adminController)
 	reflection.Register(grpcServer)
 
 	a.server = &Server{
@@ -163,5 +167,11 @@ func (a *App) initGRPCServiceHandlers(ctx context.Context) *App {
 	if err != nil {
 		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
 	}
+
+	err = descAdminV1.RegisterAdminServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
+	if err != nil {
+		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
+	}
+
 	return a
 }

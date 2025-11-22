@@ -157,6 +157,8 @@ func (m *GetBlogsResponse) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for BlogId
+
 	if len(errors) > 0 {
 		return GetBlogsResponseMultiError(errors)
 	}

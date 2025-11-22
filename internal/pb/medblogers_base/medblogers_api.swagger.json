@@ -215,7 +215,7 @@
       }
     },
     "/api/v1/auth/login": {
-      "get": {
+      "post": {
         "summary": "Вход",
         "operationId": "AuthService_Login",
         "responses": {
@@ -234,16 +234,12 @@
         },
         "parameters": [
           {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LoginRequest"
+            }
           }
         ],
         "tags": [
@@ -252,7 +248,7 @@
       }
     },
     "/api/v1/auth/logout": {
-      "get": {
+      "post": {
         "summary": "Выход",
         "operationId": "AuthService_Logout",
         "responses": {
@@ -269,13 +265,23 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LogoutRequest"
+            }
+          }
+        ],
         "tags": [
           "AuthService"
         ]
       }
     },
     "/api/v1/auth/refresh": {
-      "get": {
+      "post": {
         "summary": "Рефреш токена",
         "operationId": "AuthService_Refresh",
         "responses": {
@@ -292,13 +298,23 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RefreshRequest"
+            }
+          }
+        ],
         "tags": [
           "AuthService"
         ]
       }
     },
     "/api/v1/auth/register": {
-      "get": {
+      "post": {
         "summary": "Регистрация",
         "operationId": "AuthService_Register",
         "responses": {
@@ -317,16 +333,12 @@
         },
         "parameters": [
           {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RegisterRequest"
+            }
           }
         ],
         "tags": [
@@ -1343,7 +1355,12 @@
       "type": "object"
     },
     "GetBlogsResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        }
+      }
     },
     "GetFreelancerRecommendationsResponseDoctor": {
       "type": "object",
@@ -2501,14 +2518,42 @@
         }
       }
     },
+    "v1LoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
     "v1LoginResponse": {
+      "type": "object"
+    },
+    "v1LogoutRequest": {
       "type": "object"
     },
     "v1LogoutResponse": {
       "type": "object"
     },
+    "v1RefreshRequest": {
+      "type": "object"
+    },
     "v1RefreshResponse": {
       "type": "object"
+    },
+    "v1RegisterRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
     },
     "v1RegisterResponse": {
       "type": "object"

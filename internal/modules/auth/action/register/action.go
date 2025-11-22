@@ -2,6 +2,7 @@ package register
 
 import (
 	"context"
+	"golang.org/x/crypto/bcrypt"
 	"medblogers_base/internal/modules/auth/dal/users"
 	"medblogers_base/internal/pkg/postgres"
 
@@ -28,11 +29,17 @@ func (a *Action) Do(ctx context.Context, email string, password string) error {
 	if err != nil {
 		return errors.New("Ошибка получения пользователя")
 	}
+
 	if !exists {
 		return errors.New("Такого email не существует")
 	}
 
-	if err := a.repo.SavePass(ctx, email, password); err != nil {
+	pass, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+
+	if err := a.repo.SavePass(ctx, email, string(pass)); err != nil {
 		return errors.New("Ошибка сохранения пароля")
 	}
 

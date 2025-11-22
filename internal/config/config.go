@@ -23,6 +23,8 @@ type AppConfig interface {
 	GetS3AccessKey() string
 	GetS3Config() S3Config
 	GetAllowedHosts() []string
+	GetJWTRefreshSecret() string
+	GetJWTSecret() string
 }
 
 type Config struct {
@@ -166,4 +168,12 @@ func (c *Config) GetAllowedHosts() []string {
 
 func (c *Config) GetFreelancersPhotosBucket() string {
 	return c.S3Client.Bucket.Freelancers
+}
+
+func (c *Config) GetJWTRefreshSecret() string {
+	return c.JWTConfig.RefreshSecret
+}
+
+func (c *Config) GetJWTSecret() string {
+	return c.JWTConfig.Secret
 }

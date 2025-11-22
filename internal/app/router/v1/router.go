@@ -36,6 +36,7 @@ func (r *Router) setupMiddlewares() {
 	r.Router.Use(middleware.CORSMiddleware(r.staticConfig))
 	//s.router.Use(middleware.CSRFMiddleware)
 	r.Router.Use(middleware.ConfigMiddleware(r.mutableConfig))
+	r.Router.Use(middleware.EmailMiddleware(r.staticConfig))
 	r.Router.Use(middleware.LoggerMiddleware(logger.New()))
 	r.Router.Use(middleware.RateLimitMiddleware)
 	r.Router.Use(middleware.ResponseTimeMiddleware)

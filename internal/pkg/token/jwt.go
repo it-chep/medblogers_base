@@ -122,8 +122,7 @@ func extractRefreshTokenFromCookie(cookieHeader string) (string, error) {
 	return "", fmt.Errorf("refresh token cookie not found")
 }
 
-func AccessClaimsFromRequest(r *http.Request, jwtAccessSecret string) (*Claims, error) {
-	authHeader := r.Header.Get("Authorization")
+func AccessClaimsFromRequest(authHeader, jwtAccessSecret string) (*Claims, error) {
 	if authHeader == "" {
 		return nil, fmt.Errorf("invalid token")
 	}
