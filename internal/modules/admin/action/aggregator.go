@@ -1,16 +1,14 @@
 package action
 
-import (
-	"medblogers_base/internal/modules/admin/action/create_doctor"
-)
+import "medblogers_base/internal/pkg/postgres"
 
 // Aggregator собирает все процессы модуля в одно целое
 type Aggregator struct {
-	CreateDoctor *create_doctor.Action
+	//CreateDoctor *create_doctor.Action
 }
 
-func NewAggregator() *Aggregator {
+func NewAggregator(pool postgres.PoolWrapper) *Aggregator {
 	return &Aggregator{
-		CreateDoctor: create_doctor.New(),
+		//CreateDoctor: create_doctor.New(),
 	}
 }

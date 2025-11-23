@@ -2,9 +2,10 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/get_recommendations/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetFreelancerRecommendations(ctx context.Context, req *desc.GetFreelancerRecommendationsRequest) (*desc.GetFreelancerRecommendationsResponse, error) {
