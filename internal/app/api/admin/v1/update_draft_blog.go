@@ -22,6 +22,7 @@ func (i *Implementation) UpdateDraftBlog(ctx context.Context, req *desc.UpdateDr
 			PreviewText:        req.GetPreviewText(),
 			SocietyPreviewText: req.GetSocietyPreview(),
 			AdditionalSEOText:  req.GetAdditionalSeoText(),
+			OrderingNumber:     req.GetOrderingNumber(),
 		}
 
 		err := i.admin.Actions.BlogModule.UpdateDraftBlog.Do(ctx, uuid.MustParse(req.GetBlogId()), updateRequest)

@@ -42,7 +42,7 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 			society_preview = $6,
 			additional_seo_text = $7,
 			ordering_number = $8 
-		where id = $2
+		where id = $1
 	`
 
 	args := []interface{}{
