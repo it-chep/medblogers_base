@@ -115,7 +115,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/delete_image": {
+    "/api/v1/auth/blog/{blogId}/delete_image/{imageId}": {
       "post": {
         "summary": "Удаление картинки для статьи",
         "operationId": "AdminService_DeleteBlogImage",
@@ -135,11 +135,23 @@
         },
         "parameters": [
           {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeleteBlogImageRequest"
+              "$ref": "#/definitions/AdminServiceDeleteBlogImageBody"
             }
           }
         ],
@@ -148,7 +160,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/save_image": {
+    "/api/v1/auth/blog/{blogId}/save_image": {
       "post": {
         "summary": "Сохранение картинки для статьи",
         "operationId": "AdminService_SaveBlogImage",
@@ -168,11 +180,17 @@
         },
         "parameters": [
           {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SaveBlogImageRequest"
+              "$ref": "#/definitions/AdminServiceSaveBlogImageBody"
             }
           }
         ],
@@ -181,7 +199,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/update": {
+    "/api/v1/auth/blog/{blogId}/update": {
       "post": {
         "summary": "Обновление статьи",
         "operationId": "AdminService_UpdateDraftBlog",
@@ -201,11 +219,17 @@
         },
         "parameters": [
           {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UpdateDraftBlogRequest"
+              "$ref": "#/definitions/AdminServiceUpdateDraftBlogBody"
             }
           }
         ],
@@ -1331,14 +1355,65 @@
     }
   },
   "definitions": {
-    "CreateDraftBlogRequest": {
+    "AdminServiceDeleteBlogImageBody": {
       "type": "object"
+    },
+    "AdminServiceSaveBlogImageBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminServiceUpdateDraftBlogBody": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "societyPreview": {
+          "type": "string"
+        },
+        "additionalSeoText": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateDraftBlogRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        }
+      }
     },
     "CreateDraftBlogResponse": {
-      "type": "object"
-    },
-    "DeleteBlogImageRequest": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        }
+      }
     },
     "DeleteBlogImageResponse": {
       "type": "object"
@@ -1352,13 +1427,45 @@
       "default": "SUBSCRIBERS_DESC"
     },
     "GetBlogByIDResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "societyPreview": {
+          "type": "string"
+        },
+        "additionalSeoText": {
+          "type": "string"
+        }
+      }
     },
     "GetBlogsResponse": {
       "type": "object",
       "properties": {
         "blogId": {
           "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
@@ -1428,14 +1535,24 @@
         }
       }
     },
-    "SaveBlogImageRequest": {
-      "type": "object"
-    },
     "SaveBlogImageResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/SaveBlogImageResponseImage"
+        }
+      }
     },
-    "UpdateDraftBlogRequest": {
-      "type": "object"
+    "SaveBlogImageResponseImage": {
+      "type": "object",
+      "properties": {
+        "imageId": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
     },
     "UpdateDraftBlogResponse": {
       "type": "object"

@@ -159,6 +159,10 @@ func (m *GetBlogsResponse) validate(all bool) error {
 
 	// no validation rules for BlogId
 
+	// no validation rules for Title
+
+	// no validation rules for IsActive
+
 	if len(errors) > 0 {
 		return GetBlogsResponseMultiError(errors)
 	}
@@ -363,6 +367,22 @@ func (m *GetBlogByIDResponse) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for BlogId
+
+	// no validation rules for Slug
+
+	// no validation rules for Title
+
+	// no validation rules for Body
+
+	// no validation rules for IsActive
+
+	// no validation rules for PreviewText
+
+	// no validation rules for SocietyPreview
+
+	// no validation rules for AdditionalSeoText
+
 	if len(errors) > 0 {
 		return GetBlogByIDResponseMultiError(errors)
 	}
@@ -464,6 +484,8 @@ func (m *CreateDraftBlogRequest) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for Title
 
 	if len(errors) > 0 {
 		return CreateDraftBlogRequestMultiError(errors)
@@ -567,6 +589,8 @@ func (m *CreateDraftBlogResponse) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for BlogId
+
 	if len(errors) > 0 {
 		return CreateDraftBlogResponseMultiError(errors)
 	}
@@ -668,6 +692,22 @@ func (m *UpdateDraftBlogRequest) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for BlogId
+
+	// no validation rules for Slug
+
+	// no validation rules for Title
+
+	// no validation rules for Body
+
+	// no validation rules for IsActive
+
+	// no validation rules for PreviewText
+
+	// no validation rules for SocietyPreview
+
+	// no validation rules for AdditionalSeoText
 
 	if len(errors) > 0 {
 		return UpdateDraftBlogRequestMultiError(errors)
@@ -873,6 +913,14 @@ func (m *SaveBlogImageRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for BlogId
+
+	// no validation rules for ImageData
+
+	// no validation rules for FileName
+
+	// no validation rules for ContentType
+
 	if len(errors) > 0 {
 		return SaveBlogImageRequestMultiError(errors)
 	}
@@ -975,6 +1023,35 @@ func (m *SaveBlogImageResponse) validate(all bool) error {
 
 	var errors []error
 
+	if all {
+		switch v := interface{}(m.GetImage()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, SaveBlogImageResponseValidationError{
+					field:  "Image",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, SaveBlogImageResponseValidationError{
+					field:  "Image",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetImage()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return SaveBlogImageResponseValidationError{
+				field:  "Image",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if len(errors) > 0 {
 		return SaveBlogImageResponseMultiError(errors)
 	}
@@ -1076,6 +1153,10 @@ func (m *DeleteBlogImageRequest) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for BlogId
+
+	// no validation rules for ImageId
 
 	if len(errors) > 0 {
 		return DeleteBlogImageRequestMultiError(errors)
@@ -1258,3 +1339,110 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = DeleteBlogImageResponseValidationError{}
+
+// Validate checks the field values on SaveBlogImageResponse_Image with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *SaveBlogImageResponse_Image) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on SaveBlogImageResponse_Image with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// SaveBlogImageResponse_ImageMultiError, or nil if none found.
+func (m *SaveBlogImageResponse_Image) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *SaveBlogImageResponse_Image) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ImageId
+
+	// no validation rules for ImageUrl
+
+	if len(errors) > 0 {
+		return SaveBlogImageResponse_ImageMultiError(errors)
+	}
+
+	return nil
+}
+
+// SaveBlogImageResponse_ImageMultiError is an error wrapping multiple
+// validation errors returned by SaveBlogImageResponse_Image.ValidateAll() if
+// the designated constraints aren't met.
+type SaveBlogImageResponse_ImageMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m SaveBlogImageResponse_ImageMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m SaveBlogImageResponse_ImageMultiError) AllErrors() []error { return m }
+
+// SaveBlogImageResponse_ImageValidationError is the validation error returned
+// by SaveBlogImageResponse_Image.Validate if the designated constraints
+// aren't met.
+type SaveBlogImageResponse_ImageValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e SaveBlogImageResponse_ImageValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e SaveBlogImageResponse_ImageValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e SaveBlogImageResponse_ImageValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e SaveBlogImageResponse_ImageValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e SaveBlogImageResponse_ImageValidationError) ErrorName() string {
+	return "SaveBlogImageResponse_ImageValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e SaveBlogImageResponse_ImageValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sSaveBlogImageResponse_Image.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = SaveBlogImageResponse_ImageValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = SaveBlogImageResponse_ImageValidationError{}

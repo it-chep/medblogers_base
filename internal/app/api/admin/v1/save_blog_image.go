@@ -11,7 +11,7 @@ func (i *Implementation) SaveBlogImage(ctx context.Context, req *desc.SaveBlogIm
 	email := pkgctx.GetEmailFromContext(ctx)
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return nil, executor(ctx, email, "", func(ctx context.Context) error {
+	return nil, executor(ctx, email, "/api/v1/auth/blog/{id}/save_image", func(ctx context.Context) error {
 		return nil
 	})
 }

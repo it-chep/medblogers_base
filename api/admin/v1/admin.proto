@@ -36,7 +36,7 @@ service AdminService {
   }
   rpc UpdateDraftBlog(UpdateDraftBlogRequest) returns (UpdateDraftBlogResponse) {
     option (google.api.http) = {
-      post: "/api/v1/auth/blog/update"
+      post: "/api/v1/auth/blog/{blog_id}/update"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -45,7 +45,7 @@ service AdminService {
   }
   rpc SaveBlogImage(SaveBlogImageRequest) returns (SaveBlogImageResponse) {
     option (google.api.http) = {
-      post: "/api/v1/auth/blog/save_image"
+      post: "/api/v1/auth/blog/{blog_id}/save_image"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -54,7 +54,7 @@ service AdminService {
   }
   rpc DeleteBlogImage(DeleteBlogImageRequest) returns (DeleteBlogImageResponse) {
     option (google.api.http) = {
-      post: "/api/v1/auth/blog/delete_image"
+      post: "/api/v1/auth/blog/{blog_id}/delete_image/{image_id}"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -65,12 +65,12 @@ service AdminService {
   // -------------- Статьи ---------------
 }
 
-message GetBlogsRequest {
-
-}
+message GetBlogsRequest {}
 
 message GetBlogsResponse {
   string blog_id = 1;
+  string title = 2;
+  bool is_active = 3;
 }
 
 message GetBlogByIDRequest {
@@ -78,19 +78,33 @@ message GetBlogByIDRequest {
 }
 
 message GetBlogByIDResponse {
-
+  string blog_id = 1;
+  string slug = 2;
+  string title = 3;
+  string body = 4;
+  bool is_active = 5;
+  string preview_text = 6;
+  string society_preview = 7;
+  string additional_seo_text = 8;
 }
 
 message CreateDraftBlogRequest {
-
+  string title = 1;
 }
 
 message CreateDraftBlogResponse {
-
+  string blog_id = 1;
 }
 
 message UpdateDraftBlogRequest {
-
+  string blog_id = 1;
+  string slug = 2;
+  string title = 3;
+  string body = 4;
+  bool is_active = 5;
+  string preview_text = 6;
+  string society_preview = 7;
+  string additional_seo_text = 8;
 }
 
 message UpdateDraftBlogResponse {
@@ -98,16 +112,26 @@ message UpdateDraftBlogResponse {
 }
 
 message SaveBlogImageRequest {
-
+  string blog_id = 1;
+  bytes image_data = 2;
+  string file_name = 3;
+  string content_type = 4;
 }
 
 message SaveBlogImageResponse {
+  Image image = 1;
 
+  message Image {
+    string image_id = 1;
+    string image_url = 2;
+  }
 }
 
 message DeleteBlogImageRequest{
-
+  string blog_id = 1;
+  string image_id = 2;
 }
+
 message DeleteBlogImageResponse{
 
 }

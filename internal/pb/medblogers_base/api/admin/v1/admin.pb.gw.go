@@ -135,6 +135,23 @@ func request_AdminService_UpdateDraftBlog_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+
 	msg, err := client.UpdateDraftBlog(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -146,6 +163,23 @@ func local_request_AdminService_UpdateDraftBlog_0(ctx context.Context, marshaler
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
 	}
 
 	msg, err := server.UpdateDraftBlog(ctx, &protoReq)
@@ -161,6 +195,23 @@ func request_AdminService_SaveBlogImage_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+
 	msg, err := client.SaveBlogImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -172,6 +223,23 @@ func local_request_AdminService_SaveBlogImage_0(ctx context.Context, marshaler r
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
 	}
 
 	msg, err := server.SaveBlogImage(ctx, &protoReq)
@@ -187,6 +255,33 @@ func request_AdminService_DeleteBlogImage_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+
+	val, ok = pathParams["image_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "image_id")
+	}
+
+	protoReq.ImageId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "image_id", err)
+	}
+
 	msg, err := client.DeleteBlogImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -198,6 +293,33 @@ func local_request_AdminService_DeleteBlogImage_0(ctx context.Context, marshaler
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+
+	val, ok = pathParams["image_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "image_id")
+	}
+
+	protoReq.ImageId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "image_id", err)
 	}
 
 	msg, err := server.DeleteBlogImage(ctx, &protoReq)
@@ -295,7 +417,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -320,7 +442,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/save_image"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -345,7 +467,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/delete_image"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -475,7 +597,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -497,7 +619,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/save_image"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -519,7 +641,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/delete_image"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -545,11 +667,11 @@ var (
 
 	pattern_AdminService_CreateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "blog", "create"}, ""))
 
-	pattern_AdminService_UpdateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "auth", "blog", "update"}, ""))
+	pattern_AdminService_UpdateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "auth", "blog", "blog_id", "update"}, ""))
 
-	pattern_AdminService_SaveBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "auth", "blog", "save_image"}, ""))
+	pattern_AdminService_SaveBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "auth", "blog", "blog_id", "save_image"}, ""))
 
-	pattern_AdminService_DeleteBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "auth", "blog", "delete_image"}, ""))
+	pattern_AdminService_DeleteBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "auth", "blog", "blog_id", "delete_image", "image_id"}, ""))
 )
 
 var (
