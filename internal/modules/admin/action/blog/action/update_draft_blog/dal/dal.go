@@ -24,7 +24,7 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 	sql := `select * from blog where id = $1`
 
 	var blog dto.Blog
-	err := pgxscan.Get(ctx, r.db, &blog, sql, id)
+	err := pgxscan.Get(ctx, r.db, &blog, sql, id.String())
 	if err != nil {
 		return dto.Blog{}, err
 	}

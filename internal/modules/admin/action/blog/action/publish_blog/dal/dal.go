@@ -24,7 +24,7 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 	sql := `select * from blog where id = $1`
 
 	var blog dto.Blog
-	err := pgxscan.Get(ctx, r.db, &blog, sql, id)
+	err := pgxscan.Get(ctx, r.db, &blog, sql, id.String())
 	if err != nil {
 		return dto.Blog{}, err
 	}
@@ -34,9 +34,9 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 
 // PublishBlog публикация статьи
 func (r *Repository) PublishBlog(ctx context.Context, id uuid.UUID) error {
-	sql := `update blog set is_active = true where id = $2`
+	sql := `update blog set is_active = true where id = $1`
 
-	_, err := r.db.Exec(ctx, sql, id)
+	_, err := r.db.Exec(ctx, sql, id.String())
 	if err != nil {
 		return err
 	}

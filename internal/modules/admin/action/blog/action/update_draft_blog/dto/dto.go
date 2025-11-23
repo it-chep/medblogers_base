@@ -26,4 +26,5 @@ type Blog struct {
 	PreviewText        sql.NullString `json:"preview_text" db:"preview_text"`
 	SocietyPreviewText sql.NullString `json:"society_preview" db:"society_preview"`
 	AdditionalSEOText  sql.NullString `json:"additional_seo_text" db:"additional_seo_text"`
+	OrderingNumber     sql.NullInt64  `json:"ordering_number" db:"ordering_number"`
 }

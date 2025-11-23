@@ -19,7 +19,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // CreateDraftBlogs создание драфтовой статьи
 func (r *Repository) CreateDraftBlogs(ctx context.Context, title string, id uuid.UUID) error {
-	sql := `insert into blog (id, name) values ($1, $2)`
+	sql := `insert into blog (id, name, ordering_number) values ($1, $2, 999)`
 
 	args := []interface{}{
 		id.String(),

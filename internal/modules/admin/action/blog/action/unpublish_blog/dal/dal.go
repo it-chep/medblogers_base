@@ -36,7 +36,7 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 func (r *Repository) UnPublishBlog(ctx context.Context, blogID uuid.UUID) error {
 	sql := `update blog set is_active = false where id = $1`
 
-	_, err := r.db.Exec(ctx, sql, blogID)
+	_, err := r.db.Exec(ctx, sql, blogID.String())
 	if err != nil {
 		return err
 	}
