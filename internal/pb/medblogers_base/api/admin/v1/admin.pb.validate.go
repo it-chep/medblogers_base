@@ -157,11 +157,39 @@ func (m *GetBlogsResponse) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for BlogId
+	for idx, item := range m.GetBlogs() {
+		_, _ = idx, item
 
-	// no validation rules for Title
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetBlogsResponseValidationError{
+						field:  fmt.Sprintf("Blogs[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetBlogsResponseValidationError{
+						field:  fmt.Sprintf("Blogs[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetBlogsResponseValidationError{
+					field:  fmt.Sprintf("Blogs[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
 
-	// no validation rules for IsActive
+	}
 
 	if len(errors) > 0 {
 		return GetBlogsResponseMultiError(errors)
@@ -1335,6 +1363,114 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = DeleteBlogImageResponseValidationError{}
+
+// Validate checks the field values on GetBlogsResponse_Blog with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetBlogsResponse_Blog) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetBlogsResponse_Blog with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetBlogsResponse_BlogMultiError, or nil if none found.
+func (m *GetBlogsResponse_Blog) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetBlogsResponse_Blog) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for BlogId
+
+	// no validation rules for Title
+
+	// no validation rules for IsActive
+
+	if len(errors) > 0 {
+		return GetBlogsResponse_BlogMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetBlogsResponse_BlogMultiError is an error wrapping multiple validation
+// errors returned by GetBlogsResponse_Blog.ValidateAll() if the designated
+// constraints aren't met.
+type GetBlogsResponse_BlogMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetBlogsResponse_BlogMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetBlogsResponse_BlogMultiError) AllErrors() []error { return m }
+
+// GetBlogsResponse_BlogValidationError is the validation error returned by
+// GetBlogsResponse_Blog.Validate if the designated constraints aren't met.
+type GetBlogsResponse_BlogValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetBlogsResponse_BlogValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetBlogsResponse_BlogValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetBlogsResponse_BlogValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetBlogsResponse_BlogValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetBlogsResponse_BlogValidationError) ErrorName() string {
+	return "GetBlogsResponse_BlogValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetBlogsResponse_BlogValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetBlogsResponse_Blog.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetBlogsResponse_BlogValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetBlogsResponse_BlogValidationError{}
 
 // Validate checks the field values on SaveBlogImageResponse_Image with the
 // rules defined in the proto definition for this message. If any rules are

@@ -3,6 +3,8 @@ package action
 import (
 	"medblogers_base/internal/modules/admin/action/blog/action/create_draft_blog"
 	"medblogers_base/internal/modules/admin/action/blog/action/delete_blog_image"
+	"medblogers_base/internal/modules/admin/action/blog/action/get_blog_by_id"
+	"medblogers_base/internal/modules/admin/action/blog/action/get_blogs"
 	"medblogers_base/internal/modules/admin/action/blog/action/save_blog_image"
 	"medblogers_base/internal/modules/admin/client"
 	"medblogers_base/internal/pkg/postgres"
@@ -12,6 +14,8 @@ type BlogModuleAggregator struct {
 	CreateDraftBlog *create_draft_blog.Action
 	SaveBlogImage   *save_blog_image.Action
 	DeleteBlogImage *delete_blog_image.Action
+	GetBlogs        *get_blogs.Action
+	GetBlogByID     *get_blog_by_id.Action
 }
 
 func New(pool postgres.PoolWrapper, clients *client.Aggregator) *BlogModuleAggregator {
@@ -19,5 +23,7 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator) *BlogModuleAggre
 		CreateDraftBlog: create_draft_blog.New(pool),
 		SaveBlogImage:   save_blog_image.New(pool, clients),
 		DeleteBlogImage: delete_blog_image.New(pool, clients),
+		GetBlogs:        get_blogs.New(pool),
+		GetBlogByID:     get_blog_by_id.New(pool),
 	}
 }

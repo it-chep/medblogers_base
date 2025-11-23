@@ -68,9 +68,14 @@ service AdminService {
 message GetBlogsRequest {}
 
 message GetBlogsResponse {
-  string blog_id = 1;
-  string title = 2;
-  bool is_active = 3;
+  repeated Blog blogs = 1;
+
+  message Blog {
+    string blog_id = 1;
+    string title = 2;
+    bool is_active = 3;
+  }
+
 }
 
 message GetBlogByIDRequest {

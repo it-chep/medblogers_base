@@ -1452,6 +1452,18 @@
     "GetBlogsResponse": {
       "type": "object",
       "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetBlogsResponseBlog"
+          }
+        }
+      }
+    },
+    "GetBlogsResponseBlog": {
+      "type": "object",
+      "properties": {
         "blogId": {
           "type": "string"
         },

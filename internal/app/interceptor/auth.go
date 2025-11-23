@@ -22,14 +22,16 @@ type CheckPermissions interface {
 // ExecuteWithPermissions - декоратор с проверкой прав
 func ExecuteWithPermissions(checker CheckPermissions) func(
 	ctx context.Context,
-	email, path string,
+	path string,
 	fn func(ctx context.Context) error,
 ) error {
-	return func(ctx context.Context, email, path string, fn func(ctx context.Context) error) error {
+	return func(ctx context.Context, path string, fn func(ctx context.Context) error) error {
 		authNeeded, _ := strconv.ParseBool(os.Getenv("IS_AUTH_NEED"))
 		if !authNeeded {
 			return fn(ctx)
 		}
+
+		email := pkgctx.GetEmailFromContext(ctx)
 
 		if len(email) == 0 {
 			return status.Error(codes.PermissionDenied, "permission denied")
