@@ -1,0 +1,23 @@
+package action
+
+import (
+	"medblogers_base/internal/modules/admin/action/blog/action/create_draft_blog"
+	"medblogers_base/internal/modules/admin/action/blog/action/delete_blog_image"
+	"medblogers_base/internal/modules/admin/action/blog/action/save_blog_image"
+	"medblogers_base/internal/modules/admin/client"
+	"medblogers_base/internal/pkg/postgres"
+)
+
+type BlogModuleAggregator struct {
+	CreateDraftBlog *create_draft_blog.Action
+	SaveBlogImage   *save_blog_image.Action
+	DeleteBlogImage *delete_blog_image.Action
+}
+
+func New(pool postgres.PoolWrapper, clients *client.Aggregator) *BlogModuleAggregator {
+	return &BlogModuleAggregator{
+		CreateDraftBlog: create_draft_blog.New(pool),
+		SaveBlogImage:   save_blog_image.New(pool, clients),
+		DeleteBlogImage: delete_blog_image.New(pool, clients),
+	}
+}

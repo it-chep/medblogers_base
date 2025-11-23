@@ -16,8 +16,9 @@ create table if not exists blog
 -- Фотографии в статьях
 create table if not exists blog_photos
 (
-    id      uuid primary key,
-    blog_id uuid
+    id        uuid primary key,
+    blog_id   uuid,
+    file_type text
 );
 -- +goose StatementEnd
 

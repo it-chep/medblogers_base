@@ -88,7 +88,7 @@ func (a *App) initHttpConns(_ context.Context) *App {
 
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
-		admin:       moduleadmin.New(a.postgres),
+		admin:       moduleadmin.New(a.httpConns, a.config, a.postgres),
 		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 		auth:        moduleAuth.New(a.postgres),

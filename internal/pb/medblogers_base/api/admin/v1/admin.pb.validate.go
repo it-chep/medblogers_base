@@ -917,10 +917,6 @@ func (m *SaveBlogImageRequest) validate(all bool) error {
 
 	// no validation rules for ImageData
 
-	// no validation rules for FileName
-
-	// no validation rules for ContentType
-
 	if len(errors) > 0 {
 		return SaveBlogImageRequestMultiError(errors)
 	}

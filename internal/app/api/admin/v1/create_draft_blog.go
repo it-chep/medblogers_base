@@ -14,6 +14,13 @@ func (i *Implementation) CreateDraftBlog(ctx context.Context, req *desc.CreateDr
 	return resp, executor(ctx, email, "/api/v1/admin/blog/create", func(ctx context.Context) error {
 		resp = &desc.CreateDraftBlogResponse{}
 
+		blogID, err := i.admin.Actions.BlogModule.CreateDraftBlog.Do(ctx, req.GetTitle())
+		if err != nil {
+			return err
+		}
+
+		resp.BlogId = blogID.String()
+
 		return nil
 	})
 }

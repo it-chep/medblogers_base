@@ -10,6 +10,8 @@ import (
 	"medblogers_base/internal/modules/auth/domain/user"
 	pkgctx "medblogers_base/internal/pkg/context"
 	"medblogers_base/internal/pkg/token"
+	"os"
+	"strconv"
 )
 
 // CheckPermissions мидлвара, которая проверяет есть ли пермишены на ручку
@@ -24,6 +26,11 @@ func ExecuteWithPermissions(checker CheckPermissions) func(
 	fn func(ctx context.Context) error,
 ) error {
 	return func(ctx context.Context, email, path string, fn func(ctx context.Context) error) error {
+		authNeeded, _ := strconv.ParseBool(os.Getenv("IS_AUTH_NEED"))
+		if !authNeeded {
+			return fn(ctx)
+		}
+
 		if len(email) == 0 {
 			return status.Error(codes.PermissionDenied, "permission denied")
 		}

@@ -1364,12 +1364,6 @@
         "imageData": {
           "type": "string",
           "format": "byte"
-        },
-        "fileName": {
-          "type": "string"
-        },
-        "contentType": {
-          "type": "string"
         }
       }
     },

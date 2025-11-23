@@ -1,7 +1,9 @@
 package admin
 
 import (
+	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/action"
+	"medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -10,9 +12,9 @@ type Module struct {
 	Actions *action.Aggregator
 }
 
-func New(pool postgres.PoolWrapper) *Module {
+func New(httpConns map[string]http.Executor, config config.AppConfig, pool postgres.PoolWrapper) *Module {
 
-	actions := action.NewAggregator(pool)
+	actions := action.NewAggregator(httpConns, config, pool)
 
 	return &Module{
 		Actions: actions,

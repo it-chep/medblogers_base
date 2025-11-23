@@ -114,8 +114,6 @@ message UpdateDraftBlogResponse {
 message SaveBlogImageRequest {
   string blog_id = 1;
   bytes image_data = 2;
-  string file_name = 3;
-  string content_type = 4;
 }
 
 message SaveBlogImageResponse {
