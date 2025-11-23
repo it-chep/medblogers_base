@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/google/uuid"
-	"medblogers_base/internal/modules/admin/action/blog/action/update_draft_blog/dto"
+	"medblogers_base/internal/modules/admin/action/blog/action/publish_blog/dto"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -12,7 +12,7 @@ type Repository struct {
 	db postgres.PoolWrapper
 }
 
-// NewRepository создает новый репозиторий по работе со статьями
+// NewRepository создает новый репозиторий по работе с докторами
 func NewRepository(db postgres.PoolWrapper) *Repository {
 	return &Repository{
 		db: db,
@@ -30,4 +30,16 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 	}
 
 	return blog, nil
+}
+
+// PublishBlog публикация статьи
+func (r *Repository) PublishBlog(ctx context.Context, id uuid.UUID) error {
+	sql := `update blog set is_active = true where id = $2`
+
+	_, err := r.db.Exec(ctx, sql, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

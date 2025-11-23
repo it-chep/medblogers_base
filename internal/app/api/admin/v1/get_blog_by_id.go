@@ -11,11 +11,20 @@ func (i *Implementation) GetBlogByID(ctx context.Context, req *desc.GetBlogByIDR
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/blog/{id}", func(ctx context.Context) error {
-		resp = &desc.GetBlogByIDResponse{}
-
-		_, err := i.admin.Actions.BlogModule.GetBlogByID.Do(ctx, uuid.MustParse(req.GetBlogId()))
+		blog, err := i.admin.Actions.BlogModule.GetBlogByID.Do(ctx, uuid.MustParse(req.GetBlogId()))
 		if err != nil {
 			return err
+		}
+
+		resp = &desc.GetBlogByIDResponse{
+			BlogId:            blog.ID.String(),
+			Slug:              blog.Slug.String,
+			Title:             blog.Name,
+			Body:              blog.Body.String,
+			IsActive:          blog.IsActive.Bool,
+			PreviewText:       blog.PreviewText.String,
+			SocietyPreview:    blog.SocietyPreviewText.String,
+			AdditionalSeoText: blog.AdditionalSEOText.String,
 		}
 
 		return nil

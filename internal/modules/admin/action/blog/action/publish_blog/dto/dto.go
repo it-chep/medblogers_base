@@ -17,3 +17,12 @@ type Blog struct {
 	SocietyPreviewText sql.NullString `json:"society_preview" db:"society_preview"`
 	AdditionalSEOText  sql.NullString `json:"additional_seo_text" db:"additional_seo_text"`
 }
+
+type ValidationError struct {
+	Text  string
+	Field string
+}
+
+func (e ValidationError) Error() string {
+	return e.Text
+}

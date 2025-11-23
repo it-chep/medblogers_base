@@ -25,6 +25,8 @@ const (
 	AdminService_UpdateDraftBlog_FullMethodName = "/AdminService/UpdateDraftBlog"
 	AdminService_SaveBlogImage_FullMethodName   = "/AdminService/SaveBlogImage"
 	AdminService_DeleteBlogImage_FullMethodName = "/AdminService/DeleteBlogImage"
+	AdminService_PublishBlog_FullMethodName     = "/AdminService/PublishBlog"
+	AdminService_UnPublishBlog_FullMethodName   = "/AdminService/UnPublishBlog"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -40,6 +42,8 @@ type AdminServiceClient interface {
 	UpdateDraftBlog(ctx context.Context, in *UpdateDraftBlogRequest, opts ...grpc.CallOption) (*UpdateDraftBlogResponse, error)
 	SaveBlogImage(ctx context.Context, in *SaveBlogImageRequest, opts ...grpc.CallOption) (*SaveBlogImageResponse, error)
 	DeleteBlogImage(ctx context.Context, in *DeleteBlogImageRequest, opts ...grpc.CallOption) (*DeleteBlogImageResponse, error)
+	PublishBlog(ctx context.Context, in *PublishBlogRequest, opts ...grpc.CallOption) (*PublishBlogResponse, error)
+	UnPublishBlog(ctx context.Context, in *UnPublishBlogRequest, opts ...grpc.CallOption) (*UnPublishBlogResponse, error)
 }
 
 type adminServiceClient struct {
@@ -110,6 +114,26 @@ func (c *adminServiceClient) DeleteBlogImage(ctx context.Context, in *DeleteBlog
 	return out, nil
 }
 
+func (c *adminServiceClient) PublishBlog(ctx context.Context, in *PublishBlogRequest, opts ...grpc.CallOption) (*PublishBlogResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublishBlogResponse)
+	err := c.cc.Invoke(ctx, AdminService_PublishBlog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) UnPublishBlog(ctx context.Context, in *UnPublishBlogRequest, opts ...grpc.CallOption) (*UnPublishBlogResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnPublishBlogResponse)
+	err := c.cc.Invoke(ctx, AdminService_UnPublishBlog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations must embed UnimplementedAdminServiceServer
 // for forward compatibility.
@@ -123,6 +147,8 @@ type AdminServiceServer interface {
 	UpdateDraftBlog(context.Context, *UpdateDraftBlogRequest) (*UpdateDraftBlogResponse, error)
 	SaveBlogImage(context.Context, *SaveBlogImageRequest) (*SaveBlogImageResponse, error)
 	DeleteBlogImage(context.Context, *DeleteBlogImageRequest) (*DeleteBlogImageResponse, error)
+	PublishBlog(context.Context, *PublishBlogRequest) (*PublishBlogResponse, error)
+	UnPublishBlog(context.Context, *UnPublishBlogRequest) (*UnPublishBlogResponse, error)
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
@@ -150,6 +176,12 @@ func (UnimplementedAdminServiceServer) SaveBlogImage(context.Context, *SaveBlogI
 }
 func (UnimplementedAdminServiceServer) DeleteBlogImage(context.Context, *DeleteBlogImageRequest) (*DeleteBlogImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlogImage not implemented")
+}
+func (UnimplementedAdminServiceServer) PublishBlog(context.Context, *PublishBlogRequest) (*PublishBlogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishBlog not implemented")
+}
+func (UnimplementedAdminServiceServer) UnPublishBlog(context.Context, *UnPublishBlogRequest) (*UnPublishBlogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnPublishBlog not implemented")
 }
 func (UnimplementedAdminServiceServer) mustEmbedUnimplementedAdminServiceServer() {}
 func (UnimplementedAdminServiceServer) testEmbeddedByValue()                      {}
@@ -280,6 +312,42 @@ func _AdminService_DeleteBlogImage_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_PublishBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishBlogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).PublishBlog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_PublishBlog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).PublishBlog(ctx, req.(*PublishBlogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_UnPublishBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnPublishBlogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).UnPublishBlog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_UnPublishBlog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).UnPublishBlog(ctx, req.(*UnPublishBlogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -310,6 +378,14 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteBlogImage",
 			Handler:    _AdminService_DeleteBlogImage_Handler,
+		},
+		{
+			MethodName: "PublishBlog",
+			Handler:    _AdminService_PublishBlog_Handler,
+		},
+		{
+			MethodName: "UnPublishBlog",
+			Handler:    _AdminService_UnPublishBlog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

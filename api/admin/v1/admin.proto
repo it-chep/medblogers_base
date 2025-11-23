@@ -61,6 +61,33 @@ service AdminService {
       summary: "Удаление картинки для статьи"
     };
   }
+  rpc PublishBlog(PublishBlogRequest) returns (PublishBlogResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/auth/blog/{blog_id}/publish"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Публикация статьи"
+    };
+  }
+  rpc UnPublishBlog(UnPublishBlogRequest) returns (UnPublishBlogResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/auth/blog/{blog_id}/unpublish"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Снятие статьи с публикации"
+    };
+  }
+  //  rpc MoveOrdering(MoveOrderingRequest) returns (MoveOrderingResponse) {
+  //    option (google.api.http) = {
+  //      post: "/api/v1/auth/blog/{blog_id}/move_ordering"
+  //      body: "*"
+  //    };
+  //    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+  //      summary: "Смещает порядок сортировки сразу у всех статей"
+  //    };
+  //  }
   // todo поиск, фильтрация
   // -------------- Статьи ---------------
 }
@@ -74,6 +101,7 @@ message GetBlogsResponse {
     string blog_id = 1;
     string title = 2;
     bool is_active = 3;
+    int64 ordering_number = 4;
   }
 
 }
@@ -91,6 +119,7 @@ message GetBlogByIDResponse {
   string preview_text = 6;
   string society_preview = 7;
   string additional_seo_text = 8;
+  int64 ordering_number = 9;
 }
 
 message CreateDraftBlogRequest {
@@ -110,6 +139,7 @@ message UpdateDraftBlogRequest {
   string preview_text = 6;
   string society_preview = 7;
   string additional_seo_text = 8;
+  int64 ordering_number = 9;
 }
 
 message UpdateDraftBlogResponse {
@@ -135,8 +165,32 @@ message DeleteBlogImageRequest{
   string image_id = 2;
 }
 
-message DeleteBlogImageResponse{
+message DeleteBlogImageResponse{}
 
+message PublishBlogRequest{
+  string blog_id = 1;
+}
+
+message PublishBlogResponse{
+  repeated ValidationError errors = 1;
+
+  message ValidationError {
+    string field = 1;
+    string text = 2;
+  }
+}
+
+message UnPublishBlogRequest{
+  string blog_id = 1;
+}
+
+message UnPublishBlogResponse{
+  repeated ValidationError errors = 1;
+
+  message ValidationError {
+    string field = 1;
+    string text = 2;
+  }
 }
 
 
