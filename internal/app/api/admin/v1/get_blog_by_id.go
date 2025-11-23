@@ -25,6 +25,7 @@ func (i *Implementation) GetBlogByID(ctx context.Context, req *desc.GetBlogByIDR
 			PreviewText:       blog.PreviewText.String,
 			SocietyPreview:    blog.SocietyPreviewText.String,
 			AdditionalSeoText: blog.AdditionalSEOText.String,
+			OrderingNumber:    blog.OrderingNumber.Int64,
 		}
 
 		return nil

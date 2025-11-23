@@ -21,9 +21,10 @@ func (i *Implementation) GetBlogs(ctx context.Context, req *desc.GetBlogsRequest
 
 		resp.Blogs = lo.Map(blogs, func(item dto.Blog, _ int) *desc.GetBlogsResponse_Blog {
 			return &desc.GetBlogsResponse_Blog{
-				BlogId:   item.BlogID.String(),
-				Title:    item.Name,
-				IsActive: item.IsActive.Bool,
+				BlogId:         item.BlogID.String(),
+				Title:          item.Name,
+				IsActive:       item.IsActive.Bool,
+				OrderingNumber: item.OrderingNumber.Int64,
 			}
 		})
 

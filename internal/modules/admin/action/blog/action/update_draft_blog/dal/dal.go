@@ -31,3 +31,34 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 
 	return blog, nil
 }
+
+// UpdateBlog обновление статьи в базе
+func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.Request) error {
+	sql := `
+		update blog set name = $2, 
+			slug = $3,
+			body = $4,
+			preview_text = $5,
+			society_preview = $6,
+			additional_seo_text = $7,
+			ordering_number = $8 
+		where id = $2
+	`
+
+	args := []interface{}{
+		blogID.String(),
+		req.Name,
+		req.Slug,
+		req.Body,
+		req.PreviewText,
+		req.SocietyPreviewText,
+		req.AdditionalSEOText,
+		req.OrderingNumber,
+	}
+
+	_, err := r.db.Exec(ctx, sql, args...)
+	if err != nil {
+		return err
+	}
+	return nil
+}

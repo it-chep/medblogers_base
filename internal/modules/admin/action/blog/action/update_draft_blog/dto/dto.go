@@ -14,6 +14,7 @@ type Request struct {
 	PreviewText        string
 	SocietyPreviewText string
 	AdditionalSEOText  string
+	OrderingNumber     int64
 }
 
 type Blog struct {
