@@ -24,7 +24,7 @@ func New(pool postgres.PoolWrapper) *Action {
 }
 
 // Do публикация статьи
-func (a *Action) Do(ctx context.Context, blogID uuid.UUID) error {
+func (a *Action) Do(ctx context.Context, blogID, primaryImageUUID uuid.UUID) error {
 	blog, err := a.dal.GetBlogByID(ctx, blogID)
 	if err != nil {
 		return err
@@ -36,6 +36,15 @@ func (a *Action) Do(ctx context.Context, blogID uuid.UUID) error {
 
 	if len(validationErrors) > 0 {
 		return validationErrors[0]
+	}
+
+	err = a.dal.UnMarkBlogImagesIsPrimary(ctx, blogID)
+	if err != nil {
+		return err
+	}
+	err = a.dal.MarkImageIsPrimary(ctx, primaryImageUUID)
+	if err != nil {
+		return err
 	}
 
 	return a.dal.PublishBlog(ctx, blogID)

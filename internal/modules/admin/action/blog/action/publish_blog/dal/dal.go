@@ -44,3 +44,25 @@ func (r *Repository) PublishBlog(ctx context.Context, id uuid.UUID) error {
 
 	return nil
 }
+
+// UnMarkBlogImagesIsPrimary убираем старую метку
+func (r *Repository) UnMarkBlogImagesIsPrimary(ctx context.Context, blogID uuid.UUID) error {
+	sql := `update blog_photos set is_primary = false where blog_id = $1 and is_primary is true`
+
+	_, err := r.db.Exec(ctx, sql, blogID.String())
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarkImageIsPrimary помечаем фотографию самой первой
+func (r *Repository) MarkImageIsPrimary(ctx context.Context, imageID uuid.UUID) error {
+	sql := `update blog_photos set is_primary = true where id = $1`
+
+	_, err := r.db.Exec(ctx, sql, imageID.String())
+	if err != nil {
+		return err
+	}
+	return nil
+}

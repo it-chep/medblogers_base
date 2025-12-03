@@ -1517,7 +1517,12 @@
       "type": "object"
     },
     "AdminServicePublishBlogBody": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "primaryImageId": {
+          "type": "string"
+        }
+      }
     },
     "AdminServiceSaveBlogImageBody": {
       "type": "object",

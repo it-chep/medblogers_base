@@ -1392,6 +1392,8 @@ func (m *PublishBlogRequest) validate(all bool) error {
 
 	// no validation rules for BlogId
 
+	// no validation rules for PrimaryImageId
+
 	if len(errors) > 0 {
 		return PublishBlogRequestMultiError(errors)
 	}
