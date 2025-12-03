@@ -3,7 +3,7 @@ package internal
 import (
 	"context"
 	"fmt"
-	adminV1 "medblogers_base/internal/app/api/admin/v1"
+	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
