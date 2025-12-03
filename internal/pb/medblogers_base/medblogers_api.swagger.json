@@ -19,6 +19,9 @@
     },
     {
       "name": "AdminService"
+    },
+    {
+      "name": "BlogService"
     }
   ],
   "consumes": [
@@ -445,6 +448,83 @@
         ],
         "tags": [
           "AuthService"
+        ]
+      }
+    },
+    "/api/v1/blogs": {
+      "get": {
+        "summary": "Все статьи",
+        "operationId": "BlogService_GetBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogsv1GetBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
+    "/api/v1/blogs/top": {
+      "get": {
+        "summary": "Топ-3 или топ статей, для главной и тд",
+        "operationId": "BlogService_GetTopBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTopBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
+    "/api/v1/blogs/{blogSlug}": {
+      "get": {
+        "summary": "Конкретная статья по слагу",
+        "operationId": "BlogService_GetBlogDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBlogDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogService"
         ]
       }
     },
@@ -1638,7 +1718,27 @@
       }
     },
     "PublishBlogResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/PublishBlogResponseValidationError"
+          }
+        }
+      }
+    },
+    "PublishBlogResponseValidationError": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
     },
     "SaveBlogImageResponse": {
       "type": "object",
@@ -1660,10 +1760,42 @@
       }
     },
     "UnPublishBlogResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/UnPublishBlogResponseValidationError"
+          }
+        }
+      }
+    },
+    "UnPublishBlogResponseValidationError": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
     },
     "UpdateDraftBlogResponse": {
       "type": "object"
+    },
+    "blogsv1GetBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GetBlogsResponseBlogMiniatures"
+          }
+        }
+      }
     },
     "doctorv1CitiesResponse": {
       "type": "object",
@@ -2431,6 +2563,52 @@
         }
       }
     },
+    "v1GetBlogDetailResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "societyPreview": {
+          "type": "string"
+        },
+        "additionalSeoText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetBlogsResponseBlogMiniatures": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        }
+      }
+    },
     "v1GetDoctorResponse": {
       "type": "object",
       "properties": {
@@ -2739,6 +2917,38 @@
           "type": "string"
         },
         "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetTopBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GetTopBlogsResponseBlogMiniatures"
+          }
+        }
+      }
+    },
+    "v1GetTopBlogsResponseBlogMiniatures": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
           "type": "string"
         }
       }

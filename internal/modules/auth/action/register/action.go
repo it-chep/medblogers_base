@@ -2,9 +2,10 @@ package register
 
 import (
 	"context"
-	"golang.org/x/crypto/bcrypt"
 	"medblogers_base/internal/modules/auth/dal/users"
 	"medblogers_base/internal/pkg/postgres"
+
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/pkg/errors"
 )

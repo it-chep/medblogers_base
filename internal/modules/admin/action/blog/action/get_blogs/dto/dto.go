@@ -2,6 +2,7 @@ package dto
 
 import (
 	"database/sql"
+
 	"github.com/google/uuid"
 )
 

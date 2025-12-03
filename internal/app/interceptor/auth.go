@@ -2,16 +2,17 @@ package interceptor
 
 import (
 	"context"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/status"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/auth/domain/user"
 	pkgctx "medblogers_base/internal/pkg/context"
 	"medblogers_base/internal/pkg/token"
 	"os"
 	"strconv"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 )
 
 // CheckPermissions мидлвара, которая проверяет есть ли пермишены на ручку

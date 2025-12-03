@@ -2,11 +2,12 @@ package update_draft_blog
 
 import (
 	"context"
-	"github.com/google/uuid"
-	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/admin/action/blog/action/update_draft_blog/dal"
 	"medblogers_base/internal/modules/admin/action/blog/action/update_draft_blog/dto"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/google/uuid"
+	"github.com/pkg/errors"
 )
 
 // Action .

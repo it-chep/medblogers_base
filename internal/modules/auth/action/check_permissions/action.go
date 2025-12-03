@@ -2,13 +2,14 @@ package check_permissions
 
 import (
 	"context"
-	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/auth/action/check_permissions/dal"
 	"medblogers_base/internal/modules/auth/dal/users"
 	"medblogers_base/internal/modules/auth/domain/user"
 	"medblogers_base/internal/pkg/postgres"
 	"regexp"
 	"strings"
+
+	"github.com/pkg/errors"
 )
 
 type Repository interface {
