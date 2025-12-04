@@ -28,12 +28,11 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) freelancer.
 	}
 
 	return freelancer.Filter{
-		Page:                  page,
-		Cities:                req.Cities,
-		Specialities:          req.Specialities,
-		SocialNetworks:        req.Societies,
-		PriceCategory:         req.PriceCategory,
-		ExperienceWithDoctors: req.ExperienceWithDoctors,
+		Page:           page,
+		Cities:         req.Cities,
+		Specialities:   req.Specialities,
+		SocialNetworks: req.Societies,
+		PriceCategory:  req.PriceCategory,
 	}
 }
 
@@ -55,8 +54,7 @@ func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.F
 					Slug: item.Slug,
 				}
 			}),
-			ExperienceWithDoctors: item.HasExperienceWithDoctor,
-			HasCommand:            item.HasCommand,
+			AgencyRepresentative: item.AgencyRepresentative,
 		})
 	}
 

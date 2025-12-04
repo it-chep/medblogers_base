@@ -60,8 +60,38 @@ func (r Repository) GetSpecialitiesWithDoctorsCount(ctx context.Context) ([]*spe
 func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speciality, error) {
 	sql := `
 		select s.id                      as id,
-			   s.name                    as name
+			   s.name                    as name,
+			   s.primary_speciality_id as primary_speciality_id,
+			   s.is_only_additional as is_only_additional
 		from docstar_site_speciallity s
+		group by s.id, s.name
+		order by s.name
+	`
+
+	var specialitiesDAO []specialityDAO.SpecialityDAO
+	if err := pgxscan.Select(ctx, r.db, &specialitiesDAO, sql); err != nil {
+		return nil, err
+	}
+
+	specialities := make([]*speciality.Speciality, 0, len(specialitiesDAO))
+	for _, dao := range specialitiesDAO {
+		specialities = append(specialities, dao.ToDomain())
+	}
+
+	return specialities, nil
+}
+
+// GetMainSpecialities все основные специальности
+func (r Repository) GetMainSpecialities(ctx context.Context) ([]*speciality.Speciality, error) {
+	sql := `
+		select s.id                      as id,
+			   s.name                    as name,
+			   s.primary_speciality_id as primary_speciality_id,
+			   s.is_only_additional as is_only_additional
+		from docstar_site_speciallity s
+		where 
+		    s.primary_speciality_id is null 
+		  	and s.is_only_additional is not true
 		group by s.id, s.name
 		order by s.name
 	`

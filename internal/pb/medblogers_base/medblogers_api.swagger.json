@@ -954,12 +954,6 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
             "name": "page",
             "in": "query",
             "required": false,
@@ -1057,12 +1051,6 @@
               "format": "int64"
             },
             "collectionFormat": "multi"
-          },
-          {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -1132,12 +1120,6 @@
               "format": "int64"
             },
             "collectionFormat": "multi"
-          },
-          {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -1250,6 +1232,29 @@
         },
         "tags": [
           "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/main_specialities_list": {
+      "get": {
+        "summary": "Получение основных специальностей для регистрации",
+        "operationId": "DoctorService_GetMainSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMainSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
         ]
       }
     },
@@ -2376,9 +2381,6 @@
         "agreePolicy": {
           "type": "boolean"
         },
-        "experienceWithDoctors": {
-          "type": "boolean"
-        },
         "cityId": {
           "type": "string",
           "format": "int64"
@@ -2419,9 +2421,9 @@
           },
           "title": "Прайс-лист"
         },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
-          "title": "Есть команда"
+          "title": "представитель агентства"
         },
         "workingExperience": {
           "type": "string",
@@ -2530,11 +2532,7 @@
         "image": {
           "type": "string"
         },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
-        },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
           "title": "Есть команда"
         },
@@ -2819,13 +2817,9 @@
           "type": "string",
           "title": "Опыт работы"
         },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
-          "title": "Есть команда"
-        },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
+          "title": "Представитель агентства"
         }
       }
     },
@@ -2895,6 +2889,30 @@
           "type": "string"
         },
         "image": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetMainSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1GetMainSpecialitiesResponseSpecialityItem"
+          }
+        }
+      }
+    },
+    "v1GetMainSpecialitiesResponseSpecialityItem": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityName": {
           "type": "string"
         }
       }
@@ -3046,10 +3064,6 @@
         },
         "image": {
           "type": "string"
-        },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
         },
         "priceCategory": {
           "type": "string",

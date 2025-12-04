@@ -1027,6 +1027,245 @@ var _ interface {
 	ErrorName() string
 } = SpecialitiesResponseValidationError{}
 
+// Validate checks the field values on GetMainSpecialitiesRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetMainSpecialitiesRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetMainSpecialitiesRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetMainSpecialitiesRequestMultiError, or nil if none found.
+func (m *GetMainSpecialitiesRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetMainSpecialitiesRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetMainSpecialitiesRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetMainSpecialitiesRequestMultiError is an error wrapping multiple
+// validation errors returned by GetMainSpecialitiesRequest.ValidateAll() if
+// the designated constraints aren't met.
+type GetMainSpecialitiesRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetMainSpecialitiesRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetMainSpecialitiesRequestMultiError) AllErrors() []error { return m }
+
+// GetMainSpecialitiesRequestValidationError is the validation error returned
+// by GetMainSpecialitiesRequest.Validate if the designated constraints aren't met.
+type GetMainSpecialitiesRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetMainSpecialitiesRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetMainSpecialitiesRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetMainSpecialitiesRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetMainSpecialitiesRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetMainSpecialitiesRequestValidationError) ErrorName() string {
+	return "GetMainSpecialitiesRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetMainSpecialitiesRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetMainSpecialitiesRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetMainSpecialitiesRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetMainSpecialitiesRequestValidationError{}
+
+// Validate checks the field values on GetMainSpecialitiesResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetMainSpecialitiesResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetMainSpecialitiesResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetMainSpecialitiesResponseMultiError, or nil if none found.
+func (m *GetMainSpecialitiesResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetMainSpecialitiesResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetSpecialities() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetMainSpecialitiesResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetMainSpecialitiesResponseValidationError{
+						field:  fmt.Sprintf("Specialities[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetMainSpecialitiesResponseValidationError{
+					field:  fmt.Sprintf("Specialities[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetMainSpecialitiesResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetMainSpecialitiesResponseMultiError is an error wrapping multiple
+// validation errors returned by GetMainSpecialitiesResponse.ValidateAll() if
+// the designated constraints aren't met.
+type GetMainSpecialitiesResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetMainSpecialitiesResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetMainSpecialitiesResponseMultiError) AllErrors() []error { return m }
+
+// GetMainSpecialitiesResponseValidationError is the validation error returned
+// by GetMainSpecialitiesResponse.Validate if the designated constraints
+// aren't met.
+type GetMainSpecialitiesResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetMainSpecialitiesResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetMainSpecialitiesResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetMainSpecialitiesResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetMainSpecialitiesResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetMainSpecialitiesResponseValidationError) ErrorName() string {
+	return "GetMainSpecialitiesResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetMainSpecialitiesResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetMainSpecialitiesResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetMainSpecialitiesResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetMainSpecialitiesResponseValidationError{}
+
 // Validate checks the field values on SearchRequest with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -3437,6 +3676,116 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = SpecialitiesResponse_SpecialityItemValidationError{}
+
+// Validate checks the field values on
+// GetMainSpecialitiesResponse_SpecialityItem with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *GetMainSpecialitiesResponse_SpecialityItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetMainSpecialitiesResponse_SpecialityItem with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// GetMainSpecialitiesResponse_SpecialityItemMultiError, or nil if none found.
+func (m *GetMainSpecialitiesResponse_SpecialityItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetMainSpecialitiesResponse_SpecialityItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for SpecialityId
+
+	// no validation rules for SpecialityName
+
+	if len(errors) > 0 {
+		return GetMainSpecialitiesResponse_SpecialityItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetMainSpecialitiesResponse_SpecialityItemMultiError is an error wrapping
+// multiple validation errors returned by
+// GetMainSpecialitiesResponse_SpecialityItem.ValidateAll() if the designated
+// constraints aren't met.
+type GetMainSpecialitiesResponse_SpecialityItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetMainSpecialitiesResponse_SpecialityItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetMainSpecialitiesResponse_SpecialityItemMultiError) AllErrors() []error { return m }
+
+// GetMainSpecialitiesResponse_SpecialityItemValidationError is the validation
+// error returned by GetMainSpecialitiesResponse_SpecialityItem.Validate if
+// the designated constraints aren't met.
+type GetMainSpecialitiesResponse_SpecialityItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetMainSpecialitiesResponse_SpecialityItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetMainSpecialitiesResponse_SpecialityItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetMainSpecialitiesResponse_SpecialityItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetMainSpecialitiesResponse_SpecialityItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetMainSpecialitiesResponse_SpecialityItemValidationError) ErrorName() string {
+	return "GetMainSpecialitiesResponse_SpecialityItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetMainSpecialitiesResponse_SpecialityItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetMainSpecialitiesResponse_SpecialityItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetMainSpecialitiesResponse_SpecialityItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetMainSpecialitiesResponse_SpecialityItemValidationError{}
 
 // Validate checks the field values on SearchResponse_DoctorItem with the rules
 // defined in the proto definition for this message. If any rules are

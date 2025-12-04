@@ -32,7 +32,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	sql := `
 		select 
-			id, name, s3_image, is_worked_with_doctors, start_working_date
+			id, name, s3_image, start_working_date
 		from freelancer
 		where slug = $1
 	`

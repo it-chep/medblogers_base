@@ -29,6 +29,7 @@ const (
 	DoctorService_Filter_FullMethodName                    = "/doctor.v1.DoctorService/Filter"
 	DoctorService_CreateDoctor_FullMethodName              = "/doctor.v1.DoctorService/CreateDoctor"
 	DoctorService_GetDoctor_FullMethodName                 = "/doctor.v1.DoctorService/GetDoctor"
+	DoctorService_GetMainSpecialities_FullMethodName       = "/doctor.v1.DoctorService/GetMainSpecialities"
 )
 
 // DoctorServiceClient is the client API for DoctorService service.
@@ -47,6 +48,7 @@ type DoctorServiceClient interface {
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateDoctor(ctx context.Context, in *CreateDoctorRequest, opts ...grpc.CallOption) (*CreateDoctorResponse, error)
 	GetDoctor(ctx context.Context, in *GetDoctorRequest, opts ...grpc.CallOption) (*GetDoctorResponse, error)
+	GetMainSpecialities(ctx context.Context, in *GetMainSpecialitiesRequest, opts ...grpc.CallOption) (*GetMainSpecialitiesResponse, error)
 }
 
 type doctorServiceClient struct {
@@ -157,6 +159,16 @@ func (c *doctorServiceClient) GetDoctor(ctx context.Context, in *GetDoctorReques
 	return out, nil
 }
 
+func (c *doctorServiceClient) GetMainSpecialities(ctx context.Context, in *GetMainSpecialitiesRequest, opts ...grpc.CallOption) (*GetMainSpecialitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMainSpecialitiesResponse)
+	err := c.cc.Invoke(ctx, DoctorService_GetMainSpecialities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorServiceServer is the server API for DoctorService service.
 // All implementations must embed UnimplementedDoctorServiceServer
 // for forward compatibility.
@@ -173,6 +185,7 @@ type DoctorServiceServer interface {
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateDoctor(context.Context, *CreateDoctorRequest) (*CreateDoctorResponse, error)
 	GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error)
+	GetMainSpecialities(context.Context, *GetMainSpecialitiesRequest) (*GetMainSpecialitiesResponse, error)
 	mustEmbedUnimplementedDoctorServiceServer()
 }
 
@@ -212,6 +225,9 @@ func (UnimplementedDoctorServiceServer) CreateDoctor(context.Context, *CreateDoc
 }
 func (UnimplementedDoctorServiceServer) GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDoctor not implemented")
+}
+func (UnimplementedDoctorServiceServer) GetMainSpecialities(context.Context, *GetMainSpecialitiesRequest) (*GetMainSpecialitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMainSpecialities not implemented")
 }
 func (UnimplementedDoctorServiceServer) mustEmbedUnimplementedDoctorServiceServer() {}
 func (UnimplementedDoctorServiceServer) testEmbeddedByValue()                       {}
@@ -414,6 +430,24 @@ func _DoctorService_GetDoctor_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorService_GetMainSpecialities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMainSpecialitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).GetMainSpecialities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_GetMainSpecialities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).GetMainSpecialities(ctx, req.(*GetMainSpecialitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorService_ServiceDesc is the grpc.ServiceDesc for DoctorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -460,6 +494,10 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDoctor",
 			Handler:    _DoctorService_GetDoctor_Handler,
+		},
+		{
+			MethodName: "GetMainSpecialities",
+			Handler:    _DoctorService_GetMainSpecialities_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

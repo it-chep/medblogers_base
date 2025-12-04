@@ -1,13 +1,17 @@
 package speciality
 
+import "github.com/samber/lo"
+
 // SpecialityID - ID специальности
 type SpecialityID int64
 
 // Speciality - справочик специальностей
 type Speciality struct {
-	id           SpecialityID
-	name         string
-	doctorsCount int64
+	id                  SpecialityID
+	name                string
+	doctorsCount        int64
+	primarySpecialityID *int64
+	isOnlyAdditional    *bool
 }
 
 type Specialities []*Speciality
@@ -31,4 +35,12 @@ func (c *Speciality) Name() string {
 
 func (c *Speciality) DoctorsCount() int64 {
 	return c.doctorsCount
+}
+
+func (c *Speciality) PrimarySpecialityID() *int64 {
+	return c.primarySpecialityID
+}
+
+func (c *Speciality) IsOnlyAdditional() bool {
+	return lo.FromPtr[bool](c.isOnlyAdditional)
 }

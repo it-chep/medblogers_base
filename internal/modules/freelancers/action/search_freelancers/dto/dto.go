@@ -15,9 +15,8 @@ type FreelancerItem struct {
 
 	S3Image string
 
-	ExperienceWithDoctors bool
-	PriceCategory         int64
-	HasCommand            bool
+	PriceCategory        int64
+	AgencyRepresentative bool
 
 	SocialNetworks []SocialNetworkItem
 }

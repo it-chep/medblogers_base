@@ -24,8 +24,8 @@ func New(pool postgres.PoolWrapper) *Action {
 
 func (a *Action) Do(ctx context.Context, filter domain.Filter) (int64, error) {
 	logger.Message(ctx, fmt.Sprintf(
-		"[PreliminaryFilterCount] Предфильтрация фрилансеров: SocialNetworks: %v, Cities: %v, Specialities: %v, WorkDoc: %t, PriceCategory: %v,",
-		filter.SocialNetworks, filter.Cities, filter.Specialities, lo.FromPtr(filter.ExperienceWithDoctors), filter.PriceCategory,
+		"[PreliminaryFilterCount] Предфильтрация фрилансеров: SocialNetworks: %v, Cities: %v, Specialities: %v, PriceCategory: %v,",
+		filter.SocialNetworks, filter.Cities, filter.Specialities, filter.PriceCategory,
 	))
 
 	freelancersCount, err := a.freelancersService.GetFreelancersCount(ctx, filter)

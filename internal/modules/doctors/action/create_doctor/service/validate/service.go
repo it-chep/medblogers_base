@@ -38,17 +38,19 @@ func NewService(cityStorage CityStorage, specialityStorage SpecialityStorage) *S
 func (s *Service) ValidateDoctor(ctx context.Context, createDTO *dto.CreateDoctorRequest) ([]dto.ValidationError, error) {
 	citiesIDs, err := s.getCitiesIDs(ctx)
 	if err != nil {
+		logger.Error(ctx, "Ошибка получении городов при реге", err)
 		return nil, err
 	}
 
-	specialitiesIDs, err := s.getSpecialitiesIDs(ctx)
+	specialities, err := s.specialityStorage.GetAllSpecialities(ctx)
 	if err != nil {
+		logger.Error(ctx, "Ошибка получении городов при реге", err)
 		return nil, err
 	}
 
 	specification := spec.NewIndependentSpecification[*dto.CreateDoctorRequest]().
-		And(rules.RuleValidSpecialityID(specialitiesIDs)).
-		And(rules.RuleValidSpecialitiesIDs(specialitiesIDs)).
+		And(rules.RuleValidSpecialityID(specialities)).
+		And(rules.RuleValidSpecialitiesIDs(specialities)).
 		And(rules.RuleValidCityID(citiesIDs)).
 		And(rules.RuleValidAdditionalCitiesIDs(citiesIDs)).
 		And(rules.RuleAtLeastOneSocialMedia()).

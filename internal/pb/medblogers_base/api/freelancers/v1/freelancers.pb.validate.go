@@ -807,10 +807,6 @@ func (m *PreliminaryFilterCountRequest) validate(all bool) error {
 
 	var errors []error
 
-	if m.ExperienceWithDoctors != nil {
-		// no validation rules for ExperienceWithDoctors
-	}
-
 	if len(errors) > 0 {
 		return PreliminaryFilterCountRequestMultiError(errors)
 	}
@@ -1018,10 +1014,6 @@ func (m *PagesCountRequest) validate(all bool) error {
 	}
 
 	var errors []error
-
-	if m.ExperienceWithDoctors != nil {
-		// no validation rules for ExperienceWithDoctors
-	}
 
 	if len(errors) > 0 {
 		return PagesCountRequestMultiError(errors)
@@ -2007,10 +1999,6 @@ func (m *FilterRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
-	if m.ExperienceWithDoctors != nil {
-		// no validation rules for ExperienceWithDoctors
-	}
-
 	if len(errors) > 0 {
 		return FilterRequestMultiError(errors)
 	}
@@ -2323,17 +2311,6 @@ func (m *CreateFreelancersRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if m.GetExperienceWithDoctors() != true {
-		err := CreateFreelancersRequestValidationError{
-			field:  "ExperienceWithDoctors",
-			reason: "value must equal true",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
 	if m.GetCityId() <= 0 {
 		err := CreateFreelancersRequestValidationError{
 			field:  "CityId",
@@ -2464,9 +2441,9 @@ func (m *CreateFreelancersRequest) validate(all bool) error {
 
 	}
 
-	if m.GetHasCommand() != true {
+	if m.GetAgencyRepresentative() != true {
 		err := CreateFreelancersRequestValidationError{
-			field:  "HasCommand",
+			field:  "AgencyRepresentative",
 			reason: "value must equal true",
 		}
 		if !all {
@@ -3086,9 +3063,7 @@ func (m *GetFreelancerResponse) validate(all bool) error {
 
 	// no validation rules for WorkingExperience
 
-	// no validation rules for HasCommand
-
-	// no validation rules for ExperienceWithDoctors
+	// no validation rules for AgencyRepresentative
 
 	if len(errors) > 0 {
 		return GetFreelancerResponseMultiError(errors)
@@ -4345,8 +4320,6 @@ func (m *SearchResponse_FreelancerItem) validate(all bool) error {
 
 	// no validation rules for Image
 
-	// no validation rules for ExperienceWithDoctors
-
 	// no validation rules for PriceCategory
 
 	for idx, item := range m.GetSocialNetworks() {
@@ -4830,9 +4803,7 @@ func (m *FilterResponse_FreelancerItem) validate(all bool) error {
 
 	// no validation rules for Image
 
-	// no validation rules for ExperienceWithDoctors
-
-	// no validation rules for HasCommand
+	// no validation rules for AgencyRepresentative
 
 	// no validation rules for PriceCategory
 

@@ -35,8 +35,7 @@ func (a *Action) Do(ctx context.Context, filter freelancer.Filter) ([]dto.Freela
 	if len(filter.Cities) != 0 ||
 		len(filter.Specialities) != 0 ||
 		len(filter.SocialNetworks) != 0 ||
-		len(filter.PriceCategory) != 0 ||
-		filter.ExperienceWithDoctors != nil {
+		len(filter.PriceCategory) != 0 {
 		return a.filterService.GetFreelancersByFilter(ctx, filter)
 	}
 
