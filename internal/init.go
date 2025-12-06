@@ -3,9 +3,14 @@ package internal
 import (
 	"context"
 	"fmt"
+	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
+	authV1 "medblogers_base/internal/app/api/auth"
+	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
+	moduleAuth "medblogers_base/internal/modules/auth"
 
 	"google.golang.org/grpc/credentials/insecure"
 
@@ -13,9 +18,13 @@ import (
 	httpV1 "medblogers_base/internal/app/router/v1"
 	"medblogers_base/internal/config"
 	moduleadmin "medblogers_base/internal/modules/admin"
+	moduleBlogs "medblogers_base/internal/modules/blogs"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
 
+	descAdminV1 "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	descAuthV1 "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
+	descBlogsV1 "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	descFreelancersV1 "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
 	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
@@ -83,9 +92,11 @@ func (a *App) initHttpConns(_ context.Context) *App {
 
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
-		admin:       moduleadmin.New(),
+		admin:       moduleadmin.New(a.httpConns, a.config, a.postgres),
 		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
+		auth:        moduleAuth.New(a.postgres),
+		blogs:       moduleBlogs.NewModule(a.postgres),
 	}
 
 	return a
@@ -100,6 +111,10 @@ func (a *App) initControllers(_ context.Context) *App {
 	a.controllers.doctorsController = doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)
 	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)
 	a.controllers.freelancersController = freelancersV1.NewFreelancersService(a.modules.freelancers)
+	a.controllers.authController = authV1.NewAuthService(a.modules.auth, a.config)
+	a.controllers.adminController = adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)
+	a.controllers.blogsController = blogsV1.NewService(a.modules.blogs)
+
 	return a
 }
 
@@ -116,6 +131,7 @@ func (a *App) initServer(_ context.Context) *App {
 			grpcrecovery.UnaryServerInterceptor(),
 			interceptor.AuthInterceptor,
 			interceptor.ConfigInterceptor(a.mutableConfig),
+			interceptor.EmailInterceptor(a.config),
 			interceptor.LoggerInterceptor(logger.New()),
 			interceptor.RateLimitInterceptor,
 			interceptor.ResponseTimeInterceptor,
@@ -124,7 +140,9 @@ func (a *App) initServer(_ context.Context) *App {
 	descDoctorsV1.RegisterDoctorServiceServer(grpcServer, a.controllers.doctorsController)
 	descSeoV1.RegisterSeoServer(grpcServer, a.controllers.seoController)
 	descFreelancersV1.RegisterFreelancerServiceServer(grpcServer, a.controllers.freelancersController)
-
+	descAuthV1.RegisterAuthServiceServer(grpcServer, a.controllers.authController)
+	descAdminV1.RegisterAdminServiceServer(grpcServer, a.controllers.adminController)
+	descBlogsV1.RegisterBlogServiceServer(grpcServer, a.controllers.blogsController)
 	reflection.Register(grpcServer)
 
 	a.server = &Server{
@@ -137,19 +155,41 @@ func (a *App) initServer(_ context.Context) *App {
 func (a *App) initGRPCServiceHandlers(ctx context.Context) *App {
 	httpProxyOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
-	err := descDoctorsV1.RegisterDoctorServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
-	if err != nil {
-		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
+	services := []struct {
+		name         string
+		registerFunc func(context.Context, *runtime.ServeMux, string, []grpc.DialOption) error
+	}{
+		{
+			name:         "DoctorService",
+			registerFunc: descDoctorsV1.RegisterDoctorServiceHandlerFromEndpoint,
+		},
+		{
+			name:         "Seo",
+			registerFunc: descSeoV1.RegisterSeoHandlerFromEndpoint,
+		},
+		{
+			name:         "FreelancerService",
+			registerFunc: descFreelancersV1.RegisterFreelancerServiceHandlerFromEndpoint,
+		},
+		{
+			name:         "AuthService",
+			registerFunc: descAuthV1.RegisterAuthServiceHandlerFromEndpoint,
+		},
+		{
+			name:         "AdminService",
+			registerFunc: descAdminV1.RegisterAdminServiceHandlerFromEndpoint,
+		},
+		{
+			name:         "BlogService",
+			registerFunc: descBlogsV1.RegisterBlogServiceHandlerFromEndpoint,
+		},
 	}
 
-	err = descSeoV1.RegisterSeoHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
-	if err != nil {
-		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
-	}
-
-	err = descFreelancersV1.RegisterFreelancerServiceHandlerFromEndpoint(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts)
-	if err != nil {
-		panic(fmt.Sprintf("[APP] Не удалось зарегистрироваь gprc хэндлер: %e", err))
+	var err error
+	for _, service := range services {
+		if err = service.registerFunc(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts); err != nil {
+			panic(fmt.Sprintf("[APP] Не удалось зарегистрировать gRPC хэндлер для %s: %v", service.name, err))
+		}
 	}
 
 	return a

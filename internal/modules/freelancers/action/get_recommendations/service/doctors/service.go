@@ -2,11 +2,12 @@ package doctors
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/freelancers/action/get_recommendations/dto"
 	"medblogers_base/internal/modules/freelancers/domain/city"
 	"medblogers_base/internal/modules/freelancers/domain/doctor"
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
+
+	"github.com/samber/lo"
 )
 
 type DoctorsDal interface {

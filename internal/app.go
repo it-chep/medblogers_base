@@ -3,10 +3,15 @@ package internal
 import (
 	"context"
 	"fmt"
+	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
+	authV1 "medblogers_base/internal/app/api/auth"
+	blogV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
 	httpV1 "medblogers_base/internal/app/router/v1"
+	"medblogers_base/internal/modules/auth"
+	"medblogers_base/internal/modules/blogs"
 	"medblogers_base/internal/modules/freelancers"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"net"
@@ -24,9 +29,11 @@ import (
 )
 
 type modules struct {
+	auth        *auth.Module
 	admin       *admin.Module
 	doctors     *doctors.Module
 	freelancers *freelancers.Module
+	blogs       *blogs.Module
 }
 
 type router struct {
@@ -37,6 +44,9 @@ type controllers struct {
 	doctorsController     *doctorsV1.Implementation
 	seoController         *seoV1.Implementation
 	freelancersController *freelancersV1.Implementation
+	authController        *authV1.Implementation
+	adminController       *adminV1.Implementation
+	blogsController       *blogV1.Implementation
 }
 
 type Server struct {
