@@ -14,9 +14,12 @@ func (i *Implementation) PublishBlog(ctx context.Context, req *desc.PublishBlogR
 
 	return resp, executor(ctx, "/api/v1/admin/blog/{id}/publish", func(ctx context.Context) error {
 		resp = &desc.PublishBlogResponse{}
-
+		var imageID *uuid.UUID
 		blogID := uuid.MustParse(req.GetBlogId())
-		imageID := uuid.MustParse(req.GetPrimaryImageId())
+		if len(req.GetPrimaryImageId()) != 0 {
+			parsedUUID := uuid.MustParse(req.GetPrimaryImageId())
+			imageID = &parsedUUID
+		}
 
 		err := i.admin.Actions.BlogModule.PublishBlog.Do(ctx, blogID, imageID)
 		if err != nil {

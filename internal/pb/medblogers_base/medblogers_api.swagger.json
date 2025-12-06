@@ -118,7 +118,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/{blogId}/delete_image/{imageId}": {
+    "/api/v1/admin/blog/{blogId}/delete_image/{imageId}": {
       "post": {
         "summary": "Удаление картинки для статьи",
         "operationId": "AdminService_DeleteBlogImage",
@@ -163,7 +163,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/{blogId}/publish": {
+    "/api/v1/admin/blog/{blogId}/publish": {
       "post": {
         "summary": "Публикация статьи",
         "operationId": "AdminService_PublishBlog",
@@ -202,7 +202,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/{blogId}/save_image": {
+    "/api/v1/admin/blog/{blogId}/save_image": {
       "post": {
         "summary": "Сохранение картинки для статьи",
         "operationId": "AdminService_SaveBlogImage",
@@ -241,7 +241,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/{blogId}/unpublish": {
+    "/api/v1/admin/blog/{blogId}/unpublish": {
       "post": {
         "summary": "Снятие статьи с публикации",
         "operationId": "AdminService_UnPublishBlog",
@@ -280,7 +280,7 @@
         ]
       }
     },
-    "/api/v1/auth/blog/{blogId}/update": {
+    "/api/v1/admin/blog/{blogId}/update": {
       "post": {
         "summary": "Обновление статьи",
         "operationId": "AdminService_UpdateDraftBlog",
@@ -1529,7 +1529,7 @@
       "properties": {
         "imageData": {
           "type": "string",
-          "format": "byte"
+          "title": "файл в строке base64"
         }
       }
     },

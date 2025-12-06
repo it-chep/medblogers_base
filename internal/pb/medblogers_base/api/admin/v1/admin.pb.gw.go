@@ -537,7 +537,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -562,7 +562,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/save_image"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -587,7 +587,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/delete_image/{image_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -612,7 +612,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/publish"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -637,7 +637,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/unpublish"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -767,7 +767,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -789,7 +789,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/save_image"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -811,7 +811,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/delete_image/{image_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -833,7 +833,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/publish"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -855,7 +855,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/auth/blog/{blog_id}/unpublish"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -881,15 +881,15 @@ var (
 
 	pattern_AdminService_CreateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "blog", "create"}, ""))
 
-	pattern_AdminService_UpdateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "auth", "blog", "blog_id", "update"}, ""))
+	pattern_AdminService_UpdateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "update"}, ""))
 
-	pattern_AdminService_SaveBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "auth", "blog", "blog_id", "save_image"}, ""))
+	pattern_AdminService_SaveBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "save_image"}, ""))
 
-	pattern_AdminService_DeleteBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "auth", "blog", "blog_id", "delete_image", "image_id"}, ""))
+	pattern_AdminService_DeleteBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "admin", "blog", "blog_id", "delete_image", "image_id"}, ""))
 
-	pattern_AdminService_PublishBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "auth", "blog", "blog_id", "publish"}, ""))
+	pattern_AdminService_PublishBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "publish"}, ""))
 
-	pattern_AdminService_UnPublishBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "auth", "blog", "blog_id", "unpublish"}, ""))
+	pattern_AdminService_UnPublishBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "unpublish"}, ""))
 )
 
 var (

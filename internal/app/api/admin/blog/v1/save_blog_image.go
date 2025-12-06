@@ -2,6 +2,8 @@ package v1
 
 import (
 	"context"
+	"encoding/base64"
+	"log"
 	"medblogers_base/internal/app/interceptor"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
 
@@ -12,7 +14,13 @@ func (i *Implementation) SaveBlogImage(ctx context.Context, req *desc.SaveBlogIm
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/auth/blog/{id}/save_image", func(ctx context.Context) error {
-		imageID, imageURL, err := i.admin.Actions.BlogModule.SaveBlogImage.Do(ctx, uuid.MustParse(req.GetBlogId()), req.GetImageData())
+		data, err := base64.StdEncoding.DecodeString(req.GetImageData()) //base64 string
+		if err != nil {
+			log.Fatal("Ошибка декодирования:", err)
+			return err
+		}
+
+		imageID, imageURL, err := i.admin.Actions.BlogModule.SaveBlogImage.Do(ctx, uuid.MustParse(req.GetBlogId()), data)
 		if err != nil {
 			return err
 		}
