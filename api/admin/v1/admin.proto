@@ -124,6 +124,7 @@ message GetBlogByIDResponse {
 
 message CreateDraftBlogRequest {
     string title = 1;
+    string slug = 2;
 }
 
 message CreateDraftBlogResponse {
