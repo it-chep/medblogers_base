@@ -451,6 +451,37 @@
         ]
       }
     },
+    "/api/v1/blog/{blogSlug}": {
+      "get": {
+        "summary": "Конкретная статья по слагу",
+        "operationId": "BlogService_GetBlogDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBlogDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
     "/api/v1/blogs": {
       "get": {
         "summary": "Все статьи",
@@ -492,37 +523,6 @@
             }
           }
         },
-        "tags": [
-          "BlogService"
-        ]
-      }
-    },
-    "/api/v1/blogs/{blogSlug}": {
-      "get": {
-        "summary": "Конкретная статья по слагу",
-        "operationId": "BlogService_GetBlogDetail",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetBlogDetailResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "blogSlug",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "BlogService"
         ]

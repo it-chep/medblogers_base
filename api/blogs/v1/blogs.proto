@@ -27,7 +27,7 @@ service BlogService {
   }
   rpc GetBlogDetail(GetBlogDetailRequest) returns(GetBlogDetailResponse)  {
     option (google.api.http) = {
-      get: "/api/v1/blogs/{blog_slug}"
+      get: "/api/v1/blog/{blog_slug}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Конкретная статья по слагу"
