@@ -20,5 +20,6 @@ func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDet
 		SocietyPreview:    blog.GetSocietyPreviewText(),
 		AdditionalSeoText: blog.GetAdditionalSEOText(),
 		CreatedAt:         blog.GetCreatedAt().Format(time.RFC3339),
+		PhotoLink:         blog.GetPrimaryPhotoURL(),
 	}, nil
 }

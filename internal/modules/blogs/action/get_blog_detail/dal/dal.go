@@ -2,8 +2,12 @@ package dal
 
 import (
 	"context"
+	"github.com/google/uuid"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/blogs/dal/blogs/dao"
 	"medblogers_base/internal/modules/blogs/domain/blog"
+	"medblogers_base/internal/modules/blogs/domain/blog_photo"
 	"medblogers_base/internal/pkg/postgres"
 
 	"github.com/georgysavva/scany/pgxscan"
@@ -35,4 +39,27 @@ func (r *Repository) GetBlogDetail(ctx context.Context, slug string) (*blog.Blog
 	}
 
 	return blogDAO.ToDomain(), nil
+}
+
+// GetPrimaryPhoto получение первой фотографии для сеошки
+func (r *Repository) GetPrimaryPhoto(ctx context.Context, blogID uuid.UUID) (*blog_photo.BlogPhoto, error) {
+	sql := `
+		select id, blog_id, file_type, is_primary 
+		from blog_photos 
+		where is_primary is true 
+		  and blog_id = $1
+	`
+
+	var photo dao.PrimaryPhotoDAO
+
+	err := pgxscan.Get(ctx, r.db, &photo, sql, blogID)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, nil
+		}
+
+		return nil, err
+	}
+
+	return photo.ToDomain(), nil
 }

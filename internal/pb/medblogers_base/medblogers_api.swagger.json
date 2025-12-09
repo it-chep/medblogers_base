@@ -2594,6 +2594,9 @@
         },
         "createdAt": {
           "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
         }
       }
     },

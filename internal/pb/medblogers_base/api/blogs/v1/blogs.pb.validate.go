@@ -647,6 +647,8 @@ func (m *GetBlogDetailResponse) validate(all bool) error {
 
 	// no validation rules for CreatedAt
 
+	// no validation rules for PhotoLink
+
 	if len(errors) > 0 {
 		return GetBlogDetailResponseMultiError(errors)
 	}

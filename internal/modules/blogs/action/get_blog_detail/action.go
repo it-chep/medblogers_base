@@ -21,5 +21,19 @@ func New(pool postgres.PoolWrapper) *Action {
 
 // Do .
 func (a *Action) Do(ctx context.Context, slug string) (*blog.Blog, error) {
-	return a.dal.GetBlogDetail(ctx, slug)
+	blogEntity, err := a.dal.GetBlogDetail(ctx, slug)
+	if err != nil {
+		return nil, err
+	}
+
+	photo, err := a.dal.GetPrimaryPhoto(ctx, blogEntity.GetID())
+	if err != nil {
+		return nil, err
+	}
+
+	if photo != nil {
+		blogEntity.SetPrimaryPhotoURL(photo.GetID(), photo.GetFileType())
+	}
+
+	return blogEntity, nil
 }
