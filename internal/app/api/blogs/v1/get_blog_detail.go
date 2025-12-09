@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
-	"time"
+	"medblogers_base/internal/pkg/converter"
 )
 
 func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDetailRequest) (*desc.GetBlogDetailResponse, error) {
@@ -19,7 +19,7 @@ func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDet
 		PreviewText:       blog.GetPreviewText(),
 		SocietyPreview:    blog.GetSocietyPreviewText(),
 		AdditionalSeoText: blog.GetAdditionalSEOText(),
-		CreatedAt:         blog.GetCreatedAt().Format(time.RFC3339),
+		CreatedAt:         converter.FormatDateRussian(blog.GetCreatedAt()),
 		PhotoLink:         blog.GetPrimaryPhotoURL(),
 	}, nil
 }
