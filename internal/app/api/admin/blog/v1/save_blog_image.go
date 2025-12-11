@@ -13,7 +13,7 @@ import (
 func (i *Implementation) SaveBlogImage(ctx context.Context, req *desc.SaveBlogImageRequest) (resp *desc.SaveBlogImageResponse, _ error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return resp, executor(ctx, "/api/v1/auth/blog/{id}/save_image", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/blog/{id}/save_image", func(ctx context.Context) error {
 		data, err := base64.StdEncoding.DecodeString(req.GetImageData()) //base64 string
 		if err != nil {
 			log.Fatal("Ошибка декодирования:", err)

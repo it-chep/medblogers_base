@@ -12,7 +12,7 @@ import (
 func (i *Implementation) UpdateDraftBlog(ctx context.Context, req *desc.UpdateDraftBlogRequest) (resp *desc.UpdateDraftBlogResponse, _ error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return resp, executor(ctx, "/api/v1/auth/blog/{id}/update", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/blog/{id}/update", func(ctx context.Context) error {
 		resp = &desc.UpdateDraftBlogResponse{}
 
 		updateRequest := dto.Request{
