@@ -10,6 +10,7 @@ package v1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,99 +25,95 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_BlogService_GetTopBlogs_0(ctx context.Context, marshaler runtime.Marshaler, client BlogServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetTopBlogsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetTopBlogsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetTopBlogs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_BlogService_GetTopBlogs_0(ctx context.Context, marshaler runtime.Marshaler, server BlogServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetTopBlogsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetTopBlogsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetTopBlogs(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_BlogService_GetBlogs_0(ctx context.Context, marshaler runtime.Marshaler, client BlogServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBlogsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetBlogsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetBlogs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_BlogService_GetBlogs_0(ctx context.Context, marshaler runtime.Marshaler, server BlogServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBlogsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetBlogsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetBlogs(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_BlogService_GetBlogDetail_0(ctx context.Context, marshaler runtime.Marshaler, client BlogServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBlogDetailRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetBlogDetailRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["blog_slug"]
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["blog_slug"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_slug")
 	}
-
 	protoReq.BlogSlug, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_slug", err)
 	}
-
 	msg, err := client.GetBlogDetail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_BlogService_GetBlogDetail_0(ctx context.Context, marshaler runtime.Marshaler, server BlogServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBlogDetailRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetBlogDetailRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["blog_slug"]
+	val, ok := pathParams["blog_slug"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_slug")
 	}
-
 	protoReq.BlogSlug, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_slug", err)
 	}
-
 	msg, err := server.GetBlogDetail(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterBlogServiceHandlerServer registers the http handlers for service BlogService to "mux".
@@ -125,16 +122,13 @@ func local_request_BlogService_GetBlogDetail_0(ctx context.Context, marshaler ru
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterBlogServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterBlogServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server BlogServiceServer) error {
-
-	mux.Handle("GET", pattern_BlogService_GetTopBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_BlogService_GetTopBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/blogs.v1.BlogService/GetTopBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs/top"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/blogs.v1.BlogService/GetTopBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs/top"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -146,20 +140,15 @@ func RegisterBlogServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_BlogService_GetTopBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_BlogService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_BlogService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -171,20 +160,15 @@ func RegisterBlogServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_BlogService_GetBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_BlogService_GetBlogDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_BlogService_GetBlogDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogDetail", runtime.WithHTTPPathPattern("/api/v1/blog/{blog_slug}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogDetail", runtime.WithHTTPPathPattern("/api/v1/blog/{blog_slug}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -196,9 +180,7 @@ func RegisterBlogServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_BlogService_GetBlogDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -225,7 +207,6 @@ func RegisterBlogServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 			}
 		}()
 	}()
-
 	return RegisterBlogServiceHandler(ctx, mux, conn)
 }
 
@@ -241,14 +222,11 @@ func RegisterBlogServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "BlogServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterBlogServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client BlogServiceClient) error {
-
-	mux.Handle("GET", pattern_BlogService_GetTopBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_BlogService_GetTopBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/blogs.v1.BlogService/GetTopBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs/top"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/blogs.v1.BlogService/GetTopBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs/top"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -259,18 +237,13 @@ func RegisterBlogServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_BlogService_GetTopBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_BlogService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_BlogService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/blogs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -281,18 +254,13 @@ func RegisterBlogServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_BlogService_GetBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_BlogService_GetBlogDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_BlogService_GetBlogDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogDetail", runtime.WithHTTPPathPattern("/api/v1/blog/{blog_slug}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/blogs.v1.BlogService/GetBlogDetail", runtime.WithHTTPPathPattern("/api/v1/blog/{blog_slug}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -303,26 +271,19 @@ func RegisterBlogServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_BlogService_GetBlogDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_BlogService_GetTopBlogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "blogs", "top"}, ""))
-
-	pattern_BlogService_GetBlogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "blogs"}, ""))
-
+	pattern_BlogService_GetTopBlogs_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "blogs", "top"}, ""))
+	pattern_BlogService_GetBlogs_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "blogs"}, ""))
 	pattern_BlogService_GetBlogDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "blog", "blog_slug"}, ""))
 )
 
 var (
-	forward_BlogService_GetTopBlogs_0 = runtime.ForwardResponseMessage
-
-	forward_BlogService_GetBlogs_0 = runtime.ForwardResponseMessage
-
+	forward_BlogService_GetTopBlogs_0   = runtime.ForwardResponseMessage
+	forward_BlogService_GetBlogs_0      = runtime.ForwardResponseMessage
 	forward_BlogService_GetBlogDetail_0 = runtime.ForwardResponseMessage
 )

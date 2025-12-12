@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (i *Implementation) Refresh(ctx context.Context, req *desc.RefreshRequest) (*desc.RefreshResponse, error) {
+func (i *Implementation) Check(ctx context.Context, req *desc.CheckRequest) (*desc.CheckResponse, error) {
 	claims, err := token.RefreshClaimsFromContext(ctx, i.config.JWTConfig.RefreshSecret)
 	if err != nil {
 		return nil, err
@@ -18,16 +18,5 @@ func (i *Implementation) Refresh(ctx context.Context, req *desc.RefreshRequest) 
 		return nil, status.Error(codes.Internal, "Not Claims In Request")
 	}
 
-	tokenVal, err := token.SetTokenToCookie(ctx, token.GenerateTokenRequest{
-		Email:      claims.Email,
-		JwtKey:     i.config.JWTConfig.Secret,
-		RefreshKey: i.config.JWTConfig.RefreshSecret,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	return &desc.RefreshResponse{
-		Token: tokenVal,
-	}, nil
+	return &desc.CheckResponse{}, nil
 }

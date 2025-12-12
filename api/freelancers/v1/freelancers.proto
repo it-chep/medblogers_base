@@ -2,126 +2,76 @@ syntax = "proto3";
 
 package freelancers.v1;
 
+import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
-import "validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "api/freelancers/v1";
 
-
 // Сервис для работы с фрилансерами
 service FreelancerService {
   rpc GetFreelancers(GetFreelancersRequest) returns (GetFreelancersResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers"};
   }
   rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/settings"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Доступные фильтры"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/settings"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доступные фильтры"};
   }
   rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/counters_info"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение информации по счетчикам (количество фрилансеров в базе)"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/counters_info"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение информации по счетчикам (количество фрилансеров в базе)"};
   }
   rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/preliminary_filter_count"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Предрасчет фрилансеров попадающих под фильтр"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/preliminary_filter_count"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Предрасчет фрилансеров попадающих под фильтр"};
   }
   rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/pages_count"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение страниц страниц для фильтрации"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/pages_count"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение страниц страниц для фильтрации"};
   }
   rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/cities_list"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение городов для регистрации"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/cities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение городов для регистрации"};
   }
   rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/specialities_list"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение специальностей для регистрации"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/specialities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальностей для регистрации"};
   }
   rpc GetSocialNetworks(GetSocialNetworksRequest) returns (GetSocialNetworksResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/networks_list"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение соц сетей для регистрации"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/networks_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение соц сетей для регистрации"};
   }
   rpc Search(SearchRequest) returns (SearchResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/search"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Поиск фрилансера, города, специальности по переданным значениям"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/search"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск фрилансера, города, специальности по переданным значениям"};
   }
   rpc Filter(FilterRequest) returns (FilterResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/filter"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Фильтрация фрилансеров по доступным фильтрам"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/filter"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация фрилансеров по доступным фильтрам"};
   }
   rpc CreateFreelancer(CreateFreelancersRequest) returns (CreateFreelancersResponse) {
     option (google.api.http) = {
       post: "/api/v1/freelancers/create"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Регистрация фрилансера"
-    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Регистрация фрилансера"};
   }
   rpc GetFreelancer(GetFreelancerRequest) returns (GetFreelancerResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/card/{freelancer_slug}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение детальной информации про фрилансера"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/card/{freelancer_slug}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про фрилансера"};
   }
   rpc GetFreelancerRecommendations(GetFreelancerRecommendationsRequest) returns (GetFreelancerRecommendationsResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/freelancers/card/{freelancer_slug}/recommendations"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Получение рекомендаций фрилансера"
-    };
+    option (google.api.http) = {get: "/api/v1/freelancers/card/{freelancer_slug}/recommendations"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение рекомендаций фрилансера"};
   }
 }
 
 message GetFreelancersRequest {}
 message GetFreelancersResponse {}
 
-
 // ===== Настройки фильтров =====
 
-message  GetSettingsRequest {}
+message GetSettingsRequest {}
 
 message GetSettingsResponse {
   repeated SocietyItem societies = 1;
@@ -157,14 +107,14 @@ message GetSettingsResponse {
 
 // ===== Счетчики фрилансеров =====
 
-message  GetCountersRequest {}
-message  GetCountersResponse {
+message GetCountersRequest {}
+message GetCountersResponse {
   int64 freelancers_count = 1;
 }
 
 // ===== Предрасчет фрилансеров попадающих под фильтр =====
 
-message  PreliminaryFilterCountRequest {
+message PreliminaryFilterCountRequest {
   repeated int64 societies = 1;
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
@@ -172,13 +122,13 @@ message  PreliminaryFilterCountRequest {
   optional bool experience_with_doctors = 5;
 }
 
-message  PreliminaryFilterCountResponse {
+message PreliminaryFilterCountResponse {
   int64 freelancers_count = 1;
 }
 
 // ===== Предрасчет количества страниц =====
 
-message  PagesCountRequest {
+message PagesCountRequest {
   repeated int64 societies = 1;
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
@@ -187,13 +137,13 @@ message  PagesCountRequest {
   optional bool experience_with_doctors = 5;
 }
 
-message  PagesCountResponse {
+message PagesCountResponse {
   int64 pages_count = 1;
 }
 
 // ===== Получение городов для регистрации =====
 
-message  GetCitiesRequest {}
+message GetCitiesRequest {}
 message CitiesResponse {
   repeated CityItem cities = 1;
 
@@ -301,29 +251,44 @@ message FilterResponse {
 // ===== Создание Фрилансера =====
 
 message CreateFreelancersRequest {
-  string email = 1 [(validate.rules).string = {email: true, max_len: 255}];
-  string last_name = 2 [(validate.rules).string = {min_len: 1, max_len: 100}];
-  string first_name = 3 [(validate.rules).string = {min_len: 1, max_len: 100}];
-  string middle_name = 4 [(validate.rules).string = {min_len: 1, max_len: 100}];
-  string telegram_username = 5 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string email = 1 [(buf.validate.field).string = {
+    email: true
+    max_len: 255
+  }];
+  string last_name = 2 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string first_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string middle_name = 4 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string telegram_username = 5 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
 
-  bool agree_policy = 6 [(validate.rules).bool.const = true];
-  bool experience_with_doctors = 7 [(validate.rules).bool.const = true];
+  bool agree_policy = 6 [(buf.validate.field).bool.const = true];
+  bool experience_with_doctors = 7 [(buf.validate.field).bool.const = true];
 
-  int64 city_id = 8 [(validate.rules).int64.gt = 0];
-  int64 speciality_id = 9 [(validate.rules).int64.gt = 0];
+  int64 city_id = 8 [(buf.validate.field).int64.gt = 0];
+  int64 speciality_id = 9 [(buf.validate.field).int64.gt = 0];
 
-  repeated int64 additional_cities = 10 [(validate.rules).repeated.unique = true];
-  repeated int64 additional_specialties = 11 [(validate.rules).repeated.unique = true];
-  repeated int64 social_networks = 12 [(validate.rules).repeated.unique = true];
-  string portfolio_link = 13 [(validate.rules).string.max_len = 255];
+  repeated int64 additional_cities = 10 [(buf.validate.field).repeated.unique = true];
+  repeated int64 additional_specialties = 11 [(buf.validate.field).repeated.unique = true];
+  repeated int64 social_networks = 12 [(buf.validate.field).repeated.unique = true];
+  string portfolio_link = 13 [(buf.validate.field).string.max_len = 255];
 
   // Прайс-лист
   repeated PriceListItem price_list = 14;
   // Есть команда
-  bool has_command = 15 [(validate.rules).bool.const = true];
+  bool has_command = 15 [(buf.validate.field).bool.const = true];
   // Опыт работы в годах
-  int64 working_experience = 16 [(validate.rules).int64.gt = 0];
+  int64 working_experience = 16 [(buf.validate.field).int64.gt = 0];
 
   message PriceListItem {
     // Название услуги
@@ -405,9 +370,9 @@ message GetFreelancerResponse {
   }
 }
 
-message GetSocialNetworksRequest{}
+message GetSocialNetworksRequest {}
 
-message GetSocialNetworksResponse{
+message GetSocialNetworksResponse {
   repeated SocialNetworkItem social_networks = 1;
 
   message SocialNetworkItem {
@@ -417,11 +382,11 @@ message GetSocialNetworksResponse{
   }
 }
 
-message GetFreelancerRecommendationsRequest{
+message GetFreelancerRecommendationsRequest {
   string freelancer_slug = 1;
 }
 
-message GetFreelancerRecommendationsResponse{
+message GetFreelancerRecommendationsResponse {
   repeated Doctor doctors = 1;
 
   message Doctor {

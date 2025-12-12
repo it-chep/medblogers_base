@@ -2,13 +2,14 @@ package dal
 
 import (
 	"context"
-	"github.com/google/uuid"
-	"github.com/jackc/pgx/v4"
-	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/blogs/dal/blogs/dao"
 	"medblogers_base/internal/modules/blogs/domain/blog"
 	"medblogers_base/internal/modules/blogs/domain/blog_photo"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/google/uuid"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
 
 	"github.com/georgysavva/scany/pgxscan"
 )

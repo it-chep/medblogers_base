@@ -14,51 +14,54 @@ service AuthService {
       post: "/api/v1/auth/login"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Вход"
-    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Вход"};
   }
   rpc Logout(LogoutRequest) returns (LogoutResponse) {
     option (google.api.http) = {
       post: "/api/v1/auth/logout"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Выход"
-    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Выход"};
   }
   rpc Refresh(RefreshRequest) returns (RefreshResponse) {
     option (google.api.http) = {
       post: "/api/v1/auth/refresh"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Рефреш токена"
-    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Рефреш токена"};
+  }
+  rpc Check(CheckRequest) returns (CheckResponse) {
+    option (google.api.http) = {get: "/api/v1/auth/check"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "проверка токена"};
   }
   rpc Register(RegisterRequest) returns (RegisterResponse) {
     option (google.api.http) = {
       post: "/api/v1/auth/register"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Регистрация"
-    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Регистрация"};
   }
 }
 
-
-message LoginRequest{
+message LoginRequest {
   string email = 1;
   string password = 2;
 }
-message LoginResponse{}
-message LogoutRequest{}
-message LogoutResponse{}
-message RefreshRequest{}
-message RefreshResponse{}
-message RegisterRequest{
+message LoginResponse {
+  string token = 1;
+}
+message LogoutRequest {}
+message LogoutResponse {}
+message RefreshRequest {}
+message RefreshResponse {
+  string token = 1;
+}
+message RegisterRequest {
   string email = 1;
   string password = 2;
 }
-message RegisterResponse{}
+message RegisterResponse {
+  string token = 1;
+}
+message CheckRequest {}
+message CheckResponse {}

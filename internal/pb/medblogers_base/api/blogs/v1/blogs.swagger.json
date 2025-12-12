@@ -1,0 +1,220 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "blogs/v1/blogs.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BlogService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/blog/{blogSlug}": {
+      "get": {
+        "summary": "Конкретная статья по слагу",
+        "operationId": "BlogService_GetBlogDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.GetBlogDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
+    "/api/v1/blogs": {
+      "get": {
+        "summary": "Все статьи",
+        "operationId": "BlogService_GetBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.GetBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
+    "/api/v1/blogs/top": {
+      "get": {
+        "summary": "Топ-3 или топ статей, для главной и тд",
+        "operationId": "BlogService_GetTopBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.GetTopBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "BlogService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "blogs.v1.GetBlogDetailResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "societyPreview": {
+          "type": "string"
+        },
+        "additionalSeoText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs.v1.GetBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.GetBlogsResponse.BlogMiniatures"
+          }
+        }
+      }
+    },
+    "blogs.v1.GetBlogsResponse.BlogMiniatures": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs.v1.GetTopBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.GetTopBlogsResponse.BlogMiniatures"
+          }
+        }
+      }
+    },
+    "blogs.v1.GetTopBlogsResponse.BlogMiniatures": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

@@ -10,24 +10,30 @@ import (
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
 
-	moduleAuth "medblogers_base/internal/modules/auth"
+	"github.com/go-chi/chi/v5"
+	base_middleware "github.com/go-chi/chi/v5/middleware"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/not-for-prod/clay/server"
+	"github.com/not-for-prod/clay/transport"
+	"google.golang.org/grpc/metadata"
 
-	"google.golang.org/grpc/credentials/insecure"
+	"medblogers_base/internal/app/middleware"
+	moduleAuth "medblogers_base/internal/modules/auth"
+	adminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
+	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
+	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
+	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+	seoDesc "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
+	"medblogers_base/internal/pkg/token"
 
 	"medblogers_base/internal/app/interceptor"
-	httpV1 "medblogers_base/internal/app/router/v1"
 	"medblogers_base/internal/config"
 	moduleadmin "medblogers_base/internal/modules/admin"
 	moduleBlogs "medblogers_base/internal/modules/blogs"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
 
-	descAdminV1 "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
-	descAuthV1 "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
-	descBlogsV1 "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
-	descDoctorsV1 "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
-	descFreelancersV1 "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
-	descSeoV1 "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/logger"
@@ -37,10 +43,8 @@ import (
 
 	grpcrecovery "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
 
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 )
 
 func (a *App) initPostgres(ctx context.Context) *App {
@@ -108,89 +112,64 @@ func (a *App) initCache(_ context.Context) *App {
 }
 
 func (a *App) initControllers(_ context.Context) *App {
-	a.controllers.doctorsController = doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)
-	a.controllers.seoController = seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)
-	a.controllers.freelancersController = freelancersV1.NewFreelancersService(a.modules.freelancers)
-	a.controllers.authController = authV1.NewAuthService(a.modules.auth, a.config)
-	a.controllers.adminController = adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)
-	a.controllers.blogsController = blogsV1.NewService(a.modules.blogs)
+	a.controllers = []transport.ServiceDesc{
+		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
+		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
+		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
+		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
+		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)),
+	}
 
-	return a
-}
-
-func (a *App) initRouters(_ context.Context) *App {
-	a.mux = runtime.NewServeMux()
-	a.router.routerV1 = httpV1.NewRouter(a.config, a.mutableConfig)
-	a.router.routerV1.Router.Mount("/", a.mux)
 	return a
 }
 
 func (a *App) initServer(_ context.Context) *App {
-	grpcServer := grpc.NewServer(
-		grpc.ChainUnaryInterceptor(
-			grpcrecovery.UnaryServerInterceptor(),
-			interceptor.AuthInterceptor,
-			interceptor.ConfigInterceptor(a.mutableConfig),
-			interceptor.EmailInterceptor(a.config),
-			interceptor.LoggerInterceptor(logger.New()),
-			interceptor.RateLimitInterceptor,
-			interceptor.ResponseTimeInterceptor,
+	a.muxChi = chi.NewMux()
+	a.clayServer = server.NewServer(
+		7002,
+		server.WithHTTPMux(a.muxChi),
+		server.WithHTTPPort(8080),
+		server.WithGRPCOpts(
+			grpc.ChainUnaryInterceptor(
+				grpcrecovery.UnaryServerInterceptor(),
+				interceptor.EmailInterceptor(a.config),
+				interceptor.AuthInterceptor,
+				interceptor.ConfigInterceptor(a.mutableConfig),
+				interceptor.LoggerInterceptor(logger.New()),
+				interceptor.RateLimitInterceptor,
+				interceptor.ResponseTimeInterceptor,
+			),
+		),
+		server.WithHTTPMiddlewares(
+			base_middleware.Recoverer,
+			middleware.CORSMiddleware(a.config),
+			middleware.ConfigMiddleware(a.mutableConfig),
+			middleware.EmailMiddleware(a.config),
+			middleware.LoggerMiddleware(logger.New()),
+			middleware.RateLimitMiddleware,
+			middleware.ResponseTimeMiddleware,
+		),
+		server.WithRuntimeServeMuxOpts(
+			runtime.WithOutgoingHeaderMatcher(
+				func(s string) (string, bool) {
+					if s == "set-cookie" {
+						return "set-cookie", true
+					}
+					return runtime.MetadataHeaderPrefix + s, false
+				},
+			),
+			runtime.WithMetadata(
+				func(ctx context.Context, req *http.Request) metadata.MD {
+					tokenCookie, _ := req.Cookie(token.RefreshCookie)
+					if tokenCookie == nil {
+						return metadata.Pairs()
+					}
+					return metadata.Pairs(token.RefreshCookie, tokenCookie.Value)
+				},
+			),
 		),
 	)
-	descDoctorsV1.RegisterDoctorServiceServer(grpcServer, a.controllers.doctorsController)
-	descSeoV1.RegisterSeoServer(grpcServer, a.controllers.seoController)
-	descFreelancersV1.RegisterFreelancerServiceServer(grpcServer, a.controllers.freelancersController)
-	descAuthV1.RegisterAuthServiceServer(grpcServer, a.controllers.authController)
-	descAdminV1.RegisterAdminServiceServer(grpcServer, a.controllers.adminController)
-	descBlogsV1.RegisterBlogServiceServer(grpcServer, a.controllers.blogsController)
-	reflection.Register(grpcServer)
-
-	a.server = &Server{
-		grpcServer: grpcServer,
-	}
-
-	return a
-}
-
-func (a *App) initGRPCServiceHandlers(ctx context.Context) *App {
-	httpProxyOpts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-
-	services := []struct {
-		name         string
-		registerFunc func(context.Context, *runtime.ServeMux, string, []grpc.DialOption) error
-	}{
-		{
-			name:         "DoctorService",
-			registerFunc: descDoctorsV1.RegisterDoctorServiceHandlerFromEndpoint,
-		},
-		{
-			name:         "Seo",
-			registerFunc: descSeoV1.RegisterSeoHandlerFromEndpoint,
-		},
-		{
-			name:         "FreelancerService",
-			registerFunc: descFreelancersV1.RegisterFreelancerServiceHandlerFromEndpoint,
-		},
-		{
-			name:         "AuthService",
-			registerFunc: descAuthV1.RegisterAuthServiceHandlerFromEndpoint,
-		},
-		{
-			name:         "AdminService",
-			registerFunc: descAdminV1.RegisterAdminServiceHandlerFromEndpoint,
-		},
-		{
-			name:         "BlogService",
-			registerFunc: descBlogsV1.RegisterBlogServiceHandlerFromEndpoint,
-		},
-	}
-
-	var err error
-	for _, service := range services {
-		if err = service.registerFunc(ctx, a.mux, a.config.Server.GrpcAddress, httpProxyOpts); err != nil {
-			panic(fmt.Sprintf("[APP] Не удалось зарегистрировать gRPC хэндлер для %s: %v", service.name, err))
-		}
-	}
 
 	return a
 }
