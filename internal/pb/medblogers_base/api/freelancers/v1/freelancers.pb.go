@@ -281,14 +281,13 @@ func (x *GetCountersResponse) GetFreelancersCount() int64 {
 }
 
 type PreliminaryFilterCountRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Societies             []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
-	PriceCategory         []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Cities                []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities          []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	ExperienceWithDoctors *bool                  `protobuf:"varint,5,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3,oneof" json:"experience_with_doctors,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Societies     []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
+	PriceCategory []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Cities        []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities  []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PreliminaryFilterCountRequest) Reset() {
@@ -349,13 +348,6 @@ func (x *PreliminaryFilterCountRequest) GetSpecialities() []int64 {
 	return nil
 }
 
-func (x *PreliminaryFilterCountRequest) GetExperienceWithDoctors() bool {
-	if x != nil && x.ExperienceWithDoctors != nil {
-		return *x.ExperienceWithDoctors
-	}
-	return false
-}
-
 type PreliminaryFilterCountResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	FreelancersCount int64                  `protobuf:"varint,1,opt,name=freelancers_count,json=freelancersCount,proto3" json:"freelancers_count,omitempty"`
@@ -401,14 +393,13 @@ func (x *PreliminaryFilterCountResponse) GetFreelancersCount() int64 {
 }
 
 type PagesCountRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Societies             []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
-	PriceCategory         []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Cities                []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities          []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	ExperienceWithDoctors *bool                  `protobuf:"varint,5,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3,oneof" json:"experience_with_doctors,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Societies     []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
+	PriceCategory []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Cities        []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities  []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PagesCountRequest) Reset() {
@@ -467,13 +458,6 @@ func (x *PagesCountRequest) GetSpecialities() []int64 {
 		return x.Specialities
 	}
 	return nil
-}
-
-func (x *PagesCountRequest) GetExperienceWithDoctors() bool {
-	if x != nil && x.ExperienceWithDoctors != nil {
-		return *x.ExperienceWithDoctors
-	}
-	return false
 }
 
 type PagesCountResponse struct {
@@ -785,15 +769,14 @@ func (x *SearchResponse) GetSpecialities() []*SearchResponse_SpecialityItem {
 }
 
 type FilterRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Societies             []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
-	PriceCategory         []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Cities                []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities          []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	ExperienceWithDoctors *bool                  `protobuf:"varint,5,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3,oneof" json:"experience_with_doctors,omitempty"`
-	Page                  int64                  `protobuf:"varint,6,opt,name=page,proto3" json:"page,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Societies     []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
+	PriceCategory []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Cities        []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities  []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	Page          int64                  `protobuf:"varint,6,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FilterRequest) Reset() {
@@ -852,13 +835,6 @@ func (x *FilterRequest) GetSpecialities() []int64 {
 		return x.Specialities
 	}
 	return nil
-}
-
-func (x *FilterRequest) GetExperienceWithDoctors() bool {
-	if x != nil && x.ExperienceWithDoctors != nil {
-		return *x.ExperienceWithDoctors
-	}
-	return false
 }
 
 func (x *FilterRequest) GetPage() int64 {
@@ -920,7 +896,6 @@ type CreateFreelancersRequest struct {
 	MiddleName            string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
 	TelegramUsername      string                 `protobuf:"bytes,5,opt,name=telegram_username,json=telegramUsername,proto3" json:"telegram_username,omitempty"`
 	AgreePolicy           bool                   `protobuf:"varint,6,opt,name=agree_policy,json=agreePolicy,proto3" json:"agree_policy,omitempty"`
-	ExperienceWithDoctors bool                   `protobuf:"varint,7,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
 	CityId                int64                  `protobuf:"varint,8,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	SpecialityId          int64                  `protobuf:"varint,9,opt,name=speciality_id,json=specialityId,proto3" json:"speciality_id,omitempty"`
 	AdditionalCities      []int64                `protobuf:"varint,10,rep,packed,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
@@ -929,8 +904,8 @@ type CreateFreelancersRequest struct {
 	PortfolioLink         string                 `protobuf:"bytes,13,opt,name=portfolio_link,json=portfolioLink,proto3" json:"portfolio_link,omitempty"`
 	// Прайс-лист
 	PriceList []*CreateFreelancersRequest_PriceListItem `protobuf:"bytes,14,rep,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
-	// Есть команда
-	HasCommand bool `protobuf:"varint,15,opt,name=has_command,json=hasCommand,proto3" json:"has_command,omitempty"`
+	// представитель агентства
+	AgencyRepresentative bool `protobuf:"varint,15,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
 	// Опыт работы в годах
 	WorkingExperience int64 `protobuf:"varint,16,opt,name=working_experience,json=workingExperience,proto3" json:"working_experience,omitempty"`
 	unknownFields     protoimpl.UnknownFields
@@ -1009,13 +984,6 @@ func (x *CreateFreelancersRequest) GetAgreePolicy() bool {
 	return false
 }
 
-func (x *CreateFreelancersRequest) GetExperienceWithDoctors() bool {
-	if x != nil {
-		return x.ExperienceWithDoctors
-	}
-	return false
-}
-
 func (x *CreateFreelancersRequest) GetCityId() int64 {
 	if x != nil {
 		return x.CityId
@@ -1065,9 +1033,9 @@ func (x *CreateFreelancersRequest) GetPriceList() []*CreateFreelancersRequest_Pr
 	return nil
 }
 
-func (x *CreateFreelancersRequest) GetHasCommand() bool {
+func (x *CreateFreelancersRequest) GetAgencyRepresentative() bool {
 	if x != nil {
-		return x.HasCommand
+		return x.AgencyRepresentative
 	}
 	return false
 }
@@ -1193,12 +1161,10 @@ type GetFreelancerResponse struct {
 	PriceList []*GetFreelancerResponse_PriceListItem `protobuf:"bytes,12,rep,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
 	// Опыт работы
 	WorkingExperience string `protobuf:"bytes,13,opt,name=working_experience,json=workingExperience,proto3" json:"working_experience,omitempty"`
-	// Есть команда
-	HasCommand bool `protobuf:"varint,14,opt,name=has_command,json=hasCommand,proto3" json:"has_command,omitempty"`
-	// Опыт работы с врачами
-	ExperienceWithDoctors bool `protobuf:"varint,15,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	// Представитель агентства
+	AgencyRepresentative bool `protobuf:"varint,14,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GetFreelancerResponse) Reset() {
@@ -1322,16 +1288,9 @@ func (x *GetFreelancerResponse) GetWorkingExperience() string {
 	return ""
 }
 
-func (x *GetFreelancerResponse) GetHasCommand() bool {
+func (x *GetFreelancerResponse) GetAgencyRepresentative() bool {
 	if x != nil {
-		return x.HasCommand
-	}
-	return false
-}
-
-func (x *GetFreelancerResponse) GetExperienceWithDoctors() bool {
-	if x != nil {
-		return x.ExperienceWithDoctors
+		return x.AgencyRepresentative
 	}
 	return false
 }
@@ -1864,8 +1823,6 @@ type SearchResponse_FreelancerItem struct {
 	CityName       string                 `protobuf:"bytes,4,opt,name=city_name,json=cityName,proto3" json:"city_name,omitempty"`
 	SpecialityName string                 `protobuf:"bytes,5,opt,name=speciality_name,json=specialityName,proto3" json:"speciality_name,omitempty"`
 	Image          string                 `protobuf:"bytes,6,opt,name=image,proto3" json:"image,omitempty"`
-	// Опыт работы с врачами
-	ExperienceWithDoctors bool `protobuf:"varint,7,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
 	// Ценовая категория
 	PriceCategory  int64                                              `protobuf:"varint,8,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	SocialNetworks []*SearchResponse_FreelancerItem_SocialNetworkItem `protobuf:"bytes,9,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
@@ -1943,13 +1900,6 @@ func (x *SearchResponse_FreelancerItem) GetImage() string {
 		return x.Image
 	}
 	return ""
-}
-
-func (x *SearchResponse_FreelancerItem) GetExperienceWithDoctors() bool {
-	if x != nil {
-		return x.ExperienceWithDoctors
-	}
-	return false
 }
 
 func (x *SearchResponse_FreelancerItem) GetPriceCategory() int64 {
@@ -2153,10 +2103,8 @@ type FilterResponse_FreelancerItem struct {
 	Speciality string                 `protobuf:"bytes,3,opt,name=speciality,proto3" json:"speciality,omitempty"`
 	City       string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
 	Image      string                 `protobuf:"bytes,5,opt,name=image,proto3" json:"image,omitempty"`
-	// Опыт работы с врачами
-	ExperienceWithDoctors bool `protobuf:"varint,6,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
 	// Есть команда
-	HasCommand bool `protobuf:"varint,7,opt,name=has_command,json=hasCommand,proto3" json:"has_command,omitempty"`
+	AgencyRepresentative bool `protobuf:"varint,7,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
 	// Ценовая категория
 	PriceCategory int64 `protobuf:"varint,8,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	// Соцсети
@@ -2230,16 +2178,9 @@ func (x *FilterResponse_FreelancerItem) GetImage() string {
 	return ""
 }
 
-func (x *FilterResponse_FreelancerItem) GetExperienceWithDoctors() bool {
+func (x *FilterResponse_FreelancerItem) GetAgencyRepresentative() bool {
 	if x != nil {
-		return x.ExperienceWithDoctors
-	}
-	return false
-}
-
-func (x *FilterResponse_FreelancerItem) GetHasCommand() bool {
-	if x != nil {
-		return x.HasCommand
+		return x.AgencyRepresentative
 	}
 	return false
 }
@@ -2810,23 +2751,19 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x11freelancers_count\x18\x03 \x01(\x03R\x10freelancersCount\"\x14\n" +
 	"\x12GetCountersRequest\"B\n" +
 	"\x13GetCountersResponse\x12+\n" +
-	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\xf9\x01\n" +
+	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\xa0\x01\n" +
 	"\x1dPreliminaryFilterCountRequest\x12\x1c\n" +
 	"\tsocieties\x18\x01 \x03(\x03R\tsocieties\x12%\n" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
-	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12;\n" +
-	"\x17experience_with_doctors\x18\x05 \x01(\bH\x00R\x15experienceWithDoctors\x88\x01\x01B\x1a\n" +
-	"\x18_experience_with_doctors\"M\n" +
+	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\"M\n" +
 	"\x1ePreliminaryFilterCountResponse\x12+\n" +
-	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\xed\x01\n" +
+	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\x94\x01\n" +
 	"\x11PagesCountRequest\x12\x1c\n" +
 	"\tsocieties\x18\x01 \x03(\x03R\tsocieties\x12%\n" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
-	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12;\n" +
-	"\x17experience_with_doctors\x18\x05 \x01(\bH\x00R\x15experienceWithDoctors\x88\x01\x01B\x1a\n" +
-	"\x18_experience_with_doctors\"5\n" +
+	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\"5\n" +
 	"\x12PagesCountResponse\x12\x1f\n" +
 	"\vpages_count\x18\x01 \x01(\x03R\n" +
 	"pagesCount\"\x12\n" +
@@ -2843,25 +2780,24 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\rspeciality_id\x18\x01 \x01(\x03R\fspecialityId\x12'\n" +
 	"\x0fspeciality_name\x18\x02 \x01(\tR\x0especialityName\"%\n" +
 	"\rSearchRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\"\xf2\x06\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\"\xc0\x06\n" +
 	"\x0eSearchResponse\x12O\n" +
 	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.SearchResponse.FreelancerItemR\vfreelancers\x12?\n" +
 	"\x06cities\x18\x02 \x03(\v2'.freelancers.v1.SearchResponse.CityItemR\x06cities\x12Q\n" +
-	"\fspecialities\x18\x03 \x03(\v2-.freelancers.v1.SearchResponse.SpecialityItemR\fspecialities\x1a\xba\x03\n" +
+	"\fspecialities\x18\x03 \x03(\v2-.freelancers.v1.SearchResponse.SpecialityItemR\fspecialities\x1a\x88\x03\n" +
 	"\x0eFreelancerItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x1b\n" +
 	"\tcity_name\x18\x04 \x01(\tR\bcityName\x12'\n" +
 	"\x0fspeciality_name\x18\x05 \x01(\tR\x0especialityName\x12\x14\n" +
-	"\x05image\x18\x06 \x01(\tR\x05image\x126\n" +
-	"\x17experience_with_doctors\x18\a \x01(\bR\x15experienceWithDoctors\x12%\n" +
+	"\x05image\x18\x06 \x01(\tR\x05image\x12%\n" +
 	"\x0eprice_category\x18\b \x01(\x03R\rpriceCategory\x12h\n" +
 	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x1a[\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slugJ\x04\b\a\x10\b\x1a[\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
@@ -2869,17 +2805,15 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0eSpecialityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
-	"\x11freelancers_count\x18\x03 \x01(\x03R\x10freelancersCount\"\xfd\x01\n" +
+	"\x11freelancers_count\x18\x03 \x01(\x03R\x10freelancersCount\"\xaa\x01\n" +
 	"\rFilterRequest\x12\x1c\n" +
 	"\tsocieties\x18\x01 \x03(\x03R\tsocieties\x12%\n" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
-	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12;\n" +
-	"\x17experience_with_doctors\x18\x05 \x01(\bH\x00R\x15experienceWithDoctors\x88\x01\x01\x12\x12\n" +
-	"\x04page\x18\x06 \x01(\x03R\x04pageB\x1a\n" +
-	"\x18_experience_with_doctors\"\x9d\x04\n" +
+	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12\x12\n" +
+	"\x04page\x18\x06 \x01(\x03R\x04pageJ\x04\b\x05\x10\x06\"\xff\x03\n" +
 	"\x0eFilterResponse\x12O\n" +
-	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.FilterResponse.FreelancerItemR\vfreelancers\x1a\xb9\x03\n" +
+	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.FilterResponse.FreelancerItemR\vfreelancers\x1a\x9b\x03\n" +
 	"\x0eFreelancerItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x1e\n" +
@@ -2887,16 +2821,14 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"speciality\x18\x03 \x01(\tR\n" +
 	"speciality\x12\x12\n" +
 	"\x04city\x18\x04 \x01(\tR\x04city\x12\x14\n" +
-	"\x05image\x18\x05 \x01(\tR\x05image\x126\n" +
-	"\x17experience_with_doctors\x18\x06 \x01(\bR\x15experienceWithDoctors\x12\x1f\n" +
-	"\vhas_command\x18\a \x01(\bR\n" +
-	"hasCommand\x12%\n" +
+	"\x05image\x18\x05 \x01(\tR\x05image\x123\n" +
+	"\x15agency_representative\x18\a \x01(\bR\x14agencyRepresentative\x12%\n" +
 	"\x0eprice_category\x18\b \x01(\x03R\rpriceCategory\x12h\n" +
 	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\"\x81\a\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slugJ\x04\b\x06\x10\a\"\xda\x06\n" +
 	"\x18CreateFreelancersRequest\x12 \n" +
 	"\x05email\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x18\xff\x01`\x01R\x05email\x12&\n" +
@@ -2906,8 +2838,7 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\n" +
 	"middleName\x126\n" +
 	"\x11telegram_username\x18\x05 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x10telegramUsername\x12*\n" +
-	"\fagree_policy\x18\x06 \x01(\bB\a\xbaH\x04j\x02\b\x01R\vagreePolicy\x12?\n" +
-	"\x17experience_with_doctors\x18\a \x01(\bB\a\xbaH\x04j\x02\b\x01R\x15experienceWithDoctors\x12 \n" +
+	"\fagree_policy\x18\x06 \x01(\bB\a\xbaH\x04j\x02\b\x01R\vagreePolicy\x12 \n" +
 	"\acity_id\x18\b \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06cityId\x12,\n" +
 	"\rspeciality_id\x18\t \x01(\x03B\a\xbaH\x04\"\x02 \x00R\fspecialityId\x125\n" +
 	"\x11additional_cities\x18\n" +
@@ -2916,20 +2847,19 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0fsocial_networks\x18\f \x03(\x03B\b\xbaH\x05\x92\x01\x02\x18\x01R\x0esocialNetworks\x12/\n" +
 	"\x0eportfolio_link\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\rportfolioLink\x12U\n" +
 	"\n" +
-	"price_list\x18\x0e \x03(\v26.freelancers.v1.CreateFreelancersRequest.PriceListItemR\tpriceList\x12(\n" +
-	"\vhas_command\x18\x0f \x01(\bB\a\xbaH\x04j\x02\b\x01R\n" +
-	"hasCommand\x126\n" +
+	"price_list\x18\x0e \x03(\v26.freelancers.v1.CreateFreelancersRequest.PriceListItemR\tpriceList\x12<\n" +
+	"\x15agency_representative\x18\x0f \x01(\bB\a\xbaH\x04j\x02\b\x01R\x14agencyRepresentative\x126\n" +
 	"\x12working_experience\x18\x10 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x11workingExperience\x1a;\n" +
 	"\rPriceListItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\xab\x01\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amountJ\x04\b\a\x10\b\"\xab\x01\n" +
 	"\x19CreateFreelancersResponse\x12Q\n" +
 	"\x06errors\x18\x01 \x03(\v29.freelancers.v1.CreateFreelancersResponse.ValidationErrorR\x06errors\x1a;\n" +
 	"\x0fValidationError\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"?\n" +
 	"\x14GetFreelancerRequest\x12'\n" +
-	"\x0ffreelancer_slug\x18\x01 \x01(\tR\x0efreelancerSlug\"\xb6\b\n" +
+	"\x0ffreelancer_slug\x18\x01 \x01(\tR\x0efreelancerSlug\"\x98\b\n" +
 	"\x15GetFreelancerResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x15\n" +
@@ -2945,10 +2875,8 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0fsocial_networks\x18\v \x03(\v27.freelancers.v1.GetFreelancerResponse.SocialNetworkItemR\x0esocialNetworks\x12R\n" +
 	"\n" +
 	"price_list\x18\f \x03(\v23.freelancers.v1.GetFreelancerResponse.PriceListItemR\tpriceList\x12-\n" +
-	"\x12working_experience\x18\r \x01(\tR\x11workingExperience\x12\x1f\n" +
-	"\vhas_command\x18\x0e \x01(\bR\n" +
-	"hasCommand\x126\n" +
-	"\x17experience_with_doctors\x18\x0f \x01(\bR\x15experienceWithDoctors\x1a.\n" +
+	"\x12working_experience\x18\r \x01(\tR\x11workingExperience\x123\n" +
+	"\x15agency_representative\x18\x0e \x01(\bR\x14agencyRepresentative\x1a.\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +
@@ -2961,7 +2889,7 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x1a;\n" +
 	"\rPriceListItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\x1a\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amountJ\x04\b\x0f\x10\x10\"\x1a\n" +
 	"\x18GetSocialNetworksRequest\"\xce\x01\n" +
 	"\x19GetSocialNetworksResponse\x12d\n" +
 	"\x0fsocial_networks\x18\x01 \x03(\v2;.freelancers.v1.GetSocialNetworksResponse.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
@@ -3118,9 +3046,6 @@ func file_freelancers_v1_freelancers_proto_init() {
 	if File_freelancers_v1_freelancers_proto != nil {
 		return
 	}
-	file_freelancers_v1_freelancers_proto_msgTypes[6].OneofWrappers = []any{}
-	file_freelancers_v1_freelancers_proto_msgTypes[8].OneofWrappers = []any{}
-	file_freelancers_v1_freelancers_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -243,12 +243,6 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
             "name": "page",
             "in": "query",
             "required": false,
@@ -346,12 +340,6 @@
               "format": "int64"
             },
             "collectionFormat": "multi"
-          },
-          {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -421,12 +409,6 @@
               "format": "int64"
             },
             "collectionFormat": "multi"
-          },
-          {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -558,9 +540,6 @@
         "agreePolicy": {
           "type": "boolean"
         },
-        "experienceWithDoctors": {
-          "type": "boolean"
-        },
         "cityId": {
           "type": "string",
           "format": "int64"
@@ -601,9 +580,9 @@
           },
           "title": "Прайс-лист"
         },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
-          "title": "Есть команда"
+          "title": "представитель агентства"
         },
         "workingExperience": {
           "type": "string",
@@ -679,11 +658,7 @@
         "image": {
           "type": "string"
         },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
-        },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
           "title": "Есть команда"
         },
@@ -828,13 +803,9 @@
           "type": "string",
           "title": "Опыт работы"
         },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
-          "title": "Есть команда"
-        },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
+          "title": "Представитель агентства"
         }
       }
     },
@@ -1102,10 +1073,6 @@
         },
         "image": {
           "type": "string"
-        },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
         },
         "priceCategory": {
           "type": "string",
