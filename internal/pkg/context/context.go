@@ -10,6 +10,10 @@ import (
 // Key type for context key
 type Key string
 
+const (
+	userEmailKey Key = "email"
+)
+
 // WithValues returns ctx with values
 func WithValues(ctx context.Context, values url.Values) context.Context {
 	if len(values) == 0 {
@@ -52,4 +56,13 @@ func WithMeta(ctx context.Context, values map[string]string) context.Context {
 		ctx = metadata.AppendToOutgoingContext(ctx, key, value)
 	}
 	return ctx
+}
+
+func WithEmailContext(ctx context.Context, email string) context.Context {
+	return context.WithValue(ctx, userEmailKey, email)
+}
+
+func GetEmailFromContext(ctx context.Context) string {
+	email, _ := ctx.Value(userEmailKey).(string)
+	return email
 }

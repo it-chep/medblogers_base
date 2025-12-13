@@ -16,6 +16,7 @@ type AppConfig interface {
 	GetSubscribersPort() string
 	GetUserPhotosBucket() string
 	GetFreelancersPhotosBucket() string
+	GetBlogsPhotosBucket() string
 	GetSalebotHost() string
 	GetS3Region() string
 	GetS3Endpoint() string
@@ -23,6 +24,8 @@ type AppConfig interface {
 	GetS3AccessKey() string
 	GetS3Config() S3Config
 	GetAllowedHosts() []string
+	GetJWTRefreshSecret() string
+	GetJWTSecret() string
 }
 
 type Config struct {
@@ -33,6 +36,7 @@ type Config struct {
 	S3Client          S3Config           `mapstructure:"s3"`
 	Notification      NotificationConfig `mapstructure:"notification"`
 	AllowedHosts      []string           `mapstructure:"allowed_hosts"`
+	JWTConfig         JWTConfig          `mapstructure:"jwt"`
 }
 
 type S3Config struct {
@@ -46,6 +50,7 @@ type S3Config struct {
 type S3Bucket struct {
 	UsersPhotos string `mapstructure:"photos"`
 	Freelancers string `mapstructure:"freelancers"`
+	Blogs       string `mapstructure:"blogs"`
 }
 
 type SalebotClient struct {
@@ -72,6 +77,11 @@ type Storage struct {
 
 type NotificationConfig struct {
 	NotificreateAdminID int64 `mapstructure:"notificreate_admin_id"`
+}
+
+type JWTConfig struct {
+	Secret        string `mapstructure:"secret"`
+	RefreshSecret string `mapstructure:"refresh_secret"`
 }
 
 // SubscribersClient todo тк нет serivce discovery и сервис 1 то делаем пока хардкод
@@ -160,4 +170,16 @@ func (c *Config) GetAllowedHosts() []string {
 
 func (c *Config) GetFreelancersPhotosBucket() string {
 	return c.S3Client.Bucket.Freelancers
+}
+
+func (c *Config) GetBlogsPhotosBucket() string {
+	return c.S3Client.Bucket.Blogs
+}
+
+func (c *Config) GetJWTRefreshSecret() string {
+	return c.JWTConfig.RefreshSecret
+}
+
+func (c *Config) GetJWTSecret() string {
+	return c.JWTConfig.Secret
 }

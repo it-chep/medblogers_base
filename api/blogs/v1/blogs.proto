@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package blogs.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/blogs/v1";
+
+// Сервис для работы со статьями
+service BlogService {
+    rpc GetTopBlogs(GetTopBlogsRequest) returns(GetTopBlogsResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/blogs/top"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Топ-3 или топ статей, для главной и тд"
+        };
+    }
+    rpc GetBlogs(GetBlogsRequest) returns(GetBlogsResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/blogs"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Все статьи"
+        };
+    }
+    rpc GetBlogDetail(GetBlogDetailRequest) returns(GetBlogDetailResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/blog/{blog_slug}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Конкретная статья по слагу"
+        };
+    }
+}
+
+message GetTopBlogsRequest{}
+
+message GetTopBlogsResponse{
+    repeated BlogMiniatures blogs = 1;
+
+    message BlogMiniatures {
+        string title = 1;
+        string slug = 2;
+        string preview_text = 3;
+        string created_at = 4;
+        string photo_link = 5;
+    }
+}
+
+message GetBlogsRequest{}
+
+message GetBlogsResponse{
+    repeated BlogMiniatures blogs = 1;
+
+    message BlogMiniatures {
+        string title = 1;
+        string slug = 2;
+        string preview_text = 3;
+        string created_at = 4;
+        string photo_link = 5;
+    }
+}
+
+message GetBlogDetailRequest{
+    string blog_slug = 1;
+}
+
+message GetBlogDetailResponse{
+    string title = 1;
+    string slug = 2;
+    string body = 3;
+    string preview_text = 4;
+    string society_preview = 5;
+    string additional_seo_text = 6;
+    string created_at = 7;
+    string photo_link = 8;
+}

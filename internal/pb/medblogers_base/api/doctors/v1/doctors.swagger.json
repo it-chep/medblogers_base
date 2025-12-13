@@ -1,0 +1,991 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "doctors/v1/doctors.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DoctorService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/cities_list": {
+      "get": {
+        "summary": "Получение городов для регистрации",
+        "operationId": "DoctorService_GetCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/counters_info": {
+      "get": {
+        "summary": "Получение информации по счетчикам (количество докторов в базе, количество подписчиков)",
+        "operationId": "DoctorService_GetCounters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.GetCountersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/doctors/create": {
+      "post": {
+        "summary": "Регистрация доктора",
+        "operationId": "DoctorService_CreateDoctor",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CreateDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CreateDoctorRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/doctors/{doctorSlug}": {
+      "get": {
+        "summary": "Получение детальной информации про доктора",
+        "operationId": "DoctorService_GetDoctor",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.GetDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/filter-doctors": {
+      "get": {
+        "summary": "Фильтрация докторов по доступным фильтрам",
+        "operationId": "DoctorService_Filter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.FilterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "maxSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "minSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "socialMedia",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "SUBSCRIBERS_DESC",
+              "SUBSCRIBERS_ASC"
+            ],
+            "default": "SUBSCRIBERS_DESC"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/pages_count": {
+      "get": {
+        "summary": "Получение страниц страниц для фильтрации",
+        "operationId": "DoctorService_GetPagesCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.PagesCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "maxSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "minSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "socialMedia",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/preliminary_filter_count": {
+      "get": {
+        "summary": "Предрасчет докторов попадающих под фильтр",
+        "operationId": "DoctorService_GetPreliminaryFilterCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.PreliminaryFilterCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "maxSubscribers",
+            "description": "todo вынести в common",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "minSubscribers",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "socialMedia",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/search-doctors": {
+      "get": {
+        "summary": "Поиск доктора, города, специальности по переданным значениям",
+        "operationId": "DoctorService_Search",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.SearchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/settings": {
+      "get": {
+        "summary": "Доступные фильтры",
+        "operationId": "DoctorService_GetSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.GetSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/specialities_list": {
+      "get": {
+        "summary": "Получение специальностей для регистрации",
+        "operationId": "DoctorService_GetSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.SpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "doctor.v1.CitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.CitiesResponse.CityItem"
+          }
+        }
+      }
+    },
+    "doctor.v1.CitiesResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cityName": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.CreateDoctorRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "telegramUsername": {
+          "type": "string"
+        },
+        "agreePolicy": {
+          "type": "boolean"
+        },
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "instagramUsername": {
+          "type": "string"
+        },
+        "vkUsername": {
+          "type": "string"
+        },
+        "dzenUsername": {
+          "type": "string"
+        },
+        "youtubeUsername": {
+          "type": "string"
+        },
+        "telegramChannel": {
+          "type": "string"
+        },
+        "siteLink": {
+          "type": "string"
+        },
+        "mainBlogTheme": {
+          "type": "string"
+        },
+        "additionalCities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "additionalSpecialties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "marketingPreferences": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.CreateDoctorResponse": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.CreateDoctorResponse.ValidationError"
+          }
+        }
+      }
+    },
+    "doctor.v1.CreateDoctorResponse.ValidationError": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.FilterRequest.Sort": {
+      "type": "string",
+      "enum": [
+        "SUBSCRIBERS_DESC",
+        "SUBSCRIBERS_ASC"
+      ],
+      "default": "SUBSCRIBERS_DESC"
+    },
+    "doctor.v1.FilterResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.FilterResponse.DoctorItem"
+          }
+        },
+        "subscribersCount": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.FilterResponse.DoctorItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "instLink": {
+          "type": "string"
+        },
+        "instSubsCount": {
+          "type": "string"
+        },
+        "instSubsCountText": {
+          "type": "string"
+        },
+        "tgLink": {
+          "type": "string"
+        },
+        "tgSubsCount": {
+          "type": "string"
+        },
+        "tgSubsCountText": {
+          "type": "string"
+        },
+        "speciality": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
+        }
+      }
+    },
+    "doctor.v1.GetCountersResponse": {
+      "type": "object",
+      "properties": {
+        "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "subscribersCount": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.GetDoctorResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "instUrl": {
+          "type": "string",
+          "title": "Соцсети"
+        },
+        "vkUrl": {
+          "type": "string"
+        },
+        "dzenUrl": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "tgChannelUrl": {
+          "type": "string"
+        },
+        "youtubeUrl": {
+          "type": "string"
+        },
+        "tiktokUrl": {
+          "type": "string"
+        },
+        "siteLink": {
+          "type": "string"
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.GetDoctorResponse.CityItem"
+          },
+          "title": "Города и специализации"
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.GetDoctorResponse.SpecialityItem"
+          }
+        },
+        "mainCity": {
+          "$ref": "#/definitions/doctor.v1.GetDoctorResponse.CityItem"
+        },
+        "mainSpeciality": {
+          "$ref": "#/definitions/doctor.v1.GetDoctorResponse.SpecialityItem"
+        },
+        "tgSubsCount": {
+          "type": "string",
+          "title": "Подписчики"
+        },
+        "tgSubsCountText": {
+          "type": "string"
+        },
+        "tgLastUpdatedDate": {
+          "type": "string"
+        },
+        "instSubsCount": {
+          "type": "string"
+        },
+        "instSubsCountText": {
+          "type": "string"
+        },
+        "instLastUpdatedDate": {
+          "type": "string"
+        },
+        "mainBlogTheme": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
+        }
+      }
+    },
+    "doctor.v1.GetDoctorResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.GetDoctorResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.GetSettingsResponse": {
+      "type": "object",
+      "properties": {
+        "filterInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.GetSettingsResponse.FilterItem"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.GetSettingsResponse.CityItem"
+          }
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.GetSettingsResponse.SpecialityItem"
+          }
+        },
+        "newDoctorBanner": {
+          "type": "boolean"
+        },
+        "minSubscribers": {
+          "type": "string",
+          "format": "int64"
+        },
+        "maxSubscribers": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.GetSettingsResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.GetSettingsResponse.FilterItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.GetSettingsResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.PagesCountResponse": {
+      "type": "object",
+      "properties": {
+        "pagesCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.PreliminaryFilterCountResponse": {
+      "type": "object",
+      "properties": {
+        "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.SearchResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.SearchResponse.DoctorItem"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.SearchResponse.CityItem"
+          }
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.SearchResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "doctor.v1.SearchResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.SearchResponse.DoctorItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "specialityName": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
+        }
+      }
+    },
+    "doctor.v1.SearchResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "doctorsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.SpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.SpecialitiesResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "doctor.v1.SpecialitiesResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityName": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

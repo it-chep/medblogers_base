@@ -136,8 +136,15 @@ generate:
 		--openapiv2_opt logtostderr=true \
 		--openapiv2_opt allow_merge=true \
 		--openapiv2_opt merge_file_name=medblogers_api \
-		./api/doctors/v1/* ./api/freelancers/v1/*
+		./api/doctors/v1/* ./api/freelancers/v1/* ./api/auth/v1/* ./api/admin/v1/* ./api/blogs/v1/*
 
+
+.PHONY: buf
+buf:
+	  buf dep update
+	  buf dep prune
+	  buf build
+	  buf generate --template buf.gen.yaml
 
 .PHONY: e2e ## запускает локальные интеграционные тесты
 e2e: infra e2e-run

@@ -3,58 +3,38 @@ package internal
 import (
 	"context"
 	"fmt"
-	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
-	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
-	seoV1 "medblogers_base/internal/app/api/seo/v1"
-	httpV1 "medblogers_base/internal/app/router/v1"
-	"medblogers_base/internal/modules/freelancers"
-	pkgHttp "medblogers_base/internal/pkg/http"
-	"net"
-
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/auth"
+	"medblogers_base/internal/modules/blogs"
+	"medblogers_base/internal/modules/freelancers"
 	pkgConfig "medblogers_base/internal/pkg/config"
+	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
-	"net/http"
 
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"google.golang.org/grpc"
-
+	"github.com/go-chi/chi/v5"
+	"github.com/not-for-prod/clay/server"
+	"github.com/not-for-prod/clay/transport"
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/doctors"
 )
 
 type modules struct {
+	auth        *auth.Module
 	admin       *admin.Module
 	doctors     *doctors.Module
 	freelancers *freelancers.Module
-}
-
-type router struct {
-	routerV1 *httpV1.Router
-}
-
-type controllers struct {
-	doctorsController     *doctorsV1.Implementation
-	seoController         *seoV1.Implementation
-	freelancersController *freelancersV1.Implementation
-}
-
-type Server struct {
-	grpcServer *grpc.Server
+	blogs       *blogs.Module
 }
 
 type App struct {
-	mux      *runtime.ServeMux
+	muxChi   *chi.Mux
 	postgres postgres.PoolWrapper
 
-	httpConns map[string]pkgHttp.Executor
+	clayServer *server.Server
+	httpConns  map[string]pkgHttp.Executor
 
-	modules modules
-
-	// http сервер
-	controllers controllers
-	router      router
-	server      *Server
+	modules     modules
+	controllers []transport.ServiceDesc
 
 	// конфиги
 	config        *config.Config
@@ -72,12 +52,10 @@ func New(ctx context.Context) *App {
 	a.initConfig(ctx).
 		initPostgres(ctx).
 		initMutableConfig(ctx).
+		initServer(ctx).
 		initHttpConns(ctx).
 		initModules(ctx).
-		initRouters(ctx).
-		initControllers(ctx).
-		initGRPCServiceHandlers(ctx).
-		initServer(ctx)
+		initControllers(ctx)
 
 	return a
 }
@@ -90,23 +68,7 @@ func (a *App) Run(_ context.Context) {
 		}
 	}()
 
-	listen, err := net.Listen("tcp", a.config.Server.GrpcAddress)
-	if err != nil {
-		fmt.Printf("[APP] Не удалось создать listen: %e", err)
-		return
-	}
-
-	go func() {
-		if err := a.server.grpcServer.Serve(listen); err != nil {
-			fmt.Printf("[APP][GPRC] Не удалось запустить приложение: %v", err)
-		}
-	}()
-
-	fmt.Printf("[APP] Запуск приложения, подключение HTTP: %s, GRPC: %s \n", a.config.Server.Address, a.config.Server.GrpcAddress)
-
-	//a.workerPool.Run(ctx)
-	if err := http.ListenAndServe(a.config.Server.Address, a.router.routerV1.Router); err != nil {
-		fmt.Printf("[APP] Не удалось запустить приложение: %s", err)
-		return
+	if err := a.clayServer.Run(a.controllers...); err != nil {
+		fmt.Printf("[APP][GPRC] Не удалось запустить приложение: %v", err)
 	}
 }

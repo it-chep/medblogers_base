@@ -2,7 +2,6 @@ package dal
 
 import (
 	"context"
-	"github.com/georgysavva/scany/pgxscan"
 	cityDAO "medblogers_base/internal/modules/freelancers/dal/doctor_city_dal/dao"
 	daoDoctor "medblogers_base/internal/modules/freelancers/dal/doctor_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/freelancers/dal/doctor_speciality_dal/dao"
@@ -13,6 +12,8 @@ import (
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {
