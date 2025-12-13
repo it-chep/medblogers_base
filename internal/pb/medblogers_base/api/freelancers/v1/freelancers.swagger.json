@@ -1,0 +1,1208 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "freelancers/v1/freelancers.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FreelancerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/freelancers": {
+      "get": {
+        "operationId": "FreelancerService_GetFreelancers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.GetFreelancersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/card/{freelancerSlug}": {
+      "get": {
+        "summary": "Получение детальной информации про фрилансера",
+        "operationId": "FreelancerService_GetFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/card/{freelancerSlug}/recommendations": {
+      "get": {
+        "summary": "Получение рекомендаций фрилансера",
+        "operationId": "FreelancerService_GetFreelancerRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.GetFreelancerRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/cities_list": {
+      "get": {
+        "summary": "Получение городов для регистрации",
+        "operationId": "FreelancerService_GetCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.CitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/counters_info": {
+      "get": {
+        "summary": "Получение информации по счетчикам (количество фрилансеров в базе)",
+        "operationId": "FreelancerService_GetCounters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.GetCountersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/create": {
+      "post": {
+        "summary": "Регистрация фрилансера",
+        "operationId": "FreelancerService_CreateFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.CreateFreelancersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.CreateFreelancersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/filter": {
+      "get": {
+        "summary": "Фильтрация фрилансеров по доступным фильтрам",
+        "operationId": "FreelancerService_Filter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.FilterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "societies",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "priceCategory",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "experienceWithDoctors",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/networks_list": {
+      "get": {
+        "summary": "Получение соц сетей для регистрации",
+        "operationId": "FreelancerService_GetSocialNetworks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.GetSocialNetworksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/pages_count": {
+      "get": {
+        "summary": "Получение страниц страниц для фильтрации",
+        "operationId": "FreelancerService_GetPagesCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.PagesCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "societies",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "priceCategory",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "experienceWithDoctors",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/preliminary_filter_count": {
+      "get": {
+        "summary": "Предрасчет фрилансеров попадающих под фильтр",
+        "operationId": "FreelancerService_GetPreliminaryFilterCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.PreliminaryFilterCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "societies",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "priceCategory",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "cities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "specialities",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "experienceWithDoctors",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/search": {
+      "get": {
+        "summary": "Поиск фрилансера, города, специальности по переданным значениям",
+        "operationId": "FreelancerService_Search",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.SearchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/settings": {
+      "get": {
+        "summary": "Доступные фильтры",
+        "operationId": "FreelancerService_GetSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.GetSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    },
+    "/api/v1/freelancers/specialities_list": {
+      "get": {
+        "summary": "Получение специальностей для регистрации",
+        "operationId": "FreelancerService_GetSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/freelancers.v1.SpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "freelancers.v1.CitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.CitiesResponse.CityItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.CitiesResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cityName": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.CreateFreelancersRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "telegramUsername": {
+          "type": "string"
+        },
+        "agreePolicy": {
+          "type": "boolean"
+        },
+        "experienceWithDoctors": {
+          "type": "boolean"
+        },
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "additionalCities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "additionalSpecialties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "portfolioLink": {
+          "type": "string"
+        },
+        "priceList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.CreateFreelancersRequest.PriceListItem"
+          },
+          "title": "Прайс-лист"
+        },
+        "hasCommand": {
+          "type": "boolean",
+          "title": "Есть команда"
+        },
+        "workingExperience": {
+          "type": "string",
+          "format": "int64",
+          "title": "Опыт работы в годах"
+        }
+      }
+    },
+    "freelancers.v1.CreateFreelancersRequest.PriceListItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Название услуги"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64",
+          "title": "Стоимость услуги"
+        }
+      }
+    },
+    "freelancers.v1.CreateFreelancersResponse": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.CreateFreelancersResponse.ValidationError"
+          }
+        }
+      }
+    },
+    "freelancers.v1.CreateFreelancersResponse.ValidationError": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.FilterResponse": {
+      "type": "object",
+      "properties": {
+        "freelancers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.FilterResponse.FreelancerItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.FilterResponse.FreelancerItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "speciality": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "experienceWithDoctors": {
+          "type": "boolean",
+          "title": "Опыт работы с врачами"
+        },
+        "hasCommand": {
+          "type": "boolean",
+          "title": "Есть команда"
+        },
+        "priceCategory": {
+          "type": "string",
+          "format": "int64",
+          "title": "Ценовая категория"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem"
+          },
+          "title": "Соцсети"
+        }
+      }
+    },
+    "freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.GetCountersResponse": {
+      "type": "object",
+      "properties": {
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetFreelancerRecommendationsResponse.Doctor"
+          }
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerRecommendationsResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "speciality": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string",
+          "title": "Связаться"
+        },
+        "priceCategory": {
+          "type": "string",
+          "format": "int64",
+          "title": "Ценовая категория"
+        },
+        "portfolioLink": {
+          "type": "string",
+          "title": "Портфолио"
+        },
+        "image": {
+          "type": "string",
+          "title": "Фотка"
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse.CityItem"
+          },
+          "title": "Города"
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse.SpecialityItem"
+          },
+          "title": "Специализации"
+        },
+        "mainCity": {
+          "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse.CityItem",
+          "title": "Основной город"
+        },
+        "mainSpeciality": {
+          "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse.SpecialityItem",
+          "title": "Основная специальность"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse.SocialNetworkItem"
+          },
+          "title": "Соцсети"
+        },
+        "priceList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetFreelancerResponse.PriceListItem"
+          },
+          "title": "Прайс-лист"
+        },
+        "workingExperience": {
+          "type": "string",
+          "title": "Опыт работы"
+        },
+        "hasCommand": {
+          "type": "boolean",
+          "title": "Есть команда"
+        },
+        "experienceWithDoctors": {
+          "type": "boolean",
+          "title": "Опыт работы с врачами"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerResponse.PriceListItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Название услуги"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64",
+          "title": "Стоимость услуги"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerResponse.SocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancerResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.GetFreelancersResponse": {
+      "type": "object"
+    },
+    "freelancers.v1.GetSettingsResponse": {
+      "type": "object",
+      "properties": {
+        "societies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetSettingsResponse.SocietyItem"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetSettingsResponse.CityItem"
+          }
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetSettingsResponse.SpecialityItem"
+          }
+        },
+        "priceCategories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetSettingsResponse.PriceCategoryItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.GetSettingsResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.GetSettingsResponse.PriceCategoryItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.GetSettingsResponse.SocietyItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.GetSettingsResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.GetSocialNetworksResponse": {
+      "type": "object",
+      "properties": {
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.GetSocialNetworksResponse.SocialNetworkItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.GetSocialNetworksResponse.SocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.PagesCountResponse": {
+      "type": "object",
+      "properties": {
+        "pagesCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.PreliminaryFilterCountResponse": {
+      "type": "object",
+      "properties": {
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.SearchResponse": {
+      "type": "object",
+      "properties": {
+        "freelancers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SearchResponse.FreelancerItem"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SearchResponse.CityItem"
+          }
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SearchResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.SearchResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.SearchResponse.FreelancerItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "specialityName": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "experienceWithDoctors": {
+          "type": "boolean",
+          "title": "Опыт работы с врачами"
+        },
+        "priceCategory": {
+          "type": "string",
+          "format": "int64",
+          "title": "Ценовая категория"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.SearchResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "freelancersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "freelancers.v1.SpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SpecialitiesResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "freelancers.v1.SpecialitiesResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityName": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

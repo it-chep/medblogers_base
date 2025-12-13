@@ -18,7 +18,7 @@ func (i *Implementation) Refresh(ctx context.Context, req *desc.RefreshRequest) 
 		return nil, status.Error(codes.Internal, "Not Claims In Request")
 	}
 
-	err = token.SetTokenToCookie(ctx, token.GenerateTokenRequest{
+	tokenVal, err := token.SetTokenToCookie(ctx, token.GenerateTokenRequest{
 		Email:      claims.Email,
 		JwtKey:     i.config.JWTConfig.Secret,
 		RefreshKey: i.config.JWTConfig.RefreshSecret,
@@ -27,5 +27,7 @@ func (i *Implementation) Refresh(ctx context.Context, req *desc.RefreshRequest) 
 		return nil, err
 	}
 
-	return &desc.RefreshResponse{}, nil
+	return &desc.RefreshResponse{
+		Token: tokenVal,
+	}, nil
 }

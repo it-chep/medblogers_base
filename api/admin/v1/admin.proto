@@ -36,7 +36,7 @@ service AdminService {
     }
     rpc UpdateDraftBlog(UpdateDraftBlogRequest) returns (UpdateDraftBlogResponse) {
         option (google.api.http) = {
-            post: "/api/v1/auth/blog/{blog_id}/update"
+            post: "/api/v1/admin/blog/{blog_id}/update"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -45,7 +45,7 @@ service AdminService {
     }
     rpc SaveBlogImage(SaveBlogImageRequest) returns (SaveBlogImageResponse) {
         option (google.api.http) = {
-            post: "/api/v1/auth/blog/{blog_id}/save_image"
+            post: "/api/v1/admin/blog/{blog_id}/save_image"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -54,7 +54,7 @@ service AdminService {
     }
     rpc DeleteBlogImage(DeleteBlogImageRequest) returns (DeleteBlogImageResponse) {
         option (google.api.http) = {
-            post: "/api/v1/auth/blog/{blog_id}/delete_image/{image_id}"
+            post: "/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -63,7 +63,7 @@ service AdminService {
     }
     rpc PublishBlog(PublishBlogRequest) returns (PublishBlogResponse) {
         option (google.api.http) = {
-            post: "/api/v1/auth/blog/{blog_id}/publish"
+            post: "/api/v1/admin/blog/{blog_id}/publish"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -72,7 +72,7 @@ service AdminService {
     }
     rpc UnPublishBlog(UnPublishBlogRequest) returns (UnPublishBlogResponse) {
         option (google.api.http) = {
-            post: "/api/v1/auth/blog/{blog_id}/unpublish"
+            post: "/api/v1/admin/blog/{blog_id}/unpublish"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -81,7 +81,7 @@ service AdminService {
     }
     //  rpc MoveOrdering(MoveOrderingRequest) returns (MoveOrderingResponse) {
     //    option (google.api.http) = {
-    //      post: "/api/v1/auth/blog/{blog_id}/move_ordering"
+    //      post: "/api/v1/blog/{blog_id}/move_ordering"
     //      body: "*"
     //    };
     //    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -124,6 +124,7 @@ message GetBlogByIDResponse {
 
 message CreateDraftBlogRequest {
     string title = 1;
+    string slug = 2;
 }
 
 message CreateDraftBlogResponse {
@@ -148,7 +149,7 @@ message UpdateDraftBlogResponse {
 
 message SaveBlogImageRequest {
     string blog_id = 1;
-    bytes image_data = 2;
+    string image_data = 2; // файл в строке base64
 }
 
 message SaveBlogImageResponse {
@@ -169,7 +170,7 @@ message DeleteBlogImageResponse{}
 
 message PublishBlogRequest{
     string blog_id = 1;
-    string primary_image_id = 2;
+    optional string primary_image_id = 2;
 }
 
 message PublishBlogResponse{

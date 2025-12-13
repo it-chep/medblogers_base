@@ -2,202 +2,152 @@ syntax = "proto3";
 
 package freelancers.v1;
 
+import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
-import "validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "api/freelancers/v1";
 
-
 // Сервис для работы с фрилансерами
 service FreelancerService {
-    rpc GetFreelancers(GetFreelancersRequest) returns (GetFreelancersResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers"
-        };
-    }
-    rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/settings"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Доступные фильтры"
-        };
-    }
-    rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/counters_info"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение информации по счетчикам (количество фрилансеров в базе)"
-        };
-    }
-    rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/preliminary_filter_count"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Предрасчет фрилансеров попадающих под фильтр"
-        };
-    }
-    rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/pages_count"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение страниц страниц для фильтрации"
-        };
-    }
-    rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/cities_list"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение городов для регистрации"
-        };
-    }
-    rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/specialities_list"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение специальностей для регистрации"
-        };
-    }
-    rpc GetSocialNetworks(GetSocialNetworksRequest) returns (GetSocialNetworksResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/networks_list"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение соц сетей для регистрации"
-        };
-    }
-    rpc Search(SearchRequest) returns (SearchResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/search"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Поиск фрилансера, города, специальности по переданным значениям"
-        };
-    }
-    rpc Filter(FilterRequest) returns (FilterResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/filter"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Фильтрация фрилансеров по доступным фильтрам"
-        };
-    }
-    rpc CreateFreelancer(CreateFreelancersRequest) returns (CreateFreelancersResponse) {
-        option (google.api.http) = {
-            post: "/api/v1/freelancers/create"
-            body: "*"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Регистрация фрилансера"
-        };
-    }
-    rpc GetFreelancer(GetFreelancerRequest) returns (GetFreelancerResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/card/{freelancer_slug}"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение детальной информации про фрилансера"
-        };
-    }
-    rpc GetFreelancerRecommendations(GetFreelancerRecommendationsRequest) returns (GetFreelancerRecommendationsResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/freelancers/card/{freelancer_slug}/recommendations"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение рекомендаций фрилансера"
-        };
-    }
+  rpc GetFreelancers(GetFreelancersRequest) returns (GetFreelancersResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers"};
+  }
+  rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/settings"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доступные фильтры"};
+  }
+  rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/counters_info"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение информации по счетчикам (количество фрилансеров в базе)"};
+  }
+  rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/preliminary_filter_count"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Предрасчет фрилансеров попадающих под фильтр"};
+  }
+  rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/pages_count"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение страниц страниц для фильтрации"};
+  }
+  rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/cities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение городов для регистрации"};
+  }
+  rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/specialities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальностей для регистрации"};
+  }
+  rpc GetSocialNetworks(GetSocialNetworksRequest) returns (GetSocialNetworksResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/networks_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение соц сетей для регистрации"};
+  }
+  rpc Search(SearchRequest) returns (SearchResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/search"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск фрилансера, города, специальности по переданным значениям"};
+  }
+  rpc Filter(FilterRequest) returns (FilterResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/filter"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация фрилансеров по доступным фильтрам"};
+  }
+  rpc CreateFreelancer(CreateFreelancersRequest) returns (CreateFreelancersResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/freelancers/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Регистрация фрилансера"};
+  }
+  rpc GetFreelancer(GetFreelancerRequest) returns (GetFreelancerResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/card/{freelancer_slug}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про фрилансера"};
+  }
+  rpc GetFreelancerRecommendations(GetFreelancerRecommendationsRequest) returns (GetFreelancerRecommendationsResponse) {
+    option (google.api.http) = {get: "/api/v1/freelancers/card/{freelancer_slug}/recommendations"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение рекомендаций фрилансера"};
+  }
 }
 
 message GetFreelancersRequest {}
 message GetFreelancersResponse {}
 
-
 // ===== Настройки фильтров =====
 
-message  GetSettingsRequest {}
+message GetSettingsRequest {}
 
 message GetSettingsResponse {
-    repeated SocietyItem societies = 1;
-    repeated CityItem cities = 2;
-    repeated SpecialityItem specialities = 3;
-    repeated PriceCategoryItem price_categories = 4;
+  repeated SocietyItem societies = 1;
+  repeated CityItem cities = 2;
+  repeated SpecialityItem specialities = 3;
+  repeated PriceCategoryItem price_categories = 4;
 
-    message SocietyItem {
-        int64 id = 1;
-        string name = 2;
-        int64 freelancers_count = 3;
-        string slug = 4;
-    }
+  message SocietyItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+    string slug = 4;
+  }
 
-    message CityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 freelancers_count = 3;
-    }
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
 
-    message SpecialityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 freelancers_count = 3;
-    }
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
 
-    message PriceCategoryItem {
-        int64 id = 1;
-        string name = 2;
-        int64 freelancers_count = 3;
-    }
+  message PriceCategoryItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
 }
 
 // ===== Счетчики фрилансеров =====
 
-message  GetCountersRequest {}
-message  GetCountersResponse {
-    int64 freelancers_count = 1;
+message GetCountersRequest {}
+message GetCountersResponse {
+  int64 freelancers_count = 1;
 }
 
 // ===== Предрасчет фрилансеров попадающих под фильтр =====
 
-message  PreliminaryFilterCountRequest {
-    repeated int64 societies = 1;
-    repeated int64 price_category = 2;
-    repeated int64 cities = 3;
-    repeated int64 specialities = 4;
+message PreliminaryFilterCountRequest {
+  repeated int64 societies = 1;
+  repeated int64 price_category = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
 }
 
-message  PreliminaryFilterCountResponse {
-    int64 freelancers_count = 1;
+message PreliminaryFilterCountResponse {
+  int64 freelancers_count = 1;
 }
 
 // ===== Предрасчет количества страниц =====
 
-message  PagesCountRequest {
-    repeated int64 societies = 1;
-    repeated int64 price_category = 2;
-    repeated int64 cities = 3;
-    repeated int64 specialities = 4;
+message PagesCountRequest {
+  repeated int64 societies = 1;
+  repeated int64 price_category = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
 }
 
-message  PagesCountResponse {
-    int64 pages_count = 1;
+message PagesCountResponse {
+  int64 pages_count = 1;
 }
 
 // ===== Получение городов для регистрации =====
 
-message  GetCitiesRequest {}
+message GetCitiesRequest {}
 message CitiesResponse {
-    repeated CityItem cities = 1;
+  repeated CityItem cities = 1;
 
-    message CityItem {
-        int64 city_id = 1;
-        string city_name = 2;
-    }
+  message CityItem {
+    int64 city_id = 1;
+    string city_name = 2;
+  }
 }
 
 // ===== Получение специальностей для регистрации =====
@@ -205,231 +155,246 @@ message CitiesResponse {
 message GetSpecialitiesRequest {}
 
 message SpecialitiesResponse {
-    repeated SpecialityItem specialities = 1;
+  repeated SpecialityItem specialities = 1;
 
-    message SpecialityItem {
-        int64 speciality_id = 1;
-        string speciality_name = 2;
-    }
+  message SpecialityItem {
+    int64 speciality_id = 1;
+    string speciality_name = 2;
+  }
 }
 
 // ===== Получение специальностей для регистрации =====
 
 message SearchRequest {
-    string query = 1;
+  string query = 1;
 }
 message SearchResponse {
-    repeated FreelancerItem freelancers = 1;
-    repeated CityItem cities = 2;
-    repeated SpecialityItem specialities = 3;
+  repeated FreelancerItem freelancers = 1;
+  repeated CityItem cities = 2;
+  repeated SpecialityItem specialities = 3;
 
-    message FreelancerItem {
-        int64 id = 1;
-        string name = 2;
-        string slug = 3;
-        string city_name = 4;
-        string speciality_name = 5;
-        string image = 6;
-        // DEPRECATED: Опыт работы с врачами
-        reserved 7;
-        // Ценовая категория
-        int64 price_category = 8;
-        repeated SocialNetworkItem social_networks = 9;
+  message FreelancerItem {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
+    string city_name = 4;
+    string speciality_name = 5;
+    string image = 6;
+    // DEPRECATED: Опыт работы с врачами
+    reserved 7;
+    // Ценовая категория
+    int64 price_category = 8;
+    repeated SocialNetworkItem social_networks = 9;
 
-        message SocialNetworkItem {
-            int64 id = 1;
-            string name = 2;
-            string slug = 3;
-        }
+    message SocialNetworkItem {
+      int64 id = 1;
+      string name = 2;
+      string slug = 3;
     }
+  }
 
-    message CityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 freelancers_count = 3;
-    }
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
 
-    message SpecialityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 freelancers_count = 3;
-    }
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 freelancers_count = 3;
+  }
 }
 
 // ===== Фильтрация специалистов =====
 
 message FilterRequest {
-    repeated int64 societies = 1;
-    repeated int64 price_category = 2;
-    repeated int64 cities = 3;
-    repeated int64 specialities = 4;
-    // DEPRECATED: Опыт работы с врачами
-    reserved 5;
+  repeated int64 societies = 1;
+  repeated int64 price_category = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  // DEPRECATED: Опыт работы с врачами
+  reserved 5;
 
-    int64 page = 6;
+  int64 page = 6;
 }
 message FilterResponse {
-    repeated FreelancerItem freelancers = 1;
+  repeated FreelancerItem freelancers = 1;
 
-    message FreelancerItem {
-        string name = 1;
-        string slug = 2;
+  message FreelancerItem {
+    string name = 1;
+    string slug = 2;
 
-        string speciality = 3;
-        string city = 4;
+    string speciality = 3;
+    string city = 4;
 
-        string image = 5;
-        // DEPRECATED: Опыт работы с врачами
-        reserved 6;
-        // Есть команда
-        bool agency_representative = 7;
-        // Ценовая категория
-        int64 price_category = 8;
-        // Соцсети
-        repeated SocialNetworkItem social_networks = 9;
+    string image = 5;
+    // DEPRECATED: Опыт работы с врачами
+    reserved 6;
+    // Есть команда
+    bool agency_representative = 7;
+    // Ценовая категория
+    int64 price_category = 8;
+    // Соцсети
+    repeated SocialNetworkItem social_networks = 9;
 
-        message SocialNetworkItem {
-            int64 id = 1;
-            string name = 2;
-            string slug = 3;
-        }
+    message SocialNetworkItem {
+      int64 id = 1;
+      string name = 2;
+      string slug = 3;
     }
+  }
 }
 
 // ===== Создание Фрилансера =====
 
 message CreateFreelancersRequest {
-    string email = 1 [(validate.rules).string = {email: true, max_len: 255}];
-    string last_name = 2 [(validate.rules).string = {min_len: 1, max_len: 100}];
-    string first_name = 3 [(validate.rules).string = {min_len: 1, max_len: 100}];
-    string middle_name = 4 [(validate.rules).string = {min_len: 1, max_len: 100}];
-    string telegram_username = 5 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string email = 1 [(buf.validate.field).string = {
+    email: true
+    max_len: 255
+  }];
+  string last_name = 2 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string first_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string middle_name = 4 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string telegram_username = 5 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
 
-    bool agree_policy = 6 [(validate.rules).bool.const = true];
-    // DEPRECATED: Опыт работы с врачами
-    reserved 7;
+  bool agree_policy = 6 [(buf.validate.field).bool.const = true];
+  // DEPRECATED: Опыт работы с врачами
+  reserved 7;
 
-    int64 city_id = 8 [(validate.rules).int64.gt = 0];
-    int64 speciality_id = 9 [(validate.rules).int64.gt = 0];
+  int64 city_id = 8 [(buf.validate.field).int64.gt = 0];
+  int64 speciality_id = 9 [(buf.validate.field).int64.gt = 0];
 
-    repeated int64 additional_cities = 10 [(validate.rules).repeated.unique = true];
-    repeated int64 additional_specialties = 11 [(validate.rules).repeated.unique = true];
-    repeated int64 social_networks = 12 [(validate.rules).repeated.unique = true];
-    string portfolio_link = 13 [(validate.rules).string.max_len = 255];
+  repeated int64 additional_cities = 10 [(buf.validate.field).repeated.unique = true];
+  repeated int64 additional_specialties = 11 [(buf.validate.field).repeated.unique = true];
+  repeated int64 social_networks = 12 [(buf.validate.field).repeated.unique = true];
+  string portfolio_link = 13 [(buf.validate.field).string.max_len = 255];
 
-    // Прайс-лист
-    repeated PriceListItem price_list = 14;
-    // представитель агентства
-    bool agency_representative = 15 [(validate.rules).bool.const = true];
-    // Опыт работы в годах
-    int64 working_experience = 16 [(validate.rules).int64.gt = 0];
+  // Прайс-лист
+  repeated PriceListItem price_list = 14;
+  // представитель агентства
+  bool agency_representative = 15 [(buf.validate.field).bool.const = true];
+  // Опыт работы в годах
+  int64 working_experience = 16 [(buf.validate.field).int64.gt = 0];
 
-    message PriceListItem {
-        // Название услуги
-        string name = 1;
-        // Стоимость услуги
-        int64 amount = 2;
-    }
+  message PriceListItem {
+    // Название услуги
+    string name = 1;
+    // Стоимость услуги
+    int64 amount = 2;
+  }
 }
 
 message CreateFreelancersResponse {
-    repeated ValidationError errors = 1;
+  repeated ValidationError errors = 1;
 
-    message ValidationError {
-        string field = 1;
-        string text = 2;
-    }
+  message ValidationError {
+    string field = 1;
+    string text = 2;
+  }
 }
 
 // ===== Получение детальной информации по фрилансеру =====
 
 message GetFreelancerRequest {
-    string freelancer_slug = 1;
+  string freelancer_slug = 1;
 }
 message GetFreelancerResponse {
+  string name = 1;
+  string slug = 2;
+
+  // Связаться
+  string tg_url = 3;
+  // Ценовая категория
+  int64 price_category = 4;
+  // Портфолио
+  string portfolio_link = 5;
+  // Фотка
+  string image = 6;
+
+  // Города
+  repeated CityItem cities = 7;
+  // Специализации
+  repeated SpecialityItem specialities = 8;
+  // Основной город
+  CityItem main_city = 9;
+  // Основная специальность
+  SpecialityItem main_speciality = 10;
+  // Соцсети
+  repeated SocialNetworkItem social_networks = 11;
+
+  // Прайс-лист
+  repeated PriceListItem price_list = 12;
+
+  // Опыт работы
+  string working_experience = 13;
+  // Представитель агентства
+  bool agency_representative = 14;
+  // DEPRECATED: Опыт работы с врачами
+  reserved 15;
+
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+  }
+
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+  }
+
+  message SocialNetworkItem {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
+  }
+
+  message PriceListItem {
+    // Название услуги
+    string name = 1;
+    // Стоимость услуги
+    int64 amount = 2;
+  }
+}
+
+message GetSocialNetworksRequest {}
+
+message GetSocialNetworksResponse {
+  repeated SocialNetworkItem social_networks = 1;
+
+  message SocialNetworkItem {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
+  }
+}
+
+message GetFreelancerRecommendationsRequest {
+  string freelancer_slug = 1;
+}
+
+message GetFreelancerRecommendationsResponse {
+  repeated Doctor doctors = 1;
+
+  message Doctor {
     string name = 1;
     string slug = 2;
 
-    // Связаться
-    string tg_url = 3;
-    // Ценовая категория
-    int64 price_category = 4;
-    // Портфолио
-    string portfolio_link = 5;
-    // Фотка
-    string image = 6;
+    string speciality = 3;
+    string city = 4;
 
-    // Города
-    repeated CityItem cities = 7;
-    // Специализации
-    repeated SpecialityItem specialities = 8;
-    // Основной город
-    CityItem main_city = 9;
-    // Основная специальность
-    SpecialityItem main_speciality = 10;
-    // Соцсети
-    repeated SocialNetworkItem social_networks = 11;
-
-    // Прайс-лист
-    repeated PriceListItem price_list = 12;
-
-    // Опыт работы
-    string working_experience = 13;
-    // Представитель агентства
-    bool agency_representative = 14;
-    // DEPRECATED: Опыт работы с врачами
-    reserved 15;
-
-    message CityItem {
-        int64 id = 1;
-        string name = 2;
-    }
-
-    message SpecialityItem {
-        int64 id = 1;
-        string name = 2;
-    }
-
-    message SocialNetworkItem {
-        int64 id = 1;
-        string name = 2;
-        string slug = 3;
-    }
-
-    message PriceListItem {
-        // Название услуги
-        string name = 1;
-        // Стоимость услуги
-        int64 amount = 2;
-    }
-}
-
-message GetSocialNetworksRequest{}
-
-message GetSocialNetworksResponse{
-    repeated SocialNetworkItem social_networks = 1;
-
-    message SocialNetworkItem {
-        int64 id = 1;
-        string name = 2;
-        string slug = 3;
-    }
-}
-
-message GetFreelancerRecommendationsRequest{
-    string freelancer_slug = 1;
-}
-
-message GetFreelancerRecommendationsResponse{
-    repeated Doctor doctors = 1;
-
-    message Doctor {
-        string name = 1;
-        string slug = 2;
-
-        string speciality = 3;
-        string city = 4;
-
-        string image = 5;
-    }
+    string image = 5;
+  }
 }

@@ -1,28 +1,26 @@
-version: v1
+version: v2
 plugins:
-  - name: go
-    out: internal/pb/medblogers_base
+  - remote: buf.build/protocolbuffers/go
+    out: internal/pb/medblogers_base/api
     opt:
       - paths=source_relative
-    path: bin/protoc-gen-go
-    strategy: directory
-  - name: grpc-gateway
-    out: internal/pb/medblogers_base
+  - remote: buf.build/grpc/go
+    out: internal/pb/medblogers_base/api
     opt:
+      - paths=source_relative
+      - require_unimplemented_servers=false
+  - remote: buf.build/grpc-ecosystem/gateway
+    opt:
+      - generate_unbound_methods=false
       - logtostderr=true
       - paths=source_relative
-      - generate_unbound_methods=true
-    path: bin/protoc-gen-grpc-gateway
-    strategy: directory
-  - name: openapiv2
-    out: internal/pb/medblogers_base
+    out: internal/pb/medblogers_base/api
+  - remote: buf.build/grpc-ecosystem/openapiv2
+    out: internal/pb/medblogers_base/api
     opt:
-      - generate_unbound_methods=true
-    path: bin/protoc-gen-openapiv2
-    strategy: directory
-  - name: validate
-    out: internal/pb/medblogers_base
+      - generate_unbound_methods=false
+      - fqn_for_openapi_name=true
+  - local: protoc-gen-goclay
+    out: internal/pb/medblogers_base/api
     opt:
-      - lang=go
       - paths=source_relative
-    path: bin/protoc-gen-validate

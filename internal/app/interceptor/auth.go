@@ -56,7 +56,7 @@ func EmailInterceptor(cfg *config.Config) grpc.UnaryServerInterceptor {
 			return handler(ctx, req)
 		}
 
-		authHeaders := md.Get("Authorization")
+		authHeaders := md.Get("grpcgateway-authorization")
 		if len(authHeaders) == 0 {
 			return handler(ctx, req)
 		}

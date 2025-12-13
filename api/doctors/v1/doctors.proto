@@ -2,135 +2,88 @@ syntax = "proto3";
 
 package doctor.v1;
 
+import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
-import "validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "api/doctors/v1";
 
 // Сервис для работы с докторами
 service DoctorService {
-    rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/settings"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Доступные фильтры"
-        };
-    }
-    rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/counters_info"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение информации по счетчикам (количество докторов в базе, количество подписчиков)"
-        };
-    }
-    rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/preliminary_filter_count"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Предрасчет докторов попадающих под фильтр"
-        };
-    }
-    rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/pages_count"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение страниц страниц для фильтрации"
-        };
-    }
-    rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/cities_list"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение городов для регистрации"
-        };
-    }
-    rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/specialities_list"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение специальностей для регистрации"
-        };
-    }
-    rpc Search(SearchRequest) returns (SearchResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/search-doctors"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Поиск доктора, города, специальности по переданным значениям"
-        };
-    }
-    rpc Filter(FilterRequest) returns (FilterResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/filter-doctors"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Фильтрация докторов по доступным фильтрам"
-        };
-    }
-    rpc CreateDoctor(CreateDoctorRequest) returns (CreateDoctorResponse) {
-        option (google.api.http) = {
-            post: "/api/v1/doctors/create"
-            body: "*"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Регистрация доктора"
-        };
-    }
-    rpc GetDoctor(GetDoctorRequest) returns (GetDoctorResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/doctors/{doctor_slug}"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение детальной информации про доктора"
-        };
-    }
-    rpc GetMainSpecialities(GetMainSpecialitiesRequest) returns (GetMainSpecialitiesResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/main_specialities_list"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Получение основных специальностей для регистрации"
-        };
-    }
+  rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
+    option (google.api.http) = {get: "/api/v1/settings"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доступные фильтры"};
+  }
+  rpc GetCounters(GetCountersRequest) returns (GetCountersResponse) {
+    option (google.api.http) = {get: "/api/v1/counters_info"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение информации по счетчикам (количество докторов в базе, количество подписчиков)"};
+  }
+  rpc GetPreliminaryFilterCount(PreliminaryFilterCountRequest) returns (PreliminaryFilterCountResponse) {
+    option (google.api.http) = {get: "/api/v1/preliminary_filter_count"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Предрасчет докторов попадающих под фильтр"};
+  }
+  rpc GetPagesCount(PagesCountRequest) returns (PagesCountResponse) {
+    option (google.api.http) = {get: "/api/v1/pages_count"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение страниц страниц для фильтрации"};
+  }
+  rpc GetCities(GetCitiesRequest) returns (CitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/cities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение городов для регистрации"};
+  }
+  rpc GetSpecialities(GetSpecialitiesRequest) returns (SpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/specialities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальностей для регистрации"};
+  }
+  rpc Search(SearchRequest) returns (SearchResponse) {
+    option (google.api.http) = {get: "/api/v1/search-doctors"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск доктора, города, специальности по переданным значениям"};
+  }
+  rpc Filter(FilterRequest) returns (FilterResponse) {
+    option (google.api.http) = {get: "/api/v1/filter-doctors"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация докторов по доступным фильтрам"};
+  }
+  rpc CreateDoctor(CreateDoctorRequest) returns (CreateDoctorResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/doctors/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Регистрация доктора"};
+  }
+  rpc GetDoctor(GetDoctorRequest) returns (GetDoctorResponse) {
+    option (google.api.http) = {get: "/api/v1/doctors/{doctor_slug}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про доктора"};
+  }
 }
-
 
 // ===== Настройки фильтров =====
 
 message GetSettingsRequest {}
 
 message GetSettingsResponse {
-    repeated FilterItem filter_info = 1;
-    repeated CityItem cities = 2;
-    repeated SpecialityItem specialities = 3;
-    bool new_doctor_banner = 4;
+  repeated FilterItem filter_info = 1;
+  repeated CityItem cities = 2;
+  repeated SpecialityItem specialities = 3;
+  bool new_doctor_banner = 4;
 
-    int64 min_subscribers = 5;
-    int64 max_subscribers = 6;
+  int64 min_subscribers = 5;
+  int64 max_subscribers = 6;
 
-    message FilterItem {
-        string name = 1;
-        string slug = 2;
-    }
+  message FilterItem {
+    string name = 1;
+    string slug = 2;
+  }
 
-    message CityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 doctors_count = 3;
-    }
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 doctors_count = 3;
+  }
 
-    message SpecialityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 doctors_count = 3;
-    }
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 doctors_count = 3;
+  }
 }
 
 // ===== Счетчики врачей и подписчиков =====
@@ -138,8 +91,8 @@ message GetSettingsResponse {
 message GetCountersRequest {}
 
 message GetCountersResponse {
-    int64 doctors_count = 1;
-    string subscribers_count = 2;
+  int64 doctors_count = 1;
+  string subscribers_count = 2;
 }
 
 // ===== Города для реги =====
@@ -147,12 +100,12 @@ message GetCountersResponse {
 message GetCitiesRequest {}
 
 message CitiesResponse {
-    repeated CityItem cities = 1;
+  repeated CityItem cities = 1;
 
-    message CityItem {
-        int64 city_id = 1;
-        string city_name = 2;
-    }
+  message CityItem {
+    int64 city_id = 1;
+    string city_name = 2;
+  }
 }
 
 // ===== Специальности для реги =====
@@ -160,216 +113,220 @@ message CitiesResponse {
 message GetSpecialitiesRequest {}
 
 message SpecialitiesResponse {
-    repeated SpecialityItem specialities = 1;
+  repeated SpecialityItem specialities = 1;
 
-    message SpecialityItem {
-        int64 speciality_id = 1;
-        string speciality_name = 2;
-    }
+  message SpecialityItem {
+    int64 speciality_id = 1;
+    string speciality_name = 2;
+  }
 }
-// ===== Основные специальности для реги =====
 
-message GetMainSpecialitiesRequest{}
-
-message GetMainSpecialitiesResponse{
-    repeated SpecialityItem specialities = 1;
-
-    message SpecialityItem {
-        int64 speciality_id = 1;
-        string speciality_name = 2;
-    }
-}
 // ===== Поиск врача =====
 
 message SearchRequest {
-    string query = 1;
+  string query = 1;
 }
 
 message SearchResponse {
-    repeated DoctorItem doctors = 1;
-    repeated CityItem cities = 2;
-    repeated SpecialityItem specialities = 3;
+  repeated DoctorItem doctors = 1;
+  repeated CityItem cities = 2;
+  repeated SpecialityItem specialities = 3;
 
-    message DoctorItem {
-        int64 id = 1;
-        string name = 2;
-        string slug = 3;
-        string city_name = 4;
-        string speciality_name = 5;
-        string image = 6;
-        bool is_kf_doctor = 7;
-    }
+  message DoctorItem {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
+    string city_name = 4;
+    string speciality_name = 5;
+    string image = 6;
+    bool is_kf_doctor = 7;
+  }
 
-    message CityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 doctors_count = 3;
-    }
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 doctors_count = 3;
+  }
 
-    message SpecialityItem {
-        int64 id = 1;
-        string name = 2;
-        int64 doctors_count = 3;
-    }
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+    int64 doctors_count = 3;
+  }
 }
 
 // ===== Фильтрация докторов =====
 
 message FilterRequest {
-    int64 max_subscribers = 1;
-    int64 min_subscribers = 2;
-    repeated int64 cities = 3;
-    repeated int64 specialities = 4;
-    repeated string social_media = 5;
-    int64 page = 6;
-    Sort sort = 7;
+  int64 max_subscribers = 1;
+  int64 min_subscribers = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+  int64 page = 6;
+  Sort sort = 7;
 
-    enum Sort {
-        SUBSCRIBERS_DESC = 0;
-        SUBSCRIBERS_ASC = 1;
-    }
+  enum Sort {
+    SUBSCRIBERS_DESC = 0;
+    SUBSCRIBERS_ASC = 1;
+  }
 }
 
 message FilterResponse {
-    repeated DoctorItem doctors = 1;
-    string subscribers_count = 3;
+  repeated DoctorItem doctors = 1;
+  string subscribers_count = 3;
 
-    message DoctorItem {
-        int64 id = 1;
-        string name = 2;
-        string slug = 3;
+  message DoctorItem {
+    int64 id = 1;
+    string name = 2;
+    string slug = 3;
 
-        string inst_link = 4;
-        string inst_subs_count = 5;
-        string inst_subs_count_text = 6;
+    string inst_link = 4;
+    string inst_subs_count = 5;
+    string inst_subs_count_text = 6;
 
-        string tg_link = 7;
-        string tg_subs_count = 8;
-        string tg_subs_count_text = 9;
+    string tg_link = 7;
+    string tg_subs_count = 8;
+    string tg_subs_count_text = 9;
 
-        string speciality = 10;
-        string city = 11;
+    string speciality = 10;
+    string city = 11;
 
-        string image = 12;
-        bool is_kf_doctor = 13;
-    }
+    string image = 12;
+    bool is_kf_doctor = 13;
+  }
 }
 
 // ===== Создание доктора =====
 
 message CreateDoctorRequest {
-    string email = 1 [(validate.rules).string = {email: true, max_len: 255}];
-    string last_name = 2 [(validate.rules).string = {min_len: 1, max_len: 100}];
-    string first_name = 3 [(validate.rules).string = {min_len: 1, max_len: 100}];
-    string middle_name = 4 [(validate.rules).string = {min_len: 1, max_len: 100}];
-    string birth_date = 5 [(validate.rules).string.min_len = 1];
-    string telegram_username = 6 [(validate.rules).string = {min_len: 1, max_len: 100}];
+  string email = 1 [(buf.validate.field).string = {
+    email: true
+    max_len: 255
+  }];
+  string last_name = 2 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string first_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string middle_name = 4 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+  string birth_date = 5 [(buf.validate.field).string.min_len = 1];
+  string telegram_username = 6 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
 
-    bool agree_policy = 7 [(validate.rules).bool.const = true];
+  bool agree_policy = 7 [(buf.validate.field).bool.const = true];
 
-    int64 city_id = 8 [(validate.rules).int64.gt = 0];
-    int64 speciality_id = 9 [(validate.rules).int64.gt = 0];
+  int64 city_id = 8 [(buf.validate.field).int64.gt = 0];
+  int64 speciality_id = 9 [(buf.validate.field).int64.gt = 0];
 
-    string instagram_username = 10 [(validate.rules).string.max_len = 100];
-    string vk_username = 11 [(validate.rules).string.max_len = 100];
-    string dzen_username = 12 [(validate.rules).string.max_len = 100];
-    string youtube_username = 13 [(validate.rules).string.max_len = 100];
-    string telegram_channel = 14 [(validate.rules).string.max_len = 100];
-    string site_link = 15 [(validate.rules).string.max_len = 255];
+  string instagram_username = 10 [(buf.validate.field).string.max_len = 100];
+  string vk_username = 11 [(buf.validate.field).string.max_len = 100];
+  string dzen_username = 12 [(buf.validate.field).string.max_len = 100];
+  string youtube_username = 13 [(buf.validate.field).string.max_len = 100];
+  string telegram_channel = 14 [(buf.validate.field).string.max_len = 100];
+  string site_link = 15 [(buf.validate.field).string.max_len = 255];
 
-    string main_blog_theme = 16 [(validate.rules).string.max_len = 100];
+  string main_blog_theme = 16 [(buf.validate.field).string.max_len = 100];
 
-    repeated int64 additional_cities = 17 [(validate.rules).repeated.unique = true];
-    repeated int64 additional_specialties = 18 [(validate.rules).repeated.unique = true];
+  repeated int64 additional_cities = 17 [(buf.validate.field).repeated.unique = true];
+  repeated int64 additional_specialties = 18 [(buf.validate.field).repeated.unique = true];
 
-    string marketing_preferences = 19  [(validate.rules).string.max_len = 300];
+  string marketing_preferences = 19 [(buf.validate.field).string.max_len = 300];
 }
 
 message CreateDoctorResponse {
-    repeated ValidationError errors = 1;
+  repeated ValidationError errors = 1;
 
-    message ValidationError {
-        string field = 1;
-        string text = 2;
-    }
+  message ValidationError {
+    string field = 1;
+    string text = 2;
+  }
 }
 
 // ===== Детальная информация о докторе =====
 
 message GetDoctorRequest {
-    string doctor_slug = 1;
+  string doctor_slug = 1;
 }
 
 message GetDoctorResponse {
-    string name = 1;
-    string slug = 2;
+  string name = 1;
+  string slug = 2;
 
-    // Соцсети
-    string inst_url = 3;
-    string vk_url = 4;
-    string dzen_url = 5;
-    string tg_url = 6;
-    string tg_channel_url = 7;
-    string youtube_url = 8;
-    string tiktok_url = 9;
-    string site_link = 10;
+  // Соцсети
+  string inst_url = 3;
+  string vk_url = 4;
+  string dzen_url = 5;
+  string tg_url = 6;
+  string tg_channel_url = 7;
+  string youtube_url = 8;
+  string tiktok_url = 9;
+  string site_link = 10;
 
-    // Города и специализации
-    repeated CityItem cities = 11;
-    repeated SpecialityItem specialities = 12;
-    CityItem main_city = 13;
-    SpecialityItem main_speciality = 14;
+  // Города и специализации
+  repeated CityItem cities = 11;
+  repeated SpecialityItem specialities = 12;
+  CityItem main_city = 13;
+  SpecialityItem main_speciality = 14;
 
-    // Подписчики
-    string tg_subs_count = 15;
-    string tg_subs_count_text = 16;
-    string tg_last_updated_date = 17;
-    string inst_subs_count = 18;
-    string inst_subs_count_text = 19;
-    string inst_last_updated_date = 20;
+  // Подписчики
+  string tg_subs_count = 15;
+  string tg_subs_count_text = 16;
+  string tg_last_updated_date = 17;
+  string inst_subs_count = 18;
+  string inst_subs_count_text = 19;
+  string inst_last_updated_date = 20;
 
-    string main_blog_theme = 21;
-    string image = 22;
+  string main_blog_theme = 21;
+  string image = 22;
 
-    bool is_kf_doctor = 23;
+  bool is_kf_doctor = 23;
 
-    message CityItem {
-        int64 id = 1;
-        string name = 2;
-    }
+  message CityItem {
+    int64 id = 1;
+    string name = 2;
+  }
 
-    message SpecialityItem {
-        int64 id = 1;
-        string name = 2;
-    }
+  message SpecialityItem {
+    int64 id = 1;
+    string name = 2;
+  }
 }
 
 // ===== Предрасчет докторов попадающих под фильтр =====
 
-message PreliminaryFilterCountRequest{
-    // todo вынести в common
-    int64 max_subscribers = 1;
-    int64 min_subscribers = 2;
-    repeated int64 cities = 3;
-    repeated int64 specialities = 4;
-    repeated string social_media = 5;
-    int64 page = 6;
+message PreliminaryFilterCountRequest {
+  // todo вынести в common
+  int64 max_subscribers = 1;
+  int64 min_subscribers = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
+  int64 page = 6;
 }
 
-message PreliminaryFilterCountResponse{
-    int64 doctors_count = 1;
+message PreliminaryFilterCountResponse {
+  int64 doctors_count = 1;
 }
 
 // ===== Предрасчет количества страниц =====
 
 message PagesCountRequest {
-    int64 max_subscribers = 1;
-    int64 min_subscribers = 2;
-    repeated int64 cities = 3;
-    repeated int64 specialities = 4;
-    repeated string social_media = 5;
+  int64 max_subscribers = 1;
+  int64 min_subscribers = 2;
+  repeated int64 cities = 3;
+  repeated int64 specialities = 4;
+  repeated string social_media = 5;
 }
 
 message PagesCountResponse {
-    int64 pages_count = 1;
+  int64 pages_count = 1;
 }

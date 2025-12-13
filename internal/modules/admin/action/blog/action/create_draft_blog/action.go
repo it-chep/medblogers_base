@@ -21,8 +21,8 @@ func New(pool postgres.PoolWrapper) *Action {
 }
 
 // Do .
-func (a *Action) Do(ctx context.Context, title string) (uuid.UUID, error) {
+func (a *Action) Do(ctx context.Context, title, slug string) (uuid.UUID, error) {
 	blogID, _ := uuid.NewV7()
 
-	return blogID, a.dal.CreateDraftBlogs(ctx, title, blogID)
+	return blogID, a.dal.CreateDraftBlogs(ctx, title, slug, blogID)
 }

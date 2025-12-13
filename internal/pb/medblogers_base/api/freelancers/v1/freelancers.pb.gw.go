@@ -10,6 +10,7 @@ package v1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,393 +25,385 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_FreelancerService_GetFreelancers_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFreelancersRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetFreelancersRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetFreelancers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetFreelancers_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFreelancersRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetFreelancersRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetFreelancers(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetSettings_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSettingsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSettingsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetSettings(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetSettings_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSettingsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSettingsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetSettings(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetCounters_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCountersRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetCountersRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetCounters(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetCounters_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCountersRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetCountersRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetCounters(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_FreelancerService_GetPreliminaryFilterCount_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_FreelancerService_GetPreliminaryFilterCount_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_FreelancerService_GetPreliminaryFilterCount_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PreliminaryFilterCountRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq PreliminaryFilterCountRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_GetPreliminaryFilterCount_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetPreliminaryFilterCount(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetPreliminaryFilterCount_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PreliminaryFilterCountRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq PreliminaryFilterCountRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_GetPreliminaryFilterCount_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetPreliminaryFilterCount(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_FreelancerService_GetPagesCount_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_FreelancerService_GetPagesCount_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_FreelancerService_GetPagesCount_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PagesCountRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq PagesCountRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_GetPagesCount_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetPagesCount(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetPagesCount_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PagesCountRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq PagesCountRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_GetPagesCount_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetPagesCount(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetCities_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCitiesRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetCitiesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetCities(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetCities_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCitiesRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetCitiesRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetCities(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetSpecialities_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSpecialitiesRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSpecialitiesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetSpecialities(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetSpecialities_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSpecialitiesRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSpecialitiesRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetSpecialities(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetSocialNetworks_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSocialNetworksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSocialNetworksRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetSocialNetworks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetSocialNetworks_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSocialNetworksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSocialNetworksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetSocialNetworks(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_FreelancerService_Search_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_FreelancerService_Search_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_FreelancerService_Search_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SearchRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq SearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_Search_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.Search(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_Search_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SearchRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq SearchRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_Search_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.Search(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_FreelancerService_Filter_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_FreelancerService_Filter_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_FreelancerService_Filter_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FilterRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq FilterRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_Filter_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.Filter(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_Filter_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FilterRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq FilterRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FreelancerService_Filter_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.Filter(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_CreateFreelancer_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateFreelancersRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CreateFreelancersRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.CreateFreelancer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_CreateFreelancer_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateFreelancersRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CreateFreelancersRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.CreateFreelancer(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetFreelancer_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFreelancerRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetFreelancerRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["freelancer_slug"]
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_slug"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_slug")
 	}
-
 	protoReq.FreelancerSlug, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_slug", err)
 	}
-
 	msg, err := client.GetFreelancer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetFreelancer_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFreelancerRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetFreelancerRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["freelancer_slug"]
+	val, ok := pathParams["freelancer_slug"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_slug")
 	}
-
 	protoReq.FreelancerSlug, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_slug", err)
 	}
-
 	msg, err := server.GetFreelancer(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_FreelancerService_GetFreelancerRecommendations_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFreelancerRecommendationsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetFreelancerRecommendationsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["freelancer_slug"]
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_slug"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_slug")
 	}
-
 	protoReq.FreelancerSlug, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_slug", err)
 	}
-
 	msg, err := client.GetFreelancerRecommendations(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_FreelancerService_GetFreelancerRecommendations_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFreelancerRecommendationsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetFreelancerRecommendationsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["freelancer_slug"]
+	val, ok := pathParams["freelancer_slug"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_slug")
 	}
-
 	protoReq.FreelancerSlug, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_slug", err)
 	}
-
 	msg, err := server.GetFreelancerRecommendations(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterFreelancerServiceHandlerServer registers the http handlers for service FreelancerService to "mux".
@@ -419,16 +412,13 @@ func local_request_FreelancerService_GetFreelancerRecommendations_0(ctx context.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterFreelancerServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server FreelancerServiceServer) error {
-
-	mux.Handle("GET", pattern_FreelancerService_GetFreelancers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetFreelancers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancers", runtime.WithHTTPPathPattern("/api/v1/freelancers"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancers", runtime.WithHTTPPathPattern("/api/v1/freelancers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -440,20 +430,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetFreelancers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetSettings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetSettings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSettings", runtime.WithHTTPPathPattern("/api/v1/freelancers/settings"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSettings", runtime.WithHTTPPathPattern("/api/v1/freelancers/settings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -465,20 +450,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetSettings_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetCounters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetCounters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCounters", runtime.WithHTTPPathPattern("/api/v1/freelancers/counters_info"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCounters", runtime.WithHTTPPathPattern("/api/v1/freelancers/counters_info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -490,20 +470,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetCounters_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetPreliminaryFilterCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetPreliminaryFilterCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPreliminaryFilterCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/preliminary_filter_count"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPreliminaryFilterCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/preliminary_filter_count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -515,20 +490,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetPreliminaryFilterCount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetPagesCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetPagesCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPagesCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/pages_count"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPagesCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/pages_count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -540,20 +510,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetPagesCount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetCities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetCities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCities", runtime.WithHTTPPathPattern("/api/v1/freelancers/cities_list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCities", runtime.WithHTTPPathPattern("/api/v1/freelancers/cities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -565,20 +530,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetCities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSpecialities", runtime.WithHTTPPathPattern("/api/v1/freelancers/specialities_list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSpecialities", runtime.WithHTTPPathPattern("/api/v1/freelancers/specialities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -590,20 +550,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetSocialNetworks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetSocialNetworks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSocialNetworks", runtime.WithHTTPPathPattern("/api/v1/freelancers/networks_list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSocialNetworks", runtime.WithHTTPPathPattern("/api/v1/freelancers/networks_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -615,20 +570,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetSocialNetworks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Search", runtime.WithHTTPPathPattern("/api/v1/freelancers/search"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Search", runtime.WithHTTPPathPattern("/api/v1/freelancers/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -640,20 +590,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_Search_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_Filter_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_Filter_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Filter", runtime.WithHTTPPathPattern("/api/v1/freelancers/filter"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Filter", runtime.WithHTTPPathPattern("/api/v1/freelancers/filter"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -665,20 +610,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_Filter_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_FreelancerService_CreateFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_FreelancerService_CreateFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/CreateFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/create"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/CreateFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -690,20 +630,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_CreateFreelancer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -715,20 +650,15 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetFreelancer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetFreelancerRecommendations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetFreelancerRecommendations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}/recommendations"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}/recommendations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -740,9 +670,7 @@ func RegisterFreelancerServiceHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetFreelancerRecommendations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -769,7 +697,6 @@ func RegisterFreelancerServiceHandlerFromEndpoint(ctx context.Context, mux *runt
 			}
 		}()
 	}()
-
 	return RegisterFreelancerServiceHandler(ctx, mux, conn)
 }
 
@@ -785,14 +712,11 @@ func RegisterFreelancerServiceHandler(ctx context.Context, mux *runtime.ServeMux
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "FreelancerServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client FreelancerServiceClient) error {
-
-	mux.Handle("GET", pattern_FreelancerService_GetFreelancers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetFreelancers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancers", runtime.WithHTTPPathPattern("/api/v1/freelancers"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancers", runtime.WithHTTPPathPattern("/api/v1/freelancers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -803,18 +727,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetFreelancers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetSettings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetSettings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSettings", runtime.WithHTTPPathPattern("/api/v1/freelancers/settings"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSettings", runtime.WithHTTPPathPattern("/api/v1/freelancers/settings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -825,18 +744,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetSettings_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetCounters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetCounters_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCounters", runtime.WithHTTPPathPattern("/api/v1/freelancers/counters_info"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCounters", runtime.WithHTTPPathPattern("/api/v1/freelancers/counters_info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -847,18 +761,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetCounters_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetPreliminaryFilterCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetPreliminaryFilterCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPreliminaryFilterCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/preliminary_filter_count"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPreliminaryFilterCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/preliminary_filter_count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -869,18 +778,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetPreliminaryFilterCount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetPagesCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetPagesCount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPagesCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/pages_count"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetPagesCount", runtime.WithHTTPPathPattern("/api/v1/freelancers/pages_count"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -891,18 +795,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetPagesCount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetCities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetCities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCities", runtime.WithHTTPPathPattern("/api/v1/freelancers/cities_list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetCities", runtime.WithHTTPPathPattern("/api/v1/freelancers/cities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -913,18 +812,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetCities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSpecialities", runtime.WithHTTPPathPattern("/api/v1/freelancers/specialities_list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSpecialities", runtime.WithHTTPPathPattern("/api/v1/freelancers/specialities_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -935,18 +829,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetSocialNetworks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetSocialNetworks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSocialNetworks", runtime.WithHTTPPathPattern("/api/v1/freelancers/networks_list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetSocialNetworks", runtime.WithHTTPPathPattern("/api/v1/freelancers/networks_list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -957,18 +846,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetSocialNetworks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Search", runtime.WithHTTPPathPattern("/api/v1/freelancers/search"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Search", runtime.WithHTTPPathPattern("/api/v1/freelancers/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -979,18 +863,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_Search_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_Filter_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_Filter_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Filter", runtime.WithHTTPPathPattern("/api/v1/freelancers/filter"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/Filter", runtime.WithHTTPPathPattern("/api/v1/freelancers/filter"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1001,18 +880,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_Filter_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_FreelancerService_CreateFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_FreelancerService_CreateFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/CreateFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/create"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/CreateFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1023,18 +897,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_CreateFreelancer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetFreelancer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancer", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1045,18 +914,13 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetFreelancer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_FreelancerService_GetFreelancerRecommendations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_FreelancerService_GetFreelancerRecommendations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}/recommendations"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/freelancers.v1.FreelancerService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/freelancers/card/{freelancer_slug}/recommendations"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1067,66 +931,39 @@ func RegisterFreelancerServiceHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_FreelancerService_GetFreelancerRecommendations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_FreelancerService_GetFreelancers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "freelancers"}, ""))
-
-	pattern_FreelancerService_GetSettings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "settings"}, ""))
-
-	pattern_FreelancerService_GetCounters_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "counters_info"}, ""))
-
-	pattern_FreelancerService_GetPreliminaryFilterCount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "preliminary_filter_count"}, ""))
-
-	pattern_FreelancerService_GetPagesCount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "pages_count"}, ""))
-
-	pattern_FreelancerService_GetCities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "cities_list"}, ""))
-
-	pattern_FreelancerService_GetSpecialities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "specialities_list"}, ""))
-
-	pattern_FreelancerService_GetSocialNetworks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "networks_list"}, ""))
-
-	pattern_FreelancerService_Search_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "search"}, ""))
-
-	pattern_FreelancerService_Filter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "filter"}, ""))
-
-	pattern_FreelancerService_CreateFreelancer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "create"}, ""))
-
-	pattern_FreelancerService_GetFreelancer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "freelancers", "card", "freelancer_slug"}, ""))
-
+	pattern_FreelancerService_GetFreelancers_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "freelancers"}, ""))
+	pattern_FreelancerService_GetSettings_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "settings"}, ""))
+	pattern_FreelancerService_GetCounters_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "counters_info"}, ""))
+	pattern_FreelancerService_GetPreliminaryFilterCount_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "preliminary_filter_count"}, ""))
+	pattern_FreelancerService_GetPagesCount_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "pages_count"}, ""))
+	pattern_FreelancerService_GetCities_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "cities_list"}, ""))
+	pattern_FreelancerService_GetSpecialities_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "specialities_list"}, ""))
+	pattern_FreelancerService_GetSocialNetworks_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "networks_list"}, ""))
+	pattern_FreelancerService_Search_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "search"}, ""))
+	pattern_FreelancerService_Filter_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "filter"}, ""))
+	pattern_FreelancerService_CreateFreelancer_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "freelancers", "create"}, ""))
+	pattern_FreelancerService_GetFreelancer_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "freelancers", "card", "freelancer_slug"}, ""))
 	pattern_FreelancerService_GetFreelancerRecommendations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "freelancers", "card", "freelancer_slug", "recommendations"}, ""))
 )
 
 var (
-	forward_FreelancerService_GetFreelancers_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetSettings_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetCounters_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetPreliminaryFilterCount_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetPagesCount_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetCities_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetSpecialities_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetSocialNetworks_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_Search_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_Filter_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_CreateFreelancer_0 = runtime.ForwardResponseMessage
-
-	forward_FreelancerService_GetFreelancer_0 = runtime.ForwardResponseMessage
-
+	forward_FreelancerService_GetFreelancers_0               = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetSettings_0                  = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetCounters_0                  = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetPreliminaryFilterCount_0    = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetPagesCount_0                = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetCities_0                    = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetSpecialities_0              = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetSocialNetworks_0            = runtime.ForwardResponseMessage
+	forward_FreelancerService_Search_0                       = runtime.ForwardResponseMessage
+	forward_FreelancerService_Filter_0                       = runtime.ForwardResponseMessage
+	forward_FreelancerService_CreateFreelancer_0             = runtime.ForwardResponseMessage
+	forward_FreelancerService_GetFreelancer_0                = runtime.ForwardResponseMessage
 	forward_FreelancerService_GetFreelancerRecommendations_0 = runtime.ForwardResponseMessage
 )

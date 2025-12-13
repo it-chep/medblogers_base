@@ -3,41 +3,41 @@ package token
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"strings"
 	"time"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/status"
 
 	"github.com/golang-jwt/jwt/v5"
+	"google.golang.org/grpc/metadata"
 )
 
-func SetTokenToCookie(ctx context.Context, req GenerateTokenRequest) error {
+func SetTokenToCookie(ctx context.Context, req GenerateTokenRequest) (string, error) {
 	tokens, err := generateTokens(req)
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	refreshCookie := &http.Cookie{
-		Name:     RefreshCookie,
-		Value:    tokens.Refresh(),
-		Expires:  time.Now().UTC().Add(60 * 24 * time.Hour), // 60 дней
-		HttpOnly: true,
-		Path:     "/",
-		SameSite: http.SameSiteLaxMode,
-		// Secure: true, // раскомментируйте для HTTPS
+	err = setCookieInResponse(ctx, tokens.Refresh())
+	if err != nil {
+		return "", err
 	}
 
-	// Устанавливаем заголовки через gRPC метаданные
-	if err = grpc.SetHeader(ctx, metadata.Pairs(
-		"Set-Cookie", refreshCookie.String(),
-	)); err != nil {
-		return status.Error(codes.Internal, "Failed to set cookie")
-	}
-	return nil
+	return tokens.Refresh(), nil
+}
+
+// setCookieInResponse sets the authentication cookie
+func setCookieInResponse(ctx context.Context, token string) error {
+	md := metadata.New(
+		map[string]string{
+			"set-cookie": fmt.Sprintf(
+				"%s=%s; Path=/; Max-Age=%d; HttpOnly; SameSite=Lax",
+				RefreshCookie, token, 60*60*24*60,
+			),
+		},
+	)
+
+	return grpc.SetHeader(ctx, md)
 }
 
 func generateTokens(req GenerateTokenRequest) (TokenPair, error) {
@@ -79,20 +79,14 @@ func RefreshClaimsFromContext(ctx context.Context, refreshSecret string) (*Claim
 	}
 
 	// Ищем cookie в метаданных
-	cookieHeader := md.Get("cookie")
+	cookieHeader := md.Get(RefreshCookie)
 	if len(cookieHeader) == 0 {
 		return nil, fmt.Errorf("cookie header not found")
 	}
 
-	// Парсим cookie
-	refreshToken, err := extractRefreshTokenFromCookie(cookieHeader[0])
-	if err != nil {
-		return nil, err
-	}
-
 	// Валидируем JWT токен
 	claims := &Claims{}
-	token, err := jwt.ParseWithClaims(refreshToken, claims, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(cookieHeader[0], claims, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method")
 		}
@@ -104,22 +98,6 @@ func RefreshClaimsFromContext(ctx context.Context, refreshSecret string) (*Claim
 	}
 
 	return claims, nil
-}
-
-// extractRefreshTokenFromCookie извлекает refresh token из cookie строки
-func extractRefreshTokenFromCookie(cookieHeader string) (string, error) {
-	cookies := strings.Split(cookieHeader, ";")
-	for _, cookie := range cookies {
-		cookie = strings.TrimSpace(cookie)
-		if strings.HasPrefix(cookie, RefreshCookie+"=") {
-			token := strings.TrimPrefix(cookie, RefreshCookie+"=")
-			if token == "" {
-				return "", fmt.Errorf("refresh token is empty")
-			}
-			return token, nil
-		}
-	}
-	return "", fmt.Errorf("refresh token cookie not found")
 }
 
 func AccessClaimsFromRequest(authHeader, jwtAccessSecret string) (*Claims, error) {

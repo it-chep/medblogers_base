@@ -4,7 +4,7 @@ import (
 	"context"
 	"medblogers_base/internal/modules/blogs/domain/blog"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
-	"time"
+	"medblogers_base/internal/pkg/converter"
 
 	"github.com/samber/lo"
 )
@@ -21,7 +21,7 @@ func (i *Implementation) GetBlogs(ctx context.Context, req *desc.GetBlogsRequest
 				Title:       item.GetTitle(),
 				Slug:        item.GetSlug(),
 				PreviewText: item.GetPreviewText(),
-				CreatedAt:   item.GetCreatedAt().Format(time.RFC3339), // todo формат поправить
+				CreatedAt:   converter.FormatDateRussian(item.GetCreatedAt()),
 				PhotoLink:   item.GetPrimaryPhotoURL(),
 			}
 		}),
