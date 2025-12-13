@@ -32,7 +32,7 @@ func setCookieInResponse(ctx context.Context, token string) error {
 		map[string]string{
 			"set-cookie": fmt.Sprintf(
 				"%s=%s; Path=/; Max-Age=%d; HttpOnly; SameSite=Lax",
-				RefreshCookie, token, 60*24,
+				RefreshCookie, token, 60*60*24*60,
 			),
 		},
 	)
@@ -98,22 +98,6 @@ func RefreshClaimsFromContext(ctx context.Context, refreshSecret string) (*Claim
 	}
 
 	return claims, nil
-}
-
-// extractRefreshTokenFromCookie извлекает refresh token из cookie строки
-func extractRefreshTokenFromCookie(cookieHeader string) (string, error) {
-	cookies := strings.Split(cookieHeader, ";")
-	for _, cookie := range cookies {
-		cookie = strings.TrimSpace(cookie)
-		if strings.HasPrefix(cookie, RefreshCookie+"=") {
-			token := strings.TrimPrefix(cookie, RefreshCookie+"=")
-			if token == "" {
-				return "", fmt.Errorf("refresh token is empty")
-			}
-			return token, nil
-		}
-	}
-	return "", fmt.Errorf("refresh token cookie not found")
 }
 
 func AccessClaimsFromRequest(authHeader, jwtAccessSecret string) (*Claims, error) {
