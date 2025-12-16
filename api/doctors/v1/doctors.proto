@@ -55,6 +55,16 @@ service DoctorService {
   }
 }
 
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
 // ===== Настройки фильтров =====
 
 message GetSettingsRequest {}
@@ -189,8 +199,10 @@ message FilterResponse {
     string tg_subs_count = 8;
     string tg_subs_count_text = 9;
 
-    string speciality = 10;
-    string city = 11;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated SpecialityItem speciality = 10;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated CityItem city = 11;
 
     string image = 12;
     bool is_kf_doctor = 13;

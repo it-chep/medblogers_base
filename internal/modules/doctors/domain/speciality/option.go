@@ -24,10 +24,10 @@ func WithDoctorsCount(doctorsCount int64) Option {
 	}
 }
 
-// WithPrimarySpecialityID .
-func WithPrimarySpecialityID(primarySpecialityID *int64) Option {
+// WithPrimaryIDs .
+func WithPrimaryIDs(primaryIDs []int64) Option {
 	return func(s *Speciality) {
-		s.primarySpecialityID = primarySpecialityID
+		s.primarySpecialities = primaryIDs
 	}
 }
 

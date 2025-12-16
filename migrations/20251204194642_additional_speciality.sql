@@ -1,7 +1,13 @@
 -- +goose Up
 -- +goose StatementBegin
-alter table docstar_site_speciallity
-    add column primary_speciality_id bigint;
+
+-- Дополнительные специальности
+create table if not exists additional_medical_specialities
+(
+    id                       bigserial primary key,
+    primary_speciality_id    bigint,
+    additional_speciality_id bigint
+);
 
 alter table docstar_site_speciallity
     add column is_only_additional bool;
@@ -9,8 +15,8 @@ alter table docstar_site_speciallity
 
 -- +goose Down
 -- +goose StatementBegin
-alter table docstar_site_speciallity
-    drop column primary_speciality_id;
+
+drop table if exists additional_medical_specialities;
 
 alter table docstar_site_speciallity
     drop column is_only_additional;

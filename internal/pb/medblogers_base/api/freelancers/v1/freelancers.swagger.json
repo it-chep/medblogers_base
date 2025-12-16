@@ -519,6 +519,18 @@
         }
       }
     },
+    "freelancers.v1.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "freelancers.v1.CreateFreelancersRequest": {
       "type": "object",
       "properties": {
@@ -650,10 +662,20 @@
           "type": "string"
         },
         "speciality": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SpecialityItem"
+          },
+          "title": "buf:lint:ignore FIELD_SAME_CARDINALITY"
         },
         "city": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.CityItem"
+          },
+          "title": "buf:lint:ignore FIELD_SAME_CARDINALITY"
         },
         "image": {
           "type": "string"
@@ -1139,6 +1161,18 @@
           "format": "int64"
         },
         "specialityName": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
           "type": "string"
         }
       }

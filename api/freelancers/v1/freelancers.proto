@@ -66,6 +66,16 @@ service FreelancerService {
   }
 }
 
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
 message GetFreelancersRequest {}
 message GetFreelancersResponse {}
 
@@ -225,8 +235,10 @@ message FilterResponse {
     string name = 1;
     string slug = 2;
 
-    string speciality = 3;
-    string city = 4;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated SpecialityItem speciality = 3;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated CityItem city = 4;
 
     string image = 5;
     // DEPRECATED: Опыт работы с врачами

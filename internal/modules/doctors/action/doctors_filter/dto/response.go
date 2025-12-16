@@ -13,8 +13,8 @@ type Doctor struct {
 	TgSubsCount     string
 	TgSubsCountText string
 
-	Speciality string // Строка из основной и дополнительных специальностей
-	City       string // Строка из основного и дополнительных городов
+	Specialities []Speciality // Строка из основной и дополнительных специальностей
+	Cities       []City       // Строка из основного и дополнительных городов
 
 	Image string
 
@@ -24,6 +24,16 @@ type Doctor struct {
 	S3Key string
 
 	IsKFDoctor bool
+}
+
+type City struct {
+	ID   int64
+	Name string
+}
+
+type Speciality struct {
+	ID   int64
+	Name string
 }
 
 type Response struct {

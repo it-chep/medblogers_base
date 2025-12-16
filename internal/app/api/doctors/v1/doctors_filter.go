@@ -2,6 +2,7 @@ package v1
 
 import (
 	"context"
+	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 )
@@ -67,10 +68,20 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			TgLink:            item.TgLink,
 			TgSubsCount:       item.TgSubsCount,
 			TgSubsCountText:   item.TgSubsCountText,
-			Speciality:        item.Speciality,
-			City:              item.City,
-			Image:             item.Image,
-			IsKfDoctor:        item.IsKFDoctor,
+			Speciality: lo.Map(item.Specialities, func(item dto.Speciality, _ int) *desc.SpecialityItem {
+				return &desc.SpecialityItem{
+					Id:   item.ID,
+					Name: item.Name,
+				}
+			}),
+			City: lo.Map(item.Cities, func(item dto.City, index int) *desc.CityItem {
+				return &desc.CityItem{
+					Id:   item.ID,
+					Name: item.Name,
+				}
+			}),
+			Image:      item.Image,
+			IsKfDoctor: item.IsKFDoctor,
 		})
 	}
 

@@ -97,8 +97,7 @@ var RuleValidSpecialityID = func(specialities []*speciality.Speciality) func(ctx
 			}
 		}
 
-		// Если у специальности есть основная специальность или эта специальность не может быть основной, то ошибка
-		if validSpec.IsOnlyAdditional() || validSpec.PrimarySpecialityID() != nil {
+		if validSpec.IsAdditional() {
 			return false, dto.ValidationError{
 				Text:  "Эту специальность нельзя выбрать как основную",
 				Field: "specialityId",
@@ -120,35 +119,11 @@ var RuleValidSpecialitiesIDs = func(specialities []*speciality.Speciality) func(
 			return int64(item.ID()), item
 		})
 
-		additionalSpecMap := lo.SliceToMap(req.AdditionalSpecialties, func(item int64) (int64, struct{}) {
-			return item, struct{}{}
-		})
-
 		var invalidSpecialities []int64
 		for _, id := range req.AdditionalSpecialties {
-			spec, exists := validSpecialitiesMap[id]
+			_, exists := validSpecialitiesMap[id]
 			if !exists {
 				invalidSpecialities = append(invalidSpecialities, id)
-			}
-			primarySpecID := spec.PrimarySpecialityID()
-
-			// Если у этой специальности есть основная специальность
-			if primarySpecID != nil {
-				// Если она указана не валидно
-				if _, ok := validSpecialitiesMap[*primarySpecID]; !ok {
-					return false, dto.ValidationError{
-						Text:  fmt.Sprintf("Невалидная специальность %d обратитесь к @readydog", *primarySpecID),
-						Field: "additionalSpecialities",
-					}
-				}
-
-				// Если в дополнительных не передана специальность,
-				// которая основная для notPrimary
-				// и основная не является основной для notPrimary
-				// То записываем ее сами
-				if _, ok := additionalSpecMap[*primarySpecID]; !ok && *primarySpecID != req.SpecialityID {
-					req.AdditionalCities = append(req.AdditionalCities, *primarySpecID)
-				}
 			}
 		}
 

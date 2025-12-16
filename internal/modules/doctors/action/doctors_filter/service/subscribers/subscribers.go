@@ -90,8 +90,8 @@ func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, sub
 			MainCityID:       doctorData.MainCityID,
 			MainSpecialityID: doctorData.MainSpecialityID,
 
-			Speciality: doctorData.Speciality,
-			City:       doctorData.City,
+			Specialities: doctorData.Specialities,
+			Cities:       doctorData.Cities,
 
 			S3Key:      doctorData.S3Key,
 			IsKFDoctor: doctorData.IsKFDoctor,

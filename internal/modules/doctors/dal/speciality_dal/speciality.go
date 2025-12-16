@@ -61,9 +61,10 @@ func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speci
 	sql := `
 		select s.id                      as id,
 			   s.name                    as name,
-			   s.primary_speciality_id as primary_speciality_id,
-			   s.is_only_additional as is_only_additional
+			   s.is_only_additional as is_only_additional,
+				array_agg( distinct ad.primary_speciality_id ) filter ( where ad.primary_speciality_id is not null ) as primary_specialities_ids
 		from docstar_site_speciallity s
+		left join additional_medical_specialities ad on s.id = ad.additional_speciality_id
 		group by s.id, s.name
 		order by s.name
 	`
@@ -86,12 +87,15 @@ func (r Repository) GetMainSpecialities(ctx context.Context) ([]*speciality.Spec
 	sql := `
 		select s.id                      as id,
 			   s.name                    as name,
-			   s.primary_speciality_id as primary_speciality_id,
 			   s.is_only_additional as is_only_additional
 		from docstar_site_speciallity s
-		where 
-		    s.primary_speciality_id is null 
-		  	and s.is_only_additional is not true
+			join additional_medical_specialities ad on s.id = ad.primary_speciality_id
+		where s.is_only_additional is not true
+		and s.id not in (
+			select distinct ad.additional_speciality_id
+			from additional_medical_specialities ad
+			where ad.additional_speciality_id is not null
+		  )
 		group by s.id, s.name
 		order by s.name
 	`
