@@ -18,7 +18,6 @@ import (
 
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/lib/pq"
-	"github.com/samber/lo"
 )
 
 type Repository struct {

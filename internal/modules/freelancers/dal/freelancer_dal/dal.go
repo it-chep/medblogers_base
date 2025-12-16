@@ -13,7 +13,6 @@ import (
 	"github.com/jackc/pgx/v4"
 	"github.com/lib/pq"
 	"github.com/pkg/errors"
-	"github.com/samber/lo"
 )
 
 type Repository struct {

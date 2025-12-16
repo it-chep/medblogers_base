@@ -62,9 +62,9 @@ func (r Repository) GetAllSpecialities(ctx context.Context) ([]*speciality.Speci
 		select s.id                      as id,
 			   s.name                    as name,
 			   s.is_only_additional as is_only_additional,
-				array_agg( distinct ad.primary_speciality_id ) filter ( where ad.primary_speciality_id is not null ) as primary_specialities_ids
+			   array_agg( distinct ad.primary_speciality_id ) filter ( where ad.primary_speciality_id is not null ) as primary_specialities_ids
 		from docstar_site_speciallity s
-		left join additional_medical_specialities ad on s.id = ad.additional_speciality_id
+				 left join additional_medical_specialities ad on s.id = ad.additional_speciality_id
 		group by s.id, s.name
 		order by s.name
 	`
@@ -89,14 +89,10 @@ func (r Repository) GetMainSpecialities(ctx context.Context) ([]*speciality.Spec
 			   s.name                    as name,
 			   s.is_only_additional as is_only_additional
 		from docstar_site_speciallity s
-			join additional_medical_specialities ad on s.id = ad.primary_speciality_id
+				 left join additional_medical_specialities ad on s.id = ad.additional_speciality_id
 		where s.is_only_additional is not true
-		and s.id not in (
-			select distinct ad.additional_speciality_id
-			from additional_medical_specialities ad
-			where ad.additional_speciality_id is not null
-		  )
-		group by s.id, s.name
+		  and (ad.primary_speciality_id is null or ad.additional_speciality_id is null)
+		group by s.id, s.name, ad.primary_speciality_id, ad.additional_speciality_id
 		order by s.name
 	`
 
@@ -112,3 +108,19 @@ func (r Repository) GetMainSpecialities(ctx context.Context) ([]*speciality.Spec
 
 	return specialities, nil
 }
+
+//const onlyAdditionalSpecialities = `
+//select s.id                      as id,
+//	   s.name                    as name,
+//	   s.is_only_additional as is_only_additional
+//from docstar_site_speciallity s
+//	join additional_medical_specialities ad on s.id = ad.primary_speciality_id
+//where s.is_only_additional is not true
+//and s.id not in (
+//	select distinct ad.additional_speciality_id
+//	from additional_medical_specialities ad
+//	where ad.additional_speciality_id is not null
+//  )
+//group by s.id, s.name
+//order by s.name
+//`

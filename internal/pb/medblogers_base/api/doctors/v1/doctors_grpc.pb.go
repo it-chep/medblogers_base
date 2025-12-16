@@ -25,6 +25,7 @@ const (
 	DoctorService_GetPagesCount_FullMethodName             = "/doctor.v1.DoctorService/GetPagesCount"
 	DoctorService_GetCities_FullMethodName                 = "/doctor.v1.DoctorService/GetCities"
 	DoctorService_GetSpecialities_FullMethodName           = "/doctor.v1.DoctorService/GetSpecialities"
+	DoctorService_GetSMainSpecialities_FullMethodName      = "/doctor.v1.DoctorService/GetSMainSpecialities"
 	DoctorService_Search_FullMethodName                    = "/doctor.v1.DoctorService/Search"
 	DoctorService_Filter_FullMethodName                    = "/doctor.v1.DoctorService/Filter"
 	DoctorService_CreateDoctor_FullMethodName              = "/doctor.v1.DoctorService/CreateDoctor"
@@ -43,6 +44,7 @@ type DoctorServiceClient interface {
 	GetPagesCount(ctx context.Context, in *PagesCountRequest, opts ...grpc.CallOption) (*PagesCountResponse, error)
 	GetCities(ctx context.Context, in *GetCitiesRequest, opts ...grpc.CallOption) (*CitiesResponse, error)
 	GetSpecialities(ctx context.Context, in *GetSpecialitiesRequest, opts ...grpc.CallOption) (*SpecialitiesResponse, error)
+	GetSMainSpecialities(ctx context.Context, in *GetMainSpecialitiesRequest, opts ...grpc.CallOption) (*MainSpecialitiesResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateDoctor(ctx context.Context, in *CreateDoctorRequest, opts ...grpc.CallOption) (*CreateDoctorResponse, error)
@@ -117,6 +119,16 @@ func (c *doctorServiceClient) GetSpecialities(ctx context.Context, in *GetSpecia
 	return out, nil
 }
 
+func (c *doctorServiceClient) GetSMainSpecialities(ctx context.Context, in *GetMainSpecialitiesRequest, opts ...grpc.CallOption) (*MainSpecialitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MainSpecialitiesResponse)
+	err := c.cc.Invoke(ctx, DoctorService_GetSMainSpecialities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *doctorServiceClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SearchResponse)
@@ -169,6 +181,7 @@ type DoctorServiceServer interface {
 	GetPagesCount(context.Context, *PagesCountRequest) (*PagesCountResponse, error)
 	GetCities(context.Context, *GetCitiesRequest) (*CitiesResponse, error)
 	GetSpecialities(context.Context, *GetSpecialitiesRequest) (*SpecialitiesResponse, error)
+	GetSMainSpecialities(context.Context, *GetMainSpecialitiesRequest) (*MainSpecialitiesResponse, error)
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateDoctor(context.Context, *CreateDoctorRequest) (*CreateDoctorResponse, error)
@@ -199,6 +212,9 @@ func (UnimplementedDoctorServiceServer) GetCities(context.Context, *GetCitiesReq
 }
 func (UnimplementedDoctorServiceServer) GetSpecialities(context.Context, *GetSpecialitiesRequest) (*SpecialitiesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSpecialities not implemented")
+}
+func (UnimplementedDoctorServiceServer) GetSMainSpecialities(context.Context, *GetMainSpecialitiesRequest) (*MainSpecialitiesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSMainSpecialities not implemented")
 }
 func (UnimplementedDoctorServiceServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Search not implemented")
@@ -340,6 +356,24 @@ func _DoctorService_GetSpecialities_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorService_GetSMainSpecialities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMainSpecialitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).GetSMainSpecialities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_GetSMainSpecialities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).GetSMainSpecialities(ctx, req.(*GetMainSpecialitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DoctorService_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SearchRequest)
 	if err := dec(in); err != nil {
@@ -442,6 +476,10 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSpecialities",
 			Handler:    _DoctorService_GetSpecialities_Handler,
+		},
+		{
+			MethodName: "GetSMainSpecialities",
+			Handler:    _DoctorService_GetSMainSpecialities_Handler,
 		},
 		{
 			MethodName: "Search",

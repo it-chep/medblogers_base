@@ -34,6 +34,10 @@ service DoctorService {
     option (google.api.http) = {get: "/api/v1/specialities_list"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальностей для регистрации"};
   }
+  rpc GetSMainSpecialities(GetMainSpecialitiesRequest) returns (MainSpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/main_specialities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение основных специальностей для регистрации"};
+  }
   rpc Search(SearchRequest) returns (SearchResponse) {
     option (google.api.http) = {get: "/api/v1/search-doctors"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск доктора, города, специальности по переданным значениям"};
@@ -123,6 +127,17 @@ message CitiesResponse {
 message GetSpecialitiesRequest {}
 
 message SpecialitiesResponse {
+  repeated SpecialityItem specialities = 1;
+
+  message SpecialityItem {
+    int64 speciality_id = 1;
+    string speciality_name = 2;
+  }
+}
+
+message GetMainSpecialitiesRequest {}
+
+message MainSpecialitiesResponse {
   repeated SpecialityItem specialities = 1;
 
   message SpecialityItem {

@@ -215,6 +215,29 @@
         ]
       }
     },
+    "/api/v1/main_specialities_list": {
+      "get": {
+        "summary": "Получение основных специальностей для регистрации",
+        "operationId": "DoctorService_GetSMainSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.MainSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/pages_count": {
       "get": {
         "summary": "Получение страниц страниц для фильтрации",
@@ -851,6 +874,30 @@
         "doctorsCount": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.MainSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.MainSpecialitiesResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "doctor.v1.MainSpecialitiesResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityName": {
+          "type": "string"
         }
       }
     },

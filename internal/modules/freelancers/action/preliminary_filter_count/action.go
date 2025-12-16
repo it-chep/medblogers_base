@@ -8,8 +8,6 @@ import (
 	domain "medblogers_base/internal/modules/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
-
-	"github.com/samber/lo"
 )
 
 type Action struct {

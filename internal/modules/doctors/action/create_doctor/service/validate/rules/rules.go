@@ -111,7 +111,7 @@ var RuleValidSpecialityID = func(specialities []*speciality.Speciality) func(ctx
 // RuleValidSpecialitiesIDs проверяет валидность выбранных доп специальностей
 var RuleValidSpecialitiesIDs = func(specialities []*speciality.Speciality) func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
 	return func(_ context.Context, req *dto.CreateDoctorRequest) (bool, error) {
-		if len(req.AdditionalCities) == 0 {
+		if len(req.AdditionalSpecialties) == 0 {
 			return true, dto.ValidationError{}
 		}
 
