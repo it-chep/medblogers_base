@@ -125,6 +125,13 @@ var RuleValidSpecialitiesIDs = func(specialities []*speciality.Speciality) func(
 			if !exists {
 				invalidSpecialities = append(invalidSpecialities, id)
 			}
+
+			if id == req.SpecialityID {
+				return false, dto.ValidationError{
+					Text:  "Нельзя выбирать одинаковые специальности",
+					Field: "additionalSpecialities",
+				}
+			}
 		}
 
 		if len(invalidSpecialities) > 0 {
