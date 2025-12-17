@@ -76,3 +76,7 @@ type GetDoctorsByFilterResponse struct {
 	DoctorsCount     int64               `json:"filtered_doctors_count"`
 	SubscribersCount string              `json:"filtered_doctors_subscribers_count"`
 }
+
+type CheckTelegramInBlackListResponse struct {
+	IsInBlackList bool `json:"is_in_black_list"`
+}

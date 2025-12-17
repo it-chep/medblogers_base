@@ -30,6 +30,7 @@ const (
 	DoctorService_Filter_FullMethodName                    = "/doctor.v1.DoctorService/Filter"
 	DoctorService_CreateDoctor_FullMethodName              = "/doctor.v1.DoctorService/CreateDoctor"
 	DoctorService_GetDoctor_FullMethodName                 = "/doctor.v1.DoctorService/GetDoctor"
+	DoctorService_CheckCheating_FullMethodName             = "/doctor.v1.DoctorService/CheckCheating"
 )
 
 // DoctorServiceClient is the client API for DoctorService service.
@@ -49,6 +50,7 @@ type DoctorServiceClient interface {
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateDoctor(ctx context.Context, in *CreateDoctorRequest, opts ...grpc.CallOption) (*CreateDoctorResponse, error)
 	GetDoctor(ctx context.Context, in *GetDoctorRequest, opts ...grpc.CallOption) (*GetDoctorResponse, error)
+	CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error)
 }
 
 type doctorServiceClient struct {
@@ -169,6 +171,16 @@ func (c *doctorServiceClient) GetDoctor(ctx context.Context, in *GetDoctorReques
 	return out, nil
 }
 
+func (c *doctorServiceClient) CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckCheatingResponse)
+	err := c.cc.Invoke(ctx, DoctorService_CheckCheating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorServiceServer is the server API for DoctorService service.
 // All implementations should embed UnimplementedDoctorServiceServer
 // for forward compatibility.
@@ -186,6 +198,7 @@ type DoctorServiceServer interface {
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateDoctor(context.Context, *CreateDoctorRequest) (*CreateDoctorResponse, error)
 	GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error)
+	CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error)
 }
 
 // UnimplementedDoctorServiceServer should be embedded to have
@@ -227,6 +240,9 @@ func (UnimplementedDoctorServiceServer) CreateDoctor(context.Context, *CreateDoc
 }
 func (UnimplementedDoctorServiceServer) GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDoctor not implemented")
+}
+func (UnimplementedDoctorServiceServer) CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CheckCheating not implemented")
 }
 func (UnimplementedDoctorServiceServer) testEmbeddedByValue() {}
 
@@ -446,6 +462,24 @@ func _DoctorService_GetDoctor_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorService_CheckCheating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckCheatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).CheckCheating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_CheckCheating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).CheckCheating(ctx, req.(*CheckCheatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorService_ServiceDesc is the grpc.ServiceDesc for DoctorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -496,6 +530,10 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDoctor",
 			Handler:    _DoctorService_GetDoctor_Handler,
+		},
+		{
+			MethodName: "CheckCheating",
+			Handler:    _DoctorService_CheckCheating_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

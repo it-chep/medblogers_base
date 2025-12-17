@@ -252,3 +252,21 @@ func (w *DoctorServiceServiceDesc) GetDoctor(ctx context.Context, in *GetDoctorR
 	}
 	return resp.(*GetDoctorResponse), err
 }
+
+func (w *DoctorServiceServiceDesc) CheckCheating(ctx context.Context, in *CheckCheatingRequest) (*CheckCheatingResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.CheckCheating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/CheckCheating",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.CheckCheating(ctx, req.(*CheckCheatingRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*CheckCheatingResponse), err
+}

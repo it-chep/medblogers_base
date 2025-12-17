@@ -16,6 +16,39 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/blacklist_check": {
+      "post": {
+        "summary": "Проверяет состоит ли данный канал в черном списке",
+        "operationId": "DoctorService_CheckCheating",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CheckCheatingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CheckCheatingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/cities_list": {
       "get": {
         "summary": "Получение городов для регистрации",
@@ -467,6 +500,22 @@
     }
   },
   "definitions": {
+    "doctor.v1.CheckCheatingRequest": {
+      "type": "object",
+      "properties": {
+        "telegram": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.CheckCheatingResponse": {
+      "type": "object",
+      "properties": {
+        "isInBlacklist": {
+          "type": "boolean"
+        }
+      }
+    },
     "doctor.v1.CitiesResponse": {
       "type": "object",
       "properties": {

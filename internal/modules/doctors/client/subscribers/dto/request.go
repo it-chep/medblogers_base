@@ -29,3 +29,7 @@ type DoctorsFilterWithIDsRequest struct {
 
 	DoctorIDs []int64 `json:"doctor_ids,omitempty"`
 }
+
+type CheckTelegramInBlackListRequest struct {
+	Telegram string `json:"telegram"`
+}

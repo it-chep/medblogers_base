@@ -57,6 +57,13 @@ service DoctorService {
     option (google.api.http) = {get: "/api/v1/doctors/{doctor_slug}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про доктора"};
   }
+  rpc CheckCheating(CheckCheatingRequest) returns (CheckCheatingResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/blacklist_check"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Проверяет состоит ли данный канал в черном списке"};
+  }
 }
 
 message CityItem {
@@ -356,4 +363,12 @@ message PagesCountRequest {
 
 message PagesCountResponse {
   int64 pages_count = 1;
+}
+
+message CheckCheatingRequest {
+  string telegram = 1;
+}
+
+message CheckCheatingResponse {
+  bool is_in_blacklist = 1;
 }

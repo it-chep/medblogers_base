@@ -466,3 +466,44 @@ func (g *Gateway) UpdateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 
 	return int64(resp.StatusCode), nil
 }
+
+// CheckTelegramInBlackList проверяет телеграм на накрутки
+func (g *Gateway) CheckTelegramInBlackList(ctx context.Context, telegram string) (bool, error) {
+	var response dto.CheckTelegramInBlackListResponse
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   "/doctors/check_telegram_in_blacklist/",
+	}
+
+	body, err := json.Marshal(dto.CheckTelegramInBlackListRequest{
+		Telegram: telegram,
+	})
+	if err != nil {
+		return false, err
+	}
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, endpointURL.String(), bytes.NewReader(body))
+	if err != nil {
+		return false, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := g.client.Do(req)
+	if err != nil {
+		return false, err
+	}
+
+	defer resp.Body.Close()
+	body, err = io.ReadAll(resp.Body)
+	if err != nil {
+		return false, err
+	}
+
+	err = json.Unmarshal(body, &response)
+	if err != nil {
+		return false, err
+	}
+
+	return response.IsInBlackList, nil
+}
