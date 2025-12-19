@@ -37,7 +37,7 @@ type FreelancerMiniature struct {
 	Slug                 string         `db:"slug"`
 	S3Image              sql.NullString `db:"s3_image"`
 	PriceCategory        int64          `db:"price_category"`
-	AgencyRepresentative bool           `db:"agency_representative"`
+	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
 	SpecialityID         int64          `db:"speciality_id"`
 	CityID               int64          `db:"city_id"`
 }
@@ -49,7 +49,7 @@ func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
 		freelancer.WithSlug(m.Slug),
 		freelancer.WithPriceCategory(m.PriceCategory),
 		freelancer.WithS3Image(m.S3Image.String),
-		freelancer.WithIsAgencyRepresentative(m.AgencyRepresentative),
+		freelancer.WithIsAgencyRepresentative(m.AgencyRepresentative.Bool),
 		freelancer.WithMainCityID(m.CityID),
 		freelancer.WithMainSpecialityID(m.SpecialityID),
 	)
@@ -71,7 +71,7 @@ type FreelancerSearch struct {
 	Slug                 string         `db:"slug"`
 	S3Image              sql.NullString `db:"s3_image"`
 	PriceCategory        int64          `db:"price_category"`
-	AgencyRepresentative bool           `db:"agency_representative"`
+	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
 	CityName             string         `db:"city_name"`
 	SpecialityName       string         `db:"speciality_name"`
 }
@@ -83,7 +83,7 @@ func (f *FreelancerSearch) ToDomain() *freelancer.Freelancer {
 		freelancer.WithSlug(f.Slug),
 		freelancer.WithPriceCategory(f.PriceCategory),
 		freelancer.WithS3Image(f.S3Image.String),
-		freelancer.WithIsAgencyRepresentative(f.AgencyRepresentative),
+		freelancer.WithIsAgencyRepresentative(f.AgencyRepresentative.Bool),
 		freelancer.WithCityName(f.CityName),
 		freelancer.WithSpecialityName(f.SpecialityName),
 	)
@@ -106,7 +106,7 @@ type FreelancerDetail struct {
 	CityID               int64          `db:"city_id"`
 	PriceCategory        int64          `db:"price_category"`
 	S3Image              sql.NullString `db:"s3_image"`
-	AgencyRepresentative bool           `db:"agency_representative"`
+	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
 	StartWorking         sql.NullTime   `db:"start_working_date"`
 }
 
@@ -121,7 +121,7 @@ func (f FreelancerDetail) ToDomain() *freelancer.Freelancer {
 		freelancer.WithMainSpecialityID(f.SpecialityID),
 		freelancer.WithMainCityID(f.CityID),
 		freelancer.WithS3Image(f.S3Image.String),
-		freelancer.WithIsAgencyRepresentative(f.AgencyRepresentative),
+		freelancer.WithIsAgencyRepresentative(f.AgencyRepresentative.Bool),
 		freelancer.WithStartWorkingTime(f.StartWorking.Time),
 	)
 }
