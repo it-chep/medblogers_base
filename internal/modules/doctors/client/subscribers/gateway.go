@@ -78,12 +78,17 @@ func (g *Gateway) GetDoctorSubscribers(ctx context.Context, medblogersID doctor.
 	}
 
 	return indto.GetDoctorSubscribersResponse{
-		TgSubsCount:         response.TgSubsCount,
-		TgSubsCountText:     response.TgSubsCountText,
-		TgLastUpdatedDate:   response.TgLastUpdatedDate,
-		InstSubsCount:       response.InstSubsCount,
-		InstSubsCountText:   response.InstSubsCountText,
-		InstLastUpdatedDate: response.InstLastUpdatedDate,
+		TgSubsCount:      response.TgSubsCount,
+		InstSubsCount:    response.InstSubsCount,
+		YouTubeSubsCount: response.YoutubeSubsCount,
+
+		TgSubsCountText:      response.TgSubsCountText,
+		InstSubsCountText:    response.InstSubsCountText,
+		YouTubeSubsCountText: response.YoutubeSubsCountText,
+
+		TgLastUpdatedDate:      response.TgLastUpdatedDate,
+		InstLastUpdatedDate:    response.InstLastUpdatedDate,
+		YouTubeLastUpdatedDate: response.YoutubeLastUpdatedDate,
 	}, nil
 }
 
@@ -167,11 +172,14 @@ func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDocto
 	orderedIDs := make([]int64, 0, len(response.Doctors)) // тк мапа не дает гарантий упорядоченности, то делаем отсортированный список
 	for _, doc := range response.Doctors {
 		result[doc.Doctor.DoctorID] = indto.GetDoctorsByFilterDoctor{
-			DoctorID:          doc.Doctor.DoctorID,
-			TgSubsCount:       doc.Doctor.TgSubsCount,
-			TgSubsCountText:   doc.Doctor.TgSubsCountText,
-			InstSubsCount:     doc.Doctor.InstSubsCount,
-			InstSubsCountText: doc.Doctor.InstSubsCountText,
+			DoctorID:         doc.Doctor.DoctorID,
+			TgSubsCount:      doc.Doctor.TgSubsCount,
+			InstSubsCount:    doc.Doctor.InstSubsCount,
+			YouTubeSubsCount: doc.Doctor.YouTubeSubsCount,
+
+			TgSubsCountText:      doc.Doctor.TgSubsCountText,
+			InstSubsCountText:    doc.Doctor.InstSubsCountText,
+			YouTubeSubsCountText: doc.Doctor.YouTubeSubsCountText,
 		}
 		orderedIDs = append(orderedIDs, doc.Doctor.DoctorID)
 	}
@@ -240,11 +248,14 @@ func (g *Gateway) GetDoctorsByFilterWithIDs(ctx context.Context, request indto.G
 	orderedIDs := make([]int64, 0, len(response.Doctors)) // тк мапа не дает гарантий упорядоченности, то делаем отсортированный список
 	for _, doc := range response.Doctors {
 		result[doc.Doctor.DoctorID] = indto.GetDoctorsByFilterDoctor{
-			DoctorID:          doc.Doctor.DoctorID,
-			TgSubsCount:       doc.Doctor.TgSubsCount,
-			TgSubsCountText:   doc.Doctor.TgSubsCountText,
-			InstSubsCount:     doc.Doctor.InstSubsCount,
-			InstSubsCountText: doc.Doctor.InstSubsCountText,
+			DoctorID:         doc.Doctor.DoctorID,
+			TgSubsCount:      doc.Doctor.TgSubsCount,
+			InstSubsCount:    doc.Doctor.InstSubsCount,
+			YouTubeSubsCount: doc.Doctor.YouTubeSubsCount,
+
+			TgSubsCountText:      doc.Doctor.TgSubsCountText,
+			InstSubsCountText:    doc.Doctor.InstSubsCountText,
+			YouTubeSubsCountText: doc.Doctor.YouTubeSubsCountText,
 		}
 		orderedIDs = append(orderedIDs, doc.Doctor.DoctorID)
 	}
@@ -304,11 +315,14 @@ func (g *Gateway) GetSubscribersByDoctorIDs(ctx context.Context, medblogersIDs [
 
 	for doctorID, doctorData := range response.Data {
 		resultMap[doctorID] = indto.GetSubscribersByDoctorIDsResponse{
-			DoctorID:          doctorID,
-			TgSubsCount:       doctorData.TgSubsCount,
-			TgSubsCountText:   doctorData.TgSubsCountText,
-			InstSubsCount:     doctorData.InstSubsCount,
-			InstSubsCountText: doctorData.InstSubsCountText,
+			DoctorID:         doctorID,
+			TgSubsCount:      doctorData.TgSubsCount,
+			InstSubsCount:    doctorData.InstSubsCount,
+			YouTubeSubsCount: doctorData.YoutubeSubsCount,
+
+			TgSubsCountText:      doctorData.TgSubsCountText,
+			InstSubsCountText:    doctorData.InstSubsCountText,
+			YouTubeSubsCountText: doctorData.YoutubeSubsCountText,
 		}
 	}
 
@@ -413,6 +427,7 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 		DoctorID:  int64(medblogersID),
 		Telegram:  request.Telegram,
 		Instagram: request.Instagram,
+		Youtube:   request.YouTube,
 	})
 	if err != nil {
 		return 0, err

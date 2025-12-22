@@ -722,6 +722,15 @@
         },
         "isKfDoctor": {
           "type": "boolean"
+        },
+        "youtubeLink": {
+          "type": "string"
+        },
+        "youtubeSubsCount": {
+          "type": "string"
+        },
+        "youtubeSubsCountText": {
+          "type": "string"
         }
       }
     },
@@ -819,6 +828,15 @@
         },
         "isKfDoctor": {
           "type": "boolean"
+        },
+        "youtubeSubsCount": {
+          "type": "string"
+        },
+        "youtubeSubsCountText": {
+          "type": "string"
+        },
+        "youtubeLastUpdatedDate": {
+          "type": "string"
         }
       }
     },

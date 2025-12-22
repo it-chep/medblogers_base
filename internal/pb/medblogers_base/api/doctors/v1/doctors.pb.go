@@ -1165,17 +1165,20 @@ type GetDoctorResponse struct {
 	MainCity       *GetDoctorResponse_CityItem         `protobuf:"bytes,13,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
 	MainSpeciality *GetDoctorResponse_SpecialityItem   `protobuf:"bytes,14,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
 	// Подписчики
-	TgSubsCount         string `protobuf:"bytes,15,opt,name=tg_subs_count,json=tgSubsCount,proto3" json:"tg_subs_count,omitempty"`
-	TgSubsCountText     string `protobuf:"bytes,16,opt,name=tg_subs_count_text,json=tgSubsCountText,proto3" json:"tg_subs_count_text,omitempty"`
-	TgLastUpdatedDate   string `protobuf:"bytes,17,opt,name=tg_last_updated_date,json=tgLastUpdatedDate,proto3" json:"tg_last_updated_date,omitempty"`
-	InstSubsCount       string `protobuf:"bytes,18,opt,name=inst_subs_count,json=instSubsCount,proto3" json:"inst_subs_count,omitempty"`
-	InstSubsCountText   string `protobuf:"bytes,19,opt,name=inst_subs_count_text,json=instSubsCountText,proto3" json:"inst_subs_count_text,omitempty"`
-	InstLastUpdatedDate string `protobuf:"bytes,20,opt,name=inst_last_updated_date,json=instLastUpdatedDate,proto3" json:"inst_last_updated_date,omitempty"`
-	MainBlogTheme       string `protobuf:"bytes,21,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
-	Image               string `protobuf:"bytes,22,opt,name=image,proto3" json:"image,omitempty"`
-	IsKfDoctor          bool   `protobuf:"varint,23,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	TgSubsCount            string `protobuf:"bytes,15,opt,name=tg_subs_count,json=tgSubsCount,proto3" json:"tg_subs_count,omitempty"`
+	TgSubsCountText        string `protobuf:"bytes,16,opt,name=tg_subs_count_text,json=tgSubsCountText,proto3" json:"tg_subs_count_text,omitempty"`
+	TgLastUpdatedDate      string `protobuf:"bytes,17,opt,name=tg_last_updated_date,json=tgLastUpdatedDate,proto3" json:"tg_last_updated_date,omitempty"`
+	InstSubsCount          string `protobuf:"bytes,18,opt,name=inst_subs_count,json=instSubsCount,proto3" json:"inst_subs_count,omitempty"`
+	InstSubsCountText      string `protobuf:"bytes,19,opt,name=inst_subs_count_text,json=instSubsCountText,proto3" json:"inst_subs_count_text,omitempty"`
+	InstLastUpdatedDate    string `protobuf:"bytes,20,opt,name=inst_last_updated_date,json=instLastUpdatedDate,proto3" json:"inst_last_updated_date,omitempty"`
+	MainBlogTheme          string `protobuf:"bytes,21,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
+	Image                  string `protobuf:"bytes,22,opt,name=image,proto3" json:"image,omitempty"`
+	IsKfDoctor             bool   `protobuf:"varint,23,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
+	YoutubeSubsCount       string `protobuf:"bytes,24,opt,name=youtube_subs_count,json=youtubeSubsCount,proto3" json:"youtube_subs_count,omitempty"`
+	YoutubeSubsCountText   string `protobuf:"bytes,25,opt,name=youtube_subs_count_text,json=youtubeSubsCountText,proto3" json:"youtube_subs_count_text,omitempty"`
+	YoutubeLastUpdatedDate string `protobuf:"bytes,26,opt,name=youtube_last_updated_date,json=youtubeLastUpdatedDate,proto3" json:"youtube_last_updated_date,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetDoctorResponse) Reset() {
@@ -1367,6 +1370,27 @@ func (x *GetDoctorResponse) GetIsKfDoctor() bool {
 		return x.IsKfDoctor
 	}
 	return false
+}
+
+func (x *GetDoctorResponse) GetYoutubeSubsCount() string {
+	if x != nil {
+		return x.YoutubeSubsCount
+	}
+	return ""
+}
+
+func (x *GetDoctorResponse) GetYoutubeSubsCountText() string {
+	if x != nil {
+		return x.YoutubeSubsCountText
+	}
+	return ""
+}
+
+func (x *GetDoctorResponse) GetYoutubeLastUpdatedDate() string {
+	if x != nil {
+		return x.YoutubeLastUpdatedDate
+	}
+	return ""
 }
 
 type PreliminaryFilterCountRequest struct {
@@ -2260,11 +2284,14 @@ type FilterResponse_DoctorItem struct {
 	// buf:lint:ignore FIELD_SAME_CARDINALITY
 	Speciality []*SpecialityItem `protobuf:"bytes,10,rep,name=speciality,proto3" json:"speciality,omitempty"`
 	// buf:lint:ignore FIELD_SAME_CARDINALITY
-	City          []*CityItem `protobuf:"bytes,11,rep,name=city,proto3" json:"city,omitempty"`
-	Image         string      `protobuf:"bytes,12,opt,name=image,proto3" json:"image,omitempty"`
-	IsKfDoctor    bool        `protobuf:"varint,13,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	City                 []*CityItem `protobuf:"bytes,11,rep,name=city,proto3" json:"city,omitempty"`
+	Image                string      `protobuf:"bytes,12,opt,name=image,proto3" json:"image,omitempty"`
+	IsKfDoctor           bool        `protobuf:"varint,13,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
+	YoutubeLink          string      `protobuf:"bytes,14,opt,name=youtube_link,json=youtubeLink,proto3" json:"youtube_link,omitempty"`
+	YoutubeSubsCount     string      `protobuf:"bytes,15,opt,name=youtube_subs_count,json=youtubeSubsCount,proto3" json:"youtube_subs_count,omitempty"`
+	YoutubeSubsCountText string      `protobuf:"bytes,16,opt,name=youtube_subs_count_text,json=youtubeSubsCountText,proto3" json:"youtube_subs_count_text,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *FilterResponse_DoctorItem) Reset() {
@@ -2386,6 +2413,27 @@ func (x *FilterResponse_DoctorItem) GetIsKfDoctor() bool {
 		return x.IsKfDoctor
 	}
 	return false
+}
+
+func (x *FilterResponse_DoctorItem) GetYoutubeLink() string {
+	if x != nil {
+		return x.YoutubeLink
+	}
+	return ""
+}
+
+func (x *FilterResponse_DoctorItem) GetYoutubeSubsCount() string {
+	if x != nil {
+		return x.YoutubeSubsCount
+	}
+	return ""
+}
+
+func (x *FilterResponse_DoctorItem) GetYoutubeSubsCountText() string {
+	if x != nil {
+		return x.YoutubeSubsCountText
+	}
+	return ""
 }
 
 type CreateDoctorResponse_ValidationError struct {
@@ -2632,10 +2680,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x04sort\x18\a \x01(\x0e2\x1d.doctor.v1.FilterRequest.SortR\x04sort\"1\n" +
 	"\x04Sort\x12\x14\n" +
 	"\x10SUBSCRIBERS_DESC\x10\x00\x12\x13\n" +
-	"\x0fSUBSCRIBERS_ASC\x10\x01\"\xc0\x04\n" +
+	"\x0fSUBSCRIBERS_ASC\x10\x01\"\xc8\x05\n" +
 	"\x0eFilterResponse\x12>\n" +
 	"\adoctors\x18\x01 \x03(\v2$.doctor.v1.FilterResponse.DoctorItemR\adoctors\x12+\n" +
-	"\x11subscribers_count\x18\x03 \x01(\tR\x10subscribersCount\x1a\xc0\x03\n" +
+	"\x11subscribers_count\x18\x03 \x01(\tR\x10subscribersCount\x1a\xc8\x04\n" +
 	"\n" +
 	"DoctorItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
@@ -2654,7 +2702,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x04city\x18\v \x03(\v2\x13.doctor.v1.CityItemR\x04city\x12\x14\n" +
 	"\x05image\x18\f \x01(\tR\x05image\x12 \n" +
 	"\fis_kf_doctor\x18\r \x01(\bR\n" +
-	"isKfDoctor\"\x98\a\n" +
+	"isKfDoctor\x12!\n" +
+	"\fyoutube_link\x18\x0e \x01(\tR\vyoutubeLink\x12,\n" +
+	"\x12youtube_subs_count\x18\x0f \x01(\tR\x10youtubeSubsCount\x125\n" +
+	"\x17youtube_subs_count_text\x18\x10 \x01(\tR\x14youtubeSubsCountText\"\x98\a\n" +
 	"\x13CreateDoctorRequest\x12 \n" +
 	"\x05email\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x18\xff\x01`\x01R\x05email\x12&\n" +
@@ -2688,7 +2739,7 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"3\n" +
 	"\x10GetDoctorRequest\x12\x1f\n" +
 	"\vdoctor_slug\x18\x01 \x01(\tR\n" +
-	"doctorSlug\"\xa2\b\n" +
+	"doctorSlug\"\xc2\t\n" +
 	"\x11GetDoctorResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x19\n" +
@@ -2716,7 +2767,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x0fmain_blog_theme\x18\x15 \x01(\tR\rmainBlogTheme\x12\x14\n" +
 	"\x05image\x18\x16 \x01(\tR\x05image\x12 \n" +
 	"\fis_kf_doctor\x18\x17 \x01(\bR\n" +
-	"isKfDoctor\x1a.\n" +
+	"isKfDoctor\x12,\n" +
+	"\x12youtube_subs_count\x18\x18 \x01(\tR\x10youtubeSubsCount\x125\n" +
+	"\x17youtube_subs_count_text\x18\x19 \x01(\tR\x14youtubeSubsCountText\x129\n" +
+	"\x19youtube_last_updated_date\x18\x1a \x01(\tR\x16youtubeLastUpdatedDate\x1a.\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +

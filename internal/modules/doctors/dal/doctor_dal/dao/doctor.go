@@ -61,6 +61,7 @@ type DoctorMiniatureDAO struct {
 	SpecialityID int64          `db:"speciallity_id"`
 	S3Image      sql.NullString `db:"s3_image"`
 	IsKFDoctor   sql.NullBool   `db:"is_kf_doctor"`
+	YouTubeURL   sql.NullString `db:"youtube_url"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -75,6 +76,7 @@ func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
 		doctor.WithMainCityID(d.CityID),
 		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
 		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),
+		doctor.WithYoutubeURL(d.YouTubeURL.String),
 	)
 }
 

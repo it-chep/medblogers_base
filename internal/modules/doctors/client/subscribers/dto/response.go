@@ -26,13 +26,13 @@ type GetSubscribersByDoctorIDs struct {
 	//ID доктора
 	DoctorID int64 `json:"doctor_id"`
 	//количество подписчиков
-	TgSubsCount string `json:"telegram_subs_count"`
+	TgSubsCount      string `json:"telegram_subs_count"`
+	InstSubsCount    string `json:"instagram_subs_count"`
+	YoutubeSubsCount string `json:"youtube_subs_count"`
 	//текст "подписчика", "подписчиков", "подписчик"
-	TgSubsCountText string `json:"telegram_subs_text"`
-	//количество подписчиков
-	InstSubsCount string `json:"instagram_subs_count"`
-	//текст "подписчика", "подписчиков", "подписчик"
-	InstSubsCountText string `json:"instagram_subs_text"`
+	TgSubsCountText      string `json:"telegram_subs_text"`
+	InstSubsCountText    string `json:"instagram_subs_text"`
+	YoutubeSubsCountText string `json:"youtube_subs_text"`
 }
 
 type GetSubscribersByDoctorIDsResponse struct {
@@ -41,30 +41,32 @@ type GetSubscribersByDoctorIDsResponse struct {
 
 type GetDoctorSubscribersResponse struct {
 	//количество подписчиков
-	TgSubsCount string `json:"telegram_short"`
+	TgSubsCount      string `json:"telegram_short"`
+	InstSubsCount    string `json:"instagram_short"`
+	YoutubeSubsCount string `json:"youtube_short"`
 	//текст "подписчика", "подписчиков", "подписчик"
-	TgSubsCountText string `json:"telegram_text"`
+	TgSubsCountText      string `json:"telegram_text"`
+	InstSubsCountText    string `json:"instagram_text"`
+	YoutubeSubsCountText string `json:"youtube_text"`
 	//дата последнего обновления в сервисе
-	TgLastUpdatedDate string `json:"tg_last_updated_date"`
-	//количество подписчиков
-	InstSubsCount string `json:"instagram_short"`
-	//текст "подписчика", "подписчиков", "подписчик"
-	InstSubsCountText string `json:"instagram_text"`
-	//дата последнего обновления в сервисе
-	InstLastUpdatedDate string `json:"instagram_last_updated_date"`
+	TgLastUpdatedDate      string `json:"tg_last_updated_date"`
+	InstLastUpdatedDate    string `json:"instagram_last_updated_date"`
+	YoutubeLastUpdatedDate string `json:"youtube_last_updated_date"`
 }
 
 type GetDoctorsByFilter struct {
 	//ID доктора
 	DoctorID int64 `json:"doctor_id"`
+
 	//количество подписчиков
-	TgSubsCount string `json:"telegram_short"`
+	TgSubsCount      string `json:"telegram_short"`
+	InstSubsCount    string `json:"inst_short"`
+	YouTubeSubsCount string `json:"youtube_short"`
+
 	//текст "подписчика", "подписчиков", "подписчик"
-	TgSubsCountText string `json:"telegram_text"`
-	//количество подписчиков
-	InstSubsCount string `json:"inst_short"`
-	//текст "подписчика", "подписчиков", "подписчик"
-	InstSubsCountText string `json:"inst_text"`
+	TgSubsCountText      string `json:"telegram_text"`
+	InstSubsCountText    string `json:"inst_text"`
+	YouTubeSubsCountText string `json:"youtube_text"`
 }
 
 type GetDoctorByFilter struct {

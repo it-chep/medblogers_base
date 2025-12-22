@@ -42,12 +42,17 @@ type DoctorDTO struct {
 	MainSpeciality   SpecialityItem
 
 	// Подписчики
-	TgSubsCount         string
-	TgSubsCountText     string
-	TgLastUpdatedDate   string
-	InstSubsCount       string
-	InstSubsCountText   string
-	InstLastUpdatedDate string
+	TgSubsCount      string
+	InstSubsCount    string
+	YouTubeSubsCount string
+
+	TgSubsCountText      string
+	InstSubsCountText    string
+	YouTubeSubsCountText string
+
+	TgLastUpdatedDate      string
+	InstLastUpdatedDate    string
+	YouTubeLastUpdatedDate string
 
 	// фотка
 	Image string

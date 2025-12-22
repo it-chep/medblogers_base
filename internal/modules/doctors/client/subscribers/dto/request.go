@@ -4,10 +4,10 @@ package dto
 
 type CreateDoctorRequest struct {
 	DoctorID int64 `json:"doctor_id"`
-	// username telegram
-	Telegram string `json:"telegram"`
-	// username telegram
+	// username
+	Telegram  string `json:"telegram"`
 	Instagram string `json:"instagram"`
+	Youtube   string `json:"youtube"`
 }
 
 type UpdateDoctorRequest struct {

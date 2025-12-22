@@ -48,10 +48,10 @@ type GetDoctorsByFilterRequest struct {
 }
 
 type CreateDoctorRequest struct {
-	// username telegram
-	Telegram string
-	// username telegram
+	// username
+	Telegram  string
 	Instagram string
+	YouTube   string
 }
 
 type UpdateDoctorRequest struct {

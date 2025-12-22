@@ -228,6 +228,10 @@ message FilterResponse {
 
     string image = 12;
     bool is_kf_doctor = 13;
+
+    string youtube_link = 14;
+    string youtube_subs_count = 15;
+    string youtube_subs_count_text = 16;
   }
 }
 
@@ -323,6 +327,9 @@ message GetDoctorResponse {
   string image = 22;
 
   bool is_kf_doctor = 23;
+  string youtube_subs_count = 24;
+  string youtube_subs_count_text = 25;
+  string youtube_last_updated_date = 26;
 
   message CityItem {
     int64 id = 1;

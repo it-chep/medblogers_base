@@ -13,6 +13,10 @@ type Doctor struct {
 	TgSubsCount     string
 	TgSubsCountText string
 
+	YouTubeLink          string
+	YouTubeSubsCount     string
+	YouTubeSubsCountText string
+
 	Specialities []Speciality // Строка из основной и дополнительных специальностей
 	Cities       []City       // Строка из основного и дополнительных городов
 
