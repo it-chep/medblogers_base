@@ -20,10 +20,9 @@ type CreateRequest struct {
 	Slug  string
 	Name  string
 
-	HasExperienceWithDoctors bool
-	HasCommand               bool
-	WorkingExperience        int64
-	StartWorkingExperience   time.Time
+	AgencyRepresentative   bool
+	WorkingExperience      int64
+	StartWorkingExperience time.Time
 
 	TgUsername    string
 	PortfolioLink string

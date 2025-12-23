@@ -15,13 +15,13 @@ type GetDoctorsByFilterDoctor struct {
 	//ID доктора
 	DoctorID int64
 	//количество подписчиков
-	TgSubsCount string
+	TgSubsCount      string
+	InstSubsCount    string
+	YouTubeSubsCount string
 	//текст "подписчика", "подписчиков", "подписчик"
-	TgSubsCountText string
-	//количество подписчиков
-	InstSubsCount string
-	//текст "подписчика", "подписчиков", "подписчик"
-	InstSubsCountText string
+	TgSubsCountText      string
+	InstSubsCountText    string
+	YouTubeSubsCountText string
 }
 
 type FilterInfoResponse struct {
@@ -44,26 +44,26 @@ type GetSubscribersByDoctorIDsResponse struct {
 	//ID доктора
 	DoctorID int64
 	//количество подписчиков
-	TgSubsCount string
+	TgSubsCount      string
+	InstSubsCount    string
+	YouTubeSubsCount string
 	//текст "подписчика", "подписчиков", "подписчик"
-	TgSubsCountText string
-	//количество подписчиков
-	InstSubsCount string
-	//текст "подписчика", "подписчиков", "подписчик"
-	InstSubsCountText string
+	TgSubsCountText      string
+	InstSubsCountText    string
+	YouTubeSubsCountText string
 }
 
 type GetDoctorSubscribersResponse struct {
 	//количество подписчиков
-	TgSubsCount string
+	TgSubsCount          string
+	InstSubsCount        string
+	YouTubeSubsCountText string
 	//текст "подписчика", "подписчиков", "подписчик"
-	TgSubsCountText string
-	//дата последнего обновления в сервисе
-	TgLastUpdatedDate string
-	//количество подписчиков
-	InstSubsCount string
-	//текст "подписчика", "подписчиков", "подписчик"
+	TgSubsCountText   string
 	InstSubsCountText string
+	YouTubeSubsCount  string
 	//дата последнего обновления в сервисе
-	InstLastUpdatedDate string
+	InstLastUpdatedDate    string
+	TgLastUpdatedDate      string
+	YouTubeLastUpdatedDate string
 }

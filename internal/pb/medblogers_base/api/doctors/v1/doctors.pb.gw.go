@@ -189,6 +189,27 @@ func local_request_DoctorService_GetSpecialities_0(ctx context.Context, marshale
 	return msg, metadata, err
 }
 
+func request_DoctorService_GetSMainSpecialities_0(ctx context.Context, marshaler runtime.Marshaler, client DoctorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetMainSpecialitiesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetSMainSpecialities(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_DoctorService_GetSMainSpecialities_0(ctx context.Context, marshaler runtime.Marshaler, server DoctorServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetMainSpecialitiesRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetSMainSpecialities(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 var filter_DoctorService_Search_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_DoctorService_Search_0(ctx context.Context, marshaler runtime.Marshaler, client DoctorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -325,6 +346,33 @@ func local_request_DoctorService_GetDoctor_0(ctx context.Context, marshaler runt
 	return msg, metadata, err
 }
 
+func request_DoctorService_CheckCheating_0(ctx context.Context, marshaler runtime.Marshaler, client DoctorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CheckCheatingRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CheckCheating(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_DoctorService_CheckCheating_0(ctx context.Context, marshaler runtime.Marshaler, server DoctorServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CheckCheatingRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CheckCheating(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterDoctorServiceHandlerServer registers the http handlers for service DoctorService to "mux".
 // UnaryRPC     :call DoctorServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -451,6 +499,26 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_DoctorService_GetSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_DoctorService_GetSMainSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetSMainSpecialities", runtime.WithHTTPPathPattern("/api/v1/main_specialities_list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_DoctorService_GetSMainSpecialities_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DoctorService_GetSMainSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_DoctorService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -530,6 +598,26 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_DoctorService_GetDoctor_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_DoctorService_CheckCheating_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/CheckCheating", runtime.WithHTTPPathPattern("/api/v1/blacklist_check"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_DoctorService_CheckCheating_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DoctorService_CheckCheating_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -673,6 +761,23 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_DoctorService_GetSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_DoctorService_GetSMainSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetSMainSpecialities", runtime.WithHTTPPathPattern("/api/v1/main_specialities_list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_DoctorService_GetSMainSpecialities_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DoctorService_GetSMainSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_DoctorService_Search_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -741,6 +846,23 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_DoctorService_GetDoctor_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_DoctorService_CheckCheating_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/CheckCheating", runtime.WithHTTPPathPattern("/api/v1/blacklist_check"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_DoctorService_CheckCheating_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_DoctorService_CheckCheating_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
@@ -751,10 +873,12 @@ var (
 	pattern_DoctorService_GetPagesCount_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "pages_count"}, ""))
 	pattern_DoctorService_GetCities_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "cities_list"}, ""))
 	pattern_DoctorService_GetSpecialities_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "specialities_list"}, ""))
+	pattern_DoctorService_GetSMainSpecialities_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "main_specialities_list"}, ""))
 	pattern_DoctorService_Search_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "search-doctors"}, ""))
 	pattern_DoctorService_Filter_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "filter-doctors"}, ""))
 	pattern_DoctorService_CreateDoctor_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "doctors", "create"}, ""))
 	pattern_DoctorService_GetDoctor_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "doctors", "doctor_slug"}, ""))
+	pattern_DoctorService_CheckCheating_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "blacklist_check"}, ""))
 )
 
 var (
@@ -764,8 +888,10 @@ var (
 	forward_DoctorService_GetPagesCount_0             = runtime.ForwardResponseMessage
 	forward_DoctorService_GetCities_0                 = runtime.ForwardResponseMessage
 	forward_DoctorService_GetSpecialities_0           = runtime.ForwardResponseMessage
+	forward_DoctorService_GetSMainSpecialities_0      = runtime.ForwardResponseMessage
 	forward_DoctorService_Search_0                    = runtime.ForwardResponseMessage
 	forward_DoctorService_Filter_0                    = runtime.ForwardResponseMessage
 	forward_DoctorService_CreateDoctor_0              = runtime.ForwardResponseMessage
 	forward_DoctorService_GetDoctor_0                 = runtime.ForwardResponseMessage
+	forward_DoctorService_CheckCheating_0             = runtime.ForwardResponseMessage
 )

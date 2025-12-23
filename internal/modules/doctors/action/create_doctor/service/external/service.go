@@ -45,10 +45,12 @@ func (s *Service) NotificatorAdmins(ctx context.Context, createDTO dto.CreateDoc
 func (s *Service) SendToSubscribers(ctx context.Context, createDTO dto.CreateDoctorRequest) {
 	tgLink := validateTGChannelURL(createDTO.TelegramChannel)
 	instagramLink := validateInstagramURL(createDTO.InstagramUsername)
+	youTube := validateYouTube(createDTO.YoutubeUsername)
 
 	_, err := s.subscribersClient.CreateDoctor(ctx, createDTO.ID, indto.CreateDoctorRequest{
 		Telegram:  tgLink,
 		Instagram: instagramLink,
+		YouTube:   youTube,
 	})
 
 	if err != nil {
@@ -94,6 +96,29 @@ func validateInstagramURL(url string) string {
 		`(?:www\.)?instagram\.com/([a-zA-Z0-9_.]+)/?`,          //  instagram.com/username
 		`@?([a-zA-Z0-9_.]+)`,                                   // @username или username
 		`([a-zA-Z0-9_.]+)`,                                     // username как последний fallback
+	}
+
+	for _, pattern := range patterns {
+		re := regexp.MustCompile(pattern)
+		matches := re.FindStringSubmatch(strings.TrimSpace(url))
+		if len(matches) > 1 {
+			return matches[1]
+		}
+	}
+
+	return strings.TrimSpace(url)
+}
+
+func validateYouTube(url string) string {
+	if url == "" {
+		return ""
+	}
+
+	patterns := []string{
+		`https?://(?:www\.)?youtube\.com/([a-zA-Z0-9_.]+)/?`, // https://youtube.com/username/
+		`(?:www\.)?youtube\.com/([a-zA-Z0-9_.]+)/?`,          //  youtube.com/username
+		`@?([a-zA-Z0-9_.]+)`,                                 // @username или username
+		`([a-zA-Z0-9_.]+)`,                                   // username как последний fallback
 	}
 
 	for _, pattern := range patterns {

@@ -33,10 +33,9 @@ type FreelancerDTO struct {
 	Name string
 	Slug string
 
-	TgURL                   string
-	HasExperienceWithDoctor bool
-	PriceCategory           int64
-	PortfolioLink           string
+	TgURL         string
+	PriceCategory int64
+	PortfolioLink string
 
 	Cities         []CityItem          // доп Города
 	Specialities   []SpecialityItem    // доп Специальности
@@ -53,8 +52,8 @@ type FreelancerDTO struct {
 	// фотка
 	Image string
 
-	HasCommand        bool
-	WorkingExperience string
+	AgencyRepresentative bool
+	WorkingExperience    string
 }
 
 // New .
@@ -63,15 +62,14 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 		Name: frlncr.GetName(),
 		Slug: frlncr.GetSlug(),
 
-		TgURL:                   frlncr.GetTgURL(),
-		HasExperienceWithDoctor: frlncr.HasExperienceWithDoctor(),
-		PriceCategory:           frlncr.GetPriceCategory(),
-		PortfolioLink:           frlncr.GetPortfolioLink(),
+		TgURL:         frlncr.GetTgURL(),
+		PriceCategory: frlncr.GetPriceCategory(),
+		PortfolioLink: frlncr.GetPortfolioLink(),
 
 		MainCityID:       frlncr.GetMainCityID(),
 		MainSpecialityID: frlncr.GetMainSpecialityID(),
 
-		HasCommand:        frlncr.GetHasCommand(),
-		WorkingExperience: frlncr.GetWorkingExperience(),
+		AgencyRepresentative: frlncr.IsAgencyRepresentative(),
+		WorkingExperience:    frlncr.GetWorkingExperience(),
 	}
 }

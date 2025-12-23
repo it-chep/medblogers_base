@@ -10,6 +10,13 @@ import (
 	"github.com/samber/lo"
 )
 
+const (
+	// макс количество и городов и специальностей
+	maxItems = 7
+	// макс количество и городов и специальностей для фрилансера
+	maxItemsForFreelancer = 3
+)
+
 // RuleValidCityID проверяет валидность выбранного города
 var RuleValidCityID = func(citiesIDs []int64) func(_ context.Context, req *dto.CreateRequest) (bool, error) {
 	return func(_ context.Context, req *dto.CreateRequest) (bool, error) {
@@ -183,6 +190,48 @@ var RuleValidatePriceList = func() func(ctx context.Context, t *dto.CreateReques
 					Text:  "Название услуги обязательно",
 					Field: "priceList",
 				}
+			}
+		}
+
+		return true, nil
+	}
+}
+
+// RuleValidLenSpecForFreelancer валидирует количество выбранных специальностей
+var RuleValidLenSpecForFreelancer = func() func(ctx context.Context, t *dto.CreateRequest) (bool, error) {
+	return func(_ context.Context, req *dto.CreateRequest) (bool, error) {
+		if !req.AgencyRepresentative && len(req.AdditionalSpecialties) >= maxItemsForFreelancer {
+			return false, dto.ValidationError{
+				Text:  "Выберите агентство или уменьшите количество доп специальностей",
+				Field: "additionalSpecialities",
+			}
+		}
+
+		if len(req.AdditionalSpecialties) >= maxItems {
+			return false, dto.ValidationError{
+				Text:  "Пожалуйста уменьшите количество специальностей",
+				Field: "additionalSpecialities",
+			}
+		}
+
+		return true, nil
+	}
+}
+
+// RuleValidLenCitiesForFreelancer валидирует количество выбранных городов
+var RuleValidLenCitiesForFreelancer = func() func(ctx context.Context, t *dto.CreateRequest) (bool, error) {
+	return func(_ context.Context, req *dto.CreateRequest) (bool, error) {
+		if !req.AgencyRepresentative && len(req.AdditionalCities) >= maxItemsForFreelancer {
+			return false, dto.ValidationError{
+				Text:  "Выберите агентство или уменьшите количество доп городов",
+				Field: "additionalCities",
+			}
+		}
+
+		if len(req.AdditionalCities) >= maxItems {
+			return false, dto.ValidationError{
+				Text:  "Пожалуйста уменьшите количество городов",
+				Field: "additionalCities",
 			}
 		}
 

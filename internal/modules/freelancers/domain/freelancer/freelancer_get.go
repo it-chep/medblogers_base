@@ -14,10 +14,6 @@ func (f *Freelancer) IsActive() bool {
 	return f.isActive
 }
 
-func (f *Freelancer) HasExperienceWithDoctor() bool {
-	return f.experienceWithDoctor
-}
-
 func (f *Freelancer) GetPriceCategory() int64 {
 	return f.priceCategory
 }
@@ -94,8 +90,8 @@ func (f *Freelancer) GetMainSpecialityID() int64 {
 	return f.specialityID
 }
 
-func (f *Freelancer) GetHasCommand() bool {
-	return f.hasCommand
+func (f *Freelancer) IsAgencyRepresentative() bool {
+	return f.agencyRepresentative
 }
 
 func (f *Freelancer) GetWorkingExperience() string {

@@ -24,6 +24,110 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CityItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CityItem) Reset() {
+	*x = CityItem{}
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CityItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CityItem) ProtoMessage() {}
+
+func (x *CityItem) ProtoReflect() protoreflect.Message {
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CityItem.ProtoReflect.Descriptor instead.
+func (*CityItem) Descriptor() ([]byte, []int) {
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CityItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *CityItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type SpecialityItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpecialityItem) Reset() {
+	*x = SpecialityItem{}
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpecialityItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpecialityItem) ProtoMessage() {}
+
+func (x *SpecialityItem) ProtoReflect() protoreflect.Message {
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpecialityItem.ProtoReflect.Descriptor instead.
+func (*SpecialityItem) Descriptor() ([]byte, []int) {
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SpecialityItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SpecialityItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 type GetFreelancersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -32,7 +136,7 @@ type GetFreelancersRequest struct {
 
 func (x *GetFreelancersRequest) Reset() {
 	*x = GetFreelancersRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[0]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +148,7 @@ func (x *GetFreelancersRequest) String() string {
 func (*GetFreelancersRequest) ProtoMessage() {}
 
 func (x *GetFreelancersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[0]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +161,7 @@ func (x *GetFreelancersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancersRequest.ProtoReflect.Descriptor instead.
 func (*GetFreelancersRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{2}
 }
 
 type GetFreelancersResponse struct {
@@ -68,7 +172,7 @@ type GetFreelancersResponse struct {
 
 func (x *GetFreelancersResponse) Reset() {
 	*x = GetFreelancersResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[1]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -80,7 +184,7 @@ func (x *GetFreelancersResponse) String() string {
 func (*GetFreelancersResponse) ProtoMessage() {}
 
 func (x *GetFreelancersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[1]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -93,7 +197,7 @@ func (x *GetFreelancersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancersResponse.ProtoReflect.Descriptor instead.
 func (*GetFreelancersResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{1}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{3}
 }
 
 type GetSettingsRequest struct {
@@ -104,7 +208,7 @@ type GetSettingsRequest struct {
 
 func (x *GetSettingsRequest) Reset() {
 	*x = GetSettingsRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[2]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -116,7 +220,7 @@ func (x *GetSettingsRequest) String() string {
 func (*GetSettingsRequest) ProtoMessage() {}
 
 func (x *GetSettingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[2]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -129,7 +233,7 @@ func (x *GetSettingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSettingsRequest.ProtoReflect.Descriptor instead.
 func (*GetSettingsRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{2}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{4}
 }
 
 type GetSettingsResponse struct {
@@ -144,7 +248,7 @@ type GetSettingsResponse struct {
 
 func (x *GetSettingsResponse) Reset() {
 	*x = GetSettingsResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[3]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -156,7 +260,7 @@ func (x *GetSettingsResponse) String() string {
 func (*GetSettingsResponse) ProtoMessage() {}
 
 func (x *GetSettingsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[3]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,7 +273,7 @@ func (x *GetSettingsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSettingsResponse.ProtoReflect.Descriptor instead.
 func (*GetSettingsResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{3}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetSettingsResponse) GetSocieties() []*GetSettingsResponse_SocietyItem {
@@ -208,7 +312,7 @@ type GetCountersRequest struct {
 
 func (x *GetCountersRequest) Reset() {
 	*x = GetCountersRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[4]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -220,7 +324,7 @@ func (x *GetCountersRequest) String() string {
 func (*GetCountersRequest) ProtoMessage() {}
 
 func (x *GetCountersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[4]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -233,7 +337,7 @@ func (x *GetCountersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCountersRequest.ProtoReflect.Descriptor instead.
 func (*GetCountersRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{4}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{6}
 }
 
 type GetCountersResponse struct {
@@ -245,7 +349,7 @@ type GetCountersResponse struct {
 
 func (x *GetCountersResponse) Reset() {
 	*x = GetCountersResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[5]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -257,7 +361,7 @@ func (x *GetCountersResponse) String() string {
 func (*GetCountersResponse) ProtoMessage() {}
 
 func (x *GetCountersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[5]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -270,7 +374,7 @@ func (x *GetCountersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCountersResponse.ProtoReflect.Descriptor instead.
 func (*GetCountersResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{5}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetCountersResponse) GetFreelancersCount() int64 {
@@ -281,19 +385,18 @@ func (x *GetCountersResponse) GetFreelancersCount() int64 {
 }
 
 type PreliminaryFilterCountRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Societies             []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
-	PriceCategory         []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Cities                []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities          []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	ExperienceWithDoctors *bool                  `protobuf:"varint,5,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3,oneof" json:"experience_with_doctors,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Societies     []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
+	PriceCategory []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Cities        []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities  []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PreliminaryFilterCountRequest) Reset() {
 	*x = PreliminaryFilterCountRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[6]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -305,7 +408,7 @@ func (x *PreliminaryFilterCountRequest) String() string {
 func (*PreliminaryFilterCountRequest) ProtoMessage() {}
 
 func (x *PreliminaryFilterCountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[6]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +421,7 @@ func (x *PreliminaryFilterCountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PreliminaryFilterCountRequest.ProtoReflect.Descriptor instead.
 func (*PreliminaryFilterCountRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{6}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *PreliminaryFilterCountRequest) GetSocieties() []int64 {
@@ -349,13 +452,6 @@ func (x *PreliminaryFilterCountRequest) GetSpecialities() []int64 {
 	return nil
 }
 
-func (x *PreliminaryFilterCountRequest) GetExperienceWithDoctors() bool {
-	if x != nil && x.ExperienceWithDoctors != nil {
-		return *x.ExperienceWithDoctors
-	}
-	return false
-}
-
 type PreliminaryFilterCountResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	FreelancersCount int64                  `protobuf:"varint,1,opt,name=freelancers_count,json=freelancersCount,proto3" json:"freelancers_count,omitempty"`
@@ -365,7 +461,7 @@ type PreliminaryFilterCountResponse struct {
 
 func (x *PreliminaryFilterCountResponse) Reset() {
 	*x = PreliminaryFilterCountResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[7]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -377,7 +473,7 @@ func (x *PreliminaryFilterCountResponse) String() string {
 func (*PreliminaryFilterCountResponse) ProtoMessage() {}
 
 func (x *PreliminaryFilterCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[7]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -390,7 +486,7 @@ func (x *PreliminaryFilterCountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PreliminaryFilterCountResponse.ProtoReflect.Descriptor instead.
 func (*PreliminaryFilterCountResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{7}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PreliminaryFilterCountResponse) GetFreelancersCount() int64 {
@@ -401,19 +497,18 @@ func (x *PreliminaryFilterCountResponse) GetFreelancersCount() int64 {
 }
 
 type PagesCountRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Societies             []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
-	PriceCategory         []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Cities                []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities          []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	ExperienceWithDoctors *bool                  `protobuf:"varint,5,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3,oneof" json:"experience_with_doctors,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Societies     []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
+	PriceCategory []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Cities        []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities  []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PagesCountRequest) Reset() {
 	*x = PagesCountRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[8]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -425,7 +520,7 @@ func (x *PagesCountRequest) String() string {
 func (*PagesCountRequest) ProtoMessage() {}
 
 func (x *PagesCountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[8]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -438,7 +533,7 @@ func (x *PagesCountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PagesCountRequest.ProtoReflect.Descriptor instead.
 func (*PagesCountRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{8}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *PagesCountRequest) GetSocieties() []int64 {
@@ -469,13 +564,6 @@ func (x *PagesCountRequest) GetSpecialities() []int64 {
 	return nil
 }
 
-func (x *PagesCountRequest) GetExperienceWithDoctors() bool {
-	if x != nil && x.ExperienceWithDoctors != nil {
-		return *x.ExperienceWithDoctors
-	}
-	return false
-}
-
 type PagesCountResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PagesCount    int64                  `protobuf:"varint,1,opt,name=pages_count,json=pagesCount,proto3" json:"pages_count,omitempty"`
@@ -485,7 +573,7 @@ type PagesCountResponse struct {
 
 func (x *PagesCountResponse) Reset() {
 	*x = PagesCountResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[9]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -497,7 +585,7 @@ func (x *PagesCountResponse) String() string {
 func (*PagesCountResponse) ProtoMessage() {}
 
 func (x *PagesCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[9]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -510,7 +598,7 @@ func (x *PagesCountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PagesCountResponse.ProtoReflect.Descriptor instead.
 func (*PagesCountResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{9}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PagesCountResponse) GetPagesCount() int64 {
@@ -528,7 +616,7 @@ type GetCitiesRequest struct {
 
 func (x *GetCitiesRequest) Reset() {
 	*x = GetCitiesRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[10]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -540,7 +628,7 @@ func (x *GetCitiesRequest) String() string {
 func (*GetCitiesRequest) ProtoMessage() {}
 
 func (x *GetCitiesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[10]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -553,7 +641,7 @@ func (x *GetCitiesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCitiesRequest.ProtoReflect.Descriptor instead.
 func (*GetCitiesRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{10}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{12}
 }
 
 type CitiesResponse struct {
@@ -565,7 +653,7 @@ type CitiesResponse struct {
 
 func (x *CitiesResponse) Reset() {
 	*x = CitiesResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[11]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -577,7 +665,7 @@ func (x *CitiesResponse) String() string {
 func (*CitiesResponse) ProtoMessage() {}
 
 func (x *CitiesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[11]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -590,7 +678,7 @@ func (x *CitiesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CitiesResponse.ProtoReflect.Descriptor instead.
 func (*CitiesResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{11}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CitiesResponse) GetCities() []*CitiesResponse_CityItem {
@@ -608,7 +696,7 @@ type GetSpecialitiesRequest struct {
 
 func (x *GetSpecialitiesRequest) Reset() {
 	*x = GetSpecialitiesRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[12]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -620,7 +708,7 @@ func (x *GetSpecialitiesRequest) String() string {
 func (*GetSpecialitiesRequest) ProtoMessage() {}
 
 func (x *GetSpecialitiesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[12]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -633,7 +721,7 @@ func (x *GetSpecialitiesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSpecialitiesRequest.ProtoReflect.Descriptor instead.
 func (*GetSpecialitiesRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{12}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{14}
 }
 
 type SpecialitiesResponse struct {
@@ -645,7 +733,7 @@ type SpecialitiesResponse struct {
 
 func (x *SpecialitiesResponse) Reset() {
 	*x = SpecialitiesResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[13]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -657,7 +745,7 @@ func (x *SpecialitiesResponse) String() string {
 func (*SpecialitiesResponse) ProtoMessage() {}
 
 func (x *SpecialitiesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[13]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -670,7 +758,7 @@ func (x *SpecialitiesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SpecialitiesResponse.ProtoReflect.Descriptor instead.
 func (*SpecialitiesResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{13}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SpecialitiesResponse) GetSpecialities() []*SpecialitiesResponse_SpecialityItem {
@@ -689,7 +777,7 @@ type SearchRequest struct {
 
 func (x *SearchRequest) Reset() {
 	*x = SearchRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[14]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -701,7 +789,7 @@ func (x *SearchRequest) String() string {
 func (*SearchRequest) ProtoMessage() {}
 
 func (x *SearchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[14]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -714,7 +802,7 @@ func (x *SearchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchRequest.ProtoReflect.Descriptor instead.
 func (*SearchRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{14}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *SearchRequest) GetQuery() string {
@@ -735,7 +823,7 @@ type SearchResponse struct {
 
 func (x *SearchResponse) Reset() {
 	*x = SearchResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[15]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -747,7 +835,7 @@ func (x *SearchResponse) String() string {
 func (*SearchResponse) ProtoMessage() {}
 
 func (x *SearchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[15]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -760,7 +848,7 @@ func (x *SearchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchResponse.ProtoReflect.Descriptor instead.
 func (*SearchResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *SearchResponse) GetFreelancers() []*SearchResponse_FreelancerItem {
@@ -785,20 +873,19 @@ func (x *SearchResponse) GetSpecialities() []*SearchResponse_SpecialityItem {
 }
 
 type FilterRequest struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Societies             []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
-	PriceCategory         []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Cities                []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities          []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	ExperienceWithDoctors *bool                  `protobuf:"varint,5,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3,oneof" json:"experience_with_doctors,omitempty"`
-	Page                  int64                  `protobuf:"varint,6,opt,name=page,proto3" json:"page,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Societies     []int64                `protobuf:"varint,1,rep,packed,name=societies,proto3" json:"societies,omitempty"`
+	PriceCategory []int64                `protobuf:"varint,2,rep,packed,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Cities        []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities  []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	Page          int64                  `protobuf:"varint,6,opt,name=page,proto3" json:"page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FilterRequest) Reset() {
 	*x = FilterRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[16]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -810,7 +897,7 @@ func (x *FilterRequest) String() string {
 func (*FilterRequest) ProtoMessage() {}
 
 func (x *FilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[16]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -823,7 +910,7 @@ func (x *FilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FilterRequest.ProtoReflect.Descriptor instead.
 func (*FilterRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{16}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *FilterRequest) GetSocieties() []int64 {
@@ -854,13 +941,6 @@ func (x *FilterRequest) GetSpecialities() []int64 {
 	return nil
 }
 
-func (x *FilterRequest) GetExperienceWithDoctors() bool {
-	if x != nil && x.ExperienceWithDoctors != nil {
-		return *x.ExperienceWithDoctors
-	}
-	return false
-}
-
 func (x *FilterRequest) GetPage() int64 {
 	if x != nil {
 		return x.Page
@@ -877,7 +957,7 @@ type FilterResponse struct {
 
 func (x *FilterResponse) Reset() {
 	*x = FilterResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[17]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -889,7 +969,7 @@ func (x *FilterResponse) String() string {
 func (*FilterResponse) ProtoMessage() {}
 
 func (x *FilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[17]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -902,7 +982,7 @@ func (x *FilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FilterResponse.ProtoReflect.Descriptor instead.
 func (*FilterResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *FilterResponse) GetFreelancers() []*FilterResponse_FreelancerItem {
@@ -920,7 +1000,6 @@ type CreateFreelancersRequest struct {
 	MiddleName            string                 `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
 	TelegramUsername      string                 `protobuf:"bytes,5,opt,name=telegram_username,json=telegramUsername,proto3" json:"telegram_username,omitempty"`
 	AgreePolicy           bool                   `protobuf:"varint,6,opt,name=agree_policy,json=agreePolicy,proto3" json:"agree_policy,omitempty"`
-	ExperienceWithDoctors bool                   `protobuf:"varint,7,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
 	CityId                int64                  `protobuf:"varint,8,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	SpecialityId          int64                  `protobuf:"varint,9,opt,name=speciality_id,json=specialityId,proto3" json:"speciality_id,omitempty"`
 	AdditionalCities      []int64                `protobuf:"varint,10,rep,packed,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
@@ -929,8 +1008,8 @@ type CreateFreelancersRequest struct {
 	PortfolioLink         string                 `protobuf:"bytes,13,opt,name=portfolio_link,json=portfolioLink,proto3" json:"portfolio_link,omitempty"`
 	// Прайс-лист
 	PriceList []*CreateFreelancersRequest_PriceListItem `protobuf:"bytes,14,rep,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
-	// Есть команда
-	HasCommand bool `protobuf:"varint,15,opt,name=has_command,json=hasCommand,proto3" json:"has_command,omitempty"`
+	// представитель агентства
+	AgencyRepresentative bool `protobuf:"varint,15,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
 	// Опыт работы в годах
 	WorkingExperience int64 `protobuf:"varint,16,opt,name=working_experience,json=workingExperience,proto3" json:"working_experience,omitempty"`
 	unknownFields     protoimpl.UnknownFields
@@ -939,7 +1018,7 @@ type CreateFreelancersRequest struct {
 
 func (x *CreateFreelancersRequest) Reset() {
 	*x = CreateFreelancersRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[18]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -951,7 +1030,7 @@ func (x *CreateFreelancersRequest) String() string {
 func (*CreateFreelancersRequest) ProtoMessage() {}
 
 func (x *CreateFreelancersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[18]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -964,7 +1043,7 @@ func (x *CreateFreelancersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFreelancersRequest.ProtoReflect.Descriptor instead.
 func (*CreateFreelancersRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{18}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CreateFreelancersRequest) GetEmail() string {
@@ -1005,13 +1084,6 @@ func (x *CreateFreelancersRequest) GetTelegramUsername() string {
 func (x *CreateFreelancersRequest) GetAgreePolicy() bool {
 	if x != nil {
 		return x.AgreePolicy
-	}
-	return false
-}
-
-func (x *CreateFreelancersRequest) GetExperienceWithDoctors() bool {
-	if x != nil {
-		return x.ExperienceWithDoctors
 	}
 	return false
 }
@@ -1065,9 +1137,9 @@ func (x *CreateFreelancersRequest) GetPriceList() []*CreateFreelancersRequest_Pr
 	return nil
 }
 
-func (x *CreateFreelancersRequest) GetHasCommand() bool {
+func (x *CreateFreelancersRequest) GetAgencyRepresentative() bool {
 	if x != nil {
-		return x.HasCommand
+		return x.AgencyRepresentative
 	}
 	return false
 }
@@ -1088,7 +1160,7 @@ type CreateFreelancersResponse struct {
 
 func (x *CreateFreelancersResponse) Reset() {
 	*x = CreateFreelancersResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[19]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1100,7 +1172,7 @@ func (x *CreateFreelancersResponse) String() string {
 func (*CreateFreelancersResponse) ProtoMessage() {}
 
 func (x *CreateFreelancersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[19]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1113,7 +1185,7 @@ func (x *CreateFreelancersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFreelancersResponse.ProtoReflect.Descriptor instead.
 func (*CreateFreelancersResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{19}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CreateFreelancersResponse) GetErrors() []*CreateFreelancersResponse_ValidationError {
@@ -1132,7 +1204,7 @@ type GetFreelancerRequest struct {
 
 func (x *GetFreelancerRequest) Reset() {
 	*x = GetFreelancerRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[20]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1144,7 +1216,7 @@ func (x *GetFreelancerRequest) String() string {
 func (*GetFreelancerRequest) ProtoMessage() {}
 
 func (x *GetFreelancerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[20]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1157,7 +1229,7 @@ func (x *GetFreelancerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancerRequest.ProtoReflect.Descriptor instead.
 func (*GetFreelancerRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{20}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetFreelancerRequest) GetFreelancerSlug() string {
@@ -1193,17 +1265,15 @@ type GetFreelancerResponse struct {
 	PriceList []*GetFreelancerResponse_PriceListItem `protobuf:"bytes,12,rep,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
 	// Опыт работы
 	WorkingExperience string `protobuf:"bytes,13,opt,name=working_experience,json=workingExperience,proto3" json:"working_experience,omitempty"`
-	// Есть команда
-	HasCommand bool `protobuf:"varint,14,opt,name=has_command,json=hasCommand,proto3" json:"has_command,omitempty"`
-	// Опыт работы с врачами
-	ExperienceWithDoctors bool `protobuf:"varint,15,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	// Представитель агентства
+	AgencyRepresentative bool `protobuf:"varint,14,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GetFreelancerResponse) Reset() {
 	*x = GetFreelancerResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[21]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1215,7 +1285,7 @@ func (x *GetFreelancerResponse) String() string {
 func (*GetFreelancerResponse) ProtoMessage() {}
 
 func (x *GetFreelancerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[21]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1228,7 +1298,7 @@ func (x *GetFreelancerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancerResponse.ProtoReflect.Descriptor instead.
 func (*GetFreelancerResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *GetFreelancerResponse) GetName() string {
@@ -1322,16 +1392,9 @@ func (x *GetFreelancerResponse) GetWorkingExperience() string {
 	return ""
 }
 
-func (x *GetFreelancerResponse) GetHasCommand() bool {
+func (x *GetFreelancerResponse) GetAgencyRepresentative() bool {
 	if x != nil {
-		return x.HasCommand
-	}
-	return false
-}
-
-func (x *GetFreelancerResponse) GetExperienceWithDoctors() bool {
-	if x != nil {
-		return x.ExperienceWithDoctors
+		return x.AgencyRepresentative
 	}
 	return false
 }
@@ -1344,7 +1407,7 @@ type GetSocialNetworksRequest struct {
 
 func (x *GetSocialNetworksRequest) Reset() {
 	*x = GetSocialNetworksRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[22]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1356,7 +1419,7 @@ func (x *GetSocialNetworksRequest) String() string {
 func (*GetSocialNetworksRequest) ProtoMessage() {}
 
 func (x *GetSocialNetworksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[22]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1369,7 +1432,7 @@ func (x *GetSocialNetworksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSocialNetworksRequest.ProtoReflect.Descriptor instead.
 func (*GetSocialNetworksRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{22}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{24}
 }
 
 type GetSocialNetworksResponse struct {
@@ -1381,7 +1444,7 @@ type GetSocialNetworksResponse struct {
 
 func (x *GetSocialNetworksResponse) Reset() {
 	*x = GetSocialNetworksResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[23]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1393,7 +1456,7 @@ func (x *GetSocialNetworksResponse) String() string {
 func (*GetSocialNetworksResponse) ProtoMessage() {}
 
 func (x *GetSocialNetworksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[23]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1406,7 +1469,7 @@ func (x *GetSocialNetworksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSocialNetworksResponse.ProtoReflect.Descriptor instead.
 func (*GetSocialNetworksResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetSocialNetworksResponse) GetSocialNetworks() []*GetSocialNetworksResponse_SocialNetworkItem {
@@ -1425,7 +1488,7 @@ type GetFreelancerRecommendationsRequest struct {
 
 func (x *GetFreelancerRecommendationsRequest) Reset() {
 	*x = GetFreelancerRecommendationsRequest{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[24]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1437,7 +1500,7 @@ func (x *GetFreelancerRecommendationsRequest) String() string {
 func (*GetFreelancerRecommendationsRequest) ProtoMessage() {}
 
 func (x *GetFreelancerRecommendationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[24]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1450,7 +1513,7 @@ func (x *GetFreelancerRecommendationsRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetFreelancerRecommendationsRequest.ProtoReflect.Descriptor instead.
 func (*GetFreelancerRecommendationsRequest) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{24}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetFreelancerRecommendationsRequest) GetFreelancerSlug() string {
@@ -1469,7 +1532,7 @@ type GetFreelancerRecommendationsResponse struct {
 
 func (x *GetFreelancerRecommendationsResponse) Reset() {
 	*x = GetFreelancerRecommendationsResponse{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[25]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1481,7 +1544,7 @@ func (x *GetFreelancerRecommendationsResponse) String() string {
 func (*GetFreelancerRecommendationsResponse) ProtoMessage() {}
 
 func (x *GetFreelancerRecommendationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[25]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1494,7 +1557,7 @@ func (x *GetFreelancerRecommendationsResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use GetFreelancerRecommendationsResponse.ProtoReflect.Descriptor instead.
 func (*GetFreelancerRecommendationsResponse) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{25}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetFreelancerRecommendationsResponse) GetDoctors() []*GetFreelancerRecommendationsResponse_Doctor {
@@ -1516,7 +1579,7 @@ type GetSettingsResponse_SocietyItem struct {
 
 func (x *GetSettingsResponse_SocietyItem) Reset() {
 	*x = GetSettingsResponse_SocietyItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[26]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1528,7 +1591,7 @@ func (x *GetSettingsResponse_SocietyItem) String() string {
 func (*GetSettingsResponse_SocietyItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_SocietyItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[26]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1541,7 +1604,7 @@ func (x *GetSettingsResponse_SocietyItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSettingsResponse_SocietyItem.ProtoReflect.Descriptor instead.
 func (*GetSettingsResponse_SocietyItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{3, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{5, 0}
 }
 
 func (x *GetSettingsResponse_SocietyItem) GetId() int64 {
@@ -1583,7 +1646,7 @@ type GetSettingsResponse_CityItem struct {
 
 func (x *GetSettingsResponse_CityItem) Reset() {
 	*x = GetSettingsResponse_CityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[27]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1595,7 +1658,7 @@ func (x *GetSettingsResponse_CityItem) String() string {
 func (*GetSettingsResponse_CityItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[27]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1608,7 +1671,7 @@ func (x *GetSettingsResponse_CityItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSettingsResponse_CityItem.ProtoReflect.Descriptor instead.
 func (*GetSettingsResponse_CityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{3, 1}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{5, 1}
 }
 
 func (x *GetSettingsResponse_CityItem) GetId() int64 {
@@ -1643,7 +1706,7 @@ type GetSettingsResponse_SpecialityItem struct {
 
 func (x *GetSettingsResponse_SpecialityItem) Reset() {
 	*x = GetSettingsResponse_SpecialityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[28]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1655,7 +1718,7 @@ func (x *GetSettingsResponse_SpecialityItem) String() string {
 func (*GetSettingsResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[28]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1668,7 +1731,7 @@ func (x *GetSettingsResponse_SpecialityItem) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetSettingsResponse_SpecialityItem.ProtoReflect.Descriptor instead.
 func (*GetSettingsResponse_SpecialityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{3, 2}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{5, 2}
 }
 
 func (x *GetSettingsResponse_SpecialityItem) GetId() int64 {
@@ -1703,7 +1766,7 @@ type GetSettingsResponse_PriceCategoryItem struct {
 
 func (x *GetSettingsResponse_PriceCategoryItem) Reset() {
 	*x = GetSettingsResponse_PriceCategoryItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[29]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1715,7 +1778,7 @@ func (x *GetSettingsResponse_PriceCategoryItem) String() string {
 func (*GetSettingsResponse_PriceCategoryItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_PriceCategoryItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[29]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1728,7 +1791,7 @@ func (x *GetSettingsResponse_PriceCategoryItem) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use GetSettingsResponse_PriceCategoryItem.ProtoReflect.Descriptor instead.
 func (*GetSettingsResponse_PriceCategoryItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{3, 3}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{5, 3}
 }
 
 func (x *GetSettingsResponse_PriceCategoryItem) GetId() int64 {
@@ -1762,7 +1825,7 @@ type CitiesResponse_CityItem struct {
 
 func (x *CitiesResponse_CityItem) Reset() {
 	*x = CitiesResponse_CityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[30]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1774,7 +1837,7 @@ func (x *CitiesResponse_CityItem) String() string {
 func (*CitiesResponse_CityItem) ProtoMessage() {}
 
 func (x *CitiesResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[30]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1787,7 +1850,7 @@ func (x *CitiesResponse_CityItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CitiesResponse_CityItem.ProtoReflect.Descriptor instead.
 func (*CitiesResponse_CityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{11, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *CitiesResponse_CityItem) GetCityId() int64 {
@@ -1814,7 +1877,7 @@ type SpecialitiesResponse_SpecialityItem struct {
 
 func (x *SpecialitiesResponse_SpecialityItem) Reset() {
 	*x = SpecialitiesResponse_SpecialityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[31]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1826,7 +1889,7 @@ func (x *SpecialitiesResponse_SpecialityItem) String() string {
 func (*SpecialitiesResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *SpecialitiesResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[31]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1839,7 +1902,7 @@ func (x *SpecialitiesResponse_SpecialityItem) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SpecialitiesResponse_SpecialityItem.ProtoReflect.Descriptor instead.
 func (*SpecialitiesResponse_SpecialityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{13, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15, 0}
 }
 
 func (x *SpecialitiesResponse_SpecialityItem) GetSpecialityId() int64 {
@@ -1864,8 +1927,6 @@ type SearchResponse_FreelancerItem struct {
 	CityName       string                 `protobuf:"bytes,4,opt,name=city_name,json=cityName,proto3" json:"city_name,omitempty"`
 	SpecialityName string                 `protobuf:"bytes,5,opt,name=speciality_name,json=specialityName,proto3" json:"speciality_name,omitempty"`
 	Image          string                 `protobuf:"bytes,6,opt,name=image,proto3" json:"image,omitempty"`
-	// Опыт работы с врачами
-	ExperienceWithDoctors bool `protobuf:"varint,7,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
 	// Ценовая категория
 	PriceCategory  int64                                              `protobuf:"varint,8,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	SocialNetworks []*SearchResponse_FreelancerItem_SocialNetworkItem `protobuf:"bytes,9,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
@@ -1875,7 +1936,7 @@ type SearchResponse_FreelancerItem struct {
 
 func (x *SearchResponse_FreelancerItem) Reset() {
 	*x = SearchResponse_FreelancerItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[32]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1887,7 +1948,7 @@ func (x *SearchResponse_FreelancerItem) String() string {
 func (*SearchResponse_FreelancerItem) ProtoMessage() {}
 
 func (x *SearchResponse_FreelancerItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[32]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1900,7 +1961,7 @@ func (x *SearchResponse_FreelancerItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchResponse_FreelancerItem.ProtoReflect.Descriptor instead.
 func (*SearchResponse_FreelancerItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17, 0}
 }
 
 func (x *SearchResponse_FreelancerItem) GetId() int64 {
@@ -1945,13 +2006,6 @@ func (x *SearchResponse_FreelancerItem) GetImage() string {
 	return ""
 }
 
-func (x *SearchResponse_FreelancerItem) GetExperienceWithDoctors() bool {
-	if x != nil {
-		return x.ExperienceWithDoctors
-	}
-	return false
-}
-
 func (x *SearchResponse_FreelancerItem) GetPriceCategory() int64 {
 	if x != nil {
 		return x.PriceCategory
@@ -1977,7 +2031,7 @@ type SearchResponse_CityItem struct {
 
 func (x *SearchResponse_CityItem) Reset() {
 	*x = SearchResponse_CityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[33]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1989,7 +2043,7 @@ func (x *SearchResponse_CityItem) String() string {
 func (*SearchResponse_CityItem) ProtoMessage() {}
 
 func (x *SearchResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[33]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2002,7 +2056,7 @@ func (x *SearchResponse_CityItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchResponse_CityItem.ProtoReflect.Descriptor instead.
 func (*SearchResponse_CityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15, 1}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17, 1}
 }
 
 func (x *SearchResponse_CityItem) GetId() int64 {
@@ -2037,7 +2091,7 @@ type SearchResponse_SpecialityItem struct {
 
 func (x *SearchResponse_SpecialityItem) Reset() {
 	*x = SearchResponse_SpecialityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[34]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2049,7 +2103,7 @@ func (x *SearchResponse_SpecialityItem) String() string {
 func (*SearchResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *SearchResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[34]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2062,7 +2116,7 @@ func (x *SearchResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchResponse_SpecialityItem.ProtoReflect.Descriptor instead.
 func (*SearchResponse_SpecialityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15, 2}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17, 2}
 }
 
 func (x *SearchResponse_SpecialityItem) GetId() int64 {
@@ -2097,7 +2151,7 @@ type SearchResponse_FreelancerItem_SocialNetworkItem struct {
 
 func (x *SearchResponse_FreelancerItem_SocialNetworkItem) Reset() {
 	*x = SearchResponse_FreelancerItem_SocialNetworkItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[35]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2109,7 +2163,7 @@ func (x *SearchResponse_FreelancerItem_SocialNetworkItem) String() string {
 func (*SearchResponse_FreelancerItem_SocialNetworkItem) ProtoMessage() {}
 
 func (x *SearchResponse_FreelancerItem_SocialNetworkItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[35]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2122,7 +2176,7 @@ func (x *SearchResponse_FreelancerItem_SocialNetworkItem) ProtoReflect() protore
 
 // Deprecated: Use SearchResponse_FreelancerItem_SocialNetworkItem.ProtoReflect.Descriptor instead.
 func (*SearchResponse_FreelancerItem_SocialNetworkItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{15, 0, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17, 0, 0}
 }
 
 func (x *SearchResponse_FreelancerItem_SocialNetworkItem) GetId() int64 {
@@ -2147,16 +2201,16 @@ func (x *SearchResponse_FreelancerItem_SocialNetworkItem) GetSlug() string {
 }
 
 type FilterResponse_FreelancerItem struct {
-	state      protoimpl.MessageState `protogen:"open.v1"`
-	Name       string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Slug       string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
-	Speciality string                 `protobuf:"bytes,3,opt,name=speciality,proto3" json:"speciality,omitempty"`
-	City       string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
-	Image      string                 `protobuf:"bytes,5,opt,name=image,proto3" json:"image,omitempty"`
-	// Опыт работы с врачами
-	ExperienceWithDoctors bool `protobuf:"varint,6,opt,name=experience_with_doctors,json=experienceWithDoctors,proto3" json:"experience_with_doctors,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Slug  string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
+	// buf:lint:ignore FIELD_SAME_CARDINALITY
+	Speciality []*SpecialityItem `protobuf:"bytes,3,rep,name=speciality,proto3" json:"speciality,omitempty"`
+	// buf:lint:ignore FIELD_SAME_CARDINALITY
+	City  []*CityItem `protobuf:"bytes,4,rep,name=city,proto3" json:"city,omitempty"`
+	Image string      `protobuf:"bytes,5,opt,name=image,proto3" json:"image,omitempty"`
 	// Есть команда
-	HasCommand bool `protobuf:"varint,7,opt,name=has_command,json=hasCommand,proto3" json:"has_command,omitempty"`
+	AgencyRepresentative bool `protobuf:"varint,7,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
 	// Ценовая категория
 	PriceCategory int64 `protobuf:"varint,8,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	// Соцсети
@@ -2167,7 +2221,7 @@ type FilterResponse_FreelancerItem struct {
 
 func (x *FilterResponse_FreelancerItem) Reset() {
 	*x = FilterResponse_FreelancerItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[36]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2179,7 +2233,7 @@ func (x *FilterResponse_FreelancerItem) String() string {
 func (*FilterResponse_FreelancerItem) ProtoMessage() {}
 
 func (x *FilterResponse_FreelancerItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[36]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2192,7 +2246,7 @@ func (x *FilterResponse_FreelancerItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FilterResponse_FreelancerItem.ProtoReflect.Descriptor instead.
 func (*FilterResponse_FreelancerItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{19, 0}
 }
 
 func (x *FilterResponse_FreelancerItem) GetName() string {
@@ -2209,18 +2263,18 @@ func (x *FilterResponse_FreelancerItem) GetSlug() string {
 	return ""
 }
 
-func (x *FilterResponse_FreelancerItem) GetSpeciality() string {
+func (x *FilterResponse_FreelancerItem) GetSpeciality() []*SpecialityItem {
 	if x != nil {
 		return x.Speciality
 	}
-	return ""
+	return nil
 }
 
-func (x *FilterResponse_FreelancerItem) GetCity() string {
+func (x *FilterResponse_FreelancerItem) GetCity() []*CityItem {
 	if x != nil {
 		return x.City
 	}
-	return ""
+	return nil
 }
 
 func (x *FilterResponse_FreelancerItem) GetImage() string {
@@ -2230,16 +2284,9 @@ func (x *FilterResponse_FreelancerItem) GetImage() string {
 	return ""
 }
 
-func (x *FilterResponse_FreelancerItem) GetExperienceWithDoctors() bool {
+func (x *FilterResponse_FreelancerItem) GetAgencyRepresentative() bool {
 	if x != nil {
-		return x.ExperienceWithDoctors
-	}
-	return false
-}
-
-func (x *FilterResponse_FreelancerItem) GetHasCommand() bool {
-	if x != nil {
-		return x.HasCommand
+		return x.AgencyRepresentative
 	}
 	return false
 }
@@ -2269,7 +2316,7 @@ type FilterResponse_FreelancerItem_SocialNetworkItem struct {
 
 func (x *FilterResponse_FreelancerItem_SocialNetworkItem) Reset() {
 	*x = FilterResponse_FreelancerItem_SocialNetworkItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[37]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2281,7 +2328,7 @@ func (x *FilterResponse_FreelancerItem_SocialNetworkItem) String() string {
 func (*FilterResponse_FreelancerItem_SocialNetworkItem) ProtoMessage() {}
 
 func (x *FilterResponse_FreelancerItem_SocialNetworkItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[37]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2294,7 +2341,7 @@ func (x *FilterResponse_FreelancerItem_SocialNetworkItem) ProtoReflect() protore
 
 // Deprecated: Use FilterResponse_FreelancerItem_SocialNetworkItem.ProtoReflect.Descriptor instead.
 func (*FilterResponse_FreelancerItem_SocialNetworkItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{17, 0, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{19, 0, 0}
 }
 
 func (x *FilterResponse_FreelancerItem_SocialNetworkItem) GetId() int64 {
@@ -2330,7 +2377,7 @@ type CreateFreelancersRequest_PriceListItem struct {
 
 func (x *CreateFreelancersRequest_PriceListItem) Reset() {
 	*x = CreateFreelancersRequest_PriceListItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[38]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2342,7 +2389,7 @@ func (x *CreateFreelancersRequest_PriceListItem) String() string {
 func (*CreateFreelancersRequest_PriceListItem) ProtoMessage() {}
 
 func (x *CreateFreelancersRequest_PriceListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[38]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2355,7 +2402,7 @@ func (x *CreateFreelancersRequest_PriceListItem) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use CreateFreelancersRequest_PriceListItem.ProtoReflect.Descriptor instead.
 func (*CreateFreelancersRequest_PriceListItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{18, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{20, 0}
 }
 
 func (x *CreateFreelancersRequest_PriceListItem) GetName() string {
@@ -2382,7 +2429,7 @@ type CreateFreelancersResponse_ValidationError struct {
 
 func (x *CreateFreelancersResponse_ValidationError) Reset() {
 	*x = CreateFreelancersResponse_ValidationError{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[39]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2394,7 +2441,7 @@ func (x *CreateFreelancersResponse_ValidationError) String() string {
 func (*CreateFreelancersResponse_ValidationError) ProtoMessage() {}
 
 func (x *CreateFreelancersResponse_ValidationError) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[39]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2407,7 +2454,7 @@ func (x *CreateFreelancersResponse_ValidationError) ProtoReflect() protoreflect.
 
 // Deprecated: Use CreateFreelancersResponse_ValidationError.ProtoReflect.Descriptor instead.
 func (*CreateFreelancersResponse_ValidationError) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{19, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21, 0}
 }
 
 func (x *CreateFreelancersResponse_ValidationError) GetField() string {
@@ -2434,7 +2481,7 @@ type GetFreelancerResponse_CityItem struct {
 
 func (x *GetFreelancerResponse_CityItem) Reset() {
 	*x = GetFreelancerResponse_CityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[40]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2446,7 +2493,7 @@ func (x *GetFreelancerResponse_CityItem) String() string {
 func (*GetFreelancerResponse_CityItem) ProtoMessage() {}
 
 func (x *GetFreelancerResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[40]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2459,7 +2506,7 @@ func (x *GetFreelancerResponse_CityItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancerResponse_CityItem.ProtoReflect.Descriptor instead.
 func (*GetFreelancerResponse_CityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23, 0}
 }
 
 func (x *GetFreelancerResponse_CityItem) GetId() int64 {
@@ -2486,7 +2533,7 @@ type GetFreelancerResponse_SpecialityItem struct {
 
 func (x *GetFreelancerResponse_SpecialityItem) Reset() {
 	*x = GetFreelancerResponse_SpecialityItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[41]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2498,7 +2545,7 @@ func (x *GetFreelancerResponse_SpecialityItem) String() string {
 func (*GetFreelancerResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *GetFreelancerResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[41]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2511,7 +2558,7 @@ func (x *GetFreelancerResponse_SpecialityItem) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use GetFreelancerResponse_SpecialityItem.ProtoReflect.Descriptor instead.
 func (*GetFreelancerResponse_SpecialityItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21, 1}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23, 1}
 }
 
 func (x *GetFreelancerResponse_SpecialityItem) GetId() int64 {
@@ -2539,7 +2586,7 @@ type GetFreelancerResponse_SocialNetworkItem struct {
 
 func (x *GetFreelancerResponse_SocialNetworkItem) Reset() {
 	*x = GetFreelancerResponse_SocialNetworkItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[42]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2551,7 +2598,7 @@ func (x *GetFreelancerResponse_SocialNetworkItem) String() string {
 func (*GetFreelancerResponse_SocialNetworkItem) ProtoMessage() {}
 
 func (x *GetFreelancerResponse_SocialNetworkItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[42]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2564,7 +2611,7 @@ func (x *GetFreelancerResponse_SocialNetworkItem) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use GetFreelancerResponse_SocialNetworkItem.ProtoReflect.Descriptor instead.
 func (*GetFreelancerResponse_SocialNetworkItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21, 2}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23, 2}
 }
 
 func (x *GetFreelancerResponse_SocialNetworkItem) GetId() int64 {
@@ -2600,7 +2647,7 @@ type GetFreelancerResponse_PriceListItem struct {
 
 func (x *GetFreelancerResponse_PriceListItem) Reset() {
 	*x = GetFreelancerResponse_PriceListItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[43]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2612,7 +2659,7 @@ func (x *GetFreelancerResponse_PriceListItem) String() string {
 func (*GetFreelancerResponse_PriceListItem) ProtoMessage() {}
 
 func (x *GetFreelancerResponse_PriceListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[43]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2625,7 +2672,7 @@ func (x *GetFreelancerResponse_PriceListItem) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetFreelancerResponse_PriceListItem.ProtoReflect.Descriptor instead.
 func (*GetFreelancerResponse_PriceListItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{21, 3}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23, 3}
 }
 
 func (x *GetFreelancerResponse_PriceListItem) GetName() string {
@@ -2653,7 +2700,7 @@ type GetSocialNetworksResponse_SocialNetworkItem struct {
 
 func (x *GetSocialNetworksResponse_SocialNetworkItem) Reset() {
 	*x = GetSocialNetworksResponse_SocialNetworkItem{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[44]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2665,7 +2712,7 @@ func (x *GetSocialNetworksResponse_SocialNetworkItem) String() string {
 func (*GetSocialNetworksResponse_SocialNetworkItem) ProtoMessage() {}
 
 func (x *GetSocialNetworksResponse_SocialNetworkItem) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[44]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2678,7 +2725,7 @@ func (x *GetSocialNetworksResponse_SocialNetworkItem) ProtoReflect() protoreflec
 
 // Deprecated: Use GetSocialNetworksResponse_SocialNetworkItem.ProtoReflect.Descriptor instead.
 func (*GetSocialNetworksResponse_SocialNetworkItem) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{23, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{25, 0}
 }
 
 func (x *GetSocialNetworksResponse_SocialNetworkItem) GetId() int64 {
@@ -2715,7 +2762,7 @@ type GetFreelancerRecommendationsResponse_Doctor struct {
 
 func (x *GetFreelancerRecommendationsResponse_Doctor) Reset() {
 	*x = GetFreelancerRecommendationsResponse_Doctor{}
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[45]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2727,7 +2774,7 @@ func (x *GetFreelancerRecommendationsResponse_Doctor) String() string {
 func (*GetFreelancerRecommendationsResponse_Doctor) ProtoMessage() {}
 
 func (x *GetFreelancerRecommendationsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_freelancers_v1_freelancers_proto_msgTypes[45]
+	mi := &file_freelancers_v1_freelancers_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2740,7 +2787,7 @@ func (x *GetFreelancerRecommendationsResponse_Doctor) ProtoReflect() protoreflec
 
 // Deprecated: Use GetFreelancerRecommendationsResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*GetFreelancerRecommendationsResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{25, 0}
+	return file_freelancers_v1_freelancers_proto_rawDescGZIP(), []int{27, 0}
 }
 
 func (x *GetFreelancerRecommendationsResponse_Doctor) GetName() string {
@@ -2782,7 +2829,13 @@ var File_freelancers_v1_freelancers_proto protoreflect.FileDescriptor
 
 const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\n" +
-	" freelancers/v1/freelancers.proto\x12\x0efreelancers.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x17\n" +
+	" freelancers/v1/freelancers.proto\x12\x0efreelancers.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\".\n" +
+	"\bCityItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"4\n" +
+	"\x0eSpecialityItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\x17\n" +
 	"\x15GetFreelancersRequest\"\x18\n" +
 	"\x16GetFreelancersResponse\"\x14\n" +
 	"\x12GetSettingsRequest\"\xfe\x05\n" +
@@ -2810,23 +2863,19 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x11freelancers_count\x18\x03 \x01(\x03R\x10freelancersCount\"\x14\n" +
 	"\x12GetCountersRequest\"B\n" +
 	"\x13GetCountersResponse\x12+\n" +
-	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\xf9\x01\n" +
+	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\xa0\x01\n" +
 	"\x1dPreliminaryFilterCountRequest\x12\x1c\n" +
 	"\tsocieties\x18\x01 \x03(\x03R\tsocieties\x12%\n" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
-	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12;\n" +
-	"\x17experience_with_doctors\x18\x05 \x01(\bH\x00R\x15experienceWithDoctors\x88\x01\x01B\x1a\n" +
-	"\x18_experience_with_doctors\"M\n" +
+	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\"M\n" +
 	"\x1ePreliminaryFilterCountResponse\x12+\n" +
-	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\xed\x01\n" +
+	"\x11freelancers_count\x18\x01 \x01(\x03R\x10freelancersCount\"\x94\x01\n" +
 	"\x11PagesCountRequest\x12\x1c\n" +
 	"\tsocieties\x18\x01 \x03(\x03R\tsocieties\x12%\n" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
-	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12;\n" +
-	"\x17experience_with_doctors\x18\x05 \x01(\bH\x00R\x15experienceWithDoctors\x88\x01\x01B\x1a\n" +
-	"\x18_experience_with_doctors\"5\n" +
+	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\"5\n" +
 	"\x12PagesCountResponse\x12\x1f\n" +
 	"\vpages_count\x18\x01 \x01(\x03R\n" +
 	"pagesCount\"\x12\n" +
@@ -2843,25 +2892,24 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\rspeciality_id\x18\x01 \x01(\x03R\fspecialityId\x12'\n" +
 	"\x0fspeciality_name\x18\x02 \x01(\tR\x0especialityName\"%\n" +
 	"\rSearchRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\"\xf2\x06\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\"\xc0\x06\n" +
 	"\x0eSearchResponse\x12O\n" +
 	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.SearchResponse.FreelancerItemR\vfreelancers\x12?\n" +
 	"\x06cities\x18\x02 \x03(\v2'.freelancers.v1.SearchResponse.CityItemR\x06cities\x12Q\n" +
-	"\fspecialities\x18\x03 \x03(\v2-.freelancers.v1.SearchResponse.SpecialityItemR\fspecialities\x1a\xba\x03\n" +
+	"\fspecialities\x18\x03 \x03(\v2-.freelancers.v1.SearchResponse.SpecialityItemR\fspecialities\x1a\x88\x03\n" +
 	"\x0eFreelancerItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x1b\n" +
 	"\tcity_name\x18\x04 \x01(\tR\bcityName\x12'\n" +
 	"\x0fspeciality_name\x18\x05 \x01(\tR\x0especialityName\x12\x14\n" +
-	"\x05image\x18\x06 \x01(\tR\x05image\x126\n" +
-	"\x17experience_with_doctors\x18\a \x01(\bR\x15experienceWithDoctors\x12%\n" +
+	"\x05image\x18\x06 \x01(\tR\x05image\x12%\n" +
 	"\x0eprice_category\x18\b \x01(\x03R\rpriceCategory\x12h\n" +
 	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x1a[\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slugJ\x04\b\a\x10\b\x1a[\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
@@ -2869,34 +2917,30 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0eSpecialityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
-	"\x11freelancers_count\x18\x03 \x01(\x03R\x10freelancersCount\"\xfd\x01\n" +
+	"\x11freelancers_count\x18\x03 \x01(\x03R\x10freelancersCount\"\xaa\x01\n" +
 	"\rFilterRequest\x12\x1c\n" +
 	"\tsocieties\x18\x01 \x03(\x03R\tsocieties\x12%\n" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
-	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12;\n" +
-	"\x17experience_with_doctors\x18\x05 \x01(\bH\x00R\x15experienceWithDoctors\x88\x01\x01\x12\x12\n" +
-	"\x04page\x18\x06 \x01(\x03R\x04pageB\x1a\n" +
-	"\x18_experience_with_doctors\"\x9d\x04\n" +
+	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12\x12\n" +
+	"\x04page\x18\x06 \x01(\x03R\x04pageJ\x04\b\x05\x10\x06\"\xb9\x04\n" +
 	"\x0eFilterResponse\x12O\n" +
-	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.FilterResponse.FreelancerItemR\vfreelancers\x1a\xb9\x03\n" +
+	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.FilterResponse.FreelancerItemR\vfreelancers\x1a\xd5\x03\n" +
 	"\x0eFreelancerItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x1e\n" +
+	"\x04slug\x18\x02 \x01(\tR\x04slug\x12>\n" +
 	"\n" +
-	"speciality\x18\x03 \x01(\tR\n" +
-	"speciality\x12\x12\n" +
-	"\x04city\x18\x04 \x01(\tR\x04city\x12\x14\n" +
-	"\x05image\x18\x05 \x01(\tR\x05image\x126\n" +
-	"\x17experience_with_doctors\x18\x06 \x01(\bR\x15experienceWithDoctors\x12\x1f\n" +
-	"\vhas_command\x18\a \x01(\bR\n" +
-	"hasCommand\x12%\n" +
+	"speciality\x18\x03 \x03(\v2\x1e.freelancers.v1.SpecialityItemR\n" +
+	"speciality\x12,\n" +
+	"\x04city\x18\x04 \x03(\v2\x18.freelancers.v1.CityItemR\x04city\x12\x14\n" +
+	"\x05image\x18\x05 \x01(\tR\x05image\x123\n" +
+	"\x15agency_representative\x18\a \x01(\bR\x14agencyRepresentative\x12%\n" +
 	"\x0eprice_category\x18\b \x01(\x03R\rpriceCategory\x12h\n" +
 	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\"\x81\a\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slugJ\x04\b\x06\x10\a\"\xda\x06\n" +
 	"\x18CreateFreelancersRequest\x12 \n" +
 	"\x05email\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x18\xff\x01`\x01R\x05email\x12&\n" +
@@ -2906,8 +2950,7 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\vmiddle_name\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\n" +
 	"middleName\x126\n" +
 	"\x11telegram_username\x18\x05 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x10telegramUsername\x12*\n" +
-	"\fagree_policy\x18\x06 \x01(\bB\a\xbaH\x04j\x02\b\x01R\vagreePolicy\x12?\n" +
-	"\x17experience_with_doctors\x18\a \x01(\bB\a\xbaH\x04j\x02\b\x01R\x15experienceWithDoctors\x12 \n" +
+	"\fagree_policy\x18\x06 \x01(\bB\a\xbaH\x04j\x02\b\x01R\vagreePolicy\x12 \n" +
 	"\acity_id\x18\b \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06cityId\x12,\n" +
 	"\rspeciality_id\x18\t \x01(\x03B\a\xbaH\x04\"\x02 \x00R\fspecialityId\x125\n" +
 	"\x11additional_cities\x18\n" +
@@ -2916,20 +2959,19 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0fsocial_networks\x18\f \x03(\x03B\b\xbaH\x05\x92\x01\x02\x18\x01R\x0esocialNetworks\x12/\n" +
 	"\x0eportfolio_link\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\xff\x01R\rportfolioLink\x12U\n" +
 	"\n" +
-	"price_list\x18\x0e \x03(\v26.freelancers.v1.CreateFreelancersRequest.PriceListItemR\tpriceList\x12(\n" +
-	"\vhas_command\x18\x0f \x01(\bB\a\xbaH\x04j\x02\b\x01R\n" +
-	"hasCommand\x126\n" +
+	"price_list\x18\x0e \x03(\v26.freelancers.v1.CreateFreelancersRequest.PriceListItemR\tpriceList\x12<\n" +
+	"\x15agency_representative\x18\x0f \x01(\bB\a\xbaH\x04j\x02\b\x01R\x14agencyRepresentative\x126\n" +
 	"\x12working_experience\x18\x10 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x11workingExperience\x1a;\n" +
 	"\rPriceListItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\xab\x01\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amountJ\x04\b\a\x10\b\"\xab\x01\n" +
 	"\x19CreateFreelancersResponse\x12Q\n" +
 	"\x06errors\x18\x01 \x03(\v29.freelancers.v1.CreateFreelancersResponse.ValidationErrorR\x06errors\x1a;\n" +
 	"\x0fValidationError\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"?\n" +
 	"\x14GetFreelancerRequest\x12'\n" +
-	"\x0ffreelancer_slug\x18\x01 \x01(\tR\x0efreelancerSlug\"\xb6\b\n" +
+	"\x0ffreelancer_slug\x18\x01 \x01(\tR\x0efreelancerSlug\"\x98\b\n" +
 	"\x15GetFreelancerResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x15\n" +
@@ -2945,10 +2987,8 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0fsocial_networks\x18\v \x03(\v27.freelancers.v1.GetFreelancerResponse.SocialNetworkItemR\x0esocialNetworks\x12R\n" +
 	"\n" +
 	"price_list\x18\f \x03(\v23.freelancers.v1.GetFreelancerResponse.PriceListItemR\tpriceList\x12-\n" +
-	"\x12working_experience\x18\r \x01(\tR\x11workingExperience\x12\x1f\n" +
-	"\vhas_command\x18\x0e \x01(\bR\n" +
-	"hasCommand\x126\n" +
-	"\x17experience_with_doctors\x18\x0f \x01(\bR\x15experienceWithDoctors\x1a.\n" +
+	"\x12working_experience\x18\r \x01(\tR\x11workingExperience\x123\n" +
+	"\x15agency_representative\x18\x0e \x01(\bR\x14agencyRepresentative\x1a.\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +
@@ -2961,7 +3001,7 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x1a;\n" +
 	"\rPriceListItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"\x1a\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amountJ\x04\b\x0f\x10\x10\"\x1a\n" +
 	"\x18GetSocialNetworksRequest\"\xce\x01\n" +
 	"\x19GetSocialNetworksResponse\x12d\n" +
 	"\x0fsocial_networks\x18\x01 \x03(\v2;.freelancers.v1.GetSocialNetworksResponse.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
@@ -3008,109 +3048,113 @@ func file_freelancers_v1_freelancers_proto_rawDescGZIP() []byte {
 	return file_freelancers_v1_freelancers_proto_rawDescData
 }
 
-var file_freelancers_v1_freelancers_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
+var file_freelancers_v1_freelancers_proto_msgTypes = make([]protoimpl.MessageInfo, 48)
 var file_freelancers_v1_freelancers_proto_goTypes = []any{
-	(*GetFreelancersRequest)(nil),                           // 0: freelancers.v1.GetFreelancersRequest
-	(*GetFreelancersResponse)(nil),                          // 1: freelancers.v1.GetFreelancersResponse
-	(*GetSettingsRequest)(nil),                              // 2: freelancers.v1.GetSettingsRequest
-	(*GetSettingsResponse)(nil),                             // 3: freelancers.v1.GetSettingsResponse
-	(*GetCountersRequest)(nil),                              // 4: freelancers.v1.GetCountersRequest
-	(*GetCountersResponse)(nil),                             // 5: freelancers.v1.GetCountersResponse
-	(*PreliminaryFilterCountRequest)(nil),                   // 6: freelancers.v1.PreliminaryFilterCountRequest
-	(*PreliminaryFilterCountResponse)(nil),                  // 7: freelancers.v1.PreliminaryFilterCountResponse
-	(*PagesCountRequest)(nil),                               // 8: freelancers.v1.PagesCountRequest
-	(*PagesCountResponse)(nil),                              // 9: freelancers.v1.PagesCountResponse
-	(*GetCitiesRequest)(nil),                                // 10: freelancers.v1.GetCitiesRequest
-	(*CitiesResponse)(nil),                                  // 11: freelancers.v1.CitiesResponse
-	(*GetSpecialitiesRequest)(nil),                          // 12: freelancers.v1.GetSpecialitiesRequest
-	(*SpecialitiesResponse)(nil),                            // 13: freelancers.v1.SpecialitiesResponse
-	(*SearchRequest)(nil),                                   // 14: freelancers.v1.SearchRequest
-	(*SearchResponse)(nil),                                  // 15: freelancers.v1.SearchResponse
-	(*FilterRequest)(nil),                                   // 16: freelancers.v1.FilterRequest
-	(*FilterResponse)(nil),                                  // 17: freelancers.v1.FilterResponse
-	(*CreateFreelancersRequest)(nil),                        // 18: freelancers.v1.CreateFreelancersRequest
-	(*CreateFreelancersResponse)(nil),                       // 19: freelancers.v1.CreateFreelancersResponse
-	(*GetFreelancerRequest)(nil),                            // 20: freelancers.v1.GetFreelancerRequest
-	(*GetFreelancerResponse)(nil),                           // 21: freelancers.v1.GetFreelancerResponse
-	(*GetSocialNetworksRequest)(nil),                        // 22: freelancers.v1.GetSocialNetworksRequest
-	(*GetSocialNetworksResponse)(nil),                       // 23: freelancers.v1.GetSocialNetworksResponse
-	(*GetFreelancerRecommendationsRequest)(nil),             // 24: freelancers.v1.GetFreelancerRecommendationsRequest
-	(*GetFreelancerRecommendationsResponse)(nil),            // 25: freelancers.v1.GetFreelancerRecommendationsResponse
-	(*GetSettingsResponse_SocietyItem)(nil),                 // 26: freelancers.v1.GetSettingsResponse.SocietyItem
-	(*GetSettingsResponse_CityItem)(nil),                    // 27: freelancers.v1.GetSettingsResponse.CityItem
-	(*GetSettingsResponse_SpecialityItem)(nil),              // 28: freelancers.v1.GetSettingsResponse.SpecialityItem
-	(*GetSettingsResponse_PriceCategoryItem)(nil),           // 29: freelancers.v1.GetSettingsResponse.PriceCategoryItem
-	(*CitiesResponse_CityItem)(nil),                         // 30: freelancers.v1.CitiesResponse.CityItem
-	(*SpecialitiesResponse_SpecialityItem)(nil),             // 31: freelancers.v1.SpecialitiesResponse.SpecialityItem
-	(*SearchResponse_FreelancerItem)(nil),                   // 32: freelancers.v1.SearchResponse.FreelancerItem
-	(*SearchResponse_CityItem)(nil),                         // 33: freelancers.v1.SearchResponse.CityItem
-	(*SearchResponse_SpecialityItem)(nil),                   // 34: freelancers.v1.SearchResponse.SpecialityItem
-	(*SearchResponse_FreelancerItem_SocialNetworkItem)(nil), // 35: freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItem
-	(*FilterResponse_FreelancerItem)(nil),                   // 36: freelancers.v1.FilterResponse.FreelancerItem
-	(*FilterResponse_FreelancerItem_SocialNetworkItem)(nil), // 37: freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem
-	(*CreateFreelancersRequest_PriceListItem)(nil),          // 38: freelancers.v1.CreateFreelancersRequest.PriceListItem
-	(*CreateFreelancersResponse_ValidationError)(nil),       // 39: freelancers.v1.CreateFreelancersResponse.ValidationError
-	(*GetFreelancerResponse_CityItem)(nil),                  // 40: freelancers.v1.GetFreelancerResponse.CityItem
-	(*GetFreelancerResponse_SpecialityItem)(nil),            // 41: freelancers.v1.GetFreelancerResponse.SpecialityItem
-	(*GetFreelancerResponse_SocialNetworkItem)(nil),         // 42: freelancers.v1.GetFreelancerResponse.SocialNetworkItem
-	(*GetFreelancerResponse_PriceListItem)(nil),             // 43: freelancers.v1.GetFreelancerResponse.PriceListItem
-	(*GetSocialNetworksResponse_SocialNetworkItem)(nil),     // 44: freelancers.v1.GetSocialNetworksResponse.SocialNetworkItem
-	(*GetFreelancerRecommendationsResponse_Doctor)(nil),     // 45: freelancers.v1.GetFreelancerRecommendationsResponse.Doctor
+	(*CityItem)(nil),                                        // 0: freelancers.v1.CityItem
+	(*SpecialityItem)(nil),                                  // 1: freelancers.v1.SpecialityItem
+	(*GetFreelancersRequest)(nil),                           // 2: freelancers.v1.GetFreelancersRequest
+	(*GetFreelancersResponse)(nil),                          // 3: freelancers.v1.GetFreelancersResponse
+	(*GetSettingsRequest)(nil),                              // 4: freelancers.v1.GetSettingsRequest
+	(*GetSettingsResponse)(nil),                             // 5: freelancers.v1.GetSettingsResponse
+	(*GetCountersRequest)(nil),                              // 6: freelancers.v1.GetCountersRequest
+	(*GetCountersResponse)(nil),                             // 7: freelancers.v1.GetCountersResponse
+	(*PreliminaryFilterCountRequest)(nil),                   // 8: freelancers.v1.PreliminaryFilterCountRequest
+	(*PreliminaryFilterCountResponse)(nil),                  // 9: freelancers.v1.PreliminaryFilterCountResponse
+	(*PagesCountRequest)(nil),                               // 10: freelancers.v1.PagesCountRequest
+	(*PagesCountResponse)(nil),                              // 11: freelancers.v1.PagesCountResponse
+	(*GetCitiesRequest)(nil),                                // 12: freelancers.v1.GetCitiesRequest
+	(*CitiesResponse)(nil),                                  // 13: freelancers.v1.CitiesResponse
+	(*GetSpecialitiesRequest)(nil),                          // 14: freelancers.v1.GetSpecialitiesRequest
+	(*SpecialitiesResponse)(nil),                            // 15: freelancers.v1.SpecialitiesResponse
+	(*SearchRequest)(nil),                                   // 16: freelancers.v1.SearchRequest
+	(*SearchResponse)(nil),                                  // 17: freelancers.v1.SearchResponse
+	(*FilterRequest)(nil),                                   // 18: freelancers.v1.FilterRequest
+	(*FilterResponse)(nil),                                  // 19: freelancers.v1.FilterResponse
+	(*CreateFreelancersRequest)(nil),                        // 20: freelancers.v1.CreateFreelancersRequest
+	(*CreateFreelancersResponse)(nil),                       // 21: freelancers.v1.CreateFreelancersResponse
+	(*GetFreelancerRequest)(nil),                            // 22: freelancers.v1.GetFreelancerRequest
+	(*GetFreelancerResponse)(nil),                           // 23: freelancers.v1.GetFreelancerResponse
+	(*GetSocialNetworksRequest)(nil),                        // 24: freelancers.v1.GetSocialNetworksRequest
+	(*GetSocialNetworksResponse)(nil),                       // 25: freelancers.v1.GetSocialNetworksResponse
+	(*GetFreelancerRecommendationsRequest)(nil),             // 26: freelancers.v1.GetFreelancerRecommendationsRequest
+	(*GetFreelancerRecommendationsResponse)(nil),            // 27: freelancers.v1.GetFreelancerRecommendationsResponse
+	(*GetSettingsResponse_SocietyItem)(nil),                 // 28: freelancers.v1.GetSettingsResponse.SocietyItem
+	(*GetSettingsResponse_CityItem)(nil),                    // 29: freelancers.v1.GetSettingsResponse.CityItem
+	(*GetSettingsResponse_SpecialityItem)(nil),              // 30: freelancers.v1.GetSettingsResponse.SpecialityItem
+	(*GetSettingsResponse_PriceCategoryItem)(nil),           // 31: freelancers.v1.GetSettingsResponse.PriceCategoryItem
+	(*CitiesResponse_CityItem)(nil),                         // 32: freelancers.v1.CitiesResponse.CityItem
+	(*SpecialitiesResponse_SpecialityItem)(nil),             // 33: freelancers.v1.SpecialitiesResponse.SpecialityItem
+	(*SearchResponse_FreelancerItem)(nil),                   // 34: freelancers.v1.SearchResponse.FreelancerItem
+	(*SearchResponse_CityItem)(nil),                         // 35: freelancers.v1.SearchResponse.CityItem
+	(*SearchResponse_SpecialityItem)(nil),                   // 36: freelancers.v1.SearchResponse.SpecialityItem
+	(*SearchResponse_FreelancerItem_SocialNetworkItem)(nil), // 37: freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItem
+	(*FilterResponse_FreelancerItem)(nil),                   // 38: freelancers.v1.FilterResponse.FreelancerItem
+	(*FilterResponse_FreelancerItem_SocialNetworkItem)(nil), // 39: freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem
+	(*CreateFreelancersRequest_PriceListItem)(nil),          // 40: freelancers.v1.CreateFreelancersRequest.PriceListItem
+	(*CreateFreelancersResponse_ValidationError)(nil),       // 41: freelancers.v1.CreateFreelancersResponse.ValidationError
+	(*GetFreelancerResponse_CityItem)(nil),                  // 42: freelancers.v1.GetFreelancerResponse.CityItem
+	(*GetFreelancerResponse_SpecialityItem)(nil),            // 43: freelancers.v1.GetFreelancerResponse.SpecialityItem
+	(*GetFreelancerResponse_SocialNetworkItem)(nil),         // 44: freelancers.v1.GetFreelancerResponse.SocialNetworkItem
+	(*GetFreelancerResponse_PriceListItem)(nil),             // 45: freelancers.v1.GetFreelancerResponse.PriceListItem
+	(*GetSocialNetworksResponse_SocialNetworkItem)(nil),     // 46: freelancers.v1.GetSocialNetworksResponse.SocialNetworkItem
+	(*GetFreelancerRecommendationsResponse_Doctor)(nil),     // 47: freelancers.v1.GetFreelancerRecommendationsResponse.Doctor
 }
 var file_freelancers_v1_freelancers_proto_depIdxs = []int32{
-	26, // 0: freelancers.v1.GetSettingsResponse.societies:type_name -> freelancers.v1.GetSettingsResponse.SocietyItem
-	27, // 1: freelancers.v1.GetSettingsResponse.cities:type_name -> freelancers.v1.GetSettingsResponse.CityItem
-	28, // 2: freelancers.v1.GetSettingsResponse.specialities:type_name -> freelancers.v1.GetSettingsResponse.SpecialityItem
-	29, // 3: freelancers.v1.GetSettingsResponse.price_categories:type_name -> freelancers.v1.GetSettingsResponse.PriceCategoryItem
-	30, // 4: freelancers.v1.CitiesResponse.cities:type_name -> freelancers.v1.CitiesResponse.CityItem
-	31, // 5: freelancers.v1.SpecialitiesResponse.specialities:type_name -> freelancers.v1.SpecialitiesResponse.SpecialityItem
-	32, // 6: freelancers.v1.SearchResponse.freelancers:type_name -> freelancers.v1.SearchResponse.FreelancerItem
-	33, // 7: freelancers.v1.SearchResponse.cities:type_name -> freelancers.v1.SearchResponse.CityItem
-	34, // 8: freelancers.v1.SearchResponse.specialities:type_name -> freelancers.v1.SearchResponse.SpecialityItem
-	36, // 9: freelancers.v1.FilterResponse.freelancers:type_name -> freelancers.v1.FilterResponse.FreelancerItem
-	38, // 10: freelancers.v1.CreateFreelancersRequest.price_list:type_name -> freelancers.v1.CreateFreelancersRequest.PriceListItem
-	39, // 11: freelancers.v1.CreateFreelancersResponse.errors:type_name -> freelancers.v1.CreateFreelancersResponse.ValidationError
-	40, // 12: freelancers.v1.GetFreelancerResponse.cities:type_name -> freelancers.v1.GetFreelancerResponse.CityItem
-	41, // 13: freelancers.v1.GetFreelancerResponse.specialities:type_name -> freelancers.v1.GetFreelancerResponse.SpecialityItem
-	40, // 14: freelancers.v1.GetFreelancerResponse.main_city:type_name -> freelancers.v1.GetFreelancerResponse.CityItem
-	41, // 15: freelancers.v1.GetFreelancerResponse.main_speciality:type_name -> freelancers.v1.GetFreelancerResponse.SpecialityItem
-	42, // 16: freelancers.v1.GetFreelancerResponse.social_networks:type_name -> freelancers.v1.GetFreelancerResponse.SocialNetworkItem
-	43, // 17: freelancers.v1.GetFreelancerResponse.price_list:type_name -> freelancers.v1.GetFreelancerResponse.PriceListItem
-	44, // 18: freelancers.v1.GetSocialNetworksResponse.social_networks:type_name -> freelancers.v1.GetSocialNetworksResponse.SocialNetworkItem
-	45, // 19: freelancers.v1.GetFreelancerRecommendationsResponse.doctors:type_name -> freelancers.v1.GetFreelancerRecommendationsResponse.Doctor
-	35, // 20: freelancers.v1.SearchResponse.FreelancerItem.social_networks:type_name -> freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItem
-	37, // 21: freelancers.v1.FilterResponse.FreelancerItem.social_networks:type_name -> freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem
-	0,  // 22: freelancers.v1.FreelancerService.GetFreelancers:input_type -> freelancers.v1.GetFreelancersRequest
-	2,  // 23: freelancers.v1.FreelancerService.GetSettings:input_type -> freelancers.v1.GetSettingsRequest
-	4,  // 24: freelancers.v1.FreelancerService.GetCounters:input_type -> freelancers.v1.GetCountersRequest
-	6,  // 25: freelancers.v1.FreelancerService.GetPreliminaryFilterCount:input_type -> freelancers.v1.PreliminaryFilterCountRequest
-	8,  // 26: freelancers.v1.FreelancerService.GetPagesCount:input_type -> freelancers.v1.PagesCountRequest
-	10, // 27: freelancers.v1.FreelancerService.GetCities:input_type -> freelancers.v1.GetCitiesRequest
-	12, // 28: freelancers.v1.FreelancerService.GetSpecialities:input_type -> freelancers.v1.GetSpecialitiesRequest
-	22, // 29: freelancers.v1.FreelancerService.GetSocialNetworks:input_type -> freelancers.v1.GetSocialNetworksRequest
-	14, // 30: freelancers.v1.FreelancerService.Search:input_type -> freelancers.v1.SearchRequest
-	16, // 31: freelancers.v1.FreelancerService.Filter:input_type -> freelancers.v1.FilterRequest
-	18, // 32: freelancers.v1.FreelancerService.CreateFreelancer:input_type -> freelancers.v1.CreateFreelancersRequest
-	20, // 33: freelancers.v1.FreelancerService.GetFreelancer:input_type -> freelancers.v1.GetFreelancerRequest
-	24, // 34: freelancers.v1.FreelancerService.GetFreelancerRecommendations:input_type -> freelancers.v1.GetFreelancerRecommendationsRequest
-	1,  // 35: freelancers.v1.FreelancerService.GetFreelancers:output_type -> freelancers.v1.GetFreelancersResponse
-	3,  // 36: freelancers.v1.FreelancerService.GetSettings:output_type -> freelancers.v1.GetSettingsResponse
-	5,  // 37: freelancers.v1.FreelancerService.GetCounters:output_type -> freelancers.v1.GetCountersResponse
-	7,  // 38: freelancers.v1.FreelancerService.GetPreliminaryFilterCount:output_type -> freelancers.v1.PreliminaryFilterCountResponse
-	9,  // 39: freelancers.v1.FreelancerService.GetPagesCount:output_type -> freelancers.v1.PagesCountResponse
-	11, // 40: freelancers.v1.FreelancerService.GetCities:output_type -> freelancers.v1.CitiesResponse
-	13, // 41: freelancers.v1.FreelancerService.GetSpecialities:output_type -> freelancers.v1.SpecialitiesResponse
-	23, // 42: freelancers.v1.FreelancerService.GetSocialNetworks:output_type -> freelancers.v1.GetSocialNetworksResponse
-	15, // 43: freelancers.v1.FreelancerService.Search:output_type -> freelancers.v1.SearchResponse
-	17, // 44: freelancers.v1.FreelancerService.Filter:output_type -> freelancers.v1.FilterResponse
-	19, // 45: freelancers.v1.FreelancerService.CreateFreelancer:output_type -> freelancers.v1.CreateFreelancersResponse
-	21, // 46: freelancers.v1.FreelancerService.GetFreelancer:output_type -> freelancers.v1.GetFreelancerResponse
-	25, // 47: freelancers.v1.FreelancerService.GetFreelancerRecommendations:output_type -> freelancers.v1.GetFreelancerRecommendationsResponse
-	35, // [35:48] is the sub-list for method output_type
-	22, // [22:35] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	28, // 0: freelancers.v1.GetSettingsResponse.societies:type_name -> freelancers.v1.GetSettingsResponse.SocietyItem
+	29, // 1: freelancers.v1.GetSettingsResponse.cities:type_name -> freelancers.v1.GetSettingsResponse.CityItem
+	30, // 2: freelancers.v1.GetSettingsResponse.specialities:type_name -> freelancers.v1.GetSettingsResponse.SpecialityItem
+	31, // 3: freelancers.v1.GetSettingsResponse.price_categories:type_name -> freelancers.v1.GetSettingsResponse.PriceCategoryItem
+	32, // 4: freelancers.v1.CitiesResponse.cities:type_name -> freelancers.v1.CitiesResponse.CityItem
+	33, // 5: freelancers.v1.SpecialitiesResponse.specialities:type_name -> freelancers.v1.SpecialitiesResponse.SpecialityItem
+	34, // 6: freelancers.v1.SearchResponse.freelancers:type_name -> freelancers.v1.SearchResponse.FreelancerItem
+	35, // 7: freelancers.v1.SearchResponse.cities:type_name -> freelancers.v1.SearchResponse.CityItem
+	36, // 8: freelancers.v1.SearchResponse.specialities:type_name -> freelancers.v1.SearchResponse.SpecialityItem
+	38, // 9: freelancers.v1.FilterResponse.freelancers:type_name -> freelancers.v1.FilterResponse.FreelancerItem
+	40, // 10: freelancers.v1.CreateFreelancersRequest.price_list:type_name -> freelancers.v1.CreateFreelancersRequest.PriceListItem
+	41, // 11: freelancers.v1.CreateFreelancersResponse.errors:type_name -> freelancers.v1.CreateFreelancersResponse.ValidationError
+	42, // 12: freelancers.v1.GetFreelancerResponse.cities:type_name -> freelancers.v1.GetFreelancerResponse.CityItem
+	43, // 13: freelancers.v1.GetFreelancerResponse.specialities:type_name -> freelancers.v1.GetFreelancerResponse.SpecialityItem
+	42, // 14: freelancers.v1.GetFreelancerResponse.main_city:type_name -> freelancers.v1.GetFreelancerResponse.CityItem
+	43, // 15: freelancers.v1.GetFreelancerResponse.main_speciality:type_name -> freelancers.v1.GetFreelancerResponse.SpecialityItem
+	44, // 16: freelancers.v1.GetFreelancerResponse.social_networks:type_name -> freelancers.v1.GetFreelancerResponse.SocialNetworkItem
+	45, // 17: freelancers.v1.GetFreelancerResponse.price_list:type_name -> freelancers.v1.GetFreelancerResponse.PriceListItem
+	46, // 18: freelancers.v1.GetSocialNetworksResponse.social_networks:type_name -> freelancers.v1.GetSocialNetworksResponse.SocialNetworkItem
+	47, // 19: freelancers.v1.GetFreelancerRecommendationsResponse.doctors:type_name -> freelancers.v1.GetFreelancerRecommendationsResponse.Doctor
+	37, // 20: freelancers.v1.SearchResponse.FreelancerItem.social_networks:type_name -> freelancers.v1.SearchResponse.FreelancerItem.SocialNetworkItem
+	1,  // 21: freelancers.v1.FilterResponse.FreelancerItem.speciality:type_name -> freelancers.v1.SpecialityItem
+	0,  // 22: freelancers.v1.FilterResponse.FreelancerItem.city:type_name -> freelancers.v1.CityItem
+	39, // 23: freelancers.v1.FilterResponse.FreelancerItem.social_networks:type_name -> freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem
+	2,  // 24: freelancers.v1.FreelancerService.GetFreelancers:input_type -> freelancers.v1.GetFreelancersRequest
+	4,  // 25: freelancers.v1.FreelancerService.GetSettings:input_type -> freelancers.v1.GetSettingsRequest
+	6,  // 26: freelancers.v1.FreelancerService.GetCounters:input_type -> freelancers.v1.GetCountersRequest
+	8,  // 27: freelancers.v1.FreelancerService.GetPreliminaryFilterCount:input_type -> freelancers.v1.PreliminaryFilterCountRequest
+	10, // 28: freelancers.v1.FreelancerService.GetPagesCount:input_type -> freelancers.v1.PagesCountRequest
+	12, // 29: freelancers.v1.FreelancerService.GetCities:input_type -> freelancers.v1.GetCitiesRequest
+	14, // 30: freelancers.v1.FreelancerService.GetSpecialities:input_type -> freelancers.v1.GetSpecialitiesRequest
+	24, // 31: freelancers.v1.FreelancerService.GetSocialNetworks:input_type -> freelancers.v1.GetSocialNetworksRequest
+	16, // 32: freelancers.v1.FreelancerService.Search:input_type -> freelancers.v1.SearchRequest
+	18, // 33: freelancers.v1.FreelancerService.Filter:input_type -> freelancers.v1.FilterRequest
+	20, // 34: freelancers.v1.FreelancerService.CreateFreelancer:input_type -> freelancers.v1.CreateFreelancersRequest
+	22, // 35: freelancers.v1.FreelancerService.GetFreelancer:input_type -> freelancers.v1.GetFreelancerRequest
+	26, // 36: freelancers.v1.FreelancerService.GetFreelancerRecommendations:input_type -> freelancers.v1.GetFreelancerRecommendationsRequest
+	3,  // 37: freelancers.v1.FreelancerService.GetFreelancers:output_type -> freelancers.v1.GetFreelancersResponse
+	5,  // 38: freelancers.v1.FreelancerService.GetSettings:output_type -> freelancers.v1.GetSettingsResponse
+	7,  // 39: freelancers.v1.FreelancerService.GetCounters:output_type -> freelancers.v1.GetCountersResponse
+	9,  // 40: freelancers.v1.FreelancerService.GetPreliminaryFilterCount:output_type -> freelancers.v1.PreliminaryFilterCountResponse
+	11, // 41: freelancers.v1.FreelancerService.GetPagesCount:output_type -> freelancers.v1.PagesCountResponse
+	13, // 42: freelancers.v1.FreelancerService.GetCities:output_type -> freelancers.v1.CitiesResponse
+	15, // 43: freelancers.v1.FreelancerService.GetSpecialities:output_type -> freelancers.v1.SpecialitiesResponse
+	25, // 44: freelancers.v1.FreelancerService.GetSocialNetworks:output_type -> freelancers.v1.GetSocialNetworksResponse
+	17, // 45: freelancers.v1.FreelancerService.Search:output_type -> freelancers.v1.SearchResponse
+	19, // 46: freelancers.v1.FreelancerService.Filter:output_type -> freelancers.v1.FilterResponse
+	21, // 47: freelancers.v1.FreelancerService.CreateFreelancer:output_type -> freelancers.v1.CreateFreelancersResponse
+	23, // 48: freelancers.v1.FreelancerService.GetFreelancer:output_type -> freelancers.v1.GetFreelancerResponse
+	27, // 49: freelancers.v1.FreelancerService.GetFreelancerRecommendations:output_type -> freelancers.v1.GetFreelancerRecommendationsResponse
+	37, // [37:50] is the sub-list for method output_type
+	24, // [24:37] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_freelancers_v1_freelancers_proto_init() }
@@ -3118,16 +3162,13 @@ func file_freelancers_v1_freelancers_proto_init() {
 	if File_freelancers_v1_freelancers_proto != nil {
 		return
 	}
-	file_freelancers_v1_freelancers_proto_msgTypes[6].OneofWrappers = []any{}
-	file_freelancers_v1_freelancers_proto_msgTypes[8].OneofWrappers = []any{}
-	file_freelancers_v1_freelancers_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_freelancers_v1_freelancers_proto_rawDesc), len(file_freelancers_v1_freelancers_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   46,
+			NumMessages:   48,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

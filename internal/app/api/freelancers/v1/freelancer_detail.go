@@ -23,10 +23,9 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 		Name: freelancer.Name,
 		Slug: freelancer.Slug,
 
-		TgUrl:                 freelancer.TgURL,
-		ExperienceWithDoctors: freelancer.HasExperienceWithDoctor,
-		PriceCategory:         freelancer.PriceCategory,
-		PortfolioLink:         freelancer.PortfolioLink,
+		TgUrl:         freelancer.TgURL,
+		PriceCategory: freelancer.PriceCategory,
+		PortfolioLink: freelancer.PortfolioLink,
 
 		Cities: lo.Map(freelancer.Cities, func(item indto.CityItem, _ int) *desc.GetFreelancerResponse_CityItem {
 			return &desc.GetFreelancerResponse_CityItem{
@@ -66,8 +65,8 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 			Name: freelancer.MainSpeciality.Name,
 		},
 
-		Image:             freelancer.Image,
-		HasCommand:        freelancer.HasCommand,
-		WorkingExperience: freelancer.WorkingExperience,
+		Image:                freelancer.Image,
+		AgencyRepresentative: freelancer.AgencyRepresentative,
+		WorkingExperience:    freelancer.WorkingExperience,
 	}
 }

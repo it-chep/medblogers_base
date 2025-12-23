@@ -243,12 +243,6 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
             "name": "page",
             "in": "query",
             "required": false,
@@ -346,12 +340,6 @@
               "format": "int64"
             },
             "collectionFormat": "multi"
-          },
-          {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -421,12 +409,6 @@
               "format": "int64"
             },
             "collectionFormat": "multi"
-          },
-          {
-            "name": "experienceWithDoctors",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
           }
         ],
         "tags": [
@@ -537,6 +519,18 @@
         }
       }
     },
+    "freelancers.v1.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "freelancers.v1.CreateFreelancersRequest": {
       "type": "object",
       "properties": {
@@ -556,9 +550,6 @@
           "type": "string"
         },
         "agreePolicy": {
-          "type": "boolean"
-        },
-        "experienceWithDoctors": {
           "type": "boolean"
         },
         "cityId": {
@@ -601,9 +592,9 @@
           },
           "title": "Прайс-лист"
         },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
-          "title": "Есть команда"
+          "title": "представитель агентства"
         },
         "workingExperience": {
           "type": "string",
@@ -671,19 +662,25 @@
           "type": "string"
         },
         "speciality": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.SpecialityItem"
+          },
+          "title": "buf:lint:ignore FIELD_SAME_CARDINALITY"
         },
         "city": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/freelancers.v1.CityItem"
+          },
+          "title": "buf:lint:ignore FIELD_SAME_CARDINALITY"
         },
         "image": {
           "type": "string"
         },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
-        },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
           "title": "Есть команда"
         },
@@ -828,13 +825,9 @@
           "type": "string",
           "title": "Опыт работы"
         },
-        "hasCommand": {
+        "agencyRepresentative": {
           "type": "boolean",
-          "title": "Есть команда"
-        },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
+          "title": "Представитель агентства"
         }
       }
     },
@@ -1103,10 +1096,6 @@
         "image": {
           "type": "string"
         },
-        "experienceWithDoctors": {
-          "type": "boolean",
-          "title": "Опыт работы с врачами"
-        },
         "priceCategory": {
           "type": "string",
           "format": "int64",
@@ -1172,6 +1161,18 @@
           "format": "int64"
         },
         "specialityName": {
+          "type": "string"
+        }
+      }
+    },
+    "freelancers.v1.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
           "type": "string"
         }
       }

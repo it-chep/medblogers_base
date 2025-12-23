@@ -10,7 +10,6 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
-	"strings"
 	"sync"
 
 	"github.com/samber/lo"
@@ -100,19 +99,16 @@ func enrichSubscribers(ctx context.Context, doctorsMap map[int64]dto.Doctor, sub
 // enrichAdditionalCities - обогащение доп городами
 func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalCitiesMap map[int64][]*city.City) {
 	logger.Message(ctx, "[Filter] Обогащение доп городами")
-
 	for doctorID, cities := range additionalCitiesMap {
-		doctor, ok := doctorsMap[doctorID]
+		doc, ok := doctorsMap[doctorID]
 		if !ok {
 			continue
 		}
 
-		var builder strings.Builder
-
 		// Сначала ищем основной город
 		for _, c := range cities {
-			if int64(c.ID()) == doctor.MainCityID {
-				builder.WriteString(c.Name())
+			if int64(c.ID()) == doc.MainCityID {
+				doc.Cities = append(doc.Cities, dto.City{ID: int64(c.ID()), Name: c.Name()})
 				break
 			}
 		}
@@ -123,39 +119,29 @@ func enrichAdditionalCities(ctx context.Context, doctorsMap map[int64]dto.Doctor
 			if counter == 2 {
 				break
 			}
-			if int64(c.ID()) != doctor.MainCityID {
-				if builder.Len() > 0 {
-					builder.WriteString(", ")
-				}
-				builder.WriteString(c.Name())
+			if int64(c.ID()) != doc.MainCityID {
+				doc.Cities = append(doc.Cities, dto.City{ID: int64(c.ID()), Name: c.Name()})
 				counter++
 			}
 		}
 
-		// Обновляем данные доктора
-		if builder.Len() > 0 {
-			doctor.City = builder.String()
-			doctorsMap[doctorID] = doctor
-		}
+		doctorsMap[doctorID] = doc
 	}
 }
 
 // enrichAdditionalSpecialities - обогащение доп специальностями и доп городами
 func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.Doctor, additionalSpecialitiesMap map[int64][]*speciality.Speciality) {
 	logger.Message(ctx, "[Filter] Обогащение доп специальностями")
-
 	for doctorID, specialities := range additionalSpecialitiesMap {
-		doctor, ok := doctorsMap[doctorID]
+		doc, ok := doctorsMap[doctorID]
 		if !ok {
 			continue
 		}
 
-		var builder strings.Builder
-
 		// Сначала ищем основной город
 		for _, spec := range specialities {
-			if int64(spec.ID()) == doctor.MainSpecialityID {
-				builder.WriteString(spec.Name())
+			if int64(spec.ID()) == doc.MainSpecialityID {
+				doc.Specialities = append(doc.Specialities, dto.Speciality{ID: int64(spec.ID()), Name: spec.Name()})
 				break
 			}
 		}
@@ -166,20 +152,13 @@ func enrichAdditionalSpecialities(ctx context.Context, doctorsMap map[int64]dto.
 			if counter == 2 {
 				break
 			}
-			if int64(spec.ID()) != doctor.MainSpecialityID {
-				if builder.Len() > 0 {
-					builder.WriteString(", ")
-				}
-				builder.WriteString(spec.Name())
+			if int64(spec.ID()) != doc.MainSpecialityID {
+				doc.Specialities = append(doc.Specialities, dto.Speciality{ID: int64(spec.ID()), Name: spec.Name()})
 				counter++
 			}
 		}
 
-		// Обновляем данные доктора
-		if builder.Len() > 0 {
-			doctor.Speciality = builder.String()
-			doctorsMap[doctorID] = doctor
-		}
+		doctorsMap[doctorID] = doc
 	}
 }
 

@@ -42,11 +42,10 @@ func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*fre
 			   f.name,
 			   f.slug,
 			   f.price_category,
-			   f.is_worked_with_doctors,
 			   f.s3_image,
 			   c.name as "city_name",
 			   s.name as "speciality_name",
-			   f.has_command
+			   f.agency_representative
 		from freelancer f
 				 join freelancers_city c on f.city_id = c.id
 				 join freelancers_speciality s on f.speciality_id = s.id

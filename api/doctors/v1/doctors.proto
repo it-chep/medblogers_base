@@ -34,6 +34,10 @@ service DoctorService {
     option (google.api.http) = {get: "/api/v1/specialities_list"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальностей для регистрации"};
   }
+  rpc GetSMainSpecialities(GetMainSpecialitiesRequest) returns (MainSpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/main_specialities_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение основных специальностей для регистрации"};
+  }
   rpc Search(SearchRequest) returns (SearchResponse) {
     option (google.api.http) = {get: "/api/v1/search-doctors"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск доктора, города, специальности по переданным значениям"};
@@ -53,6 +57,23 @@ service DoctorService {
     option (google.api.http) = {get: "/api/v1/doctors/{doctor_slug}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про доктора"};
   }
+  rpc CheckCheating(CheckCheatingRequest) returns (CheckCheatingResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/blacklist_check"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Проверяет состоит ли данный канал в черном списке"};
+  }
+}
+
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
 }
 
 // ===== Настройки фильтров =====
@@ -113,6 +134,17 @@ message CitiesResponse {
 message GetSpecialitiesRequest {}
 
 message SpecialitiesResponse {
+  repeated SpecialityItem specialities = 1;
+
+  message SpecialityItem {
+    int64 speciality_id = 1;
+    string speciality_name = 2;
+  }
+}
+
+message GetMainSpecialitiesRequest {}
+
+message MainSpecialitiesResponse {
   repeated SpecialityItem specialities = 1;
 
   message SpecialityItem {
@@ -189,11 +221,17 @@ message FilterResponse {
     string tg_subs_count = 8;
     string tg_subs_count_text = 9;
 
-    string speciality = 10;
-    string city = 11;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated SpecialityItem speciality = 10;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated CityItem city = 11;
 
     string image = 12;
     bool is_kf_doctor = 13;
+
+    string youtube_link = 14;
+    string youtube_subs_count = 15;
+    string youtube_subs_count_text = 16;
   }
 }
 
@@ -289,6 +327,9 @@ message GetDoctorResponse {
   string image = 22;
 
   bool is_kf_doctor = 23;
+  string youtube_subs_count = 24;
+  string youtube_subs_count_text = 25;
+  string youtube_last_updated_date = 26;
 
   message CityItem {
     int64 id = 1;
@@ -329,4 +370,12 @@ message PagesCountRequest {
 
 message PagesCountResponse {
   int64 pages_count = 1;
+}
+
+message CheckCheatingRequest {
+  string telegram = 1;
+}
+
+message CheckCheatingResponse {
+  bool is_in_blacklist = 1;
 }

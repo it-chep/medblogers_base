@@ -42,5 +42,9 @@ func (e *SubscribersEnricher) Enrich(ctx context.Context, doctorID doctor.Medblo
 	docDTO.InstSubsCountText = subscribersInfo.InstSubsCountText
 	docDTO.InstLastUpdatedDate = subscribersInfo.InstLastUpdatedDate
 
+	docDTO.YouTubeSubsCount = subscribersInfo.YouTubeSubsCount
+	docDTO.YouTubeSubsCountText = subscribersInfo.YouTubeSubsCountText
+	docDTO.YouTubeLastUpdatedDate = subscribersInfo.YouTubeLastUpdatedDate
+
 	return docDTO, nil
 }

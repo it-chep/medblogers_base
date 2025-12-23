@@ -4,10 +4,10 @@ package dto
 
 type CreateDoctorRequest struct {
 	DoctorID int64 `json:"doctor_id"`
-	// username telegram
-	Telegram string `json:"telegram"`
-	// username telegram
+	// username
+	Telegram  string `json:"telegram"`
 	Instagram string `json:"instagram"`
+	Youtube   string `json:"youtube"`
 }
 
 type UpdateDoctorRequest struct {
@@ -28,4 +28,8 @@ type DoctorsFilterWithIDsRequest struct {
 	Sort        string `json:"sort,omitempty"`
 
 	DoctorIDs []int64 `json:"doctor_ids,omitempty"`
+}
+
+type CheckTelegramInBlackListRequest struct {
+	Telegram string `json:"telegram"`
 }

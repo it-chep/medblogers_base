@@ -53,9 +53,8 @@ func (i *Implementation) requestToCreateDTO(req *desc.CreateFreelancersRequest) 
 		AdditionalCities:      req.AdditionalCities,
 		AdditionalSpecialties: req.AdditionalSpecialties,
 
-		PortfolioLink:            req.PortfolioLink,
-		HasExperienceWithDoctors: req.ExperienceWithDoctors,
-		HasCommand:               req.HasCommand,
+		PortfolioLink:        req.PortfolioLink,
+		AgencyRepresentative: req.AgencyRepresentative,
 
 		WorkingExperience: req.WorkingExperience,
 

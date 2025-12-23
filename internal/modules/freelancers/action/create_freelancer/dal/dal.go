@@ -22,16 +22,15 @@ func (r *Repository) CreateFreelancer(ctx context.Context, createDTO dto.CreateR
 		insert into freelancer (email,
 						slug,
 						name,
-						is_worked_with_doctors,
 						is_active,
 						tg_username,
 						portfolio_link,
 						speciality_id,
 						city_id,
 						price_category,
-		                has_command,
+		                agency_representative,
 		                start_working_date)
-		values ($1, $2, $3, $4, false, $5, $6, $7, $8, $9, $10, $11)
+		values ($1, $2, $3, false, $4, $5, $6, $7, $8, $9, $10)
 		returning id;
 	`
 
@@ -39,13 +38,12 @@ func (r *Repository) CreateFreelancer(ctx context.Context, createDTO dto.CreateR
 		createDTO.Email,
 		createDTO.Slug,
 		createDTO.Name,
-		createDTO.HasExperienceWithDoctors,
 		createDTO.TgUsername,
 		createDTO.PortfolioLink,
 		createDTO.MainSpecialityID,
 		createDTO.MainCityID,
 		createDTO.PriceCategory,
-		createDTO.HasCommand,
+		createDTO.AgencyRepresentative,
 		createDTO.StartWorkingExperience,
 	}
 

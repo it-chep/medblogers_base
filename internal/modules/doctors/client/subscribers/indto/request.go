@@ -8,6 +8,7 @@ const (
 	All SocialMedia = iota
 	Telegram
 	Instagram
+	Youtube
 )
 
 func (sm SocialMedia) String() string {
@@ -16,6 +17,8 @@ func (sm SocialMedia) String() string {
 		return "tg"
 	case Instagram:
 		return "inst"
+	case Youtube:
+		return "youtube"
 	default:
 		return ""
 	}
@@ -27,6 +30,8 @@ func NewSocialMedia(sm string) SocialMedia {
 		return Telegram
 	case "inst":
 		return Instagram
+	case "youtube":
+		return Youtube
 	}
 
 	return All
@@ -48,10 +53,10 @@ type GetDoctorsByFilterRequest struct {
 }
 
 type CreateDoctorRequest struct {
-	// username telegram
-	Telegram string
-	// username telegram
+	// username
+	Telegram  string
 	Instagram string
+	YouTube   string
 }
 
 type UpdateDoctorRequest struct {

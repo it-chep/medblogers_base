@@ -28,12 +28,11 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) freelancer.
 	}
 
 	return freelancer.Filter{
-		Page:                  page,
-		Cities:                req.Cities,
-		Specialities:          req.Specialities,
-		SocialNetworks:        req.Societies,
-		PriceCategory:         req.PriceCategory,
-		ExperienceWithDoctors: req.ExperienceWithDoctors,
+		Page:           page,
+		Cities:         req.Cities,
+		Specialities:   req.Specialities,
+		SocialNetworks: req.Societies,
+		PriceCategory:  req.PriceCategory,
 	}
 }
 
@@ -43,9 +42,18 @@ func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.F
 		freelancersResponse = append(freelancersResponse, &desc.FilterResponse_FreelancerItem{
 			Name: item.Name,
 			Slug: item.Slug,
-
-			Speciality:    item.Speciality,
-			City:          item.City,
+			Speciality: lo.Map(item.Specialities, func(item dto.Speciality, _ int) *desc.SpecialityItem {
+				return &desc.SpecialityItem{
+					Id:   item.ID,
+					Name: item.Name,
+				}
+			}),
+			City: lo.Map(item.Cities, func(item dto.City, index int) *desc.CityItem {
+				return &desc.CityItem{
+					Id:   item.ID,
+					Name: item.Name,
+				}
+			}),
 			Image:         item.Image,
 			PriceCategory: item.PriceCategory,
 			SocialNetworks: lo.Map(item.Networks, func(item dto.NetworkItem, index int) *desc.FilterResponse_FreelancerItem_SocialNetworkItem {
@@ -55,8 +63,7 @@ func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.F
 					Slug: item.Slug,
 				}
 			}),
-			ExperienceWithDoctors: item.HasExperienceWithDoctor,
-			HasCommand:            item.HasCommand,
+			AgencyRepresentative: item.AgencyRepresentative,
 		})
 	}
 

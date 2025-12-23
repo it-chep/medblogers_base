@@ -18,7 +18,6 @@ import (
 
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/lib/pq"
-	"github.com/samber/lo"
 )
 
 type Repository struct {
@@ -36,7 +35,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) GetFreelancers(ctx context.Context, filter freelancer.Filter) (map[int64]*freelancer.Freelancer, []int64, error) {
 	sql := `
 	select 
-	    id, name, slug, s3_image, price_category, is_worked_with_doctors, has_command, speciality_id, city_id
+	    id, name, slug, s3_image, price_category, agency_representative, speciality_id, city_id
 	from
     	freelancer f
 	where 
@@ -122,7 +121,7 @@ func sqlAddLimitOffset(sql string, phValues []any, filter freelancer.Filter) (_ 
 func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	defaultSql := `
 	select 
-	    id, name, slug, s3_image, price_category, is_worked_with_doctors, has_command
+	    id, name, slug, s3_image, price_category, agency_representative
 	from
     	freelancer f
 	where 
@@ -131,14 +130,6 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 
 	whereStmtBuilder := strings.Builder{}
 	phCounter := 1 // Счетчик для плейсхолдеров
-
-	if filter.ExperienceWithDoctors != nil {
-		whereStmtBuilder.WriteString(fmt.Sprintf(`
-			 and f.is_worked_with_doctors = $%d
-		`, phCounter))
-		phValues = append(phValues, lo.FromPtr(filter.ExperienceWithDoctors))
-		phCounter++
-	}
 
 	if len(filter.Cities) != 0 {
 		whereStmtBuilder.WriteString(fmt.Sprintf(`

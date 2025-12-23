@@ -68,6 +68,7 @@ func (a *App) Run(_ context.Context) {
 		}
 	}()
 
+	fmt.Printf("[APP][GPRC] Приложение запустилось HTTP - http://localhost:8080, GRPC - http://localhost:7002")
 	if err := a.clayServer.Run(a.controllers...); err != nil {
 		fmt.Printf("[APP][GPRC] Не удалось запустить приложение: %v", err)
 	}

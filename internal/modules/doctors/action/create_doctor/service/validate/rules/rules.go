@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"medblogers_base/internal/modules/doctors/action/create_doctor/dto"
+	"medblogers_base/internal/modules/doctors/domain/speciality"
 	"regexp"
 	"strings"
 	"time"
@@ -74,11 +75,31 @@ var RuleValidAdditionalCitiesIDs = func(citiesIDs []int64) func(_ context.Contex
 }
 
 // RuleValidSpecialityID проверяет валидность выбранной специальности
-var RuleValidSpecialityID = func(specialitiesIDs []int64) func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
+var RuleValidSpecialityID = func(specialities []*speciality.Speciality) func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
 	return func(_ context.Context, req *dto.CreateDoctorRequest) (bool, error) {
-		if !lo.Contains(specialitiesIDs, req.SpecialityID) {
+		var (
+			validID   bool
+			validSpec *speciality.Speciality
+		)
+
+		for _, spec := range specialities {
+			if int64(spec.ID()) == req.SpecialityID {
+				validID = true
+				validSpec = spec
+				break
+			}
+		}
+
+		if !validID {
 			return false, dto.ValidationError{
 				Text:  "Выбранной специальности не существует",
+				Field: "specialityId",
+			}
+		}
+
+		if validSpec.IsAdditional() {
+			return false, dto.ValidationError{
+				Text:  "Эту специальность нельзя выбрать как основную",
 				Field: "specialityId",
 			}
 		}
@@ -88,21 +109,28 @@ var RuleValidSpecialityID = func(specialitiesIDs []int64) func(ctx context.Conte
 }
 
 // RuleValidSpecialitiesIDs проверяет валидность выбранных доп специальностей
-var RuleValidSpecialitiesIDs = func(specialitiesIDs []int64) func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
+var RuleValidSpecialitiesIDs = func(specialities []*speciality.Speciality) func(ctx context.Context, t *dto.CreateDoctorRequest) (bool, error) {
 	return func(_ context.Context, req *dto.CreateDoctorRequest) (bool, error) {
-		if len(req.AdditionalCities) == 0 {
+		if len(req.AdditionalSpecialties) == 0 {
 			return true, dto.ValidationError{}
 		}
 
-		validSpecialitiesMap := make(map[int64]struct{})
-		for _, id := range specialitiesIDs {
-			validSpecialitiesMap[id] = struct{}{}
-		}
+		validSpecialitiesMap := lo.SliceToMap(specialities, func(item *speciality.Speciality) (int64, *speciality.Speciality) {
+			return int64(item.ID()), item
+		})
 
 		var invalidSpecialities []int64
 		for _, id := range req.AdditionalSpecialties {
-			if _, exists := validSpecialitiesMap[id]; !exists {
+			_, exists := validSpecialitiesMap[id]
+			if !exists {
 				invalidSpecialities = append(invalidSpecialities, id)
+			}
+
+			if id == req.SpecialityID {
+				return false, dto.ValidationError{
+					Text:  "Нельзя выбирать одинаковые специальности",
+					Field: "additionalSpecialities",
+				}
 			}
 		}
 
