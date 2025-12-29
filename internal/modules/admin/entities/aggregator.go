@@ -7,6 +7,8 @@ import (
 	doctor_city_action "medblogers_base/internal/modules/admin/entities/doctors/action/city"
 	doctor_action "medblogers_base/internal/modules/admin/entities/doctors/action/doctor"
 	doctor_speciality_action "medblogers_base/internal/modules/admin/entities/doctors/action/speciality"
+
+	freelancer_city_action "medblogers_base/internal/modules/admin/entities/freelancers/action/city"
 	"medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -17,7 +19,11 @@ type DoctorModule struct {
 	SpecialityAgg *doctor_speciality_action.DoctorSpecialityAggregator
 }
 
-type FreelancerModule struct{}
+type FreelancerModule struct {
+	//DoctorAgg     *freelancer_action.DoctorModuleAggregator
+	CityAgg *freelancer_city_action.FreelancerCityAggregator
+	//SpecialityAgg *freelancer_speciality_action.DoctorSpecialityAggregator
+}
 
 // Aggregator собирает все процессы модуля в одно целое
 type Aggregator struct {
@@ -37,6 +43,8 @@ func NewAggregator(httpConns map[string]http.Executor, config config.AppConfig, 
 			CityAgg:       doctor_city_action.New(pool),
 			SpecialityAgg: doctor_speciality_action.New(pool),
 		},
-		FreelancerModule: FreelancerModule{},
+		FreelancerModule: FreelancerModule{
+			CityAgg: freelancer_city_action.New(pool),
+		},
 	}
 }
