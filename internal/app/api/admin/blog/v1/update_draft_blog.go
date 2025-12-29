@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
-	"medblogers_base/internal/modules/admin/action/blog/action/update_draft_blog/dto"
+	"medblogers_base/internal/modules/admin/entities/blog/action/update_draft_blog/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
 
 	"github.com/google/uuid"
