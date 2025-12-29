@@ -16,6 +16,39 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/blacklist_check": {
+      "post": {
+        "summary": "Проверяет состоит ли данный канал в черном списке",
+        "operationId": "DoctorService_CheckCheating",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CheckCheatingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CheckCheatingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/cities_list": {
       "get": {
         "summary": "Получение городов для регистрации",
@@ -210,6 +243,29 @@
             "default": "SUBSCRIBERS_DESC"
           }
         ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/main_specialities_list": {
+      "get": {
+        "summary": "Получение основных специальностей для регистрации",
+        "operationId": "DoctorService_GetSMainSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.MainSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
         "tags": [
           "DoctorService"
         ]
@@ -444,6 +500,22 @@
     }
   },
   "definitions": {
+    "doctor.v1.CheckCheatingRequest": {
+      "type": "object",
+      "properties": {
+        "telegram": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.CheckCheatingResponse": {
+      "type": "object",
+      "properties": {
+        "isInBlacklist": {
+          "type": "boolean"
+        }
+      }
+    },
     "doctor.v1.CitiesResponse": {
       "type": "object",
       "properties": {
@@ -464,6 +536,18 @@
           "format": "int64"
         },
         "cityName": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
           "type": "string"
         }
       }
@@ -618,16 +702,35 @@
           "type": "string"
         },
         "speciality": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.SpecialityItem"
+          },
+          "title": "buf:lint:ignore FIELD_SAME_CARDINALITY"
         },
         "city": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.CityItem"
+          },
+          "title": "buf:lint:ignore FIELD_SAME_CARDINALITY"
         },
         "image": {
           "type": "string"
         },
         "isKfDoctor": {
           "type": "boolean"
+        },
+        "youtubeLink": {
+          "type": "string"
+        },
+        "youtubeSubsCount": {
+          "type": "string"
+        },
+        "youtubeSubsCountText": {
+          "type": "string"
         }
       }
     },
@@ -725,6 +828,15 @@
         },
         "isKfDoctor": {
           "type": "boolean"
+        },
+        "youtubeSubsCount": {
+          "type": "string"
+        },
+        "youtubeSubsCountText": {
+          "type": "string"
+        },
+        "youtubeLastUpdatedDate": {
+          "type": "string"
         }
       }
     },
@@ -829,6 +941,30 @@
         "doctorsCount": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "doctor.v1.MainSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.MainSpecialitiesResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "doctor.v1.MainSpecialitiesResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "specialityName": {
+          "type": "string"
         }
       }
     },
@@ -955,6 +1091,18 @@
           "format": "int64"
         },
         "specialityName": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
           "type": "string"
         }
       }

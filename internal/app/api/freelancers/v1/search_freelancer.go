@@ -27,15 +27,14 @@ func (i *Implementation) newSearchResponse(searchResultDomain dto.SearchDTO) *de
 	return &desc.SearchResponse{
 		Freelancers: lo.Map(searchResultDomain.Freelancers, func(item dto.FreelancerItem, _ int) *desc.SearchResponse_FreelancerItem {
 			return &desc.SearchResponse_FreelancerItem{
-				Id:                    item.ID,
-				Name:                  item.Name,
-				Slug:                  item.Slug,
-				CityName:              item.CityName,
-				SpecialityName:        item.SpecialityName,
-				Image:                 item.S3Image,
-				ExperienceWithDoctors: item.ExperienceWithDoctors,
-				PriceCategory:         item.PriceCategory,
-				SocialNetworks:        nil,
+				Id:             item.ID,
+				Name:           item.Name,
+				Slug:           item.Slug,
+				CityName:       item.CityName,
+				SpecialityName: item.SpecialityName,
+				Image:          item.S3Image,
+				PriceCategory:  item.PriceCategory,
+				SocialNetworks: nil,
 			}
 		}),
 		Cities: lo.Map(searchResultDomain.Cities, func(cityItem dto.CityItem, _ int) *desc.SearchResponse_CityItem {

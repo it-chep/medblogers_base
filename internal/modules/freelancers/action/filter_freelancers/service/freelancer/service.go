@@ -92,14 +92,15 @@ func (s *Service) convertToDTOMap(freelancersMap map[int64]*freelancer.Freelance
 	dtoMap := make(map[int64]dto.Freelancer, len(freelancersMap))
 	for _, freelanc := range freelancersMap {
 		dtoMap[freelanc.GetID()] = dto.Freelancer{
-			ID:                      freelanc.GetID(),
-			Slug:                    freelanc.GetSlug(),
-			Name:                    freelanc.GetName(),
-			MainCityID:              freelanc.GetMainCityID(),
-			MainSpecialityID:        freelanc.GetMainSpecialityID(),
-			PriceCategory:           freelanc.GetPriceCategory(),
-			HasExperienceWithDoctor: freelanc.HasExperienceWithDoctor(),
-			HasCommand:              freelanc.GetHasCommand(),
+			ID:                   freelanc.GetID(),
+			Slug:                 freelanc.GetSlug(),
+			Name:                 freelanc.GetName(),
+			MainCityID:           freelanc.GetMainCityID(),
+			MainSpecialityID:     freelanc.GetMainSpecialityID(),
+			PriceCategory:        freelanc.GetPriceCategory(),
+			AgencyRepresentative: freelanc.IsAgencyRepresentative(),
+			Specialities:         make([]dto.Speciality, 0),
+			Cities:               make([]dto.City, 0),
 		}
 	}
 

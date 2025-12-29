@@ -89,7 +89,7 @@ func (r *Repository) GetDoctors(ctx context.Context, currentPage int64) (map[doc
 	logger.Message(ctx, "[Repo] Селект докторов из базы без фильтров")
 	sql := `
 		select 
-			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url, s3_image, is_kf_doctor
+			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url, s3_image, is_kf_doctor, youtube_url
 		from docstar_site_doctor d
 		where d.is_active = true
 		order by d.name asc 
@@ -141,7 +141,7 @@ func (r *Repository) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids
 	logger.Message(ctx, "[Repo] Селект докторов из базы по IDs")
 	sql := `
 		select 
-			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url, s3_image, is_kf_doctor
+			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url, s3_image, is_kf_doctor, youtube_url
 		from docstar_site_doctor d
 		where d.is_active = true and d.id = any($1::bigint[])
 	`
@@ -188,7 +188,8 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 		d.speciallity_id,
 		d.tg_channel_url,
 		d.s3_image, 
-		d.is_kf_doctor
+		d.is_kf_doctor,
+		d.youtube_url
 	from
     	docstar_site_doctor d
 	where 

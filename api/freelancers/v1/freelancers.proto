@@ -66,6 +66,16 @@ service FreelancerService {
   }
 }
 
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
 message GetFreelancersRequest {}
 message GetFreelancersResponse {}
 
@@ -119,7 +129,6 @@ message PreliminaryFilterCountRequest {
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
-  optional bool experience_with_doctors = 5;
 }
 
 message PreliminaryFilterCountResponse {
@@ -133,8 +142,6 @@ message PagesCountRequest {
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
-
-  optional bool experience_with_doctors = 5;
 }
 
 message PagesCountResponse {
@@ -183,8 +190,8 @@ message SearchResponse {
     string city_name = 4;
     string speciality_name = 5;
     string image = 6;
-    // Опыт работы с врачами
-    bool experience_with_doctors = 7;
+    // DEPRECATED: Опыт работы с врачами
+    reserved 7;
     // Ценовая категория
     int64 price_category = 8;
     repeated SocialNetworkItem social_networks = 9;
@@ -216,7 +223,8 @@ message FilterRequest {
   repeated int64 price_category = 2;
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
-  optional bool experience_with_doctors = 5;
+  // DEPRECATED: Опыт работы с врачами
+  reserved 5;
 
   int64 page = 6;
 }
@@ -227,14 +235,16 @@ message FilterResponse {
     string name = 1;
     string slug = 2;
 
-    string speciality = 3;
-    string city = 4;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated SpecialityItem speciality = 3;
+    // buf:lint:ignore FIELD_SAME_CARDINALITY
+    repeated CityItem city = 4;
 
     string image = 5;
-    // Опыт работы с врачами
-    bool experience_with_doctors = 6;
+    // DEPRECATED: Опыт работы с врачами
+    reserved 6;
     // Есть команда
-    bool has_command = 7;
+    bool agency_representative = 7;
     // Ценовая категория
     int64 price_category = 8;
     // Соцсети
@@ -273,7 +283,8 @@ message CreateFreelancersRequest {
   }];
 
   bool agree_policy = 6 [(buf.validate.field).bool.const = true];
-  bool experience_with_doctors = 7 [(buf.validate.field).bool.const = true];
+  // DEPRECATED: Опыт работы с врачами
+  reserved 7;
 
   int64 city_id = 8 [(buf.validate.field).int64.gt = 0];
   int64 speciality_id = 9 [(buf.validate.field).int64.gt = 0];
@@ -285,8 +296,8 @@ message CreateFreelancersRequest {
 
   // Прайс-лист
   repeated PriceListItem price_list = 14;
-  // Есть команда
-  bool has_command = 15 [(buf.validate.field).bool.const = true];
+  // представитель агентства
+  bool agency_representative = 15 [(buf.validate.field).bool.const = true];
   // Опыт работы в годах
   int64 working_experience = 16 [(buf.validate.field).int64.gt = 0];
 
@@ -341,10 +352,10 @@ message GetFreelancerResponse {
 
   // Опыт работы
   string working_experience = 13;
-  // Есть команда
-  bool has_command = 14;
-  // Опыт работы с врачами
-  bool experience_with_doctors = 15;
+  // Представитель агентства
+  bool agency_representative = 14;
+  // DEPRECATED: Опыт работы с врачами
+  reserved 15;
 
   message CityItem {
     int64 id = 1;

@@ -13,7 +13,6 @@ import (
 	"github.com/jackc/pgx/v4"
 	"github.com/lib/pq"
 	"github.com/pkg/errors"
-	"github.com/samber/lo"
 )
 
 type Repository struct {
@@ -77,14 +76,6 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	whereStmtBuilder := strings.Builder{}
 	phCounter := 1 // Счетчик для плейсхолдеров
 
-	if filter.ExperienceWithDoctors != nil {
-		whereStmtBuilder.WriteString(fmt.Sprintf(`
-			 and f.is_worked_with_doctors = $%d
-		`, phCounter))
-		phValues = append(phValues, lo.FromPtr(filter.ExperienceWithDoctors))
-		phCounter++
-	}
-
 	if len(filter.Cities) != 0 {
 		whereStmtBuilder.WriteString(fmt.Sprintf(`
 		and (
@@ -139,7 +130,7 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 // GetFreelancerInfo детальная информация о фрилансере
 func (r *Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	sql := `
-		select id, slug, name, is_worked_with_doctors, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, has_command, start_working_date
+		select id, slug, name, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, agency_representative, start_working_date
 		    from freelancer
 		where slug = $1 and is_active = true
 	`

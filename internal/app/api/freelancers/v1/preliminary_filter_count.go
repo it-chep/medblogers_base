@@ -27,9 +27,5 @@ func (i *Implementation) requestToPreliminaryFilterDTO(req *desc.PreliminaryFilt
 		PriceCategory:  req.PriceCategory,
 	}
 
-	if req.ExperienceWithDoctors != nil {
-		filter.ExperienceWithDoctors = req.ExperienceWithDoctors
-	}
-
 	return filter
 }

@@ -55,10 +55,9 @@ func (s *Service) ConfigureFreelancerDescription(ctx context.Context, frlncr *fr
 	}
 
 	description := fmt.Sprintf(
-		"Мои специальности: %s. Опыт работы %s. %s",
+		"Мои специальности: %s. Опыт работы %s. Есть опыт работы с врачами.",
 		specialitiesStr,
 		frlncr.GetWorkingExperience(),
-		lo.Ternary(frlncr.HasExperienceWithDoctor(), "Есть опыт работы с врачами.", ""),
 	)
 
 	return description, nil

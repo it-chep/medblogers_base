@@ -11,20 +11,28 @@ type Freelancer struct {
 	Name string
 	Slug string
 
-	Speciality string // Строка из основной и дополнительных специальностей
-	City       string // Строка из основного и дополнительных городов
+	Specialities []Speciality
+	Cities       []City
 
 	Image string
 
-	MainCityID              int64
-	MainSpecialityID        int64
-	PriceCategory           int64
-	HasExperienceWithDoctor bool
-	HasCommand              bool
+	MainCityID           int64
+	MainSpecialityID     int64
+	PriceCategory        int64
+	AgencyRepresentative bool
 
 	Networks []NetworkItem
 }
 
+type Speciality struct {
+	ID   int64
+	Name string
+}
+
+type City struct {
+	ID   int64
+	Name string
+}
 type Response struct {
 	Freelancers []Freelancer
 }

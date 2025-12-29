@@ -2,12 +2,14 @@ package action
 
 import (
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/doctors/action/blacklist_check"
 	"medblogers_base/internal/modules/doctors/action/counters_info"
 	"medblogers_base/internal/modules/doctors/action/create_doctor"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter"
 	"medblogers_base/internal/modules/doctors/action/get_all_cities"
 	"medblogers_base/internal/modules/doctors/action/get_all_specialities"
+	"medblogers_base/internal/modules/doctors/action/get_main_specialities_list"
 	"medblogers_base/internal/modules/doctors/action/get_pages_count"
 	"medblogers_base/internal/modules/doctors/action/get_seo_detail"
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count"
@@ -28,8 +30,10 @@ type Aggregator struct {
 	Settings               *settings.Action
 	AllCities              *get_all_cities.Action
 	AllSpecialities        *get_all_specialities.Action
+	MainSpecialitiesList   *get_main_specialities_list.Action
 	PreliminaryFilterCount *preliminary_filter_count.Action
 	GetPagesCount          *get_pages_count.Action
+	BlackListCheck         *blacklist_check.Action
 
 	// Seo
 	GetSeoDetail *get_seo_detail.Action
@@ -47,8 +51,10 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 		Settings:               settings.New(clients, pool),
 		AllCities:              get_all_cities.New(pool),
 		AllSpecialities:        get_all_specialities.New(pool),
+		MainSpecialitiesList:   get_main_specialities_list.New(pool),
 		PreliminaryFilterCount: preliminary_filter_count.New(clients, pool),
 		GetPagesCount:          get_pages_count.New(clients, pool),
+		BlackListCheck:         blacklist_check.New(clients),
 
 		// Seo
 		GetSeoDetail: get_seo_detail.NewAction(clients, pool),

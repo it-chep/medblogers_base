@@ -27,9 +27,5 @@ func (i *Implementation) requestToPagesCountDTO(req *desc.PagesCountRequest) fre
 		PriceCategory:  req.PriceCategory,
 	}
 
-	if req.ExperienceWithDoctors != nil {
-		filter.ExperienceWithDoctors = req.ExperienceWithDoctors
-	}
-
 	return filter
 }

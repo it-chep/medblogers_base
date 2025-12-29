@@ -9,7 +9,6 @@ import (
 	"medblogers_base/internal/modules/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
-	"strings"
 	"sync"
 
 	"github.com/samber/lo"
@@ -101,12 +100,10 @@ func enrichAdditionalCities(ctx context.Context, freelancersMap map[int64]dto.Fr
 			continue
 		}
 
-		var builder strings.Builder
-
 		// Сначала ищем основной город
 		for _, c := range cities {
 			if c.ID() == freelancer.MainCityID {
-				builder.WriteString(c.Name())
+				freelancer.Cities = append(freelancer.Cities, dto.City{ID: c.ID(), Name: c.Name()})
 				break
 			}
 		}
@@ -118,19 +115,12 @@ func enrichAdditionalCities(ctx context.Context, freelancersMap map[int64]dto.Fr
 				break
 			}
 			if int64(c.ID()) != freelancer.MainCityID {
-				if builder.Len() > 0 {
-					builder.WriteString(", ")
-				}
-				builder.WriteString(c.Name())
+				freelancer.Cities = append(freelancer.Cities, dto.City{ID: c.ID(), Name: c.Name()})
 				counter++
 			}
 		}
 
-		// Обновляем данные доктора
-		if builder.Len() > 0 {
-			freelancer.City = builder.String()
-			freelancersMap[freelancerID] = freelancer
-		}
+		freelancersMap[freelancerID] = freelancer
 	}
 }
 
@@ -144,12 +134,10 @@ func enrichAdditionalSpecialities(ctx context.Context, freelancersMap map[int64]
 			continue
 		}
 
-		var builder strings.Builder
-
 		// Сначала ищем основной город
 		for _, spec := range specialities {
 			if spec.ID() == freelancer.MainSpecialityID {
-				builder.WriteString(spec.Name())
+				freelancer.Specialities = append(freelancer.Specialities, dto.Speciality{ID: spec.ID(), Name: spec.Name()})
 				break
 			}
 		}
@@ -161,19 +149,12 @@ func enrichAdditionalSpecialities(ctx context.Context, freelancersMap map[int64]
 				break
 			}
 			if spec.ID() != freelancer.MainSpecialityID {
-				if builder.Len() > 0 {
-					builder.WriteString(", ")
-				}
-				builder.WriteString(spec.Name())
+				freelancer.Specialities = append(freelancer.Specialities, dto.Speciality{ID: spec.ID(), Name: spec.Name()})
 				counter++
 			}
 		}
 
-		// Обновляем данные доктора
-		if builder.Len() > 0 {
-			freelancer.Speciality = builder.String()
-			freelancersMap[freelancerID] = freelancer
-		}
+		freelancersMap[freelancerID] = freelancer
 	}
 }
 

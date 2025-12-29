@@ -23,3 +23,17 @@ func WithDoctorsCount(doctorsCount int64) Option {
 		s.doctorsCount = doctorsCount
 	}
 }
+
+// WithPrimaryIDs .
+func WithPrimaryIDs(primaryIDs []int64) Option {
+	return func(s *Speciality) {
+		s.primarySpecialities = primaryIDs
+	}
+}
+
+// WithIsOnlyAdditional .
+func WithIsOnlyAdditional(isOnlyAdditional *bool) Option {
+	return func(s *Speciality) {
+		s.isOnlyAdditional = isOnlyAdditional
+	}
+}

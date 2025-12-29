@@ -47,10 +47,10 @@ func WithS3Image(s3key string) Option {
 	}
 }
 
-// WithHasCommand .
-func WithHasCommand(hasCommand bool) Option {
+// WithIsAgencyRepresentative .
+func WithIsAgencyRepresentative(agencyRepresentative bool) Option {
 	return func(s *Freelancer) {
-		s.hasCommand = hasCommand
+		s.agencyRepresentative = agencyRepresentative
 	}
 }
 
@@ -93,12 +93,5 @@ func WithMainSpecialityID(mainSpecialityID int64) Option {
 func WithPriceCategory(priceCategory int64) Option {
 	return func(s *Freelancer) {
 		s.priceCategory = priceCategory
-	}
-}
-
-// WithExperienceWithDoctors .
-func WithExperienceWithDoctors(hasExpWithDoc bool) Option {
-	return func(s *Freelancer) {
-		s.experienceWithDoctor = hasExpWithDoc
 	}
 }
