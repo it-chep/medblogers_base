@@ -10,6 +10,6 @@ func (i *Implementation) ActivateDoctor(ctx context.Context, req *desc.ActivateD
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/activate", func(ctx context.Context) error {
-		return i.admin.Actions.DoctorModule.DoctorAgg.DoctorAgg.ActivateDoctor.Do(ctx, req.GetDoctorId())
+		return i.admin.Actions.DoctorModule.DoctorAgg.ActivateDoctor.Do(ctx, req.GetDoctorId())
 	})
 }

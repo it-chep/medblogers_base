@@ -10,6 +10,6 @@ func (i *Implementation) AddAdditionalSpeciality(ctx context.Context, req *desc.
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/add_additional_speciality", func(ctx context.Context) error {
-		return i.admin.Actions.DoctorModule.DoctorAgg.DoctorAgg.AddAdditionalSpeciality.Do(ctx, req.GetDoctorId(), req.GetSpecialityId())
+		return i.admin.Actions.DoctorModule.DoctorAgg.AddAdditionalSpeciality.Do(ctx, req.GetDoctorId(), req.GetSpecialityId())
 	})
 }

@@ -10,6 +10,6 @@ func (i *Implementation) AddAdditionalCity(ctx context.Context, req *desc.AddDoc
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/add_additional_city", func(ctx context.Context) error {
-		return i.admin.Actions.DoctorModule.DoctorAgg.DoctorAgg.AddAdditionalCity.Do(ctx, req.GetDoctorId(), req.GetCityId())
+		return i.admin.Actions.DoctorModule.DoctorAgg.AddAdditionalCity.Do(ctx, req.GetDoctorId(), req.GetCityId())
 	})
 }
