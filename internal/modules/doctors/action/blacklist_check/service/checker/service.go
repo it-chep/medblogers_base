@@ -1,6 +1,10 @@
 package checker
 
-import "context"
+import (
+	"context"
+	"regexp"
+	"strings"
+)
 
 // Storage ...
 type Storage interface {
@@ -21,5 +25,22 @@ func NewService(storage Storage) *Service {
 
 // Check ...
 func (s *Service) Check(ctx context.Context, telegram string) (bool, error) {
-	return s.storage.CheckTelegramInBlackList(ctx, telegram)
+	validTelegram := cleanTelegramStringRegex(telegram)
+
+	return s.storage.CheckTelegramInBlackList(ctx, validTelegram)
+}
+
+func cleanTelegramStringRegex(input string) string {
+	if len(input) == 0 {
+		return input
+	}
+
+	result := input
+
+	re := regexp.MustCompile(`^(?:https?://)?(?:t\.me/)?@?/?`)
+	result = re.ReplaceAllString(result, "")
+
+	result = strings.Trim(result, "/ ")
+
+	return strings.ToLower(result)
 }
