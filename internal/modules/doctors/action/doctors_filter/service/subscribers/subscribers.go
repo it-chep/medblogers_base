@@ -46,12 +46,17 @@ func (s *Service) FilterDoctorsBySubscribersWithDoctorsIDs(ctx context.Context, 
 	result := make(map[int64]dto.DoctorSubscribersInfoDTO, len(response.Doctors))
 	for _, doctor := range response.Doctors {
 		result[doctor.DoctorID] = dto.DoctorSubscribersInfoDTO{
-			InstSubsCount:        doctor.InstSubsCount,
-			InstSubsCountText:    doctor.InstSubsCountText,
-			TgSubsCount:          doctor.TgSubsCount,
-			TgSubsCountText:      doctor.TgSubsCountText,
+			InstSubsCount:     doctor.InstSubsCount,
+			InstSubsCountText: doctor.InstSubsCountText,
+
+			TgSubsCount:     doctor.TgSubsCount,
+			TgSubsCountText: doctor.TgSubsCountText,
+
 			YouTubeSubsCount:     doctor.YouTubeSubsCount,
 			YouTubeSubsCountText: doctor.YouTubeSubsCountText,
+
+			VkSubsCount:     doctor.VkSubsCount,
+			VkSubsCountText: doctor.VkSubsCountText,
 		}
 	}
 
@@ -87,6 +92,10 @@ func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, sub
 			YouTubeLink:          doctorData.YouTubeLink,
 			YouTubeSubsCount:     subs.YouTubeSubsCount,
 			YouTubeSubsCountText: subs.YouTubeSubsCountText,
+
+			VkLink:          doctorData.VkLink,
+			VkSubsCount:     subs.VkSubsCount,
+			VkSubsCountText: subs.VkSubsCountText,
 
 			ID:    doctorData.ID,
 			Name:  doctorData.Name,
@@ -127,12 +136,17 @@ func (s *Service) FilterDoctorsBySubscribers(ctx context.Context, filter dto.Fil
 	result := make(map[int64]dto.DoctorSubscribersInfoDTO, len(response.Doctors))
 	for _, doctor := range response.Doctors {
 		result[doctor.DoctorID] = dto.DoctorSubscribersInfoDTO{
-			InstSubsCount:        doctor.InstSubsCount,
-			InstSubsCountText:    doctor.InstSubsCountText,
-			TgSubsCount:          doctor.TgSubsCount,
-			TgSubsCountText:      doctor.TgSubsCountText,
+			InstSubsCount:     doctor.InstSubsCount,
+			InstSubsCountText: doctor.InstSubsCountText,
+
+			TgSubsCount:     doctor.TgSubsCount,
+			TgSubsCountText: doctor.TgSubsCountText,
+
 			YouTubeSubsCount:     doctor.YouTubeSubsCount,
 			YouTubeSubsCountText: doctor.YouTubeSubsCountText,
+
+			VkSubsCount:     doctor.VkSubsCount,
+			VkSubsCountText: doctor.VkSubsCountText,
 		}
 	}
 

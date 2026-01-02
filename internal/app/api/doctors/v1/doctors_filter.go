@@ -62,6 +62,10 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			item.YouTubeSubsCount = ""
 		}
 
+		if item.VkSubsCount == "0" {
+			item.VkSubsCount = ""
+		}
+
 		doctorsResponse = append(doctorsResponse, &desc.FilterResponse_DoctorItem{
 			Id:   item.ID,
 			Name: item.Name,
@@ -78,6 +82,10 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			YoutubeLink:          item.YouTubeLink,
 			YoutubeSubsCount:     item.YouTubeSubsCount,
 			YoutubeSubsCountText: item.YouTubeSubsCountText,
+
+			VkLink:          item.VkLink,
+			VkSubsCount:     item.VkSubsCount,
+			VkSubsCountText: item.VkSubsCountText,
 
 			Speciality: lo.Map(item.Specialities, func(item dto.Speciality, _ int) *desc.SpecialityItem {
 				return &desc.SpecialityItem{

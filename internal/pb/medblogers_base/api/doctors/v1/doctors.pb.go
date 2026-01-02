@@ -1177,6 +1177,9 @@ type GetDoctorResponse struct {
 	YoutubeSubsCount       string `protobuf:"bytes,24,opt,name=youtube_subs_count,json=youtubeSubsCount,proto3" json:"youtube_subs_count,omitempty"`
 	YoutubeSubsCountText   string `protobuf:"bytes,25,opt,name=youtube_subs_count_text,json=youtubeSubsCountText,proto3" json:"youtube_subs_count_text,omitempty"`
 	YoutubeLastUpdatedDate string `protobuf:"bytes,26,opt,name=youtube_last_updated_date,json=youtubeLastUpdatedDate,proto3" json:"youtube_last_updated_date,omitempty"`
+	VkSubsCount            string `protobuf:"bytes,27,opt,name=vk_subs_count,json=vkSubsCount,proto3" json:"vk_subs_count,omitempty"`
+	VkSubsCountText        string `protobuf:"bytes,28,opt,name=vk_subs_count_text,json=vkSubsCountText,proto3" json:"vk_subs_count_text,omitempty"`
+	VkLastUpdatedDate      string `protobuf:"bytes,29,opt,name=vk_last_updated_date,json=vkLastUpdatedDate,proto3" json:"vk_last_updated_date,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -1389,6 +1392,27 @@ func (x *GetDoctorResponse) GetYoutubeSubsCountText() string {
 func (x *GetDoctorResponse) GetYoutubeLastUpdatedDate() string {
 	if x != nil {
 		return x.YoutubeLastUpdatedDate
+	}
+	return ""
+}
+
+func (x *GetDoctorResponse) GetVkSubsCount() string {
+	if x != nil {
+		return x.VkSubsCount
+	}
+	return ""
+}
+
+func (x *GetDoctorResponse) GetVkSubsCountText() string {
+	if x != nil {
+		return x.VkSubsCountText
+	}
+	return ""
+}
+
+func (x *GetDoctorResponse) GetVkLastUpdatedDate() string {
+	if x != nil {
+		return x.VkLastUpdatedDate
 	}
 	return ""
 }
@@ -2290,6 +2314,9 @@ type FilterResponse_DoctorItem struct {
 	YoutubeLink          string      `protobuf:"bytes,14,opt,name=youtube_link,json=youtubeLink,proto3" json:"youtube_link,omitempty"`
 	YoutubeSubsCount     string      `protobuf:"bytes,15,opt,name=youtube_subs_count,json=youtubeSubsCount,proto3" json:"youtube_subs_count,omitempty"`
 	YoutubeSubsCountText string      `protobuf:"bytes,16,opt,name=youtube_subs_count_text,json=youtubeSubsCountText,proto3" json:"youtube_subs_count_text,omitempty"`
+	VkLink               string      `protobuf:"bytes,17,opt,name=vk_link,json=vkLink,proto3" json:"vk_link,omitempty"`
+	VkSubsCount          string      `protobuf:"bytes,18,opt,name=vk_subs_count,json=vkSubsCount,proto3" json:"vk_subs_count,omitempty"`
+	VkSubsCountText      string      `protobuf:"bytes,19,opt,name=vk_subs_count_text,json=vkSubsCountText,proto3" json:"vk_subs_count_text,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2432,6 +2459,27 @@ func (x *FilterResponse_DoctorItem) GetYoutubeSubsCount() string {
 func (x *FilterResponse_DoctorItem) GetYoutubeSubsCountText() string {
 	if x != nil {
 		return x.YoutubeSubsCountText
+	}
+	return ""
+}
+
+func (x *FilterResponse_DoctorItem) GetVkLink() string {
+	if x != nil {
+		return x.VkLink
+	}
+	return ""
+}
+
+func (x *FilterResponse_DoctorItem) GetVkSubsCount() string {
+	if x != nil {
+		return x.VkSubsCount
+	}
+	return ""
+}
+
+func (x *FilterResponse_DoctorItem) GetVkSubsCountText() string {
+	if x != nil {
+		return x.VkSubsCountText
 	}
 	return ""
 }
@@ -2680,10 +2728,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x04sort\x18\a \x01(\x0e2\x1d.doctor.v1.FilterRequest.SortR\x04sort\"1\n" +
 	"\x04Sort\x12\x14\n" +
 	"\x10SUBSCRIBERS_DESC\x10\x00\x12\x13\n" +
-	"\x0fSUBSCRIBERS_ASC\x10\x01\"\xc8\x05\n" +
+	"\x0fSUBSCRIBERS_ASC\x10\x01\"\xb2\x06\n" +
 	"\x0eFilterResponse\x12>\n" +
 	"\adoctors\x18\x01 \x03(\v2$.doctor.v1.FilterResponse.DoctorItemR\adoctors\x12+\n" +
-	"\x11subscribers_count\x18\x03 \x01(\tR\x10subscribersCount\x1a\xc8\x04\n" +
+	"\x11subscribers_count\x18\x03 \x01(\tR\x10subscribersCount\x1a\xb2\x05\n" +
 	"\n" +
 	"DoctorItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
@@ -2705,7 +2753,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"isKfDoctor\x12!\n" +
 	"\fyoutube_link\x18\x0e \x01(\tR\vyoutubeLink\x12,\n" +
 	"\x12youtube_subs_count\x18\x0f \x01(\tR\x10youtubeSubsCount\x125\n" +
-	"\x17youtube_subs_count_text\x18\x10 \x01(\tR\x14youtubeSubsCountText\"\x98\a\n" +
+	"\x17youtube_subs_count_text\x18\x10 \x01(\tR\x14youtubeSubsCountText\x12\x17\n" +
+	"\avk_link\x18\x11 \x01(\tR\x06vkLink\x12\"\n" +
+	"\rvk_subs_count\x18\x12 \x01(\tR\vvkSubsCount\x12+\n" +
+	"\x12vk_subs_count_text\x18\x13 \x01(\tR\x0fvkSubsCountText\"\x98\a\n" +
 	"\x13CreateDoctorRequest\x12 \n" +
 	"\x05email\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x18\xff\x01`\x01R\x05email\x12&\n" +
@@ -2739,7 +2790,8 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"3\n" +
 	"\x10GetDoctorRequest\x12\x1f\n" +
 	"\vdoctor_slug\x18\x01 \x01(\tR\n" +
-	"doctorSlug\"\xc2\t\n" +
+	"doctorSlug\"\xc4\n" +
+	"\n" +
 	"\x11GetDoctorResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x19\n" +
@@ -2770,7 +2822,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"isKfDoctor\x12,\n" +
 	"\x12youtube_subs_count\x18\x18 \x01(\tR\x10youtubeSubsCount\x125\n" +
 	"\x17youtube_subs_count_text\x18\x19 \x01(\tR\x14youtubeSubsCountText\x129\n" +
-	"\x19youtube_last_updated_date\x18\x1a \x01(\tR\x16youtubeLastUpdatedDate\x1a.\n" +
+	"\x19youtube_last_updated_date\x18\x1a \x01(\tR\x16youtubeLastUpdatedDate\x12\"\n" +
+	"\rvk_subs_count\x18\x1b \x01(\tR\vvkSubsCount\x12+\n" +
+	"\x12vk_subs_count_text\x18\x1c \x01(\tR\x0fvkSubsCountText\x12/\n" +
+	"\x14vk_last_updated_date\x18\x1d \x01(\tR\x11vkLastUpdatedDate\x1a.\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +

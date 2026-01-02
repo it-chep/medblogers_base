@@ -31,6 +31,10 @@ func (i *Implementation) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) 
 		doctorDomain.YouTubeSubsCount = ""
 	}
 
+	if doctorDomain.VkSubsCount == "0" {
+		doctorDomain.VkSubsCount = ""
+	}
+
 	return &desc.GetDoctorResponse{
 		Name: doctorDomain.Name,
 		Slug: doctorDomain.Slug,
@@ -55,6 +59,10 @@ func (i *Implementation) newDoctorDetailResponse(doctorDomain *indto.DoctorDTO) 
 		YoutubeSubsCountText:   doctorDomain.YouTubeSubsCountText,
 		YoutubeSubsCount:       doctorDomain.YouTubeSubsCount,
 		YoutubeLastUpdatedDate: doctorDomain.YouTubeLastUpdatedDate,
+
+		VkSubsCountText:   doctorDomain.VkSubsCountText,
+		VkSubsCount:       doctorDomain.VkSubsCount,
+		VkLastUpdatedDate: doctorDomain.VkLastUpdatedDate,
 
 		Cities: lo.Map(doctorDomain.Cities, func(item indto.CityItem, _ int) *desc.GetDoctorResponse_CityItem {
 			return &desc.GetDoctorResponse_CityItem{
