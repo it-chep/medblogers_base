@@ -81,14 +81,17 @@ func (g *Gateway) GetDoctorSubscribers(ctx context.Context, medblogersID doctor.
 		TgSubsCount:      response.TgSubsCount,
 		InstSubsCount:    response.InstSubsCount,
 		YouTubeSubsCount: response.YoutubeSubsCount,
+		VkSubsCount:      response.VkSubsCount,
 
 		TgSubsCountText:      response.TgSubsCountText,
 		InstSubsCountText:    response.InstSubsCountText,
 		YouTubeSubsCountText: response.YoutubeSubsCountText,
+		VkSubsCountText:      response.VkSubsCountText,
 
 		TgLastUpdatedDate:      response.TgLastUpdatedDate,
 		InstLastUpdatedDate:    response.InstLastUpdatedDate,
 		YouTubeLastUpdatedDate: response.YoutubeLastUpdatedDate,
+		VkLastUpdatedDate:      response.VkLastUpdatedDate,
 	}, nil
 }
 
@@ -176,10 +179,12 @@ func (g *Gateway) GetDoctorsByFilter(ctx context.Context, request indto.GetDocto
 			TgSubsCount:      doc.Doctor.TgSubsCount,
 			InstSubsCount:    doc.Doctor.InstSubsCount,
 			YouTubeSubsCount: doc.Doctor.YouTubeSubsCount,
+			VkSubsCount:      doc.Doctor.VkSubsCount,
 
 			TgSubsCountText:      doc.Doctor.TgSubsCountText,
 			InstSubsCountText:    doc.Doctor.InstSubsCountText,
 			YouTubeSubsCountText: doc.Doctor.YouTubeSubsCountText,
+			VkSubsCountText:      doc.Doctor.VkSubsCountText,
 		}
 		orderedIDs = append(orderedIDs, doc.Doctor.DoctorID)
 	}
@@ -252,10 +257,12 @@ func (g *Gateway) GetDoctorsByFilterWithIDs(ctx context.Context, request indto.G
 			TgSubsCount:      doc.Doctor.TgSubsCount,
 			InstSubsCount:    doc.Doctor.InstSubsCount,
 			YouTubeSubsCount: doc.Doctor.YouTubeSubsCount,
+			VkSubsCount:      doc.Doctor.VkSubsCount,
 
 			TgSubsCountText:      doc.Doctor.TgSubsCountText,
 			InstSubsCountText:    doc.Doctor.InstSubsCountText,
 			YouTubeSubsCountText: doc.Doctor.YouTubeSubsCountText,
+			VkSubsCountText:      doc.Doctor.VkSubsCountText,
 		}
 		orderedIDs = append(orderedIDs, doc.Doctor.DoctorID)
 	}
@@ -319,10 +326,12 @@ func (g *Gateway) GetSubscribersByDoctorIDs(ctx context.Context, medblogersIDs [
 			TgSubsCount:      doctorData.TgSubsCount,
 			InstSubsCount:    doctorData.InstSubsCount,
 			YouTubeSubsCount: doctorData.YoutubeSubsCount,
+			VkSubsCount:      doctorData.VkSubsCount,
 
 			TgSubsCountText:      doctorData.TgSubsCountText,
 			InstSubsCountText:    doctorData.InstSubsCountText,
 			YouTubeSubsCountText: doctorData.YoutubeSubsCountText,
+			VkSubsCountText:      doctorData.VkSubsCountText,
 		}
 	}
 
@@ -428,6 +437,7 @@ func (g *Gateway) CreateDoctor(ctx context.Context, medblogersID doctor.Medbloge
 		Telegram:  request.Telegram,
 		Instagram: request.Instagram,
 		Youtube:   request.YouTube,
+		Vk:        request.Vk,
 	})
 	if err != nil {
 		return 0, err
