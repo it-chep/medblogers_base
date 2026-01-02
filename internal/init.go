@@ -9,6 +9,7 @@ import (
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
+	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 
 	"github.com/go-chi/chi/v5"
 	base_middleware "github.com/go-chi/chi/v5/middleware"
@@ -20,7 +21,6 @@ import (
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
 	adminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
-	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
@@ -115,10 +115,12 @@ func (a *App) initControllers(_ context.Context) *App {
 	a.controllers = []transport.ServiceDesc{
 		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
-		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
-		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)),
+
+		// Admin
+		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
+		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 	}
 
 	return a

@@ -26,6 +26,8 @@ type Freelancer struct {
 	socialNetworks            []int64 // Соцсети в которых работает фрилансер
 
 	s3Image string // ссылка на S3
+
+	cooperationType int64
 }
 
 func New(options ...Option) *Freelancer {

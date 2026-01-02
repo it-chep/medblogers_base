@@ -233,3 +233,46 @@ func (g *Gateway) GetDoctorsPhotos(ctx context.Context) (map[doctor.S3Key]string
 
 	return filesMap, nil
 }
+
+func (g *Gateway) PutFreelancerPhoto(ctx context.Context, file io.Reader, filename string) (string, error) {
+	ext := filepath.Ext(filename)
+	contentType := mime.TypeByExtension(ext)
+	if contentType == "" {
+		contentType = "application/octet-stream"
+	}
+
+	objectKey := fmt.Sprintf("images/user_%s", filename)
+
+	// Загружаем файл в S3
+	_, err := g.client.PutObject(ctx, &s3.PutObjectInput{
+		Bucket:      aws.String(g.freelancersBucketName),
+		Key:         lo.ToPtr(objectKey),
+		Body:        file,
+		ContentType: aws.String(contentType),
+		Metadata: map[string]string{
+			"uploaded_at": time.Now().Format(time.RFC3339),
+			"origin_name": filename,
+		},
+	})
+	if err != nil {
+		return "", fmt.Errorf("failed to upload file: %w", err)
+	}
+
+	return objectKey, nil
+}
+
+func (g *Gateway) DelFreelancerPhoto(ctx context.Context, filename string) error {
+	// Формируем полный ключ объекта
+	objectKey := fmt.Sprintf("images/user_%s", filename)
+
+	// Удаляем файл из S3
+	_, err := g.client.DeleteObject(ctx, &s3.DeleteObjectInput{
+		Bucket: aws.String(g.freelancersBucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		return fmt.Errorf("failed to delete file: %w", err)
+	}
+
+	return nil
+}

@@ -95,3 +95,15 @@ func WithPriceCategory(priceCategory int64) Option {
 		s.priceCategory = priceCategory
 	}
 }
+
+func WithIsActive(isActive bool) Option {
+	return func(s *Freelancer) {
+		s.isActive = isActive
+	}
+}
+
+func WithCooperationTypeID(cooperationTypeId int64) Option {
+	return func(s *Freelancer) {
+		s.cooperationType = cooperationTypeId
+	}
+}

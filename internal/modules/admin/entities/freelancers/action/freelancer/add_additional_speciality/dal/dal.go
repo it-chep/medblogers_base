@@ -16,13 +16,11 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) SaveDoctorImage(ctx context.Context, doctorID int64, image string) error {
+func (r *Repository) CreateCity(ctx context.Context, name string) error {
 	sql := `
-		update docstar_site_doctor 
-		set s3_image = $1 
-		where id = $2
-	`
+		insert into freelancers_city (name) values ($1)
+		`
 
-	_, err := r.db.Exec(ctx, sql, image, doctorID)
+	_, err := r.db.Exec(ctx, sql, name)
 	return err
 }

@@ -102,3 +102,7 @@ func (f *Freelancer) GetWorkingExperience() string {
 
 	return declension.YearsInString(years)
 }
+
+func (f *Freelancer) GetIsActive() bool {
+	return f.isActive
+}
