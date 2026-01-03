@@ -232,6 +232,10 @@ message FilterResponse {
     string youtube_link = 14;
     string youtube_subs_count = 15;
     string youtube_subs_count_text = 16;
+
+    string vk_link = 17;
+    string vk_subs_count = 18;
+    string vk_subs_count_text = 19;
   }
 }
 
@@ -330,6 +334,10 @@ message GetDoctorResponse {
   string youtube_subs_count = 24;
   string youtube_subs_count_text = 25;
   string youtube_last_updated_date = 26;
+
+  string vk_subs_count = 27;
+  string vk_subs_count_text = 28;
+  string vk_last_updated_date = 29;
 
   message CityItem {
     int64 id = 1;

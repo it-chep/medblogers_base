@@ -17,6 +17,10 @@ type Doctor struct {
 	YouTubeSubsCount     string
 	YouTubeSubsCountText string
 
+	VkLink          string
+	VkSubsCount     string
+	VkSubsCountText string
+
 	Specialities []Speciality // Строка из основной и дополнительных специальностей
 	Cities       []City       // Строка из основного и дополнительных городов
 

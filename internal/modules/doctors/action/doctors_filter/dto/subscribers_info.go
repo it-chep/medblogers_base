@@ -8,10 +8,15 @@ type SubscribersInfo struct {
 }
 
 type DoctorSubscribersInfoDTO struct {
-	InstSubsCount        string
-	InstSubsCountText    string
-	TgSubsCount          string
-	TgSubsCountText      string
+	InstSubsCount     string
+	InstSubsCountText string
+
+	TgSubsCount     string
+	TgSubsCountText string
+
 	YouTubeSubsCount     string
 	YouTubeSubsCountText string
+
+	VkSubsCount     string
+	VkSubsCountText string
 }
