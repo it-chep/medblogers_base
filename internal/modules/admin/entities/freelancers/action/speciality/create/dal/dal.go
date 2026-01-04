@@ -16,9 +16,9 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) CreateCity(ctx context.Context, name string) error {
+func (r *Repository) CreateSpeciality(ctx context.Context, name string) error {
 	sql := `
-		insert into freelancers_city (name) values ($1)
+		insert into freelancers_speciality (name) values ($1)
 		`
 
 	_, err := r.db.Exec(ctx, sql, name)

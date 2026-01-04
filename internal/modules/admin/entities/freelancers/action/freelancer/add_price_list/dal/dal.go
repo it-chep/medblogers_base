@@ -16,11 +16,11 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) CreateCity(ctx context.Context, name string) error {
+func (r *Repository) AddPriceList(ctx context.Context, freelancerID int64, name string, price int64) error {
 	sql := `
-		insert into freelancers_city (name) values ($1)
-		`
+		insert into freelancers_price_list (freelancer_id, name, price) values ($1, $2, $3)
+	`
 
-	_, err := r.db.Exec(ctx, sql, name)
+	_, err := r.db.Exec(ctx, sql, freelancerID, name, price)
 	return err
 }

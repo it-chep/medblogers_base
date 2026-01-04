@@ -1,8 +1,8 @@
-package add_additional_speciality
+package delete_price_list
 
 import (
 	"context"
-	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/add_additional_speciality/dal"
+	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/delete_price_list/dal"
 	commondal "medblogers_base/internal/modules/admin/entities/freelancers/dal"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/freelancer"
 	"medblogers_base/internal/pkg/postgres"
@@ -13,7 +13,7 @@ type CommonDal interface {
 }
 
 type ActionDal interface {
-	AddAdditionalSpeciality(ctx context.Context, freelancerID, specialityID int64) error
+	DeletePriceList(ctx context.Context, freelancerID, priceListID int64) error
 }
 
 type Action struct {
@@ -21,6 +21,7 @@ type Action struct {
 	actionDal ActionDal
 }
 
+// New .
 func New(pool postgres.PoolWrapper) *Action {
 	return &Action{
 		actionDal: dal.NewRepository(pool),
@@ -28,11 +29,11 @@ func New(pool postgres.PoolWrapper) *Action {
 	}
 }
 
-func (a *Action) Do(ctx context.Context, freelancerID, specialityID int64) error {
+func (a *Action) Do(ctx context.Context, freelancerID, priceListID int64) error {
 	_, err := a.commonDal.GetFreelancerByID(ctx, freelancerID)
 	if err != nil {
 		return err
 	}
 
-	return a.actionDal.AddAdditionalSpeciality(ctx, freelancerID, specialityID)
+	return a.actionDal.DeletePriceList(ctx, freelancerID, priceListID)
 }

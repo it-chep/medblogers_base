@@ -16,24 +16,3 @@ func WithName(name string) Option {
 		s.name = name
 	}
 }
-
-// WithDoctorsCount .
-func WithDoctorsCount(doctorsCount int64) Option {
-	return func(s *Speciality) {
-		s.doctorsCount = doctorsCount
-	}
-}
-
-// WithPrimaryIDs .
-func WithPrimaryIDs(primaryIDs []int64) Option {
-	return func(s *Speciality) {
-		s.primarySpecialities = primaryIDs
-	}
-}
-
-// WithIsOnlyAdditional .
-func WithIsOnlyAdditional(isOnlyAdditional *bool) Option {
-	return func(s *Speciality) {
-		s.isOnlyAdditional = isOnlyAdditional
-	}
-}

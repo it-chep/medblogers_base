@@ -2,6 +2,7 @@ package dao
 
 import (
 	"database/sql"
+	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/samber/lo"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/doctor"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/freelancer"
@@ -66,15 +67,27 @@ func (m MiniatureList) ToDomain() []*freelancer.Freelancer {
 }
 
 type RecommendationDoctorDAO struct {
-	ID       int64  `db:"id"`
-	Name     string `db:"name"`
-	IsActive bool   `db:"is_active"`
+	ID   int64  `db:"id"`
+	Name string `db:"name"`
 }
 
 func (r *RecommendationDoctorDAO) ToDomain() *doctor.Doctor {
 	return doctor.New(
 		doctor.WithID(r.ID),
 		doctor.WithName(r.Name),
-		doctor.WithIsActive(r.IsActive),
 	)
+}
+
+type Recommendations []RecommendationDoctorDAO
+
+func (r Recommendations) ToDomain() []*doctor.Doctor {
+	return lo.Map(r, func(item RecommendationDoctorDAO, _ int) *doctor.Doctor {
+		return item.ToDomain()
+	})
+}
+
+type PriceListDao struct {
+	ID    int64          `db:"id"`
+	Name  string         `db:"name"`
+	Price pgtype.Numeric `db:"price"`
 }

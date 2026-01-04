@@ -16,11 +16,11 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) CreateCity(ctx context.Context, name string) error {
+func (r *Repository) AddNetwork(ctx context.Context, freelancerID, networkID int64) error {
 	sql := `
-		insert into freelancers_city (name) values ($1)
+		insert into freelancer_social_networks_m2m (social_network_id, freelancer_id) values ($1, $2)
 		`
 
-	_, err := r.db.Exec(ctx, sql, name)
+	_, err := r.db.Exec(ctx, sql, networkID, freelancerID)
 	return err
 }

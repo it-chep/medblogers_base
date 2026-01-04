@@ -46,6 +46,10 @@ func (f *Freelancer) GetTgURL() string {
 	return tgURL
 }
 
+func (f *Freelancer) GetTg() string {
+	return f.tgURL
+}
+
 func (f *Freelancer) GetPortfolioLink() string {
 	return f.portfolioLink
 }
@@ -105,4 +109,10 @@ func (f *Freelancer) GetWorkingExperience() string {
 
 func (f *Freelancer) GetIsActive() bool {
 	return f.isActive
+}
+
+func (f *Freelancer) GetStartWorking() time.Time { return f.startWorking }
+
+func (f *Freelancer) GetCooperationType() int64 {
+	return f.cooperationType
 }

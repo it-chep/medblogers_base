@@ -16,9 +16,9 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) DeleteCity(ctx context.Context, id int64) error {
+func (r *Repository) DeleteSpeciality(ctx context.Context, id int64) error {
 	sql := `
-		delete from freelancers_city where id = $1
+		delete from freelancers_speciality where id = $1
 		`
 
 	_, err := r.db.Exec(ctx, sql, id)

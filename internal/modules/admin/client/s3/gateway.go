@@ -112,6 +112,14 @@ func (g *Gateway) GeneratePresignedURL(ctx context.Context, s3Key string) (strin
 	return req.URL, nil
 }
 
+func (g *Gateway) GetFreelancerPhotoLink(s3Key string) string {
+	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.freelancersBucketName, s3Key)
+}
+
+func (g *Gateway) GetDoctorPhotoLink(s3Key string) string {
+	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.doctorsBucketName, s3Key)
+}
+
 // PutBlogPhoto загружает фотографию в хранилище
 func (g *Gateway) PutBlogPhoto(ctx context.Context, file io.Reader, filename string) (string, error) {
 	ext := filepath.Ext(filename)
