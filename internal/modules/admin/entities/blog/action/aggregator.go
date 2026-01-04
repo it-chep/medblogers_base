@@ -2,7 +2,6 @@ package action
 
 import (
 	"medblogers_base/internal/modules/admin/client"
-	"medblogers_base/internal/modu
 	"medblogers_base/internal/modules/admin/entities/blog/action/create_draft_blog"
 	"medblogers_base/internal/modules/admin/entities/blog/action/delete_blog_image"
 	"medblogers_base/internal/modules/admin/entities/blog/action/get_blog_by_id"
@@ -10,7 +9,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/blog/action/publish_blog"
 	"medblogers_base/internal/modules/admin/entities/blog/action/save_blog_image"
 	"medblogers_base/internal/modules/admin/entities/blog/action/unpublish_blog"
-	"medblogers_base/internal/modules/admin/client"
+	"medblogers_base/internal/modules/admin/entities/blog/action/update_draft_blog"
 	"medblogers_base/internal/pkg/postgres"
 )
 

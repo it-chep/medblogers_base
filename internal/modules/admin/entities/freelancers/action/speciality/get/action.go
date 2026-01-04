@@ -2,6 +2,7 @@ package get
 
 import (
 	"context"
+	"medblogers_base/internal/modules/admin/entities/freelancers/action/speciality/get/dal"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/postgres"
 )

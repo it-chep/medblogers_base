@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"medblogers_base/internal/modules/admin/client"
-	"medblogers_base/internal/modules/admin
+	"medblogers_base/internal/modules/admin/entities/blog/action/delete_blog_image/dal"
 	"medblogers_base/internal/pkg/postgres"
 
 	"github.com/google/uuid"

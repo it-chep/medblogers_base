@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"medblogers_base/internal/modules/admin/client"
-	"medblogers_base/internal/modules/admin
+	"medblogers_base/internal/modules/admin/entities/blog/action/save_blog_image/dal"
 	"medblogers_base/internal/pkg/postgres"
 	"net/http"
 	"strings"
