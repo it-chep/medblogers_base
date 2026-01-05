@@ -2516,6 +2516,8 @@ func (x *GetFreelancerByIDResponse_Society) GetSlug() string {
 
 type GetFreelancerByIDResponse_Recommendation struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	DoctorName    string                 `protobuf:"bytes,2,opt,name=doctor_name,json=doctorName,proto3" json:"doctor_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2548,6 +2550,20 @@ func (x *GetFreelancerByIDResponse_Recommendation) ProtoReflect() protoreflect.M
 // Deprecated: Use GetFreelancerByIDResponse_Recommendation.ProtoReflect.Descriptor instead.
 func (*GetFreelancerByIDResponse_Recommendation) Descriptor() ([]byte, []int) {
 	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 4}
+}
+
+func (x *GetFreelancerByIDResponse_Recommendation) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+func (x *GetFreelancerByIDResponse_Recommendation) GetDoctorName() string {
+	if x != nil {
+		return x.DoctorName
+	}
+	return ""
 }
 
 type GetFreelancerByIDResponse_PriceList struct {
@@ -2794,7 +2810,7 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"?\n" +
 	"\x18GetFreelancerByIDRequest\x12#\n" +
-	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xa8\f\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xe6\f\n" +
 	"\x19GetFreelancerByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2830,8 +2846,11 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\aSociety\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x1a\x10\n" +
-	"\x0eRecommendation\x1aG\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\x1aN\n" +
+	"\x0eRecommendation\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1f\n" +
+	"\vdoctor_name\x18\x02 \x01(\tR\n" +
+	"doctorName\x1aG\n" +
 	"\tPriceList\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +

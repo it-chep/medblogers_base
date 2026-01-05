@@ -283,7 +283,8 @@ message GetFreelancerByIDResponse {
   }
 
   message Recommendation {
-    // todo
+    int64 doctor_id = 1;
+    string doctor_name = 2;
   }
 
   message PriceList {

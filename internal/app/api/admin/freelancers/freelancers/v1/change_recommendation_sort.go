@@ -9,7 +9,7 @@ import (
 func (i *Implementation) ChangeRecommendationSort(ctx context.Context, req *desc.ChangeRecommendationSortRequest) (resp *desc.ChangeRecommendationSortResponse, err error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions) // todo лог действия
 
-	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/deactivate", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/freelancer/{id}/change_recommendation_sort/{id}", func(ctx context.Context) error {
 		return nil
 	})
 }

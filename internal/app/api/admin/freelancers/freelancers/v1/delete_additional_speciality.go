@@ -9,7 +9,7 @@ import (
 func (i *Implementation) DeleteAdditionalSpeciality(ctx context.Context, req *desc.DeleteFreelancerAdditionalSpecialityRequest) (resp *desc.DeleteFreelancerAdditionalSpecialityResponse, err error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions) // todo лог действия
 
-	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/deactivate", func(ctx context.Context) error {
-		return nil
+	return resp, executor(ctx, "/api/v1/admin/freelancer/{id}/delete_additional_speciality", func(ctx context.Context) error {
+		return i.admin.Actions.FreelancerModule.FreelancerAgg.DeleteAdditionalSpeciality.Do(ctx, req.GetFreelancerId(), req.GetSpecialityId())
 	})
 }

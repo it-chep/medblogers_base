@@ -31,6 +31,7 @@ func (s *Service) Enrich(ctx context.Context, freelancerDTO *dto.FreelancerDTO) 
 		return dto.Network{
 			ID:   item.ID(),
 			Name: item.Name(),
+			Slug: item.Slug(),
 		}
 	})
 

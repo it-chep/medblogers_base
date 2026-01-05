@@ -1122,7 +1122,15 @@
     },
     "admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.Recommendation": {
       "type": "object",
-      "title": "todo"
+      "properties": {
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "doctorName": {
+          "type": "string"
+        }
+      }
     },
     "admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.Society": {
       "type": "object",

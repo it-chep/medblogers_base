@@ -9,7 +9,7 @@ import (
 func (i *Implementation) UpdateFreelancer(ctx context.Context, req *desc.UpdateFreelancerRequest) (resp *desc.UpdateFreelancerResponse, err error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions) // todo лог действия
 
-	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/deactivate", func(ctx context.Context) error {
-		return nil
+	return resp, executor(ctx, "/api/v1/admin/freelancer/{id}/update", func(ctx context.Context) error {
+		return nil // todo
 	})
 }

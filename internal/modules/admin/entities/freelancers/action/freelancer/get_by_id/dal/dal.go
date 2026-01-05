@@ -106,7 +106,7 @@ func (r *Repository) GetSpecialities(ctx context.Context, freelancerID int64) ([
 
 func (r *Repository) GetNetworks(ctx context.Context, freelancerID int64) ([]*social_network.SocialNetwork, error) {
 	sql := `
-		select s.id, s.name
+		select s.id, s.name, s.slug
 		from freelancer_social_networks_m2m m2m 
 		    join social_networks s on m2m.social_network_id = s.id
 		where m2m.freelancer_id = $1

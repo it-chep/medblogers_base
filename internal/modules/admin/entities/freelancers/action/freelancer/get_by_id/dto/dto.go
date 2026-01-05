@@ -23,6 +23,7 @@ type Speciality struct {
 type Network struct {
 	ID   int64
 	Name string
+	Slug string
 }
 
 type PriceList struct {
