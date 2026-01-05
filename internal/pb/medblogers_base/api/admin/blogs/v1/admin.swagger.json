@@ -1,0 +1,544 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/blogs/v1/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BlogsAdminService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/blog": {
+      "get": {
+        "summary": "Получение списка статей",
+        "operationId": "BlogsAdminService_GetBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.GetBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/create": {
+      "post": {
+        "summary": "Создание черновика статьи",
+        "operationId": "BlogsAdminService_CreateDraftBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.CreateDraftBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.CreateDraftBlogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}": {
+      "get": {
+        "summary": "Получение информации о статье по ее ID",
+        "operationId": "BlogsAdminService_GetBlogByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.GetBlogByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/delete_image/{imageId}": {
+      "post": {
+        "summary": "Удаление картинки для статьи",
+        "operationId": "BlogsAdminService_DeleteBlogImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.DeleteBlogImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.BlogsAdminService.DeleteBlogImageBody"
+            }
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/publish": {
+      "post": {
+        "summary": "Публикация статьи",
+        "operationId": "BlogsAdminService_PublishBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.PublishBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.BlogsAdminService.PublishBlogBody"
+            }
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/save_image": {
+      "post": {
+        "summary": "Сохранение картинки для статьи",
+        "operationId": "BlogsAdminService_SaveBlogImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.SaveBlogImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.BlogsAdminService.SaveBlogImageBody"
+            }
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/unpublish": {
+      "post": {
+        "summary": "Снятие статьи с публикации",
+        "operationId": "BlogsAdminService_UnPublishBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.UnPublishBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.BlogsAdminService.UnPublishBlogBody"
+            }
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/update": {
+      "post": {
+        "summary": "Обновление статьи",
+        "operationId": "BlogsAdminService_UpdateDraftBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.UpdateDraftBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.BlogsAdminService.UpdateDraftBlogBody"
+            }
+          }
+        ],
+        "tags": [
+          "BlogsAdminService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.blogs.v1.BlogsAdminService.DeleteBlogImageBody": {
+      "type": "object"
+    },
+    "admin.blogs.v1.BlogsAdminService.PublishBlogBody": {
+      "type": "object",
+      "properties": {
+        "primaryImageId": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.BlogsAdminService.SaveBlogImageBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string",
+          "title": "файл в строке base64"
+        }
+      }
+    },
+    "admin.blogs.v1.BlogsAdminService.UnPublishBlogBody": {
+      "type": "object"
+    },
+    "admin.blogs.v1.BlogsAdminService.UpdateDraftBlogBody": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "societyPreview": {
+          "type": "string"
+        },
+        "additionalSeoText": {
+          "type": "string"
+        },
+        "orderingNumber": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.blogs.v1.CreateDraftBlogRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.CreateDraftBlogResponse": {
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.DeleteBlogImageResponse": {
+      "type": "object"
+    },
+    "admin.blogs.v1.GetBlogByIDResponse": {
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "societyPreview": {
+          "type": "string"
+        },
+        "additionalSeoText": {
+          "type": "string"
+        },
+        "orderingNumber": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.blogs.v1.GetBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.blogs.v1.GetBlogsResponse.Blog"
+          }
+        }
+      }
+    },
+    "admin.blogs.v1.GetBlogsResponse.Blog": {
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "orderingNumber": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.blogs.v1.PublishBlogResponse": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.blogs.v1.PublishBlogResponse.ValidationError"
+          }
+        }
+      }
+    },
+    "admin.blogs.v1.PublishBlogResponse.ValidationError": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.SaveBlogImageResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/admin.blogs.v1.SaveBlogImageResponse.Image"
+        }
+      }
+    },
+    "admin.blogs.v1.SaveBlogImageResponse.Image": {
+      "type": "object",
+      "properties": {
+        "imageId": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.UnPublishBlogResponse": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.blogs.v1.UnPublishBlogResponse.ValidationError"
+          }
+        }
+      }
+    },
+    "admin.blogs.v1.UnPublishBlogResponse.ValidationError": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.UpdateDraftBlogResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

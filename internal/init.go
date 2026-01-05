@@ -3,14 +3,6 @@ package internal
 import (
 	"context"
 	"fmt"
-	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
-	authV1 "medblogers_base/internal/app/api/auth"
-	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
-	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
-	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
-	seoV1 "medblogers_base/internal/app/api/seo/v1"
-	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
-
 	"github.com/go-chi/chi/v5"
 	base_middleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
@@ -18,9 +10,36 @@ import (
 	"github.com/not-for-prod/clay/transport"
 	"google.golang.org/grpc/metadata"
 
+	blogAdminV1 "medblogers_base/internal/app/api/admin/blog/v1"
+	doctorCityAdminV1 "medblogers_base/internal/app/api/admin/doctors/city/v1"
+	doctorAdminV1 "medblogers_base/internal/app/api/admin/doctors/doctors/v1"
+	doctorSpecialityAdminV1 "medblogers_base/internal/app/api/admin/doctors/speciality/v1"
+
+	freelancerCityAdminV1 "medblogers_base/internal/app/api/admin/freelancers/city/v1"
+	freelancerAdminV1 "medblogers_base/internal/app/api/admin/freelancers/freelancers/v1"
+	freelancerNetworkAdminV1 "medblogers_base/internal/app/api/admin/freelancers/network/v1"
+	freelancerSpecialityAdminV1 "medblogers_base/internal/app/api/admin/freelancers/speciality/v1"
+
+	authV1 "medblogers_base/internal/app/api/auth"
+	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
+	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
+	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
+	doctorCityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/city/v1"
+	doctorAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/doctors/v1"
+	doctorSpecialityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/speciality/v1"
+
+	freelancerCityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/city/v1"
+	freelancerAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/freelancer/v1"
+	freelancerNetworkAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/network/v1"
+	freelancerSpecialityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/speciality/v1"
+
+	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
+
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
-	adminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	blogsAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
@@ -120,7 +139,14 @@ func (a *App) initControllers(_ context.Context) *App {
 
 		// Admin
 		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
-		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		blogsAdminDesc.NewBlogsAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		doctorAdminDesc.NewDoctorAdminServiceServiceDesc(doctorAdminV1.New(a.modules.admin, a.modules.auth)),
+		doctorCityAdminDesc.NewDoctorAdminCityServiceServiceDesc(doctorCityAdminV1.New(a.modules.admin, a.modules.auth)),
+		doctorSpecialityAdminDesc.NewDoctorAdminSpecialityServiceServiceDesc(doctorSpecialityAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerAdminDesc.NewFreelancerAdminServiceServiceDesc(freelancerAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerCityAdminDesc.NewFreelancerAdminCityServiceServiceDesc(freelancerCityAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerSpecialityAdminDesc.NewFreelancerAdminSpecialityServiceServiceDesc(freelancerSpecialityAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerNetworkAdminDesc.NewFreelancerAdminNetworksServiceServiceDesc(freelancerNetworkAdminV1.New(a.modules.admin, a.modules.auth)),
 	}
 
 	return a

@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 )
 
 func (i *Implementation) CreateDraftBlog(ctx context.Context, req *desc.CreateDraftBlogRequest) (resp *desc.CreateDraftBlogResponse, _ error) {

@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"log"
 	"medblogers_base/internal/app/interceptor"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 
 	"github.com/google/uuid"
 )

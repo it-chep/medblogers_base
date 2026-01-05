@@ -1,0 +1,1051 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/doctors/doctors/v1/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DoctorAdminService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/doctor/{doctorId}": {
+      "get": {
+        "summary": "Получение карточки врача",
+        "operationId": "DoctorAdminService_GetDoctorByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/activate": {
+      "post": {
+        "summary": "Активация врача",
+        "operationId": "DoctorAdminService_ActivateDoctor",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.ActivateDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctorBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/add_additional_city": {
+      "post": {
+        "summary": "Добавление дополнительного города",
+        "operationId": "DoctorAdminService_AddAdditionalCity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/add_additional_speciality": {
+      "post": {
+        "summary": "Добавление доп специальности",
+        "operationId": "DoctorAdminService_AddAdditionalSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpecialityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/deactivate": {
+      "post": {
+        "summary": "Деактивация врача",
+        "operationId": "DoctorAdminService_DeactivateDoctor",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DeactivateDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctorBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/delete": {
+      "post": {
+        "summary": "Удаление врача",
+        "operationId": "DoctorAdminService_DeleteDoctor",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DeleteDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctorBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/delete_additional_city": {
+      "post": {
+        "summary": "Удаление доп города",
+        "operationId": "DoctorAdminService_DeleteAdditionalCity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/delete_additional_speciality": {
+      "post": {
+        "summary": "Удаление доп специальности",
+        "operationId": "DoctorAdminService_DeleteAdditionalSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpecialityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/save_photo": {
+      "post": {
+        "summary": "Сохранение фотографии врача",
+        "operationId": "DoctorAdminService_SaveDoctorPhoto",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.SaveDoctorPhotoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhotoBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/update": {
+      "post": {
+        "summary": "Обновление врача",
+        "operationId": "DoctorAdminService_UpdateDoctor",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctorBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/update_subscribers": {
+      "post": {
+        "summary": "Ручное обновление подписчиков",
+        "operationId": "DoctorAdminService_UpdateSubscribers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateSubscribersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribersBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors": {
+      "get": {
+        "summary": "Получение врачей",
+        "operationId": "DoctorAdminService_GetDoctors",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/search": {
+      "post": {
+        "summary": "Поиск врача по параметрам",
+        "operationId": "DoctorAdminService_SearchDoctors",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.SearchDoctorsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.SearchDoctorsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/sort": {
+      "post": {
+        "summary": "Сортировка врачей",
+        "operationId": "DoctorAdminService_SortDoctors",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.SortDoctorsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.SortDoctorsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors_by_ids": {
+      "post": {
+        "summary": "Получение врачей по IDs",
+        "operationId": "DoctorAdminService_GetDoctorsByIDs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsByIDsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsByIDsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.doctors.doctors.v1.ActivateDoctorResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DeactivateDoctorResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DeleteDoctorResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctorBody": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCityBody": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpecialityBody": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctorBody": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCityBody": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpecialityBody": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctorBody": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhotoBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string",
+          "title": "файл в строке base64"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctorBody": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribersBody": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.GetDoctorByIDResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "instUrl": {
+          "type": "string",
+          "title": "Соцсети"
+        },
+        "vkUrl": {
+          "type": "string"
+        },
+        "dzenUrl": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "tgChannelUrl": {
+          "type": "string"
+        },
+        "youtubeUrl": {
+          "type": "string"
+        },
+        "tiktokUrl": {
+          "type": "string"
+        },
+        "siteLink": {
+          "type": "string"
+        },
+        "additionalCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem"
+          },
+          "title": "Города и специализации"
+        },
+        "additionalSpecialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem"
+          }
+        },
+        "mainCity": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem"
+        },
+        "mainSpeciality": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem"
+        },
+        "subscribersInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem"
+          }
+        },
+        "mainBlogTheme": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationType"
+        },
+        "medicalDirections": {
+          "type": "string"
+        },
+        "marketingPreferences": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "title": "todo сделать текстовый енам"
+        },
+        "subsCount": {
+          "type": "string"
+        },
+        "subsCountText": {
+          "type": "string"
+        },
+        "lastUpdatedDate": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsByIDsRequest": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsByIDsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationType"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsResponse.Doctor"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationType"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SaveDoctorPhotoResponse": {
+      "type": "object",
+      "properties": {
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SearchDoctorsRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SearchDoctorsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationType"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SortDoctorsRequest": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.SortDoctorsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.SortDoctorsResponse.Doctor"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SortDoctorsResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationType"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.UpdateDoctorResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.UpdateSubscribersResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}
