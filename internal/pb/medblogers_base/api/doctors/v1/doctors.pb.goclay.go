@@ -253,6 +253,60 @@ func (w *DoctorServiceServiceDesc) GetDoctor(ctx context.Context, in *GetDoctorR
 	return resp.(*GetDoctorResponse), err
 }
 
+func (w *DoctorServiceServiceDesc) BuildDoctorCalendar(ctx context.Context, in *BuildDoctorCalendarRequest) (*BuildDoctorCalendarResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.BuildDoctorCalendar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/BuildDoctorCalendar",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.BuildDoctorCalendar(ctx, req.(*BuildDoctorCalendarRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*BuildDoctorCalendarResponse), err
+}
+
+func (w *DoctorServiceServiceDesc) BookDoctorSlot(ctx context.Context, in *BookDoctorSlotRequest) (*BookDoctorSlotResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.BookDoctorSlot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/BookDoctorSlot",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.BookDoctorSlot(ctx, req.(*BookDoctorSlotRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*BookDoctorSlotResponse), err
+}
+
+func (w *DoctorServiceServiceDesc) CreateSlots(ctx context.Context, in *CreateSlotsRequest) (*CreateSlotsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.CreateSlots(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/CreateSlots",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.CreateSlots(ctx, req.(*CreateSlotsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*CreateSlotsResponse), err
+}
+
 func (w *DoctorServiceServiceDesc) CheckCheating(ctx context.Context, in *CheckCheatingRequest) (*CheckCheatingResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.CheckCheating(ctx, in)
