@@ -159,6 +159,123 @@
         ]
       }
     },
+    "/api/v1/doctors/{doctorSlug}/calendar": {
+      "post": {
+        "summary": "Получение календаря онлайн-консультаций доктора",
+        "operationId": "DoctorService_BuildDoctorCalendar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.BuildDoctorCalendarResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.DoctorService.BuildDoctorCalendarBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/doctors/{doctorSlug}/calendar/book": {
+      "post": {
+        "summary": "Бронирование слота доктора",
+        "operationId": "DoctorService_BookDoctorSlot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.BookDoctorSlotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.DoctorService.BookDoctorSlotBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/doctors/{doctorSlug}/calendar/create": {
+      "post": {
+        "summary": "Бронирование слота доктора",
+        "operationId": "DoctorService_CreateSlots",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CreateSlotsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.DoctorService.CreateSlotsBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/filter-doctors": {
       "get": {
         "summary": "Фильтрация докторов по доступным фильтрам",
@@ -500,6 +617,12 @@
     }
   },
   "definitions": {
+    "doctor.v1.BookDoctorSlotResponse": {
+      "type": "object"
+    },
+    "doctor.v1.BuildDoctorCalendarResponse": {
+      "type": "object"
+    },
     "doctor.v1.CheckCheatingRequest": {
       "type": "object",
       "properties": {
@@ -646,6 +769,18 @@
           "type": "string"
         }
       }
+    },
+    "doctor.v1.CreateSlotsResponse": {
+      "type": "object"
+    },
+    "doctor.v1.DoctorService.BookDoctorSlotBody": {
+      "type": "object"
+    },
+    "doctor.v1.DoctorService.BuildDoctorCalendarBody": {
+      "type": "object"
+    },
+    "doctor.v1.DoctorService.CreateSlotsBody": {
+      "type": "object"
     },
     "doctor.v1.FilterRequest.Sort": {
       "type": "string",

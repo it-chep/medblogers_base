@@ -1754,6 +1754,246 @@ func (x *CheckCheatingResponse) GetIsInBlacklist() bool {
 	return false
 }
 
+type BuildDoctorCalendarRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorSlug    string                 `protobuf:"bytes,1,opt,name=doctor_slug,json=doctorSlug,proto3" json:"doctor_slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BuildDoctorCalendarRequest) Reset() {
+	*x = BuildDoctorCalendarRequest{}
+	mi := &file_doctors_v1_doctors_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BuildDoctorCalendarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuildDoctorCalendarRequest) ProtoMessage() {}
+
+func (x *BuildDoctorCalendarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_doctors_v1_doctors_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BuildDoctorCalendarRequest.ProtoReflect.Descriptor instead.
+func (*BuildDoctorCalendarRequest) Descriptor() ([]byte, []int) {
+	return file_doctors_v1_doctors_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *BuildDoctorCalendarRequest) GetDoctorSlug() string {
+	if x != nil {
+		return x.DoctorSlug
+	}
+	return ""
+}
+
+type BuildDoctorCalendarResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BuildDoctorCalendarResponse) Reset() {
+	*x = BuildDoctorCalendarResponse{}
+	mi := &file_doctors_v1_doctors_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BuildDoctorCalendarResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuildDoctorCalendarResponse) ProtoMessage() {}
+
+func (x *BuildDoctorCalendarResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_doctors_v1_doctors_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BuildDoctorCalendarResponse.ProtoReflect.Descriptor instead.
+func (*BuildDoctorCalendarResponse) Descriptor() ([]byte, []int) {
+	return file_doctors_v1_doctors_proto_rawDescGZIP(), []int{27}
+}
+
+type BookDoctorSlotRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorSlug    string                 `protobuf:"bytes,1,opt,name=doctor_slug,json=doctorSlug,proto3" json:"doctor_slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BookDoctorSlotRequest) Reset() {
+	*x = BookDoctorSlotRequest{}
+	mi := &file_doctors_v1_doctors_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BookDoctorSlotRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BookDoctorSlotRequest) ProtoMessage() {}
+
+func (x *BookDoctorSlotRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_doctors_v1_doctors_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BookDoctorSlotRequest.ProtoReflect.Descriptor instead.
+func (*BookDoctorSlotRequest) Descriptor() ([]byte, []int) {
+	return file_doctors_v1_doctors_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *BookDoctorSlotRequest) GetDoctorSlug() string {
+	if x != nil {
+		return x.DoctorSlug
+	}
+	return ""
+}
+
+type BookDoctorSlotResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BookDoctorSlotResponse) Reset() {
+	*x = BookDoctorSlotResponse{}
+	mi := &file_doctors_v1_doctors_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BookDoctorSlotResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BookDoctorSlotResponse) ProtoMessage() {}
+
+func (x *BookDoctorSlotResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_doctors_v1_doctors_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BookDoctorSlotResponse.ProtoReflect.Descriptor instead.
+func (*BookDoctorSlotResponse) Descriptor() ([]byte, []int) {
+	return file_doctors_v1_doctors_proto_rawDescGZIP(), []int{29}
+}
+
+type CreateSlotsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorSlug    string                 `protobuf:"bytes,1,opt,name=doctor_slug,json=doctorSlug,proto3" json:"doctor_slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateSlotsRequest) Reset() {
+	*x = CreateSlotsRequest{}
+	mi := &file_doctors_v1_doctors_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateSlotsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSlotsRequest) ProtoMessage() {}
+
+func (x *CreateSlotsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_doctors_v1_doctors_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateSlotsRequest.ProtoReflect.Descriptor instead.
+func (*CreateSlotsRequest) Descriptor() ([]byte, []int) {
+	return file_doctors_v1_doctors_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *CreateSlotsRequest) GetDoctorSlug() string {
+	if x != nil {
+		return x.DoctorSlug
+	}
+	return ""
+}
+
+type CreateSlotsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateSlotsResponse) Reset() {
+	*x = CreateSlotsResponse{}
+	mi := &file_doctors_v1_doctors_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateSlotsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSlotsResponse) ProtoMessage() {}
+
+func (x *CreateSlotsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_doctors_v1_doctors_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateSlotsResponse.ProtoReflect.Descriptor instead.
+func (*CreateSlotsResponse) Descriptor() ([]byte, []int) {
+	return file_doctors_v1_doctors_proto_rawDescGZIP(), []int{31}
+}
+
 type GetSettingsResponse_FilterItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -1764,7 +2004,7 @@ type GetSettingsResponse_FilterItem struct {
 
 func (x *GetSettingsResponse_FilterItem) Reset() {
 	*x = GetSettingsResponse_FilterItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[26]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1776,7 +2016,7 @@ func (x *GetSettingsResponse_FilterItem) String() string {
 func (*GetSettingsResponse_FilterItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_FilterItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[26]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1817,7 +2057,7 @@ type GetSettingsResponse_CityItem struct {
 
 func (x *GetSettingsResponse_CityItem) Reset() {
 	*x = GetSettingsResponse_CityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[27]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1829,7 +2069,7 @@ func (x *GetSettingsResponse_CityItem) String() string {
 func (*GetSettingsResponse_CityItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[27]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1877,7 +2117,7 @@ type GetSettingsResponse_SpecialityItem struct {
 
 func (x *GetSettingsResponse_SpecialityItem) Reset() {
 	*x = GetSettingsResponse_SpecialityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[28]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1889,7 +2129,7 @@ func (x *GetSettingsResponse_SpecialityItem) String() string {
 func (*GetSettingsResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *GetSettingsResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[28]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1936,7 +2176,7 @@ type CitiesResponse_CityItem struct {
 
 func (x *CitiesResponse_CityItem) Reset() {
 	*x = CitiesResponse_CityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[29]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1948,7 +2188,7 @@ func (x *CitiesResponse_CityItem) String() string {
 func (*CitiesResponse_CityItem) ProtoMessage() {}
 
 func (x *CitiesResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[29]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1988,7 +2228,7 @@ type SpecialitiesResponse_SpecialityItem struct {
 
 func (x *SpecialitiesResponse_SpecialityItem) Reset() {
 	*x = SpecialitiesResponse_SpecialityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[30]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2000,7 +2240,7 @@ func (x *SpecialitiesResponse_SpecialityItem) String() string {
 func (*SpecialitiesResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *SpecialitiesResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[30]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2040,7 +2280,7 @@ type MainSpecialitiesResponse_SpecialityItem struct {
 
 func (x *MainSpecialitiesResponse_SpecialityItem) Reset() {
 	*x = MainSpecialitiesResponse_SpecialityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[31]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2052,7 +2292,7 @@ func (x *MainSpecialitiesResponse_SpecialityItem) String() string {
 func (*MainSpecialitiesResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *MainSpecialitiesResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[31]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2097,7 +2337,7 @@ type SearchResponse_DoctorItem struct {
 
 func (x *SearchResponse_DoctorItem) Reset() {
 	*x = SearchResponse_DoctorItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[32]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2109,7 +2349,7 @@ func (x *SearchResponse_DoctorItem) String() string {
 func (*SearchResponse_DoctorItem) ProtoMessage() {}
 
 func (x *SearchResponse_DoctorItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[32]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2185,7 +2425,7 @@ type SearchResponse_CityItem struct {
 
 func (x *SearchResponse_CityItem) Reset() {
 	*x = SearchResponse_CityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[33]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2197,7 +2437,7 @@ func (x *SearchResponse_CityItem) String() string {
 func (*SearchResponse_CityItem) ProtoMessage() {}
 
 func (x *SearchResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[33]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2245,7 +2485,7 @@ type SearchResponse_SpecialityItem struct {
 
 func (x *SearchResponse_SpecialityItem) Reset() {
 	*x = SearchResponse_SpecialityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[34]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2257,7 +2497,7 @@ func (x *SearchResponse_SpecialityItem) String() string {
 func (*SearchResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *SearchResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[34]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2323,7 +2563,7 @@ type FilterResponse_DoctorItem struct {
 
 func (x *FilterResponse_DoctorItem) Reset() {
 	*x = FilterResponse_DoctorItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[35]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2335,7 +2575,7 @@ func (x *FilterResponse_DoctorItem) String() string {
 func (*FilterResponse_DoctorItem) ProtoMessage() {}
 
 func (x *FilterResponse_DoctorItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[35]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2494,7 +2734,7 @@ type CreateDoctorResponse_ValidationError struct {
 
 func (x *CreateDoctorResponse_ValidationError) Reset() {
 	*x = CreateDoctorResponse_ValidationError{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[36]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2506,7 +2746,7 @@ func (x *CreateDoctorResponse_ValidationError) String() string {
 func (*CreateDoctorResponse_ValidationError) ProtoMessage() {}
 
 func (x *CreateDoctorResponse_ValidationError) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[36]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2546,7 +2786,7 @@ type GetDoctorResponse_CityItem struct {
 
 func (x *GetDoctorResponse_CityItem) Reset() {
 	*x = GetDoctorResponse_CityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[37]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2558,7 +2798,7 @@ func (x *GetDoctorResponse_CityItem) String() string {
 func (*GetDoctorResponse_CityItem) ProtoMessage() {}
 
 func (x *GetDoctorResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[37]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2598,7 +2838,7 @@ type GetDoctorResponse_SpecialityItem struct {
 
 func (x *GetDoctorResponse_SpecialityItem) Reset() {
 	*x = GetDoctorResponse_SpecialityItem{}
-	mi := &file_doctors_v1_doctors_proto_msgTypes[38]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2610,7 +2850,7 @@ func (x *GetDoctorResponse_SpecialityItem) String() string {
 func (*GetDoctorResponse_SpecialityItem) ProtoMessage() {}
 
 func (x *GetDoctorResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_doctors_v1_doctors_proto_msgTypes[38]
+	mi := &file_doctors_v1_doctors_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2853,7 +3093,19 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x14CheckCheatingRequest\x12\x1a\n" +
 	"\btelegram\x18\x01 \x01(\tR\btelegram\"?\n" +
 	"\x15CheckCheatingResponse\x12&\n" +
-	"\x0fis_in_blacklist\x18\x01 \x01(\bR\risInBlacklist2\x8d\x13\n" +
+	"\x0fis_in_blacklist\x18\x01 \x01(\bR\risInBlacklist\"=\n" +
+	"\x1aBuildDoctorCalendarRequest\x12\x1f\n" +
+	"\vdoctor_slug\x18\x01 \x01(\tR\n" +
+	"doctorSlug\"\x1d\n" +
+	"\x1bBuildDoctorCalendarResponse\"8\n" +
+	"\x15BookDoctorSlotRequest\x12\x1f\n" +
+	"\vdoctor_slug\x18\x01 \x01(\tR\n" +
+	"doctorSlug\"\x18\n" +
+	"\x16BookDoctorSlotResponse\"5\n" +
+	"\x12CreateSlotsRequest\x12\x1f\n" +
+	"\vdoctor_slug\x18\x01 \x01(\tR\n" +
+	"doctorSlug\"\x15\n" +
+	"\x13CreateSlotsResponse2\x8e\x18\n" +
 	"\rDoctorService\x12\x8c\x01\n" +
 	"\vGetSettings\x12\x1d.doctor.v1.GetSettingsRequest\x1a\x1e.doctor.v1.GetSettingsResponse\">\x92A#\x12!Доступные фильтры\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/settings\x12\x93\x02\n" +
 	"\vGetCounters\x12\x1d.doctor.v1.GetCountersRequest\x1a\x1e.doctor.v1.GetCountersResponse\"\xc4\x01\x92A\xa3\x01\x12\xa0\x01Получение информации по счетчикам (количество докторов в базе, количество подписчиков)\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/counters_info\x12\xed\x01\n" +
@@ -2865,7 +3117,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x06Search\x12\x18.doctor.v1.SearchRequest\x1a\x19.doctor.v1.SearchResponse\"\x93\x01\x92Ar\x12pПоиск доктора, города, специальности по переданным значениям\x82\xd3\xe4\x93\x02\x18\x12\x16/api/v1/search-doctors\x12\xb0\x01\n" +
 	"\x06Filter\x12\x18.doctor.v1.FilterRequest\x1a\x19.doctor.v1.FilterResponse\"q\x92AP\x12NФильтрация докторов по доступным фильтрам\x82\xd3\xe4\x93\x02\x18\x12\x16/api/v1/filter-doctors\x12\x9c\x01\n" +
 	"\fCreateDoctor\x12\x1e.doctor.v1.CreateDoctorRequest\x1a\x1f.doctor.v1.CreateDoctorResponse\"K\x92A'\x12%Регистрация доктора\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/api/v1/doctors/create\x12\xc2\x01\n" +
-	"\tGetDoctor\x12\x1b.doctor.v1.GetDoctorRequest\x1a\x1c.doctor.v1.GetDoctorResponse\"z\x92AR\x12PПолучение детальной информации про доктора\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/doctors/{doctor_slug}\x12\xd7\x01\n" +
+	"\tGetDoctor\x12\x1b.doctor.v1.GetDoctorRequest\x1a\x1c.doctor.v1.GetDoctorResponse\"z\x92AR\x12PПолучение детальной информации про доктора\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/doctors/{doctor_slug}\x12\xf7\x01\n" +
+	"\x13BuildDoctorCalendar\x12%.doctor.v1.BuildDoctorCalendarRequest\x1a&.doctor.v1.BuildDoctorCalendarResponse\"\x90\x01\x92A\\\x12ZПолучение календаря онлайн-консультаций доктора\x82\xd3\xe4\x93\x02+:\x01*\"&/api/v1/doctors/{doctor_slug}/calendar\x12\xc4\x01\n" +
+	"\x0eBookDoctorSlot\x12 .doctor.v1.BookDoctorSlotRequest\x1a!.doctor.v1.BookDoctorSlotResponse\"m\x92A4\x122Бронирование слота доктора\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/doctors/{doctor_slug}/calendar/book\x12\xbd\x01\n" +
+	"\vCreateSlots\x12\x1d.doctor.v1.CreateSlotsRequest\x1a\x1e.doctor.v1.CreateSlotsResponse\"o\x92A4\x122Бронирование слота доктора\x82\xd3\xe4\x93\x022:\x01*\"-/api/v1/doctors/{doctor_slug}/calendar/create\x12\xd7\x01\n" +
 	"\rCheckCheating\x12\x1f.doctor.v1.CheckCheatingRequest\x1a .doctor.v1.CheckCheatingResponse\"\x82\x01\x92A]\x12[Проверяет состоит ли данный канал в черном списке\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/blacklist_checkB\x10Z\x0eapi/doctors/v1b\x06proto3"
 
 var (
@@ -2881,7 +3136,7 @@ func file_doctors_v1_doctors_proto_rawDescGZIP() []byte {
 }
 
 var file_doctors_v1_doctors_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_doctors_v1_doctors_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
+var file_doctors_v1_doctors_proto_msgTypes = make([]protoimpl.MessageInfo, 45)
 var file_doctors_v1_doctors_proto_goTypes = []any{
 	(FilterRequest_Sort)(0),                         // 0: doctor.v1.FilterRequest.Sort
 	(*CityItem)(nil),                                // 1: doctor.v1.CityItem
@@ -2910,37 +3165,43 @@ var file_doctors_v1_doctors_proto_goTypes = []any{
 	(*PagesCountResponse)(nil),                      // 24: doctor.v1.PagesCountResponse
 	(*CheckCheatingRequest)(nil),                    // 25: doctor.v1.CheckCheatingRequest
 	(*CheckCheatingResponse)(nil),                   // 26: doctor.v1.CheckCheatingResponse
-	(*GetSettingsResponse_FilterItem)(nil),          // 27: doctor.v1.GetSettingsResponse.FilterItem
-	(*GetSettingsResponse_CityItem)(nil),            // 28: doctor.v1.GetSettingsResponse.CityItem
-	(*GetSettingsResponse_SpecialityItem)(nil),      // 29: doctor.v1.GetSettingsResponse.SpecialityItem
-	(*CitiesResponse_CityItem)(nil),                 // 30: doctor.v1.CitiesResponse.CityItem
-	(*SpecialitiesResponse_SpecialityItem)(nil),     // 31: doctor.v1.SpecialitiesResponse.SpecialityItem
-	(*MainSpecialitiesResponse_SpecialityItem)(nil), // 32: doctor.v1.MainSpecialitiesResponse.SpecialityItem
-	(*SearchResponse_DoctorItem)(nil),               // 33: doctor.v1.SearchResponse.DoctorItem
-	(*SearchResponse_CityItem)(nil),                 // 34: doctor.v1.SearchResponse.CityItem
-	(*SearchResponse_SpecialityItem)(nil),           // 35: doctor.v1.SearchResponse.SpecialityItem
-	(*FilterResponse_DoctorItem)(nil),               // 36: doctor.v1.FilterResponse.DoctorItem
-	(*CreateDoctorResponse_ValidationError)(nil),    // 37: doctor.v1.CreateDoctorResponse.ValidationError
-	(*GetDoctorResponse_CityItem)(nil),              // 38: doctor.v1.GetDoctorResponse.CityItem
-	(*GetDoctorResponse_SpecialityItem)(nil),        // 39: doctor.v1.GetDoctorResponse.SpecialityItem
+	(*BuildDoctorCalendarRequest)(nil),              // 27: doctor.v1.BuildDoctorCalendarRequest
+	(*BuildDoctorCalendarResponse)(nil),             // 28: doctor.v1.BuildDoctorCalendarResponse
+	(*BookDoctorSlotRequest)(nil),                   // 29: doctor.v1.BookDoctorSlotRequest
+	(*BookDoctorSlotResponse)(nil),                  // 30: doctor.v1.BookDoctorSlotResponse
+	(*CreateSlotsRequest)(nil),                      // 31: doctor.v1.CreateSlotsRequest
+	(*CreateSlotsResponse)(nil),                     // 32: doctor.v1.CreateSlotsResponse
+	(*GetSettingsResponse_FilterItem)(nil),          // 33: doctor.v1.GetSettingsResponse.FilterItem
+	(*GetSettingsResponse_CityItem)(nil),            // 34: doctor.v1.GetSettingsResponse.CityItem
+	(*GetSettingsResponse_SpecialityItem)(nil),      // 35: doctor.v1.GetSettingsResponse.SpecialityItem
+	(*CitiesResponse_CityItem)(nil),                 // 36: doctor.v1.CitiesResponse.CityItem
+	(*SpecialitiesResponse_SpecialityItem)(nil),     // 37: doctor.v1.SpecialitiesResponse.SpecialityItem
+	(*MainSpecialitiesResponse_SpecialityItem)(nil), // 38: doctor.v1.MainSpecialitiesResponse.SpecialityItem
+	(*SearchResponse_DoctorItem)(nil),               // 39: doctor.v1.SearchResponse.DoctorItem
+	(*SearchResponse_CityItem)(nil),                 // 40: doctor.v1.SearchResponse.CityItem
+	(*SearchResponse_SpecialityItem)(nil),           // 41: doctor.v1.SearchResponse.SpecialityItem
+	(*FilterResponse_DoctorItem)(nil),               // 42: doctor.v1.FilterResponse.DoctorItem
+	(*CreateDoctorResponse_ValidationError)(nil),    // 43: doctor.v1.CreateDoctorResponse.ValidationError
+	(*GetDoctorResponse_CityItem)(nil),              // 44: doctor.v1.GetDoctorResponse.CityItem
+	(*GetDoctorResponse_SpecialityItem)(nil),        // 45: doctor.v1.GetDoctorResponse.SpecialityItem
 }
 var file_doctors_v1_doctors_proto_depIdxs = []int32{
-	27, // 0: doctor.v1.GetSettingsResponse.filter_info:type_name -> doctor.v1.GetSettingsResponse.FilterItem
-	28, // 1: doctor.v1.GetSettingsResponse.cities:type_name -> doctor.v1.GetSettingsResponse.CityItem
-	29, // 2: doctor.v1.GetSettingsResponse.specialities:type_name -> doctor.v1.GetSettingsResponse.SpecialityItem
-	30, // 3: doctor.v1.CitiesResponse.cities:type_name -> doctor.v1.CitiesResponse.CityItem
-	31, // 4: doctor.v1.SpecialitiesResponse.specialities:type_name -> doctor.v1.SpecialitiesResponse.SpecialityItem
-	32, // 5: doctor.v1.MainSpecialitiesResponse.specialities:type_name -> doctor.v1.MainSpecialitiesResponse.SpecialityItem
-	33, // 6: doctor.v1.SearchResponse.doctors:type_name -> doctor.v1.SearchResponse.DoctorItem
-	34, // 7: doctor.v1.SearchResponse.cities:type_name -> doctor.v1.SearchResponse.CityItem
-	35, // 8: doctor.v1.SearchResponse.specialities:type_name -> doctor.v1.SearchResponse.SpecialityItem
+	33, // 0: doctor.v1.GetSettingsResponse.filter_info:type_name -> doctor.v1.GetSettingsResponse.FilterItem
+	34, // 1: doctor.v1.GetSettingsResponse.cities:type_name -> doctor.v1.GetSettingsResponse.CityItem
+	35, // 2: doctor.v1.GetSettingsResponse.specialities:type_name -> doctor.v1.GetSettingsResponse.SpecialityItem
+	36, // 3: doctor.v1.CitiesResponse.cities:type_name -> doctor.v1.CitiesResponse.CityItem
+	37, // 4: doctor.v1.SpecialitiesResponse.specialities:type_name -> doctor.v1.SpecialitiesResponse.SpecialityItem
+	38, // 5: doctor.v1.MainSpecialitiesResponse.specialities:type_name -> doctor.v1.MainSpecialitiesResponse.SpecialityItem
+	39, // 6: doctor.v1.SearchResponse.doctors:type_name -> doctor.v1.SearchResponse.DoctorItem
+	40, // 7: doctor.v1.SearchResponse.cities:type_name -> doctor.v1.SearchResponse.CityItem
+	41, // 8: doctor.v1.SearchResponse.specialities:type_name -> doctor.v1.SearchResponse.SpecialityItem
 	0,  // 9: doctor.v1.FilterRequest.sort:type_name -> doctor.v1.FilterRequest.Sort
-	36, // 10: doctor.v1.FilterResponse.doctors:type_name -> doctor.v1.FilterResponse.DoctorItem
-	37, // 11: doctor.v1.CreateDoctorResponse.errors:type_name -> doctor.v1.CreateDoctorResponse.ValidationError
-	38, // 12: doctor.v1.GetDoctorResponse.cities:type_name -> doctor.v1.GetDoctorResponse.CityItem
-	39, // 13: doctor.v1.GetDoctorResponse.specialities:type_name -> doctor.v1.GetDoctorResponse.SpecialityItem
-	38, // 14: doctor.v1.GetDoctorResponse.main_city:type_name -> doctor.v1.GetDoctorResponse.CityItem
-	39, // 15: doctor.v1.GetDoctorResponse.main_speciality:type_name -> doctor.v1.GetDoctorResponse.SpecialityItem
+	42, // 10: doctor.v1.FilterResponse.doctors:type_name -> doctor.v1.FilterResponse.DoctorItem
+	43, // 11: doctor.v1.CreateDoctorResponse.errors:type_name -> doctor.v1.CreateDoctorResponse.ValidationError
+	44, // 12: doctor.v1.GetDoctorResponse.cities:type_name -> doctor.v1.GetDoctorResponse.CityItem
+	45, // 13: doctor.v1.GetDoctorResponse.specialities:type_name -> doctor.v1.GetDoctorResponse.SpecialityItem
+	44, // 14: doctor.v1.GetDoctorResponse.main_city:type_name -> doctor.v1.GetDoctorResponse.CityItem
+	45, // 15: doctor.v1.GetDoctorResponse.main_speciality:type_name -> doctor.v1.GetDoctorResponse.SpecialityItem
 	2,  // 16: doctor.v1.FilterResponse.DoctorItem.speciality:type_name -> doctor.v1.SpecialityItem
 	1,  // 17: doctor.v1.FilterResponse.DoctorItem.city:type_name -> doctor.v1.CityItem
 	3,  // 18: doctor.v1.DoctorService.GetSettings:input_type -> doctor.v1.GetSettingsRequest
@@ -2954,21 +3215,27 @@ var file_doctors_v1_doctors_proto_depIdxs = []int32{
 	15, // 26: doctor.v1.DoctorService.Filter:input_type -> doctor.v1.FilterRequest
 	17, // 27: doctor.v1.DoctorService.CreateDoctor:input_type -> doctor.v1.CreateDoctorRequest
 	19, // 28: doctor.v1.DoctorService.GetDoctor:input_type -> doctor.v1.GetDoctorRequest
-	25, // 29: doctor.v1.DoctorService.CheckCheating:input_type -> doctor.v1.CheckCheatingRequest
-	4,  // 30: doctor.v1.DoctorService.GetSettings:output_type -> doctor.v1.GetSettingsResponse
-	6,  // 31: doctor.v1.DoctorService.GetCounters:output_type -> doctor.v1.GetCountersResponse
-	22, // 32: doctor.v1.DoctorService.GetPreliminaryFilterCount:output_type -> doctor.v1.PreliminaryFilterCountResponse
-	24, // 33: doctor.v1.DoctorService.GetPagesCount:output_type -> doctor.v1.PagesCountResponse
-	8,  // 34: doctor.v1.DoctorService.GetCities:output_type -> doctor.v1.CitiesResponse
-	10, // 35: doctor.v1.DoctorService.GetSpecialities:output_type -> doctor.v1.SpecialitiesResponse
-	12, // 36: doctor.v1.DoctorService.GetSMainSpecialities:output_type -> doctor.v1.MainSpecialitiesResponse
-	14, // 37: doctor.v1.DoctorService.Search:output_type -> doctor.v1.SearchResponse
-	16, // 38: doctor.v1.DoctorService.Filter:output_type -> doctor.v1.FilterResponse
-	18, // 39: doctor.v1.DoctorService.CreateDoctor:output_type -> doctor.v1.CreateDoctorResponse
-	20, // 40: doctor.v1.DoctorService.GetDoctor:output_type -> doctor.v1.GetDoctorResponse
-	26, // 41: doctor.v1.DoctorService.CheckCheating:output_type -> doctor.v1.CheckCheatingResponse
-	30, // [30:42] is the sub-list for method output_type
-	18, // [18:30] is the sub-list for method input_type
+	27, // 29: doctor.v1.DoctorService.BuildDoctorCalendar:input_type -> doctor.v1.BuildDoctorCalendarRequest
+	29, // 30: doctor.v1.DoctorService.BookDoctorSlot:input_type -> doctor.v1.BookDoctorSlotRequest
+	31, // 31: doctor.v1.DoctorService.CreateSlots:input_type -> doctor.v1.CreateSlotsRequest
+	25, // 32: doctor.v1.DoctorService.CheckCheating:input_type -> doctor.v1.CheckCheatingRequest
+	4,  // 33: doctor.v1.DoctorService.GetSettings:output_type -> doctor.v1.GetSettingsResponse
+	6,  // 34: doctor.v1.DoctorService.GetCounters:output_type -> doctor.v1.GetCountersResponse
+	22, // 35: doctor.v1.DoctorService.GetPreliminaryFilterCount:output_type -> doctor.v1.PreliminaryFilterCountResponse
+	24, // 36: doctor.v1.DoctorService.GetPagesCount:output_type -> doctor.v1.PagesCountResponse
+	8,  // 37: doctor.v1.DoctorService.GetCities:output_type -> doctor.v1.CitiesResponse
+	10, // 38: doctor.v1.DoctorService.GetSpecialities:output_type -> doctor.v1.SpecialitiesResponse
+	12, // 39: doctor.v1.DoctorService.GetSMainSpecialities:output_type -> doctor.v1.MainSpecialitiesResponse
+	14, // 40: doctor.v1.DoctorService.Search:output_type -> doctor.v1.SearchResponse
+	16, // 41: doctor.v1.DoctorService.Filter:output_type -> doctor.v1.FilterResponse
+	18, // 42: doctor.v1.DoctorService.CreateDoctor:output_type -> doctor.v1.CreateDoctorResponse
+	20, // 43: doctor.v1.DoctorService.GetDoctor:output_type -> doctor.v1.GetDoctorResponse
+	28, // 44: doctor.v1.DoctorService.BuildDoctorCalendar:output_type -> doctor.v1.BuildDoctorCalendarResponse
+	30, // 45: doctor.v1.DoctorService.BookDoctorSlot:output_type -> doctor.v1.BookDoctorSlotResponse
+	32, // 46: doctor.v1.DoctorService.CreateSlots:output_type -> doctor.v1.CreateSlotsResponse
+	26, // 47: doctor.v1.DoctorService.CheckCheating:output_type -> doctor.v1.CheckCheatingResponse
+	33, // [33:48] is the sub-list for method output_type
+	18, // [18:33] is the sub-list for method input_type
 	18, // [18:18] is the sub-list for extension type_name
 	18, // [18:18] is the sub-list for extension extendee
 	0,  // [0:18] is the sub-list for field type_name
@@ -2985,7 +3252,7 @@ func file_doctors_v1_doctors_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_doctors_v1_doctors_proto_rawDesc), len(file_doctors_v1_doctors_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   39,
+			NumMessages:   45,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
