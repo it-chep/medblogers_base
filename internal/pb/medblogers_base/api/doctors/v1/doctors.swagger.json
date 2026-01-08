@@ -731,6 +731,15 @@
         },
         "youtubeSubsCountText": {
           "type": "string"
+        },
+        "vkLink": {
+          "type": "string"
+        },
+        "vkSubsCount": {
+          "type": "string"
+        },
+        "vkSubsCountText": {
+          "type": "string"
         }
       }
     },
@@ -836,6 +845,15 @@
           "type": "string"
         },
         "youtubeLastUpdatedDate": {
+          "type": "string"
+        },
+        "vkSubsCount": {
+          "type": "string"
+        },
+        "vkSubsCountText": {
+          "type": "string"
+        },
+        "vkLastUpdatedDate": {
           "type": "string"
         }
       }

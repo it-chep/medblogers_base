@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/doctors/city/v1/doctor_city.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DoctorAdminCityService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/doctors/cities": {
+      "get": {
+        "summary": "Получение городов врачей",
+        "operationId": "DoctorAdminCityService_GetCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.city.v1.GetDoctorsCitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorAdminCityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/cities/create": {
+      "post": {
+        "summary": "Создание нового города",
+        "operationId": "DoctorAdminCityService_CreateCity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.city.v1.CreateDoctorsCityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.city.v1.CreateDoctorsCityRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminCityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/cities/search": {
+      "post": {
+        "summary": "Поиск города по названию",
+        "operationId": "DoctorAdminCityService_SearchCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.city.v1.SearchDoctorsCitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.city.v1.SearchDoctorsCitiesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminCityService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.doctors.city.v1.CreateDoctorsCityRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.city.v1.CreateDoctorsCityResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.city.v1.GetDoctorsCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.city.v1.GetDoctorsCitiesResponse.CityItem"
+          }
+        }
+      }
+    },
+    "admin.doctors.city.v1.GetDoctorsCitiesResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.city.v1.SearchDoctorsCitiesRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.city.v1.SearchDoctorsCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.city.v1.SearchDoctorsCitiesResponse.CityItem"
+          }
+        }
+      }
+    },
+    "admin.doctors.city.v1.SearchDoctorsCitiesResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

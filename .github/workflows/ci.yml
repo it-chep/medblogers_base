@@ -38,7 +38,7 @@ jobs:
         make test-cover
 
     - name: Upload coverage reports
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-entities@v3
       with:
         file: ./unit.coverage.out
         flags: unittests
@@ -75,7 +75,7 @@ jobs:
         E2E_DB_NAME: test_db_e2e
 
     - name: Upload integration coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-entities@v3
       with:
         file: ./cover.out
         flags: integrationtests

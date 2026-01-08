@@ -8,6 +8,7 @@ type CreateDoctorRequest struct {
 	Telegram  string `json:"telegram"`
 	Instagram string `json:"instagram"`
 	Youtube   string `json:"youtube"`
+	Vk        string `json:"vk"`
 }
 
 type UpdateDoctorRequest struct {

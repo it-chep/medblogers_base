@@ -1,0 +1,15 @@
+package v1
+
+import (
+	"context"
+	"medblogers_base/internal/app/interceptor"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/freelancer/v1"
+)
+
+func (i *Implementation) ActivateFreelancer(ctx context.Context, req *desc.ActivateFreelancerRequest) (resp *desc.ActivateFreelancerResponse, err error) {
+	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions) // todo лог действия
+
+	return resp, executor(ctx, "/api/v1/admin/freelancer/{id}/activate", func(ctx context.Context) error {
+		return i.admin.Actions.FreelancerModule.FreelancerAgg.Activate.Do(ctx, req.GetFreelancerId())
+	})
+}

@@ -29,10 +29,12 @@ type GetSubscribersByDoctorIDs struct {
 	TgSubsCount      string `json:"telegram_subs_count"`
 	InstSubsCount    string `json:"instagram_subs_count"`
 	YoutubeSubsCount string `json:"youtube_subs_count"`
+	VkSubsCount      string `json:"vk_subs_count"`
 	//текст "подписчика", "подписчиков", "подписчик"
 	TgSubsCountText      string `json:"telegram_subs_text"`
 	InstSubsCountText    string `json:"instagram_subs_text"`
 	YoutubeSubsCountText string `json:"youtube_subs_text"`
+	VkSubsCountText      string `json:"vk_subs_text"`
 }
 
 type GetSubscribersByDoctorIDsResponse struct {
@@ -44,14 +46,17 @@ type GetDoctorSubscribersResponse struct {
 	TgSubsCount      string `json:"telegram_short"`
 	InstSubsCount    string `json:"instagram_short"`
 	YoutubeSubsCount string `json:"youtube_short"`
+	VkSubsCount      string `json:"vk_short"`
 	//текст "подписчика", "подписчиков", "подписчик"
 	TgSubsCountText      string `json:"telegram_text"`
 	InstSubsCountText    string `json:"instagram_text"`
 	YoutubeSubsCountText string `json:"youtube_text"`
+	VkSubsCountText      string `json:"vk_text"`
 	//дата последнего обновления в сервисе
 	TgLastUpdatedDate      string `json:"tg_last_updated_date"`
 	InstLastUpdatedDate    string `json:"instagram_last_updated_date"`
 	YoutubeLastUpdatedDate string `json:"youtube_last_updated_date"`
+	VkLastUpdatedDate      string `json:"vk_last_updated_date"`
 }
 
 type GetDoctorsByFilter struct {
@@ -62,11 +67,13 @@ type GetDoctorsByFilter struct {
 	TgSubsCount      string `json:"telegram_short"`
 	InstSubsCount    string `json:"inst_short"`
 	YouTubeSubsCount string `json:"youtube_short"`
+	VkSubsCount      string `json:"vk_short"`
 
 	//текст "подписчика", "подписчиков", "подписчик"
 	TgSubsCountText      string `json:"telegram_text"`
 	InstSubsCountText    string `json:"inst_text"`
 	YouTubeSubsCountText string `json:"youtube_text"`
+	VkSubsCountText      string `json:"vk_text"`
 }
 
 type GetDoctorByFilter struct {

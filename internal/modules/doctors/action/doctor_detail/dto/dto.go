@@ -45,14 +45,17 @@ type DoctorDTO struct {
 	TgSubsCount      string
 	InstSubsCount    string
 	YouTubeSubsCount string
+	VkSubsCount      string
 
 	TgSubsCountText      string
 	InstSubsCountText    string
 	YouTubeSubsCountText string
+	VkSubsCountText      string
 
 	TgLastUpdatedDate      string
 	InstLastUpdatedDate    string
 	YouTubeLastUpdatedDate string
+	VkLastUpdatedDate      string
 
 	// фотка
 	Image string
