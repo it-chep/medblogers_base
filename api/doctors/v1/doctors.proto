@@ -57,27 +57,6 @@ service DoctorService {
     option (google.api.http) = {get: "/api/v1/doctors/{doctor_slug}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про доктора"};
   }
-  rpc BuildDoctorCalendar(BuildDoctorCalendarRequest) returns (BuildDoctorCalendarResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/doctors/{doctor_slug}/calendar"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение календаря онлайн-консультаций доктора"};
-  }
-  rpc BookDoctorSlot(BookDoctorSlotRequest) returns (BookDoctorSlotResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/doctors/{doctor_slug}/calendar/book"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Бронирование слота доктора"};
-  }
-  rpc CreateSlots(CreateSlotsRequest) returns (CreateSlotsResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/doctors/{doctor_slug}/calendar/create"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Бронирование слота доктора"};
-  }
   rpc CheckCheating(CheckCheatingRequest) returns (CheckCheatingResponse) {
     option (google.api.http) = {
       post: "/api/v1/blacklist_check"
@@ -408,16 +387,3 @@ message CheckCheatingRequest {
 message CheckCheatingResponse {
   bool is_in_blacklist = 1;
 }
-
-message BuildDoctorCalendarRequest {
-  string doctor_slug = 1;
-}
-message BuildDoctorCalendarResponse {}
-message BookDoctorSlotRequest {
-  string doctor_slug = 1;
-}
-message BookDoctorSlotResponse {}
-message CreateSlotsRequest {
-  string doctor_slug = 1;
-}
-message CreateSlotsResponse {}

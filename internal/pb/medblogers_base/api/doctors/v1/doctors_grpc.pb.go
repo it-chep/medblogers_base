@@ -30,9 +30,6 @@ const (
 	DoctorService_Filter_FullMethodName                    = "/doctor.v1.DoctorService/Filter"
 	DoctorService_CreateDoctor_FullMethodName              = "/doctor.v1.DoctorService/CreateDoctor"
 	DoctorService_GetDoctor_FullMethodName                 = "/doctor.v1.DoctorService/GetDoctor"
-	DoctorService_BuildDoctorCalendar_FullMethodName       = "/doctor.v1.DoctorService/BuildDoctorCalendar"
-	DoctorService_BookDoctorSlot_FullMethodName            = "/doctor.v1.DoctorService/BookDoctorSlot"
-	DoctorService_CreateSlots_FullMethodName               = "/doctor.v1.DoctorService/CreateSlots"
 	DoctorService_CheckCheating_FullMethodName             = "/doctor.v1.DoctorService/CheckCheating"
 )
 
@@ -53,9 +50,6 @@ type DoctorServiceClient interface {
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateDoctor(ctx context.Context, in *CreateDoctorRequest, opts ...grpc.CallOption) (*CreateDoctorResponse, error)
 	GetDoctor(ctx context.Context, in *GetDoctorRequest, opts ...grpc.CallOption) (*GetDoctorResponse, error)
-	BuildDoctorCalendar(ctx context.Context, in *BuildDoctorCalendarRequest, opts ...grpc.CallOption) (*BuildDoctorCalendarResponse, error)
-	BookDoctorSlot(ctx context.Context, in *BookDoctorSlotRequest, opts ...grpc.CallOption) (*BookDoctorSlotResponse, error)
-	CreateSlots(ctx context.Context, in *CreateSlotsRequest, opts ...grpc.CallOption) (*CreateSlotsResponse, error)
 	CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error)
 }
 
@@ -177,36 +171,6 @@ func (c *doctorServiceClient) GetDoctor(ctx context.Context, in *GetDoctorReques
 	return out, nil
 }
 
-func (c *doctorServiceClient) BuildDoctorCalendar(ctx context.Context, in *BuildDoctorCalendarRequest, opts ...grpc.CallOption) (*BuildDoctorCalendarResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BuildDoctorCalendarResponse)
-	err := c.cc.Invoke(ctx, DoctorService_BuildDoctorCalendar_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *doctorServiceClient) BookDoctorSlot(ctx context.Context, in *BookDoctorSlotRequest, opts ...grpc.CallOption) (*BookDoctorSlotResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BookDoctorSlotResponse)
-	err := c.cc.Invoke(ctx, DoctorService_BookDoctorSlot_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *doctorServiceClient) CreateSlots(ctx context.Context, in *CreateSlotsRequest, opts ...grpc.CallOption) (*CreateSlotsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateSlotsResponse)
-	err := c.cc.Invoke(ctx, DoctorService_CreateSlots_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *doctorServiceClient) CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CheckCheatingResponse)
@@ -234,9 +198,6 @@ type DoctorServiceServer interface {
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateDoctor(context.Context, *CreateDoctorRequest) (*CreateDoctorResponse, error)
 	GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error)
-	BuildDoctorCalendar(context.Context, *BuildDoctorCalendarRequest) (*BuildDoctorCalendarResponse, error)
-	BookDoctorSlot(context.Context, *BookDoctorSlotRequest) (*BookDoctorSlotResponse, error)
-	CreateSlots(context.Context, *CreateSlotsRequest) (*CreateSlotsResponse, error)
 	CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error)
 }
 
@@ -279,15 +240,6 @@ func (UnimplementedDoctorServiceServer) CreateDoctor(context.Context, *CreateDoc
 }
 func (UnimplementedDoctorServiceServer) GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDoctor not implemented")
-}
-func (UnimplementedDoctorServiceServer) BuildDoctorCalendar(context.Context, *BuildDoctorCalendarRequest) (*BuildDoctorCalendarResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method BuildDoctorCalendar not implemented")
-}
-func (UnimplementedDoctorServiceServer) BookDoctorSlot(context.Context, *BookDoctorSlotRequest) (*BookDoctorSlotResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method BookDoctorSlot not implemented")
-}
-func (UnimplementedDoctorServiceServer) CreateSlots(context.Context, *CreateSlotsRequest) (*CreateSlotsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateSlots not implemented")
 }
 func (UnimplementedDoctorServiceServer) CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckCheating not implemented")
@@ -510,60 +462,6 @@ func _DoctorService_GetDoctor_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DoctorService_BuildDoctorCalendar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BuildDoctorCalendarRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DoctorServiceServer).BuildDoctorCalendar(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DoctorService_BuildDoctorCalendar_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DoctorServiceServer).BuildDoctorCalendar(ctx, req.(*BuildDoctorCalendarRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DoctorService_BookDoctorSlot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookDoctorSlotRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DoctorServiceServer).BookDoctorSlot(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DoctorService_BookDoctorSlot_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DoctorServiceServer).BookDoctorSlot(ctx, req.(*BookDoctorSlotRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DoctorService_CreateSlots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSlotsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DoctorServiceServer).CreateSlots(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DoctorService_CreateSlots_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DoctorServiceServer).CreateSlots(ctx, req.(*CreateSlotsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DoctorService_CheckCheating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckCheatingRequest)
 	if err := dec(in); err != nil {
@@ -632,18 +530,6 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDoctor",
 			Handler:    _DoctorService_GetDoctor_Handler,
-		},
-		{
-			MethodName: "BuildDoctorCalendar",
-			Handler:    _DoctorService_BuildDoctorCalendar_Handler,
-		},
-		{
-			MethodName: "BookDoctorSlot",
-			Handler:    _DoctorService_BookDoctorSlot_Handler,
-		},
-		{
-			MethodName: "CreateSlots",
-			Handler:    _DoctorService_CreateSlots_Handler,
 		},
 		{
 			MethodName: "CheckCheating",
