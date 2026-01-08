@@ -651,7 +651,12 @@
       "type": "object"
     },
     "admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribersBody": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "updateSubscribers": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateDoctorRequest"
+        }
+      }
     },
     "admin.doctors.doctors.v1.GetDoctorByIDResponse": {
       "type": "object",
@@ -1010,6 +1015,15 @@
         },
         "name": {
           "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.UpdateDoctorRequest": {
+      "type": "object",
+      "properties": {
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

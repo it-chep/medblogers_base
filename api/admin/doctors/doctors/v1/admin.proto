@@ -322,6 +322,12 @@ message DeleteDoctorAdditionalSpecialityResponse {}
 
 message UpdateSubscribersRequest {
   int64 doctor_id = 1;
+  UpdateDoctorRequest update_subscribers = 2;
+
+  message UpdateRequest {
+    string key = 1;
+    int64 subs_count = 2;
+  }
 }
 
 message UpdateSubscribersResponse {}
