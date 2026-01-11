@@ -33,6 +33,7 @@ import (
 	moduleBlogs "medblogers_base/internal/modules/blogs"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
+	moduleSeo "medblogers_base/internal/modules/seo"
 
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -101,6 +102,7 @@ func (a *App) initModules(_ context.Context) *App {
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 		auth:        moduleAuth.New(a.postgres),
 		blogs:       moduleBlogs.NewModule(a.postgres),
+		seo:         moduleSeo.New(a.postgres),
 	}
 
 	return a

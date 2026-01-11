@@ -28,7 +28,7 @@ func (a *Action) Do(ctx context.Context) ([]string, error) {
 	sitemap := make([]string, 0, 1000)
 	sitemap = append(
 		sitemap, []string{
-			"/welcome", "/blogs", "/helpers", "/helpers_welcome",
+			"/welcome", "/blogs", "/helpers", "/welcome_freelancer",
 			"/new_club_participant", "/new_freelancer",
 		}...,
 	)
@@ -66,6 +66,6 @@ func (a *Action) getBlogsURLs(ctx context.Context) []string {
 		logger.Error(ctx, "Ошибка получения sitemap докторов", err)
 	}
 	return lo.Map(blogsSlugs, func(item string, _ int) string {
-		return "/blog/" + item
+		return "/blogs/" + item
 	})
 }
