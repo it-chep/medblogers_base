@@ -113,6 +113,27 @@ func local_request_Seo_GetFreelancersSeoData_0(ctx context.Context, marshaler ru
 	return msg, metadata, err
 }
 
+func request_Seo_GetSitemapInfo_0(ctx context.Context, marshaler runtime.Marshaler, client SeoClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetSitemapInfoRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetSitemapInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Seo_GetSitemapInfo_0(ctx context.Context, marshaler runtime.Marshaler, server SeoServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetSitemapInfoRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetSitemapInfo(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterSeoHandlerServer registers the http handlers for service Seo to "mux".
 // UnaryRPC     :call SeoServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -158,6 +179,26 @@ func RegisterSeoHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 			return
 		}
 		forward_Seo_GetFreelancersSeoData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_Seo_GetSitemapInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/seo.v1.Seo/GetSitemapInfo", runtime.WithHTTPPathPattern("/api/v1/seo/sitemap_info"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Seo_GetSitemapInfo_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Seo_GetSitemapInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -233,15 +274,34 @@ func RegisterSeoHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 		}
 		forward_Seo_GetFreelancersSeoData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_Seo_GetSitemapInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/seo.v1.Seo/GetSitemapInfo", runtime.WithHTTPPathPattern("/api/v1/seo/sitemap_info"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Seo_GetSitemapInfo_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Seo_GetSitemapInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
 	pattern_Seo_GetDoctorSeoData_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "seo", "doctor_slug"}, ""))
 	pattern_Seo_GetFreelancersSeoData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "freelancers", "seo", "freelancers_slug"}, ""))
+	pattern_Seo_GetSitemapInfo_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "seo", "sitemap_info"}, ""))
 )
 
 var (
 	forward_Seo_GetDoctorSeoData_0      = runtime.ForwardResponseMessage
 	forward_Seo_GetFreelancersSeoData_0 = runtime.ForwardResponseMessage
+	forward_Seo_GetSitemapInfo_0        = runtime.ForwardResponseMessage
 )

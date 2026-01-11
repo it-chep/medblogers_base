@@ -7,6 +7,7 @@ import (
 	"medblogers_base/internal/modules/auth"
 	"medblogers_base/internal/modules/blogs"
 	"medblogers_base/internal/modules/freelancers"
+	"medblogers_base/internal/modules/seo"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
@@ -24,6 +25,7 @@ type modules struct {
 	doctors     *doctors.Module
 	freelancers *freelancers.Module
 	blogs       *blogs.Module
+	seo         *seo.Module
 }
 
 type App struct {
