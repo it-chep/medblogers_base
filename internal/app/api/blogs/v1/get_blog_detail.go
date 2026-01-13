@@ -7,10 +7,13 @@ import (
 )
 
 func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDetailRequest) (*desc.GetBlogDetailResponse, error) {
-	blog, err := i.blogs.Actions.GetBlogDetail.Do(ctx, req.GetBlogSlug())
+	blogDTO, err := i.blogs.Actions.GetBlogDetail.Do(ctx, req.GetBlogSlug())
 	if err != nil {
 		return nil, err
 	}
+
+	blog := blogDTO.BlogEntity
+	doc := blogDTO.Doctor
 
 	return &desc.GetBlogDetailResponse{
 		Title:             blog.GetTitle(),
@@ -21,5 +24,12 @@ func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDet
 		AdditionalSeoText: blog.GetAdditionalSEOText(),
 		CreatedAt:         converter.FormatDateRussian(blog.GetCreatedAt()),
 		PhotoLink:         blog.GetPrimaryPhotoURL(),
+
+		Doctor: &desc.GetBlogDetailResponse_Doctor{
+			Name:           doc.Name,
+			Slug:           doc.Slug,
+			Image:          doc.PhotoLink,
+			SpecialityName: doc.SpecialityName,
+		},
 	}, nil
 }

@@ -70,6 +70,37 @@
         ]
       }
     },
+    "/api/v1/blogs/doctor/{doctorSlug}": {
+      "get": {
+        "summary": "Статьи определенного доктора",
+        "operationId": "BlogService_GetDoctorBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.GetDoctorBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
     "/api/v1/blogs/top": {
       "get": {
         "summary": "Топ-3 или топ статей, для главной и тд",
@@ -121,6 +152,45 @@
         },
         "photoLink": {
           "type": "string"
+        },
+        "doctor": {
+          "$ref": "#/definitions/blogs.v1.GetBlogDetailResponse.Doctor"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.GetBlogDetailResponse.Category"
+          }
+        }
+      }
+    },
+    "blogs.v1.GetBlogDetailResponse.Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs.v1.GetBlogDetailResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "specialityName": {
+          "type": "string"
         }
       }
     },
@@ -137,6 +207,38 @@
       }
     },
     "blogs.v1.GetBlogsResponse.BlogMiniatures": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs.v1.GetDoctorBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.GetDoctorBlogsResponse.BlogMiniatures"
+          }
+        }
+      }
+    },
+    "blogs.v1.GetDoctorBlogsResponse.BlogMiniatures": {
       "type": "object",
       "properties": {
         "title": {

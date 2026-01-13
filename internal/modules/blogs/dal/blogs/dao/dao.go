@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"medblogers_base/internal/modules/blogs/domain/blog"
 	"medblogers_base/internal/modules/blogs/domain/blog_photo"
+	"medblogers_base/internal/modules/blogs/domain/doctor_author"
 	"time"
 
 	"github.com/google/uuid"
@@ -20,6 +21,7 @@ type BlogDAO struct {
 	AdditionalSEOText sql.NullString `db:"additional_seo_text"`
 	CreatedAt         time.Time      `db:"created_at"`
 	OrderingNumber    sql.NullInt64  `db:"ordering_number"`
+	DoctorID          sql.NullInt64  `db:"doctor_id"`
 }
 
 func (b *BlogDAO) ToDomain() *blog.Blog {
@@ -33,6 +35,20 @@ func (b *BlogDAO) ToDomain() *blog.Blog {
 		blog.WithAdditionalSEOText(b.AdditionalSEOText.String),
 		blog.WithCreatedAt(b.CreatedAt),
 		blog.WithOrderingNumber(b.OrderingNumber.Int64),
+		blog.WithDoctorID(b.DoctorID.Int64),
+	)
+}
+
+type DoctorAuthorDAO struct {
+	Name           string `db:"name"`
+	Slug           string `db:"slug"`
+	S3Key          string `db:"s3_key"`
+	SpecialityName string `db:"speciality_name"`
+}
+
+func (d *DoctorAuthorDAO) ToDomain() *doctor_author.Doctor {
+	return doctor_author.NewDoctor(
+		d.Name, d.Slug, d.S3Key, d.SpecialityName,
 	)
 }
 

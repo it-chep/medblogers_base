@@ -148,16 +148,18 @@ func (x *GetBlogByIDRequest) GetBlogId() string {
 }
 
 type GetBlogByIDResponse struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	BlogId            string                 `protobuf:"bytes,1,opt,name=blog_id,json=blogId,proto3" json:"blog_id,omitempty"`
-	Slug              string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
-	Title             string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Body              string                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
-	IsActive          bool                   `protobuf:"varint,5,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	PreviewText       string                 `protobuf:"bytes,6,opt,name=preview_text,json=previewText,proto3" json:"preview_text,omitempty"`
-	SocietyPreview    string                 `protobuf:"bytes,7,opt,name=society_preview,json=societyPreview,proto3" json:"society_preview,omitempty"`
-	AdditionalSeoText string                 `protobuf:"bytes,8,opt,name=additional_seo_text,json=additionalSeoText,proto3" json:"additional_seo_text,omitempty"`
-	OrderingNumber    int64                  `protobuf:"varint,9,opt,name=ordering_number,json=orderingNumber,proto3" json:"ordering_number,omitempty"`
+	state             protoimpl.MessageState          `protogen:"open.v1"`
+	BlogId            string                          `protobuf:"bytes,1,opt,name=blog_id,json=blogId,proto3" json:"blog_id,omitempty"`
+	Slug              string                          `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
+	Title             string                          `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Body              string                          `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	IsActive          bool                            `protobuf:"varint,5,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	PreviewText       string                          `protobuf:"bytes,6,opt,name=preview_text,json=previewText,proto3" json:"preview_text,omitempty"`
+	SocietyPreview    string                          `protobuf:"bytes,7,opt,name=society_preview,json=societyPreview,proto3" json:"society_preview,omitempty"`
+	AdditionalSeoText string                          `protobuf:"bytes,8,opt,name=additional_seo_text,json=additionalSeoText,proto3" json:"additional_seo_text,omitempty"`
+	OrderingNumber    int64                           `protobuf:"varint,9,opt,name=ordering_number,json=orderingNumber,proto3" json:"ordering_number,omitempty"`
+	Doctor            *GetBlogByIDResponse_Doctor     `protobuf:"bytes,10,opt,name=doctor,proto3" json:"doctor,omitempty"`
+	Categories        []*GetBlogByIDResponse_Category `protobuf:"bytes,11,rep,name=categories,proto3" json:"categories,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -253,6 +255,20 @@ func (x *GetBlogByIDResponse) GetOrderingNumber() int64 {
 		return x.OrderingNumber
 	}
 	return 0
+}
+
+func (x *GetBlogByIDResponse) GetDoctor() *GetBlogByIDResponse_Doctor {
+	if x != nil {
+		return x.Doctor
+	}
+	return nil
+}
+
+func (x *GetBlogByIDResponse) GetCategories() []*GetBlogByIDResponse_Category {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
 }
 
 type CreateDraftBlogRequest struct {
@@ -362,6 +378,7 @@ type UpdateDraftBlogRequest struct {
 	SocietyPreview    string                 `protobuf:"bytes,7,opt,name=society_preview,json=societyPreview,proto3" json:"society_preview,omitempty"`
 	AdditionalSeoText string                 `protobuf:"bytes,8,opt,name=additional_seo_text,json=additionalSeoText,proto3" json:"additional_seo_text,omitempty"`
 	OrderingNumber    int64                  `protobuf:"varint,9,opt,name=ordering_number,json=orderingNumber,proto3" json:"ordering_number,omitempty"`
+	DoctorId          int64                  `protobuf:"varint,10,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -455,6 +472,13 @@ func (x *UpdateDraftBlogRequest) GetAdditionalSeoText() string {
 func (x *UpdateDraftBlogRequest) GetOrderingNumber() int64 {
 	if x != nil {
 		return x.OrderingNumber
+	}
+	return 0
+}
+
+func (x *UpdateDraftBlogRequest) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
 	}
 	return 0
 }
@@ -863,6 +887,262 @@ func (x *UnPublishBlogResponse) GetErrors() []*UnPublishBlogResponse_ValidationE
 	return nil
 }
 
+type AddBlogCategoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BlogId        string                 `protobuf:"bytes,1,opt,name=blog_id,json=blogId,proto3" json:"blog_id,omitempty"`
+	CategoryId    int64                  `protobuf:"varint,2,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddBlogCategoryRequest) Reset() {
+	*x = AddBlogCategoryRequest{}
+	mi := &file_admin_v1_admin_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddBlogCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddBlogCategoryRequest) ProtoMessage() {}
+
+func (x *AddBlogCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddBlogCategoryRequest.ProtoReflect.Descriptor instead.
+func (*AddBlogCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *AddBlogCategoryRequest) GetBlogId() string {
+	if x != nil {
+		return x.BlogId
+	}
+	return ""
+}
+
+func (x *AddBlogCategoryRequest) GetCategoryId() int64 {
+	if x != nil {
+		return x.CategoryId
+	}
+	return 0
+}
+
+type DeleteBlogCategoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BlogId        string                 `protobuf:"bytes,1,opt,name=blog_id,json=blogId,proto3" json:"blog_id,omitempty"`
+	CategoryId    int64                  `protobuf:"varint,2,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteBlogCategoryRequest) Reset() {
+	*x = DeleteBlogCategoryRequest{}
+	mi := &file_admin_v1_admin_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteBlogCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteBlogCategoryRequest) ProtoMessage() {}
+
+func (x *DeleteBlogCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteBlogCategoryRequest.ProtoReflect.Descriptor instead.
+func (*DeleteBlogCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *DeleteBlogCategoryRequest) GetBlogId() string {
+	if x != nil {
+		return x.BlogId
+	}
+	return ""
+}
+
+func (x *DeleteBlogCategoryRequest) GetCategoryId() int64 {
+	if x != nil {
+		return x.CategoryId
+	}
+	return 0
+}
+
+type GetBlogCategoriesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogCategoriesRequest) Reset() {
+	*x = GetBlogCategoriesRequest{}
+	mi := &file_admin_v1_admin_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogCategoriesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogCategoriesRequest) ProtoMessage() {}
+
+func (x *GetBlogCategoriesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBlogCategoriesRequest.ProtoReflect.Descriptor instead.
+func (*GetBlogCategoriesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{18}
+}
+
+type AddBlogCategoryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddBlogCategoryResponse) Reset() {
+	*x = AddBlogCategoryResponse{}
+	mi := &file_admin_v1_admin_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddBlogCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddBlogCategoryResponse) ProtoMessage() {}
+
+func (x *AddBlogCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddBlogCategoryResponse.ProtoReflect.Descriptor instead.
+func (*AddBlogCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{19}
+}
+
+type DeleteBlogCategoryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteBlogCategoryResponse) Reset() {
+	*x = DeleteBlogCategoryResponse{}
+	mi := &file_admin_v1_admin_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteBlogCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteBlogCategoryResponse) ProtoMessage() {}
+
+func (x *DeleteBlogCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteBlogCategoryResponse.ProtoReflect.Descriptor instead.
+func (*DeleteBlogCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{20}
+}
+
+type GetBlogCategoriesResponse struct {
+	state         protoimpl.MessageState                `protogen:"open.v1"`
+	Categories    []*GetBlogCategoriesResponse_Category `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogCategoriesResponse) Reset() {
+	*x = GetBlogCategoriesResponse{}
+	mi := &file_admin_v1_admin_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogCategoriesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogCategoriesResponse) ProtoMessage() {}
+
+func (x *GetBlogCategoriesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBlogCategoriesResponse.ProtoReflect.Descriptor instead.
+func (*GetBlogCategoriesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *GetBlogCategoriesResponse) GetCategories() []*GetBlogCategoriesResponse_Category {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
 type GetBlogsResponse_Blog struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	BlogId         string                 `protobuf:"bytes,1,opt,name=blog_id,json=blogId,proto3" json:"blog_id,omitempty"`
@@ -875,7 +1155,7 @@ type GetBlogsResponse_Blog struct {
 
 func (x *GetBlogsResponse_Blog) Reset() {
 	*x = GetBlogsResponse_Blog{}
-	mi := &file_admin_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_v1_admin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -887,7 +1167,7 @@ func (x *GetBlogsResponse_Blog) String() string {
 func (*GetBlogsResponse_Blog) ProtoMessage() {}
 
 func (x *GetBlogsResponse_Blog) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_v1_admin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -931,6 +1211,110 @@ func (x *GetBlogsResponse_Blog) GetOrderingNumber() int64 {
 	return 0
 }
 
+type GetBlogByIDResponse_Doctor struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	DoctorName    string                 `protobuf:"bytes,2,opt,name=doctor_name,json=doctorName,proto3" json:"doctor_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogByIDResponse_Doctor) Reset() {
+	*x = GetBlogByIDResponse_Doctor{}
+	mi := &file_admin_v1_admin_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogByIDResponse_Doctor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogByIDResponse_Doctor) ProtoMessage() {}
+
+func (x *GetBlogByIDResponse_Doctor) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBlogByIDResponse_Doctor.ProtoReflect.Descriptor instead.
+func (*GetBlogByIDResponse_Doctor) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *GetBlogByIDResponse_Doctor) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+func (x *GetBlogByIDResponse_Doctor) GetDoctorName() string {
+	if x != nil {
+		return x.DoctorName
+	}
+	return ""
+}
+
+type GetBlogByIDResponse_Category struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogByIDResponse_Category) Reset() {
+	*x = GetBlogByIDResponse_Category{}
+	mi := &file_admin_v1_admin_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogByIDResponse_Category) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogByIDResponse_Category) ProtoMessage() {}
+
+func (x *GetBlogByIDResponse_Category) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBlogByIDResponse_Category.ProtoReflect.Descriptor instead.
+func (*GetBlogByIDResponse_Category) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{3, 1}
+}
+
+func (x *GetBlogByIDResponse_Category) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *GetBlogByIDResponse_Category) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 type SaveBlogImageResponse_Image struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ImageId       string                 `protobuf:"bytes,1,opt,name=image_id,json=imageId,proto3" json:"image_id,omitempty"`
@@ -941,7 +1325,7 @@ type SaveBlogImageResponse_Image struct {
 
 func (x *SaveBlogImageResponse_Image) Reset() {
 	*x = SaveBlogImageResponse_Image{}
-	mi := &file_admin_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_v1_admin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -953,7 +1337,7 @@ func (x *SaveBlogImageResponse_Image) String() string {
 func (*SaveBlogImageResponse_Image) ProtoMessage() {}
 
 func (x *SaveBlogImageResponse_Image) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_v1_admin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -993,7 +1377,7 @@ type PublishBlogResponse_ValidationError struct {
 
 func (x *PublishBlogResponse_ValidationError) Reset() {
 	*x = PublishBlogResponse_ValidationError{}
-	mi := &file_admin_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_v1_admin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1005,7 +1389,7 @@ func (x *PublishBlogResponse_ValidationError) String() string {
 func (*PublishBlogResponse_ValidationError) ProtoMessage() {}
 
 func (x *PublishBlogResponse_ValidationError) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_v1_admin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1045,7 +1429,7 @@ type UnPublishBlogResponse_ValidationError struct {
 
 func (x *UnPublishBlogResponse_ValidationError) Reset() {
 	*x = UnPublishBlogResponse_ValidationError{}
-	mi := &file_admin_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_v1_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1057,7 +1441,7 @@ func (x *UnPublishBlogResponse_ValidationError) String() string {
 func (*UnPublishBlogResponse_ValidationError) ProtoMessage() {}
 
 func (x *UnPublishBlogResponse_ValidationError) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_v1_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1087,6 +1471,58 @@ func (x *UnPublishBlogResponse_ValidationError) GetText() string {
 	return ""
 }
 
+type GetBlogCategoriesResponse_Category struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogCategoriesResponse_Category) Reset() {
+	*x = GetBlogCategoriesResponse_Category{}
+	mi := &file_admin_v1_admin_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogCategoriesResponse_Category) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogCategoriesResponse_Category) ProtoMessage() {}
+
+func (x *GetBlogCategoriesResponse_Category) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_v1_admin_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBlogCategoriesResponse_Category.ProtoReflect.Descriptor instead.
+func (*GetBlogCategoriesResponse_Category) Descriptor() ([]byte, []int) {
+	return file_admin_v1_admin_proto_rawDescGZIP(), []int{21, 0}
+}
+
+func (x *GetBlogCategoriesResponse_Category) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *GetBlogCategoriesResponse_Category) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_admin_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_v1_admin_proto_rawDesc = "" +
@@ -1101,7 +1537,7 @@ const file_admin_v1_admin_proto_rawDesc = "" +
 	"\tis_active\x18\x03 \x01(\bR\bisActive\x12'\n" +
 	"\x0fordering_number\x18\x04 \x01(\x03R\x0eorderingNumber\"-\n" +
 	"\x12GetBlogByIDRequest\x12\x17\n" +
-	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xae\x02\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\x9a\x04\n" +
 	"\x13GetBlogByIDResponse\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x14\n" +
@@ -1111,12 +1547,24 @@ const file_admin_v1_admin_proto_rawDesc = "" +
 	"\fpreview_text\x18\x06 \x01(\tR\vpreviewText\x12'\n" +
 	"\x0fsociety_preview\x18\a \x01(\tR\x0esocietyPreview\x12.\n" +
 	"\x13additional_seo_text\x18\b \x01(\tR\x11additionalSeoText\x12'\n" +
-	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\"B\n" +
+	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\x123\n" +
+	"\x06doctor\x18\n" +
+	" \x01(\v2\x1b.GetBlogByIDResponse.DoctorR\x06doctor\x12=\n" +
+	"\n" +
+	"categories\x18\v \x03(\v2\x1d.GetBlogByIDResponse.CategoryR\n" +
+	"categories\x1aF\n" +
+	"\x06Doctor\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1f\n" +
+	"\vdoctor_name\x18\x02 \x01(\tR\n" +
+	"doctorName\x1a.\n" +
+	"\bCategory\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"B\n" +
 	"\x16CreateDraftBlogRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\"2\n" +
 	"\x17CreateDraftBlogResponse\x12\x17\n" +
-	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xb1\x02\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xce\x02\n" +
 	"\x16UpdateDraftBlogRequest\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x14\n" +
@@ -1126,7 +1574,9 @@ const file_admin_v1_admin_proto_rawDesc = "" +
 	"\fpreview_text\x18\x06 \x01(\tR\vpreviewText\x12'\n" +
 	"\x0fsociety_preview\x18\a \x01(\tR\x0esocietyPreview\x12.\n" +
 	"\x13additional_seo_text\x18\b \x01(\tR\x11additionalSeoText\x12'\n" +
-	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\"\x19\n" +
+	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\x12\x1b\n" +
+	"\tdoctor_id\x18\n" +
+	" \x01(\x03R\bdoctorId\"\x19\n" +
 	"\x17UpdateDraftBlogResponse\"N\n" +
 	"\x14SaveBlogImageRequest\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x1d\n" +
@@ -1156,8 +1606,25 @@ const file_admin_v1_admin_proto_rawDesc = "" +
 	"\x06errors\x18\x01 \x03(\v2&.UnPublishBlogResponse.ValidationErrorR\x06errors\x1a;\n" +
 	"\x0fValidationError\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x12\n" +
-	"\x04text\x18\x02 \x01(\tR\x04text2\xa6\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\"R\n" +
+	"\x16AddBlogCategoryRequest\x12\x17\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x1f\n" +
+	"\vcategory_id\x18\x02 \x01(\x03R\n" +
+	"categoryId\"U\n" +
+	"\x19DeleteBlogCategoryRequest\x12\x17\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x1f\n" +
+	"\vcategory_id\x18\x02 \x01(\x03R\n" +
+	"categoryId\"\x1a\n" +
+	"\x18GetBlogCategoriesRequest\"\x19\n" +
+	"\x17AddBlogCategoryResponse\"\x1c\n" +
+	"\x1aDeleteBlogCategoryResponse\"\x90\x01\n" +
+	"\x19GetBlogCategoriesResponse\x12C\n" +
 	"\n" +
+	"categories\x18\x01 \x03(\v2#.GetBlogCategoriesResponse.CategoryR\n" +
+	"categories\x1a.\n" +
+	"\bCategory\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name2\xac\x0e\n" +
 	"\fAdminService\x12|\n" +
 	"\bGetBlogs\x12\x10.GetBlogsRequest\x1a\x11.GetBlogsResponse\"K\x92A.\x12,Получение списка статей\x82\xd3\xe4\x93\x02\x14\x12\x12/api/v1/admin/blog\x12\xa7\x01\n" +
 	"\vGetBlogByID\x12\x13.GetBlogByIDRequest\x1a\x14.GetBlogByIDResponse\"m\x92AF\x12DПолучение информации о статье по ее ID\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/v1/admin/blog/{blog_id}\x12\x9f\x01\n" +
@@ -1166,7 +1633,10 @@ const file_admin_v1_admin_proto_rawDesc = "" +
 	"\rSaveBlogImage\x12\x15.SaveBlogImageRequest\x1a\x16.SaveBlogImageResponse\"p\x92A;\x129Сохранение картинки для статьи\x82\xd3\xe4\x93\x02,:\x01*\"'/api/v1/admin/blog/{blog_id}/save_image\x12\xbf\x01\n" +
 	"\x0fDeleteBlogImage\x12\x17.DeleteBlogImageRequest\x1a\x18.DeleteBlogImageResponse\"y\x92A7\x125Удаление картинки для статьи\x82\xd3\xe4\x93\x029:\x01*\"4/api/v1/admin/blog/{blog_id}/delete_image/{image_id}\x12\x8f\x01\n" +
 	"\vPublishBlog\x12\x13.PublishBlogRequest\x1a\x14.PublishBlogResponse\"U\x92A#\x12!Публикация статьи\x82\xd3\xe4\x93\x02):\x01*\"$/api/v1/admin/blog/{blog_id}/publish\x12\xa7\x01\n" +
-	"\rUnPublishBlog\x12\x15.UnPublishBlogRequest\x1a\x16.UnPublishBlogResponse\"g\x92A3\x121Снятие статьи с публикации\x82\xd3\xe4\x93\x02+:\x01*\"&/api/v1/admin/blog/{blog_id}/unpublishB\x0eZ\fapi/admin/v1b\x06proto3"
+	"\rUnPublishBlog\x12\x15.UnPublishBlogRequest\x1a\x16.UnPublishBlogResponse\"g\x92A3\x121Снятие статьи с публикации\x82\xd3\xe4\x93\x02+:\x01*\"&/api/v1/admin/blog/{blog_id}/unpublish\x12\xa9\x01\n" +
+	"\x0fAddBlogCategory\x12\x17.AddBlogCategoryRequest\x1a\x18.AddBlogCategoryResponse\"c\x92A,\x12*Добавление тега статье\x82\xd3\xe4\x93\x02.:\x01*\")/api/v1/admin/blog/{blog_id}/add_category\x12\xb4\x01\n" +
+	"\x12DeleteBlogCategory\x12\x1a.DeleteBlogCategoryRequest\x1a\x1b.DeleteBlogCategoryResponse\"e\x92A+\x12)Удаление тега у статьи\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/blog/{blog_id}/delete_category\x12\xa0\x01\n" +
+	"\x11GetBlogCategories\x12\x19.GetBlogCategoriesRequest\x1a\x1a.GetBlogCategoriesResponse\"T\x92A,\x12*Получение тегов статей\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/admin/blog/categoriesB\x0eZ\fapi/admin/v1b\x06proto3"
 
 var (
 	file_admin_v1_admin_proto_rawDescOnce sync.Once
@@ -1180,7 +1650,7 @@ func file_admin_v1_admin_proto_rawDescGZIP() []byte {
 	return file_admin_v1_admin_proto_rawDescData
 }
 
-var file_admin_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_admin_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_admin_v1_admin_proto_goTypes = []any{
 	(*GetBlogsRequest)(nil),                       // 0: GetBlogsRequest
 	(*GetBlogsResponse)(nil),                      // 1: GetBlogsResponse
@@ -1198,37 +1668,55 @@ var file_admin_v1_admin_proto_goTypes = []any{
 	(*PublishBlogResponse)(nil),                   // 13: PublishBlogResponse
 	(*UnPublishBlogRequest)(nil),                  // 14: UnPublishBlogRequest
 	(*UnPublishBlogResponse)(nil),                 // 15: UnPublishBlogResponse
-	(*GetBlogsResponse_Blog)(nil),                 // 16: GetBlogsResponse.Blog
-	(*SaveBlogImageResponse_Image)(nil),           // 17: SaveBlogImageResponse.Image
-	(*PublishBlogResponse_ValidationError)(nil),   // 18: PublishBlogResponse.ValidationError
-	(*UnPublishBlogResponse_ValidationError)(nil), // 19: UnPublishBlogResponse.ValidationError
+	(*AddBlogCategoryRequest)(nil),                // 16: AddBlogCategoryRequest
+	(*DeleteBlogCategoryRequest)(nil),             // 17: DeleteBlogCategoryRequest
+	(*GetBlogCategoriesRequest)(nil),              // 18: GetBlogCategoriesRequest
+	(*AddBlogCategoryResponse)(nil),               // 19: AddBlogCategoryResponse
+	(*DeleteBlogCategoryResponse)(nil),            // 20: DeleteBlogCategoryResponse
+	(*GetBlogCategoriesResponse)(nil),             // 21: GetBlogCategoriesResponse
+	(*GetBlogsResponse_Blog)(nil),                 // 22: GetBlogsResponse.Blog
+	(*GetBlogByIDResponse_Doctor)(nil),            // 23: GetBlogByIDResponse.Doctor
+	(*GetBlogByIDResponse_Category)(nil),          // 24: GetBlogByIDResponse.Category
+	(*SaveBlogImageResponse_Image)(nil),           // 25: SaveBlogImageResponse.Image
+	(*PublishBlogResponse_ValidationError)(nil),   // 26: PublishBlogResponse.ValidationError
+	(*UnPublishBlogResponse_ValidationError)(nil), // 27: UnPublishBlogResponse.ValidationError
+	(*GetBlogCategoriesResponse_Category)(nil),    // 28: GetBlogCategoriesResponse.Category
 }
 var file_admin_v1_admin_proto_depIdxs = []int32{
-	16, // 0: GetBlogsResponse.blogs:type_name -> GetBlogsResponse.Blog
-	17, // 1: SaveBlogImageResponse.image:type_name -> SaveBlogImageResponse.Image
-	18, // 2: PublishBlogResponse.errors:type_name -> PublishBlogResponse.ValidationError
-	19, // 3: UnPublishBlogResponse.errors:type_name -> UnPublishBlogResponse.ValidationError
-	0,  // 4: AdminService.GetBlogs:input_type -> GetBlogsRequest
-	2,  // 5: AdminService.GetBlogByID:input_type -> GetBlogByIDRequest
-	4,  // 6: AdminService.CreateDraftBlog:input_type -> CreateDraftBlogRequest
-	6,  // 7: AdminService.UpdateDraftBlog:input_type -> UpdateDraftBlogRequest
-	8,  // 8: AdminService.SaveBlogImage:input_type -> SaveBlogImageRequest
-	10, // 9: AdminService.DeleteBlogImage:input_type -> DeleteBlogImageRequest
-	12, // 10: AdminService.PublishBlog:input_type -> PublishBlogRequest
-	14, // 11: AdminService.UnPublishBlog:input_type -> UnPublishBlogRequest
-	1,  // 12: AdminService.GetBlogs:output_type -> GetBlogsResponse
-	3,  // 13: AdminService.GetBlogByID:output_type -> GetBlogByIDResponse
-	5,  // 14: AdminService.CreateDraftBlog:output_type -> CreateDraftBlogResponse
-	7,  // 15: AdminService.UpdateDraftBlog:output_type -> UpdateDraftBlogResponse
-	9,  // 16: AdminService.SaveBlogImage:output_type -> SaveBlogImageResponse
-	11, // 17: AdminService.DeleteBlogImage:output_type -> DeleteBlogImageResponse
-	13, // 18: AdminService.PublishBlog:output_type -> PublishBlogResponse
-	15, // 19: AdminService.UnPublishBlog:output_type -> UnPublishBlogResponse
-	12, // [12:20] is the sub-list for method output_type
-	4,  // [4:12] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	22, // 0: GetBlogsResponse.blogs:type_name -> GetBlogsResponse.Blog
+	23, // 1: GetBlogByIDResponse.doctor:type_name -> GetBlogByIDResponse.Doctor
+	24, // 2: GetBlogByIDResponse.categories:type_name -> GetBlogByIDResponse.Category
+	25, // 3: SaveBlogImageResponse.image:type_name -> SaveBlogImageResponse.Image
+	26, // 4: PublishBlogResponse.errors:type_name -> PublishBlogResponse.ValidationError
+	27, // 5: UnPublishBlogResponse.errors:type_name -> UnPublishBlogResponse.ValidationError
+	28, // 6: GetBlogCategoriesResponse.categories:type_name -> GetBlogCategoriesResponse.Category
+	0,  // 7: AdminService.GetBlogs:input_type -> GetBlogsRequest
+	2,  // 8: AdminService.GetBlogByID:input_type -> GetBlogByIDRequest
+	4,  // 9: AdminService.CreateDraftBlog:input_type -> CreateDraftBlogRequest
+	6,  // 10: AdminService.UpdateDraftBlog:input_type -> UpdateDraftBlogRequest
+	8,  // 11: AdminService.SaveBlogImage:input_type -> SaveBlogImageRequest
+	10, // 12: AdminService.DeleteBlogImage:input_type -> DeleteBlogImageRequest
+	12, // 13: AdminService.PublishBlog:input_type -> PublishBlogRequest
+	14, // 14: AdminService.UnPublishBlog:input_type -> UnPublishBlogRequest
+	16, // 15: AdminService.AddBlogCategory:input_type -> AddBlogCategoryRequest
+	17, // 16: AdminService.DeleteBlogCategory:input_type -> DeleteBlogCategoryRequest
+	18, // 17: AdminService.GetBlogCategories:input_type -> GetBlogCategoriesRequest
+	1,  // 18: AdminService.GetBlogs:output_type -> GetBlogsResponse
+	3,  // 19: AdminService.GetBlogByID:output_type -> GetBlogByIDResponse
+	5,  // 20: AdminService.CreateDraftBlog:output_type -> CreateDraftBlogResponse
+	7,  // 21: AdminService.UpdateDraftBlog:output_type -> UpdateDraftBlogResponse
+	9,  // 22: AdminService.SaveBlogImage:output_type -> SaveBlogImageResponse
+	11, // 23: AdminService.DeleteBlogImage:output_type -> DeleteBlogImageResponse
+	13, // 24: AdminService.PublishBlog:output_type -> PublishBlogResponse
+	15, // 25: AdminService.UnPublishBlog:output_type -> UnPublishBlogResponse
+	19, // 26: AdminService.AddBlogCategory:output_type -> AddBlogCategoryResponse
+	20, // 27: AdminService.DeleteBlogCategory:output_type -> DeleteBlogCategoryResponse
+	21, // 28: AdminService.GetBlogCategories:output_type -> GetBlogCategoriesResponse
+	18, // [18:29] is the sub-list for method output_type
+	7,  // [7:18] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_admin_v1_admin_proto_init() }
@@ -1243,7 +1731,7 @@ func file_admin_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_v1_admin_proto_rawDesc), len(file_admin_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   20,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

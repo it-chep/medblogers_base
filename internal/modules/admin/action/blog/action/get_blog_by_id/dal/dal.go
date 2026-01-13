@@ -32,3 +32,30 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 
 	return blog, nil
 }
+
+// GetDoctorInfo информации о докторе
+func (r *Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (string, error) {
+	sql := `select name from docstar_site_doctor where id = $1`
+
+	var name string
+	err := pgxscan.Get(ctx, r.db, &name, sql, doctorID)
+	if err != nil {
+		return "", err
+	}
+
+	return name, nil
+}
+
+// GetBlogCategories получение категорий статей
+func (r *Repository) GetBlogCategories(ctx context.Context, blogID uuid.UUID) (dto.Categories, error) {
+	sql := `
+		select c.id, c.name 
+		from blog_category c
+		join m2m_blog_category m2m on c.id = m2m.category_id
+		where m2m.blog_id = $1
+	`
+
+	var categories dto.Categories
+	err := pgxscan.Select(ctx, r.db, &categories, sql, blogID.String())
+	return categories, err
+}

@@ -19,14 +19,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AdminService_GetBlogs_FullMethodName        = "/AdminService/GetBlogs"
-	AdminService_GetBlogByID_FullMethodName     = "/AdminService/GetBlogByID"
-	AdminService_CreateDraftBlog_FullMethodName = "/AdminService/CreateDraftBlog"
-	AdminService_UpdateDraftBlog_FullMethodName = "/AdminService/UpdateDraftBlog"
-	AdminService_SaveBlogImage_FullMethodName   = "/AdminService/SaveBlogImage"
-	AdminService_DeleteBlogImage_FullMethodName = "/AdminService/DeleteBlogImage"
-	AdminService_PublishBlog_FullMethodName     = "/AdminService/PublishBlog"
-	AdminService_UnPublishBlog_FullMethodName   = "/AdminService/UnPublishBlog"
+	AdminService_GetBlogs_FullMethodName           = "/AdminService/GetBlogs"
+	AdminService_GetBlogByID_FullMethodName        = "/AdminService/GetBlogByID"
+	AdminService_CreateDraftBlog_FullMethodName    = "/AdminService/CreateDraftBlog"
+	AdminService_UpdateDraftBlog_FullMethodName    = "/AdminService/UpdateDraftBlog"
+	AdminService_SaveBlogImage_FullMethodName      = "/AdminService/SaveBlogImage"
+	AdminService_DeleteBlogImage_FullMethodName    = "/AdminService/DeleteBlogImage"
+	AdminService_PublishBlog_FullMethodName        = "/AdminService/PublishBlog"
+	AdminService_UnPublishBlog_FullMethodName      = "/AdminService/UnPublishBlog"
+	AdminService_AddBlogCategory_FullMethodName    = "/AdminService/AddBlogCategory"
+	AdminService_DeleteBlogCategory_FullMethodName = "/AdminService/DeleteBlogCategory"
+	AdminService_GetBlogCategories_FullMethodName  = "/AdminService/GetBlogCategories"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -44,6 +47,9 @@ type AdminServiceClient interface {
 	DeleteBlogImage(ctx context.Context, in *DeleteBlogImageRequest, opts ...grpc.CallOption) (*DeleteBlogImageResponse, error)
 	PublishBlog(ctx context.Context, in *PublishBlogRequest, opts ...grpc.CallOption) (*PublishBlogResponse, error)
 	UnPublishBlog(ctx context.Context, in *UnPublishBlogRequest, opts ...grpc.CallOption) (*UnPublishBlogResponse, error)
+	AddBlogCategory(ctx context.Context, in *AddBlogCategoryRequest, opts ...grpc.CallOption) (*AddBlogCategoryResponse, error)
+	DeleteBlogCategory(ctx context.Context, in *DeleteBlogCategoryRequest, opts ...grpc.CallOption) (*DeleteBlogCategoryResponse, error)
+	GetBlogCategories(ctx context.Context, in *GetBlogCategoriesRequest, opts ...grpc.CallOption) (*GetBlogCategoriesResponse, error)
 }
 
 type adminServiceClient struct {
@@ -134,6 +140,36 @@ func (c *adminServiceClient) UnPublishBlog(ctx context.Context, in *UnPublishBlo
 	return out, nil
 }
 
+func (c *adminServiceClient) AddBlogCategory(ctx context.Context, in *AddBlogCategoryRequest, opts ...grpc.CallOption) (*AddBlogCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddBlogCategoryResponse)
+	err := c.cc.Invoke(ctx, AdminService_AddBlogCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteBlogCategory(ctx context.Context, in *DeleteBlogCategoryRequest, opts ...grpc.CallOption) (*DeleteBlogCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteBlogCategoryResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteBlogCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetBlogCategories(ctx context.Context, in *GetBlogCategoriesRequest, opts ...grpc.CallOption) (*GetBlogCategoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBlogCategoriesResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetBlogCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations should embed UnimplementedAdminServiceServer
 // for forward compatibility.
@@ -149,6 +185,9 @@ type AdminServiceServer interface {
 	DeleteBlogImage(context.Context, *DeleteBlogImageRequest) (*DeleteBlogImageResponse, error)
 	PublishBlog(context.Context, *PublishBlogRequest) (*PublishBlogResponse, error)
 	UnPublishBlog(context.Context, *UnPublishBlogRequest) (*UnPublishBlogResponse, error)
+	AddBlogCategory(context.Context, *AddBlogCategoryRequest) (*AddBlogCategoryResponse, error)
+	DeleteBlogCategory(context.Context, *DeleteBlogCategoryRequest) (*DeleteBlogCategoryResponse, error)
+	GetBlogCategories(context.Context, *GetBlogCategoriesRequest) (*GetBlogCategoriesResponse, error)
 }
 
 // UnimplementedAdminServiceServer should be embedded to have
@@ -181,6 +220,15 @@ func (UnimplementedAdminServiceServer) PublishBlog(context.Context, *PublishBlog
 }
 func (UnimplementedAdminServiceServer) UnPublishBlog(context.Context, *UnPublishBlogRequest) (*UnPublishBlogResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UnPublishBlog not implemented")
+}
+func (UnimplementedAdminServiceServer) AddBlogCategory(context.Context, *AddBlogCategoryRequest) (*AddBlogCategoryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddBlogCategory not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteBlogCategory(context.Context, *DeleteBlogCategoryRequest) (*DeleteBlogCategoryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteBlogCategory not implemented")
+}
+func (UnimplementedAdminServiceServer) GetBlogCategories(context.Context, *GetBlogCategoriesRequest) (*GetBlogCategoriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBlogCategories not implemented")
 }
 func (UnimplementedAdminServiceServer) testEmbeddedByValue() {}
 
@@ -346,6 +394,60 @@ func _AdminService_UnPublishBlog_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_AddBlogCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBlogCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).AddBlogCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_AddBlogCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).AddBlogCategory(ctx, req.(*AddBlogCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteBlogCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBlogCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteBlogCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteBlogCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteBlogCategory(ctx, req.(*DeleteBlogCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetBlogCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBlogCategoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetBlogCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetBlogCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetBlogCategories(ctx, req.(*GetBlogCategoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -384,6 +486,18 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnPublishBlog",
 			Handler:    _AdminService_UnPublishBlog_Handler,
+		},
+		{
+			MethodName: "AddBlogCategory",
+			Handler:    _AdminService_AddBlogCategory_Handler,
+		},
+		{
+			MethodName: "DeleteBlogCategory",
+			Handler:    _AdminService_DeleteBlogCategory_Handler,
+		},
+		{
+			MethodName: "GetBlogCategories",
+			Handler:    _AdminService_GetBlogCategories_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
