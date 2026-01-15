@@ -43,6 +43,13 @@ service BlogService {
     }
 }
 
+message Category {
+  int64 id = 1;
+  string name = 2;
+  string font_color = 3;
+  string bg_color = 4;
+}
+
 message GetTopBlogsRequest{}
 
 message GetTopBlogsResponse{
@@ -54,6 +61,8 @@ message GetTopBlogsResponse{
         string preview_text = 3;
         string created_at = 4;
         string photo_link = 5;
+
+        repeated Category categories = 6;
     }
 }
 
@@ -68,6 +77,8 @@ message GetBlogsResponse{
         string preview_text = 3;
         string created_at = 4;
         string photo_link = 5;
+
+        repeated Category categories = 6;
     }
 }
 
@@ -93,11 +104,6 @@ message GetBlogDetailResponse{
         string image = 3;
         string speciality_name = 4;
     }
-
-    message Category {
-        int64 id = 1;
-        string name = 2;
-    }
 }
 
 message GetDoctorBlogsRequest {
@@ -113,5 +119,7 @@ message GetDoctorBlogsResponse {
         string preview_text = 3;
         string created_at = 4;
         string photo_link = 5;
+
+        repeated Category categories = 6;
     }
 }

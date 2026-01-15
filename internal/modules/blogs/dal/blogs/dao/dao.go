@@ -2,8 +2,10 @@ package dao
 
 import (
 	"database/sql"
+	"github.com/samber/lo"
 	"medblogers_base/internal/modules/blogs/domain/blog"
 	"medblogers_base/internal/modules/blogs/domain/blog_photo"
+	"medblogers_base/internal/modules/blogs/domain/category"
 	"medblogers_base/internal/modules/blogs/domain/doctor_author"
 	"time"
 
@@ -100,4 +102,30 @@ func (d PrimaryPhotoDAO) ToDomain() *blog_photo.BlogPhoto {
 		blog_photo.WithFileType(d.FileType.String),
 		blog_photo.WithPhotoID(d.ID),
 	)
+}
+
+// CategoryDAO .
+type CategoryDAO struct {
+	ID        int64     `db:"id"`
+	Name      string    `db:"name"`
+	FontColor string    `db:"font_color"`
+	BgColor   string    `db:"bg_color"`
+	BlogID    uuid.UUID `db:"blog_id"`
+}
+
+// Categories .
+type Categories []CategoryDAO
+
+// ToDomain .
+func (c *CategoryDAO) ToDomain() *category.Category {
+	return category.New(
+		c.ID, c.Name, c.FontColor, c.BgColor,
+	)
+}
+
+// ToDomain .
+func (c Categories) ToDomain() []*category.Category {
+	return lo.Map(c, func(item CategoryDAO, _ int) *category.Category {
+		return item.ToDomain()
+	})
 }

@@ -3,45 +3,55 @@ package get_doctor_blogs
 import (
 	"context"
 	"medblogers_base/internal/modules/blogs/action/get_doctor_blogs/dal"
-	"medblogers_base/internal/modules/blogs/domain/blog"
+	"medblogers_base/internal/modules/blogs/action/get_doctor_blogs/dto"
+	"medblogers_base/internal/modules/blogs/dal/blogs"
 	"medblogers_base/internal/pkg/postgres"
 )
 
 // Action получение статей врача
 type Action struct {
-	dal *dal.Repository
+	dal       *dal.Repository
+	commonDal *blogs.Repository
 }
 
 // New .
 func New(pool postgres.PoolWrapper) *Action {
 	return &Action{
-		dal: dal.NewRepository(pool),
+		commonDal: blogs.NewRepository(pool),
+		dal:       dal.NewRepository(pool),
 	}
 }
 
 // Do .
-func (a *Action) Do(ctx context.Context, doctorSlug string) (blog.Blogs, error) {
+func (a *Action) Do(ctx context.Context, doctorSlug string) (dto.Response, error) {
 	// Получаем статьи
 	blogs, err := a.dal.GetDoctorBlogs(ctx, doctorSlug)
 	if err != nil {
-		return nil, err
+		return dto.Response{}, err
 	}
 
-	// Получаем первые фотографии статей
 	blogPhotosMap, err := a.dal.GetPrimaryPhotos(ctx, blogs.GetIDs())
 	if err != nil {
-		return nil, err
+		return dto.Response{}, err
 	}
 
-	// Устанавливаем фотографию если она есть
+	categoriesMap, err := a.commonDal.GetBlogsCategories(ctx, blogs.GetIDs())
+	if err != nil {
+		return dto.Response{}, err
+	}
+
+	resp := dto.Response{}
 	for _, bl := range blogs {
 		photo, ok := blogPhotosMap[bl.GetID()]
 		if !ok {
 			continue
 		}
-
 		bl.SetPrimaryPhotoURL(photo.GetID(), photo.GetFileType())
+		resp.Blogs = append(resp.Blogs, dto.Blog{
+			Blog:       bl,
+			Categories: categoriesMap[bl.GetID()],
+		})
 	}
 
-	return blogs, nil
+	return resp, nil
 }

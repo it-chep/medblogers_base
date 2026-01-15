@@ -2,6 +2,8 @@ package v1
 
 import (
 	"context"
+	"github.com/samber/lo"
+	"medblogers_base/internal/modules/blogs/domain/category"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	"medblogers_base/internal/pkg/converter"
 )
@@ -14,6 +16,7 @@ func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDet
 
 	blog := blogDTO.BlogEntity
 	doc := blogDTO.Doctor
+	categories := blogDTO.Categories
 
 	return &desc.GetBlogDetailResponse{
 		Title:             blog.GetTitle(),
@@ -31,5 +34,14 @@ func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDet
 			Image:          doc.PhotoLink,
 			SpecialityName: doc.SpecialityName,
 		},
+
+		Categories: lo.Map(categories, func(item *category.Category, _ int) *desc.Category {
+			return &desc.Category{
+				Id:        item.ID(),
+				Name:      item.Name(),
+				FontColor: item.FontColor(),
+				BgColor:   item.BgColor(),
+			}
+		}),
 	}, nil
 }

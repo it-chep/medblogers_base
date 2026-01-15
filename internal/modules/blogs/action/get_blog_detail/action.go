@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/blogs/action/get_blog_detail/dto"
 	"medblogers_base/internal/modules/blogs/action/get_blog_detail/service/doctor"
 	"medblogers_base/internal/modules/blogs/client"
+	"medblogers_base/internal/modules/blogs/dal/blogs"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -13,6 +14,7 @@ import (
 type Action struct {
 	dal           *dal.Repository
 	doctorService *doctor.Service
+	commonDal     *blogs.Repository
 }
 
 // New .
@@ -20,6 +22,7 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 	repo := dal.NewRepository(pool)
 	return &Action{
 		dal:           repo,
+		commonDal:     blogs.NewRepository(pool),
 		doctorService: doctor.New(repo, clients.S3),
 	}
 }
@@ -47,10 +50,15 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.BlogDTO, error) {
 			return dto.BlogDTO{}, err
 		}
 	}
-	// todo добавить категории
+
+	categories, err := a.commonDal.GetBlogCategories(ctx, blogEntity.GetID())
+	if err != nil {
+		return dto.BlogDTO{}, err
+	}
 
 	return dto.BlogDTO{
 		BlogEntity: blogEntity,
 		Doctor:     doctorInfo,
+		Categories: categories,
 	}, nil
 }
