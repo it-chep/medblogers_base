@@ -72,7 +72,7 @@ func (r *Repository) GetDoctorInfo(ctx context.Context, doctorID int64) (*doctor
 		select d.name, d.slug, d.s3_image, spec.name as "speciality_name" 
 		from docstar_site_doctor d
 			join docstar_site_speciallity spec on d.speciallity_id = spec.id
-		where doctor_id = $1
+		where d.id = $1
 	`
 
 	var doctor dao.DoctorAuthorDAO

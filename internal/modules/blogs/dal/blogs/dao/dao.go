@@ -44,7 +44,7 @@ func (b *BlogDAO) ToDomain() *blog.Blog {
 type DoctorAuthorDAO struct {
 	Name           string `db:"name"`
 	Slug           string `db:"slug"`
-	S3Key          string `db:"s3_key"`
+	S3Key          string `db:"s3_image"`
 	SpecialityName string `db:"speciality_name"`
 }
 
