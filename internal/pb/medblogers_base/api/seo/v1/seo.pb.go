@@ -231,6 +231,154 @@ func (x *GetFreelancersSeoDataResponse) GetImage() string {
 	return ""
 }
 
+type GetSitemapInfoRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSitemapInfoRequest) Reset() {
+	*x = GetSitemapInfoRequest{}
+	mi := &file_seo_v1_seo_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSitemapInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSitemapInfoRequest) ProtoMessage() {}
+
+func (x *GetSitemapInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSitemapInfoRequest.ProtoReflect.Descriptor instead.
+func (*GetSitemapInfoRequest) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{4}
+}
+
+type GetSitemapInfoResponse struct {
+	state         protoimpl.MessageState                `protogen:"open.v1"`
+	Items         []*GetSitemapInfoResponse_SitemapItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSitemapInfoResponse) Reset() {
+	*x = GetSitemapInfoResponse{}
+	mi := &file_seo_v1_seo_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSitemapInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSitemapInfoResponse) ProtoMessage() {}
+
+func (x *GetSitemapInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSitemapInfoResponse.ProtoReflect.Descriptor instead.
+func (*GetSitemapInfoResponse) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetSitemapInfoResponse) GetItems() []*GetSitemapInfoResponse_SitemapItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type GetSitemapInfoResponse_SitemapItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	LastUpdated   string                 `protobuf:"bytes,2,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
+	ChangeFreq    string                 `protobuf:"bytes,3,opt,name=change_freq,json=changeFreq,proto3" json:"change_freq,omitempty"`
+	Priority      string                 `protobuf:"bytes,4,opt,name=priority,proto3" json:"priority,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSitemapInfoResponse_SitemapItem) Reset() {
+	*x = GetSitemapInfoResponse_SitemapItem{}
+	mi := &file_seo_v1_seo_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSitemapInfoResponse_SitemapItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSitemapInfoResponse_SitemapItem) ProtoMessage() {}
+
+func (x *GetSitemapInfoResponse_SitemapItem) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSitemapInfoResponse_SitemapItem.ProtoReflect.Descriptor instead.
+func (*GetSitemapInfoResponse_SitemapItem) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *GetSitemapInfoResponse_SitemapItem) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *GetSitemapInfoResponse_SitemapItem) GetLastUpdated() string {
+	if x != nil {
+		return x.LastUpdated
+	}
+	return ""
+}
+
+func (x *GetSitemapInfoResponse_SitemapItem) GetChangeFreq() string {
+	if x != nil {
+		return x.ChangeFreq
+	}
+	return ""
+}
+
+func (x *GetSitemapInfoResponse_SitemapItem) GetPriority() string {
+	if x != nil {
+		return x.Priority
+	}
+	return ""
+}
+
 var File_seo_v1_seo_proto protoreflect.FileDescriptor
 
 const file_seo_v1_seo_proto_rawDesc = "" +
@@ -248,10 +396,20 @@ const file_seo_v1_seo_proto_rawDesc = "" +
 	"\x1dGetFreelancersSeoDataResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
-	"\x05image\x18\x03 \x01(\tR\x05image2\xce\x03\n" +
+	"\x05image\x18\x03 \x01(\tR\x05image\"\x17\n" +
+	"\x15GetSitemapInfoRequest\"\xdb\x01\n" +
+	"\x16GetSitemapInfoResponse\x12@\n" +
+	"\x05items\x18\x01 \x03(\v2*.seo.v1.GetSitemapInfoResponse.SitemapItemR\x05items\x1a\x7f\n" +
+	"\vSitemapItem\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\x12!\n" +
+	"\flast_updated\x18\x02 \x01(\tR\vlastUpdated\x12\x1f\n" +
+	"\vchange_freq\x18\x03 \x01(\tR\n" +
+	"changeFreq\x12\x1a\n" +
+	"\bpriority\x18\x04 \x01(\tR\bpriority2\x86\x05\n" +
 	"\x03Seo\x12\xcb\x01\n" +
 	"\x10GetDoctorSeoData\x12\x1f.seo.v1.GetDoctorSeoDataRequest\x1a .seo.v1.GetDoctorSeoDataResponse\"t\x92AP\x12NПолучение SEO информации для карточки врача\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v1/seo/{doctor_slug}\x12\xf8\x01\n" +
-	"\x15GetFreelancersSeoData\x12$.seo.v1.GetFreelancersSeoDataRequest\x1a%.seo.v1.GetFreelancersSeoDataResponse\"\x91\x01\x92A\\\x12ZПолучение SEO информации для карточки специалиста\x82\xd3\xe4\x93\x02,\x12*/api/v1/freelancers/seo/{freelancers_slug}B\fZ\n" +
+	"\x15GetFreelancersSeoData\x12$.seo.v1.GetFreelancersSeoDataRequest\x1a%.seo.v1.GetFreelancersSeoDataResponse\"\x91\x01\x92A\\\x12ZПолучение SEO информации для карточки специалиста\x82\xd3\xe4\x93\x02,\x12*/api/v1/freelancers/seo/{freelancers_slug}\x12\xb5\x01\n" +
+	"\x0eGetSitemapInfo\x12\x1d.seo.v1.GetSitemapInfoRequest\x1a\x1e.seo.v1.GetSitemapInfoResponse\"d\x92AA\x12?Получение урлов для генерации sitemap\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/seo/sitemap_infoB\fZ\n" +
 	"api/seo/v1b\x06proto3"
 
 var (
@@ -266,23 +424,29 @@ func file_seo_v1_seo_proto_rawDescGZIP() []byte {
 	return file_seo_v1_seo_proto_rawDescData
 }
 
-var file_seo_v1_seo_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_seo_v1_seo_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_seo_v1_seo_proto_goTypes = []any{
-	(*GetDoctorSeoDataRequest)(nil),       // 0: seo.v1.GetDoctorSeoDataRequest
-	(*GetDoctorSeoDataResponse)(nil),      // 1: seo.v1.GetDoctorSeoDataResponse
-	(*GetFreelancersSeoDataRequest)(nil),  // 2: seo.v1.GetFreelancersSeoDataRequest
-	(*GetFreelancersSeoDataResponse)(nil), // 3: seo.v1.GetFreelancersSeoDataResponse
+	(*GetDoctorSeoDataRequest)(nil),            // 0: seo.v1.GetDoctorSeoDataRequest
+	(*GetDoctorSeoDataResponse)(nil),           // 1: seo.v1.GetDoctorSeoDataResponse
+	(*GetFreelancersSeoDataRequest)(nil),       // 2: seo.v1.GetFreelancersSeoDataRequest
+	(*GetFreelancersSeoDataResponse)(nil),      // 3: seo.v1.GetFreelancersSeoDataResponse
+	(*GetSitemapInfoRequest)(nil),              // 4: seo.v1.GetSitemapInfoRequest
+	(*GetSitemapInfoResponse)(nil),             // 5: seo.v1.GetSitemapInfoResponse
+	(*GetSitemapInfoResponse_SitemapItem)(nil), // 6: seo.v1.GetSitemapInfoResponse.SitemapItem
 }
 var file_seo_v1_seo_proto_depIdxs = []int32{
-	0, // 0: seo.v1.Seo.GetDoctorSeoData:input_type -> seo.v1.GetDoctorSeoDataRequest
-	2, // 1: seo.v1.Seo.GetFreelancersSeoData:input_type -> seo.v1.GetFreelancersSeoDataRequest
-	1, // 2: seo.v1.Seo.GetDoctorSeoData:output_type -> seo.v1.GetDoctorSeoDataResponse
-	3, // 3: seo.v1.Seo.GetFreelancersSeoData:output_type -> seo.v1.GetFreelancersSeoDataResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	6, // 0: seo.v1.GetSitemapInfoResponse.items:type_name -> seo.v1.GetSitemapInfoResponse.SitemapItem
+	0, // 1: seo.v1.Seo.GetDoctorSeoData:input_type -> seo.v1.GetDoctorSeoDataRequest
+	2, // 2: seo.v1.Seo.GetFreelancersSeoData:input_type -> seo.v1.GetFreelancersSeoDataRequest
+	4, // 3: seo.v1.Seo.GetSitemapInfo:input_type -> seo.v1.GetSitemapInfoRequest
+	1, // 4: seo.v1.Seo.GetDoctorSeoData:output_type -> seo.v1.GetDoctorSeoDataResponse
+	3, // 5: seo.v1.Seo.GetFreelancersSeoData:output_type -> seo.v1.GetFreelancersSeoDataResponse
+	5, // 6: seo.v1.Seo.GetSitemapInfo:output_type -> seo.v1.GetSitemapInfoResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_seo_v1_seo_proto_init() }
@@ -296,7 +460,7 @@ func file_seo_v1_seo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_seo_v1_seo_proto_rawDesc), len(file_seo_v1_seo_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

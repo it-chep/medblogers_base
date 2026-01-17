@@ -90,3 +90,21 @@ func (w *SeoServiceDesc) GetFreelancersSeoData(ctx context.Context, in *GetFreel
 	}
 	return resp.(*GetFreelancersSeoDataResponse), err
 }
+
+func (w *SeoServiceDesc) GetSitemapInfo(ctx context.Context, in *GetSitemapInfoRequest) (*GetSitemapInfoResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetSitemapInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/seo.v1.Seo/GetSitemapInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetSitemapInfo(ctx, req.(*GetSitemapInfoRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetSitemapInfoResponse), err
+}

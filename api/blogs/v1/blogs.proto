@@ -25,6 +25,14 @@ service BlogService {
             summary: "Все статьи"
         };
     }
+    rpc GetDoctorBlogs(GetDoctorBlogsRequest) returns(GetDoctorBlogsResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/blogs/doctor/{doctor_slug}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Статьи определенного доктора"
+        };
+    }
     rpc GetBlogDetail(GetBlogDetailRequest) returns(GetBlogDetailResponse)  {
         option (google.api.http) = {
             get: "/api/v1/blog/{blog_slug}"
@@ -33,6 +41,13 @@ service BlogService {
             summary: "Конкретная статья по слагу"
         };
     }
+}
+
+message Category {
+  int64 id = 1;
+  string name = 2;
+  string font_color = 3;
+  string bg_color = 4;
 }
 
 message GetTopBlogsRequest{}
@@ -46,6 +61,8 @@ message GetTopBlogsResponse{
         string preview_text = 3;
         string created_at = 4;
         string photo_link = 5;
+
+        repeated Category categories = 6;
     }
 }
 
@@ -60,6 +77,8 @@ message GetBlogsResponse{
         string preview_text = 3;
         string created_at = 4;
         string photo_link = 5;
+
+        repeated Category categories = 6;
     }
 }
 
@@ -76,4 +95,31 @@ message GetBlogDetailResponse{
     string additional_seo_text = 6;
     string created_at = 7;
     string photo_link = 8;
+    Doctor doctor = 9;
+    repeated Category categories = 10;
+
+    message Doctor {
+        string name = 1;
+        string slug = 2;
+        string image = 3;
+        string speciality_name = 4;
+    }
+}
+
+message GetDoctorBlogsRequest {
+    string doctor_slug = 1;
+}
+
+message GetDoctorBlogsResponse {
+    repeated BlogMiniatures blogs = 1;
+
+    message BlogMiniatures {
+        string title = 1;
+        string slug = 2;
+        string preview_text = 3;
+        string created_at = 4;
+        string photo_link = 5;
+
+        repeated Category categories = 6;
+    }
 }

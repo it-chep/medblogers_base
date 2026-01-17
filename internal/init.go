@@ -33,6 +33,7 @@ import (
 	moduleBlogs "medblogers_base/internal/modules/blogs"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
+	moduleSeo "medblogers_base/internal/modules/seo"
 
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -100,7 +101,8 @@ func (a *App) initModules(_ context.Context) *App {
 		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 		auth:        moduleAuth.New(a.postgres),
-		blogs:       moduleBlogs.NewModule(a.postgres),
+		blogs:       moduleBlogs.NewModule(a.postgres, a.config),
+		seo:         moduleSeo.New(a.postgres),
 	}
 
 	return a
@@ -118,7 +120,7 @@ func (a *App) initControllers(_ context.Context) *App {
 		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
 		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
-		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)),
+		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
 	}
 
 	return a

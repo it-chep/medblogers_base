@@ -79,6 +79,32 @@ service AdminService {
             summary: "Снятие статьи с публикации"
         };
     }
+    rpc AddBlogCategory(AddBlogCategoryRequest) returns (AddBlogCategoryResponse){
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/add_category"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Добавление тега статье"
+        };
+    };
+    rpc DeleteBlogCategory(DeleteBlogCategoryRequest) returns (DeleteBlogCategoryResponse){
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/delete_category"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Удаление тега у статьи"
+        };
+    };
+    rpc GetBlogCategories(GetBlogCategoriesRequest) returns (GetBlogCategoriesResponse){
+        option (google.api.http) = {
+            get: "/api/v1/admin/blog/categories"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получение тегов статей"
+        };
+    }
     //  rpc MoveOrdering(MoveOrderingRequest) returns (MoveOrderingResponse) {
     //    option (google.api.http) = {
     //      post: "/api/v1/blog/{blog_id}/move_ordering"
@@ -120,6 +146,18 @@ message GetBlogByIDResponse {
     string society_preview = 7;
     string additional_seo_text = 8;
     int64 ordering_number = 9;
+    Doctor doctor = 10;
+    repeated Category categories = 11;
+
+    message Doctor {
+        int64 doctor_id = 1;
+        string doctor_name = 2;
+    }
+
+    message Category {
+        int64 id = 1;
+        string name = 2;
+    }
 }
 
 message CreateDraftBlogRequest {
@@ -141,11 +179,10 @@ message UpdateDraftBlogRequest {
     string society_preview = 7;
     string additional_seo_text = 8;
     int64 ordering_number = 9;
+    int64 doctor_id = 10;
 }
 
-message UpdateDraftBlogResponse {
-
-}
+message UpdateDraftBlogResponse {}
 
 message SaveBlogImageRequest {
     string blog_id = 1;
@@ -195,84 +232,25 @@ message UnPublishBlogResponse{
     }
 }
 
+message AddBlogCategoryRequest{
+    string blog_id = 1;
+    int64 category_id = 2;
+}
+message DeleteBlogCategoryRequest{
+    string blog_id = 1;
+    int64 category_id = 2;
+}
+message GetBlogCategoriesRequest{}
 
-// doctors
-// Get
-// Filer
-// Search
-// Sort
-// DoctorDetail
-// Create
-// Update
-// Delete
+message AddBlogCategoryResponse{}
 
-// cities
-// Get
-// GetByID
-// Sort
-// Filter
-// Search
-// Create
-// Update
-// Delete
+message DeleteBlogCategoryResponse{}
 
-// specialities
-// Get
-// GetByID
-// Sort
-// Filter
-// Search
-// Create
-// Update
-// Delete
+message GetBlogCategoriesResponse{
+    repeated Category categories = 1;
 
-// freelancers
-// Get
-// GetByID
-// Sort
-// Filter
-// Search
-// Create
-// Update
-// Delete
-
-// cities
-// Get
-// GetByID
-// Sort
-// Filter
-// Search
-// Create
-// Update
-// Delete
-
-// specialities
-// Get
-// GetByID
-// Sort
-// Filter
-// Search
-// Create
-// Update
-// Delete
-
-// networks
-// Get
-// GetByID
-// Sort
-// Filter
-// Search
-// Create
-// Update
-// Delete
-
-//service Admin {
-//  rpc GetDoctor(GetDoctorRequest) returns (GetDoctorResponse) {
-//    option (google.api.http) = {
-//      get: "/api/v1/doctors/{doctor_slug}"
-//    };
-//    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-//      summary: "Получение детальной информации про доктора"
-//    };
-//  }
-//}
+    message Category {
+        int64 id = 1;
+        string name = 2;
+    }
+}

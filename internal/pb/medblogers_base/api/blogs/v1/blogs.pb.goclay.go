@@ -91,6 +91,24 @@ func (w *BlogServiceServiceDesc) GetBlogs(ctx context.Context, in *GetBlogsReque
 	return resp.(*GetBlogsResponse), err
 }
 
+func (w *BlogServiceServiceDesc) GetDoctorBlogs(ctx context.Context, in *GetDoctorBlogsRequest) (*GetDoctorBlogsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetDoctorBlogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/blogs.v1.BlogService/GetDoctorBlogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetDoctorBlogs(ctx, req.(*GetDoctorBlogsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetDoctorBlogsResponse), err
+}
+
 func (w *BlogServiceServiceDesc) GetBlogDetail(ctx context.Context, in *GetBlogDetailRequest) (*GetBlogDetailResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.GetBlogDetail(ctx, in)
