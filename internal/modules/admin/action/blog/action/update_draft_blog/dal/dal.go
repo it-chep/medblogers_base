@@ -42,7 +42,8 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 			preview_text = $5,
 			society_preview = $6,
 			additional_seo_text = $7,
-			ordering_number = $8 
+			ordering_number = $8,
+			doctor_id = $9
 		where id = $1
 	`
 
@@ -55,6 +56,12 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 		req.SocietyPreviewText,
 		req.AdditionalSEOText,
 		req.OrderingNumber,
+	}
+
+	if req.DoctorID != 0 {
+		args = append(args, req.DoctorID)
+	} else {
+		args = append(args, nil)
 	}
 
 	_, err := r.db.Exec(ctx, sql, args...)

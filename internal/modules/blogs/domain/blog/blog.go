@@ -19,6 +19,7 @@ type Blog struct {
 
 	isActive        bool
 	primaryPhotoURL string
+	doctorID        int64
 }
 
 type Blogs []*Blog

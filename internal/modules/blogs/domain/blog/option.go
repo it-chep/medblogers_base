@@ -78,3 +78,10 @@ func WithIsActive(isActive bool) Option {
 		b.isActive = isActive
 	}
 }
+
+// WithDoctorID устанавливает автора доктора
+func WithDoctorID(doctorID int64) Option {
+	return func(b *Blog) {
+		b.doctorID = doctorID
+	}
+}

@@ -4,6 +4,7 @@ import (
 	"context"
 	indto "medblogers_base/internal/modules/freelancers/action/settings/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+	"sort"
 
 	"github.com/samber/lo"
 )
@@ -19,6 +20,10 @@ func (i *Implementation) GetSettings(ctx context.Context, _ *desc.GetSettingsReq
 }
 
 func (i *Implementation) newSettingsResponse(settingsDomain *indto.Settings) *desc.GetSettingsResponse {
+	sort.Slice(settingsDomain.PriceCategories, func(i, j int) bool {
+		return settingsDomain.PriceCategories[i].ID < settingsDomain.PriceCategories[j].ID
+	})
+
 	return &desc.GetSettingsResponse{
 		Cities: lo.Map(settingsDomain.Cities, func(cityItem indto.City, _ int) *desc.GetSettingsResponse_CityItem {
 			return &desc.GetSettingsResponse_CityItem{

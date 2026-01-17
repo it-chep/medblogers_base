@@ -39,6 +39,29 @@
         ]
       }
     },
+    "/api/v1/admin/blog/categories": {
+      "get": {
+        "summary": "Получение тегов статей",
+        "operationId": "AdminService_GetBlogCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBlogCategoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
     "/api/v1/admin/blog/create": {
       "post": {
         "summary": "Создание черновика статьи",
@@ -96,6 +119,84 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/add_category": {
+      "post": {
+        "summary": "Добавление тега статье",
+        "operationId": "AdminService_AddBlogCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddBlogCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminService.AddBlogCategoryBody"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/delete_category": {
+      "post": {
+        "summary": "Удаление тега у статьи",
+        "operationId": "AdminService_DeleteBlogCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteBlogCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdminService.DeleteBlogCategoryBody"
+            }
           }
         ],
         "tags": [
@@ -306,6 +407,27 @@
     }
   },
   "definitions": {
+    "AddBlogCategoryResponse": {
+      "type": "object"
+    },
+    "AdminService.AddBlogCategoryBody": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "AdminService.DeleteBlogCategoryBody": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "AdminService.DeleteBlogImageBody": {
       "type": "object"
     },
@@ -356,6 +478,10 @@
         "orderingNumber": {
           "type": "string",
           "format": "int64"
+        },
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -377,6 +503,9 @@
           "type": "string"
         }
       }
+    },
+    "DeleteBlogCategoryResponse": {
+      "type": "object"
     },
     "DeleteBlogImageResponse": {
       "type": "object"
@@ -411,6 +540,64 @@
         "orderingNumber": {
           "type": "string",
           "format": "int64"
+        },
+        "doctor": {
+          "$ref": "#/definitions/GetBlogByIDResponse.Doctor"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetBlogByIDResponse.Category"
+          }
+        }
+      }
+    },
+    "GetBlogByIDResponse.Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "GetBlogByIDResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "doctorName": {
+          "type": "string"
+        }
+      }
+    },
+    "GetBlogCategoriesResponse": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetBlogCategoriesResponse.Category"
+          }
+        }
+      }
+    },
+    "GetBlogCategoriesResponse.Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
         }
       }
     },

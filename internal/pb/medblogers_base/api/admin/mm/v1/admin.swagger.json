@@ -1,0 +1,301 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/mm/v1/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "MMAdminService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/gk_order/create": {
+      "post": {
+        "summary": "Создание заказа от геткурса",
+        "operationId": "MMAdminService_CreateGetCourseOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.CreateGetCourseOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.CreateGetCourseOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MMAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/mm": {
+      "get": {
+        "summary": "Получение списка мастермайндов",
+        "operationId": "MMAdminService_GetMMList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.GetMMListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "MMAdminService"
+        ]
+      },
+      "post": {
+        "summary": "Создание мастермайнда",
+        "operationId": "MMAdminService_CreateMM",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.CreateMMResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.CreateMMRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MMAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/mm/{mmId}/change_mm_activity": {
+      "post": {
+        "summary": "Изменение активности ММ (вкл/выкл)",
+        "operationId": "MMAdminService_ChangeMMActivity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.ChangeMMActivityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mmId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.MMAdminService.ChangeMMActivityBody"
+            }
+          }
+        ],
+        "tags": [
+          "MMAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/mm/{mmId}/manual_notification": {
+      "post": {
+        "summary": "Ручная рассылка ММ",
+        "operationId": "MMAdminService_ManualNotificationMM",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.ManualNotificationMMResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mmId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mm.v1.MMAdminService.ManualNotificationMMBody"
+            }
+          }
+        ],
+        "tags": [
+          "MMAdminService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.mm.v1.ChangeMMActivityResponse": {
+      "type": "object"
+    },
+    "admin.mm.v1.CreateGetCourseOrderRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "getcourceId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.mm.v1.CreateGetCourseOrderResponse": {
+      "type": "object"
+    },
+    "admin.mm.v1.CreateMMRequest": {
+      "type": "object",
+      "properties": {
+        "mmDatetime": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.mm.v1.CreateMMResponse": {
+      "type": "object"
+    },
+    "admin.mm.v1.GetMMListResponse": {
+      "type": "object",
+      "properties": {
+        "mms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.mm.v1.GetMMListResponse.Mm"
+          }
+        }
+      }
+    },
+    "admin.mm.v1.GetMMListResponse.Mm": {
+      "type": "object",
+      "properties": {
+        "mmId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mmDatetime": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "activity": {
+          "type": "boolean"
+        }
+      }
+    },
+    "admin.mm.v1.MMAdminService.ChangeMMActivityBody": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "boolean"
+        }
+      }
+    },
+    "admin.mm.v1.MMAdminService.ManualNotificationMMBody": {
+      "type": "object"
+    },
+    "admin.mm.v1.ManualNotificationMMResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

@@ -198,3 +198,57 @@ func (w *AdminServiceServiceDesc) UnPublishBlog(ctx context.Context, in *UnPubli
 	}
 	return resp.(*UnPublishBlogResponse), err
 }
+
+func (w *AdminServiceServiceDesc) AddBlogCategory(ctx context.Context, in *AddBlogCategoryRequest) (*AddBlogCategoryResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.AddBlogCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/AdminService/AddBlogCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.AddBlogCategory(ctx, req.(*AddBlogCategoryRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*AddBlogCategoryResponse), err
+}
+
+func (w *AdminServiceServiceDesc) DeleteBlogCategory(ctx context.Context, in *DeleteBlogCategoryRequest) (*DeleteBlogCategoryResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.DeleteBlogCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/AdminService/DeleteBlogCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.DeleteBlogCategory(ctx, req.(*DeleteBlogCategoryRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*DeleteBlogCategoryResponse), err
+}
+
+func (w *AdminServiceServiceDesc) GetBlogCategories(ctx context.Context, in *GetBlogCategoriesRequest) (*GetBlogCategoriesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBlogCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/AdminService/GetBlogCategories",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBlogCategories(ctx, req.(*GetBlogCategoriesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBlogCategoriesResponse), err
+}

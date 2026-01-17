@@ -101,7 +101,7 @@ func (a *App) initModules(_ context.Context) *App {
 		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 		auth:        moduleAuth.New(a.postgres),
-		blogs:       moduleBlogs.NewModule(a.postgres),
+		blogs:       moduleBlogs.NewModule(a.postgres, a.config),
 		seo:         moduleSeo.New(a.postgres),
 	}
 
