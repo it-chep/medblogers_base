@@ -7,7 +7,8 @@ create table if not exists mm
     name        text,
     state       int,
     mm_link     text,
-    created_at  timestamp default now()
+    created_at  timestamp default now(),
+    is_active   bool
 );
 
 create table if not exists getcourse_orders
