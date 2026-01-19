@@ -7,13 +7,14 @@
 package v1
 
 import (
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
+
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -27,6 +28,7 @@ type CreateMMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MmDatetime    string                 `protobuf:"bytes,1,opt,name=mm_datetime,json=mmDatetime,proto3" json:"mm_datetime,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	MmLink        string                 `protobuf:"bytes,3,opt,name=mm_link,json=mmLink,proto3" json:"mm_link,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -71,6 +73,13 @@ func (x *CreateMMRequest) GetMmDatetime() string {
 func (x *CreateMMRequest) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateMMRequest) GetMmLink() string {
+	if x != nil {
+		return x.MmLink
 	}
 	return ""
 }
@@ -362,8 +371,9 @@ func (x *GetMMListResponse) GetMms() []*GetMMListResponse_Mm {
 type CreateGetCourseOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	GetcourceId   string                 `protobuf:"bytes,2,opt,name=getcource_id,json=getcourceId,proto3" json:"getcource_id,omitempty"`
+	GetcourceId   int64                  `protobuf:"varint,2,opt,name=getcource_id,json=getcourceId,proto3" json:"getcource_id,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Position      string                 `protobuf:"bytes,4,opt,name=position,proto3" json:"position,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -405,16 +415,23 @@ func (x *CreateGetCourseOrderRequest) GetOrderId() string {
 	return ""
 }
 
-func (x *CreateGetCourseOrderRequest) GetGetcourceId() string {
+func (x *CreateGetCourseOrderRequest) GetGetcourceId() int64 {
 	if x != nil {
 		return x.GetcourceId
 	}
-	return ""
+	return 0
 }
 
 func (x *CreateGetCourseOrderRequest) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateGetCourseOrderRequest) GetPosition() string {
+	if x != nil {
+		return x.Position
 	}
 	return ""
 }
@@ -543,11 +560,12 @@ var File_admin_mm_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_mm_v1_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x17admin/mm/v1/admin.proto\x12\vadmin.mm.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"F\n" +
+	"\x17admin/mm/v1/admin.proto\x12\vadmin.mm.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"_\n" +
 	"\x0fCreateMMRequest\x12\x1f\n" +
 	"\vmm_datetime\x18\x01 \x01(\tR\n" +
 	"mmDatetime\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x17\n" +
+	"\amm_link\x18\x03 \x01(\tR\x06mmLink\"\x12\n" +
 	"\x10CreateMMResponse\"2\n" +
 	"\x1bManualNotificationMMRequest\x12\x13\n" +
 	"\x05mm_id\x18\x01 \x01(\x03R\x04mmId\"\x1e\n" +
@@ -567,18 +585,19 @@ const file_admin_mm_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x16\n" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1a\n" +
-	"\bactivity\x18\x06 \x01(\bR\bactivity\"o\n" +
+	"\bactivity\x18\x06 \x01(\bR\bactivity\"\x8b\x01\n" +
 	"\x1bCreateGetCourseOrderRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12!\n" +
-	"\fgetcource_id\x18\x02 \x01(\tR\vgetcourceId\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\"\x1e\n" +
-	"\x1cCreateGetCourseOrderResponse2\xc6\a\n" +
+	"\fgetcource_id\x18\x02 \x01(\x03R\vgetcourceId\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1a\n" +
+	"\bposition\x18\x04 \x01(\tR\bposition\"\x1e\n" +
+	"\x1cCreateGetCourseOrderResponse2\xfc\a\n" +
 	"\x0eMMAdminService\x12\x92\x01\n" +
 	"\bCreateMM\x12\x1c.admin.mm.v1.CreateMMRequest\x1a\x1d.admin.mm.v1.CreateMMResponse\"I\x92A+\x12)Создание мастермайнда\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/admin/mm\x12\xcb\x01\n" +
 	"\x14ManualNotificationMM\x12(.admin.mm.v1.ManualNotificationMMRequest\x1a).admin.mm.v1.ManualNotificationMMResponse\"^\x92A$\x12\"Ручная рассылка ММ\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/mm/{mm_id}/manual_notification\x12\xda\x01\n" +
 	"\x10ChangeMMActivity\x12$.admin.mm.v1.ChangeMMActivityRequest\x1a%.admin.mm.v1.ChangeMMActivityResponse\"y\x92A@\x12>Изменение активности ММ (вкл/выкл)\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/admin/mm/{mm_id}/change_mm_activity\x12\xa3\x01\n" +
-	"\tGetMMList\x12\x1d.admin.mm.v1.GetMMListRequest\x1a\x1e.admin.mm.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\xcd\x01\n" +
-	"\x14CreateGetCourseOrder\x12(.admin.mm.v1.CreateGetCourseOrderRequest\x1a).admin.mm.v1.CreateGetCourseOrderResponse\"`\x92A5\x123Создание заказа от геткурса\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x11Z\x0fapi/admin/mm/v1b\x06proto3"
+	"\tGetMMList\x12\x1d.admin.mm.v1.GetMMListRequest\x1a\x1e.admin.mm.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\x83\x02\n" +
+	"\x14CreateGetCourseOrder\x12(.admin.mm.v1.CreateGetCourseOrderRequest\x1a).admin.mm.v1.CreateGetCourseOrderResponse\"\x95\x01\x92Aj\x123Создание заказа от геткурса2!application/x-www-form-urlencoded:\x10application/json\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x11Z\x0fapi/admin/mm/v1b\x06proto3"
 
 var (
 	file_admin_mm_v1_admin_proto_rawDescOnce sync.Once

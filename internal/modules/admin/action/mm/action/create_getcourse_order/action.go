@@ -2,24 +2,43 @@ package create_getcourse_order
 
 import (
 	"context"
+	"fmt"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dal"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dto"
+	"medblogers_base/internal/modules/admin/client"
 	"medblogers_base/internal/pkg/postgres"
+	"strings"
 	"time"
 )
 
-type Action struct {
-	dal *dal.Repository
+type Config interface {
+	GetCreateNotificationChatID() int64
 }
 
-func New(pool postgres.PoolWrapper) *Action {
+// Gateway ..
+type Gateway interface {
+	NotificateError(ctx context.Context, errText string, clientID int64)
+}
+
+// Action ..
+type Action struct {
+	dal     *dal.Repository
+	gateway Gateway
+	config  Config
+}
+
+// New ..
+func New(pool postgres.PoolWrapper, clients *client.Aggregator, config Config) *Action {
 	return &Action{
-		dal: dal.NewRepository(pool),
+		dal:     dal.NewRepository(pool),
+		gateway: clients.Salebot,
+		config:  config,
 	}
 }
 
+// Do .
 func (a *Action) Do(ctx context.Context, req dto.CreateOrderRequest) error {
-	orderName, orderDaysCount := a.getNameAndDaysCountFromOrder(req.Positions[0])
+	orderName, orderDaysCount := a.getNameAndDaysCountFromOrder(req.Position)
 
 	err := a.dal.CreateGetcourseOrder(ctx, dto.GetcourseOrder{
 		Name:      orderName,
@@ -28,20 +47,21 @@ func (a *Action) Do(ctx context.Context, req dto.CreateOrderRequest) error {
 		OrderID:   req.OrderID,
 	})
 	if err != nil {
-		// todo пуш
+		a.gateway.NotificateError(ctx, fmt.Sprintf("Ошибка при сохранении ЗАКАЗА от геткурса %s \n\n data: %v", err.Error(), req), a.config.GetCreateNotificationChatID())
 		return err
 	}
 
 	user, err := a.dal.GetUserByGKID(ctx, req.GkID)
 	if err != nil {
-		err := a.dal.CreateGetcourseUser(ctx, dto.CreateUserRequest{
+		userReq := dto.CreateUserRequest{
 			GkID:      req.GkID,
 			Name:      req.UserName,
 			EndDate:   time.Now().Add(time.Hour * 24 * time.Duration(orderDaysCount)),
 			DaysCount: orderDaysCount,
-		})
+		}
+		err := a.dal.CreateGetcourseUser(ctx, userReq)
 		if err != nil {
-			// todo пуш
+			a.gateway.NotificateError(ctx, fmt.Sprintf("Ошибка при сохранении ПОЛЬЗОВАТЕЛЯ от геткурса %s \n\n data: %v", err.Error(), userReq), a.config.GetCreateNotificationChatID())
 			return err
 		}
 	} else {
@@ -55,7 +75,13 @@ func (a *Action) Do(ctx context.Context, req dto.CreateOrderRequest) error {
 		}
 		err := a.dal.UpdateUserSubscription(ctx, req.GkID, allDaysCount, endTime)
 		if err != nil {
-			// todo пуш
+			a.gateway.NotificateError(
+				ctx,
+				fmt.Sprintf("Ошибка при Обновлении подписки пользователя %s \n\n ID: %d, days: %d, time: %s",
+					err.Error(), req.GkID, allDaysCount, endTime.Format(time.DateTime),
+				),
+				a.config.GetCreateNotificationChatID(),
+			)
 			return err
 		}
 	}
@@ -64,5 +90,21 @@ func (a *Action) Do(ctx context.Context, req dto.CreateOrderRequest) error {
 }
 
 func (a *Action) getNameAndDaysCountFromOrder(orderPosition string) (string, int64) {
-	return "", 0 // todo
+	infoMap := map[string]int64{
+		"1 месяц":    30,
+		"2 месяца":   60,
+		"3 месяца":   90,
+		"6 месяцев":  180,
+		"12 месяцев": 365,
+	}
+
+	daysCount := int64(0)
+	for k, v := range infoMap {
+		if strings.Contains(orderPosition, k) {
+			daysCount = v
+			break
+		}
+	}
+
+	return orderPosition, daysCount
 }

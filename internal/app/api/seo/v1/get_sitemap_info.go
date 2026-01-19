@@ -2,8 +2,9 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	desc "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
+
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetSitemapInfo(ctx context.Context, req *desc.GetSitemapInfoRequest) (resp *desc.GetSitemapInfoResponse, err error) {

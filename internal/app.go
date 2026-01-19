@@ -12,11 +12,12 @@ import (
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
 
+	"medblogers_base/internal/modules/admin"
+	"medblogers_base/internal/modules/doctors"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/not-for-prod/clay/server"
 	"github.com/not-for-prod/clay/transport"
-	"medblogers_base/internal/modules/admin"
-	"medblogers_base/internal/modules/doctors"
 )
 
 type modules struct {

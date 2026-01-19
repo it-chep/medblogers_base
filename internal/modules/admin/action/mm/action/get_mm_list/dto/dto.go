@@ -11,6 +11,6 @@ type MM struct {
 	Name       sql.NullString `db:"name"`
 	State      sql.NullString `db:"state"`
 	MMLink     sql.NullString `db:"m_link"`
-	CreatedBy  time.Time      `db:"created_by"`
+	CreatedAt  time.Time      `db:"created_at"`
 	IsActive   sql.NullBool   `json:"is_active"`
 }

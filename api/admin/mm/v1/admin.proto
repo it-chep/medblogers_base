@@ -43,7 +43,11 @@ service MMAdminService {
       post: "/api/v1/admin/gk_order/create"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание заказа от геткурса"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Создание заказа от геткурса"
+      consumes: "application/x-www-form-urlencoded"
+      produces: "application/json"
+    };
   }
 }
 
@@ -81,7 +85,14 @@ message GetMMListResponse {
 
 message CreateGetCourseOrderRequest {
   string order_id = 1;
-  string getcource_id = 2;
+  int64 getcource_id = 2;
   string name = 3;
+  string position = 4;
 }
+
+// position: Клуб MEDBLOGERS 1.2 - 3 месяца
+// orderId: 629881974
+// getcourceId: 127769936
+// name: Максим тест
+
 message CreateGetCourseOrderResponse {}

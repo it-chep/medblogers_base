@@ -2,10 +2,11 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/interceptor"
 	"medblogers_base/internal/modules/admin/action/blog/action/get_categories/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+
+	"github.com/samber/lo"
 )
 
 // GetCategories получение всех категорий статей

@@ -2,10 +2,11 @@ package dal
 
 import (
 	"context"
-	"github.com/georgysavva/scany/pgxscan"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dto"
 	"medblogers_base/internal/pkg/postgres"
 	"time"
+
+	"github.com/georgysavva/scany/pgxscan"
 )
 
 type Repository struct {

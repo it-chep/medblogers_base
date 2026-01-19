@@ -7,10 +7,10 @@ import (
 
 // CreateOrderRequest данне от ГК
 type CreateOrderRequest struct {
-	OrderID   string
-	Positions []string
-	GkID      int64
-	UserName  string
+	OrderID  string
+	Position string
+	GkID     int64
+	UserName string
 }
 
 // GetcourseOrder представление для базки
