@@ -11,6 +11,7 @@ import (
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/worker_pool"
 
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/doctors"
@@ -45,7 +46,7 @@ type App struct {
 
 	// периодические задачи
 	//tasks
-	//worker_pool
+	workerPool worker_pool.WorkerPool
 }
 
 // New создает новое приложение
@@ -58,18 +59,21 @@ func New(ctx context.Context) *App {
 		initServer(ctx).
 		initHttpConns(ctx).
 		initModules(ctx).
+		initWorkers(ctx).
 		initControllers(ctx)
 
 	return a
 }
 
 // Run запускает приложение
-func (a *App) Run(_ context.Context) {
+func (a *App) Run(ctx context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("application recovered from panic")
 		}
 	}()
+
+	go a.workerPool.Run(ctx)
 
 	fmt.Printf("[APP][GPRC] Приложение запустилось HTTP - http://localhost:8080, GRPC - http://localhost:7002")
 	if err := a.clayServer.Run(a.controllers...); err != nil {

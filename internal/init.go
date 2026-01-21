@@ -3,6 +3,12 @@ package internal
 import (
 	"context"
 	"fmt"
+	"github.com/go-chi/chi/v5"
+	base_middleware "github.com/go-chi/chi/v5/middleware"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/not-for-prod/clay/server"
+	"github.com/not-for-prod/clay/transport"
+	"google.golang.org/grpc/metadata"
 	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
 	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
@@ -10,13 +16,7 @@ import (
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
-
-	"github.com/go-chi/chi/v5"
-	base_middleware "github.com/go-chi/chi/v5/middleware"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/not-for-prod/clay/server"
-	"github.com/not-for-prod/clay/transport"
-	"google.golang.org/grpc/metadata"
+	"medblogers_base/internal/pkg/worker_pool"
 
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
@@ -107,6 +107,14 @@ func (a *App) initModules(_ context.Context) *App {
 		seo:         moduleSeo.New(a.postgres),
 	}
 
+	return a
+}
+
+func (a *App) initWorkers(_ context.Context) *App {
+	workers := []worker_pool.Worker{
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.PushUsersToMM, "*/5 * * * *"),
+	}
+	a.workerPool = worker_pool.NewWorkerPool(workers)
 	return a
 }
 
