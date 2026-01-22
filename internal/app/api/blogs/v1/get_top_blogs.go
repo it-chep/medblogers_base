@@ -2,7 +2,8 @@ package v1
 
 import (
 	"context"
-	"medblogers_base/internal/modules/blogs/domain/blog"
+	"medblogers_base/internal/modules/blogs/action/get_top_blogs/dto"
+	"medblogers_base/internal/modules/blogs/domain/category"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	"medblogers_base/internal/pkg/converter"
 
@@ -10,19 +11,28 @@ import (
 )
 
 func (i *Implementation) GetTopBlogs(ctx context.Context, req *desc.GetTopBlogsRequest) (*desc.GetTopBlogsResponse, error) {
-	blogs, err := i.blogs.Actions.GetTopBlogs.Do(ctx)
+	resp, err := i.blogs.Actions.GetTopBlogs.Do(ctx)
 	if err != nil {
 		return nil, err
 	}
 
 	return &desc.GetTopBlogsResponse{
-		Blogs: lo.Map(blogs, func(item *blog.Blog, index int) *desc.GetTopBlogsResponse_BlogMiniatures {
+		Blogs: lo.Map(resp.Blogs, func(item dto.Blog, index int) *desc.GetTopBlogsResponse_BlogMiniatures {
 			return &desc.GetTopBlogsResponse_BlogMiniatures{
 				Title:       item.GetTitle(),
 				Slug:        item.GetSlug(),
 				PreviewText: item.GetPreviewText(),
 				CreatedAt:   converter.FormatDateRussian(item.GetCreatedAt()),
 				PhotoLink:   item.GetPrimaryPhotoURL(),
+
+				Categories: lo.Map(item.Categories, func(item *category.Category, _ int) *desc.Category {
+					return &desc.Category{
+						Id:        item.ID(),
+						Name:      item.Name(),
+						FontColor: item.FontColor(),
+						BgColor:   item.BgColor(),
+					}
+				}),
 			}
 		}),
 	}, nil

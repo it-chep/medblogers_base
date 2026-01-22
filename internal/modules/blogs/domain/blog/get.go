@@ -63,6 +63,16 @@ func (b *Blog) IsActive() bool {
 	return b.isActive
 }
 
+// GetDoctorID .
+func (b *Blog) GetDoctorID() int64 {
+	return b.doctorID
+}
+
+// HasAuthor .
+func (b *Blog) HasAuthor() bool {
+	return b.doctorID > 0
+}
+
 // GetPrimaryPhotoURL возвращает главную фотку
 func (b *Blog) GetPrimaryPhotoURL() string {
 	return b.primaryPhotoURL

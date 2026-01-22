@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BlogService_GetTopBlogs_FullMethodName   = "/blogs.v1.BlogService/GetTopBlogs"
-	BlogService_GetBlogs_FullMethodName      = "/blogs.v1.BlogService/GetBlogs"
-	BlogService_GetBlogDetail_FullMethodName = "/blogs.v1.BlogService/GetBlogDetail"
+	BlogService_GetTopBlogs_FullMethodName    = "/blogs.v1.BlogService/GetTopBlogs"
+	BlogService_GetBlogs_FullMethodName       = "/blogs.v1.BlogService/GetBlogs"
+	BlogService_GetDoctorBlogs_FullMethodName = "/blogs.v1.BlogService/GetDoctorBlogs"
+	BlogService_GetBlogDetail_FullMethodName  = "/blogs.v1.BlogService/GetBlogDetail"
 )
 
 // BlogServiceClient is the client API for BlogService service.
@@ -32,6 +33,7 @@ const (
 type BlogServiceClient interface {
 	GetTopBlogs(ctx context.Context, in *GetTopBlogsRequest, opts ...grpc.CallOption) (*GetTopBlogsResponse, error)
 	GetBlogs(ctx context.Context, in *GetBlogsRequest, opts ...grpc.CallOption) (*GetBlogsResponse, error)
+	GetDoctorBlogs(ctx context.Context, in *GetDoctorBlogsRequest, opts ...grpc.CallOption) (*GetDoctorBlogsResponse, error)
 	GetBlogDetail(ctx context.Context, in *GetBlogDetailRequest, opts ...grpc.CallOption) (*GetBlogDetailResponse, error)
 }
 
@@ -63,6 +65,16 @@ func (c *blogServiceClient) GetBlogs(ctx context.Context, in *GetBlogsRequest, o
 	return out, nil
 }
 
+func (c *blogServiceClient) GetDoctorBlogs(ctx context.Context, in *GetDoctorBlogsRequest, opts ...grpc.CallOption) (*GetDoctorBlogsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDoctorBlogsResponse)
+	err := c.cc.Invoke(ctx, BlogService_GetDoctorBlogs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *blogServiceClient) GetBlogDetail(ctx context.Context, in *GetBlogDetailRequest, opts ...grpc.CallOption) (*GetBlogDetailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetBlogDetailResponse)
@@ -81,6 +93,7 @@ func (c *blogServiceClient) GetBlogDetail(ctx context.Context, in *GetBlogDetail
 type BlogServiceServer interface {
 	GetTopBlogs(context.Context, *GetTopBlogsRequest) (*GetTopBlogsResponse, error)
 	GetBlogs(context.Context, *GetBlogsRequest) (*GetBlogsResponse, error)
+	GetDoctorBlogs(context.Context, *GetDoctorBlogsRequest) (*GetDoctorBlogsResponse, error)
 	GetBlogDetail(context.Context, *GetBlogDetailRequest) (*GetBlogDetailResponse, error)
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedBlogServiceServer) GetTopBlogs(context.Context, *GetTopBlogsR
 }
 func (UnimplementedBlogServiceServer) GetBlogs(context.Context, *GetBlogsRequest) (*GetBlogsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBlogs not implemented")
+}
+func (UnimplementedBlogServiceServer) GetDoctorBlogs(context.Context, *GetDoctorBlogsRequest) (*GetDoctorBlogsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDoctorBlogs not implemented")
 }
 func (UnimplementedBlogServiceServer) GetBlogDetail(context.Context, *GetBlogDetailRequest) (*GetBlogDetailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBlogDetail not implemented")
@@ -156,6 +172,24 @@ func _BlogService_GetBlogs_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BlogService_GetDoctorBlogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorBlogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).GetDoctorBlogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BlogService_GetDoctorBlogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).GetDoctorBlogs(ctx, req.(*GetDoctorBlogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BlogService_GetBlogDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBlogDetailRequest)
 	if err := dec(in); err != nil {
@@ -188,6 +222,10 @@ var BlogService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBlogs",
 			Handler:    _BlogService_GetBlogs_Handler,
+		},
+		{
+			MethodName: "GetDoctorBlogs",
+			Handler:    _BlogService_GetDoctorBlogs_Handler,
 		},
 		{
 			MethodName: "GetBlogDetail",

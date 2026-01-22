@@ -1,10 +1,13 @@
 package action
 
 import (
+	"medblogers_base/internal/modules/admin/action/blog/action/add_blog_category"
 	"medblogers_base/internal/modules/admin/action/blog/action/create_draft_blog"
+	"medblogers_base/internal/modules/admin/action/blog/action/delete_blog_category"
 	"medblogers_base/internal/modules/admin/action/blog/action/delete_blog_image"
 	"medblogers_base/internal/modules/admin/action/blog/action/get_blog_by_id"
 	"medblogers_base/internal/modules/admin/action/blog/action/get_blogs"
+	"medblogers_base/internal/modules/admin/action/blog/action/get_categories"
 	"medblogers_base/internal/modules/admin/action/blog/action/publish_blog"
 	"medblogers_base/internal/modules/admin/action/blog/action/save_blog_image"
 	"medblogers_base/internal/modules/admin/action/blog/action/unpublish_blog"
@@ -25,6 +28,10 @@ type BlogModuleAggregator struct {
 
 	PublishBlog   *publish_blog.Action
 	UnPublishBlog *unpublish_blog.Action
+
+	AddBlogCategory    *add_blog_category.Action
+	DeleteBlogCategory *delete_blog_category.Action
+	GetCategories      *get_categories.Action
 }
 
 func New(pool postgres.PoolWrapper, clients *client.Aggregator) *BlogModuleAggregator {
