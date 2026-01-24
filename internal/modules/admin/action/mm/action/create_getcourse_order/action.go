@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dal"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dto"
 	"medblogers_base/internal/modules/admin/client"
+	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
 	"time"
@@ -39,7 +40,11 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator, config Config) *
 // Do .
 func (a *Action) Do(ctx context.Context, req dto.CreateOrderRequest) error {
 	orderName, orderDaysCount := a.getNameAndDaysCountFromOrder(req.Position)
+	if orderDaysCount == 0 {
+		return nil
+	}
 
+	logger.Message(ctx, fmt.Sprintf("Пришел заказ от ГК: %v", req))
 	err := a.dal.CreateGetcourseOrder(ctx, dto.GetcourseOrder{
 		Name:      orderName,
 		DaysCount: orderDaysCount,
