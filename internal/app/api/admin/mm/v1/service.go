@@ -7,7 +7,7 @@ import (
 )
 
 type Implementation struct {
-	*desc.UnimplementedMMAdminServiceServer
+	desc.UnimplementedMMAdminServiceServer
 
 	admin *admin.Module
 	auth  *auth.Module

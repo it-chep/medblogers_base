@@ -12,6 +12,7 @@ import (
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
 	"medblogers_base/internal/pkg/worker_pool"
+	"runtime/debug"
 
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/doctors"
@@ -69,7 +70,8 @@ func New(ctx context.Context) *App {
 func (a *App) Run(ctx context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Println("application recovered from panic")
+			fmt.Printf("PANIC RECOVERED: %v\n", r)
+			debug.PrintStack()
 		}
 	}()
 
