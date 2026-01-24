@@ -13,6 +13,7 @@ import (
 	"medblogers_base/internal/pkg/postgres"
 	"medblogers_base/internal/pkg/worker_pool"
 	"runtime/debug"
+	"time"
 
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/doctors"
@@ -77,7 +78,7 @@ func (a *App) Run(ctx context.Context) {
 
 	go a.workerPool.Run(ctx)
 
-	fmt.Printf("[APP][GPRC] Приложение запустилось HTTP - http://localhost:8080, GRPC - http://localhost:7002")
+	fmt.Printf("[APP][GPRC] Приложение запустилось HTTP - http://localhost:8080, GRPC - http://localhost:7002 , Время старта: %s", time.Now().Format(time.DateTime))
 	if err := a.clayServer.Run(a.controllers...); err != nil {
 		fmt.Printf("[APP][GPRC] Не удалось запустить приложение: %v", err)
 	}
