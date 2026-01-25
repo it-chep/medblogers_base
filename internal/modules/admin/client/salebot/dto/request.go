@@ -10,3 +10,8 @@ type ErrorRequest struct {
 	Error    string `json:"error_text"`
 	ClientID int64  `json:"client_id"`
 }
+
+type MMRequest struct {
+	Message  string `json:"message"`
+	ClientID int64  `json:"client_id"`
+}

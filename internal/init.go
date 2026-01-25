@@ -9,8 +9,6 @@ import (
 	"github.com/not-for-prod/clay/server"
 	"github.com/not-for-prod/clay/transport"
 	"google.golang.org/grpc/metadata"
-	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
-	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
@@ -20,8 +18,6 @@ import (
 
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
-	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mm/v1"
-	adminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
 	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
@@ -69,7 +65,7 @@ func (a *App) initPostgres(ctx context.Context) *App {
 
 	a.postgres = postgres.NewPoolWrapper(pool)
 	// todo gracefull
-	//	a.postgresConn.Close()
+	//	a.postgres.Close()
 	//
 
 	return a
@@ -129,9 +125,10 @@ func (a *App) initControllers(_ context.Context) *App {
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
-		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
-		mmDesc.NewMMAdminServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
+
+		//adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		//mmDesc.NewMMAdminServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
 	}
 
 	return a

@@ -30,6 +30,26 @@ create table if not exists getcourse_users
     end_date   timestamp,
     days_count bigint
 );
+
+
+-- Рассылки
+create table if not exists newsletter
+(
+    newsletter_uuid uuid primary key default gen_random_uuid(),
+    created_at      timestamp        default now(),
+    planned_sb_ids  bigint[],
+    event_type      text
+);
+
+-- Отправленные рассылки
+create table if not exists sent_newsletter
+(
+    id              bigserial primary key,
+    newsletter_uuid uuid,
+    sb_id           bigint,
+    created_at      timestamp default now()
+);
+
 -- +goose StatementEnd
 
 -- +goose Down
