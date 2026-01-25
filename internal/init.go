@@ -9,15 +9,20 @@ import (
 	"github.com/not-for-prod/clay/server"
 	"github.com/not-for-prod/clay/transport"
 	"google.golang.org/grpc/metadata"
+	blogAdminV1 "medblogers_base/internal/app/api/admin/blog/v1"
+	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
 	"medblogers_base/internal/pkg/worker_pool"
 
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
+	blogAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
+	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
@@ -127,8 +132,9 @@ func (a *App) initControllers(_ context.Context) *App {
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
 
-		//adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
-		//mmDesc.NewMMAdminServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
+		// ADMIN
+		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		mmDesc.NewAdminMastermindServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
 	}
 
 	return a

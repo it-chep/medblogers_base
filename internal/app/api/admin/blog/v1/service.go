@@ -4,7 +4,7 @@ import (
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/auth"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 )
 
 type Implementation struct {

@@ -2,19 +2,18 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: admin/v1/admin.proto
+// source: admin/blogs/v1/admin.proto
 
 package v1
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -32,7 +31,7 @@ type GetBlogsRequest struct {
 
 func (x *GetBlogsRequest) Reset() {
 	*x = GetBlogsRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +43,7 @@ func (x *GetBlogsRequest) String() string {
 func (*GetBlogsRequest) ProtoMessage() {}
 
 func (x *GetBlogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +56,7 @@ func (x *GetBlogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogsRequest.ProtoReflect.Descriptor instead.
 func (*GetBlogsRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{0}
 }
 
 type GetBlogsResponse struct {
@@ -69,7 +68,7 @@ type GetBlogsResponse struct {
 
 func (x *GetBlogsResponse) Reset() {
 	*x = GetBlogsResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -81,7 +80,7 @@ func (x *GetBlogsResponse) String() string {
 func (*GetBlogsResponse) ProtoMessage() {}
 
 func (x *GetBlogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -94,7 +93,7 @@ func (x *GetBlogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogsResponse.ProtoReflect.Descriptor instead.
 func (*GetBlogsResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{1}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetBlogsResponse) GetBlogs() []*GetBlogsResponse_Blog {
@@ -113,7 +112,7 @@ type GetBlogByIDRequest struct {
 
 func (x *GetBlogByIDRequest) Reset() {
 	*x = GetBlogByIDRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -125,7 +124,7 @@ func (x *GetBlogByIDRequest) String() string {
 func (*GetBlogByIDRequest) ProtoMessage() {}
 
 func (x *GetBlogByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -138,7 +137,7 @@ func (x *GetBlogByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetBlogByIDRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{2}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetBlogByIDRequest) GetBlogId() string {
@@ -167,7 +166,7 @@ type GetBlogByIDResponse struct {
 
 func (x *GetBlogByIDResponse) Reset() {
 	*x = GetBlogByIDResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -179,7 +178,7 @@ func (x *GetBlogByIDResponse) String() string {
 func (*GetBlogByIDResponse) ProtoMessage() {}
 
 func (x *GetBlogByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -192,7 +191,7 @@ func (x *GetBlogByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetBlogByIDResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{3}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetBlogByIDResponse) GetBlogId() string {
@@ -282,7 +281,7 @@ type CreateDraftBlogRequest struct {
 
 func (x *CreateDraftBlogRequest) Reset() {
 	*x = CreateDraftBlogRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -294,7 +293,7 @@ func (x *CreateDraftBlogRequest) String() string {
 func (*CreateDraftBlogRequest) ProtoMessage() {}
 
 func (x *CreateDraftBlogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -307,7 +306,7 @@ func (x *CreateDraftBlogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDraftBlogRequest.ProtoReflect.Descriptor instead.
 func (*CreateDraftBlogRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{4}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateDraftBlogRequest) GetTitle() string {
@@ -333,7 +332,7 @@ type CreateDraftBlogResponse struct {
 
 func (x *CreateDraftBlogResponse) Reset() {
 	*x = CreateDraftBlogResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -345,7 +344,7 @@ func (x *CreateDraftBlogResponse) String() string {
 func (*CreateDraftBlogResponse) ProtoMessage() {}
 
 func (x *CreateDraftBlogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -358,7 +357,7 @@ func (x *CreateDraftBlogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDraftBlogResponse.ProtoReflect.Descriptor instead.
 func (*CreateDraftBlogResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{5}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateDraftBlogResponse) GetBlogId() string {
@@ -386,7 +385,7 @@ type UpdateDraftBlogRequest struct {
 
 func (x *UpdateDraftBlogRequest) Reset() {
 	*x = UpdateDraftBlogRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -398,7 +397,7 @@ func (x *UpdateDraftBlogRequest) String() string {
 func (*UpdateDraftBlogRequest) ProtoMessage() {}
 
 func (x *UpdateDraftBlogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -411,7 +410,7 @@ func (x *UpdateDraftBlogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDraftBlogRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDraftBlogRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{6}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateDraftBlogRequest) GetBlogId() string {
@@ -492,7 +491,7 @@ type UpdateDraftBlogResponse struct {
 
 func (x *UpdateDraftBlogResponse) Reset() {
 	*x = UpdateDraftBlogResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -504,7 +503,7 @@ func (x *UpdateDraftBlogResponse) String() string {
 func (*UpdateDraftBlogResponse) ProtoMessage() {}
 
 func (x *UpdateDraftBlogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +516,7 @@ func (x *UpdateDraftBlogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDraftBlogResponse.ProtoReflect.Descriptor instead.
 func (*UpdateDraftBlogResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{7}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{7}
 }
 
 type SaveBlogImageRequest struct {
@@ -530,7 +529,7 @@ type SaveBlogImageRequest struct {
 
 func (x *SaveBlogImageRequest) Reset() {
 	*x = SaveBlogImageRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -542,7 +541,7 @@ func (x *SaveBlogImageRequest) String() string {
 func (*SaveBlogImageRequest) ProtoMessage() {}
 
 func (x *SaveBlogImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -555,7 +554,7 @@ func (x *SaveBlogImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveBlogImageRequest.ProtoReflect.Descriptor instead.
 func (*SaveBlogImageRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{8}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SaveBlogImageRequest) GetBlogId() string {
@@ -581,7 +580,7 @@ type SaveBlogImageResponse struct {
 
 func (x *SaveBlogImageResponse) Reset() {
 	*x = SaveBlogImageResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -593,7 +592,7 @@ func (x *SaveBlogImageResponse) String() string {
 func (*SaveBlogImageResponse) ProtoMessage() {}
 
 func (x *SaveBlogImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -606,7 +605,7 @@ func (x *SaveBlogImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveBlogImageResponse.ProtoReflect.Descriptor instead.
 func (*SaveBlogImageResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{9}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SaveBlogImageResponse) GetImage() *SaveBlogImageResponse_Image {
@@ -626,7 +625,7 @@ type DeleteBlogImageRequest struct {
 
 func (x *DeleteBlogImageRequest) Reset() {
 	*x = DeleteBlogImageRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -638,7 +637,7 @@ func (x *DeleteBlogImageRequest) String() string {
 func (*DeleteBlogImageRequest) ProtoMessage() {}
 
 func (x *DeleteBlogImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -651,7 +650,7 @@ func (x *DeleteBlogImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBlogImageRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBlogImageRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{10}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteBlogImageRequest) GetBlogId() string {
@@ -676,7 +675,7 @@ type DeleteBlogImageResponse struct {
 
 func (x *DeleteBlogImageResponse) Reset() {
 	*x = DeleteBlogImageResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[11]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -688,7 +687,7 @@ func (x *DeleteBlogImageResponse) String() string {
 func (*DeleteBlogImageResponse) ProtoMessage() {}
 
 func (x *DeleteBlogImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[11]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -701,7 +700,7 @@ func (x *DeleteBlogImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBlogImageResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBlogImageResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{11}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{11}
 }
 
 type PublishBlogRequest struct {
@@ -714,7 +713,7 @@ type PublishBlogRequest struct {
 
 func (x *PublishBlogRequest) Reset() {
 	*x = PublishBlogRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[12]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -726,7 +725,7 @@ func (x *PublishBlogRequest) String() string {
 func (*PublishBlogRequest) ProtoMessage() {}
 
 func (x *PublishBlogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[12]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -739,7 +738,7 @@ func (x *PublishBlogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishBlogRequest.ProtoReflect.Descriptor instead.
 func (*PublishBlogRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{12}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *PublishBlogRequest) GetBlogId() string {
@@ -765,7 +764,7 @@ type PublishBlogResponse struct {
 
 func (x *PublishBlogResponse) Reset() {
 	*x = PublishBlogResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[13]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -777,7 +776,7 @@ func (x *PublishBlogResponse) String() string {
 func (*PublishBlogResponse) ProtoMessage() {}
 
 func (x *PublishBlogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[13]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -790,7 +789,7 @@ func (x *PublishBlogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishBlogResponse.ProtoReflect.Descriptor instead.
 func (*PublishBlogResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{13}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *PublishBlogResponse) GetErrors() []*PublishBlogResponse_ValidationError {
@@ -809,7 +808,7 @@ type UnPublishBlogRequest struct {
 
 func (x *UnPublishBlogRequest) Reset() {
 	*x = UnPublishBlogRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[14]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -821,7 +820,7 @@ func (x *UnPublishBlogRequest) String() string {
 func (*UnPublishBlogRequest) ProtoMessage() {}
 
 func (x *UnPublishBlogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[14]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -834,7 +833,7 @@ func (x *UnPublishBlogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnPublishBlogRequest.ProtoReflect.Descriptor instead.
 func (*UnPublishBlogRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{14}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UnPublishBlogRequest) GetBlogId() string {
@@ -853,7 +852,7 @@ type UnPublishBlogResponse struct {
 
 func (x *UnPublishBlogResponse) Reset() {
 	*x = UnPublishBlogResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[15]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -865,7 +864,7 @@ func (x *UnPublishBlogResponse) String() string {
 func (*UnPublishBlogResponse) ProtoMessage() {}
 
 func (x *UnPublishBlogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[15]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -878,7 +877,7 @@ func (x *UnPublishBlogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnPublishBlogResponse.ProtoReflect.Descriptor instead.
 func (*UnPublishBlogResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{15}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UnPublishBlogResponse) GetErrors() []*UnPublishBlogResponse_ValidationError {
@@ -898,7 +897,7 @@ type AddBlogCategoryRequest struct {
 
 func (x *AddBlogCategoryRequest) Reset() {
 	*x = AddBlogCategoryRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -910,7 +909,7 @@ func (x *AddBlogCategoryRequest) String() string {
 func (*AddBlogCategoryRequest) ProtoMessage() {}
 
 func (x *AddBlogCategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -923,7 +922,7 @@ func (x *AddBlogCategoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddBlogCategoryRequest.ProtoReflect.Descriptor instead.
 func (*AddBlogCategoryRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{16}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *AddBlogCategoryRequest) GetBlogId() string {
@@ -950,7 +949,7 @@ type DeleteBlogCategoryRequest struct {
 
 func (x *DeleteBlogCategoryRequest) Reset() {
 	*x = DeleteBlogCategoryRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -962,7 +961,7 @@ func (x *DeleteBlogCategoryRequest) String() string {
 func (*DeleteBlogCategoryRequest) ProtoMessage() {}
 
 func (x *DeleteBlogCategoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -975,7 +974,7 @@ func (x *DeleteBlogCategoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBlogCategoryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBlogCategoryRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{17}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteBlogCategoryRequest) GetBlogId() string {
@@ -1000,7 +999,7 @@ type GetBlogCategoriesRequest struct {
 
 func (x *GetBlogCategoriesRequest) Reset() {
 	*x = GetBlogCategoriesRequest{}
-	mi := &file_admin_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1012,7 +1011,7 @@ func (x *GetBlogCategoriesRequest) String() string {
 func (*GetBlogCategoriesRequest) ProtoMessage() {}
 
 func (x *GetBlogCategoriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1025,7 +1024,7 @@ func (x *GetBlogCategoriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogCategoriesRequest.ProtoReflect.Descriptor instead.
 func (*GetBlogCategoriesRequest) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{18}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{18}
 }
 
 type AddBlogCategoryResponse struct {
@@ -1036,7 +1035,7 @@ type AddBlogCategoryResponse struct {
 
 func (x *AddBlogCategoryResponse) Reset() {
 	*x = AddBlogCategoryResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1048,7 +1047,7 @@ func (x *AddBlogCategoryResponse) String() string {
 func (*AddBlogCategoryResponse) ProtoMessage() {}
 
 func (x *AddBlogCategoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1061,7 +1060,7 @@ func (x *AddBlogCategoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddBlogCategoryResponse.ProtoReflect.Descriptor instead.
 func (*AddBlogCategoryResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{19}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{19}
 }
 
 type DeleteBlogCategoryResponse struct {
@@ -1072,7 +1071,7 @@ type DeleteBlogCategoryResponse struct {
 
 func (x *DeleteBlogCategoryResponse) Reset() {
 	*x = DeleteBlogCategoryResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[20]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1084,7 +1083,7 @@ func (x *DeleteBlogCategoryResponse) String() string {
 func (*DeleteBlogCategoryResponse) ProtoMessage() {}
 
 func (x *DeleteBlogCategoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[20]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1097,7 +1096,7 @@ func (x *DeleteBlogCategoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBlogCategoryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBlogCategoryResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{20}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{20}
 }
 
 type GetBlogCategoriesResponse struct {
@@ -1109,7 +1108,7 @@ type GetBlogCategoriesResponse struct {
 
 func (x *GetBlogCategoriesResponse) Reset() {
 	*x = GetBlogCategoriesResponse{}
-	mi := &file_admin_v1_admin_proto_msgTypes[21]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1121,7 +1120,7 @@ func (x *GetBlogCategoriesResponse) String() string {
 func (*GetBlogCategoriesResponse) ProtoMessage() {}
 
 func (x *GetBlogCategoriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[21]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1134,7 +1133,7 @@ func (x *GetBlogCategoriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogCategoriesResponse.ProtoReflect.Descriptor instead.
 func (*GetBlogCategoriesResponse) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{21}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetBlogCategoriesResponse) GetCategories() []*GetBlogCategoriesResponse_Category {
@@ -1156,7 +1155,7 @@ type GetBlogsResponse_Blog struct {
 
 func (x *GetBlogsResponse_Blog) Reset() {
 	*x = GetBlogsResponse_Blog{}
-	mi := &file_admin_v1_admin_proto_msgTypes[22]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1168,7 +1167,7 @@ func (x *GetBlogsResponse_Blog) String() string {
 func (*GetBlogsResponse_Blog) ProtoMessage() {}
 
 func (x *GetBlogsResponse_Blog) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[22]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1181,7 +1180,7 @@ func (x *GetBlogsResponse_Blog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogsResponse_Blog.ProtoReflect.Descriptor instead.
 func (*GetBlogsResponse_Blog) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{1, 0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *GetBlogsResponse_Blog) GetBlogId() string {
@@ -1222,7 +1221,7 @@ type GetBlogByIDResponse_Doctor struct {
 
 func (x *GetBlogByIDResponse_Doctor) Reset() {
 	*x = GetBlogByIDResponse_Doctor{}
-	mi := &file_admin_v1_admin_proto_msgTypes[23]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1234,7 +1233,7 @@ func (x *GetBlogByIDResponse_Doctor) String() string {
 func (*GetBlogByIDResponse_Doctor) ProtoMessage() {}
 
 func (x *GetBlogByIDResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[23]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1247,7 +1246,7 @@ func (x *GetBlogByIDResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogByIDResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*GetBlogByIDResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{3, 0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{3, 0}
 }
 
 func (x *GetBlogByIDResponse_Doctor) GetDoctorId() int64 {
@@ -1274,7 +1273,7 @@ type GetBlogByIDResponse_Category struct {
 
 func (x *GetBlogByIDResponse_Category) Reset() {
 	*x = GetBlogByIDResponse_Category{}
-	mi := &file_admin_v1_admin_proto_msgTypes[24]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1286,7 +1285,7 @@ func (x *GetBlogByIDResponse_Category) String() string {
 func (*GetBlogByIDResponse_Category) ProtoMessage() {}
 
 func (x *GetBlogByIDResponse_Category) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[24]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1299,7 +1298,7 @@ func (x *GetBlogByIDResponse_Category) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogByIDResponse_Category.ProtoReflect.Descriptor instead.
 func (*GetBlogByIDResponse_Category) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{3, 1}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{3, 1}
 }
 
 func (x *GetBlogByIDResponse_Category) GetId() int64 {
@@ -1326,7 +1325,7 @@ type SaveBlogImageResponse_Image struct {
 
 func (x *SaveBlogImageResponse_Image) Reset() {
 	*x = SaveBlogImageResponse_Image{}
-	mi := &file_admin_v1_admin_proto_msgTypes[25]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1338,7 +1337,7 @@ func (x *SaveBlogImageResponse_Image) String() string {
 func (*SaveBlogImageResponse_Image) ProtoMessage() {}
 
 func (x *SaveBlogImageResponse_Image) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[25]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1351,7 +1350,7 @@ func (x *SaveBlogImageResponse_Image) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveBlogImageResponse_Image.ProtoReflect.Descriptor instead.
 func (*SaveBlogImageResponse_Image) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{9, 0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *SaveBlogImageResponse_Image) GetImageId() string {
@@ -1378,7 +1377,7 @@ type PublishBlogResponse_ValidationError struct {
 
 func (x *PublishBlogResponse_ValidationError) Reset() {
 	*x = PublishBlogResponse_ValidationError{}
-	mi := &file_admin_v1_admin_proto_msgTypes[26]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1390,7 +1389,7 @@ func (x *PublishBlogResponse_ValidationError) String() string {
 func (*PublishBlogResponse_ValidationError) ProtoMessage() {}
 
 func (x *PublishBlogResponse_ValidationError) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[26]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1403,7 +1402,7 @@ func (x *PublishBlogResponse_ValidationError) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use PublishBlogResponse_ValidationError.ProtoReflect.Descriptor instead.
 func (*PublishBlogResponse_ValidationError) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{13, 0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *PublishBlogResponse_ValidationError) GetField() string {
@@ -1430,7 +1429,7 @@ type UnPublishBlogResponse_ValidationError struct {
 
 func (x *UnPublishBlogResponse_ValidationError) Reset() {
 	*x = UnPublishBlogResponse_ValidationError{}
-	mi := &file_admin_v1_admin_proto_msgTypes[27]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1442,7 +1441,7 @@ func (x *UnPublishBlogResponse_ValidationError) String() string {
 func (*UnPublishBlogResponse_ValidationError) ProtoMessage() {}
 
 func (x *UnPublishBlogResponse_ValidationError) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[27]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1455,7 +1454,7 @@ func (x *UnPublishBlogResponse_ValidationError) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use UnPublishBlogResponse_ValidationError.ProtoReflect.Descriptor instead.
 func (*UnPublishBlogResponse_ValidationError) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{15, 0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{15, 0}
 }
 
 func (x *UnPublishBlogResponse_ValidationError) GetField() string {
@@ -1482,7 +1481,7 @@ type GetBlogCategoriesResponse_Category struct {
 
 func (x *GetBlogCategoriesResponse_Category) Reset() {
 	*x = GetBlogCategoriesResponse_Category{}
-	mi := &file_admin_v1_admin_proto_msgTypes[28]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1494,7 +1493,7 @@ func (x *GetBlogCategoriesResponse_Category) String() string {
 func (*GetBlogCategoriesResponse_Category) ProtoMessage() {}
 
 func (x *GetBlogCategoriesResponse_Category) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_v1_admin_proto_msgTypes[28]
+	mi := &file_admin_blogs_v1_admin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1507,7 +1506,7 @@ func (x *GetBlogCategoriesResponse_Category) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetBlogCategoriesResponse_Category.ProtoReflect.Descriptor instead.
 func (*GetBlogCategoriesResponse_Category) Descriptor() ([]byte, []int) {
-	return file_admin_v1_admin_proto_rawDescGZIP(), []int{21, 0}
+	return file_admin_blogs_v1_admin_proto_rawDescGZIP(), []int{21, 0}
 }
 
 func (x *GetBlogCategoriesResponse_Category) GetId() int64 {
@@ -1524,11 +1523,11 @@ func (x *GetBlogCategoriesResponse_Category) GetName() string {
 	return ""
 }
 
-var File_admin_v1_admin_proto protoreflect.FileDescriptor
+var File_admin_blogs_v1_admin_proto protoreflect.FileDescriptor
 
-const file_admin_v1_admin_proto_rawDesc = "" +
+const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x14admin/v1/admin.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x11\n" +
+	"\x1aadmin/blogs/v1/admin.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x11\n" +
 	"\x0fGetBlogsRequest\"\xbd\x01\n" +
 	"\x10GetBlogsResponse\x12,\n" +
 	"\x05blogs\x18\x01 \x03(\v2\x16.GetBlogsResponse.BlogR\x05blogs\x1a{\n" +
@@ -1637,22 +1636,22 @@ const file_admin_v1_admin_proto_rawDesc = "" +
 	"\rUnPublishBlog\x12\x15.UnPublishBlogRequest\x1a\x16.UnPublishBlogResponse\"g\x92A3\x121Снятие статьи с публикации\x82\xd3\xe4\x93\x02+:\x01*\"&/api/v1/admin/blog/{blog_id}/unpublish\x12\xa9\x01\n" +
 	"\x0fAddBlogCategory\x12\x17.AddBlogCategoryRequest\x1a\x18.AddBlogCategoryResponse\"c\x92A,\x12*Добавление тега статье\x82\xd3\xe4\x93\x02.:\x01*\")/api/v1/admin/blog/{blog_id}/add_category\x12\xb4\x01\n" +
 	"\x12DeleteBlogCategory\x12\x1a.DeleteBlogCategoryRequest\x1a\x1b.DeleteBlogCategoryResponse\"e\x92A+\x12)Удаление тега у статьи\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/blog/{blog_id}/delete_category\x12\xa0\x01\n" +
-	"\x11GetBlogCategories\x12\x19.GetBlogCategoriesRequest\x1a\x1a.GetBlogCategoriesResponse\"T\x92A,\x12*Получение тегов статей\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/admin/blog/categoriesB\x0eZ\fapi/admin/v1b\x06proto3"
+	"\x11GetBlogCategories\x12\x19.GetBlogCategoriesRequest\x1a\x1a.GetBlogCategoriesResponse\"T\x92A,\x12*Получение тегов статей\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/admin/blog/categoriesB\x14Z\x12api/admin/blogs/v1b\x06proto3"
 
 var (
-	file_admin_v1_admin_proto_rawDescOnce sync.Once
-	file_admin_v1_admin_proto_rawDescData []byte
+	file_admin_blogs_v1_admin_proto_rawDescOnce sync.Once
+	file_admin_blogs_v1_admin_proto_rawDescData []byte
 )
 
-func file_admin_v1_admin_proto_rawDescGZIP() []byte {
-	file_admin_v1_admin_proto_rawDescOnce.Do(func() {
-		file_admin_v1_admin_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_admin_v1_admin_proto_rawDesc), len(file_admin_v1_admin_proto_rawDesc)))
+func file_admin_blogs_v1_admin_proto_rawDescGZIP() []byte {
+	file_admin_blogs_v1_admin_proto_rawDescOnce.Do(func() {
+		file_admin_blogs_v1_admin_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_admin_blogs_v1_admin_proto_rawDesc), len(file_admin_blogs_v1_admin_proto_rawDesc)))
 	})
-	return file_admin_v1_admin_proto_rawDescData
+	return file_admin_blogs_v1_admin_proto_rawDescData
 }
 
-var file_admin_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
-var file_admin_v1_admin_proto_goTypes = []any{
+var file_admin_blogs_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_admin_blogs_v1_admin_proto_goTypes = []any{
 	(*GetBlogsRequest)(nil),                       // 0: GetBlogsRequest
 	(*GetBlogsResponse)(nil),                      // 1: GetBlogsResponse
 	(*GetBlogByIDRequest)(nil),                    // 2: GetBlogByIDRequest
@@ -1683,7 +1682,7 @@ var file_admin_v1_admin_proto_goTypes = []any{
 	(*UnPublishBlogResponse_ValidationError)(nil), // 27: UnPublishBlogResponse.ValidationError
 	(*GetBlogCategoriesResponse_Category)(nil),    // 28: GetBlogCategoriesResponse.Category
 }
-var file_admin_v1_admin_proto_depIdxs = []int32{
+var file_admin_blogs_v1_admin_proto_depIdxs = []int32{
 	22, // 0: GetBlogsResponse.blogs:type_name -> GetBlogsResponse.Blog
 	23, // 1: GetBlogByIDResponse.doctor:type_name -> GetBlogByIDResponse.Doctor
 	24, // 2: GetBlogByIDResponse.categories:type_name -> GetBlogByIDResponse.Category
@@ -1720,27 +1719,27 @@ var file_admin_v1_admin_proto_depIdxs = []int32{
 	0,  // [0:7] is the sub-list for field type_name
 }
 
-func init() { file_admin_v1_admin_proto_init() }
-func file_admin_v1_admin_proto_init() {
-	if File_admin_v1_admin_proto != nil {
+func init() { file_admin_blogs_v1_admin_proto_init() }
+func file_admin_blogs_v1_admin_proto_init() {
+	if File_admin_blogs_v1_admin_proto != nil {
 		return
 	}
-	file_admin_v1_admin_proto_msgTypes[12].OneofWrappers = []any{}
+	file_admin_blogs_v1_admin_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_v1_admin_proto_rawDesc), len(file_admin_v1_admin_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_blogs_v1_admin_proto_rawDesc), len(file_admin_blogs_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_admin_v1_admin_proto_goTypes,
-		DependencyIndexes: file_admin_v1_admin_proto_depIdxs,
-		MessageInfos:      file_admin_v1_admin_proto_msgTypes,
+		GoTypes:           file_admin_blogs_v1_admin_proto_goTypes,
+		DependencyIndexes: file_admin_blogs_v1_admin_proto_depIdxs,
+		MessageInfos:      file_admin_blogs_v1_admin_proto_msgTypes,
 	}.Build()
-	File_admin_v1_admin_proto = out.File
-	file_admin_v1_admin_proto_goTypes = nil
-	file_admin_v1_admin_proto_depIdxs = nil
+	File_admin_blogs_v1_admin_proto = out.File
+	file_admin_blogs_v1_admin_proto_goTypes = nil
+	file_admin_blogs_v1_admin_proto_depIdxs = nil
 }

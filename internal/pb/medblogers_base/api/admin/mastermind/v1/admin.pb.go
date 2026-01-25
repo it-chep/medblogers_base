@@ -2,19 +2,18 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: admin/mm/v1/admin.proto
+// source: admin/mastermind/v1/admin.proto
 
 package v1
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -35,7 +34,7 @@ type CreateMMRequest struct {
 
 func (x *CreateMMRequest) Reset() {
 	*x = CreateMMRequest{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +46,7 @@ func (x *CreateMMRequest) String() string {
 func (*CreateMMRequest) ProtoMessage() {}
 
 func (x *CreateMMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +59,7 @@ func (x *CreateMMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMMRequest.ProtoReflect.Descriptor instead.
 func (*CreateMMRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{0}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateMMRequest) GetMmDatetime() string {
@@ -92,7 +91,7 @@ type CreateMMResponse struct {
 
 func (x *CreateMMResponse) Reset() {
 	*x = CreateMMResponse{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -104,7 +103,7 @@ func (x *CreateMMResponse) String() string {
 func (*CreateMMResponse) ProtoMessage() {}
 
 func (x *CreateMMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -117,7 +116,7 @@ func (x *CreateMMResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateMMResponse.ProtoReflect.Descriptor instead.
 func (*CreateMMResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{1}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{1}
 }
 
 type ManualNotificationMMRequest struct {
@@ -129,7 +128,7 @@ type ManualNotificationMMRequest struct {
 
 func (x *ManualNotificationMMRequest) Reset() {
 	*x = ManualNotificationMMRequest{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -141,7 +140,7 @@ func (x *ManualNotificationMMRequest) String() string {
 func (*ManualNotificationMMRequest) ProtoMessage() {}
 
 func (x *ManualNotificationMMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -154,7 +153,7 @@ func (x *ManualNotificationMMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ManualNotificationMMRequest.ProtoReflect.Descriptor instead.
 func (*ManualNotificationMMRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{2}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ManualNotificationMMRequest) GetMmId() int64 {
@@ -172,7 +171,7 @@ type ManualNotificationMMResponse struct {
 
 func (x *ManualNotificationMMResponse) Reset() {
 	*x = ManualNotificationMMResponse{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -184,7 +183,7 @@ func (x *ManualNotificationMMResponse) String() string {
 func (*ManualNotificationMMResponse) ProtoMessage() {}
 
 func (x *ManualNotificationMMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -197,7 +196,7 @@ func (x *ManualNotificationMMResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ManualNotificationMMResponse.ProtoReflect.Descriptor instead.
 func (*ManualNotificationMMResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{3}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{3}
 }
 
 type ChangeMMActivityRequest struct {
@@ -210,7 +209,7 @@ type ChangeMMActivityRequest struct {
 
 func (x *ChangeMMActivityRequest) Reset() {
 	*x = ChangeMMActivityRequest{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -222,7 +221,7 @@ func (x *ChangeMMActivityRequest) String() string {
 func (*ChangeMMActivityRequest) ProtoMessage() {}
 
 func (x *ChangeMMActivityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -235,7 +234,7 @@ func (x *ChangeMMActivityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeMMActivityRequest.ProtoReflect.Descriptor instead.
 func (*ChangeMMActivityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{4}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ChangeMMActivityRequest) GetMmId() int64 {
@@ -260,7 +259,7 @@ type ChangeMMActivityResponse struct {
 
 func (x *ChangeMMActivityResponse) Reset() {
 	*x = ChangeMMActivityResponse{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -272,7 +271,7 @@ func (x *ChangeMMActivityResponse) String() string {
 func (*ChangeMMActivityResponse) ProtoMessage() {}
 
 func (x *ChangeMMActivityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -285,7 +284,7 @@ func (x *ChangeMMActivityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeMMActivityResponse.ProtoReflect.Descriptor instead.
 func (*ChangeMMActivityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{5}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{5}
 }
 
 type GetMMListRequest struct {
@@ -296,7 +295,7 @@ type GetMMListRequest struct {
 
 func (x *GetMMListRequest) Reset() {
 	*x = GetMMListRequest{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -308,7 +307,7 @@ func (x *GetMMListRequest) String() string {
 func (*GetMMListRequest) ProtoMessage() {}
 
 func (x *GetMMListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -321,7 +320,7 @@ func (x *GetMMListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMMListRequest.ProtoReflect.Descriptor instead.
 func (*GetMMListRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{6}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{6}
 }
 
 type GetMMListResponse struct {
@@ -333,7 +332,7 @@ type GetMMListResponse struct {
 
 func (x *GetMMListResponse) Reset() {
 	*x = GetMMListResponse{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -345,7 +344,7 @@ func (x *GetMMListResponse) String() string {
 func (*GetMMListResponse) ProtoMessage() {}
 
 func (x *GetMMListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -358,7 +357,7 @@ func (x *GetMMListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMMListResponse.ProtoReflect.Descriptor instead.
 func (*GetMMListResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{7}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetMMListResponse) GetMms() []*GetMMListResponse_Mm {
@@ -380,7 +379,7 @@ type CreateGetCourseOrderRequest struct {
 
 func (x *CreateGetCourseOrderRequest) Reset() {
 	*x = CreateGetCourseOrderRequest{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -392,7 +391,7 @@ func (x *CreateGetCourseOrderRequest) String() string {
 func (*CreateGetCourseOrderRequest) ProtoMessage() {}
 
 func (x *CreateGetCourseOrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -405,7 +404,7 @@ func (x *CreateGetCourseOrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGetCourseOrderRequest.ProtoReflect.Descriptor instead.
 func (*CreateGetCourseOrderRequest) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{8}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateGetCourseOrderRequest) GetOrderId() string {
@@ -444,7 +443,7 @@ type CreateGetCourseOrderResponse struct {
 
 func (x *CreateGetCourseOrderResponse) Reset() {
 	*x = CreateGetCourseOrderResponse{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -456,7 +455,7 @@ func (x *CreateGetCourseOrderResponse) String() string {
 func (*CreateGetCourseOrderResponse) ProtoMessage() {}
 
 func (x *CreateGetCourseOrderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -469,7 +468,7 @@ func (x *CreateGetCourseOrderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGetCourseOrderResponse.ProtoReflect.Descriptor instead.
 func (*CreateGetCourseOrderResponse) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{9}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{9}
 }
 
 type GetMMListResponse_Mm struct {
@@ -486,7 +485,7 @@ type GetMMListResponse_Mm struct {
 
 func (x *GetMMListResponse_Mm) Reset() {
 	*x = GetMMListResponse_Mm{}
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -498,7 +497,7 @@ func (x *GetMMListResponse_Mm) String() string {
 func (*GetMMListResponse_Mm) ProtoMessage() {}
 
 func (x *GetMMListResponse_Mm) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mm_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -511,7 +510,7 @@ func (x *GetMMListResponse_Mm) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMMListResponse_Mm.ProtoReflect.Descriptor instead.
 func (*GetMMListResponse_Mm) Descriptor() ([]byte, []int) {
-	return file_admin_mm_v1_admin_proto_rawDescGZIP(), []int{7, 0}
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{7, 0}
 }
 
 func (x *GetMMListResponse_Mm) GetMmId() int64 {
@@ -556,11 +555,11 @@ func (x *GetMMListResponse_Mm) GetActivity() bool {
 	return false
 }
 
-var File_admin_mm_v1_admin_proto protoreflect.FileDescriptor
+var File_admin_mastermind_v1_admin_proto protoreflect.FileDescriptor
 
-const file_admin_mm_v1_admin_proto_rawDesc = "" +
+const file_admin_mastermind_v1_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x17admin/mm/v1/admin.proto\x12\vadmin.mm.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"_\n" +
+	"\x1fadmin/mastermind/v1/admin.proto\x12\x13admin.mastermind.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"_\n" +
 	"\x0fCreateMMRequest\x12\x1f\n" +
 	"\vmm_datetime\x18\x01 \x01(\tR\n" +
 	"mmDatetime\x12\x12\n" +
@@ -574,9 +573,9 @@ const file_admin_mm_v1_admin_proto_rawDesc = "" +
 	"\x05mm_id\x18\x01 \x01(\x03R\x04mmId\x12\x1a\n" +
 	"\bactivity\x18\x02 \x01(\bR\bactivity\"\x1a\n" +
 	"\x18ChangeMMActivityResponse\"\x12\n" +
-	"\x10GetMMListRequest\"\xec\x01\n" +
-	"\x11GetMMListResponse\x123\n" +
-	"\x03mms\x18\x01 \x03(\v2!.admin.mm.v1.GetMMListResponse.MmR\x03mms\x1a\xa1\x01\n" +
+	"\x10GetMMListRequest\"\xf4\x01\n" +
+	"\x11GetMMListResponse\x12;\n" +
+	"\x03mms\x18\x01 \x03(\v2).admin.mastermind.v1.GetMMListResponse.MmR\x03mms\x1a\xa1\x01\n" +
 	"\x02Mm\x12\x13\n" +
 	"\x05mm_id\x18\x01 \x01(\x03R\x04mmId\x12\x1f\n" +
 	"\vmm_datetime\x18\x02 \x01(\tR\n" +
@@ -591,52 +590,52 @@ const file_admin_mm_v1_admin_proto_rawDesc = "" +
 	"\fgetcource_id\x18\x02 \x01(\x03R\vgetcourceId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\tR\bposition\"\x1e\n" +
-	"\x1cCreateGetCourseOrderResponse2\xfc\a\n" +
-	"\x0eMMAdminService\x12\x92\x01\n" +
-	"\bCreateMM\x12\x1c.admin.mm.v1.CreateMMRequest\x1a\x1d.admin.mm.v1.CreateMMResponse\"I\x92A+\x12)Создание мастермайнда\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/admin/mm\x12\xcb\x01\n" +
-	"\x14ManualNotificationMM\x12(.admin.mm.v1.ManualNotificationMMRequest\x1a).admin.mm.v1.ManualNotificationMMResponse\"^\x92A$\x12\"Ручная рассылка ММ\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/mm/{mm_id}/manual_notification\x12\xda\x01\n" +
-	"\x10ChangeMMActivity\x12$.admin.mm.v1.ChangeMMActivityRequest\x1a%.admin.mm.v1.ChangeMMActivityResponse\"y\x92A@\x12>Изменение активности ММ (вкл/выкл)\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/admin/mm/{mm_id}/change_mm_activity\x12\xa3\x01\n" +
-	"\tGetMMList\x12\x1d.admin.mm.v1.GetMMListRequest\x1a\x1e.admin.mm.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\x83\x02\n" +
-	"\x14CreateGetCourseOrder\x12(.admin.mm.v1.CreateGetCourseOrderRequest\x1a).admin.mm.v1.CreateGetCourseOrderResponse\"\x95\x01\x92Aj\x123Создание заказа от геткурса2!application/x-www-form-urlencoded:\x10application/json\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x11Z\x0fapi/admin/mm/v1b\x06proto3"
+	"\x1cCreateGetCourseOrderResponse2\x9e\b\n" +
+	"\x16AdminMastermindService\x12\xa2\x01\n" +
+	"\bCreateMM\x12$.admin.mastermind.v1.CreateMMRequest\x1a%.admin.mastermind.v1.CreateMMResponse\"I\x92A+\x12)Создание мастермайнда\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/admin/mm\x12\xdb\x01\n" +
+	"\x14ManualNotificationMM\x120.admin.mastermind.v1.ManualNotificationMMRequest\x1a1.admin.mastermind.v1.ManualNotificationMMResponse\"^\x92A$\x12\"Ручная рассылка ММ\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/mm/{mm_id}/manual_notification\x12\xea\x01\n" +
+	"\x10ChangeMMActivity\x12,.admin.mastermind.v1.ChangeMMActivityRequest\x1a-.admin.mastermind.v1.ChangeMMActivityResponse\"y\x92A@\x12>Изменение активности ММ (вкл/выкл)\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/admin/mm/{mm_id}/change_mm_activity\x12\xb3\x01\n" +
+	"\tGetMMList\x12%.admin.mastermind.v1.GetMMListRequest\x1a&.admin.mastermind.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\xdd\x01\n" +
+	"\x14CreateGetCourseOrder\x120.admin.mastermind.v1.CreateGetCourseOrderRequest\x1a1.admin.mastermind.v1.CreateGetCourseOrderResponse\"`\x92A5\x123Создание заказа от геткурса\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x15Z\x13admin/mastermind/v1b\x06proto3"
 
 var (
-	file_admin_mm_v1_admin_proto_rawDescOnce sync.Once
-	file_admin_mm_v1_admin_proto_rawDescData []byte
+	file_admin_mastermind_v1_admin_proto_rawDescOnce sync.Once
+	file_admin_mastermind_v1_admin_proto_rawDescData []byte
 )
 
-func file_admin_mm_v1_admin_proto_rawDescGZIP() []byte {
-	file_admin_mm_v1_admin_proto_rawDescOnce.Do(func() {
-		file_admin_mm_v1_admin_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_admin_mm_v1_admin_proto_rawDesc), len(file_admin_mm_v1_admin_proto_rawDesc)))
+func file_admin_mastermind_v1_admin_proto_rawDescGZIP() []byte {
+	file_admin_mastermind_v1_admin_proto_rawDescOnce.Do(func() {
+		file_admin_mastermind_v1_admin_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_admin_mastermind_v1_admin_proto_rawDesc), len(file_admin_mastermind_v1_admin_proto_rawDesc)))
 	})
-	return file_admin_mm_v1_admin_proto_rawDescData
+	return file_admin_mastermind_v1_admin_proto_rawDescData
 }
 
-var file_admin_mm_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
-var file_admin_mm_v1_admin_proto_goTypes = []any{
-	(*CreateMMRequest)(nil),              // 0: admin.mm.v1.CreateMMRequest
-	(*CreateMMResponse)(nil),             // 1: admin.mm.v1.CreateMMResponse
-	(*ManualNotificationMMRequest)(nil),  // 2: admin.mm.v1.ManualNotificationMMRequest
-	(*ManualNotificationMMResponse)(nil), // 3: admin.mm.v1.ManualNotificationMMResponse
-	(*ChangeMMActivityRequest)(nil),      // 4: admin.mm.v1.ChangeMMActivityRequest
-	(*ChangeMMActivityResponse)(nil),     // 5: admin.mm.v1.ChangeMMActivityResponse
-	(*GetMMListRequest)(nil),             // 6: admin.mm.v1.GetMMListRequest
-	(*GetMMListResponse)(nil),            // 7: admin.mm.v1.GetMMListResponse
-	(*CreateGetCourseOrderRequest)(nil),  // 8: admin.mm.v1.CreateGetCourseOrderRequest
-	(*CreateGetCourseOrderResponse)(nil), // 9: admin.mm.v1.CreateGetCourseOrderResponse
-	(*GetMMListResponse_Mm)(nil),         // 10: admin.mm.v1.GetMMListResponse.Mm
+var file_admin_mastermind_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_admin_mastermind_v1_admin_proto_goTypes = []any{
+	(*CreateMMRequest)(nil),              // 0: admin.mastermind.v1.CreateMMRequest
+	(*CreateMMResponse)(nil),             // 1: admin.mastermind.v1.CreateMMResponse
+	(*ManualNotificationMMRequest)(nil),  // 2: admin.mastermind.v1.ManualNotificationMMRequest
+	(*ManualNotificationMMResponse)(nil), // 3: admin.mastermind.v1.ManualNotificationMMResponse
+	(*ChangeMMActivityRequest)(nil),      // 4: admin.mastermind.v1.ChangeMMActivityRequest
+	(*ChangeMMActivityResponse)(nil),     // 5: admin.mastermind.v1.ChangeMMActivityResponse
+	(*GetMMListRequest)(nil),             // 6: admin.mastermind.v1.GetMMListRequest
+	(*GetMMListResponse)(nil),            // 7: admin.mastermind.v1.GetMMListResponse
+	(*CreateGetCourseOrderRequest)(nil),  // 8: admin.mastermind.v1.CreateGetCourseOrderRequest
+	(*CreateGetCourseOrderResponse)(nil), // 9: admin.mastermind.v1.CreateGetCourseOrderResponse
+	(*GetMMListResponse_Mm)(nil),         // 10: admin.mastermind.v1.GetMMListResponse.Mm
 }
-var file_admin_mm_v1_admin_proto_depIdxs = []int32{
-	10, // 0: admin.mm.v1.GetMMListResponse.mms:type_name -> admin.mm.v1.GetMMListResponse.Mm
-	0,  // 1: admin.mm.v1.MMAdminService.CreateMM:input_type -> admin.mm.v1.CreateMMRequest
-	2,  // 2: admin.mm.v1.MMAdminService.ManualNotificationMM:input_type -> admin.mm.v1.ManualNotificationMMRequest
-	4,  // 3: admin.mm.v1.MMAdminService.ChangeMMActivity:input_type -> admin.mm.v1.ChangeMMActivityRequest
-	6,  // 4: admin.mm.v1.MMAdminService.GetMMList:input_type -> admin.mm.v1.GetMMListRequest
-	8,  // 5: admin.mm.v1.MMAdminService.CreateGetCourseOrder:input_type -> admin.mm.v1.CreateGetCourseOrderRequest
-	1,  // 6: admin.mm.v1.MMAdminService.CreateMM:output_type -> admin.mm.v1.CreateMMResponse
-	3,  // 7: admin.mm.v1.MMAdminService.ManualNotificationMM:output_type -> admin.mm.v1.ManualNotificationMMResponse
-	5,  // 8: admin.mm.v1.MMAdminService.ChangeMMActivity:output_type -> admin.mm.v1.ChangeMMActivityResponse
-	7,  // 9: admin.mm.v1.MMAdminService.GetMMList:output_type -> admin.mm.v1.GetMMListResponse
-	9,  // 10: admin.mm.v1.MMAdminService.CreateGetCourseOrder:output_type -> admin.mm.v1.CreateGetCourseOrderResponse
+var file_admin_mastermind_v1_admin_proto_depIdxs = []int32{
+	10, // 0: admin.mastermind.v1.GetMMListResponse.mms:type_name -> admin.mastermind.v1.GetMMListResponse.Mm
+	0,  // 1: admin.mastermind.v1.AdminMastermindService.CreateMM:input_type -> admin.mastermind.v1.CreateMMRequest
+	2,  // 2: admin.mastermind.v1.AdminMastermindService.ManualNotificationMM:input_type -> admin.mastermind.v1.ManualNotificationMMRequest
+	4,  // 3: admin.mastermind.v1.AdminMastermindService.ChangeMMActivity:input_type -> admin.mastermind.v1.ChangeMMActivityRequest
+	6,  // 4: admin.mastermind.v1.AdminMastermindService.GetMMList:input_type -> admin.mastermind.v1.GetMMListRequest
+	8,  // 5: admin.mastermind.v1.AdminMastermindService.CreateGetCourseOrder:input_type -> admin.mastermind.v1.CreateGetCourseOrderRequest
+	1,  // 6: admin.mastermind.v1.AdminMastermindService.CreateMM:output_type -> admin.mastermind.v1.CreateMMResponse
+	3,  // 7: admin.mastermind.v1.AdminMastermindService.ManualNotificationMM:output_type -> admin.mastermind.v1.ManualNotificationMMResponse
+	5,  // 8: admin.mastermind.v1.AdminMastermindService.ChangeMMActivity:output_type -> admin.mastermind.v1.ChangeMMActivityResponse
+	7,  // 9: admin.mastermind.v1.AdminMastermindService.GetMMList:output_type -> admin.mastermind.v1.GetMMListResponse
+	9,  // 10: admin.mastermind.v1.AdminMastermindService.CreateGetCourseOrder:output_type -> admin.mastermind.v1.CreateGetCourseOrderResponse
 	6,  // [6:11] is the sub-list for method output_type
 	1,  // [1:6] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
@@ -644,26 +643,26 @@ var file_admin_mm_v1_admin_proto_depIdxs = []int32{
 	0,  // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_admin_mm_v1_admin_proto_init() }
-func file_admin_mm_v1_admin_proto_init() {
-	if File_admin_mm_v1_admin_proto != nil {
+func init() { file_admin_mastermind_v1_admin_proto_init() }
+func file_admin_mastermind_v1_admin_proto_init() {
+	if File_admin_mastermind_v1_admin_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_mm_v1_admin_proto_rawDesc), len(file_admin_mm_v1_admin_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_mastermind_v1_admin_proto_rawDesc), len(file_admin_mastermind_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_admin_mm_v1_admin_proto_goTypes,
-		DependencyIndexes: file_admin_mm_v1_admin_proto_depIdxs,
-		MessageInfos:      file_admin_mm_v1_admin_proto_msgTypes,
+		GoTypes:           file_admin_mastermind_v1_admin_proto_goTypes,
+		DependencyIndexes: file_admin_mastermind_v1_admin_proto_depIdxs,
+		MessageInfos:      file_admin_mastermind_v1_admin_proto_msgTypes,
 	}.Build()
-	File_admin_mm_v1_admin_proto = out.File
-	file_admin_mm_v1_admin_proto_goTypes = nil
-	file_admin_mm_v1_admin_proto_depIdxs = nil
+	File_admin_mastermind_v1_admin_proto = out.File
+	file_admin_mastermind_v1_admin_proto_goTypes = nil
+	file_admin_mastermind_v1_admin_proto_depIdxs = nil
 }

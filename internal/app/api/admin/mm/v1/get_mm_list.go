@@ -4,7 +4,7 @@ import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
 	"medblogers_base/internal/modules/admin/action/mm/action/get_mm_list/dto"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mm/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 	"time"
 
 	"github.com/samber/lo"

@@ -4,7 +4,7 @@ import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
 	"medblogers_base/internal/modules/admin/action/blog/action/get_blog_by_id/dto"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 
 	"github.com/samber/lo"
 

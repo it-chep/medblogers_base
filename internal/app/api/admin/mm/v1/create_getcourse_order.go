@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dto"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mm/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 )
 
 func (i *Implementation) CreateGetCourseOrder(ctx context.Context, req *desc.CreateGetCourseOrderRequest) (*desc.CreateGetCourseOrderResponse, error) {

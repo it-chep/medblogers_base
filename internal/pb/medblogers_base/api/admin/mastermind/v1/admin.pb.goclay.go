@@ -5,64 +5,63 @@ package v1
 import (
 	context "context"
 	_ "embed"
-
 	runtime "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	transport "github.com/not-for-prod/clay/transport"
 	httptransport "github.com/not-for-prod/clay/transport/httptransport"
 	grpc "google.golang.org/grpc"
 )
 
-//go:generate implgen --src admin_grpc.pb.go --interface-name MMAdminServiceServer --mod-relative --dst
+//go:generate implgen --src admin_grpc.pb.go --interface-name AdminMastermindServiceServer --mod-relative --dst
 
 //go:embed admin.swagger.json
 var Swagger []byte
 
-// MMAdminServiceServiceDesc is a descriptor/registrator for the MMAdminServiceServer.
-type MMAdminServiceServiceDesc struct {
-	svc  MMAdminServiceServer
+// AdminMastermindServiceServiceDesc is a descriptor/registrator for the AdminMastermindServiceServer.
+type AdminMastermindServiceServiceDesc struct {
+	svc  AdminMastermindServiceServer
 	opts httptransport.DescOptions
 }
 
-// NewMMAdminServiceServiceDesc creates new registrator for the MMAdminServiceServer.
+// NewAdminMastermindServiceServiceDesc creates new registrator for the AdminMastermindServiceServer.
 // It implements httptransport.ConfigurableServiceDesc as well.
-func NewMMAdminServiceServiceDesc(i MMAdminServiceServer) *MMAdminServiceServiceDesc {
-	return &MMAdminServiceServiceDesc{svc: i}
+func NewAdminMastermindServiceServiceDesc(i AdminMastermindServiceServer) *AdminMastermindServiceServiceDesc {
+	return &AdminMastermindServiceServiceDesc{svc: i}
 }
 
 // RegisterGRPC implements service registrator interface.
-func (d *MMAdminServiceServiceDesc) RegisterGRPC(s *grpc.Server) {
-	RegisterMMAdminServiceServer(s, d.svc)
+func (d *AdminMastermindServiceServiceDesc) RegisterGRPC(s *grpc.Server) {
+	RegisterAdminMastermindServiceServer(s, d.svc)
 }
 
 // Apply applies passed options.
-func (d *MMAdminServiceServiceDesc) Apply(oo ...transport.DescOption) {
+func (d *AdminMastermindServiceServiceDesc) Apply(oo ...transport.DescOption) {
 	for _, o := range oo {
 		o.Apply(&d.opts)
 	}
 }
 
 // SwaggerDef returns this file's Swagger definition.
-func (d *MMAdminServiceServiceDesc) SwaggerDef() []byte {
+func (d *AdminMastermindServiceServiceDesc) SwaggerDef() []byte {
 	return Swagger
 }
 
 // RegisterHTTP registers this service's HTTP handlers/bindings.
-func (w *MMAdminServiceServiceDesc) RegisterHTTP(
+func (w *AdminMastermindServiceServiceDesc) RegisterHTTP(
 	ctx context.Context,
 	mux *runtime.ServeMux,
 ) error {
-	return RegisterMMAdminServiceHandlerServer(ctx, mux, w)
+	return RegisterAdminMastermindServiceHandlerServer(ctx, mux, w)
 }
 
 // Wrap all http methods with interceptor support
 
-func (w *MMAdminServiceServiceDesc) CreateMM(ctx context.Context, in *CreateMMRequest) (*CreateMMResponse, error) {
+func (w *AdminMastermindServiceServiceDesc) CreateMM(ctx context.Context, in *CreateMMRequest) (*CreateMMResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.CreateMM(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.mm.v1.MMAdminService/CreateMM",
+		FullMethod: "/admin.mastermind.v1.AdminMastermindService/CreateMM",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.CreateMM(ctx, req.(*CreateMMRequest))
@@ -74,13 +73,13 @@ func (w *MMAdminServiceServiceDesc) CreateMM(ctx context.Context, in *CreateMMRe
 	return resp.(*CreateMMResponse), err
 }
 
-func (w *MMAdminServiceServiceDesc) ManualNotificationMM(ctx context.Context, in *ManualNotificationMMRequest) (*ManualNotificationMMResponse, error) {
+func (w *AdminMastermindServiceServiceDesc) ManualNotificationMM(ctx context.Context, in *ManualNotificationMMRequest) (*ManualNotificationMMResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.ManualNotificationMM(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.mm.v1.MMAdminService/ManualNotificationMM",
+		FullMethod: "/admin.mastermind.v1.AdminMastermindService/ManualNotificationMM",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.ManualNotificationMM(ctx, req.(*ManualNotificationMMRequest))
@@ -92,13 +91,13 @@ func (w *MMAdminServiceServiceDesc) ManualNotificationMM(ctx context.Context, in
 	return resp.(*ManualNotificationMMResponse), err
 }
 
-func (w *MMAdminServiceServiceDesc) ChangeMMActivity(ctx context.Context, in *ChangeMMActivityRequest) (*ChangeMMActivityResponse, error) {
+func (w *AdminMastermindServiceServiceDesc) ChangeMMActivity(ctx context.Context, in *ChangeMMActivityRequest) (*ChangeMMActivityResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.ChangeMMActivity(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.mm.v1.MMAdminService/ChangeMMActivity",
+		FullMethod: "/admin.mastermind.v1.AdminMastermindService/ChangeMMActivity",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.ChangeMMActivity(ctx, req.(*ChangeMMActivityRequest))
@@ -110,13 +109,13 @@ func (w *MMAdminServiceServiceDesc) ChangeMMActivity(ctx context.Context, in *Ch
 	return resp.(*ChangeMMActivityResponse), err
 }
 
-func (w *MMAdminServiceServiceDesc) GetMMList(ctx context.Context, in *GetMMListRequest) (*GetMMListResponse, error) {
+func (w *AdminMastermindServiceServiceDesc) GetMMList(ctx context.Context, in *GetMMListRequest) (*GetMMListResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.GetMMList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.mm.v1.MMAdminService/GetMMList",
+		FullMethod: "/admin.mastermind.v1.AdminMastermindService/GetMMList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.GetMMList(ctx, req.(*GetMMListRequest))
@@ -128,13 +127,13 @@ func (w *MMAdminServiceServiceDesc) GetMMList(ctx context.Context, in *GetMMList
 	return resp.(*GetMMListResponse), err
 }
 
-func (w *MMAdminServiceServiceDesc) CreateGetCourseOrder(ctx context.Context, in *CreateGetCourseOrderRequest) (*CreateGetCourseOrderResponse, error) {
+func (w *AdminMastermindServiceServiceDesc) CreateGetCourseOrder(ctx context.Context, in *CreateGetCourseOrderRequest) (*CreateGetCourseOrderResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.CreateGetCourseOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.mm.v1.MMAdminService/CreateGetCourseOrder",
+		FullMethod: "/admin.mastermind.v1.AdminMastermindService/CreateGetCourseOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.CreateGetCourseOrder(ctx, req.(*CreateGetCourseOrderRequest))

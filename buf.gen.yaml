@@ -15,7 +15,7 @@ plugins:
       - logtostderr=true
       - paths=source_relative
     out: internal/pb/medblogers_base/api
-  - remote: buf.build/grpc-ecosystem/openapiv2
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.27.0
     out: internal/pb/medblogers_base/api
     opt:
       - generate_unbound_methods=false

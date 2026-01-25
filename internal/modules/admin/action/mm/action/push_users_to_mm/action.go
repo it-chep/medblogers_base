@@ -25,7 +25,7 @@ type Action struct {
 	config Config
 }
 
-func New(pool postgres.PoolWrapper, clients client.Aggregator, config Config) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator, config Config) *Action {
 	return &Action{
 		dal:    dal.NewRepository(pool),
 		gw:     clients.Salebot,

@@ -3,11 +3,11 @@ package v1
 import (
 	"medblogers_base/internal/modules/admin"
 	"medblogers_base/internal/modules/auth"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mm/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 )
 
 type Implementation struct {
-	desc.UnimplementedMMAdminServiceServer
+	desc.UnimplementedAdminMastermindServiceServer
 
 	admin *admin.Module
 	auth  *auth.Module

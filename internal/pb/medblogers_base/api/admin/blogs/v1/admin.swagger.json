@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "admin/v1/admin.proto",
+    "title": "admin/blogs/v1/admin.proto",
     "version": "version not set"
   },
   "tags": [

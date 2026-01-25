@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "admin/mm/v1/admin.proto",
+    "title": "admin/mastermind/v1/admin.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "MMAdminService"
+      "name": "AdminMastermindService"
     }
   ],
   "consumes": [
@@ -19,12 +19,12 @@
     "/api/v1/admin/gk_order/create": {
       "post": {
         "summary": "Создание заказа от геткурса",
-        "operationId": "MMAdminService_CreateGetCourseOrder",
+        "operationId": "AdminMastermindService_CreateGetCourseOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.CreateGetCourseOrderResponse"
+              "$ref": "#/definitions/admin.mastermind.v1.CreateGetCourseOrderResponse"
             }
           },
           "default": {
@@ -40,30 +40,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.CreateGetCourseOrderRequest"
+              "$ref": "#/definitions/admin.mastermind.v1.CreateGetCourseOrderRequest"
             }
           }
         ],
         "tags": [
-          "MMAdminService"
-        ],
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json"
+          "AdminMastermindService"
         ]
       }
     },
     "/api/v1/admin/mm": {
       "get": {
         "summary": "Получение списка мастермайндов",
-        "operationId": "MMAdminService_GetMMList",
+        "operationId": "AdminMastermindService_GetMMList",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.GetMMListResponse"
+              "$ref": "#/definitions/admin.mastermind.v1.GetMMListResponse"
             }
           },
           "default": {
@@ -74,17 +68,17 @@
           }
         },
         "tags": [
-          "MMAdminService"
+          "AdminMastermindService"
         ]
       },
       "post": {
         "summary": "Создание мастермайнда",
-        "operationId": "MMAdminService_CreateMM",
+        "operationId": "AdminMastermindService_CreateMM",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.CreateMMResponse"
+              "$ref": "#/definitions/admin.mastermind.v1.CreateMMResponse"
             }
           },
           "default": {
@@ -100,24 +94,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.CreateMMRequest"
+              "$ref": "#/definitions/admin.mastermind.v1.CreateMMRequest"
             }
           }
         ],
         "tags": [
-          "MMAdminService"
+          "AdminMastermindService"
         ]
       }
     },
     "/api/v1/admin/mm/{mmId}/change_mm_activity": {
       "post": {
         "summary": "Изменение активности ММ (вкл/выкл)",
-        "operationId": "MMAdminService_ChangeMMActivity",
+        "operationId": "AdminMastermindService_ChangeMMActivity",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.ChangeMMActivityResponse"
+              "$ref": "#/definitions/admin.mastermind.v1.ChangeMMActivityResponse"
             }
           },
           "default": {
@@ -140,24 +134,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.MMAdminService.ChangeMMActivityBody"
+              "$ref": "#/definitions/admin.mastermind.v1.AdminMastermindService.ChangeMMActivityBody"
             }
           }
         ],
         "tags": [
-          "MMAdminService"
+          "AdminMastermindService"
         ]
       }
     },
     "/api/v1/admin/mm/{mmId}/manual_notification": {
       "post": {
         "summary": "Ручная рассылка ММ",
-        "operationId": "MMAdminService_ManualNotificationMM",
+        "operationId": "AdminMastermindService_ManualNotificationMM",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.ManualNotificationMMResponse"
+              "$ref": "#/definitions/admin.mastermind.v1.ManualNotificationMMResponse"
             }
           },
           "default": {
@@ -180,21 +174,32 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/admin.mm.v1.MMAdminService.ManualNotificationMMBody"
+              "$ref": "#/definitions/admin.mastermind.v1.AdminMastermindService.ManualNotificationMMBody"
             }
           }
         ],
         "tags": [
-          "MMAdminService"
+          "AdminMastermindService"
         ]
       }
     }
   },
   "definitions": {
-    "admin.mm.v1.ChangeMMActivityResponse": {
+    "admin.mastermind.v1.AdminMastermindService.ChangeMMActivityBody": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "boolean"
+        }
+      }
+    },
+    "admin.mastermind.v1.AdminMastermindService.ManualNotificationMMBody": {
       "type": "object"
     },
-    "admin.mm.v1.CreateGetCourseOrderRequest": {
+    "admin.mastermind.v1.ChangeMMActivityResponse": {
+      "type": "object"
+    },
+    "admin.mastermind.v1.CreateGetCourseOrderRequest": {
       "type": "object",
       "properties": {
         "orderId": {
@@ -212,10 +217,10 @@
         }
       }
     },
-    "admin.mm.v1.CreateGetCourseOrderResponse": {
+    "admin.mastermind.v1.CreateGetCourseOrderResponse": {
       "type": "object"
     },
-    "admin.mm.v1.CreateMMRequest": {
+    "admin.mastermind.v1.CreateMMRequest": {
       "type": "object",
       "properties": {
         "mmDatetime": {
@@ -229,22 +234,22 @@
         }
       }
     },
-    "admin.mm.v1.CreateMMResponse": {
+    "admin.mastermind.v1.CreateMMResponse": {
       "type": "object"
     },
-    "admin.mm.v1.GetMMListResponse": {
+    "admin.mastermind.v1.GetMMListResponse": {
       "type": "object",
       "properties": {
         "mms": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/admin.mm.v1.GetMMListResponse.Mm"
+            "$ref": "#/definitions/admin.mastermind.v1.GetMMListResponse.Mm"
           }
         }
       }
     },
-    "admin.mm.v1.GetMMListResponse.Mm": {
+    "admin.mastermind.v1.GetMMListResponse.Mm": {
       "type": "object",
       "properties": {
         "mmId": {
@@ -268,18 +273,7 @@
         }
       }
     },
-    "admin.mm.v1.MMAdminService.ChangeMMActivityBody": {
-      "type": "object",
-      "properties": {
-        "activity": {
-          "type": "boolean"
-        }
-      }
-    },
-    "admin.mm.v1.MMAdminService.ManualNotificationMMBody": {
-      "type": "object"
-    },
-    "admin.mm.v1.ManualNotificationMMResponse": {
+    "admin.mastermind.v1.ManualNotificationMMResponse": {
       "type": "object"
     },
     "google.protobuf.Any": {

@@ -21,7 +21,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // GetBlogs получение всех статей
 func (r *Repository) GetBlogs(ctx context.Context) (dto.Blogs, error) {
-	sql := `select id, name, is_active, ordering_number from blog`
+	sql := `select id, name, is_active, ordering_number from blog order by ordering_number`
 
 	var blogs dto.Blogs
 	err := pgxscan.Select(ctx, r.db, &blogs, sql)

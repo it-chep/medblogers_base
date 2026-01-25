@@ -18,7 +18,7 @@ type Action struct {
 	gw  Gateway
 }
 
-func New(pool postgres.PoolWrapper, clients client.Aggregator) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 	return &Action{
 		dal: dal.NewRepository(pool),
 		gw:  clients.Salebot,

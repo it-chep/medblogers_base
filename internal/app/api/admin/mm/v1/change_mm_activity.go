@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mm/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 )
 
 func (i *Implementation) ChangeMMActivity(ctx context.Context, req *desc.ChangeMMActivityRequest) (resp *desc.ChangeMMActivityResponse, err error) {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_mm/dto"
-	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mm/v1"
+	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 )
 
 func (i *Implementation) CreateMM(ctx context.Context, req *desc.CreateMMRequest) (resp *desc.CreateMMResponse, err error) {
