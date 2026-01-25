@@ -14,7 +14,7 @@ create table if not exists mm
 create table if not exists getcourse_orders
 (
     id         bigserial primary key,
-    order_id   text,
+    order_id   bigint,
     gk_id      bigint,
     days_count bigint,
     name       text,

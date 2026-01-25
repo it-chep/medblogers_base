@@ -163,6 +163,7 @@ func (a *App) initServer(_ context.Context) *App {
 			middleware.ConfigMiddleware(a.mutableConfig),
 			middleware.EmailMiddleware(a.config),
 			middleware.LoggerMiddleware(logger.New()),
+			middleware.FormURLEncodedMiddleware,
 			middleware.RateLimitMiddleware,
 			middleware.ResponseTimeMiddleware,
 		),

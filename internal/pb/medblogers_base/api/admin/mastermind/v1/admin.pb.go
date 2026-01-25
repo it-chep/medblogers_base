@@ -369,7 +369,7 @@ func (x *GetMMListResponse) GetMms() []*GetMMListResponse_Mm {
 
 type CreateGetCourseOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	OrderId       int64                  `protobuf:"varint,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	GetcourceId   int64                  `protobuf:"varint,2,opt,name=getcource_id,json=getcourceId,proto3" json:"getcource_id,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Position      string                 `protobuf:"bytes,4,opt,name=position,proto3" json:"position,omitempty"`
@@ -407,11 +407,11 @@ func (*CreateGetCourseOrderRequest) Descriptor() ([]byte, []int) {
 	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *CreateGetCourseOrderRequest) GetOrderId() string {
+func (x *CreateGetCourseOrderRequest) GetOrderId() int64 {
 	if x != nil {
 		return x.OrderId
 	}
-	return ""
+	return 0
 }
 
 func (x *CreateGetCourseOrderRequest) GetGetcourceId() int64 {
@@ -586,17 +586,17 @@ const file_admin_mastermind_v1_admin_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1a\n" +
 	"\bactivity\x18\x06 \x01(\bR\bactivity\"\x8b\x01\n" +
 	"\x1bCreateGetCourseOrderRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\x12!\n" +
+	"\border_id\x18\x01 \x01(\x03R\aorderId\x12!\n" +
 	"\fgetcource_id\x18\x02 \x01(\x03R\vgetcourceId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\tR\bposition\"\x1e\n" +
-	"\x1cCreateGetCourseOrderResponse2\x9e\b\n" +
+	"\x1cCreateGetCourseOrderResponse2\xc2\b\n" +
 	"\x16AdminMastermindService\x12\xa2\x01\n" +
 	"\bCreateMM\x12$.admin.mastermind.v1.CreateMMRequest\x1a%.admin.mastermind.v1.CreateMMResponse\"I\x92A+\x12)Создание мастермайнда\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/admin/mm\x12\xdb\x01\n" +
 	"\x14ManualNotificationMM\x120.admin.mastermind.v1.ManualNotificationMMRequest\x1a1.admin.mastermind.v1.ManualNotificationMMResponse\"^\x92A$\x12\"Ручная рассылка ММ\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/mm/{mm_id}/manual_notification\x12\xea\x01\n" +
 	"\x10ChangeMMActivity\x12,.admin.mastermind.v1.ChangeMMActivityRequest\x1a-.admin.mastermind.v1.ChangeMMActivityResponse\"y\x92A@\x12>Изменение активности ММ (вкл/выкл)\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/admin/mm/{mm_id}/change_mm_activity\x12\xb3\x01\n" +
-	"\tGetMMList\x12%.admin.mastermind.v1.GetMMListRequest\x1a&.admin.mastermind.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\xdd\x01\n" +
-	"\x14CreateGetCourseOrder\x120.admin.mastermind.v1.CreateGetCourseOrderRequest\x1a1.admin.mastermind.v1.CreateGetCourseOrderResponse\"`\x92A5\x123Создание заказа от геткурса\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x15Z\x13admin/mastermind/v1b\x06proto3"
+	"\tGetMMList\x12%.admin.mastermind.v1.GetMMListRequest\x1a&.admin.mastermind.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\x81\x02\n" +
+	"\x14CreateGetCourseOrder\x120.admin.mastermind.v1.CreateGetCourseOrderRequest\x1a1.admin.mastermind.v1.CreateGetCourseOrderResponse\"\x83\x01\x92AX\x123Создание заказа от геткурса2!application/x-www-form-urlencoded\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x15Z\x13admin/mastermind/v1b\x06proto3"
 
 var (
 	file_admin_mastermind_v1_admin_proto_rawDescOnce sync.Once

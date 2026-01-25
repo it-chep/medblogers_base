@@ -7,7 +7,7 @@ import (
 
 // CreateOrderRequest данне от ГК
 type CreateOrderRequest struct {
-	OrderID  string
+	OrderID  int64
 	Position string
 	GkID     int64
 	UserName string
@@ -18,7 +18,7 @@ type GetcourseOrder struct {
 	Name      string
 	DaysCount int64
 	GkID      int64
-	OrderID   string
+	OrderID   int64
 }
 
 type CreateUserRequest struct {
