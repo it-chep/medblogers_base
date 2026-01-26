@@ -8,8 +8,8 @@ import (
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
 )
 
-// GetCategories получение всех категорий статей
-func (i *Implementation) GetCategories(ctx context.Context, _ *desc.GetBlogCategoriesRequest) (resp *desc.GetBlogCategoriesResponse, _ error) {
+// GetBlogCategories получение всех категорий статей
+func (i *Implementation) GetBlogCategories(ctx context.Context, _ *desc.GetBlogCategoriesRequest) (resp *desc.GetBlogCategoriesResponse, _ error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/blog/categories", func(ctx context.Context) error {
