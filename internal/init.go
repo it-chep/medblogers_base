@@ -114,6 +114,7 @@ func (a *App) initModules(_ context.Context) *App {
 func (a *App) initWorkers(_ context.Context) *App {
 	workers := []worker_pool.Worker{
 		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.PushUsersToMM, "*/5 * * * *"),
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.CheckSbID, "0 1-23/8 * * *"), //"0 1-23/8 * * *"
 	}
 	a.workerPool = worker_pool.NewWorkerPool(workers)
 	return a

@@ -3,6 +3,7 @@ package action
 import (
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/action/mm/action/change_mm_activity"
+	"medblogers_base/internal/modules/admin/action/mm/action/check_sb_id"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order"
 	"medblogers_base/internal/modules/admin/action/mm/action/create_mm"
 	"medblogers_base/internal/modules/admin/action/mm/action/get_mm_list"
@@ -17,8 +18,12 @@ type MMActionAggregator struct {
 	CreateMM             *create_mm.Action
 	CreateGetcourceOrder *create_getcourse_order.Action
 	GetMMList            *get_mm_list.Action
+
 	ManualNotificationMM *manual_notification_mm.Action
-	PushUsersToMM        *push_users_to_mm.Action
+
+	// Jobs
+	PushUsersToMM *push_users_to_mm.Action
+	CheckSbID     *check_sb_id.Action
 }
 
 func New(pool postgres.PoolWrapper, clients *client.Aggregator, config config.AppConfig) *MMActionAggregator {
@@ -29,6 +34,9 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator, config config.Ap
 		CreateGetcourceOrder: create_getcourse_order.New(pool, clients, config),
 
 		ManualNotificationMM: manual_notification_mm.New(pool, clients),
-		PushUsersToMM:        push_users_to_mm.New(pool, clients, config),
+
+		// Jobs
+		PushUsersToMM: push_users_to_mm.New(pool, clients, config),
+		CheckSbID:     check_sb_id.New(pool, clients, config),
 	}
 }
