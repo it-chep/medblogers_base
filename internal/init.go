@@ -3,23 +3,26 @@ package internal
 import (
 	"context"
 	"fmt"
-	adminV1 "medblogers_base/internal/app/api/admin/blog/v1"
-	authV1 "medblogers_base/internal/app/api/auth"
-	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
-	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
-	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
-	seoV1 "medblogers_base/internal/app/api/seo/v1"
-
 	"github.com/go-chi/chi/v5"
 	base_middleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/not-for-prod/clay/server"
 	"github.com/not-for-prod/clay/transport"
 	"google.golang.org/grpc/metadata"
+	blogAdminV1 "medblogers_base/internal/app/api/admin/blog/v1"
+	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
+	authV1 "medblogers_base/internal/app/api/auth"
+	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
+	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
+	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
+	"medblogers_base/internal/pkg/worker_pool"
 
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
-	adminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/v1"
+	blogAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
+	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
@@ -67,7 +70,7 @@ func (a *App) initPostgres(ctx context.Context) *App {
 
 	a.postgres = postgres.NewPoolWrapper(pool)
 	// todo gracefull
-	//	a.postgresConn.Close()
+	//	a.postgres.Close()
 	//
 
 	return a
@@ -108,6 +111,15 @@ func (a *App) initModules(_ context.Context) *App {
 	return a
 }
 
+func (a *App) initWorkers(_ context.Context) *App {
+	workers := []worker_pool.Worker{
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.PushUsersToMM, "*/5 * * * *"),
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.CheckSbID, "0 1-23/8 * * *"), //"0 1-23/8 * * *"
+	}
+	a.workerPool = worker_pool.NewWorkerPool(workers)
+	return a
+}
+
 func (a *App) initCache(_ context.Context) *App {
 	// todo сделать кэш
 	return a
@@ -119,8 +131,11 @@ func (a *App) initControllers(_ context.Context) *App {
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
-		adminDesc.NewAdminServiceServiceDesc(adminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
+
+		// ADMIN
+		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		mmDesc.NewAdminMastermindServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
 	}
 
 	return a
@@ -149,6 +164,7 @@ func (a *App) initServer(_ context.Context) *App {
 			middleware.ConfigMiddleware(a.mutableConfig),
 			middleware.EmailMiddleware(a.config),
 			middleware.LoggerMiddleware(logger.New()),
+			middleware.FormURLEncodedMiddleware,
 			middleware.RateLimitMiddleware,
 			middleware.ResponseTimeMiddleware,
 		),

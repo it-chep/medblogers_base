@@ -2,10 +2,11 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/blogs/domain/category"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	"medblogers_base/internal/pkg/converter"
+
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDetailRequest) (*desc.GetBlogDetailResponse, error) {

@@ -1,0 +1,315 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/mastermind/v1/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AdminMastermindService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/gk_order/create": {
+      "post": {
+        "summary": "Создание заказа от геткурса",
+        "operationId": "AdminMastermindService_CreateGetCourseOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.CreateGetCourseOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.CreateGetCourseOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminMastermindService"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ]
+      }
+    },
+    "/api/v1/admin/mm": {
+      "get": {
+        "summary": "Получение списка мастермайндов",
+        "operationId": "AdminMastermindService_GetMMList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.GetMMListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "AdminMastermindService"
+        ]
+      },
+      "post": {
+        "summary": "Создание мастермайнда",
+        "operationId": "AdminMastermindService_CreateMM",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.CreateMMResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.CreateMMRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminMastermindService"
+        ]
+      }
+    },
+    "/api/v1/admin/mm/{mmId}/change_mm_activity": {
+      "post": {
+        "summary": "Изменение активности ММ (вкл/выкл)",
+        "operationId": "AdminMastermindService_ChangeMMActivity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.ChangeMMActivityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mmId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.AdminMastermindService.ChangeMMActivityBody"
+            }
+          }
+        ],
+        "tags": [
+          "AdminMastermindService"
+        ]
+      }
+    },
+    "/api/v1/admin/mm/{mmId}/manual_notification": {
+      "post": {
+        "summary": "Ручная рассылка ММ",
+        "operationId": "AdminMastermindService_ManualNotificationMM",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.ManualNotificationMMResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mmId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.AdminMastermindService.ManualNotificationMMBody"
+            }
+          }
+        ],
+        "tags": [
+          "AdminMastermindService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.mastermind.v1.AdminMastermindService.ChangeMMActivityBody": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "boolean"
+        }
+      }
+    },
+    "admin.mastermind.v1.AdminMastermindService.ManualNotificationMMBody": {
+      "type": "object"
+    },
+    "admin.mastermind.v1.ChangeMMActivityResponse": {
+      "type": "object"
+    },
+    "admin.mastermind.v1.CreateGetCourseOrderRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "getcourceId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.mastermind.v1.CreateGetCourseOrderResponse": {
+      "type": "object"
+    },
+    "admin.mastermind.v1.CreateMMRequest": {
+      "type": "object",
+      "properties": {
+        "mmDatetime": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mmLink": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.mastermind.v1.CreateMMResponse": {
+      "type": "object"
+    },
+    "admin.mastermind.v1.GetMMListResponse": {
+      "type": "object",
+      "properties": {
+        "mms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.mastermind.v1.GetMMListResponse.Mm"
+          }
+        }
+      }
+    },
+    "admin.mastermind.v1.GetMMListResponse.Mm": {
+      "type": "object",
+      "properties": {
+        "mmId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mmDatetime": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "activity": {
+          "type": "boolean"
+        },
+        "mmLink": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.mastermind.v1.ManualNotificationMMResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

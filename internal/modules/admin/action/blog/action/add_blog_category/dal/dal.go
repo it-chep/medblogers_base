@@ -2,8 +2,9 @@ package dal
 
 import (
 	"context"
-	"github.com/google/uuid"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/google/uuid"
 )
 
 type Repository struct {

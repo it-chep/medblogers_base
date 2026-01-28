@@ -2,12 +2,13 @@ package blogs
 
 import (
 	"context"
-	"github.com/georgysavva/scany/pgxscan"
-	"github.com/google/uuid"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/blogs/dal/blogs/dao"
 	"medblogers_base/internal/modules/blogs/domain/category"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/georgysavva/scany/pgxscan"
+	"github.com/google/uuid"
+	"github.com/samber/lo"
 )
 
 type Repository struct {

@@ -3,9 +3,10 @@ package s3
 import (
 	"context"
 	"fmt"
+	"medblogers_base/internal/config"
+
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
 	"github.com/aws/aws-sdk-go-v2/credentials"
-	"medblogers_base/internal/config"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	s3config "github.com/aws/aws-sdk-go-v2/config"

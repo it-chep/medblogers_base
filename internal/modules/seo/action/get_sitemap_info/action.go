@@ -2,10 +2,11 @@ package get_sitemap_info
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/modules/seo/action/get_sitemap_info/dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/samber/lo"
 )
 
 type Repository interface {
