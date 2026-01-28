@@ -10,7 +10,7 @@ type MM struct {
 	MMDatetime sql.NullTime   `db:"mm_datetime"`
 	Name       sql.NullString `db:"name"`
 	State      sql.NullInt64  `db:"state"`
-	MMLink     sql.NullString `db:"m_link"`
+	MMLink     sql.NullString `db:"mm_link"`
 	CreatedAt  time.Time      `db:"created_at"`
 	IsActive   sql.NullBool   `json:"is_active"`
 }
@@ -27,7 +27,7 @@ type GetcourseUserDAO struct {
 type GetcourseUsers []GetcourseUserDAO
 
 func (u GetcourseUsers) GetSbIDs() []int64 {
-	res := make([]int64, len(u), 0)
+	res := make([]int64, 0, len(u))
 	for _, user := range u {
 		if user.SbID.Valid {
 			res = append(res, user.SbID.Int64)

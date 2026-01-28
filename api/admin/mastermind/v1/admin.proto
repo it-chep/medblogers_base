@@ -79,6 +79,7 @@ message GetMMListResponse {
     string created_at = 4;
     string status = 5;
     bool activity = 6;
+    string mm_link = 7;
   }
 }
 

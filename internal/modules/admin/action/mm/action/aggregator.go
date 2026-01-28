@@ -25,8 +25,9 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator, config config.Ap
 	return &MMActionAggregator{
 		ChangeMMActivity:     change_mm_activity.New(pool),
 		CreateMM:             create_mm.New(pool),
-		CreateGetcourceOrder: create_getcourse_order.New(pool, clients, config),
 		GetMMList:            get_mm_list.New(pool),
+		CreateGetcourceOrder: create_getcourse_order.New(pool, clients, config),
+
 		ManualNotificationMM: manual_notification_mm.New(pool, clients),
 		PushUsersToMM:        push_users_to_mm.New(pool, clients, config),
 	}

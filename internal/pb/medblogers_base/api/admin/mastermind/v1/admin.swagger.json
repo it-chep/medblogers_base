@@ -274,6 +274,9 @@
         },
         "activity": {
           "type": "boolean"
+        },
+        "mmLink": {
+          "type": "string"
         }
       }
     },

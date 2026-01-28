@@ -479,6 +479,7 @@ type GetMMListResponse_Mm struct {
 	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	Status        string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 	Activity      bool                   `protobuf:"varint,6,opt,name=activity,proto3" json:"activity,omitempty"`
+	MmLink        string                 `protobuf:"bytes,7,opt,name=mm_link,json=mmLink,proto3" json:"mm_link,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -555,6 +556,13 @@ func (x *GetMMListResponse_Mm) GetActivity() bool {
 	return false
 }
 
+func (x *GetMMListResponse_Mm) GetMmLink() string {
+	if x != nil {
+		return x.MmLink
+	}
+	return ""
+}
+
 var File_admin_mastermind_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_mastermind_v1_admin_proto_rawDesc = "" +
@@ -573,9 +581,9 @@ const file_admin_mastermind_v1_admin_proto_rawDesc = "" +
 	"\x05mm_id\x18\x01 \x01(\x03R\x04mmId\x12\x1a\n" +
 	"\bactivity\x18\x02 \x01(\bR\bactivity\"\x1a\n" +
 	"\x18ChangeMMActivityResponse\"\x12\n" +
-	"\x10GetMMListRequest\"\xf4\x01\n" +
+	"\x10GetMMListRequest\"\x8d\x02\n" +
 	"\x11GetMMListResponse\x12;\n" +
-	"\x03mms\x18\x01 \x03(\v2).admin.mastermind.v1.GetMMListResponse.MmR\x03mms\x1a\xa1\x01\n" +
+	"\x03mms\x18\x01 \x03(\v2).admin.mastermind.v1.GetMMListResponse.MmR\x03mms\x1a\xba\x01\n" +
 	"\x02Mm\x12\x13\n" +
 	"\x05mm_id\x18\x01 \x01(\x03R\x04mmId\x12\x1f\n" +
 	"\vmm_datetime\x18\x02 \x01(\tR\n" +
@@ -584,7 +592,8 @@ const file_admin_mastermind_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x16\n" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1a\n" +
-	"\bactivity\x18\x06 \x01(\bR\bactivity\"\x8b\x01\n" +
+	"\bactivity\x18\x06 \x01(\bR\bactivity\x12\x17\n" +
+	"\amm_link\x18\a \x01(\tR\x06mmLink\"\x8b\x01\n" +
 	"\x1bCreateGetCourseOrderRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\x03R\aorderId\x12!\n" +
 	"\fgetcource_id\x18\x02 \x01(\x03R\vgetcourceId\x12\x12\n" +

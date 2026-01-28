@@ -18,7 +18,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 func (r *Repository) CreateMM(ctx context.Context, req dto.CreateMMRequest) error {
-	sql := `insert into mm (mm_datetime, name, mm_link, is_active) values ($1, $2, $3, $4)`
+	sql := `insert into mm (mm_datetime, name, mm_link, is_active, state) values ($1, $2, $3, $4, 1)`
 
 	args := []interface{}{
 		req.MMDatetime,

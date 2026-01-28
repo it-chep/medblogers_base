@@ -45,7 +45,7 @@ func (r *Repository) GetNearestMM(ctx context.Context) (dto.MM, error) {
 // SetMMPassed ставит, что ММ прошло
 func (r *Repository) SetMMPassed(ctx context.Context, mmID int64) error {
 	sql := `
-		update mm set is_active = false and state = $1 where id = $2
+		update mm set is_active = false, state = $1 where id = $2
 	`
 
 	args := []interface{}{

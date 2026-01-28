@@ -26,7 +26,7 @@ create table if not exists getcourse_users
     id         bigserial primary key,
     sb_id      bigint,
     gk_id      bigint,
-    name       bigint,
+    name       text,
     end_date   timestamp,
     days_count bigint
 );
@@ -54,7 +54,9 @@ create table if not exists sent_newsletter
 
 -- +goose Down
 -- +goose StatementBegin
-drop table getcourse_users;
-drop table getcourse_orders;
-drop table mm;
+drop table if exists getcourse_users;
+drop table if exists getcourse_orders;
+drop table if exists mm;
+drop table if exists newsletter;
+drop table if exists sent_newsletter;
 -- +goose StatementEnd

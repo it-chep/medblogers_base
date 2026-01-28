@@ -30,6 +30,7 @@ func (i *Implementation) GetMMList(ctx context.Context, req *desc.GetMMListReque
 				CreatedAt:  item.CreatedAt.Format(time.DateTime),
 				Status:     item.State.String,
 				Activity:   item.IsActive.Bool,
+				MmLink:     item.MMLink.String,
 			}
 		})
 
