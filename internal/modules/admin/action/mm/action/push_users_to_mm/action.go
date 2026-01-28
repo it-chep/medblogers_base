@@ -40,6 +40,10 @@ func (a *Action) Do(ctx context.Context) error {
 		return err
 	}
 
+	if mm.ID == 0 {
+		return nil
+	}
+
 	usersToNotificate, err := a.dal.GetUserToNotificate(ctx)
 	if err != nil {
 		logger.Error(ctx, "get users error", err)

@@ -4,6 +4,8 @@ import (
 	"context"
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/google/uuid"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/admin/action/mm/action/push_users_to_mm/dto"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -36,6 +38,9 @@ func (r *Repository) GetNearestMM(ctx context.Context) (dto.MM, error) {
 	var mm dto.MM
 	err := pgxscan.Get(ctx, r.db, &mm, sql, StateActive)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return dto.MM{}, nil
+		}
 		return dto.MM{}, err
 	}
 

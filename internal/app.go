@@ -76,7 +76,7 @@ func (a *App) Run(ctx context.Context) {
 		}
 	}()
 
-	//go a.workerPool.Run(ctx)
+	go a.workerPool.Run(ctx)
 
 	fmt.Printf("[APP][GPRC] Приложение запустилось HTTP - http://localhost:8080, GRPC - http://localhost:7002 , Время старта: %s\n\n", time.Now().Format(time.DateTime))
 	if err := a.clayServer.Run(a.controllers...); err != nil {
