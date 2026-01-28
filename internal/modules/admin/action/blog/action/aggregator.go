@@ -48,8 +48,8 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator) *BlogModuleAggre
 		PublishBlog:   publish_blog.New(pool),
 		UnPublishBlog: unpublish_blog.New(pool),
 
-		GetCategories:      get_categories.New(pool),
 		AddBlogCategory:    add_blog_category.New(pool),
 		DeleteBlogCategory: delete_blog_category.New(pool),
+		GetCategories:      get_categories.New(pool),
 	}
 }
