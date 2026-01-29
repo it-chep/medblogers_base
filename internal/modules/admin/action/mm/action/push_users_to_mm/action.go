@@ -15,7 +15,7 @@ type Config interface {
 }
 
 type Gateway interface {
-	MMNotification(ctx context.Context, clientID int64) error
+	MMNotification(ctx context.Context, clientID int64, mmLink string) error
 	NotificateError(ctx context.Context, errText string, clientID int64)
 }
 
@@ -58,7 +58,7 @@ func (a *Action) Do(ctx context.Context) error {
 	}
 
 	for _, user := range usersToNotificate {
-		err = a.gw.MMNotification(ctx, user.SbID.Int64)
+		err = a.gw.MMNotification(ctx, user.SbID.Int64, mm.MMLink.String)
 		if err != nil {
 			logger.Error(ctx, "send MMNotification error", err)
 			a.gw.NotificateError(ctx, fmt.Sprintf("Ошибка при отправки сообщеня %s \n\n err: %s \n\n SB_ID: %d", newsletterID.String(), err.Error(), user.SbID.Int64), a.config.GetCreateNotificationChatID())

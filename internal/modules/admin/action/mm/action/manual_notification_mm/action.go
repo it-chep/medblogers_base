@@ -10,7 +10,7 @@ import (
 )
 
 type Gateway interface {
-	MMNotification(ctx context.Context, clientID int64) error
+	MMNotification(ctx context.Context, clientID int64, mmLink string) error
 }
 
 type Action struct {
@@ -43,7 +43,7 @@ func (a *Action) Do(ctx context.Context, mmID int64) error {
 	}
 
 	for _, user := range usersToNotificate {
-		err = a.gw.MMNotification(ctx, user.SbID.Int64)
+		err = a.gw.MMNotification(ctx, user.SbID.Int64, mm.MMLink.String)
 		if err != nil {
 			logger.Error(ctx, "send MMNotification error", err)
 			continue

@@ -68,10 +68,11 @@ func (g *Gateway) NotificateError(ctx context.Context, errText string, clientID 
 }
 
 // MMNotification отправка сообщения об ММ
-func (g *Gateway) MMNotification(ctx context.Context, clientID int64) error {
+func (g *Gateway) MMNotification(ctx context.Context, clientID int64, mmLink string) error {
 	requestData := dto.MMRequest{
 		Message:  dto.MMEvent,
 		ClientID: clientID,
+		MmLink:   mmLink,
 	}
 	// Кодируем данные в JSON
 	jsonData, err := json.Marshal(requestData)

@@ -14,4 +14,5 @@ type ErrorRequest struct {
 type MMRequest struct {
 	Message  string `json:"message"`
 	ClientID int64  `json:"client_id"`
+	MmLink   string `json:"mm_link"`
 }
