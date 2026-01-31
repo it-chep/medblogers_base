@@ -17,18 +17,12 @@ func FormURLEncodedMiddleware(next http.Handler) http.Handler {
 
 		// Проверяем, является ли запрос form-urlencoded
 		if strings.Contains(contentType, "application/x-www-form-urlencoded") {
-			log.Printf("[FormMiddleware] Processing form-urlencoded request to %s", r.URL.Path)
 
 			// Парсим форму
 			if err := r.ParseForm(); err != nil {
 				log.Printf("[FormMiddleware] Error parsing form: %v", err)
 				http.Error(w, "Bad form data", http.StatusBadRequest)
 				return
-			}
-
-			// Логируем данные формы для отладки
-			if len(r.Form) > 0 {
-				log.Printf("[FormMiddleware] Form data for %s: %v", r.URL.Path, r.Form)
 			}
 
 			// Преобразуем form данные в JSON
@@ -38,8 +32,6 @@ func FormURLEncodedMiddleware(next http.Handler) http.Handler {
 				http.Error(w, "Internal server error", http.StatusInternalServerError)
 				return
 			}
-
-			log.Printf("[FormMiddleware] Converted JSON for %s: %s", r.URL.Path, jsonData)
 
 			// Подменяем тело запроса на JSON
 			r.Body = &customReader{
