@@ -2,7 +2,6 @@ package dal
 
 import (
 	"context"
-	"fmt"
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/city"
@@ -10,10 +9,6 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 
-	"github.com/jackc/pgx/v4"
-	"github.com/pkg/errors"
-
-	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 
 	"github.com/georgysavva/scany/pgxscan"
