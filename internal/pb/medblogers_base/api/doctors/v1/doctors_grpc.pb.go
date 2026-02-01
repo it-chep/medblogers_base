@@ -30,7 +30,9 @@ const (
 	DoctorService_Filter_FullMethodName                    = "/doctor.v1.DoctorService/Filter"
 	DoctorService_CreateDoctor_FullMethodName              = "/doctor.v1.DoctorService/CreateDoctor"
 	DoctorService_GetDoctor_FullMethodName                 = "/doctor.v1.DoctorService/GetDoctor"
+	DoctorService_GetDoctorVip_FullMethodName              = "/doctor.v1.DoctorService/GetDoctorVip"
 	DoctorService_CheckCheating_FullMethodName             = "/doctor.v1.DoctorService/CheckCheating"
+	DoctorService_CheatersCount_FullMethodName             = "/doctor.v1.DoctorService/CheatersCount"
 )
 
 // DoctorServiceClient is the client API for DoctorService service.
@@ -50,7 +52,9 @@ type DoctorServiceClient interface {
 	Filter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*FilterResponse, error)
 	CreateDoctor(ctx context.Context, in *CreateDoctorRequest, opts ...grpc.CallOption) (*CreateDoctorResponse, error)
 	GetDoctor(ctx context.Context, in *GetDoctorRequest, opts ...grpc.CallOption) (*GetDoctorResponse, error)
+	GetDoctorVip(ctx context.Context, in *GetDoctorVipRequest, opts ...grpc.CallOption) (*GetDoctorVipResponse, error)
 	CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error)
+	CheatersCount(ctx context.Context, in *CheatersCountRequest, opts ...grpc.CallOption) (*CheatersCountResponse, error)
 }
 
 type doctorServiceClient struct {
@@ -171,10 +175,30 @@ func (c *doctorServiceClient) GetDoctor(ctx context.Context, in *GetDoctorReques
 	return out, nil
 }
 
+func (c *doctorServiceClient) GetDoctorVip(ctx context.Context, in *GetDoctorVipRequest, opts ...grpc.CallOption) (*GetDoctorVipResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDoctorVipResponse)
+	err := c.cc.Invoke(ctx, DoctorService_GetDoctorVip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *doctorServiceClient) CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CheckCheatingResponse)
 	err := c.cc.Invoke(ctx, DoctorService_CheckCheating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorServiceClient) CheatersCount(ctx context.Context, in *CheatersCountRequest, opts ...grpc.CallOption) (*CheatersCountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheatersCountResponse)
+	err := c.cc.Invoke(ctx, DoctorService_CheatersCount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -198,7 +222,9 @@ type DoctorServiceServer interface {
 	Filter(context.Context, *FilterRequest) (*FilterResponse, error)
 	CreateDoctor(context.Context, *CreateDoctorRequest) (*CreateDoctorResponse, error)
 	GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error)
+	GetDoctorVip(context.Context, *GetDoctorVipRequest) (*GetDoctorVipResponse, error)
 	CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error)
+	CheatersCount(context.Context, *CheatersCountRequest) (*CheatersCountResponse, error)
 }
 
 // UnimplementedDoctorServiceServer should be embedded to have
@@ -241,8 +267,14 @@ func (UnimplementedDoctorServiceServer) CreateDoctor(context.Context, *CreateDoc
 func (UnimplementedDoctorServiceServer) GetDoctor(context.Context, *GetDoctorRequest) (*GetDoctorResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDoctor not implemented")
 }
+func (UnimplementedDoctorServiceServer) GetDoctorVip(context.Context, *GetDoctorVipRequest) (*GetDoctorVipResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDoctorVip not implemented")
+}
 func (UnimplementedDoctorServiceServer) CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckCheating not implemented")
+}
+func (UnimplementedDoctorServiceServer) CheatersCount(context.Context, *CheatersCountRequest) (*CheatersCountResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CheatersCount not implemented")
 }
 func (UnimplementedDoctorServiceServer) testEmbeddedByValue() {}
 
@@ -462,6 +494,24 @@ func _DoctorService_GetDoctor_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorService_GetDoctorVip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorVipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).GetDoctorVip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_GetDoctorVip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).GetDoctorVip(ctx, req.(*GetDoctorVipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DoctorService_CheckCheating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckCheatingRequest)
 	if err := dec(in); err != nil {
@@ -476,6 +526,24 @@ func _DoctorService_CheckCheating_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DoctorServiceServer).CheckCheating(ctx, req.(*CheckCheatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorService_CheatersCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheatersCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).CheatersCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_CheatersCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).CheatersCount(ctx, req.(*CheatersCountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -532,8 +600,16 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DoctorService_GetDoctor_Handler,
 		},
 		{
+			MethodName: "GetDoctorVip",
+			Handler:    _DoctorService_GetDoctorVip_Handler,
+		},
+		{
 			MethodName: "CheckCheating",
 			Handler:    _DoctorService_CheckCheating_Handler,
+		},
+		{
+			MethodName: "CheatersCount",
+			Handler:    _DoctorService_CheatersCount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

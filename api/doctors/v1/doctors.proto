@@ -57,12 +57,23 @@ service DoctorService {
     option (google.api.http) = {get: "/api/v1/doctors/{doctor_slug}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про доктора"};
   }
+  rpc GetDoctorVip(GetDoctorVipRequest) returns (GetDoctorVipResponse) {
+    option (google.api.http) = {get: "/api/v1/doctors/{doctor_slug}/vip"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение детальной информации про ВИП карточку доктора"};
+  }
   rpc CheckCheating(CheckCheatingRequest) returns (CheckCheatingResponse) {
     option (google.api.http) = {
       post: "/api/v1/blacklist_check"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Проверяет состоит ли данный канал в черном списке"};
+  }
+  rpc CheatersCount(CheatersCountRequest) returns (CheatersCountResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/blacklist_count"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получает количество пользователей в ЧС"};
   }
 }
 
@@ -386,4 +397,22 @@ message CheckCheatingRequest {
 
 message CheckCheatingResponse {
   bool is_in_blacklist = 1;
+}
+
+message GetDoctorVipRequest {
+  string doctor_slug = 1;
+}
+
+message GetDoctorVipResponse {
+  bool can_barter = 1;
+  bool can_buy_advertising = 2;
+  bool can_sell_advertising = 3;
+  string short_message = 4;
+  int64 advertising_price_from = 5;
+  string blog_info = 7;
+}
+
+message CheatersCountRequest {}
+message CheatersCountResponse {
+  int64 cheaters_count = 1;
 }

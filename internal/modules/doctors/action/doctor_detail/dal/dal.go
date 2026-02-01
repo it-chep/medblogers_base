@@ -30,30 +30,6 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-// GetDoctorInfo получает информацию о докторе
-func (r Repository) GetDoctorInfo(ctx context.Context, slug string) (*doctor.Doctor, error) {
-	sql := `
-		select 
-			id, name, slug, 
-			inst_url, vk_url, dzen_url, tg_url, youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
-			s3_image, is_active, medical_directions, main_blog_theme, 
-			city_id, speciallity_id, is_kf_doctor
-		from docstar_site_doctor
-		where slug = $1
-	`
-
-	var doctorDAO dao.DoctorDAO
-	err := pgxscan.Get(ctx, r.db, &doctorDAO, sql, slug)
-	switch {
-	case errors.Is(err, pgx.ErrNoRows):
-		return nil, fmt.Errorf("doctor with slug %s not found", slug)
-	case err != nil:
-		return nil, fmt.Errorf("failed to get doctor: %w", err)
-	}
-
-	return doctorDAO.ToDomain(), nil
-}
-
 // GetDoctorAdditionalCities получение информации о городах доктора
 func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doctor.MedblogersID) (map[city.CityID]*city.City, error) {
 	logger.Message(ctx, "[Dal] Получение дополнительных городов доктора")
