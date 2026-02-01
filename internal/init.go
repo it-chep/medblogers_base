@@ -9,8 +9,16 @@ import (
 	"github.com/not-for-prod/clay/server"
 	"github.com/not-for-prod/clay/transport"
 	"google.golang.org/grpc/metadata"
-
 	blogAdminV1 "medblogers_base/internal/app/api/admin/blog/v1"
+	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
+	authV1 "medblogers_base/internal/app/api/auth"
+	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
+	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
+	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
+	seoV1 "medblogers_base/internal/app/api/seo/v1"
+
+	"medblogers_base/internal/pkg/worker_pool"
+
 	doctorCityAdminV1 "medblogers_base/internal/app/api/admin/doctors/city/v1"
 	doctorAdminV1 "medblogers_base/internal/app/api/admin/doctors/doctors/v1"
 	doctorSpecialityAdminV1 "medblogers_base/internal/app/api/admin/doctors/speciality/v1"
@@ -19,12 +27,6 @@ import (
 	freelancerAdminV1 "medblogers_base/internal/app/api/admin/freelancers/freelancers/v1"
 	freelancerNetworkAdminV1 "medblogers_base/internal/app/api/admin/freelancers/network/v1"
 	freelancerSpecialityAdminV1 "medblogers_base/internal/app/api/admin/freelancers/speciality/v1"
-
-	authV1 "medblogers_base/internal/app/api/auth"
-	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
-	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
-	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
-	seoV1 "medblogers_base/internal/app/api/seo/v1"
 
 	doctorCityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/city/v1"
 	doctorAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/doctors/v1"
@@ -39,7 +41,8 @@ import (
 
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
-	blogsAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
+	blogAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
+	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
@@ -52,6 +55,7 @@ import (
 	moduleBlogs "medblogers_base/internal/modules/blogs"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
+	moduleSeo "medblogers_base/internal/modules/seo"
 
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -85,7 +89,7 @@ func (a *App) initPostgres(ctx context.Context) *App {
 
 	a.postgres = postgres.NewPoolWrapper(pool)
 	// todo gracefull
-	//	a.postgresConn.Close()
+	//	a.postgres.Close()
 	//
 
 	return a
@@ -119,9 +123,19 @@ func (a *App) initModules(_ context.Context) *App {
 		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 		auth:        moduleAuth.New(a.postgres),
-		blogs:       moduleBlogs.NewModule(a.postgres),
+		blogs:       moduleBlogs.NewModule(a.postgres, a.config),
+		seo:         moduleSeo.New(a.postgres),
 	}
 
+	return a
+}
+
+func (a *App) initWorkers(_ context.Context) *App {
+	workers := []worker_pool.Worker{
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.PushUsersToMM, "*/5 * * * *"),
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.CheckSbID, "0 1-23/8 * * *"), //"0 1-23/8 * * *"
+	}
+	a.workerPool = worker_pool.NewWorkerPool(workers)
 	return a
 }
 
@@ -135,11 +149,12 @@ func (a *App) initControllers(_ context.Context) *App {
 		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
-		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers)),
+		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
 
-		// Admin
+		// ADMIN
+		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
+		mmDesc.NewAdminMastermindServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
 		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
-		blogsAdminDesc.NewBlogsAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 		doctorAdminDesc.NewDoctorAdminServiceServiceDesc(doctorAdminV1.New(a.modules.admin, a.modules.auth)),
 		doctorCityAdminDesc.NewDoctorAdminCityServiceServiceDesc(doctorCityAdminV1.New(a.modules.admin, a.modules.auth)),
 		doctorSpecialityAdminDesc.NewDoctorAdminSpecialityServiceServiceDesc(doctorSpecialityAdminV1.New(a.modules.admin, a.modules.auth)),
@@ -175,6 +190,7 @@ func (a *App) initServer(_ context.Context) *App {
 			middleware.ConfigMiddleware(a.mutableConfig),
 			middleware.EmailMiddleware(a.config),
 			middleware.LoggerMiddleware(logger.New()),
+			middleware.FormURLEncodedMiddleware,
 			middleware.RateLimitMiddleware,
 			middleware.ResponseTimeMiddleware,
 		),

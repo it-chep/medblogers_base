@@ -11,57 +11,57 @@ import (
 	grpc "google.golang.org/grpc"
 )
 
-//go:generate implgen --src admin_grpc.pb.go --interface-name BlogsAdminServiceServer --mod-relative --dst
+//go:generate implgen --src admin_grpc.pb.go --interface-name AdminServiceServer --mod-relative --dst
 
 //go:embed admin.swagger.json
 var Swagger []byte
 
-// BlogsAdminServiceServiceDesc is a descriptor/registrator for the BlogsAdminServiceServer.
-type BlogsAdminServiceServiceDesc struct {
-	svc  BlogsAdminServiceServer
+// AdminServiceServiceDesc is a descriptor/registrator for the AdminServiceServer.
+type AdminServiceServiceDesc struct {
+	svc  AdminServiceServer
 	opts httptransport.DescOptions
 }
 
-// NewBlogsAdminServiceServiceDesc creates new registrator for the BlogsAdminServiceServer.
+// NewAdminServiceServiceDesc creates new registrator for the AdminServiceServer.
 // It implements httptransport.ConfigurableServiceDesc as well.
-func NewBlogsAdminServiceServiceDesc(i BlogsAdminServiceServer) *BlogsAdminServiceServiceDesc {
-	return &BlogsAdminServiceServiceDesc{svc: i}
+func NewAdminServiceServiceDesc(i AdminServiceServer) *AdminServiceServiceDesc {
+	return &AdminServiceServiceDesc{svc: i}
 }
 
 // RegisterGRPC implements service registrator interface.
-func (d *BlogsAdminServiceServiceDesc) RegisterGRPC(s *grpc.Server) {
-	RegisterBlogsAdminServiceServer(s, d.svc)
+func (d *AdminServiceServiceDesc) RegisterGRPC(s *grpc.Server) {
+	RegisterAdminServiceServer(s, d.svc)
 }
 
 // Apply applies passed options.
-func (d *BlogsAdminServiceServiceDesc) Apply(oo ...transport.DescOption) {
+func (d *AdminServiceServiceDesc) Apply(oo ...transport.DescOption) {
 	for _, o := range oo {
 		o.Apply(&d.opts)
 	}
 }
 
 // SwaggerDef returns this file's Swagger definition.
-func (d *BlogsAdminServiceServiceDesc) SwaggerDef() []byte {
+func (d *AdminServiceServiceDesc) SwaggerDef() []byte {
 	return Swagger
 }
 
 // RegisterHTTP registers this service's HTTP handlers/bindings.
-func (w *BlogsAdminServiceServiceDesc) RegisterHTTP(
+func (w *AdminServiceServiceDesc) RegisterHTTP(
 	ctx context.Context,
 	mux *runtime.ServeMux,
 ) error {
-	return RegisterBlogsAdminServiceHandlerServer(ctx, mux, w)
+	return RegisterAdminServiceHandlerServer(ctx, mux, w)
 }
 
 // Wrap all http methods with interceptor support
 
-func (w *BlogsAdminServiceServiceDesc) GetBlogs(ctx context.Context, in *GetBlogsRequest) (*GetBlogsResponse, error) {
+func (w *AdminServiceServiceDesc) GetBlogs(ctx context.Context, in *GetBlogsRequest) (*GetBlogsResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.GetBlogs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/GetBlogs",
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.GetBlogs(ctx, req.(*GetBlogsRequest))
@@ -73,13 +73,13 @@ func (w *BlogsAdminServiceServiceDesc) GetBlogs(ctx context.Context, in *GetBlog
 	return resp.(*GetBlogsResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) GetBlogByID(ctx context.Context, in *GetBlogByIDRequest) (*GetBlogByIDResponse, error) {
+func (w *AdminServiceServiceDesc) GetBlogByID(ctx context.Context, in *GetBlogByIDRequest) (*GetBlogByIDResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.GetBlogByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/GetBlogByID",
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogByID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.GetBlogByID(ctx, req.(*GetBlogByIDRequest))
@@ -91,13 +91,13 @@ func (w *BlogsAdminServiceServiceDesc) GetBlogByID(ctx context.Context, in *GetB
 	return resp.(*GetBlogByIDResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) CreateDraftBlog(ctx context.Context, in *CreateDraftBlogRequest) (*CreateDraftBlogResponse, error) {
+func (w *AdminServiceServiceDesc) CreateDraftBlog(ctx context.Context, in *CreateDraftBlogRequest) (*CreateDraftBlogResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.CreateDraftBlog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/CreateDraftBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/CreateDraftBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.CreateDraftBlog(ctx, req.(*CreateDraftBlogRequest))
@@ -109,13 +109,13 @@ func (w *BlogsAdminServiceServiceDesc) CreateDraftBlog(ctx context.Context, in *
 	return resp.(*CreateDraftBlogResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) UpdateDraftBlog(ctx context.Context, in *UpdateDraftBlogRequest) (*UpdateDraftBlogResponse, error) {
+func (w *AdminServiceServiceDesc) UpdateDraftBlog(ctx context.Context, in *UpdateDraftBlogRequest) (*UpdateDraftBlogResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.UpdateDraftBlog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/UpdateDraftBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/UpdateDraftBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.UpdateDraftBlog(ctx, req.(*UpdateDraftBlogRequest))
@@ -127,13 +127,13 @@ func (w *BlogsAdminServiceServiceDesc) UpdateDraftBlog(ctx context.Context, in *
 	return resp.(*UpdateDraftBlogResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) SaveBlogImage(ctx context.Context, in *SaveBlogImageRequest) (*SaveBlogImageResponse, error) {
+func (w *AdminServiceServiceDesc) SaveBlogImage(ctx context.Context, in *SaveBlogImageRequest) (*SaveBlogImageResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.SaveBlogImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/SaveBlogImage",
+		FullMethod: "/admin.blogs.v1.AdminService/SaveBlogImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.SaveBlogImage(ctx, req.(*SaveBlogImageRequest))
@@ -145,13 +145,13 @@ func (w *BlogsAdminServiceServiceDesc) SaveBlogImage(ctx context.Context, in *Sa
 	return resp.(*SaveBlogImageResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) DeleteBlogImage(ctx context.Context, in *DeleteBlogImageRequest) (*DeleteBlogImageResponse, error) {
+func (w *AdminServiceServiceDesc) DeleteBlogImage(ctx context.Context, in *DeleteBlogImageRequest) (*DeleteBlogImageResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.DeleteBlogImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/DeleteBlogImage",
+		FullMethod: "/admin.blogs.v1.AdminService/DeleteBlogImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.DeleteBlogImage(ctx, req.(*DeleteBlogImageRequest))
@@ -163,13 +163,13 @@ func (w *BlogsAdminServiceServiceDesc) DeleteBlogImage(ctx context.Context, in *
 	return resp.(*DeleteBlogImageResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) PublishBlog(ctx context.Context, in *PublishBlogRequest) (*PublishBlogResponse, error) {
+func (w *AdminServiceServiceDesc) PublishBlog(ctx context.Context, in *PublishBlogRequest) (*PublishBlogResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.PublishBlog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/PublishBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/PublishBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.PublishBlog(ctx, req.(*PublishBlogRequest))
@@ -181,13 +181,13 @@ func (w *BlogsAdminServiceServiceDesc) PublishBlog(ctx context.Context, in *Publ
 	return resp.(*PublishBlogResponse), err
 }
 
-func (w *BlogsAdminServiceServiceDesc) UnPublishBlog(ctx context.Context, in *UnPublishBlogRequest) (*UnPublishBlogResponse, error) {
+func (w *AdminServiceServiceDesc) UnPublishBlog(ctx context.Context, in *UnPublishBlogRequest) (*UnPublishBlogResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.UnPublishBlog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.blogs.v1.BlogsAdminService/UnPublishBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/UnPublishBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.UnPublishBlog(ctx, req.(*UnPublishBlogRequest))
@@ -197,4 +197,58 @@ func (w *BlogsAdminServiceServiceDesc) UnPublishBlog(ctx context.Context, in *Un
 		return nil, err
 	}
 	return resp.(*UnPublishBlogResponse), err
+}
+
+func (w *AdminServiceServiceDesc) AddBlogCategory(ctx context.Context, in *AddBlogCategoryRequest) (*AddBlogCategoryResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.AddBlogCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.blogs.v1.AdminService/AddBlogCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.AddBlogCategory(ctx, req.(*AddBlogCategoryRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*AddBlogCategoryResponse), err
+}
+
+func (w *AdminServiceServiceDesc) DeleteBlogCategory(ctx context.Context, in *DeleteBlogCategoryRequest) (*DeleteBlogCategoryResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.DeleteBlogCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.blogs.v1.AdminService/DeleteBlogCategory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.DeleteBlogCategory(ctx, req.(*DeleteBlogCategoryRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*DeleteBlogCategoryResponse), err
+}
+
+func (w *AdminServiceServiceDesc) GetBlogCategories(ctx context.Context, in *GetBlogCategoriesRequest) (*GetBlogCategoriesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBlogCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogCategories",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBlogCategories(ctx, req.(*GetBlogCategoriesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBlogCategoriesResponse), err
 }

@@ -4,7 +4,11 @@ import (
 	"database/sql"
 	"medblogers_base/internal/modules/blogs/domain/blog"
 	"medblogers_base/internal/modules/blogs/domain/blog_photo"
+	"medblogers_base/internal/modules/blogs/domain/category"
+	"medblogers_base/internal/modules/blogs/domain/doctor_author"
 	"time"
+
+	"github.com/samber/lo"
 
 	"github.com/google/uuid"
 )
@@ -20,6 +24,7 @@ type BlogDAO struct {
 	AdditionalSEOText sql.NullString `db:"additional_seo_text"`
 	CreatedAt         time.Time      `db:"created_at"`
 	OrderingNumber    sql.NullInt64  `db:"ordering_number"`
+	DoctorID          sql.NullInt64  `db:"doctor_id"`
 }
 
 func (b *BlogDAO) ToDomain() *blog.Blog {
@@ -33,6 +38,20 @@ func (b *BlogDAO) ToDomain() *blog.Blog {
 		blog.WithAdditionalSEOText(b.AdditionalSEOText.String),
 		blog.WithCreatedAt(b.CreatedAt),
 		blog.WithOrderingNumber(b.OrderingNumber.Int64),
+		blog.WithDoctorID(b.DoctorID.Int64),
+	)
+}
+
+type DoctorAuthorDAO struct {
+	Name           string `db:"name"`
+	Slug           string `db:"slug"`
+	S3Key          string `db:"s3_image"`
+	SpecialityName string `db:"speciality_name"`
+}
+
+func (d *DoctorAuthorDAO) ToDomain() *doctor_author.Doctor {
+	return doctor_author.NewDoctor(
+		d.Name, d.Slug, d.S3Key, d.SpecialityName,
 	)
 }
 
@@ -84,4 +103,30 @@ func (d PrimaryPhotoDAO) ToDomain() *blog_photo.BlogPhoto {
 		blog_photo.WithFileType(d.FileType.String),
 		blog_photo.WithPhotoID(d.ID),
 	)
+}
+
+// CategoryDAO .
+type CategoryDAO struct {
+	ID        int64     `db:"id"`
+	Name      string    `db:"name"`
+	FontColor string    `db:"font_color"`
+	BgColor   string    `db:"bg_color"`
+	BlogID    uuid.UUID `db:"blog_id"`
+}
+
+// Categories .
+type Categories []CategoryDAO
+
+// ToDomain .
+func (c *CategoryDAO) ToDomain() *category.Category {
+	return category.New(
+		c.ID, c.Name, c.FontColor, c.BgColor,
+	)
+}
+
+// ToDomain .
+func (c Categories) ToDomain() []*category.Category {
+	return lo.Map(c, func(item CategoryDAO, _ int) *category.Category {
+		return item.ToDomain()
+	})
 }

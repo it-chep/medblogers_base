@@ -47,6 +47,29 @@
         ]
       }
     },
+    "/api/v1/seo/sitemap_info": {
+      "get": {
+        "summary": "Получение урлов для генерации sitemap",
+        "operationId": "Seo_GetSitemapInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/seo.v1.GetSitemapInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "Seo"
+        ]
+      }
+    },
     "/api/v1/seo/{doctorSlug}": {
       "get": {
         "summary": "Получение SEO информации для карточки врача",
@@ -132,6 +155,35 @@
           "type": "string"
         },
         "image": {
+          "type": "string"
+        }
+      }
+    },
+    "seo.v1.GetSitemapInfoResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/seo.v1.GetSitemapInfoResponse.SitemapItem"
+          }
+        }
+      }
+    },
+    "seo.v1.GetSitemapInfoResponse.SitemapItem": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string"
+        },
+        "changeFreq": {
+          "type": "string"
+        },
+        "priority": {
           "type": "string"
         }
       }

@@ -1,0 +1,10 @@
+// /welcome
+// /blogs
+// /helpers
+// /helpers_welcome
+// /new_club_participant
+// /new_freelancer
+
+// /doctors/{slug}
+// /helpers/{slug}
+// /blog/{slug}

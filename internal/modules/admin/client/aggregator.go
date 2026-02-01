@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/client/s3"
+	"medblogers_base/internal/modules/admin/client/salebot"
 	"medblogers_base/internal/modules/admin/client/subscribers"
 	pkgHttp "medblogers_base/internal/pkg/http"
 )
@@ -11,6 +12,7 @@ import (
 type Aggregator struct {
 	S3          *s3.Gateway
 	Subscribers *subscribers.Gateway
+	Salebot     *salebot.Gateway
 }
 
 func NewAggregator(httpConns map[string]pkgHttp.Executor, cfg config.AppConfig) *Aggregator {
@@ -25,6 +27,10 @@ func NewAggregator(httpConns map[string]pkgHttp.Executor, cfg config.AppConfig) 
 		Subscribers: subscribers.NewGateway(
 			fmt.Sprintf("%s:%s", cfg.GetSubscribersHost(), cfg.GetSubscribersPort()),
 			httpConns[config.Subscribers],
+		),
+		Salebot: salebot.NewGateway(
+			cfg.GetSalebotHost(),
+			httpConns[config.Salebot],
 		),
 	}
 }

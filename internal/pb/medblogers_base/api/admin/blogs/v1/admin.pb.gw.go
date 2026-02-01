@@ -35,7 +35,7 @@ var (
 	_ = metadata.Join
 )
 
-func request_BlogsAdminService_GetBlogs_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_GetBlogs_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetBlogsRequest
 		metadata runtime.ServerMetadata
@@ -47,7 +47,7 @@ func request_BlogsAdminService_GetBlogs_0(ctx context.Context, marshaler runtime
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_GetBlogs_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_GetBlogs_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetBlogsRequest
 		metadata runtime.ServerMetadata
@@ -56,7 +56,7 @@ func local_request_BlogsAdminService_GetBlogs_0(ctx context.Context, marshaler r
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_GetBlogByID_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_GetBlogByID_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetBlogByIDRequest
 		metadata runtime.ServerMetadata
@@ -77,7 +77,7 @@ func request_BlogsAdminService_GetBlogByID_0(ctx context.Context, marshaler runt
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_GetBlogByID_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_GetBlogByID_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetBlogByIDRequest
 		metadata runtime.ServerMetadata
@@ -95,7 +95,7 @@ func local_request_BlogsAdminService_GetBlogByID_0(ctx context.Context, marshale
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_CreateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_CreateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CreateDraftBlogRequest
 		metadata runtime.ServerMetadata
@@ -110,7 +110,7 @@ func request_BlogsAdminService_CreateDraftBlog_0(ctx context.Context, marshaler 
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_CreateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_CreateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CreateDraftBlogRequest
 		metadata runtime.ServerMetadata
@@ -122,7 +122,7 @@ func local_request_BlogsAdminService_CreateDraftBlog_0(ctx context.Context, mars
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_UpdateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_UpdateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq UpdateDraftBlogRequest
 		metadata runtime.ServerMetadata
@@ -146,7 +146,7 @@ func request_BlogsAdminService_UpdateDraftBlog_0(ctx context.Context, marshaler 
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_UpdateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_UpdateDraftBlog_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq UpdateDraftBlogRequest
 		metadata runtime.ServerMetadata
@@ -167,7 +167,7 @@ func local_request_BlogsAdminService_UpdateDraftBlog_0(ctx context.Context, mars
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_SaveBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_SaveBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq SaveBlogImageRequest
 		metadata runtime.ServerMetadata
@@ -191,7 +191,7 @@ func request_BlogsAdminService_SaveBlogImage_0(ctx context.Context, marshaler ru
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_SaveBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_SaveBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq SaveBlogImageRequest
 		metadata runtime.ServerMetadata
@@ -212,7 +212,7 @@ func local_request_BlogsAdminService_SaveBlogImage_0(ctx context.Context, marsha
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_DeleteBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_DeleteBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq DeleteBlogImageRequest
 		metadata runtime.ServerMetadata
@@ -244,7 +244,7 @@ func request_BlogsAdminService_DeleteBlogImage_0(ctx context.Context, marshaler 
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_DeleteBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_DeleteBlogImage_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq DeleteBlogImageRequest
 		metadata runtime.ServerMetadata
@@ -273,7 +273,7 @@ func local_request_BlogsAdminService_DeleteBlogImage_0(ctx context.Context, mars
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_PublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_PublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq PublishBlogRequest
 		metadata runtime.ServerMetadata
@@ -297,7 +297,7 @@ func request_BlogsAdminService_PublishBlog_0(ctx context.Context, marshaler runt
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_PublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_PublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq PublishBlogRequest
 		metadata runtime.ServerMetadata
@@ -318,7 +318,7 @@ func local_request_BlogsAdminService_PublishBlog_0(ctx context.Context, marshale
 	return msg, metadata, err
 }
 
-func request_BlogsAdminService_UnPublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, client BlogsAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AdminService_UnPublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq UnPublishBlogRequest
 		metadata runtime.ServerMetadata
@@ -342,7 +342,7 @@ func request_BlogsAdminService_UnPublishBlog_0(ctx context.Context, marshaler ru
 	return msg, metadata, err
 }
 
-func local_request_BlogsAdminService_UnPublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, server BlogsAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AdminService_UnPublishBlog_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq UnPublishBlogRequest
 		metadata runtime.ServerMetadata
@@ -363,179 +363,350 @@ func local_request_BlogsAdminService_UnPublishBlog_0(ctx context.Context, marsha
 	return msg, metadata, err
 }
 
-// RegisterBlogsAdminServiceHandlerServer registers the http handlers for service BlogsAdminService to "mux".
-// UnaryRPC     :call BlogsAdminServiceServer directly.
+func request_AdminService_AddBlogCategory_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddBlogCategoryRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+	msg, err := client.AddBlogCategory(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminService_AddBlogCategory_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddBlogCategoryRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+	msg, err := server.AddBlogCategory(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminService_DeleteBlogCategory_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteBlogCategoryRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+	msg, err := client.DeleteBlogCategory(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminService_DeleteBlogCategory_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteBlogCategoryRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["blog_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "blog_id")
+	}
+	protoReq.BlogId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "blog_id", err)
+	}
+	msg, err := server.DeleteBlogCategory(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AdminService_GetBlogCategories_0(ctx context.Context, marshaler runtime.Marshaler, client AdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetBlogCategoriesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetBlogCategories(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminService_GetBlogCategories_0(ctx context.Context, marshaler runtime.Marshaler, server AdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetBlogCategoriesRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetBlogCategories(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+// RegisterAdminServiceHandlerServer registers the http handlers for service AdminService to "mux".
+// UnaryRPC     :call AdminServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterBlogsAdminServiceHandlerFromEndpoint instead.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAdminServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterBlogsAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server BlogsAdminServiceServer) error {
-	mux.Handle(http.MethodGet, pattern_BlogsAdminService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AdminServiceServer) error {
+	mux.Handle(http.MethodGet, pattern_AdminService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_GetBlogs_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_GetBlogs_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_GetBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_GetBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_BlogsAdminService_GetBlogByID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_AdminService_GetBlogByID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_GetBlogByID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_GetBlogByID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_GetBlogByID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_GetBlogByID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_CreateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_CreateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_CreateDraftBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_CreateDraftBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_CreateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_CreateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_UpdateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_UpdateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_UpdateDraftBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_UpdateDraftBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_UpdateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_UpdateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_SaveBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_SaveBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_SaveBlogImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_SaveBlogImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_SaveBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_SaveBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_DeleteBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_DeleteBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_DeleteBlogImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_DeleteBlogImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_DeleteBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_DeleteBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_PublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_PublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_PublishBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_PublishBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_PublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_PublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_UnPublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_UnPublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BlogsAdminService_UnPublishBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AdminService_UnPublishBlog_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_UnPublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_UnPublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminService_AddBlogCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/AddBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/add_category"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminService_AddBlogCategory_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminService_AddBlogCategory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminService_DeleteBlogCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_category"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminService_DeleteBlogCategory_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminService_DeleteBlogCategory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_AdminService_GetBlogCategories_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogCategories", runtime.WithHTTPPathPattern("/api/v1/admin/blog/categories"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminService_GetBlogCategories_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminService_GetBlogCategories_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
 }
 
-// RegisterBlogsAdminServiceHandlerFromEndpoint is same as RegisterBlogsAdminServiceHandler but
+// RegisterAdminServiceHandlerFromEndpoint is same as RegisterAdminServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterBlogsAdminServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterAdminServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -554,178 +725,235 @@ func RegisterBlogsAdminServiceHandlerFromEndpoint(ctx context.Context, mux *runt
 			}
 		}()
 	}()
-	return RegisterBlogsAdminServiceHandler(ctx, mux, conn)
+	return RegisterAdminServiceHandler(ctx, mux, conn)
 }
 
-// RegisterBlogsAdminServiceHandler registers the http handlers for service BlogsAdminService to "mux".
+// RegisterAdminServiceHandler registers the http handlers for service AdminService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterBlogsAdminServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterBlogsAdminServiceHandlerClient(ctx, mux, NewBlogsAdminServiceClient(conn))
+func RegisterAdminServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterAdminServiceHandlerClient(ctx, mux, NewAdminServiceClient(conn))
 }
 
-// RegisterBlogsAdminServiceHandlerClient registers the http handlers for service BlogsAdminService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "BlogsAdminServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "BlogsAdminServiceClient"
+// RegisterAdminServiceHandlerClient registers the http handlers for service AdminService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AdminServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AdminServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "BlogsAdminServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterBlogsAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client BlogsAdminServiceClient) error {
-	mux.Handle(http.MethodGet, pattern_BlogsAdminService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+// "AdminServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AdminServiceClient) error {
+	mux.Handle(http.MethodGet, pattern_AdminService_GetBlogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_GetBlogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_GetBlogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_GetBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_GetBlogs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_BlogsAdminService_GetBlogByID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_AdminService_GetBlogByID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_GetBlogByID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_GetBlogByID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_GetBlogByID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_GetBlogByID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_CreateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_CreateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_CreateDraftBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_CreateDraftBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_CreateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_CreateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_UpdateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_UpdateDraftBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_UpdateDraftBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_UpdateDraftBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_UpdateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_UpdateDraftBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_SaveBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_SaveBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_SaveBlogImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_SaveBlogImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_SaveBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_SaveBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_DeleteBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_DeleteBlogImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_DeleteBlogImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_DeleteBlogImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_DeleteBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_DeleteBlogImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_PublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_PublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_PublishBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_PublishBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_PublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_PublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_BlogsAdminService_UnPublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AdminService_UnPublishBlog_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.BlogsAdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BlogsAdminService_UnPublishBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AdminService_UnPublishBlog_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_BlogsAdminService_UnPublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AdminService_UnPublishBlog_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminService_AddBlogCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/AddBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/add_category"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminService_AddBlogCategory_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminService_AddBlogCategory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminService_DeleteBlogCategory_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_category"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminService_DeleteBlogCategory_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminService_DeleteBlogCategory_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_AdminService_GetBlogCategories_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogCategories", runtime.WithHTTPPathPattern("/api/v1/admin/blog/categories"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminService_GetBlogCategories_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminService_GetBlogCategories_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_BlogsAdminService_GetBlogs_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "blog"}, ""))
-	pattern_BlogsAdminService_GetBlogByID_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "admin", "blog", "blog_id"}, ""))
-	pattern_BlogsAdminService_CreateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "blog", "create"}, ""))
-	pattern_BlogsAdminService_UpdateDraftBlog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "update"}, ""))
-	pattern_BlogsAdminService_SaveBlogImage_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "save_image"}, ""))
-	pattern_BlogsAdminService_DeleteBlogImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "admin", "blog", "blog_id", "delete_image", "image_id"}, ""))
-	pattern_BlogsAdminService_PublishBlog_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "publish"}, ""))
-	pattern_BlogsAdminService_UnPublishBlog_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "unpublish"}, ""))
+	pattern_AdminService_GetBlogs_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "blog"}, ""))
+	pattern_AdminService_GetBlogByID_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "admin", "blog", "blog_id"}, ""))
+	pattern_AdminService_CreateDraftBlog_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "blog", "create"}, ""))
+	pattern_AdminService_UpdateDraftBlog_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "update"}, ""))
+	pattern_AdminService_SaveBlogImage_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "save_image"}, ""))
+	pattern_AdminService_DeleteBlogImage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "admin", "blog", "blog_id", "delete_image", "image_id"}, ""))
+	pattern_AdminService_PublishBlog_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "publish"}, ""))
+	pattern_AdminService_UnPublishBlog_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "unpublish"}, ""))
+	pattern_AdminService_AddBlogCategory_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "add_category"}, ""))
+	pattern_AdminService_DeleteBlogCategory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "blog", "blog_id", "delete_category"}, ""))
+	pattern_AdminService_GetBlogCategories_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "blog", "categories"}, ""))
 )
 
 var (
-	forward_BlogsAdminService_GetBlogs_0        = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_GetBlogByID_0     = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_CreateDraftBlog_0 = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_UpdateDraftBlog_0 = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_SaveBlogImage_0   = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_DeleteBlogImage_0 = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_PublishBlog_0     = runtime.ForwardResponseMessage
-	forward_BlogsAdminService_UnPublishBlog_0   = runtime.ForwardResponseMessage
+	forward_AdminService_GetBlogs_0           = runtime.ForwardResponseMessage
+	forward_AdminService_GetBlogByID_0        = runtime.ForwardResponseMessage
+	forward_AdminService_CreateDraftBlog_0    = runtime.ForwardResponseMessage
+	forward_AdminService_UpdateDraftBlog_0    = runtime.ForwardResponseMessage
+	forward_AdminService_SaveBlogImage_0      = runtime.ForwardResponseMessage
+	forward_AdminService_DeleteBlogImage_0    = runtime.ForwardResponseMessage
+	forward_AdminService_PublishBlog_0        = runtime.ForwardResponseMessage
+	forward_AdminService_UnPublishBlog_0      = runtime.ForwardResponseMessage
+	forward_AdminService_AddBlogCategory_0    = runtime.ForwardResponseMessage
+	forward_AdminService_DeleteBlogCategory_0 = runtime.ForwardResponseMessage
+	forward_AdminService_GetBlogCategories_0  = runtime.ForwardResponseMessage
 )

@@ -8,167 +8,250 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 option go_package = "api/admin/blogs/v1";
 
 // Сервис для работы с докторами
-service BlogsAdminService {
-  // -------------- Статьи ---------------
-  rpc GetBlogs(GetBlogsRequest) returns (GetBlogsResponse) {
-    option (google.api.http) = {get: "/api/v1/admin/blog"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение списка статей"};
-  }
-  rpc GetBlogByID(GetBlogByIDRequest) returns (GetBlogByIDResponse) {
-    option (google.api.http) = {get: "/api/v1/admin/blog/{blog_id}"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение информации о статье по ее ID"};
-  }
-  rpc CreateDraftBlog(CreateDraftBlogRequest) returns (CreateDraftBlogResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/admin/blog/create"
-      body: "*"
+service AdminService {
+    // -------------- Статьи ---------------
+    rpc GetBlogs(GetBlogsRequest) returns (GetBlogsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/admin/blog"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получение списка статей"
+        };
+    }
+    rpc GetBlogByID(GetBlogByIDRequest) returns (GetBlogByIDResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/admin/blog/{blog_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получение информации о статье по ее ID"
+        };
+    }
+    rpc CreateDraftBlog(CreateDraftBlogRequest) returns (CreateDraftBlogResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/create"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Создание черновика статьи"
+        };
+    }
+    rpc UpdateDraftBlog(UpdateDraftBlogRequest) returns (UpdateDraftBlogResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/update"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Обновление статьи"
+        };
+    }
+    rpc SaveBlogImage(SaveBlogImageRequest) returns (SaveBlogImageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/save_image"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Сохранение картинки для статьи"
+        };
+    }
+    rpc DeleteBlogImage(DeleteBlogImageRequest) returns (DeleteBlogImageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Удаление картинки для статьи"
+        };
+    }
+    rpc PublishBlog(PublishBlogRequest) returns (PublishBlogResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/publish"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Публикация статьи"
+        };
+    }
+    rpc UnPublishBlog(UnPublishBlogRequest) returns (UnPublishBlogResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/unpublish"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Снятие статьи с публикации"
+        };
+    }
+    rpc AddBlogCategory(AddBlogCategoryRequest) returns (AddBlogCategoryResponse){
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/add_category"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Добавление тега статье"
+        };
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание черновика статьи"};
-  }
-  rpc UpdateDraftBlog(UpdateDraftBlogRequest) returns (UpdateDraftBlogResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/admin/blog/{blog_id}/update"
-      body: "*"
+    rpc DeleteBlogCategory(DeleteBlogCategoryRequest) returns (DeleteBlogCategoryResponse){
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/delete_category"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Удаление тега у статьи"
+        };
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление статьи"};
-  }
-  rpc SaveBlogImage(SaveBlogImageRequest) returns (SaveBlogImageResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/admin/blog/{blog_id}/save_image"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сохранение картинки для статьи"};
-  }
-  rpc DeleteBlogImage(DeleteBlogImageRequest) returns (DeleteBlogImageResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление картинки для статьи"};
-  }
-  rpc PublishBlog(PublishBlogRequest) returns (PublishBlogResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/admin/blog/{blog_id}/publish"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Публикация статьи"};
-  }
-  rpc UnPublishBlog(UnPublishBlogRequest) returns (UnPublishBlogResponse) {
-    option (google.api.http) = {
-      post: "/api/v1/admin/blog/{blog_id}/unpublish"
-      body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Снятие статьи с публикации"};
-  }
-  //  rpc MoveOrdering(MoveOrderingRequest) returns (MoveOrderingResponse) {
-  //    option (google.api.http) = {
-  //      post: "/api/v1/blog/{blog_id}/move_ordering"
-  //      body: "*"
-  //    };
-  //    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-  //      summary: "Смещает порядок сортировки сразу у всех статей"
-  //    };
-  //  }
-  // todo поиск, фильтрация
-  // -------------- Статьи ---------------
+    rpc GetBlogCategories(GetBlogCategoriesRequest) returns (GetBlogCategoriesResponse){
+        option (google.api.http) = {
+            get: "/api/v1/admin/blog/categories"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получение тегов статей"
+        };
+    }
+    //  rpc MoveOrdering(MoveOrderingRequest) returns (MoveOrderingResponse) {
+    //    option (google.api.http) = {
+    //      post: "/api/v1/blog/{blog_id}/move_ordering"
+    //      body: "*"
+    //    };
+    //    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    //      summary: "Смещает порядок сортировки сразу у всех статей"
+    //    };
+    //  }
+    // todo поиск, фильтрация
+    // -------------- Статьи ---------------
 }
 
 message GetBlogsRequest {}
 
 message GetBlogsResponse {
-  repeated Blog blogs = 1;
+    repeated Blog blogs = 1;
 
-  message Blog {
-    string blog_id = 1;
-    string title = 2;
-    bool is_active = 3;
-    int64 ordering_number = 4;
-  }
+    message Blog {
+        string blog_id = 1;
+        string title = 2;
+        bool is_active = 3;
+        int64 ordering_number = 4;
+    }
+
 }
 
 message GetBlogByIDRequest {
-  string blog_id = 1;
+    string blog_id = 1;
 }
 
 message GetBlogByIDResponse {
-  string blog_id = 1;
-  string slug = 2;
-  string title = 3;
-  string body = 4;
-  bool is_active = 5;
-  string preview_text = 6;
-  string society_preview = 7;
-  string additional_seo_text = 8;
-  int64 ordering_number = 9;
+    string blog_id = 1;
+    string slug = 2;
+    string title = 3;
+    string body = 4;
+    bool is_active = 5;
+    string preview_text = 6;
+    string society_preview = 7;
+    string additional_seo_text = 8;
+    int64 ordering_number = 9;
+    Doctor doctor = 10;
+    repeated Category categories = 11;
+
+    message Doctor {
+        int64 doctor_id = 1;
+        string doctor_name = 2;
+    }
+
+    message Category {
+        int64 id = 1;
+        string name = 2;
+    }
 }
 
 message CreateDraftBlogRequest {
-  string title = 1;
-  string slug = 2;
+    string title = 1;
+    string slug = 2;
 }
 
 message CreateDraftBlogResponse {
-  string blog_id = 1;
+    string blog_id = 1;
 }
 
 message UpdateDraftBlogRequest {
-  string blog_id = 1;
-  string slug = 2;
-  string title = 3;
-  string body = 4;
-  bool is_active = 5;
-  string preview_text = 6;
-  string society_preview = 7;
-  string additional_seo_text = 8;
-  int64 ordering_number = 9;
+    string blog_id = 1;
+    string slug = 2;
+    string title = 3;
+    string body = 4;
+    bool is_active = 5;
+    string preview_text = 6;
+    string society_preview = 7;
+    string additional_seo_text = 8;
+    int64 ordering_number = 9;
+    int64 doctor_id = 10;
 }
 
 message UpdateDraftBlogResponse {}
 
 message SaveBlogImageRequest {
-  string blog_id = 1;
-  string image_data = 2; // файл в строке base64
+    string blog_id = 1;
+    string image_data = 2; // файл в строке base64
 }
 
 message SaveBlogImageResponse {
-  Image image = 1;
+    Image image = 1;
 
-  message Image {
-    string image_id = 1;
-    string image_url = 2;
-  }
+    message Image {
+        string image_id = 1;
+        string image_url = 2;
+    }
 }
 
-message DeleteBlogImageRequest {
-  string blog_id = 1;
-  string image_id = 2;
+message DeleteBlogImageRequest{
+    string blog_id = 1;
+    string image_id = 2;
 }
 
-message DeleteBlogImageResponse {}
+message DeleteBlogImageResponse{}
 
-message PublishBlogRequest {
-  string blog_id = 1;
-  optional string primary_image_id = 2;
+message PublishBlogRequest{
+    string blog_id = 1;
+    optional string primary_image_id = 2;
 }
 
-message PublishBlogResponse {
-  repeated ValidationError errors = 1;
+message PublishBlogResponse{
+    repeated ValidationError errors = 1;
 
-  message ValidationError {
-    string field = 1;
-    string text = 2;
-  }
+    message ValidationError {
+        string field = 1;
+        string text = 2;
+    }
 }
 
-message UnPublishBlogRequest {
-  string blog_id = 1;
+message UnPublishBlogRequest{
+    string blog_id = 1;
 }
 
-message UnPublishBlogResponse {
-  repeated ValidationError errors = 1;
+message UnPublishBlogResponse{
+    repeated ValidationError errors = 1;
 
-  message ValidationError {
-    string field = 1;
-    string text = 2;
-  }
+    message ValidationError {
+        string field = 1;
+        string text = 2;
+    }
+}
+
+message AddBlogCategoryRequest{
+    string blog_id = 1;
+    int64 category_id = 2;
+}
+message DeleteBlogCategoryRequest{
+    string blog_id = 1;
+    int64 category_id = 2;
+}
+message GetBlogCategoriesRequest{}
+
+message AddBlogCategoryResponse{}
+
+message DeleteBlogCategoryResponse{}
+
+message GetBlogCategoriesResponse{
+    repeated Category categories = 1;
+
+    message Category {
+        int64 id = 1;
+        string name = 2;
+    }
 }
