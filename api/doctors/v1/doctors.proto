@@ -247,6 +247,15 @@ message FilterResponse {
     string vk_link = 17;
     string vk_subs_count = 18;
     string vk_subs_count_text = 19;
+
+    VipInfo vip_info = 20;
+  }
+
+  message VipInfo {
+    bool can_barter = 1;
+    bool can_buy_advertising = 2;
+    bool can_sell_advertising = 3;
+    int64 advertising_price_from = 5;
   }
 }
 

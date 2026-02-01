@@ -816,6 +816,27 @@
         },
         "vkSubsCountText": {
           "type": "string"
+        },
+        "vipInfo": {
+          "$ref": "#/definitions/doctor.v1.FilterResponse.VipInfo"
+        }
+      }
+    },
+    "doctor.v1.FilterResponse.VipInfo": {
+      "type": "object",
+      "properties": {
+        "canBarter": {
+          "type": "boolean"
+        },
+        "canBuyAdvertising": {
+          "type": "boolean"
+        },
+        "canSellAdvertising": {
+          "type": "boolean"
+        },
+        "advertisingPriceFrom": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
