@@ -885,6 +885,222 @@ func local_request_FreelancerAdminService_DeleteNetwork_0(ctx context.Context, m
 	return msg, metadata, err
 }
 
+func request_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerAdditionalSpecialitiesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := client.GetFreelancerAdditionalSpecialities(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerAdditionalSpecialitiesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := server.GetFreelancerAdditionalSpecialities(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_FreelancerAdminService_GetFreelancerAdditionalCities_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerAdditionalCitiesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := client.GetFreelancerAdditionalCities(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_FreelancerAdminService_GetFreelancerAdditionalCities_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerAdditionalCitiesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := server.GetFreelancerAdditionalCities(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_FreelancerAdminService_GetFreelancerCooperationTypes_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerCooperationTypesRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetFreelancerCooperationTypes(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_FreelancerAdminService_GetFreelancerCooperationTypes_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerCooperationTypesRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetFreelancerCooperationTypes(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_FreelancerAdminService_GetFreelancerPriceList_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerPriceListRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := client.GetFreelancerPriceList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_FreelancerAdminService_GetFreelancerPriceList_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerPriceListRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := server.GetFreelancerPriceList(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_FreelancerAdminService_GetFreelancerRecommendations_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerRecommendationsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := client.GetFreelancerRecommendations(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_FreelancerAdminService_GetFreelancerRecommendations_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerRecommendationsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := server.GetFreelancerRecommendations(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_FreelancerAdminService_GetFreelancerSocialNetworks_0(ctx context.Context, marshaler runtime.Marshaler, client FreelancerAdminServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerSocialNetworksRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := client.GetFreelancerSocialNetworks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_FreelancerAdminService_GetFreelancerSocialNetworks_0(ctx context.Context, marshaler runtime.Marshaler, server FreelancerAdminServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetFreelancerSocialNetworksRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["freelancer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "freelancer_id")
+	}
+	protoReq.FreelancerId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "freelancer_id", err)
+	}
+	msg, err := server.GetFreelancerSocialNetworks(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterFreelancerAdminServiceHandlerServer registers the http handlers for service FreelancerAdminService to "mux".
 // UnaryRPC     :call FreelancerAdminServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1291,6 +1507,126 @@ func RegisterFreelancerAdminServiceHandlerServer(ctx context.Context, mux *runti
 		}
 		forward_FreelancerAdminService_DeleteNetwork_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalSpecialities", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/additional_specialities"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerAdditionalCities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalCities", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/additional_cities"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_FreelancerAdminService_GetFreelancerAdditionalCities_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerAdditionalCities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerCooperationTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerCooperationTypes", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/cooperation_types"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_FreelancerAdminService_GetFreelancerCooperationTypes_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerCooperationTypes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerPriceList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerPriceList", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/price_list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_FreelancerAdminService_GetFreelancerPriceList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerPriceList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerRecommendations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/recommendations"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_FreelancerAdminService_GetFreelancerRecommendations_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerRecommendations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerSocialNetworks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerSocialNetworks", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/social_networks"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_FreelancerAdminService_GetFreelancerSocialNetworks_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerSocialNetworks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -1671,51 +2007,165 @@ func RegisterFreelancerAdminServiceHandlerClient(ctx context.Context, mux *runti
 		}
 		forward_FreelancerAdminService_DeleteNetwork_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalSpecialities", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/additional_specialities"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerAdditionalCities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalCities", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/additional_cities"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_FreelancerAdminService_GetFreelancerAdditionalCities_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerAdditionalCities_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerCooperationTypes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerCooperationTypes", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/cooperation_types"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_FreelancerAdminService_GetFreelancerCooperationTypes_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerCooperationTypes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerPriceList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerPriceList", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/price_list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_FreelancerAdminService_GetFreelancerPriceList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerPriceList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerRecommendations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerRecommendations", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/recommendations"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_FreelancerAdminService_GetFreelancerRecommendations_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerRecommendations_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_FreelancerAdminService_GetFreelancerSocialNetworks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerSocialNetworks", runtime.WithHTTPPathPattern("/api/v1/admin/freelancer/{freelancer_id}/social_networks"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_FreelancerAdminService_GetFreelancerSocialNetworks_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_FreelancerAdminService_GetFreelancerSocialNetworks_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_FreelancerAdminService_GetFreelancers_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "freelancers"}, ""))
-	pattern_FreelancerAdminService_SortFreelancers_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancers", "sort"}, ""))
-	pattern_FreelancerAdminService_SearchFreelancers_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancers", "search"}, ""))
-	pattern_FreelancerAdminService_GetFreelancerByID_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "admin", "freelancer", "freelancer_id"}, ""))
-	pattern_FreelancerAdminService_UpdateFreelancer_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "update"}, ""))
-	pattern_FreelancerAdminService_DeleteFreelancer_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete"}, ""))
-	pattern_FreelancerAdminService_ActivateFreelancer_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "activate"}, ""))
-	pattern_FreelancerAdminService_DeactivateFreelancer_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "deactivate"}, ""))
-	pattern_FreelancerAdminService_SaveFreelancerPhoto_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "save_photo"}, ""))
-	pattern_FreelancerAdminService_AddAdditionalCity_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_additional_city"}, ""))
-	pattern_FreelancerAdminService_AddAdditionalSpeciality_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_additional_speciality"}, ""))
-	pattern_FreelancerAdminService_DeleteAdditionalCity_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_additional_city"}, ""))
-	pattern_FreelancerAdminService_DeleteAdditionalSpeciality_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_additional_speciality"}, ""))
-	pattern_FreelancerAdminService_AddRecommendation_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_recommendation"}, ""))
-	pattern_FreelancerAdminService_DeleteRecommendation_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_recommendation"}, ""))
-	pattern_FreelancerAdminService_ChangeRecommendationSort_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "change_recommendation_sort", "recommendation_id"}, ""))
-	pattern_FreelancerAdminService_AddPriceList_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_price_list"}, ""))
-	pattern_FreelancerAdminService_DeletePriceList_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_price_list"}, ""))
-	pattern_FreelancerAdminService_AddNetwork_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_network"}, ""))
-	pattern_FreelancerAdminService_DeleteNetwork_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_network"}, ""))
+	pattern_FreelancerAdminService_GetFreelancers_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "freelancers"}, ""))
+	pattern_FreelancerAdminService_SortFreelancers_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancers", "sort"}, ""))
+	pattern_FreelancerAdminService_SearchFreelancers_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancers", "search"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerByID_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "admin", "freelancer", "freelancer_id"}, ""))
+	pattern_FreelancerAdminService_UpdateFreelancer_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "update"}, ""))
+	pattern_FreelancerAdminService_DeleteFreelancer_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete"}, ""))
+	pattern_FreelancerAdminService_ActivateFreelancer_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "activate"}, ""))
+	pattern_FreelancerAdminService_DeactivateFreelancer_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "deactivate"}, ""))
+	pattern_FreelancerAdminService_SaveFreelancerPhoto_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "save_photo"}, ""))
+	pattern_FreelancerAdminService_AddAdditionalCity_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_additional_city"}, ""))
+	pattern_FreelancerAdminService_AddAdditionalSpeciality_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_additional_speciality"}, ""))
+	pattern_FreelancerAdminService_DeleteAdditionalCity_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_additional_city"}, ""))
+	pattern_FreelancerAdminService_DeleteAdditionalSpeciality_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_additional_speciality"}, ""))
+	pattern_FreelancerAdminService_AddRecommendation_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_recommendation"}, ""))
+	pattern_FreelancerAdminService_DeleteRecommendation_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_recommendation"}, ""))
+	pattern_FreelancerAdminService_ChangeRecommendationSort_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "change_recommendation_sort", "recommendation_id"}, ""))
+	pattern_FreelancerAdminService_AddPriceList_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_price_list"}, ""))
+	pattern_FreelancerAdminService_DeletePriceList_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_price_list"}, ""))
+	pattern_FreelancerAdminService_AddNetwork_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "add_network"}, ""))
+	pattern_FreelancerAdminService_DeleteNetwork_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "delete_network"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "additional_specialities"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerAdditionalCities_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "additional_cities"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerCooperationTypes_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancer", "cooperation_types"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerPriceList_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "price_list"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerRecommendations_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "recommendations"}, ""))
+	pattern_FreelancerAdminService_GetFreelancerSocialNetworks_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "freelancer", "freelancer_id", "social_networks"}, ""))
 )
 
 var (
-	forward_FreelancerAdminService_GetFreelancers_0             = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_SortFreelancers_0            = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_SearchFreelancers_0          = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_GetFreelancerByID_0          = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_UpdateFreelancer_0           = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeleteFreelancer_0           = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_ActivateFreelancer_0         = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeactivateFreelancer_0       = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_SaveFreelancerPhoto_0        = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_AddAdditionalCity_0          = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_AddAdditionalSpeciality_0    = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeleteAdditionalCity_0       = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeleteAdditionalSpeciality_0 = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_AddRecommendation_0          = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeleteRecommendation_0       = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_ChangeRecommendationSort_0   = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_AddPriceList_0               = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeletePriceList_0            = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_AddNetwork_0                 = runtime.ForwardResponseMessage
-	forward_FreelancerAdminService_DeleteNetwork_0              = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancers_0                      = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_SortFreelancers_0                     = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_SearchFreelancers_0                   = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerByID_0                   = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_UpdateFreelancer_0                    = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeleteFreelancer_0                    = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_ActivateFreelancer_0                  = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeactivateFreelancer_0                = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_SaveFreelancerPhoto_0                 = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_AddAdditionalCity_0                   = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_AddAdditionalSpeciality_0             = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeleteAdditionalCity_0                = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeleteAdditionalSpeciality_0          = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_AddRecommendation_0                   = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeleteRecommendation_0                = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_ChangeRecommendationSort_0            = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_AddPriceList_0                        = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeletePriceList_0                     = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_AddNetwork_0                          = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_DeleteNetwork_0                       = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerAdditionalSpecialities_0 = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerAdditionalCities_0       = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerCooperationTypes_0       = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerPriceList_0              = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerRecommendations_0        = runtime.ForwardResponseMessage
+	forward_FreelancerAdminService_GetFreelancerSocialNetworks_0         = runtime.ForwardResponseMessage
 )

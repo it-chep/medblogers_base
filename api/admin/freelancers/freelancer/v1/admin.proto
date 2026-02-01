@@ -20,16 +20,6 @@ service FreelancerAdminService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сортировка фрилансеров"};
   }
-  // todo подумать тоже, а надо ли тут эту сортировку
-  //    rpc FilterFreelancers(FilterFreelancersRequest) returns (FilterFreelancersResponse) {
-  //        option (google.api.http) = {
-  //            post: "/api/v1/admin/Freelancers/filter"
-  //            body: "*"
-  //        };
-  //        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-  //            summary: "Фильтрация фрилансеров"
-  //        };
-  //    }
   rpc SearchFreelancers(SearchFreelancersRequest) returns (SearchFreelancersResponse) {
     option (google.api.http) = {
       post: "/api/v1/admin/freelancers/search"
@@ -156,16 +146,62 @@ service FreelancerAdminService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление соцсети"};
   }
-  // todo как-будто бы создание вообще не нужно
-  //    rpc CreateFreelancer(CreateFreelancerRequest) returns (CreateFreelancerResponse) {
-  //        option (google.api.http) = {
-  //            post: "/api/v1/admin/Freelancers/create"
-  //            body: "*"
-  //        };
-  //        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-  //            summary: "Создание фрилансера"
-  //        };
-  //    }
+  rpc GetFreelancerAdditionalSpecialities(GetFreelancerAdditionalSpecialitiesRequest) returns (GetFreelancerAdditionalSpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/freelancer/{freelancer_id}/additional_specialities"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доп специальности конкретного фрилансера"};
+  }
+  rpc GetFreelancerAdditionalCities(GetFreelancerAdditionalCitiesRequest) returns (GetFreelancerAdditionalCitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/freelancer/{freelancer_id}/additional_cities"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доп города конкретного фрилансера"};
+  }
+  rpc GetFreelancerCooperationTypes(GetFreelancerCooperationTypesRequest) returns (GetFreelancerCooperationTypesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/freelancer/cooperation_types"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Типы размещения фрилансеров"};
+  }
+  rpc GetFreelancerPriceList(GetFreelancerPriceListRequest) returns (GetFreelancerPriceListResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/freelancer/{freelancer_id}/price_list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Прайс-лист фрилансера"};
+  }
+  rpc GetFreelancerRecommendations(GetFreelancerRecommendationsRequest) returns (GetFreelancerRecommendationsResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/freelancer/{freelancer_id}/recommendations"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Рекомендации фрилансера"};
+  }
+  rpc GetFreelancerSocialNetworks(GetFreelancerSocialNetworksRequest) returns (GetFreelancerSocialNetworksResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/freelancer/{freelancer_id}/social_networks"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Соцсети в которых работает фрилансер"};
+  }
+}
+
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message CooperationType {
+  int64 id = 1;
+  string name = 2;
+}
+
+message Society {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+}
+
+message Recommendation {
+  int64 doctor_id = 1;
+  string doctor_name = 2;
+}
+
+message PriceList {
+  int64 id = 1;
+  string name = 2;
+  string amount = 3;
 }
 
 message GetFreelancersRequest {}
@@ -179,11 +215,6 @@ message GetFreelancersResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
 }
 
@@ -198,11 +229,6 @@ message SortFreelancersResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
 }
 
@@ -219,11 +245,6 @@ message SearchFreelancersResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
 }
 
@@ -253,45 +274,6 @@ message GetFreelancerByIDResponse {
   int64 price_category = 14;
 
   //  todo года работы
-  // Города и специализации
-  repeated CityItem additional_cities = 15;
-  repeated SpecialityItem additional_specialities = 16;
-  repeated Society social_networks = 17;
-
-  repeated Recommendation recommendations = 18;
-  repeated PriceList price_list = 19;
-
-  message CityItem {
-    int64 id = 1;
-    string name = 2;
-  }
-
-  message SpecialityItem {
-    int64 id = 1;
-    string name = 2;
-  }
-
-  message CooperationType {
-    int64 id = 1;
-    string name = 2;
-  }
-
-  message Society {
-    int64 id = 1;
-    string name = 2;
-    string slug = 3;
-  }
-
-  message Recommendation {
-    int64 doctor_id = 1;
-    string doctor_name = 2;
-  }
-
-  message PriceList {
-    int64 id = 1;
-    string name = 2;
-    string amount = 3;
-  }
 }
 
 message UpdateFreelancerRequest {
@@ -424,3 +406,39 @@ message DeleteNetworkRequest {
 }
 
 message DeleteNetworkResponse {}
+
+message GetFreelancerAdditionalSpecialitiesRequest {
+  int64 freelancer_id = 1;
+}
+message GetFreelancerAdditionalSpecialitiesResponse {
+  repeated SpecialityItem additional_specialities = 1;
+}
+message GetFreelancerAdditionalCitiesRequest {
+  int64 freelancer_id = 1;
+}
+message GetFreelancerAdditionalCitiesResponse {
+  repeated CityItem additional_cities = 1;
+}
+message GetFreelancerCooperationTypesRequest {}
+message GetFreelancerCooperationTypesResponse {
+  repeated CooperationType cooperation_types = 1;
+}
+message GetFreelancerPriceListRequest {
+  int64 freelancer_id = 1;
+}
+message GetFreelancerPriceListResponse {
+  repeated PriceList price_list = 1;
+}
+message GetFreelancerRecommendationsRequest {
+  int64 freelancer_id = 1;
+}
+message GetFreelancerRecommendationsResponse {
+  repeated Recommendation recommendations = 1;
+}
+
+message GetFreelancerSocialNetworksRequest {
+  int64 freelancer_id = 1;
+}
+message GetFreelancerSocialNetworksResponse {
+  repeated Society social_networks = 1;
+}

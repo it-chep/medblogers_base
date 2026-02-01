@@ -16,6 +16,29 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/admin/doctor/cooperation_types": {
+      "get": {
+        "summary": "Типы размещения доктора",
+        "operationId": "DoctorAdminService_GetDoctorCooperationTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
     "/api/v1/admin/doctor/{doctorId}": {
       "get": {
         "summary": "Получение карточки врача",
@@ -161,6 +184,70 @@
             "schema": {
               "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpecialityBody"
             }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/additional_cities": {
+      "get": {
+        "summary": "Доп города конкретного врача",
+        "operationId": "DoctorAdminService_GetDoctorAdditionalCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/additional_specialities": {
+      "get": {
+        "summary": "Доп специальности конкретного врача",
+        "operationId": "DoctorAdminService_GetDoctorAdditionalSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -581,6 +668,30 @@
     "admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse": {
       "type": "object"
     },
+    "admin.doctors.doctors.v1.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "admin.doctors.doctors.v1.DeactivateDoctorResponse": {
       "type": "object"
     },
@@ -658,6 +769,30 @@
         }
       }
     },
+    "admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "additionalCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.CityItem"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "additionalSpecialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.SpecialityItem"
+          }
+        }
+      }
+    },
     "admin.doctors.doctors.v1.GetDoctorByIDResponse": {
       "type": "object",
       "properties": {
@@ -700,7 +835,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem"
+            "$ref": "#/definitions/admin.doctors.doctors.v1.CityItem"
           },
           "title": "Города и специализации"
         },
@@ -708,14 +843,14 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem"
+            "$ref": "#/definitions/admin.doctors.doctors.v1.SpecialityItem"
           }
         },
         "mainCity": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CityItem"
         },
         "mainSpeciality": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.SpecialityItem"
         },
         "subscribersInfo": {
           "type": "array",
@@ -743,48 +878,12 @@
           "type": "string"
         },
         "cooperationType": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationType"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
         },
         "medicalDirections": {
           "type": "string"
         },
         "marketingPreferences": {
-          "type": "string"
-        }
-      }
-    },
-    "admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
           "type": "string"
         }
       }
@@ -804,6 +903,18 @@
         },
         "lastUpdatedDate": {
           "type": "string"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse": {
+      "type": "object",
+      "properties": {
+        "cooperationTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
+          }
         }
       }
     },
@@ -848,19 +959,7 @@
           "type": "boolean"
         },
         "cooperationType": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationType"
-        }
-      }
-    },
-    "admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
         }
       }
     },
@@ -893,19 +992,7 @@
           "type": "boolean"
         },
         "cooperationType": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationType"
-        }
-      }
-    },
-    "admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
         }
       }
     },
@@ -954,19 +1041,7 @@
           "type": "boolean"
         },
         "cooperationType": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationType"
-        }
-      }
-    },
-    "admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
         }
       }
     },
@@ -1002,11 +1077,11 @@
           "type": "boolean"
         },
         "cooperationType": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationType"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
         }
       }
     },
-    "admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationType": {
+    "admin.doctors.doctors.v1.SpecialityItem": {
       "type": "object",
       "properties": {
         "id": {

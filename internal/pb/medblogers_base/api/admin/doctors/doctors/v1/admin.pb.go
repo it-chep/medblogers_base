@@ -23,6 +23,162 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CityItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CityItem) Reset() {
+	*x = CityItem{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CityItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CityItem) ProtoMessage() {}
+
+func (x *CityItem) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CityItem.ProtoReflect.Descriptor instead.
+func (*CityItem) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CityItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *CityItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type SpecialityItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpecialityItem) Reset() {
+	*x = SpecialityItem{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpecialityItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpecialityItem) ProtoMessage() {}
+
+func (x *SpecialityItem) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpecialityItem.ProtoReflect.Descriptor instead.
+func (*SpecialityItem) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SpecialityItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SpecialityItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type CooperationType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CooperationType) Reset() {
+	*x = CooperationType{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CooperationType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CooperationType) ProtoMessage() {}
+
+func (x *CooperationType) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CooperationType.ProtoReflect.Descriptor instead.
+func (*CooperationType) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CooperationType) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *CooperationType) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 // -------------- Сервис по работе с докторов ---------------
 type GetDoctorsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -32,7 +188,7 @@ type GetDoctorsRequest struct {
 
 func (x *GetDoctorsRequest) Reset() {
 	*x = GetDoctorsRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +200,7 @@ func (x *GetDoctorsRequest) String() string {
 func (*GetDoctorsRequest) ProtoMessage() {}
 
 func (x *GetDoctorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +213,7 @@ func (x *GetDoctorsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorsRequest.ProtoReflect.Descriptor instead.
 func (*GetDoctorsRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{0}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{3}
 }
 
 type GetDoctorsResponse struct {
@@ -69,7 +225,7 @@ type GetDoctorsResponse struct {
 
 func (x *GetDoctorsResponse) Reset() {
 	*x = GetDoctorsResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -81,7 +237,7 @@ func (x *GetDoctorsResponse) String() string {
 func (*GetDoctorsResponse) ProtoMessage() {}
 
 func (x *GetDoctorsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -94,7 +250,7 @@ func (x *GetDoctorsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorsResponse.ProtoReflect.Descriptor instead.
 func (*GetDoctorsResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{1}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetDoctorsResponse) GetDoctors() []*GetDoctorsResponse_Doctor {
@@ -112,7 +268,7 @@ type SortDoctorsRequest struct {
 
 func (x *SortDoctorsRequest) Reset() {
 	*x = SortDoctorsRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124,7 +280,7 @@ func (x *SortDoctorsRequest) String() string {
 func (*SortDoctorsRequest) ProtoMessage() {}
 
 func (x *SortDoctorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -137,7 +293,7 @@ func (x *SortDoctorsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortDoctorsRequest.ProtoReflect.Descriptor instead.
 func (*SortDoctorsRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{2}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{5}
 }
 
 type SortDoctorsResponse struct {
@@ -149,7 +305,7 @@ type SortDoctorsResponse struct {
 
 func (x *SortDoctorsResponse) Reset() {
 	*x = SortDoctorsResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -161,7 +317,7 @@ func (x *SortDoctorsResponse) String() string {
 func (*SortDoctorsResponse) ProtoMessage() {}
 
 func (x *SortDoctorsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -174,7 +330,7 @@ func (x *SortDoctorsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortDoctorsResponse.ProtoReflect.Descriptor instead.
 func (*SortDoctorsResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{3}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SortDoctorsResponse) GetDoctors() []*SortDoctorsResponse_Doctor {
@@ -193,7 +349,7 @@ type SearchDoctorsRequest struct {
 
 func (x *SearchDoctorsRequest) Reset() {
 	*x = SearchDoctorsRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -205,7 +361,7 @@ func (x *SearchDoctorsRequest) String() string {
 func (*SearchDoctorsRequest) ProtoMessage() {}
 
 func (x *SearchDoctorsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +374,7 @@ func (x *SearchDoctorsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchDoctorsRequest.ProtoReflect.Descriptor instead.
 func (*SearchDoctorsRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{4}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SearchDoctorsRequest) GetQuery() string {
@@ -237,7 +393,7 @@ type SearchDoctorsResponse struct {
 
 func (x *SearchDoctorsResponse) Reset() {
 	*x = SearchDoctorsResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -249,7 +405,7 @@ func (x *SearchDoctorsResponse) String() string {
 func (*SearchDoctorsResponse) ProtoMessage() {}
 
 func (x *SearchDoctorsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -262,7 +418,7 @@ func (x *SearchDoctorsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchDoctorsResponse.ProtoReflect.Descriptor instead.
 func (*SearchDoctorsResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{5}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SearchDoctorsResponse) GetDoctors() []*SearchDoctorsResponse_Doctor {
@@ -281,7 +437,7 @@ type GetDoctorByIDRequest struct {
 
 func (x *GetDoctorByIDRequest) Reset() {
 	*x = GetDoctorByIDRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -293,7 +449,7 @@ func (x *GetDoctorByIDRequest) String() string {
 func (*GetDoctorByIDRequest) ProtoMessage() {}
 
 func (x *GetDoctorByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -306,7 +462,7 @@ func (x *GetDoctorByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetDoctorByIDRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{6}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetDoctorByIDRequest) GetDoctorId() int64 {
@@ -331,10 +487,10 @@ type GetDoctorByIDResponse struct {
 	TiktokUrl    string `protobuf:"bytes,10,opt,name=tiktok_url,json=tiktokUrl,proto3" json:"tiktok_url,omitempty"`
 	SiteLink     string `protobuf:"bytes,11,opt,name=site_link,json=siteLink,proto3" json:"site_link,omitempty"`
 	// Города и специализации
-	AdditionalCities       []*GetDoctorByIDResponse_CityItem        `protobuf:"bytes,12,rep,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
-	AdditionalSpecialities []*GetDoctorByIDResponse_SpecialityItem  `protobuf:"bytes,13,rep,name=additional_specialities,json=additionalSpecialities,proto3" json:"additional_specialities,omitempty"`
-	MainCity               *GetDoctorByIDResponse_CityItem          `protobuf:"bytes,14,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
-	MainSpeciality         *GetDoctorByIDResponse_SpecialityItem    `protobuf:"bytes,15,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
+	AdditionalCities       []*CityItem                              `protobuf:"bytes,12,rep,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
+	AdditionalSpecialities []*SpecialityItem                        `protobuf:"bytes,13,rep,name=additional_specialities,json=additionalSpecialities,proto3" json:"additional_specialities,omitempty"`
+	MainCity               *CityItem                                `protobuf:"bytes,14,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
+	MainSpeciality         *SpecialityItem                          `protobuf:"bytes,15,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
 	SubscribersInfo        []*GetDoctorByIDResponse_SubscribersItem `protobuf:"bytes,16,rep,name=subscribers_info,json=subscribersInfo,proto3" json:"subscribers_info,omitempty"`
 	MainBlogTheme          string                                   `protobuf:"bytes,17,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
 	Image                  string                                   `protobuf:"bytes,18,opt,name=image,proto3" json:"image,omitempty"`
@@ -342,7 +498,7 @@ type GetDoctorByIDResponse struct {
 	IsActive               bool                                     `protobuf:"varint,20,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	BirthDate              string                                   `protobuf:"bytes,21,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
 	CreatedAt              string                                   `protobuf:"bytes,22,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	CooperationType        *GetDoctorByIDResponse_CooperationType   `protobuf:"bytes,23,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	CooperationType        *CooperationType                         `protobuf:"bytes,23,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	MedicalDirections      string                                   `protobuf:"bytes,24,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
 	MarketingPreferences   string                                   `protobuf:"bytes,25,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
 	unknownFields          protoimpl.UnknownFields
@@ -351,7 +507,7 @@ type GetDoctorByIDResponse struct {
 
 func (x *GetDoctorByIDResponse) Reset() {
 	*x = GetDoctorByIDResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -363,7 +519,7 @@ func (x *GetDoctorByIDResponse) String() string {
 func (*GetDoctorByIDResponse) ProtoMessage() {}
 
 func (x *GetDoctorByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -376,7 +532,7 @@ func (x *GetDoctorByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetDoctorByIDResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{7}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetDoctorByIDResponse) GetId() int64 {
@@ -456,28 +612,28 @@ func (x *GetDoctorByIDResponse) GetSiteLink() string {
 	return ""
 }
 
-func (x *GetDoctorByIDResponse) GetAdditionalCities() []*GetDoctorByIDResponse_CityItem {
+func (x *GetDoctorByIDResponse) GetAdditionalCities() []*CityItem {
 	if x != nil {
 		return x.AdditionalCities
 	}
 	return nil
 }
 
-func (x *GetDoctorByIDResponse) GetAdditionalSpecialities() []*GetDoctorByIDResponse_SpecialityItem {
+func (x *GetDoctorByIDResponse) GetAdditionalSpecialities() []*SpecialityItem {
 	if x != nil {
 		return x.AdditionalSpecialities
 	}
 	return nil
 }
 
-func (x *GetDoctorByIDResponse) GetMainCity() *GetDoctorByIDResponse_CityItem {
+func (x *GetDoctorByIDResponse) GetMainCity() *CityItem {
 	if x != nil {
 		return x.MainCity
 	}
 	return nil
 }
 
-func (x *GetDoctorByIDResponse) GetMainSpeciality() *GetDoctorByIDResponse_SpecialityItem {
+func (x *GetDoctorByIDResponse) GetMainSpeciality() *SpecialityItem {
 	if x != nil {
 		return x.MainSpeciality
 	}
@@ -533,7 +689,7 @@ func (x *GetDoctorByIDResponse) GetCreatedAt() string {
 	return ""
 }
 
-func (x *GetDoctorByIDResponse) GetCooperationType() *GetDoctorByIDResponse_CooperationType {
+func (x *GetDoctorByIDResponse) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
@@ -563,7 +719,7 @@ type UpdateDoctorRequest struct {
 
 func (x *UpdateDoctorRequest) Reset() {
 	*x = UpdateDoctorRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -575,7 +731,7 @@ func (x *UpdateDoctorRequest) String() string {
 func (*UpdateDoctorRequest) ProtoMessage() {}
 
 func (x *UpdateDoctorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -588,7 +744,7 @@ func (x *UpdateDoctorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDoctorRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDoctorRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{8}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateDoctorRequest) GetDoctorId() int64 {
@@ -606,7 +762,7 @@ type UpdateDoctorResponse struct {
 
 func (x *UpdateDoctorResponse) Reset() {
 	*x = UpdateDoctorResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -618,7 +774,7 @@ func (x *UpdateDoctorResponse) String() string {
 func (*UpdateDoctorResponse) ProtoMessage() {}
 
 func (x *UpdateDoctorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -631,7 +787,7 @@ func (x *UpdateDoctorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDoctorResponse.ProtoReflect.Descriptor instead.
 func (*UpdateDoctorResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{9}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{12}
 }
 
 type DeleteDoctorRequest struct {
@@ -643,7 +799,7 @@ type DeleteDoctorRequest struct {
 
 func (x *DeleteDoctorRequest) Reset() {
 	*x = DeleteDoctorRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -655,7 +811,7 @@ func (x *DeleteDoctorRequest) String() string {
 func (*DeleteDoctorRequest) ProtoMessage() {}
 
 func (x *DeleteDoctorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -668,7 +824,7 @@ func (x *DeleteDoctorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDoctorRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDoctorRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{10}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DeleteDoctorRequest) GetDoctorId() int64 {
@@ -686,7 +842,7 @@ type DeleteDoctorResponse struct {
 
 func (x *DeleteDoctorResponse) Reset() {
 	*x = DeleteDoctorResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[11]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -698,7 +854,7 @@ func (x *DeleteDoctorResponse) String() string {
 func (*DeleteDoctorResponse) ProtoMessage() {}
 
 func (x *DeleteDoctorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[11]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -711,7 +867,7 @@ func (x *DeleteDoctorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDoctorResponse.ProtoReflect.Descriptor instead.
 func (*DeleteDoctorResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{11}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{14}
 }
 
 type ActivateDoctorRequest struct {
@@ -723,7 +879,7 @@ type ActivateDoctorRequest struct {
 
 func (x *ActivateDoctorRequest) Reset() {
 	*x = ActivateDoctorRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[12]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -735,7 +891,7 @@ func (x *ActivateDoctorRequest) String() string {
 func (*ActivateDoctorRequest) ProtoMessage() {}
 
 func (x *ActivateDoctorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[12]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -748,7 +904,7 @@ func (x *ActivateDoctorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateDoctorRequest.ProtoReflect.Descriptor instead.
 func (*ActivateDoctorRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{12}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ActivateDoctorRequest) GetDoctorId() int64 {
@@ -766,7 +922,7 @@ type ActivateDoctorResponse struct {
 
 func (x *ActivateDoctorResponse) Reset() {
 	*x = ActivateDoctorResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[13]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -778,7 +934,7 @@ func (x *ActivateDoctorResponse) String() string {
 func (*ActivateDoctorResponse) ProtoMessage() {}
 
 func (x *ActivateDoctorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[13]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -791,7 +947,7 @@ func (x *ActivateDoctorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateDoctorResponse.ProtoReflect.Descriptor instead.
 func (*ActivateDoctorResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{13}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{16}
 }
 
 type DeactivateDoctorRequest struct {
@@ -803,7 +959,7 @@ type DeactivateDoctorRequest struct {
 
 func (x *DeactivateDoctorRequest) Reset() {
 	*x = DeactivateDoctorRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[14]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -815,7 +971,7 @@ func (x *DeactivateDoctorRequest) String() string {
 func (*DeactivateDoctorRequest) ProtoMessage() {}
 
 func (x *DeactivateDoctorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[14]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -828,7 +984,7 @@ func (x *DeactivateDoctorRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateDoctorRequest.ProtoReflect.Descriptor instead.
 func (*DeactivateDoctorRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{14}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeactivateDoctorRequest) GetDoctorId() int64 {
@@ -846,7 +1002,7 @@ type DeactivateDoctorResponse struct {
 
 func (x *DeactivateDoctorResponse) Reset() {
 	*x = DeactivateDoctorResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[15]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -858,7 +1014,7 @@ func (x *DeactivateDoctorResponse) String() string {
 func (*DeactivateDoctorResponse) ProtoMessage() {}
 
 func (x *DeactivateDoctorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[15]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -871,7 +1027,7 @@ func (x *DeactivateDoctorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateDoctorResponse.ProtoReflect.Descriptor instead.
 func (*DeactivateDoctorResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{15}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{18}
 }
 
 type SaveDoctorPhotoRequest struct {
@@ -884,7 +1040,7 @@ type SaveDoctorPhotoRequest struct {
 
 func (x *SaveDoctorPhotoRequest) Reset() {
 	*x = SaveDoctorPhotoRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -896,7 +1052,7 @@ func (x *SaveDoctorPhotoRequest) String() string {
 func (*SaveDoctorPhotoRequest) ProtoMessage() {}
 
 func (x *SaveDoctorPhotoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -909,7 +1065,7 @@ func (x *SaveDoctorPhotoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveDoctorPhotoRequest.ProtoReflect.Descriptor instead.
 func (*SaveDoctorPhotoRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{16}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SaveDoctorPhotoRequest) GetDoctorId() int64 {
@@ -935,7 +1091,7 @@ type SaveDoctorPhotoResponse struct {
 
 func (x *SaveDoctorPhotoResponse) Reset() {
 	*x = SaveDoctorPhotoResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -947,7 +1103,7 @@ func (x *SaveDoctorPhotoResponse) String() string {
 func (*SaveDoctorPhotoResponse) ProtoMessage() {}
 
 func (x *SaveDoctorPhotoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -960,7 +1116,7 @@ func (x *SaveDoctorPhotoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveDoctorPhotoResponse.ProtoReflect.Descriptor instead.
 func (*SaveDoctorPhotoResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{17}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SaveDoctorPhotoResponse) GetImageUrl() string {
@@ -980,7 +1136,7 @@ type AddDoctorAdditionalCityRequest struct {
 
 func (x *AddDoctorAdditionalCityRequest) Reset() {
 	*x = AddDoctorAdditionalCityRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -992,7 +1148,7 @@ func (x *AddDoctorAdditionalCityRequest) String() string {
 func (*AddDoctorAdditionalCityRequest) ProtoMessage() {}
 
 func (x *AddDoctorAdditionalCityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1005,7 +1161,7 @@ func (x *AddDoctorAdditionalCityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddDoctorAdditionalCityRequest.ProtoReflect.Descriptor instead.
 func (*AddDoctorAdditionalCityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{18}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *AddDoctorAdditionalCityRequest) GetDoctorId() int64 {
@@ -1030,7 +1186,7 @@ type AddDoctorAdditionalCityResponse struct {
 
 func (x *AddDoctorAdditionalCityResponse) Reset() {
 	*x = AddDoctorAdditionalCityResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1042,7 +1198,7 @@ func (x *AddDoctorAdditionalCityResponse) String() string {
 func (*AddDoctorAdditionalCityResponse) ProtoMessage() {}
 
 func (x *AddDoctorAdditionalCityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1055,7 +1211,7 @@ func (x *AddDoctorAdditionalCityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddDoctorAdditionalCityResponse.ProtoReflect.Descriptor instead.
 func (*AddDoctorAdditionalCityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{19}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{22}
 }
 
 type AddDoctorAdditionalSpecialityRequest struct {
@@ -1068,7 +1224,7 @@ type AddDoctorAdditionalSpecialityRequest struct {
 
 func (x *AddDoctorAdditionalSpecialityRequest) Reset() {
 	*x = AddDoctorAdditionalSpecialityRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[20]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1080,7 +1236,7 @@ func (x *AddDoctorAdditionalSpecialityRequest) String() string {
 func (*AddDoctorAdditionalSpecialityRequest) ProtoMessage() {}
 
 func (x *AddDoctorAdditionalSpecialityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[20]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1093,7 +1249,7 @@ func (x *AddDoctorAdditionalSpecialityRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use AddDoctorAdditionalSpecialityRequest.ProtoReflect.Descriptor instead.
 func (*AddDoctorAdditionalSpecialityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{20}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *AddDoctorAdditionalSpecialityRequest) GetDoctorId() int64 {
@@ -1118,7 +1274,7 @@ type AddDoctorAdditionalSpecialityResponse struct {
 
 func (x *AddDoctorAdditionalSpecialityResponse) Reset() {
 	*x = AddDoctorAdditionalSpecialityResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[21]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1130,7 +1286,7 @@ func (x *AddDoctorAdditionalSpecialityResponse) String() string {
 func (*AddDoctorAdditionalSpecialityResponse) ProtoMessage() {}
 
 func (x *AddDoctorAdditionalSpecialityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[21]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1143,7 +1299,7 @@ func (x *AddDoctorAdditionalSpecialityResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use AddDoctorAdditionalSpecialityResponse.ProtoReflect.Descriptor instead.
 func (*AddDoctorAdditionalSpecialityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{21}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{24}
 }
 
 type DeleteDoctorAdditionalCityRequest struct {
@@ -1156,7 +1312,7 @@ type DeleteDoctorAdditionalCityRequest struct {
 
 func (x *DeleteDoctorAdditionalCityRequest) Reset() {
 	*x = DeleteDoctorAdditionalCityRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[22]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1168,7 +1324,7 @@ func (x *DeleteDoctorAdditionalCityRequest) String() string {
 func (*DeleteDoctorAdditionalCityRequest) ProtoMessage() {}
 
 func (x *DeleteDoctorAdditionalCityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[22]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1181,7 +1337,7 @@ func (x *DeleteDoctorAdditionalCityRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteDoctorAdditionalCityRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDoctorAdditionalCityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{22}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DeleteDoctorAdditionalCityRequest) GetDoctorId() int64 {
@@ -1206,7 +1362,7 @@ type DeleteDoctorAdditionalCityResponse struct {
 
 func (x *DeleteDoctorAdditionalCityResponse) Reset() {
 	*x = DeleteDoctorAdditionalCityResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[23]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1218,7 +1374,7 @@ func (x *DeleteDoctorAdditionalCityResponse) String() string {
 func (*DeleteDoctorAdditionalCityResponse) ProtoMessage() {}
 
 func (x *DeleteDoctorAdditionalCityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[23]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1231,7 +1387,7 @@ func (x *DeleteDoctorAdditionalCityResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteDoctorAdditionalCityResponse.ProtoReflect.Descriptor instead.
 func (*DeleteDoctorAdditionalCityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{23}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{26}
 }
 
 type DeleteDoctorAdditionalSpecialityRequest struct {
@@ -1244,7 +1400,7 @@ type DeleteDoctorAdditionalSpecialityRequest struct {
 
 func (x *DeleteDoctorAdditionalSpecialityRequest) Reset() {
 	*x = DeleteDoctorAdditionalSpecialityRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[24]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1256,7 +1412,7 @@ func (x *DeleteDoctorAdditionalSpecialityRequest) String() string {
 func (*DeleteDoctorAdditionalSpecialityRequest) ProtoMessage() {}
 
 func (x *DeleteDoctorAdditionalSpecialityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[24]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1269,7 +1425,7 @@ func (x *DeleteDoctorAdditionalSpecialityRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use DeleteDoctorAdditionalSpecialityRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDoctorAdditionalSpecialityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{24}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteDoctorAdditionalSpecialityRequest) GetDoctorId() int64 {
@@ -1294,7 +1450,7 @@ type DeleteDoctorAdditionalSpecialityResponse struct {
 
 func (x *DeleteDoctorAdditionalSpecialityResponse) Reset() {
 	*x = DeleteDoctorAdditionalSpecialityResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[25]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1306,7 +1462,7 @@ func (x *DeleteDoctorAdditionalSpecialityResponse) String() string {
 func (*DeleteDoctorAdditionalSpecialityResponse) ProtoMessage() {}
 
 func (x *DeleteDoctorAdditionalSpecialityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[25]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1319,7 +1475,7 @@ func (x *DeleteDoctorAdditionalSpecialityResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use DeleteDoctorAdditionalSpecialityResponse.ProtoReflect.Descriptor instead.
 func (*DeleteDoctorAdditionalSpecialityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{25}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{28}
 }
 
 type UpdateSubscribersRequest struct {
@@ -1332,7 +1488,7 @@ type UpdateSubscribersRequest struct {
 
 func (x *UpdateSubscribersRequest) Reset() {
 	*x = UpdateSubscribersRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[26]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1344,7 +1500,7 @@ func (x *UpdateSubscribersRequest) String() string {
 func (*UpdateSubscribersRequest) ProtoMessage() {}
 
 func (x *UpdateSubscribersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[26]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1357,7 +1513,7 @@ func (x *UpdateSubscribersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSubscribersRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSubscribersRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{26}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *UpdateSubscribersRequest) GetDoctorId() int64 {
@@ -1382,7 +1538,7 @@ type UpdateSubscribersResponse struct {
 
 func (x *UpdateSubscribersResponse) Reset() {
 	*x = UpdateSubscribersResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[27]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1394,7 +1550,7 @@ func (x *UpdateSubscribersResponse) String() string {
 func (*UpdateSubscribersResponse) ProtoMessage() {}
 
 func (x *UpdateSubscribersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[27]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1407,7 +1563,7 @@ func (x *UpdateSubscribersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateSubscribersResponse.ProtoReflect.Descriptor instead.
 func (*UpdateSubscribersResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{27}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{30}
 }
 
 type GetDoctorsByIDsRequest struct {
@@ -1419,7 +1575,7 @@ type GetDoctorsByIDsRequest struct {
 
 func (x *GetDoctorsByIDsRequest) Reset() {
 	*x = GetDoctorsByIDsRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[28]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1431,7 +1587,7 @@ func (x *GetDoctorsByIDsRequest) String() string {
 func (*GetDoctorsByIDsRequest) ProtoMessage() {}
 
 func (x *GetDoctorsByIDsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[28]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1444,7 +1600,7 @@ func (x *GetDoctorsByIDsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorsByIDsRequest.ProtoReflect.Descriptor instead.
 func (*GetDoctorsByIDsRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{28}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetDoctorsByIDsRequest) GetIds() []int64 {
@@ -1463,7 +1619,7 @@ type GetDoctorsByIDsResponse struct {
 
 func (x *GetDoctorsByIDsResponse) Reset() {
 	*x = GetDoctorsByIDsResponse{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[29]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1475,7 +1631,7 @@ func (x *GetDoctorsByIDsResponse) String() string {
 func (*GetDoctorsByIDsResponse) ProtoMessage() {}
 
 func (x *GetDoctorsByIDsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[29]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1488,7 +1644,7 @@ func (x *GetDoctorsByIDsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorsByIDsResponse.ProtoReflect.Descriptor instead.
 func (*GetDoctorsByIDsResponse) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{29}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GetDoctorsByIDsResponse) GetDoctors() []*GetDoctorsByIDsResponse_Doctor {
@@ -1498,20 +1654,276 @@ func (x *GetDoctorsByIDsResponse) GetDoctors() []*GetDoctorsByIDsResponse_Doctor
 	return nil
 }
 
+type GetDoctorAdditionalSpecialitiesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDoctorAdditionalSpecialitiesRequest) Reset() {
+	*x = GetDoctorAdditionalSpecialitiesRequest{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDoctorAdditionalSpecialitiesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDoctorAdditionalSpecialitiesRequest) ProtoMessage() {}
+
+func (x *GetDoctorAdditionalSpecialitiesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDoctorAdditionalSpecialitiesRequest.ProtoReflect.Descriptor instead.
+func (*GetDoctorAdditionalSpecialitiesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetDoctorAdditionalSpecialitiesRequest) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+type GetDoctorAdditionalSpecialitiesResponse struct {
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	AdditionalSpecialities []*SpecialityItem      `protobuf:"bytes,1,rep,name=additional_specialities,json=additionalSpecialities,proto3" json:"additional_specialities,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *GetDoctorAdditionalSpecialitiesResponse) Reset() {
+	*x = GetDoctorAdditionalSpecialitiesResponse{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDoctorAdditionalSpecialitiesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDoctorAdditionalSpecialitiesResponse) ProtoMessage() {}
+
+func (x *GetDoctorAdditionalSpecialitiesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDoctorAdditionalSpecialitiesResponse.ProtoReflect.Descriptor instead.
+func (*GetDoctorAdditionalSpecialitiesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *GetDoctorAdditionalSpecialitiesResponse) GetAdditionalSpecialities() []*SpecialityItem {
+	if x != nil {
+		return x.AdditionalSpecialities
+	}
+	return nil
+}
+
+type GetDoctorAdditionalCitiesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDoctorAdditionalCitiesRequest) Reset() {
+	*x = GetDoctorAdditionalCitiesRequest{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDoctorAdditionalCitiesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDoctorAdditionalCitiesRequest) ProtoMessage() {}
+
+func (x *GetDoctorAdditionalCitiesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDoctorAdditionalCitiesRequest.ProtoReflect.Descriptor instead.
+func (*GetDoctorAdditionalCitiesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *GetDoctorAdditionalCitiesRequest) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+type GetDoctorAdditionalCitiesResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	AdditionalCities []*CityItem            `protobuf:"bytes,1,rep,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetDoctorAdditionalCitiesResponse) Reset() {
+	*x = GetDoctorAdditionalCitiesResponse{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDoctorAdditionalCitiesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDoctorAdditionalCitiesResponse) ProtoMessage() {}
+
+func (x *GetDoctorAdditionalCitiesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDoctorAdditionalCitiesResponse.ProtoReflect.Descriptor instead.
+func (*GetDoctorAdditionalCitiesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *GetDoctorAdditionalCitiesResponse) GetAdditionalCities() []*CityItem {
+	if x != nil {
+		return x.AdditionalCities
+	}
+	return nil
+}
+
+type GetDoctorCooperationTypesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDoctorCooperationTypesRequest) Reset() {
+	*x = GetDoctorCooperationTypesRequest{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDoctorCooperationTypesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDoctorCooperationTypesRequest) ProtoMessage() {}
+
+func (x *GetDoctorCooperationTypesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDoctorCooperationTypesRequest.ProtoReflect.Descriptor instead.
+func (*GetDoctorCooperationTypesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{37}
+}
+
+type GetDoctorCooperationTypesResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	CooperationTypes []*CooperationType     `protobuf:"bytes,1,rep,name=cooperation_types,json=cooperationTypes,proto3" json:"cooperation_types,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetDoctorCooperationTypesResponse) Reset() {
+	*x = GetDoctorCooperationTypesResponse{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDoctorCooperationTypesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDoctorCooperationTypesResponse) ProtoMessage() {}
+
+func (x *GetDoctorCooperationTypesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDoctorCooperationTypesResponse.ProtoReflect.Descriptor instead.
+func (*GetDoctorCooperationTypesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *GetDoctorCooperationTypesResponse) GetCooperationTypes() []*CooperationType {
+	if x != nil {
+		return x.CooperationTypes
+	}
+	return nil
+}
+
 type GetDoctorsResponse_Doctor struct {
-	state           protoimpl.MessageState                     `protogen:"open.v1"`
-	Id              int64                                      `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                     `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                       `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *GetDoctorsResponse_Doctor_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *GetDoctorsResponse_Doctor) Reset() {
 	*x = GetDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[30]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1523,7 +1935,7 @@ func (x *GetDoctorsResponse_Doctor) String() string {
 func (*GetDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *GetDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[30]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1536,7 +1948,7 @@ func (x *GetDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorsResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*GetDoctorsResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{1, 0}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{4, 0}
 }
 
 func (x *GetDoctorsResponse_Doctor) GetId() int64 {
@@ -1567,79 +1979,27 @@ func (x *GetDoctorsResponse_Doctor) GetIsActive() bool {
 	return false
 }
 
-func (x *GetDoctorsResponse_Doctor) GetCooperationType() *GetDoctorsResponse_Doctor_CooperationType {
+func (x *GetDoctorsResponse_Doctor) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
 }
 
-type GetDoctorsResponse_Doctor_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDoctorsResponse_Doctor_CooperationType) Reset() {
-	*x = GetDoctorsResponse_Doctor_CooperationType{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDoctorsResponse_Doctor_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDoctorsResponse_Doctor_CooperationType) ProtoMessage() {}
-
-func (x *GetDoctorsResponse_Doctor_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDoctorsResponse_Doctor_CooperationType.ProtoReflect.Descriptor instead.
-func (*GetDoctorsResponse_Doctor_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{1, 0, 0}
-}
-
-func (x *GetDoctorsResponse_Doctor_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetDoctorsResponse_Doctor_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
 type SortDoctorsResponse_Doctor struct {
-	state           protoimpl.MessageState                      `protogen:"open.v1"`
-	Id              int64                                       `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                      `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                      `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                        `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *SortDoctorsResponse_Doctor_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *SortDoctorsResponse_Doctor) Reset() {
 	*x = SortDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[32]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1651,7 +2011,7 @@ func (x *SortDoctorsResponse_Doctor) String() string {
 func (*SortDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *SortDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[32]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1664,7 +2024,7 @@ func (x *SortDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortDoctorsResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*SortDoctorsResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{3, 0}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{6, 0}
 }
 
 func (x *SortDoctorsResponse_Doctor) GetId() int64 {
@@ -1695,79 +2055,27 @@ func (x *SortDoctorsResponse_Doctor) GetIsActive() bool {
 	return false
 }
 
-func (x *SortDoctorsResponse_Doctor) GetCooperationType() *SortDoctorsResponse_Doctor_CooperationType {
+func (x *SortDoctorsResponse_Doctor) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
 }
 
-type SortDoctorsResponse_Doctor_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SortDoctorsResponse_Doctor_CooperationType) Reset() {
-	*x = SortDoctorsResponse_Doctor_CooperationType{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[33]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SortDoctorsResponse_Doctor_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SortDoctorsResponse_Doctor_CooperationType) ProtoMessage() {}
-
-func (x *SortDoctorsResponse_Doctor_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[33]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SortDoctorsResponse_Doctor_CooperationType.ProtoReflect.Descriptor instead.
-func (*SortDoctorsResponse_Doctor_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{3, 0, 0}
-}
-
-func (x *SortDoctorsResponse_Doctor_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *SortDoctorsResponse_Doctor_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
 type SearchDoctorsResponse_Doctor struct {
-	state           protoimpl.MessageState                        `protogen:"open.v1"`
-	Id              int64                                         `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                        `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                        `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                          `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *SearchDoctorsResponse_Doctor_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *SearchDoctorsResponse_Doctor) Reset() {
 	*x = SearchDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[34]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1779,7 +2087,7 @@ func (x *SearchDoctorsResponse_Doctor) String() string {
 func (*SearchDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *SearchDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[34]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1792,7 +2100,7 @@ func (x *SearchDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchDoctorsResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*SearchDoctorsResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{5, 0}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{8, 0}
 }
 
 func (x *SearchDoctorsResponse_Doctor) GetId() int64 {
@@ -1823,219 +2131,11 @@ func (x *SearchDoctorsResponse_Doctor) GetIsActive() bool {
 	return false
 }
 
-func (x *SearchDoctorsResponse_Doctor) GetCooperationType() *SearchDoctorsResponse_Doctor_CooperationType {
+func (x *SearchDoctorsResponse_Doctor) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
-}
-
-type SearchDoctorsResponse_Doctor_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchDoctorsResponse_Doctor_CooperationType) Reset() {
-	*x = SearchDoctorsResponse_Doctor_CooperationType{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[35]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchDoctorsResponse_Doctor_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchDoctorsResponse_Doctor_CooperationType) ProtoMessage() {}
-
-func (x *SearchDoctorsResponse_Doctor_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[35]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchDoctorsResponse_Doctor_CooperationType.ProtoReflect.Descriptor instead.
-func (*SearchDoctorsResponse_Doctor_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{5, 0, 0}
-}
-
-func (x *SearchDoctorsResponse_Doctor_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *SearchDoctorsResponse_Doctor_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetDoctorByIDResponse_CityItem struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDoctorByIDResponse_CityItem) Reset() {
-	*x = GetDoctorByIDResponse_CityItem{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[36]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDoctorByIDResponse_CityItem) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDoctorByIDResponse_CityItem) ProtoMessage() {}
-
-func (x *GetDoctorByIDResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[36]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDoctorByIDResponse_CityItem.ProtoReflect.Descriptor instead.
-func (*GetDoctorByIDResponse_CityItem) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{7, 0}
-}
-
-func (x *GetDoctorByIDResponse_CityItem) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetDoctorByIDResponse_CityItem) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetDoctorByIDResponse_SpecialityItem struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDoctorByIDResponse_SpecialityItem) Reset() {
-	*x = GetDoctorByIDResponse_SpecialityItem{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[37]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDoctorByIDResponse_SpecialityItem) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDoctorByIDResponse_SpecialityItem) ProtoMessage() {}
-
-func (x *GetDoctorByIDResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[37]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDoctorByIDResponse_SpecialityItem.ProtoReflect.Descriptor instead.
-func (*GetDoctorByIDResponse_SpecialityItem) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{7, 1}
-}
-
-func (x *GetDoctorByIDResponse_SpecialityItem) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetDoctorByIDResponse_SpecialityItem) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetDoctorByIDResponse_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDoctorByIDResponse_CooperationType) Reset() {
-	*x = GetDoctorByIDResponse_CooperationType{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[38]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDoctorByIDResponse_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDoctorByIDResponse_CooperationType) ProtoMessage() {}
-
-func (x *GetDoctorByIDResponse_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[38]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDoctorByIDResponse_CooperationType.ProtoReflect.Descriptor instead.
-func (*GetDoctorByIDResponse_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{7, 2}
-}
-
-func (x *GetDoctorByIDResponse_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetDoctorByIDResponse_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
 }
 
 type GetDoctorByIDResponse_SubscribersItem struct {
@@ -2050,7 +2150,7 @@ type GetDoctorByIDResponse_SubscribersItem struct {
 
 func (x *GetDoctorByIDResponse_SubscribersItem) Reset() {
 	*x = GetDoctorByIDResponse_SubscribersItem{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[39]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2062,7 +2162,7 @@ func (x *GetDoctorByIDResponse_SubscribersItem) String() string {
 func (*GetDoctorByIDResponse_SubscribersItem) ProtoMessage() {}
 
 func (x *GetDoctorByIDResponse_SubscribersItem) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[39]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2075,7 +2175,7 @@ func (x *GetDoctorByIDResponse_SubscribersItem) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use GetDoctorByIDResponse_SubscribersItem.ProtoReflect.Descriptor instead.
 func (*GetDoctorByIDResponse_SubscribersItem) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{7, 3}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{10, 0}
 }
 
 func (x *GetDoctorByIDResponse_SubscribersItem) GetKey() string {
@@ -2116,7 +2216,7 @@ type UpdateSubscribersRequest_UpdateRequest struct {
 
 func (x *UpdateSubscribersRequest_UpdateRequest) Reset() {
 	*x = UpdateSubscribersRequest_UpdateRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[40]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2128,7 +2228,7 @@ func (x *UpdateSubscribersRequest_UpdateRequest) String() string {
 func (*UpdateSubscribersRequest_UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateSubscribersRequest_UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[40]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2141,7 +2241,7 @@ func (x *UpdateSubscribersRequest_UpdateRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use UpdateSubscribersRequest_UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateSubscribersRequest_UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{26, 0}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{29, 0}
 }
 
 func (x *UpdateSubscribersRequest_UpdateRequest) GetKey() string {
@@ -2159,19 +2259,19 @@ func (x *UpdateSubscribersRequest_UpdateRequest) GetSubsCount() int64 {
 }
 
 type GetDoctorsByIDsResponse_Doctor struct {
-	state           protoimpl.MessageState                          `protogen:"open.v1"`
-	Id              int64                                           `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                          `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                          `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                            `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *GetDoctorsByIDsResponse_Doctor_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *GetDoctorsByIDsResponse_Doctor) Reset() {
 	*x = GetDoctorsByIDsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[41]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2183,7 +2283,7 @@ func (x *GetDoctorsByIDsResponse_Doctor) String() string {
 func (*GetDoctorsByIDsResponse_Doctor) ProtoMessage() {}
 
 func (x *GetDoctorsByIDsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[41]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2196,7 +2296,7 @@ func (x *GetDoctorsByIDsResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorsByIDsResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*GetDoctorsByIDsResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{29, 0}
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{32, 0}
 }
 
 func (x *GetDoctorsByIDsResponse_Doctor) GetId() int64 {
@@ -2227,109 +2327,57 @@ func (x *GetDoctorsByIDsResponse_Doctor) GetIsActive() bool {
 	return false
 }
 
-func (x *GetDoctorsByIDsResponse_Doctor) GetCooperationType() *GetDoctorsByIDsResponse_Doctor_CooperationType {
+func (x *GetDoctorsByIDsResponse_Doctor) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
 }
 
-type GetDoctorsByIDsResponse_Doctor_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDoctorsByIDsResponse_Doctor_CooperationType) Reset() {
-	*x = GetDoctorsByIDsResponse_Doctor_CooperationType{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[42]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDoctorsByIDsResponse_Doctor_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDoctorsByIDsResponse_Doctor_CooperationType) ProtoMessage() {}
-
-func (x *GetDoctorsByIDsResponse_Doctor_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[42]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDoctorsByIDsResponse_Doctor_CooperationType.ProtoReflect.Descriptor instead.
-func (*GetDoctorsByIDsResponse_Doctor_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{29, 0, 0}
-}
-
-func (x *GetDoctorsByIDsResponse_Doctor_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetDoctorsByIDsResponse_Doctor_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
 var File_admin_doctors_doctors_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\n" +
-	"$admin/doctors/doctors/v1/admin.proto\x12\x18admin.doctors.doctors.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x13\n" +
-	"\x11GetDoctorsRequest\"\xec\x02\n" +
+	"$admin/doctors/doctors/v1/admin.proto\x12\x18admin.doctors.doctors.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\".\n" +
+	"\bCityItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"4\n" +
+	"\x0eSpecialityItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"5\n" +
+	"\x0fCooperationType\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\x13\n" +
+	"\x11GetDoctorsRequest\"\x9b\x02\n" +
 	"\x12GetDoctorsResponse\x12M\n" +
-	"\adoctors\x18\x01 \x03(\v23.admin.doctors.doctors.v1.GetDoctorsResponse.DoctorR\adoctors\x1a\x86\x02\n" +
+	"\adoctors\x18\x01 \x03(\v23.admin.doctors.doctors.v1.GetDoctorsResponse.DoctorR\adoctors\x1a\xb5\x01\n" +
 	"\x06Doctor\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12n\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2C.admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\x14\n" +
-	"\x12SortDoctorsRequest\"\xef\x02\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"\x14\n" +
+	"\x12SortDoctorsRequest\"\x9d\x02\n" +
 	"\x13SortDoctorsResponse\x12N\n" +
-	"\adoctors\x18\x01 \x03(\v24.admin.doctors.doctors.v1.SortDoctorsResponse.DoctorR\adoctors\x1a\x87\x02\n" +
+	"\adoctors\x18\x01 \x03(\v24.admin.doctors.doctors.v1.SortDoctorsResponse.DoctorR\adoctors\x1a\xb5\x01\n" +
 	"\x06Doctor\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12o\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2D.admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\",\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\",\n" +
 	"\x14SearchDoctorsRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\"\xf5\x02\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\"\xa1\x02\n" +
 	"\x15SearchDoctorsResponse\x12P\n" +
-	"\adoctors\x18\x01 \x03(\v26.admin.doctors.doctors.v1.SearchDoctorsResponse.DoctorR\adoctors\x1a\x89\x02\n" +
+	"\adoctors\x18\x01 \x03(\v26.admin.doctors.doctors.v1.SearchDoctorsResponse.DoctorR\adoctors\x1a\xb5\x01\n" +
 	"\x06Doctor\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12q\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2F.admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"3\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"3\n" +
 	"\x14GetDoctorByIDRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x83\f\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xf8\t\n" +
 	"\x15GetDoctorByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2344,11 +2392,11 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"tiktok_url\x18\n" +
 	" \x01(\tR\ttiktokUrl\x12\x1b\n" +
-	"\tsite_link\x18\v \x01(\tR\bsiteLink\x12e\n" +
-	"\x11additional_cities\x18\f \x03(\v28.admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItemR\x10additionalCities\x12w\n" +
-	"\x17additional_specialities\x18\r \x03(\v2>.admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItemR\x16additionalSpecialities\x12U\n" +
-	"\tmain_city\x18\x0e \x01(\v28.admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItemR\bmainCity\x12g\n" +
-	"\x0fmain_speciality\x18\x0f \x01(\v2>.admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItemR\x0emainSpeciality\x12j\n" +
+	"\tsite_link\x18\v \x01(\tR\bsiteLink\x12O\n" +
+	"\x11additional_cities\x18\f \x03(\v2\".admin.doctors.doctors.v1.CityItemR\x10additionalCities\x12a\n" +
+	"\x17additional_specialities\x18\r \x03(\v2(.admin.doctors.doctors.v1.SpecialityItemR\x16additionalSpecialities\x12?\n" +
+	"\tmain_city\x18\x0e \x01(\v2\".admin.doctors.doctors.v1.CityItemR\bmainCity\x12Q\n" +
+	"\x0fmain_speciality\x18\x0f \x01(\v2(.admin.doctors.doctors.v1.SpecialityItemR\x0emainSpeciality\x12j\n" +
 	"\x10subscribers_info\x18\x10 \x03(\v2?.admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItemR\x0fsubscribersInfo\x12&\n" +
 	"\x0fmain_blog_theme\x18\x11 \x01(\tR\rmainBlogTheme\x12\x14\n" +
 	"\x05image\x18\x12 \x01(\tR\x05image\x12 \n" +
@@ -2358,19 +2406,10 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"birth_date\x18\x15 \x01(\tR\tbirthDate\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x16 \x01(\tR\tcreatedAt\x12j\n" +
-	"\x10cooperation_type\x18\x17 \x01(\v2?.admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationTypeR\x0fcooperationType\x12-\n" +
+	"created_at\x18\x16 \x01(\tR\tcreatedAt\x12T\n" +
+	"\x10cooperation_type\x18\x17 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\x12-\n" +
 	"\x12medical_directions\x18\x18 \x01(\tR\x11medicalDirections\x123\n" +
-	"\x15marketing_preferences\x18\x19 \x01(\tR\x14marketingPreferences\x1a.\n" +
-	"\bCityItem\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +
-	"\x0eSpecialityItem\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1a\x96\x01\n" +
+	"\x15marketing_preferences\x18\x19 \x01(\tR\x14marketingPreferences\x1a\x96\x01\n" +
 	"\x0fSubscribersItem\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x1d\n" +
 	"\n" +
@@ -2420,18 +2459,26 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"subs_count\x18\x02 \x01(\x03R\tsubsCount\"\x1b\n" +
 	"\x19UpdateSubscribersResponse\"*\n" +
 	"\x16GetDoctorsByIDsRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\x03R\x03ids\"\xfb\x02\n" +
+	"\x03ids\x18\x01 \x03(\x03R\x03ids\"\xa5\x02\n" +
 	"\x17GetDoctorsByIDsResponse\x12R\n" +
-	"\adoctors\x18\x01 \x03(\v28.admin.doctors.doctors.v1.GetDoctorsByIDsResponse.DoctorR\adoctors\x1a\x8b\x02\n" +
+	"\adoctors\x18\x01 \x03(\v28.admin.doctors.doctors.v1.GetDoctorsByIDsResponse.DoctorR\adoctors\x1a\xb5\x01\n" +
 	"\x06Doctor\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12s\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2H.admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name2\xde\x1a\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"E\n" +
+	"&GetDoctorAdditionalSpecialitiesRequest\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x8c\x01\n" +
+	"'GetDoctorAdditionalSpecialitiesResponse\x12a\n" +
+	"\x17additional_specialities\x18\x01 \x03(\v2(.admin.doctors.doctors.v1.SpecialityItemR\x16additionalSpecialities\"?\n" +
+	" GetDoctorAdditionalCitiesRequest\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"t\n" +
+	"!GetDoctorAdditionalCitiesResponse\x12O\n" +
+	"\x11additional_cities\x18\x01 \x03(\v2\".admin.doctors.doctors.v1.CityItemR\x10additionalCities\"\"\n" +
+	" GetDoctorCooperationTypesRequest\"{\n" +
+	"!GetDoctorCooperationTypesResponse\x12V\n" +
+	"\x11cooperation_types\x18\x01 \x03(\v2).admin.doctors.doctors.v1.CooperationTypeR\x10cooperationTypes2\x97!\n" +
 	"\x12DoctorAdminService\x12\xaa\x01\n" +
 	"\n" +
 	"GetDoctors\x12+.admin.doctors.doctors.v1.GetDoctorsRequest\x1a,.admin.doctors.doctors.v1.GetDoctorsResponse\"A\x92A!\x12\x1fПолучение врачей\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/admin/doctors\x12\xcc\x01\n" +
@@ -2448,7 +2495,10 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x17AddAdditionalSpeciality\x12>.admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest\x1a?.admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse\"\x80\x01\x92A8\x126Добавление доп специальности\x82\xd3\xe4\x93\x02?:\x01*\":/api/v1/admin/doctor/{doctor_id}/add_additional_speciality\x12\xfe\x01\n" +
 	"\x14DeleteAdditionalCity\x12;.admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest\x1a<.admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse\"k\x92A&\x12$Удаление доп города\x82\xd3\xe4\x93\x02<:\x01*\"7/api/v1/admin/doctor/{doctor_id}/delete_additional_city\x12\xa4\x02\n" +
 	"\x1aDeleteAdditionalSpeciality\x12A.admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest\x1aB.admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse\"\x7f\x92A4\x122Удаление доп специальности\x82\xd3\xe4\x93\x02B:\x01*\"=/api/v1/admin/doctor/{doctor_id}/delete_additional_speciality\x12\xf9\x01\n" +
-	"\x11UpdateSubscribers\x122.admin.doctors.doctors.v1.UpdateSubscribersRequest\x1a3.admin.doctors.doctors.v1.UpdateSubscribersResponse\"{\x92A:\x128Ручное обновление подписчиков\x82\xd3\xe4\x93\x028:\x01*\"3/api/v1/admin/doctor/{doctor_id}/update_subscribersB\x1eZ\x1capi/admin/doctors/doctors/v1b\x06proto3"
+	"\x11UpdateSubscribers\x122.admin.doctors.doctors.v1.UpdateSubscribersRequest\x1a3.admin.doctors.doctors.v1.UpdateSubscribersResponse\"{\x92A:\x128Ручное обновление подписчиков\x82\xd3\xe4\x93\x028:\x01*\"3/api/v1/admin/doctor/{doctor_id}/update_subscribers\x12\xb1\x02\n" +
+	"\x1fGetDoctorAdditionalSpecialities\x12@.admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest\x1aA.admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse\"\x88\x01\x92AE\x12CДоп специальности конкретного врача\x82\xd3\xe4\x93\x02:\x128/api/v1/admin/doctor/{doctor_id}/additional_specialities\x12\x8a\x02\n" +
+	"\x19GetDoctorAdditionalCities\x12:.admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest\x1a;.admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse\"t\x92A7\x125Доп города конкретного врача\x82\xd3\xe4\x93\x024\x122/api/v1/admin/doctor/{doctor_id}/additional_cities\x12\xf5\x01\n" +
+	"\x19GetDoctorCooperationTypes\x12:.admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest\x1a;.admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse\"_\x92A.\x12,Типы размещения доктора\x82\xd3\xe4\x93\x02(\x12&/api/v1/admin/doctor/cooperation_typesB\x1eZ\x1capi/admin/doctors/doctors/v1b\x06proto3"
 
 var (
 	file_admin_doctors_doctors_v1_admin_proto_rawDescOnce sync.Once
@@ -2462,103 +2512,114 @@ func file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP() []byte {
 	return file_admin_doctors_doctors_v1_admin_proto_rawDescData
 }
 
-var file_admin_doctors_doctors_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
+var file_admin_doctors_doctors_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 45)
 var file_admin_doctors_doctors_v1_admin_proto_goTypes = []any{
-	(*GetDoctorsRequest)(nil),                              // 0: admin.doctors.doctors.v1.GetDoctorsRequest
-	(*GetDoctorsResponse)(nil),                             // 1: admin.doctors.doctors.v1.GetDoctorsResponse
-	(*SortDoctorsRequest)(nil),                             // 2: admin.doctors.doctors.v1.SortDoctorsRequest
-	(*SortDoctorsResponse)(nil),                            // 3: admin.doctors.doctors.v1.SortDoctorsResponse
-	(*SearchDoctorsRequest)(nil),                           // 4: admin.doctors.doctors.v1.SearchDoctorsRequest
-	(*SearchDoctorsResponse)(nil),                          // 5: admin.doctors.doctors.v1.SearchDoctorsResponse
-	(*GetDoctorByIDRequest)(nil),                           // 6: admin.doctors.doctors.v1.GetDoctorByIDRequest
-	(*GetDoctorByIDResponse)(nil),                          // 7: admin.doctors.doctors.v1.GetDoctorByIDResponse
-	(*UpdateDoctorRequest)(nil),                            // 8: admin.doctors.doctors.v1.UpdateDoctorRequest
-	(*UpdateDoctorResponse)(nil),                           // 9: admin.doctors.doctors.v1.UpdateDoctorResponse
-	(*DeleteDoctorRequest)(nil),                            // 10: admin.doctors.doctors.v1.DeleteDoctorRequest
-	(*DeleteDoctorResponse)(nil),                           // 11: admin.doctors.doctors.v1.DeleteDoctorResponse
-	(*ActivateDoctorRequest)(nil),                          // 12: admin.doctors.doctors.v1.ActivateDoctorRequest
-	(*ActivateDoctorResponse)(nil),                         // 13: admin.doctors.doctors.v1.ActivateDoctorResponse
-	(*DeactivateDoctorRequest)(nil),                        // 14: admin.doctors.doctors.v1.DeactivateDoctorRequest
-	(*DeactivateDoctorResponse)(nil),                       // 15: admin.doctors.doctors.v1.DeactivateDoctorResponse
-	(*SaveDoctorPhotoRequest)(nil),                         // 16: admin.doctors.doctors.v1.SaveDoctorPhotoRequest
-	(*SaveDoctorPhotoResponse)(nil),                        // 17: admin.doctors.doctors.v1.SaveDoctorPhotoResponse
-	(*AddDoctorAdditionalCityRequest)(nil),                 // 18: admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
-	(*AddDoctorAdditionalCityResponse)(nil),                // 19: admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
-	(*AddDoctorAdditionalSpecialityRequest)(nil),           // 20: admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
-	(*AddDoctorAdditionalSpecialityResponse)(nil),          // 21: admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
-	(*DeleteDoctorAdditionalCityRequest)(nil),              // 22: admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
-	(*DeleteDoctorAdditionalCityResponse)(nil),             // 23: admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
-	(*DeleteDoctorAdditionalSpecialityRequest)(nil),        // 24: admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
-	(*DeleteDoctorAdditionalSpecialityResponse)(nil),       // 25: admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
-	(*UpdateSubscribersRequest)(nil),                       // 26: admin.doctors.doctors.v1.UpdateSubscribersRequest
-	(*UpdateSubscribersResponse)(nil),                      // 27: admin.doctors.doctors.v1.UpdateSubscribersResponse
-	(*GetDoctorsByIDsRequest)(nil),                         // 28: admin.doctors.doctors.v1.GetDoctorsByIDsRequest
-	(*GetDoctorsByIDsResponse)(nil),                        // 29: admin.doctors.doctors.v1.GetDoctorsByIDsResponse
-	(*GetDoctorsResponse_Doctor)(nil),                      // 30: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
-	(*GetDoctorsResponse_Doctor_CooperationType)(nil),      // 31: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationType
-	(*SortDoctorsResponse_Doctor)(nil),                     // 32: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
-	(*SortDoctorsResponse_Doctor_CooperationType)(nil),     // 33: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationType
-	(*SearchDoctorsResponse_Doctor)(nil),                   // 34: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
-	(*SearchDoctorsResponse_Doctor_CooperationType)(nil),   // 35: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationType
-	(*GetDoctorByIDResponse_CityItem)(nil),                 // 36: admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem
-	(*GetDoctorByIDResponse_SpecialityItem)(nil),           // 37: admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem
-	(*GetDoctorByIDResponse_CooperationType)(nil),          // 38: admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationType
-	(*GetDoctorByIDResponse_SubscribersItem)(nil),          // 39: admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
-	(*UpdateSubscribersRequest_UpdateRequest)(nil),         // 40: admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
-	(*GetDoctorsByIDsResponse_Doctor)(nil),                 // 41: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
-	(*GetDoctorsByIDsResponse_Doctor_CooperationType)(nil), // 42: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationType
+	(*CityItem)(nil),                                 // 0: admin.doctors.doctors.v1.CityItem
+	(*SpecialityItem)(nil),                           // 1: admin.doctors.doctors.v1.SpecialityItem
+	(*CooperationType)(nil),                          // 2: admin.doctors.doctors.v1.CooperationType
+	(*GetDoctorsRequest)(nil),                        // 3: admin.doctors.doctors.v1.GetDoctorsRequest
+	(*GetDoctorsResponse)(nil),                       // 4: admin.doctors.doctors.v1.GetDoctorsResponse
+	(*SortDoctorsRequest)(nil),                       // 5: admin.doctors.doctors.v1.SortDoctorsRequest
+	(*SortDoctorsResponse)(nil),                      // 6: admin.doctors.doctors.v1.SortDoctorsResponse
+	(*SearchDoctorsRequest)(nil),                     // 7: admin.doctors.doctors.v1.SearchDoctorsRequest
+	(*SearchDoctorsResponse)(nil),                    // 8: admin.doctors.doctors.v1.SearchDoctorsResponse
+	(*GetDoctorByIDRequest)(nil),                     // 9: admin.doctors.doctors.v1.GetDoctorByIDRequest
+	(*GetDoctorByIDResponse)(nil),                    // 10: admin.doctors.doctors.v1.GetDoctorByIDResponse
+	(*UpdateDoctorRequest)(nil),                      // 11: admin.doctors.doctors.v1.UpdateDoctorRequest
+	(*UpdateDoctorResponse)(nil),                     // 12: admin.doctors.doctors.v1.UpdateDoctorResponse
+	(*DeleteDoctorRequest)(nil),                      // 13: admin.doctors.doctors.v1.DeleteDoctorRequest
+	(*DeleteDoctorResponse)(nil),                     // 14: admin.doctors.doctors.v1.DeleteDoctorResponse
+	(*ActivateDoctorRequest)(nil),                    // 15: admin.doctors.doctors.v1.ActivateDoctorRequest
+	(*ActivateDoctorResponse)(nil),                   // 16: admin.doctors.doctors.v1.ActivateDoctorResponse
+	(*DeactivateDoctorRequest)(nil),                  // 17: admin.doctors.doctors.v1.DeactivateDoctorRequest
+	(*DeactivateDoctorResponse)(nil),                 // 18: admin.doctors.doctors.v1.DeactivateDoctorResponse
+	(*SaveDoctorPhotoRequest)(nil),                   // 19: admin.doctors.doctors.v1.SaveDoctorPhotoRequest
+	(*SaveDoctorPhotoResponse)(nil),                  // 20: admin.doctors.doctors.v1.SaveDoctorPhotoResponse
+	(*AddDoctorAdditionalCityRequest)(nil),           // 21: admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
+	(*AddDoctorAdditionalCityResponse)(nil),          // 22: admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
+	(*AddDoctorAdditionalSpecialityRequest)(nil),     // 23: admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
+	(*AddDoctorAdditionalSpecialityResponse)(nil),    // 24: admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
+	(*DeleteDoctorAdditionalCityRequest)(nil),        // 25: admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
+	(*DeleteDoctorAdditionalCityResponse)(nil),       // 26: admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
+	(*DeleteDoctorAdditionalSpecialityRequest)(nil),  // 27: admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
+	(*DeleteDoctorAdditionalSpecialityResponse)(nil), // 28: admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
+	(*UpdateSubscribersRequest)(nil),                 // 29: admin.doctors.doctors.v1.UpdateSubscribersRequest
+	(*UpdateSubscribersResponse)(nil),                // 30: admin.doctors.doctors.v1.UpdateSubscribersResponse
+	(*GetDoctorsByIDsRequest)(nil),                   // 31: admin.doctors.doctors.v1.GetDoctorsByIDsRequest
+	(*GetDoctorsByIDsResponse)(nil),                  // 32: admin.doctors.doctors.v1.GetDoctorsByIDsResponse
+	(*GetDoctorAdditionalSpecialitiesRequest)(nil),   // 33: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest
+	(*GetDoctorAdditionalSpecialitiesResponse)(nil),  // 34: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse
+	(*GetDoctorAdditionalCitiesRequest)(nil),         // 35: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest
+	(*GetDoctorAdditionalCitiesResponse)(nil),        // 36: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse
+	(*GetDoctorCooperationTypesRequest)(nil),         // 37: admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest
+	(*GetDoctorCooperationTypesResponse)(nil),        // 38: admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse
+	(*GetDoctorsResponse_Doctor)(nil),                // 39: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
+	(*SortDoctorsResponse_Doctor)(nil),               // 40: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
+	(*SearchDoctorsResponse_Doctor)(nil),             // 41: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
+	(*GetDoctorByIDResponse_SubscribersItem)(nil),    // 42: admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
+	(*UpdateSubscribersRequest_UpdateRequest)(nil),   // 43: admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
+	(*GetDoctorsByIDsResponse_Doctor)(nil),           // 44: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
 }
 var file_admin_doctors_doctors_v1_admin_proto_depIdxs = []int32{
-	30, // 0: admin.doctors.doctors.v1.GetDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
-	32, // 1: admin.doctors.doctors.v1.SortDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
-	34, // 2: admin.doctors.doctors.v1.SearchDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
-	36, // 3: admin.doctors.doctors.v1.GetDoctorByIDResponse.additional_cities:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem
-	37, // 4: admin.doctors.doctors.v1.GetDoctorByIDResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem
-	36, // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_city:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.CityItem
-	37, // 6: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_speciality:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SpecialityItem
-	39, // 7: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
-	38, // 8: admin.doctors.doctors.v1.GetDoctorByIDResponse.cooperation_type:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.CooperationType
-	8,  // 9: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateDoctorRequest
-	41, // 10: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
-	31, // 11: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.CooperationType
-	33, // 12: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.CooperationType
-	35, // 13: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.CooperationType
-	42, // 14: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.CooperationType
-	0,  // 15: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:input_type -> admin.doctors.doctors.v1.GetDoctorsRequest
-	28, // 16: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:input_type -> admin.doctors.doctors.v1.GetDoctorsByIDsRequest
-	2,  // 17: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:input_type -> admin.doctors.doctors.v1.SortDoctorsRequest
-	4,  // 18: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:input_type -> admin.doctors.doctors.v1.SearchDoctorsRequest
-	6,  // 19: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:input_type -> admin.doctors.doctors.v1.GetDoctorByIDRequest
-	8,  // 20: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:input_type -> admin.doctors.doctors.v1.UpdateDoctorRequest
-	10, // 21: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:input_type -> admin.doctors.doctors.v1.DeleteDoctorRequest
-	12, // 22: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:input_type -> admin.doctors.doctors.v1.ActivateDoctorRequest
-	14, // 23: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:input_type -> admin.doctors.doctors.v1.DeactivateDoctorRequest
-	16, // 24: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:input_type -> admin.doctors.doctors.v1.SaveDoctorPhotoRequest
-	18, // 25: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
-	20, // 26: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
-	22, // 27: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
-	24, // 28: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
-	26, // 29: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:input_type -> admin.doctors.doctors.v1.UpdateSubscribersRequest
-	1,  // 30: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:output_type -> admin.doctors.doctors.v1.GetDoctorsResponse
-	29, // 31: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:output_type -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse
-	3,  // 32: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:output_type -> admin.doctors.doctors.v1.SortDoctorsResponse
-	5,  // 33: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:output_type -> admin.doctors.doctors.v1.SearchDoctorsResponse
-	7,  // 34: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:output_type -> admin.doctors.doctors.v1.GetDoctorByIDResponse
-	9,  // 35: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:output_type -> admin.doctors.doctors.v1.UpdateDoctorResponse
-	11, // 36: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:output_type -> admin.doctors.doctors.v1.DeleteDoctorResponse
-	13, // 37: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:output_type -> admin.doctors.doctors.v1.ActivateDoctorResponse
-	15, // 38: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:output_type -> admin.doctors.doctors.v1.DeactivateDoctorResponse
-	17, // 39: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:output_type -> admin.doctors.doctors.v1.SaveDoctorPhotoResponse
-	19, // 40: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
-	21, // 41: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
-	23, // 42: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
-	25, // 43: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
-	27, // 44: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:output_type -> admin.doctors.doctors.v1.UpdateSubscribersResponse
-	30, // [30:45] is the sub-list for method output_type
-	15, // [15:30] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	39, // 0: admin.doctors.doctors.v1.GetDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
+	40, // 1: admin.doctors.doctors.v1.SortDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
+	41, // 2: admin.doctors.doctors.v1.SearchDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
+	0,  // 3: admin.doctors.doctors.v1.GetDoctorByIDResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem
+	1,  // 4: admin.doctors.doctors.v1.GetDoctorByIDResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
+	0,  // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_city:type_name -> admin.doctors.doctors.v1.CityItem
+	1,  // 6: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_speciality:type_name -> admin.doctors.doctors.v1.SpecialityItem
+	42, // 7: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
+	2,  // 8: admin.doctors.doctors.v1.GetDoctorByIDResponse.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	11, // 9: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateDoctorRequest
+	44, // 10: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
+	1,  // 11: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
+	0,  // 12: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem
+	2,  // 13: admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse.cooperation_types:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 14: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 15: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 16: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 17: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	3,  // 18: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:input_type -> admin.doctors.doctors.v1.GetDoctorsRequest
+	31, // 19: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:input_type -> admin.doctors.doctors.v1.GetDoctorsByIDsRequest
+	5,  // 20: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:input_type -> admin.doctors.doctors.v1.SortDoctorsRequest
+	7,  // 21: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:input_type -> admin.doctors.doctors.v1.SearchDoctorsRequest
+	9,  // 22: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:input_type -> admin.doctors.doctors.v1.GetDoctorByIDRequest
+	11, // 23: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:input_type -> admin.doctors.doctors.v1.UpdateDoctorRequest
+	13, // 24: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:input_type -> admin.doctors.doctors.v1.DeleteDoctorRequest
+	15, // 25: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:input_type -> admin.doctors.doctors.v1.ActivateDoctorRequest
+	17, // 26: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:input_type -> admin.doctors.doctors.v1.DeactivateDoctorRequest
+	19, // 27: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:input_type -> admin.doctors.doctors.v1.SaveDoctorPhotoRequest
+	21, // 28: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
+	23, // 29: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
+	25, // 30: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
+	27, // 31: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
+	29, // 32: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:input_type -> admin.doctors.doctors.v1.UpdateSubscribersRequest
+	33, // 33: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest
+	35, // 34: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest
+	37, // 35: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:input_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest
+	4,  // 36: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:output_type -> admin.doctors.doctors.v1.GetDoctorsResponse
+	32, // 37: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:output_type -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse
+	6,  // 38: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:output_type -> admin.doctors.doctors.v1.SortDoctorsResponse
+	8,  // 39: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:output_type -> admin.doctors.doctors.v1.SearchDoctorsResponse
+	10, // 40: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:output_type -> admin.doctors.doctors.v1.GetDoctorByIDResponse
+	12, // 41: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:output_type -> admin.doctors.doctors.v1.UpdateDoctorResponse
+	14, // 42: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:output_type -> admin.doctors.doctors.v1.DeleteDoctorResponse
+	16, // 43: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:output_type -> admin.doctors.doctors.v1.ActivateDoctorResponse
+	18, // 44: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:output_type -> admin.doctors.doctors.v1.DeactivateDoctorResponse
+	20, // 45: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:output_type -> admin.doctors.doctors.v1.SaveDoctorPhotoResponse
+	22, // 46: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
+	24, // 47: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
+	26, // 48: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
+	28, // 49: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
+	30, // 50: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:output_type -> admin.doctors.doctors.v1.UpdateSubscribersResponse
+	34, // 51: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse
+	36, // 52: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse
+	38, // 53: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:output_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse
+	36, // [36:54] is the sub-list for method output_type
+	18, // [18:36] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_admin_doctors_doctors_v1_admin_proto_init() }
@@ -2572,7 +2633,7 @@ func file_admin_doctors_doctors_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_doctors_doctors_v1_admin_proto_rawDesc), len(file_admin_doctors_doctors_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   43,
+			NumMessages:   45,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -19,26 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FreelancerAdminService_GetFreelancers_FullMethodName             = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancers"
-	FreelancerAdminService_SortFreelancers_FullMethodName            = "/admin.freelancers.freelancer.v1.FreelancerAdminService/SortFreelancers"
-	FreelancerAdminService_SearchFreelancers_FullMethodName          = "/admin.freelancers.freelancer.v1.FreelancerAdminService/SearchFreelancers"
-	FreelancerAdminService_GetFreelancerByID_FullMethodName          = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerByID"
-	FreelancerAdminService_UpdateFreelancer_FullMethodName           = "/admin.freelancers.freelancer.v1.FreelancerAdminService/UpdateFreelancer"
-	FreelancerAdminService_DeleteFreelancer_FullMethodName           = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteFreelancer"
-	FreelancerAdminService_ActivateFreelancer_FullMethodName         = "/admin.freelancers.freelancer.v1.FreelancerAdminService/ActivateFreelancer"
-	FreelancerAdminService_DeactivateFreelancer_FullMethodName       = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeactivateFreelancer"
-	FreelancerAdminService_SaveFreelancerPhoto_FullMethodName        = "/admin.freelancers.freelancer.v1.FreelancerAdminService/SaveFreelancerPhoto"
-	FreelancerAdminService_AddAdditionalCity_FullMethodName          = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddAdditionalCity"
-	FreelancerAdminService_AddAdditionalSpeciality_FullMethodName    = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddAdditionalSpeciality"
-	FreelancerAdminService_DeleteAdditionalCity_FullMethodName       = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteAdditionalCity"
-	FreelancerAdminService_DeleteAdditionalSpeciality_FullMethodName = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteAdditionalSpeciality"
-	FreelancerAdminService_AddRecommendation_FullMethodName          = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddRecommendation"
-	FreelancerAdminService_DeleteRecommendation_FullMethodName       = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteRecommendation"
-	FreelancerAdminService_ChangeRecommendationSort_FullMethodName   = "/admin.freelancers.freelancer.v1.FreelancerAdminService/ChangeRecommendationSort"
-	FreelancerAdminService_AddPriceList_FullMethodName               = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddPriceList"
-	FreelancerAdminService_DeletePriceList_FullMethodName            = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeletePriceList"
-	FreelancerAdminService_AddNetwork_FullMethodName                 = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddNetwork"
-	FreelancerAdminService_DeleteNetwork_FullMethodName              = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteNetwork"
+	FreelancerAdminService_GetFreelancers_FullMethodName                      = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancers"
+	FreelancerAdminService_SortFreelancers_FullMethodName                     = "/admin.freelancers.freelancer.v1.FreelancerAdminService/SortFreelancers"
+	FreelancerAdminService_SearchFreelancers_FullMethodName                   = "/admin.freelancers.freelancer.v1.FreelancerAdminService/SearchFreelancers"
+	FreelancerAdminService_GetFreelancerByID_FullMethodName                   = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerByID"
+	FreelancerAdminService_UpdateFreelancer_FullMethodName                    = "/admin.freelancers.freelancer.v1.FreelancerAdminService/UpdateFreelancer"
+	FreelancerAdminService_DeleteFreelancer_FullMethodName                    = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteFreelancer"
+	FreelancerAdminService_ActivateFreelancer_FullMethodName                  = "/admin.freelancers.freelancer.v1.FreelancerAdminService/ActivateFreelancer"
+	FreelancerAdminService_DeactivateFreelancer_FullMethodName                = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeactivateFreelancer"
+	FreelancerAdminService_SaveFreelancerPhoto_FullMethodName                 = "/admin.freelancers.freelancer.v1.FreelancerAdminService/SaveFreelancerPhoto"
+	FreelancerAdminService_AddAdditionalCity_FullMethodName                   = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddAdditionalCity"
+	FreelancerAdminService_AddAdditionalSpeciality_FullMethodName             = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddAdditionalSpeciality"
+	FreelancerAdminService_DeleteAdditionalCity_FullMethodName                = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteAdditionalCity"
+	FreelancerAdminService_DeleteAdditionalSpeciality_FullMethodName          = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteAdditionalSpeciality"
+	FreelancerAdminService_AddRecommendation_FullMethodName                   = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddRecommendation"
+	FreelancerAdminService_DeleteRecommendation_FullMethodName                = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteRecommendation"
+	FreelancerAdminService_ChangeRecommendationSort_FullMethodName            = "/admin.freelancers.freelancer.v1.FreelancerAdminService/ChangeRecommendationSort"
+	FreelancerAdminService_AddPriceList_FullMethodName                        = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddPriceList"
+	FreelancerAdminService_DeletePriceList_FullMethodName                     = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeletePriceList"
+	FreelancerAdminService_AddNetwork_FullMethodName                          = "/admin.freelancers.freelancer.v1.FreelancerAdminService/AddNetwork"
+	FreelancerAdminService_DeleteNetwork_FullMethodName                       = "/admin.freelancers.freelancer.v1.FreelancerAdminService/DeleteNetwork"
+	FreelancerAdminService_GetFreelancerAdditionalSpecialities_FullMethodName = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalSpecialities"
+	FreelancerAdminService_GetFreelancerAdditionalCities_FullMethodName       = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalCities"
+	FreelancerAdminService_GetFreelancerCooperationTypes_FullMethodName       = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerCooperationTypes"
+	FreelancerAdminService_GetFreelancerPriceList_FullMethodName              = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerPriceList"
+	FreelancerAdminService_GetFreelancerRecommendations_FullMethodName        = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerRecommendations"
+	FreelancerAdminService_GetFreelancerSocialNetworks_FullMethodName         = "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerSocialNetworks"
 )
 
 // FreelancerAdminServiceClient is the client API for FreelancerAdminService service.
@@ -49,17 +55,6 @@ const (
 type FreelancerAdminServiceClient interface {
 	GetFreelancers(ctx context.Context, in *GetFreelancersRequest, opts ...grpc.CallOption) (*GetFreelancersResponse, error)
 	SortFreelancers(ctx context.Context, in *SortFreelancersRequest, opts ...grpc.CallOption) (*SortFreelancersResponse, error)
-	// todo подумать тоже, а надо ли тут эту сортировку
-	//
-	//	rpc FilterFreelancers(FilterFreelancersRequest) returns (FilterFreelancersResponse) {
-	//	    option (google.api.http) = {
-	//	        post: "/api/v1/admin/Freelancers/filter"
-	//	        body: "*"
-	//	    };
-	//	    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-	//	        summary: "Фильтрация фрилансеров"
-	//	    };
-	//	}
 	SearchFreelancers(ctx context.Context, in *SearchFreelancersRequest, opts ...grpc.CallOption) (*SearchFreelancersResponse, error)
 	GetFreelancerByID(ctx context.Context, in *GetFreelancerByIDRequest, opts ...grpc.CallOption) (*GetFreelancerByIDResponse, error)
 	UpdateFreelancer(ctx context.Context, in *UpdateFreelancerRequest, opts ...grpc.CallOption) (*UpdateFreelancerResponse, error)
@@ -78,6 +73,12 @@ type FreelancerAdminServiceClient interface {
 	DeletePriceList(ctx context.Context, in *DeletePriceListRequest, opts ...grpc.CallOption) (*DeletePriceListResponse, error)
 	AddNetwork(ctx context.Context, in *AddNetworkRequest, opts ...grpc.CallOption) (*AddNetworkResponse, error)
 	DeleteNetwork(ctx context.Context, in *DeleteNetworkRequest, opts ...grpc.CallOption) (*DeleteNetworkResponse, error)
+	GetFreelancerAdditionalSpecialities(ctx context.Context, in *GetFreelancerAdditionalSpecialitiesRequest, opts ...grpc.CallOption) (*GetFreelancerAdditionalSpecialitiesResponse, error)
+	GetFreelancerAdditionalCities(ctx context.Context, in *GetFreelancerAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetFreelancerAdditionalCitiesResponse, error)
+	GetFreelancerCooperationTypes(ctx context.Context, in *GetFreelancerCooperationTypesRequest, opts ...grpc.CallOption) (*GetFreelancerCooperationTypesResponse, error)
+	GetFreelancerPriceList(ctx context.Context, in *GetFreelancerPriceListRequest, opts ...grpc.CallOption) (*GetFreelancerPriceListResponse, error)
+	GetFreelancerRecommendations(ctx context.Context, in *GetFreelancerRecommendationsRequest, opts ...grpc.CallOption) (*GetFreelancerRecommendationsResponse, error)
+	GetFreelancerSocialNetworks(ctx context.Context, in *GetFreelancerSocialNetworksRequest, opts ...grpc.CallOption) (*GetFreelancerSocialNetworksResponse, error)
 }
 
 type freelancerAdminServiceClient struct {
@@ -288,6 +289,66 @@ func (c *freelancerAdminServiceClient) DeleteNetwork(ctx context.Context, in *De
 	return out, nil
 }
 
+func (c *freelancerAdminServiceClient) GetFreelancerAdditionalSpecialities(ctx context.Context, in *GetFreelancerAdditionalSpecialitiesRequest, opts ...grpc.CallOption) (*GetFreelancerAdditionalSpecialitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerAdditionalSpecialitiesResponse)
+	err := c.cc.Invoke(ctx, FreelancerAdminService_GetFreelancerAdditionalSpecialities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *freelancerAdminServiceClient) GetFreelancerAdditionalCities(ctx context.Context, in *GetFreelancerAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetFreelancerAdditionalCitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerAdditionalCitiesResponse)
+	err := c.cc.Invoke(ctx, FreelancerAdminService_GetFreelancerAdditionalCities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *freelancerAdminServiceClient) GetFreelancerCooperationTypes(ctx context.Context, in *GetFreelancerCooperationTypesRequest, opts ...grpc.CallOption) (*GetFreelancerCooperationTypesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerCooperationTypesResponse)
+	err := c.cc.Invoke(ctx, FreelancerAdminService_GetFreelancerCooperationTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *freelancerAdminServiceClient) GetFreelancerPriceList(ctx context.Context, in *GetFreelancerPriceListRequest, opts ...grpc.CallOption) (*GetFreelancerPriceListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerPriceListResponse)
+	err := c.cc.Invoke(ctx, FreelancerAdminService_GetFreelancerPriceList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *freelancerAdminServiceClient) GetFreelancerRecommendations(ctx context.Context, in *GetFreelancerRecommendationsRequest, opts ...grpc.CallOption) (*GetFreelancerRecommendationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerRecommendationsResponse)
+	err := c.cc.Invoke(ctx, FreelancerAdminService_GetFreelancerRecommendations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *freelancerAdminServiceClient) GetFreelancerSocialNetworks(ctx context.Context, in *GetFreelancerSocialNetworksRequest, opts ...grpc.CallOption) (*GetFreelancerSocialNetworksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFreelancerSocialNetworksResponse)
+	err := c.cc.Invoke(ctx, FreelancerAdminService_GetFreelancerSocialNetworks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FreelancerAdminServiceServer is the server API for FreelancerAdminService service.
 // All implementations should embed UnimplementedFreelancerAdminServiceServer
 // for forward compatibility.
@@ -296,17 +357,6 @@ func (c *freelancerAdminServiceClient) DeleteNetwork(ctx context.Context, in *De
 type FreelancerAdminServiceServer interface {
 	GetFreelancers(context.Context, *GetFreelancersRequest) (*GetFreelancersResponse, error)
 	SortFreelancers(context.Context, *SortFreelancersRequest) (*SortFreelancersResponse, error)
-	// todo подумать тоже, а надо ли тут эту сортировку
-	//
-	//	rpc FilterFreelancers(FilterFreelancersRequest) returns (FilterFreelancersResponse) {
-	//	    option (google.api.http) = {
-	//	        post: "/api/v1/admin/Freelancers/filter"
-	//	        body: "*"
-	//	    };
-	//	    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-	//	        summary: "Фильтрация фрилансеров"
-	//	    };
-	//	}
 	SearchFreelancers(context.Context, *SearchFreelancersRequest) (*SearchFreelancersResponse, error)
 	GetFreelancerByID(context.Context, *GetFreelancerByIDRequest) (*GetFreelancerByIDResponse, error)
 	UpdateFreelancer(context.Context, *UpdateFreelancerRequest) (*UpdateFreelancerResponse, error)
@@ -325,6 +375,12 @@ type FreelancerAdminServiceServer interface {
 	DeletePriceList(context.Context, *DeletePriceListRequest) (*DeletePriceListResponse, error)
 	AddNetwork(context.Context, *AddNetworkRequest) (*AddNetworkResponse, error)
 	DeleteNetwork(context.Context, *DeleteNetworkRequest) (*DeleteNetworkResponse, error)
+	GetFreelancerAdditionalSpecialities(context.Context, *GetFreelancerAdditionalSpecialitiesRequest) (*GetFreelancerAdditionalSpecialitiesResponse, error)
+	GetFreelancerAdditionalCities(context.Context, *GetFreelancerAdditionalCitiesRequest) (*GetFreelancerAdditionalCitiesResponse, error)
+	GetFreelancerCooperationTypes(context.Context, *GetFreelancerCooperationTypesRequest) (*GetFreelancerCooperationTypesResponse, error)
+	GetFreelancerPriceList(context.Context, *GetFreelancerPriceListRequest) (*GetFreelancerPriceListResponse, error)
+	GetFreelancerRecommendations(context.Context, *GetFreelancerRecommendationsRequest) (*GetFreelancerRecommendationsResponse, error)
+	GetFreelancerSocialNetworks(context.Context, *GetFreelancerSocialNetworksRequest) (*GetFreelancerSocialNetworksResponse, error)
 }
 
 // UnimplementedFreelancerAdminServiceServer should be embedded to have
@@ -393,6 +449,24 @@ func (UnimplementedFreelancerAdminServiceServer) AddNetwork(context.Context, *Ad
 }
 func (UnimplementedFreelancerAdminServiceServer) DeleteNetwork(context.Context, *DeleteNetworkRequest) (*DeleteNetworkResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteNetwork not implemented")
+}
+func (UnimplementedFreelancerAdminServiceServer) GetFreelancerAdditionalSpecialities(context.Context, *GetFreelancerAdditionalSpecialitiesRequest) (*GetFreelancerAdditionalSpecialitiesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFreelancerAdditionalSpecialities not implemented")
+}
+func (UnimplementedFreelancerAdminServiceServer) GetFreelancerAdditionalCities(context.Context, *GetFreelancerAdditionalCitiesRequest) (*GetFreelancerAdditionalCitiesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFreelancerAdditionalCities not implemented")
+}
+func (UnimplementedFreelancerAdminServiceServer) GetFreelancerCooperationTypes(context.Context, *GetFreelancerCooperationTypesRequest) (*GetFreelancerCooperationTypesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFreelancerCooperationTypes not implemented")
+}
+func (UnimplementedFreelancerAdminServiceServer) GetFreelancerPriceList(context.Context, *GetFreelancerPriceListRequest) (*GetFreelancerPriceListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFreelancerPriceList not implemented")
+}
+func (UnimplementedFreelancerAdminServiceServer) GetFreelancerRecommendations(context.Context, *GetFreelancerRecommendationsRequest) (*GetFreelancerRecommendationsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFreelancerRecommendations not implemented")
+}
+func (UnimplementedFreelancerAdminServiceServer) GetFreelancerSocialNetworks(context.Context, *GetFreelancerSocialNetworksRequest) (*GetFreelancerSocialNetworksResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFreelancerSocialNetworks not implemented")
 }
 func (UnimplementedFreelancerAdminServiceServer) testEmbeddedByValue() {}
 
@@ -774,6 +848,114 @@ func _FreelancerAdminService_DeleteNetwork_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FreelancerAdminService_GetFreelancerAdditionalSpecialities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerAdditionalSpecialitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerAdditionalSpecialities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerAdminService_GetFreelancerAdditionalSpecialities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerAdditionalSpecialities(ctx, req.(*GetFreelancerAdditionalSpecialitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FreelancerAdminService_GetFreelancerAdditionalCities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerAdditionalCitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerAdditionalCities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerAdminService_GetFreelancerAdditionalCities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerAdditionalCities(ctx, req.(*GetFreelancerAdditionalCitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FreelancerAdminService_GetFreelancerCooperationTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerCooperationTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerCooperationTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerAdminService_GetFreelancerCooperationTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerCooperationTypes(ctx, req.(*GetFreelancerCooperationTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FreelancerAdminService_GetFreelancerPriceList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerPriceListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerPriceList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerAdminService_GetFreelancerPriceList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerPriceList(ctx, req.(*GetFreelancerPriceListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FreelancerAdminService_GetFreelancerRecommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerRecommendationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerRecommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerAdminService_GetFreelancerRecommendations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerRecommendations(ctx, req.(*GetFreelancerRecommendationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FreelancerAdminService_GetFreelancerSocialNetworks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFreelancerSocialNetworksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerSocialNetworks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FreelancerAdminService_GetFreelancerSocialNetworks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FreelancerAdminServiceServer).GetFreelancerSocialNetworks(ctx, req.(*GetFreelancerSocialNetworksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FreelancerAdminService_ServiceDesc is the grpc.ServiceDesc for FreelancerAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -860,6 +1042,30 @@ var FreelancerAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteNetwork",
 			Handler:    _FreelancerAdminService_DeleteNetwork_Handler,
+		},
+		{
+			MethodName: "GetFreelancerAdditionalSpecialities",
+			Handler:    _FreelancerAdminService_GetFreelancerAdditionalSpecialities_Handler,
+		},
+		{
+			MethodName: "GetFreelancerAdditionalCities",
+			Handler:    _FreelancerAdminService_GetFreelancerAdditionalCities_Handler,
+		},
+		{
+			MethodName: "GetFreelancerCooperationTypes",
+			Handler:    _FreelancerAdminService_GetFreelancerCooperationTypes_Handler,
+		},
+		{
+			MethodName: "GetFreelancerPriceList",
+			Handler:    _FreelancerAdminService_GetFreelancerPriceList_Handler,
+		},
+		{
+			MethodName: "GetFreelancerRecommendations",
+			Handler:    _FreelancerAdminService_GetFreelancerRecommendations_Handler,
+		},
+		{
+			MethodName: "GetFreelancerSocialNetworks",
+			Handler:    _FreelancerAdminService_GetFreelancerSocialNetworks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

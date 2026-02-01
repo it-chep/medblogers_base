@@ -23,6 +23,334 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CityItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CityItem) Reset() {
+	*x = CityItem{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CityItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CityItem) ProtoMessage() {}
+
+func (x *CityItem) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CityItem.ProtoReflect.Descriptor instead.
+func (*CityItem) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CityItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *CityItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type SpecialityItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpecialityItem) Reset() {
+	*x = SpecialityItem{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpecialityItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpecialityItem) ProtoMessage() {}
+
+func (x *SpecialityItem) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpecialityItem.ProtoReflect.Descriptor instead.
+func (*SpecialityItem) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SpecialityItem) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SpecialityItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type CooperationType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CooperationType) Reset() {
+	*x = CooperationType{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CooperationType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CooperationType) ProtoMessage() {}
+
+func (x *CooperationType) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CooperationType.ProtoReflect.Descriptor instead.
+func (*CooperationType) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CooperationType) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *CooperationType) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type Society struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug          string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Society) Reset() {
+	*x = Society{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Society) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Society) ProtoMessage() {}
+
+func (x *Society) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Society.ProtoReflect.Descriptor instead.
+func (*Society) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Society) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Society) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Society) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+type Recommendation struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	DoctorName    string                 `protobuf:"bytes,2,opt,name=doctor_name,json=doctorName,proto3" json:"doctor_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Recommendation) Reset() {
+	*x = Recommendation{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Recommendation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Recommendation) ProtoMessage() {}
+
+func (x *Recommendation) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Recommendation.ProtoReflect.Descriptor instead.
+func (*Recommendation) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Recommendation) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+func (x *Recommendation) GetDoctorName() string {
+	if x != nil {
+		return x.DoctorName
+	}
+	return ""
+}
+
+type PriceList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Amount        string                 `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PriceList) Reset() {
+	*x = PriceList{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PriceList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PriceList) ProtoMessage() {}
+
+func (x *PriceList) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PriceList.ProtoReflect.Descriptor instead.
+func (*PriceList) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PriceList) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *PriceList) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *PriceList) GetAmount() string {
+	if x != nil {
+		return x.Amount
+	}
+	return ""
+}
+
 type GetFreelancersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -31,7 +359,7 @@ type GetFreelancersRequest struct {
 
 func (x *GetFreelancersRequest) Reset() {
 	*x = GetFreelancersRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +371,7 @@ func (x *GetFreelancersRequest) String() string {
 func (*GetFreelancersRequest) ProtoMessage() {}
 
 func (x *GetFreelancersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[0]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +384,7 @@ func (x *GetFreelancersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancersRequest.ProtoReflect.Descriptor instead.
 func (*GetFreelancersRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{0}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{6}
 }
 
 type GetFreelancersResponse struct {
@@ -68,7 +396,7 @@ type GetFreelancersResponse struct {
 
 func (x *GetFreelancersResponse) Reset() {
 	*x = GetFreelancersResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -80,7 +408,7 @@ func (x *GetFreelancersResponse) String() string {
 func (*GetFreelancersResponse) ProtoMessage() {}
 
 func (x *GetFreelancersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[1]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -93,7 +421,7 @@ func (x *GetFreelancersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancersResponse.ProtoReflect.Descriptor instead.
 func (*GetFreelancersResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{1}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetFreelancersResponse) GetFreelancers() []*GetFreelancersResponse_Freelancer {
@@ -111,7 +439,7 @@ type SortFreelancersRequest struct {
 
 func (x *SortFreelancersRequest) Reset() {
 	*x = SortFreelancersRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123,7 +451,7 @@ func (x *SortFreelancersRequest) String() string {
 func (*SortFreelancersRequest) ProtoMessage() {}
 
 func (x *SortFreelancersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[2]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -136,7 +464,7 @@ func (x *SortFreelancersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortFreelancersRequest.ProtoReflect.Descriptor instead.
 func (*SortFreelancersRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{2}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{8}
 }
 
 type SortFreelancersResponse struct {
@@ -148,7 +476,7 @@ type SortFreelancersResponse struct {
 
 func (x *SortFreelancersResponse) Reset() {
 	*x = SortFreelancersResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -160,7 +488,7 @@ func (x *SortFreelancersResponse) String() string {
 func (*SortFreelancersResponse) ProtoMessage() {}
 
 func (x *SortFreelancersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[3]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -173,7 +501,7 @@ func (x *SortFreelancersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortFreelancersResponse.ProtoReflect.Descriptor instead.
 func (*SortFreelancersResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{3}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SortFreelancersResponse) GetFreelancers() []*SortFreelancersResponse_Freelancer {
@@ -192,7 +520,7 @@ type SearchFreelancersRequest struct {
 
 func (x *SearchFreelancersRequest) Reset() {
 	*x = SearchFreelancersRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -204,7 +532,7 @@ func (x *SearchFreelancersRequest) String() string {
 func (*SearchFreelancersRequest) ProtoMessage() {}
 
 func (x *SearchFreelancersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[4]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -217,7 +545,7 @@ func (x *SearchFreelancersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchFreelancersRequest.ProtoReflect.Descriptor instead.
 func (*SearchFreelancersRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{4}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SearchFreelancersRequest) GetQuery() string {
@@ -236,7 +564,7 @@ type SearchFreelancersResponse struct {
 
 func (x *SearchFreelancersResponse) Reset() {
 	*x = SearchFreelancersResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -248,7 +576,7 @@ func (x *SearchFreelancersResponse) String() string {
 func (*SearchFreelancersResponse) ProtoMessage() {}
 
 func (x *SearchFreelancersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[5]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -261,7 +589,7 @@ func (x *SearchFreelancersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchFreelancersResponse.ProtoReflect.Descriptor instead.
 func (*SearchFreelancersResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{5}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SearchFreelancersResponse) GetFreelancers() []*SearchFreelancersResponse_Freelancer {
@@ -280,7 +608,7 @@ type GetFreelancerByIDRequest struct {
 
 func (x *GetFreelancerByIDRequest) Reset() {
 	*x = GetFreelancerByIDRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -292,7 +620,7 @@ func (x *GetFreelancerByIDRequest) String() string {
 func (*GetFreelancerByIDRequest) ProtoMessage() {}
 
 func (x *GetFreelancerByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[6]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -305,7 +633,7 @@ func (x *GetFreelancerByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancerByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetFreelancerByIDRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{6}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetFreelancerByIDRequest) GetFreelancerId() int64 {
@@ -316,36 +644,28 @@ func (x *GetFreelancerByIDRequest) GetFreelancerId() int64 {
 }
 
 type GetFreelancerByIDResponse struct {
-	state                protoimpl.MessageState                     `protogen:"open.v1"`
-	Id                   int64                                      `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string                                     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Slug                 string                                     `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
-	PortfolioLink        string                                     `protobuf:"bytes,4,opt,name=portfolio_link,json=portfolioLink,proto3" json:"portfolio_link,omitempty"`
-	TgUrl                string                                     `protobuf:"bytes,5,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
-	MainCity             *GetFreelancerByIDResponse_CityItem        `protobuf:"bytes,6,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
-	MainSpeciality       *GetFreelancerByIDResponse_SpecialityItem  `protobuf:"bytes,7,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
-	Image                string                                     `protobuf:"bytes,8,opt,name=image,proto3" json:"image,omitempty"`
-	CooperationType      *GetFreelancerByIDResponse_CooperationType `protobuf:"bytes,9,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
-	IsActive             bool                                       `protobuf:"varint,10,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	AgencyRepresentative bool                                       `protobuf:"varint,11,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
-	CreatedAt            string                                     `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	DateStarted          string                                     `protobuf:"bytes,13,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
-	PriceCategory        int64                                      `protobuf:"varint,14,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	//	todo года работы
-	//
-	// Города и специализации
-	AdditionalCities       []*GetFreelancerByIDResponse_CityItem       `protobuf:"bytes,15,rep,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
-	AdditionalSpecialities []*GetFreelancerByIDResponse_SpecialityItem `protobuf:"bytes,16,rep,name=additional_specialities,json=additionalSpecialities,proto3" json:"additional_specialities,omitempty"`
-	SocialNetworks         []*GetFreelancerByIDResponse_Society        `protobuf:"bytes,17,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	Recommendations        []*GetFreelancerByIDResponse_Recommendation `protobuf:"bytes,18,rep,name=recommendations,proto3" json:"recommendations,omitempty"`
-	PriceList              []*GetFreelancerByIDResponse_PriceList      `protobuf:"bytes,19,rep,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	Id                   int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug                 string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	PortfolioLink        string                 `protobuf:"bytes,4,opt,name=portfolio_link,json=portfolioLink,proto3" json:"portfolio_link,omitempty"`
+	TgUrl                string                 `protobuf:"bytes,5,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
+	MainCity             *CityItem              `protobuf:"bytes,6,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
+	MainSpeciality       *SpecialityItem        `protobuf:"bytes,7,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
+	Image                string                 `protobuf:"bytes,8,opt,name=image,proto3" json:"image,omitempty"`
+	CooperationType      *CooperationType       `protobuf:"bytes,9,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	IsActive             bool                   `protobuf:"varint,10,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	AgencyRepresentative bool                   `protobuf:"varint,11,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
+	CreatedAt            string                 `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	DateStarted          string                 `protobuf:"bytes,13,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
+	PriceCategory        int64                  `protobuf:"varint,14,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GetFreelancerByIDResponse) Reset() {
 	*x = GetFreelancerByIDResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -357,7 +677,7 @@ func (x *GetFreelancerByIDResponse) String() string {
 func (*GetFreelancerByIDResponse) ProtoMessage() {}
 
 func (x *GetFreelancerByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[7]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -370,7 +690,7 @@ func (x *GetFreelancerByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFreelancerByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetFreelancerByIDResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetFreelancerByIDResponse) GetId() int64 {
@@ -408,14 +728,14 @@ func (x *GetFreelancerByIDResponse) GetTgUrl() string {
 	return ""
 }
 
-func (x *GetFreelancerByIDResponse) GetMainCity() *GetFreelancerByIDResponse_CityItem {
+func (x *GetFreelancerByIDResponse) GetMainCity() *CityItem {
 	if x != nil {
 		return x.MainCity
 	}
 	return nil
 }
 
-func (x *GetFreelancerByIDResponse) GetMainSpeciality() *GetFreelancerByIDResponse_SpecialityItem {
+func (x *GetFreelancerByIDResponse) GetMainSpeciality() *SpecialityItem {
 	if x != nil {
 		return x.MainSpeciality
 	}
@@ -429,7 +749,7 @@ func (x *GetFreelancerByIDResponse) GetImage() string {
 	return ""
 }
 
-func (x *GetFreelancerByIDResponse) GetCooperationType() *GetFreelancerByIDResponse_CooperationType {
+func (x *GetFreelancerByIDResponse) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
@@ -471,41 +791,6 @@ func (x *GetFreelancerByIDResponse) GetPriceCategory() int64 {
 	return 0
 }
 
-func (x *GetFreelancerByIDResponse) GetAdditionalCities() []*GetFreelancerByIDResponse_CityItem {
-	if x != nil {
-		return x.AdditionalCities
-	}
-	return nil
-}
-
-func (x *GetFreelancerByIDResponse) GetAdditionalSpecialities() []*GetFreelancerByIDResponse_SpecialityItem {
-	if x != nil {
-		return x.AdditionalSpecialities
-	}
-	return nil
-}
-
-func (x *GetFreelancerByIDResponse) GetSocialNetworks() []*GetFreelancerByIDResponse_Society {
-	if x != nil {
-		return x.SocialNetworks
-	}
-	return nil
-}
-
-func (x *GetFreelancerByIDResponse) GetRecommendations() []*GetFreelancerByIDResponse_Recommendation {
-	if x != nil {
-		return x.Recommendations
-	}
-	return nil
-}
-
-func (x *GetFreelancerByIDResponse) GetPriceList() []*GetFreelancerByIDResponse_PriceList {
-	if x != nil {
-		return x.PriceList
-	}
-	return nil
-}
-
 type UpdateFreelancerRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
@@ -515,7 +800,7 @@ type UpdateFreelancerRequest struct {
 
 func (x *UpdateFreelancerRequest) Reset() {
 	*x = UpdateFreelancerRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -527,7 +812,7 @@ func (x *UpdateFreelancerRequest) String() string {
 func (*UpdateFreelancerRequest) ProtoMessage() {}
 
 func (x *UpdateFreelancerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[8]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -540,7 +825,7 @@ func (x *UpdateFreelancerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFreelancerRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFreelancerRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{8}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateFreelancerRequest) GetFreelancerId() int64 {
@@ -558,7 +843,7 @@ type UpdateFreelancerResponse struct {
 
 func (x *UpdateFreelancerResponse) Reset() {
 	*x = UpdateFreelancerResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -570,7 +855,7 @@ func (x *UpdateFreelancerResponse) String() string {
 func (*UpdateFreelancerResponse) ProtoMessage() {}
 
 func (x *UpdateFreelancerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[9]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -583,7 +868,7 @@ func (x *UpdateFreelancerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFreelancerResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFreelancerResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{9}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{15}
 }
 
 type DeleteFreelancerRequest struct {
@@ -595,7 +880,7 @@ type DeleteFreelancerRequest struct {
 
 func (x *DeleteFreelancerRequest) Reset() {
 	*x = DeleteFreelancerRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -607,7 +892,7 @@ func (x *DeleteFreelancerRequest) String() string {
 func (*DeleteFreelancerRequest) ProtoMessage() {}
 
 func (x *DeleteFreelancerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -620,7 +905,7 @@ func (x *DeleteFreelancerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFreelancerRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFreelancerRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{10}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DeleteFreelancerRequest) GetFreelancerId() int64 {
@@ -638,7 +923,7 @@ type DeleteFreelancerResponse struct {
 
 func (x *DeleteFreelancerResponse) Reset() {
 	*x = DeleteFreelancerResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[11]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -650,7 +935,7 @@ func (x *DeleteFreelancerResponse) String() string {
 func (*DeleteFreelancerResponse) ProtoMessage() {}
 
 func (x *DeleteFreelancerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[11]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -663,7 +948,7 @@ func (x *DeleteFreelancerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFreelancerResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFreelancerResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{11}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{17}
 }
 
 type ActivateFreelancerRequest struct {
@@ -675,7 +960,7 @@ type ActivateFreelancerRequest struct {
 
 func (x *ActivateFreelancerRequest) Reset() {
 	*x = ActivateFreelancerRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[12]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -687,7 +972,7 @@ func (x *ActivateFreelancerRequest) String() string {
 func (*ActivateFreelancerRequest) ProtoMessage() {}
 
 func (x *ActivateFreelancerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[12]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -700,7 +985,7 @@ func (x *ActivateFreelancerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateFreelancerRequest.ProtoReflect.Descriptor instead.
 func (*ActivateFreelancerRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{12}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ActivateFreelancerRequest) GetFreelancerId() int64 {
@@ -718,7 +1003,7 @@ type ActivateFreelancerResponse struct {
 
 func (x *ActivateFreelancerResponse) Reset() {
 	*x = ActivateFreelancerResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[13]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -730,7 +1015,7 @@ func (x *ActivateFreelancerResponse) String() string {
 func (*ActivateFreelancerResponse) ProtoMessage() {}
 
 func (x *ActivateFreelancerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[13]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -743,7 +1028,7 @@ func (x *ActivateFreelancerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateFreelancerResponse.ProtoReflect.Descriptor instead.
 func (*ActivateFreelancerResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{13}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{19}
 }
 
 type DeactivateFreelancerRequest struct {
@@ -755,7 +1040,7 @@ type DeactivateFreelancerRequest struct {
 
 func (x *DeactivateFreelancerRequest) Reset() {
 	*x = DeactivateFreelancerRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[14]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -767,7 +1052,7 @@ func (x *DeactivateFreelancerRequest) String() string {
 func (*DeactivateFreelancerRequest) ProtoMessage() {}
 
 func (x *DeactivateFreelancerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[14]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -780,7 +1065,7 @@ func (x *DeactivateFreelancerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateFreelancerRequest.ProtoReflect.Descriptor instead.
 func (*DeactivateFreelancerRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{14}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *DeactivateFreelancerRequest) GetFreelancerId() int64 {
@@ -798,7 +1083,7 @@ type DeactivateFreelancerResponse struct {
 
 func (x *DeactivateFreelancerResponse) Reset() {
 	*x = DeactivateFreelancerResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[15]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -810,7 +1095,7 @@ func (x *DeactivateFreelancerResponse) String() string {
 func (*DeactivateFreelancerResponse) ProtoMessage() {}
 
 func (x *DeactivateFreelancerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[15]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -823,7 +1108,7 @@ func (x *DeactivateFreelancerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateFreelancerResponse.ProtoReflect.Descriptor instead.
 func (*DeactivateFreelancerResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{15}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{21}
 }
 
 type SaveFreelancerPhotoRequest struct {
@@ -836,7 +1121,7 @@ type SaveFreelancerPhotoRequest struct {
 
 func (x *SaveFreelancerPhotoRequest) Reset() {
 	*x = SaveFreelancerPhotoRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -848,7 +1133,7 @@ func (x *SaveFreelancerPhotoRequest) String() string {
 func (*SaveFreelancerPhotoRequest) ProtoMessage() {}
 
 func (x *SaveFreelancerPhotoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[16]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -861,7 +1146,7 @@ func (x *SaveFreelancerPhotoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveFreelancerPhotoRequest.ProtoReflect.Descriptor instead.
 func (*SaveFreelancerPhotoRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{16}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SaveFreelancerPhotoRequest) GetFreelancerId() int64 {
@@ -887,7 +1172,7 @@ type SaveFreelancerPhotoResponse struct {
 
 func (x *SaveFreelancerPhotoResponse) Reset() {
 	*x = SaveFreelancerPhotoResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -899,7 +1184,7 @@ func (x *SaveFreelancerPhotoResponse) String() string {
 func (*SaveFreelancerPhotoResponse) ProtoMessage() {}
 
 func (x *SaveFreelancerPhotoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[17]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -912,7 +1197,7 @@ func (x *SaveFreelancerPhotoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveFreelancerPhotoResponse.ProtoReflect.Descriptor instead.
 func (*SaveFreelancerPhotoResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{17}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *SaveFreelancerPhotoResponse) GetImage() string {
@@ -932,7 +1217,7 @@ type AddAdditionalCityRequest struct {
 
 func (x *AddAdditionalCityRequest) Reset() {
 	*x = AddAdditionalCityRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -944,7 +1229,7 @@ func (x *AddAdditionalCityRequest) String() string {
 func (*AddAdditionalCityRequest) ProtoMessage() {}
 
 func (x *AddAdditionalCityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[18]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -957,7 +1242,7 @@ func (x *AddAdditionalCityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddAdditionalCityRequest.ProtoReflect.Descriptor instead.
 func (*AddAdditionalCityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{18}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *AddAdditionalCityRequest) GetFreelancerId() int64 {
@@ -982,7 +1267,7 @@ type AddAdditionalCityResponse struct {
 
 func (x *AddAdditionalCityResponse) Reset() {
 	*x = AddAdditionalCityResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -994,7 +1279,7 @@ func (x *AddAdditionalCityResponse) String() string {
 func (*AddAdditionalCityResponse) ProtoMessage() {}
 
 func (x *AddAdditionalCityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[19]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1007,7 +1292,7 @@ func (x *AddAdditionalCityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddAdditionalCityResponse.ProtoReflect.Descriptor instead.
 func (*AddAdditionalCityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{19}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{25}
 }
 
 type AddFreelancerAdditionalSpecialityRequest struct {
@@ -1020,7 +1305,7 @@ type AddFreelancerAdditionalSpecialityRequest struct {
 
 func (x *AddFreelancerAdditionalSpecialityRequest) Reset() {
 	*x = AddFreelancerAdditionalSpecialityRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[20]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1032,7 +1317,7 @@ func (x *AddFreelancerAdditionalSpecialityRequest) String() string {
 func (*AddFreelancerAdditionalSpecialityRequest) ProtoMessage() {}
 
 func (x *AddFreelancerAdditionalSpecialityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[20]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1045,7 +1330,7 @@ func (x *AddFreelancerAdditionalSpecialityRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use AddFreelancerAdditionalSpecialityRequest.ProtoReflect.Descriptor instead.
 func (*AddFreelancerAdditionalSpecialityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{20}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *AddFreelancerAdditionalSpecialityRequest) GetFreelancerId() int64 {
@@ -1070,7 +1355,7 @@ type AddFreelancerAdditionalSpecialityResponse struct {
 
 func (x *AddFreelancerAdditionalSpecialityResponse) Reset() {
 	*x = AddFreelancerAdditionalSpecialityResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[21]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1082,7 +1367,7 @@ func (x *AddFreelancerAdditionalSpecialityResponse) String() string {
 func (*AddFreelancerAdditionalSpecialityResponse) ProtoMessage() {}
 
 func (x *AddFreelancerAdditionalSpecialityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[21]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1095,7 +1380,7 @@ func (x *AddFreelancerAdditionalSpecialityResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use AddFreelancerAdditionalSpecialityResponse.ProtoReflect.Descriptor instead.
 func (*AddFreelancerAdditionalSpecialityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{21}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{27}
 }
 
 type DeleteFreelancerAdditionalCityRequest struct {
@@ -1108,7 +1393,7 @@ type DeleteFreelancerAdditionalCityRequest struct {
 
 func (x *DeleteFreelancerAdditionalCityRequest) Reset() {
 	*x = DeleteFreelancerAdditionalCityRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[22]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1120,7 +1405,7 @@ func (x *DeleteFreelancerAdditionalCityRequest) String() string {
 func (*DeleteFreelancerAdditionalCityRequest) ProtoMessage() {}
 
 func (x *DeleteFreelancerAdditionalCityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[22]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1133,7 +1418,7 @@ func (x *DeleteFreelancerAdditionalCityRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use DeleteFreelancerAdditionalCityRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFreelancerAdditionalCityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{22}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteFreelancerAdditionalCityRequest) GetFreelancerId() int64 {
@@ -1158,7 +1443,7 @@ type DeleteFreelancerAdditionalCityResponse struct {
 
 func (x *DeleteFreelancerAdditionalCityResponse) Reset() {
 	*x = DeleteFreelancerAdditionalCityResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[23]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1170,7 +1455,7 @@ func (x *DeleteFreelancerAdditionalCityResponse) String() string {
 func (*DeleteFreelancerAdditionalCityResponse) ProtoMessage() {}
 
 func (x *DeleteFreelancerAdditionalCityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[23]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1183,7 +1468,7 @@ func (x *DeleteFreelancerAdditionalCityResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use DeleteFreelancerAdditionalCityResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFreelancerAdditionalCityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{23}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{29}
 }
 
 type DeleteFreelancerAdditionalSpecialityRequest struct {
@@ -1196,7 +1481,7 @@ type DeleteFreelancerAdditionalSpecialityRequest struct {
 
 func (x *DeleteFreelancerAdditionalSpecialityRequest) Reset() {
 	*x = DeleteFreelancerAdditionalSpecialityRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[24]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1208,7 +1493,7 @@ func (x *DeleteFreelancerAdditionalSpecialityRequest) String() string {
 func (*DeleteFreelancerAdditionalSpecialityRequest) ProtoMessage() {}
 
 func (x *DeleteFreelancerAdditionalSpecialityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[24]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1221,7 +1506,7 @@ func (x *DeleteFreelancerAdditionalSpecialityRequest) ProtoReflect() protoreflec
 
 // Deprecated: Use DeleteFreelancerAdditionalSpecialityRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFreelancerAdditionalSpecialityRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{24}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DeleteFreelancerAdditionalSpecialityRequest) GetFreelancerId() int64 {
@@ -1246,7 +1531,7 @@ type DeleteFreelancerAdditionalSpecialityResponse struct {
 
 func (x *DeleteFreelancerAdditionalSpecialityResponse) Reset() {
 	*x = DeleteFreelancerAdditionalSpecialityResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[25]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1258,7 +1543,7 @@ func (x *DeleteFreelancerAdditionalSpecialityResponse) String() string {
 func (*DeleteFreelancerAdditionalSpecialityResponse) ProtoMessage() {}
 
 func (x *DeleteFreelancerAdditionalSpecialityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[25]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1271,7 +1556,7 @@ func (x *DeleteFreelancerAdditionalSpecialityResponse) ProtoReflect() protorefle
 
 // Deprecated: Use DeleteFreelancerAdditionalSpecialityResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFreelancerAdditionalSpecialityResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{25}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{31}
 }
 
 type AddRecommendationRequest struct {
@@ -1284,7 +1569,7 @@ type AddRecommendationRequest struct {
 
 func (x *AddRecommendationRequest) Reset() {
 	*x = AddRecommendationRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[26]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1296,7 +1581,7 @@ func (x *AddRecommendationRequest) String() string {
 func (*AddRecommendationRequest) ProtoMessage() {}
 
 func (x *AddRecommendationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[26]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1309,7 +1594,7 @@ func (x *AddRecommendationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRecommendationRequest.ProtoReflect.Descriptor instead.
 func (*AddRecommendationRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{26}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *AddRecommendationRequest) GetFreelancerId() int64 {
@@ -1335,7 +1620,7 @@ type AddRecommendationResponse struct {
 
 func (x *AddRecommendationResponse) Reset() {
 	*x = AddRecommendationResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[27]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1347,7 +1632,7 @@ func (x *AddRecommendationResponse) String() string {
 func (*AddRecommendationResponse) ProtoMessage() {}
 
 func (x *AddRecommendationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[27]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1360,7 +1645,7 @@ func (x *AddRecommendationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRecommendationResponse.ProtoReflect.Descriptor instead.
 func (*AddRecommendationResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{27}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *AddRecommendationResponse) GetDoctor() *AddRecommendationResponse_Doctor {
@@ -1380,7 +1665,7 @@ type DeleteRecommendationRequest struct {
 
 func (x *DeleteRecommendationRequest) Reset() {
 	*x = DeleteRecommendationRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[28]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1392,7 +1677,7 @@ func (x *DeleteRecommendationRequest) String() string {
 func (*DeleteRecommendationRequest) ProtoMessage() {}
 
 func (x *DeleteRecommendationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[28]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1405,7 +1690,7 @@ func (x *DeleteRecommendationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRecommendationRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRecommendationRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{28}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *DeleteRecommendationRequest) GetFreelancerId() int64 {
@@ -1430,7 +1715,7 @@ type DeleteRecommendationResponse struct {
 
 func (x *DeleteRecommendationResponse) Reset() {
 	*x = DeleteRecommendationResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[29]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1442,7 +1727,7 @@ func (x *DeleteRecommendationResponse) String() string {
 func (*DeleteRecommendationResponse) ProtoMessage() {}
 
 func (x *DeleteRecommendationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[29]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1455,7 +1740,7 @@ func (x *DeleteRecommendationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRecommendationResponse.ProtoReflect.Descriptor instead.
 func (*DeleteRecommendationResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{29}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{35}
 }
 
 type ChangeRecommendationSortRequest struct {
@@ -1469,7 +1754,7 @@ type ChangeRecommendationSortRequest struct {
 
 func (x *ChangeRecommendationSortRequest) Reset() {
 	*x = ChangeRecommendationSortRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[30]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1481,7 +1766,7 @@ func (x *ChangeRecommendationSortRequest) String() string {
 func (*ChangeRecommendationSortRequest) ProtoMessage() {}
 
 func (x *ChangeRecommendationSortRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[30]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1494,7 +1779,7 @@ func (x *ChangeRecommendationSortRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeRecommendationSortRequest.ProtoReflect.Descriptor instead.
 func (*ChangeRecommendationSortRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{30}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ChangeRecommendationSortRequest) GetFreelancerId() int64 {
@@ -1526,7 +1811,7 @@ type ChangeRecommendationSortResponse struct {
 
 func (x *ChangeRecommendationSortResponse) Reset() {
 	*x = ChangeRecommendationSortResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[31]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1538,7 +1823,7 @@ func (x *ChangeRecommendationSortResponse) String() string {
 func (*ChangeRecommendationSortResponse) ProtoMessage() {}
 
 func (x *ChangeRecommendationSortResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[31]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1551,7 +1836,7 @@ func (x *ChangeRecommendationSortResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeRecommendationSortResponse.ProtoReflect.Descriptor instead.
 func (*ChangeRecommendationSortResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{31}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{37}
 }
 
 type AddPriceListRequest struct {
@@ -1564,7 +1849,7 @@ type AddPriceListRequest struct {
 
 func (x *AddPriceListRequest) Reset() {
 	*x = AddPriceListRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[32]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1576,7 +1861,7 @@ func (x *AddPriceListRequest) String() string {
 func (*AddPriceListRequest) ProtoMessage() {}
 
 func (x *AddPriceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[32]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1589,7 +1874,7 @@ func (x *AddPriceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPriceListRequest.ProtoReflect.Descriptor instead.
 func (*AddPriceListRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{32}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *AddPriceListRequest) GetFreelancerId() int64 {
@@ -1615,7 +1900,7 @@ type AddPriceListResponse struct {
 
 func (x *AddPriceListResponse) Reset() {
 	*x = AddPriceListResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[33]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1627,7 +1912,7 @@ func (x *AddPriceListResponse) String() string {
 func (*AddPriceListResponse) ProtoMessage() {}
 
 func (x *AddPriceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[33]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1640,7 +1925,7 @@ func (x *AddPriceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPriceListResponse.ProtoReflect.Descriptor instead.
 func (*AddPriceListResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{33}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *AddPriceListResponse) GetPriceListItemId() int64 {
@@ -1660,7 +1945,7 @@ type DeletePriceListRequest struct {
 
 func (x *DeletePriceListRequest) Reset() {
 	*x = DeletePriceListRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[34]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1672,7 +1957,7 @@ func (x *DeletePriceListRequest) String() string {
 func (*DeletePriceListRequest) ProtoMessage() {}
 
 func (x *DeletePriceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[34]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1685,7 +1970,7 @@ func (x *DeletePriceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePriceListRequest.ProtoReflect.Descriptor instead.
 func (*DeletePriceListRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{34}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *DeletePriceListRequest) GetFreelancerId() int64 {
@@ -1710,7 +1995,7 @@ type DeletePriceListResponse struct {
 
 func (x *DeletePriceListResponse) Reset() {
 	*x = DeletePriceListResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[35]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1722,7 +2007,7 @@ func (x *DeletePriceListResponse) String() string {
 func (*DeletePriceListResponse) ProtoMessage() {}
 
 func (x *DeletePriceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[35]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1735,7 +2020,7 @@ func (x *DeletePriceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePriceListResponse.ProtoReflect.Descriptor instead.
 func (*DeletePriceListResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{35}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{41}
 }
 
 type AddNetworkRequest struct {
@@ -1748,7 +2033,7 @@ type AddNetworkRequest struct {
 
 func (x *AddNetworkRequest) Reset() {
 	*x = AddNetworkRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[36]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1760,7 +2045,7 @@ func (x *AddNetworkRequest) String() string {
 func (*AddNetworkRequest) ProtoMessage() {}
 
 func (x *AddNetworkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[36]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1773,7 +2058,7 @@ func (x *AddNetworkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddNetworkRequest.ProtoReflect.Descriptor instead.
 func (*AddNetworkRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{36}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *AddNetworkRequest) GetFreelancerId() int64 {
@@ -1798,7 +2083,7 @@ type AddNetworkResponse struct {
 
 func (x *AddNetworkResponse) Reset() {
 	*x = AddNetworkResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[37]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1810,7 +2095,7 @@ func (x *AddNetworkResponse) String() string {
 func (*AddNetworkResponse) ProtoMessage() {}
 
 func (x *AddNetworkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[37]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1823,7 +2108,7 @@ func (x *AddNetworkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddNetworkResponse.ProtoReflect.Descriptor instead.
 func (*AddNetworkResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{37}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{43}
 }
 
 type DeleteNetworkRequest struct {
@@ -1836,7 +2121,7 @@ type DeleteNetworkRequest struct {
 
 func (x *DeleteNetworkRequest) Reset() {
 	*x = DeleteNetworkRequest{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[38]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1848,7 +2133,7 @@ func (x *DeleteNetworkRequest) String() string {
 func (*DeleteNetworkRequest) ProtoMessage() {}
 
 func (x *DeleteNetworkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[38]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1861,7 +2146,7 @@ func (x *DeleteNetworkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNetworkRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNetworkRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{38}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *DeleteNetworkRequest) GetFreelancerId() int64 {
@@ -1886,7 +2171,7 @@ type DeleteNetworkResponse struct {
 
 func (x *DeleteNetworkResponse) Reset() {
 	*x = DeleteNetworkResponse{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[39]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1898,7 +2183,7 @@ func (x *DeleteNetworkResponse) String() string {
 func (*DeleteNetworkResponse) ProtoMessage() {}
 
 func (x *DeleteNetworkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[39]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1911,23 +2196,543 @@ func (x *DeleteNetworkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNetworkResponse.ProtoReflect.Descriptor instead.
 func (*DeleteNetworkResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{39}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{45}
+}
+
+type GetFreelancerAdditionalSpecialitiesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerAdditionalSpecialitiesRequest) Reset() {
+	*x = GetFreelancerAdditionalSpecialitiesRequest{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerAdditionalSpecialitiesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerAdditionalSpecialitiesRequest) ProtoMessage() {}
+
+func (x *GetFreelancerAdditionalSpecialitiesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerAdditionalSpecialitiesRequest.ProtoReflect.Descriptor instead.
+func (*GetFreelancerAdditionalSpecialitiesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *GetFreelancerAdditionalSpecialitiesRequest) GetFreelancerId() int64 {
+	if x != nil {
+		return x.FreelancerId
+	}
+	return 0
+}
+
+type GetFreelancerAdditionalSpecialitiesResponse struct {
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	AdditionalSpecialities []*SpecialityItem      `protobuf:"bytes,1,rep,name=additional_specialities,json=additionalSpecialities,proto3" json:"additional_specialities,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *GetFreelancerAdditionalSpecialitiesResponse) Reset() {
+	*x = GetFreelancerAdditionalSpecialitiesResponse{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerAdditionalSpecialitiesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerAdditionalSpecialitiesResponse) ProtoMessage() {}
+
+func (x *GetFreelancerAdditionalSpecialitiesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerAdditionalSpecialitiesResponse.ProtoReflect.Descriptor instead.
+func (*GetFreelancerAdditionalSpecialitiesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *GetFreelancerAdditionalSpecialitiesResponse) GetAdditionalSpecialities() []*SpecialityItem {
+	if x != nil {
+		return x.AdditionalSpecialities
+	}
+	return nil
+}
+
+type GetFreelancerAdditionalCitiesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerAdditionalCitiesRequest) Reset() {
+	*x = GetFreelancerAdditionalCitiesRequest{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerAdditionalCitiesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerAdditionalCitiesRequest) ProtoMessage() {}
+
+func (x *GetFreelancerAdditionalCitiesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerAdditionalCitiesRequest.ProtoReflect.Descriptor instead.
+func (*GetFreelancerAdditionalCitiesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *GetFreelancerAdditionalCitiesRequest) GetFreelancerId() int64 {
+	if x != nil {
+		return x.FreelancerId
+	}
+	return 0
+}
+
+type GetFreelancerAdditionalCitiesResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	AdditionalCities []*CityItem            `protobuf:"bytes,1,rep,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetFreelancerAdditionalCitiesResponse) Reset() {
+	*x = GetFreelancerAdditionalCitiesResponse{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerAdditionalCitiesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerAdditionalCitiesResponse) ProtoMessage() {}
+
+func (x *GetFreelancerAdditionalCitiesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerAdditionalCitiesResponse.ProtoReflect.Descriptor instead.
+func (*GetFreelancerAdditionalCitiesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *GetFreelancerAdditionalCitiesResponse) GetAdditionalCities() []*CityItem {
+	if x != nil {
+		return x.AdditionalCities
+	}
+	return nil
+}
+
+type GetFreelancerCooperationTypesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerCooperationTypesRequest) Reset() {
+	*x = GetFreelancerCooperationTypesRequest{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerCooperationTypesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerCooperationTypesRequest) ProtoMessage() {}
+
+func (x *GetFreelancerCooperationTypesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerCooperationTypesRequest.ProtoReflect.Descriptor instead.
+func (*GetFreelancerCooperationTypesRequest) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{50}
+}
+
+type GetFreelancerCooperationTypesResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	CooperationTypes []*CooperationType     `protobuf:"bytes,1,rep,name=cooperation_types,json=cooperationTypes,proto3" json:"cooperation_types,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetFreelancerCooperationTypesResponse) Reset() {
+	*x = GetFreelancerCooperationTypesResponse{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerCooperationTypesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerCooperationTypesResponse) ProtoMessage() {}
+
+func (x *GetFreelancerCooperationTypesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerCooperationTypesResponse.ProtoReflect.Descriptor instead.
+func (*GetFreelancerCooperationTypesResponse) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *GetFreelancerCooperationTypesResponse) GetCooperationTypes() []*CooperationType {
+	if x != nil {
+		return x.CooperationTypes
+	}
+	return nil
+}
+
+type GetFreelancerPriceListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerPriceListRequest) Reset() {
+	*x = GetFreelancerPriceListRequest{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerPriceListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerPriceListRequest) ProtoMessage() {}
+
+func (x *GetFreelancerPriceListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerPriceListRequest.ProtoReflect.Descriptor instead.
+func (*GetFreelancerPriceListRequest) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *GetFreelancerPriceListRequest) GetFreelancerId() int64 {
+	if x != nil {
+		return x.FreelancerId
+	}
+	return 0
+}
+
+type GetFreelancerPriceListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PriceList     []*PriceList           `protobuf:"bytes,1,rep,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerPriceListResponse) Reset() {
+	*x = GetFreelancerPriceListResponse{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerPriceListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerPriceListResponse) ProtoMessage() {}
+
+func (x *GetFreelancerPriceListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerPriceListResponse.ProtoReflect.Descriptor instead.
+func (*GetFreelancerPriceListResponse) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *GetFreelancerPriceListResponse) GetPriceList() []*PriceList {
+	if x != nil {
+		return x.PriceList
+	}
+	return nil
+}
+
+type GetFreelancerRecommendationsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerRecommendationsRequest) Reset() {
+	*x = GetFreelancerRecommendationsRequest{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerRecommendationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerRecommendationsRequest) ProtoMessage() {}
+
+func (x *GetFreelancerRecommendationsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerRecommendationsRequest.ProtoReflect.Descriptor instead.
+func (*GetFreelancerRecommendationsRequest) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *GetFreelancerRecommendationsRequest) GetFreelancerId() int64 {
+	if x != nil {
+		return x.FreelancerId
+	}
+	return 0
+}
+
+type GetFreelancerRecommendationsResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Recommendations []*Recommendation      `protobuf:"bytes,1,rep,name=recommendations,proto3" json:"recommendations,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetFreelancerRecommendationsResponse) Reset() {
+	*x = GetFreelancerRecommendationsResponse{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[55]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerRecommendationsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerRecommendationsResponse) ProtoMessage() {}
+
+func (x *GetFreelancerRecommendationsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[55]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerRecommendationsResponse.ProtoReflect.Descriptor instead.
+func (*GetFreelancerRecommendationsResponse) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *GetFreelancerRecommendationsResponse) GetRecommendations() []*Recommendation {
+	if x != nil {
+		return x.Recommendations
+	}
+	return nil
+}
+
+type GetFreelancerSocialNetworksRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFreelancerSocialNetworksRequest) Reset() {
+	*x = GetFreelancerSocialNetworksRequest{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[56]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerSocialNetworksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerSocialNetworksRequest) ProtoMessage() {}
+
+func (x *GetFreelancerSocialNetworksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[56]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerSocialNetworksRequest.ProtoReflect.Descriptor instead.
+func (*GetFreelancerSocialNetworksRequest) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{56}
+}
+
+func (x *GetFreelancerSocialNetworksRequest) GetFreelancerId() int64 {
+	if x != nil {
+		return x.FreelancerId
+	}
+	return 0
+}
+
+type GetFreelancerSocialNetworksResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	SocialNetworks []*Society             `protobuf:"bytes,1,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetFreelancerSocialNetworksResponse) Reset() {
+	*x = GetFreelancerSocialNetworksResponse{}
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[57]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFreelancerSocialNetworksResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFreelancerSocialNetworksResponse) ProtoMessage() {}
+
+func (x *GetFreelancerSocialNetworksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[57]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFreelancerSocialNetworksResponse.ProtoReflect.Descriptor instead.
+func (*GetFreelancerSocialNetworksResponse) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{57}
+}
+
+func (x *GetFreelancerSocialNetworksResponse) GetSocialNetworks() []*Society {
+	if x != nil {
+		return x.SocialNetworks
+	}
+	return nil
 }
 
 type GetFreelancersResponse_Freelancer struct {
-	state           protoimpl.MessageState                             `protogen:"open.v1"`
-	Id              int64                                              `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                             `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                             `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                               `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *GetFreelancersResponse_Freelancer_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *GetFreelancersResponse_Freelancer) Reset() {
 	*x = GetFreelancersResponse_Freelancer{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[40]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1939,7 +2744,7 @@ func (x *GetFreelancersResponse_Freelancer) String() string {
 func (*GetFreelancersResponse_Freelancer) ProtoMessage() {}
 
 func (x *GetFreelancersResponse_Freelancer) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[40]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1952,7 +2757,7 @@ func (x *GetFreelancersResponse_Freelancer) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetFreelancersResponse_Freelancer.ProtoReflect.Descriptor instead.
 func (*GetFreelancersResponse_Freelancer) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{1, 0}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 0}
 }
 
 func (x *GetFreelancersResponse_Freelancer) GetId() int64 {
@@ -1983,79 +2788,27 @@ func (x *GetFreelancersResponse_Freelancer) GetIsActive() bool {
 	return false
 }
 
-func (x *GetFreelancersResponse_Freelancer) GetCooperationType() *GetFreelancersResponse_Freelancer_CooperationType {
+func (x *GetFreelancersResponse_Freelancer) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
 }
 
-type GetFreelancersResponse_Freelancer_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancersResponse_Freelancer_CooperationType) Reset() {
-	*x = GetFreelancersResponse_Freelancer_CooperationType{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[41]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancersResponse_Freelancer_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancersResponse_Freelancer_CooperationType) ProtoMessage() {}
-
-func (x *GetFreelancersResponse_Freelancer_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[41]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancersResponse_Freelancer_CooperationType.ProtoReflect.Descriptor instead.
-func (*GetFreelancersResponse_Freelancer_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{1, 0, 0}
-}
-
-func (x *GetFreelancersResponse_Freelancer_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetFreelancersResponse_Freelancer_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
 type SortFreelancersResponse_Freelancer struct {
-	state           protoimpl.MessageState                              `protogen:"open.v1"`
-	Id              int64                                               `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                              `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                              `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                                `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *SortFreelancersResponse_Freelancer_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *SortFreelancersResponse_Freelancer) Reset() {
 	*x = SortFreelancersResponse_Freelancer{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[42]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2067,7 +2820,7 @@ func (x *SortFreelancersResponse_Freelancer) String() string {
 func (*SortFreelancersResponse_Freelancer) ProtoMessage() {}
 
 func (x *SortFreelancersResponse_Freelancer) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[42]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2080,7 +2833,7 @@ func (x *SortFreelancersResponse_Freelancer) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use SortFreelancersResponse_Freelancer.ProtoReflect.Descriptor instead.
 func (*SortFreelancersResponse_Freelancer) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{3, 0}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *SortFreelancersResponse_Freelancer) GetId() int64 {
@@ -2111,79 +2864,27 @@ func (x *SortFreelancersResponse_Freelancer) GetIsActive() bool {
 	return false
 }
 
-func (x *SortFreelancersResponse_Freelancer) GetCooperationType() *SortFreelancersResponse_Freelancer_CooperationType {
+func (x *SortFreelancersResponse_Freelancer) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
 }
 
-type SortFreelancersResponse_Freelancer_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SortFreelancersResponse_Freelancer_CooperationType) Reset() {
-	*x = SortFreelancersResponse_Freelancer_CooperationType{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[43]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SortFreelancersResponse_Freelancer_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SortFreelancersResponse_Freelancer_CooperationType) ProtoMessage() {}
-
-func (x *SortFreelancersResponse_Freelancer_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[43]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SortFreelancersResponse_Freelancer_CooperationType.ProtoReflect.Descriptor instead.
-func (*SortFreelancersResponse_Freelancer_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{3, 0, 0}
-}
-
-func (x *SortFreelancersResponse_Freelancer_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *SortFreelancersResponse_Freelancer_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
 type SearchFreelancersResponse_Freelancer struct {
-	state           protoimpl.MessageState                                `protogen:"open.v1"`
-	Id              int64                                                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                                                `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Image           string                                                `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
-	IsActive        bool                                                  `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CooperationType *SearchFreelancersResponse_Freelancer_CooperationType `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *SearchFreelancersResponse_Freelancer) Reset() {
 	*x = SearchFreelancersResponse_Freelancer{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[44]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2195,7 +2896,7 @@ func (x *SearchFreelancersResponse_Freelancer) String() string {
 func (*SearchFreelancersResponse_Freelancer) ProtoMessage() {}
 
 func (x *SearchFreelancersResponse_Freelancer) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[44]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2909,7 @@ func (x *SearchFreelancersResponse_Freelancer) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use SearchFreelancersResponse_Freelancer.ProtoReflect.Descriptor instead.
 func (*SearchFreelancersResponse_Freelancer) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{5, 0}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *SearchFreelancersResponse_Freelancer) GetId() int64 {
@@ -2239,391 +2940,11 @@ func (x *SearchFreelancersResponse_Freelancer) GetIsActive() bool {
 	return false
 }
 
-func (x *SearchFreelancersResponse_Freelancer) GetCooperationType() *SearchFreelancersResponse_Freelancer_CooperationType {
+func (x *SearchFreelancersResponse_Freelancer) GetCooperationType() *CooperationType {
 	if x != nil {
 		return x.CooperationType
 	}
 	return nil
-}
-
-type SearchFreelancersResponse_Freelancer_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchFreelancersResponse_Freelancer_CooperationType) Reset() {
-	*x = SearchFreelancersResponse_Freelancer_CooperationType{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[45]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchFreelancersResponse_Freelancer_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchFreelancersResponse_Freelancer_CooperationType) ProtoMessage() {}
-
-func (x *SearchFreelancersResponse_Freelancer_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[45]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchFreelancersResponse_Freelancer_CooperationType.ProtoReflect.Descriptor instead.
-func (*SearchFreelancersResponse_Freelancer_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{5, 0, 0}
-}
-
-func (x *SearchFreelancersResponse_Freelancer_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *SearchFreelancersResponse_Freelancer_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetFreelancerByIDResponse_CityItem struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancerByIDResponse_CityItem) Reset() {
-	*x = GetFreelancerByIDResponse_CityItem{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[46]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancerByIDResponse_CityItem) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancerByIDResponse_CityItem) ProtoMessage() {}
-
-func (x *GetFreelancerByIDResponse_CityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[46]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancerByIDResponse_CityItem.ProtoReflect.Descriptor instead.
-func (*GetFreelancerByIDResponse_CityItem) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 0}
-}
-
-func (x *GetFreelancerByIDResponse_CityItem) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetFreelancerByIDResponse_CityItem) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetFreelancerByIDResponse_SpecialityItem struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancerByIDResponse_SpecialityItem) Reset() {
-	*x = GetFreelancerByIDResponse_SpecialityItem{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[47]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancerByIDResponse_SpecialityItem) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancerByIDResponse_SpecialityItem) ProtoMessage() {}
-
-func (x *GetFreelancerByIDResponse_SpecialityItem) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[47]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancerByIDResponse_SpecialityItem.ProtoReflect.Descriptor instead.
-func (*GetFreelancerByIDResponse_SpecialityItem) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 1}
-}
-
-func (x *GetFreelancerByIDResponse_SpecialityItem) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetFreelancerByIDResponse_SpecialityItem) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetFreelancerByIDResponse_CooperationType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancerByIDResponse_CooperationType) Reset() {
-	*x = GetFreelancerByIDResponse_CooperationType{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[48]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancerByIDResponse_CooperationType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancerByIDResponse_CooperationType) ProtoMessage() {}
-
-func (x *GetFreelancerByIDResponse_CooperationType) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[48]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancerByIDResponse_CooperationType.ProtoReflect.Descriptor instead.
-func (*GetFreelancerByIDResponse_CooperationType) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 2}
-}
-
-func (x *GetFreelancerByIDResponse_CooperationType) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetFreelancerByIDResponse_CooperationType) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type GetFreelancerByIDResponse_Society struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Slug          string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancerByIDResponse_Society) Reset() {
-	*x = GetFreelancerByIDResponse_Society{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[49]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancerByIDResponse_Society) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancerByIDResponse_Society) ProtoMessage() {}
-
-func (x *GetFreelancerByIDResponse_Society) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[49]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancerByIDResponse_Society.ProtoReflect.Descriptor instead.
-func (*GetFreelancerByIDResponse_Society) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 3}
-}
-
-func (x *GetFreelancerByIDResponse_Society) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetFreelancerByIDResponse_Society) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetFreelancerByIDResponse_Society) GetSlug() string {
-	if x != nil {
-		return x.Slug
-	}
-	return ""
-}
-
-type GetFreelancerByIDResponse_Recommendation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
-	DoctorName    string                 `protobuf:"bytes,2,opt,name=doctor_name,json=doctorName,proto3" json:"doctor_name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancerByIDResponse_Recommendation) Reset() {
-	*x = GetFreelancerByIDResponse_Recommendation{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[50]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancerByIDResponse_Recommendation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancerByIDResponse_Recommendation) ProtoMessage() {}
-
-func (x *GetFreelancerByIDResponse_Recommendation) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[50]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancerByIDResponse_Recommendation.ProtoReflect.Descriptor instead.
-func (*GetFreelancerByIDResponse_Recommendation) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 4}
-}
-
-func (x *GetFreelancerByIDResponse_Recommendation) GetDoctorId() int64 {
-	if x != nil {
-		return x.DoctorId
-	}
-	return 0
-}
-
-func (x *GetFreelancerByIDResponse_Recommendation) GetDoctorName() string {
-	if x != nil {
-		return x.DoctorName
-	}
-	return ""
-}
-
-type GetFreelancerByIDResponse_PriceList struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Amount        string                 `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetFreelancerByIDResponse_PriceList) Reset() {
-	*x = GetFreelancerByIDResponse_PriceList{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[51]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetFreelancerByIDResponse_PriceList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetFreelancerByIDResponse_PriceList) ProtoMessage() {}
-
-func (x *GetFreelancerByIDResponse_PriceList) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[51]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetFreelancerByIDResponse_PriceList.ProtoReflect.Descriptor instead.
-func (*GetFreelancerByIDResponse_PriceList) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{7, 5}
-}
-
-func (x *GetFreelancerByIDResponse_PriceList) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetFreelancerByIDResponse_PriceList) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetFreelancerByIDResponse_PriceList) GetAmount() string {
-	if x != nil {
-		return x.Amount
-	}
-	return ""
 }
 
 type AddRecommendationResponse_Doctor struct {
@@ -2640,7 +2961,7 @@ type AddRecommendationResponse_Doctor struct {
 
 func (x *AddRecommendationResponse_Doctor) Reset() {
 	*x = AddRecommendationResponse_Doctor{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[52]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2652,7 +2973,7 @@ func (x *AddRecommendationResponse_Doctor) String() string {
 func (*AddRecommendationResponse_Doctor) ProtoMessage() {}
 
 func (x *AddRecommendationResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[52]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2665,7 +2986,7 @@ func (x *AddRecommendationResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRecommendationResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*AddRecommendationResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{27, 0}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{33, 0}
 }
 
 func (x *AddRecommendationResponse_Doctor) GetId() int64 {
@@ -2722,7 +3043,7 @@ type AddPriceListRequest_PriceList struct {
 
 func (x *AddPriceListRequest_PriceList) Reset() {
 	*x = AddPriceListRequest_PriceList{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[53]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2734,7 +3055,7 @@ func (x *AddPriceListRequest_PriceList) String() string {
 func (*AddPriceListRequest_PriceList) ProtoMessage() {}
 
 func (x *AddPriceListRequest_PriceList) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[53]
+	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2747,7 +3068,7 @@ func (x *AddPriceListRequest_PriceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPriceListRequest_PriceList.ProtoReflect.Descriptor instead.
 func (*AddPriceListRequest_PriceList) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{32, 0}
+	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{38, 0}
 }
 
 func (x *AddPriceListRequest_PriceList) GetName() string {
@@ -2768,93 +3089,78 @@ var File_admin_freelancers_freelancer_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\n" +
-	"+admin/freelancers/freelancer/v1/admin.proto\x12\x1fadmin.freelancers.freelancer.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x17\n" +
-	"\x15GetFreelancersRequest\"\x9a\x03\n" +
+	"+admin/freelancers/freelancer/v1/admin.proto\x12\x1fadmin.freelancers.freelancer.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\".\n" +
+	"\bCityItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"4\n" +
+	"\x0eSpecialityItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"5\n" +
+	"\x0fCooperationType\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"A\n" +
+	"\aSociety\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\"N\n" +
+	"\x0eRecommendation\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1f\n" +
+	"\vdoctor_name\x18\x02 \x01(\tR\n" +
+	"doctorName\"G\n" +
+	"\tPriceList\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\tR\x06amount\"\x17\n" +
+	"\x15GetFreelancersRequest\"\xc1\x02\n" +
 	"\x16GetFreelancersResponse\x12d\n" +
-	"\vfreelancers\x18\x01 \x03(\v2B.admin.freelancers.freelancer.v1.GetFreelancersResponse.FreelancerR\vfreelancers\x1a\x99\x02\n" +
+	"\vfreelancers\x18\x01 \x03(\v2B.admin.freelancers.freelancer.v1.GetFreelancersResponse.FreelancerR\vfreelancers\x1a\xc0\x01\n" +
 	"\n" +
 	"Freelancer\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12}\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2R.admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\x18\n" +
-	"\x16SortFreelancersRequest\"\x9d\x03\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12[\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x0fcooperationType\"\x18\n" +
+	"\x16SortFreelancersRequest\"\xc3\x02\n" +
 	"\x17SortFreelancersResponse\x12e\n" +
-	"\vfreelancers\x18\x01 \x03(\v2C.admin.freelancers.freelancer.v1.SortFreelancersResponse.FreelancerR\vfreelancers\x1a\x9a\x02\n" +
+	"\vfreelancers\x18\x01 \x03(\v2C.admin.freelancers.freelancer.v1.SortFreelancersResponse.FreelancerR\vfreelancers\x1a\xc0\x01\n" +
 	"\n" +
 	"Freelancer\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12~\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2S.admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"0\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12[\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x0fcooperationType\"0\n" +
 	"\x18SearchFreelancersRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\"\xa4\x03\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\"\xc7\x02\n" +
 	"\x19SearchFreelancersResponse\x12g\n" +
-	"\vfreelancers\x18\x01 \x03(\v2E.admin.freelancers.freelancer.v1.SearchFreelancersResponse.FreelancerR\vfreelancers\x1a\x9d\x02\n" +
+	"\vfreelancers\x18\x01 \x03(\v2E.admin.freelancers.freelancer.v1.SearchFreelancersResponse.FreelancerR\vfreelancers\x1a\xc0\x01\n" +
 	"\n" +
 	"Freelancer\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12\x80\x01\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2U.admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.CooperationTypeR\x0fcooperationType\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"?\n" +
+	"\tis_active\x18\x04 \x01(\bR\bisActive\x12[\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x0fcooperationType\"?\n" +
 	"\x18GetFreelancerByIDRequest\x12#\n" +
-	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xe6\f\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xe1\x04\n" +
 	"\x19GetFreelancerByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12%\n" +
 	"\x0eportfolio_link\x18\x04 \x01(\tR\rportfolioLink\x12\x15\n" +
-	"\x06tg_url\x18\x05 \x01(\tR\x05tgUrl\x12`\n" +
-	"\tmain_city\x18\x06 \x01(\v2C.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CityItemR\bmainCity\x12r\n" +
-	"\x0fmain_speciality\x18\a \x01(\v2I.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.SpecialityItemR\x0emainSpeciality\x12\x14\n" +
-	"\x05image\x18\b \x01(\tR\x05image\x12u\n" +
-	"\x10cooperation_type\x18\t \x01(\v2J.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CooperationTypeR\x0fcooperationType\x12\x1b\n" +
+	"\x06tg_url\x18\x05 \x01(\tR\x05tgUrl\x12F\n" +
+	"\tmain_city\x18\x06 \x01(\v2).admin.freelancers.freelancer.v1.CityItemR\bmainCity\x12X\n" +
+	"\x0fmain_speciality\x18\a \x01(\v2/.admin.freelancers.freelancer.v1.SpecialityItemR\x0emainSpeciality\x12\x14\n" +
+	"\x05image\x18\b \x01(\tR\x05image\x12[\n" +
+	"\x10cooperation_type\x18\t \x01(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x0fcooperationType\x12\x1b\n" +
 	"\tis_active\x18\n" +
 	" \x01(\bR\bisActive\x123\n" +
 	"\x15agency_representative\x18\v \x01(\bR\x14agencyRepresentative\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12!\n" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
-	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\x12p\n" +
-	"\x11additional_cities\x18\x0f \x03(\v2C.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CityItemR\x10additionalCities\x12\x82\x01\n" +
-	"\x17additional_specialities\x18\x10 \x03(\v2I.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.SpecialityItemR\x16additionalSpecialities\x12k\n" +
-	"\x0fsocial_networks\x18\x11 \x03(\v2B.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.SocietyR\x0esocialNetworks\x12s\n" +
-	"\x0frecommendations\x18\x12 \x03(\v2I.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.RecommendationR\x0frecommendations\x12c\n" +
-	"\n" +
-	"price_list\x18\x13 \x03(\v2D.admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.PriceListR\tpriceList\x1a.\n" +
-	"\bCityItem\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +
-	"\x0eSpecialityItem\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1a5\n" +
-	"\x0fCooperationType\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1aA\n" +
-	"\aSociety\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x1aN\n" +
-	"\x0eRecommendation\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1f\n" +
-	"\vdoctor_name\x18\x02 \x01(\tR\n" +
-	"doctorName\x1aG\n" +
-	"\tPriceList\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\tR\x06amount\">\n" +
+	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\">\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +
 	"\x18UpdateFreelancerResponse\">\n" +
@@ -2932,7 +3238,31 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x1d\n" +
 	"\n" +
 	"society_id\x18\x02 \x01(\x03R\tsocietyId\"\x17\n" +
-	"\x15DeleteNetworkResponse2\xb7)\n" +
+	"\x15DeleteNetworkResponse\"Q\n" +
+	"*GetFreelancerAdditionalSpecialitiesRequest\x12#\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x97\x01\n" +
+	"+GetFreelancerAdditionalSpecialitiesResponse\x12h\n" +
+	"\x17additional_specialities\x18\x01 \x03(\v2/.admin.freelancers.freelancer.v1.SpecialityItemR\x16additionalSpecialities\"K\n" +
+	"$GetFreelancerAdditionalCitiesRequest\x12#\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x7f\n" +
+	"%GetFreelancerAdditionalCitiesResponse\x12V\n" +
+	"\x11additional_cities\x18\x01 \x03(\v2).admin.freelancers.freelancer.v1.CityItemR\x10additionalCities\"&\n" +
+	"$GetFreelancerCooperationTypesRequest\"\x86\x01\n" +
+	"%GetFreelancerCooperationTypesResponse\x12]\n" +
+	"\x11cooperation_types\x18\x01 \x03(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x10cooperationTypes\"D\n" +
+	"\x1dGetFreelancerPriceListRequest\x12#\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"k\n" +
+	"\x1eGetFreelancerPriceListResponse\x12I\n" +
+	"\n" +
+	"price_list\x18\x01 \x03(\v2*.admin.freelancers.freelancer.v1.PriceListR\tpriceList\"J\n" +
+	"#GetFreelancerRecommendationsRequest\x12#\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x81\x01\n" +
+	"$GetFreelancerRecommendationsResponse\x12Y\n" +
+	"\x0frecommendations\x18\x01 \x03(\v2/.admin.freelancers.freelancer.v1.RecommendationR\x0frecommendations\"I\n" +
+	"\"GetFreelancerSocialNetworksRequest\x12#\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"x\n" +
+	"#GetFreelancerSocialNetworksResponse\x12Q\n" +
+	"\x0fsocial_networks\x18\x01 \x03(\v2(.admin.freelancers.freelancer.v1.SocietyR\x0esocialNetworks2\xce7\n" +
 	"\x16FreelancerAdminService\x12\xd2\x01\n" +
 	"\x0eGetFreelancers\x126.admin.freelancers.freelancer.v1.GetFreelancersRequest\x1a7.admin.freelancers.freelancer.v1.GetFreelancersResponse\"O\x92A+\x12)Получение фрилансеров\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v1/admin/freelancers\x12\xdf\x01\n" +
 	"\x0fSortFreelancers\x127.admin.freelancers.freelancer.v1.SortFreelancersRequest\x1a8.admin.freelancers.freelancer.v1.SortFreelancersResponse\"Y\x92A-\x12+Сортировка фрилансеров\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/api/v1/admin/freelancers/sort\x12\xf5\x01\n" +
@@ -2954,7 +3284,13 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\x0fDeletePriceList\x127.admin.freelancers.freelancer.v1.DeletePriceListRequest\x1a8.admin.freelancers.freelancer.v1.DeletePriceListResponse\"p\x92A(\x12&Удаление прайс-листа\x82\xd3\xe4\x93\x02?:\x01*\":/api/v1/admin/freelancer/{freelancer_id}/delete_price_list\x12\xf3\x01\n" +
 	"\n" +
 	"AddNetwork\x122.admin.freelancers.freelancer.v1.AddNetworkRequest\x1a3.admin.freelancers.freelancer.v1.AddNetworkResponse\"|\x92A:\x128Добавление соцсети фрилансеру\x82\xd3\xe4\x93\x029:\x01*\"4/api/v1/admin/freelancer/{freelancer_id}/add_network\x12\xe6\x01\n" +
-	"\rDeleteNetwork\x125.admin.freelancers.freelancer.v1.DeleteNetworkRequest\x1a6.admin.freelancers.freelancer.v1.DeleteNetworkResponse\"f\x92A!\x12\x1fУдаление соцсети\x82\xd3\xe4\x93\x02<:\x01*\"7/api/v1/admin/freelancer/{freelancer_id}/delete_networkB%Z#api/admin/freelancers/freelancer/v1b\x06proto3"
+	"\rDeleteNetwork\x125.admin.freelancers.freelancer.v1.DeleteNetworkRequest\x1a6.admin.freelancers.freelancer.v1.DeleteNetworkResponse\"f\x92A!\x12\x1fУдаление соцсети\x82\xd3\xe4\x93\x02<:\x01*\"7/api/v1/admin/freelancer/{freelancer_id}/delete_network\x12\xdd\x02\n" +
+	"#GetFreelancerAdditionalSpecialities\x12K.admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesRequest\x1aL.admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse\"\x9a\x01\x92AO\x12MДоп специальности конкретного фрилансера\x82\xd3\xe4\x93\x02B\x12@/api/v1/admin/freelancer/{freelancer_id}/additional_specialities\x12\xb7\x02\n" +
+	"\x1dGetFreelancerAdditionalCities\x12E.admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesRequest\x1aF.admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse\"\x86\x01\x92AA\x12?Доп города конкретного фрилансера\x82\xd3\xe4\x93\x02<\x12:/api/v1/admin/freelancer/{freelancer_id}/additional_cities\x12\x9b\x02\n" +
+	"\x1dGetFreelancerCooperationTypes\x12E.admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesRequest\x1aF.admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse\"k\x92A6\x124Типы размещения фрилансеров\x82\xd3\xe4\x93\x02,\x12*/api/v1/admin/freelancer/cooperation_types\x12\x83\x02\n" +
+	"\x16GetFreelancerPriceList\x12>.admin.freelancers.freelancer.v1.GetFreelancerPriceListRequest\x1a?.admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse\"h\x92A*\x12(Прайс-лист фрилансера\x82\xd3\xe4\x93\x025\x123/api/v1/admin/freelancer/{freelancer_id}/price_list\x12\x9f\x02\n" +
+	"\x1cGetFreelancerRecommendations\x12D.admin.freelancers.freelancer.v1.GetFreelancerRecommendationsRequest\x1aE.admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse\"r\x92A/\x12-Рекомендации фрилансера\x82\xd3\xe4\x93\x02:\x128/api/v1/admin/freelancer/{freelancer_id}/recommendations\x12\xb4\x02\n" +
+	"\x1bGetFreelancerSocialNetworks\x12C.admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksRequest\x1aD.admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse\"\x89\x01\x92AF\x12DСоцсети в которых работает фрилансер\x82\xd3\xe4\x93\x02:\x128/api/v1/admin/freelancer/{freelancer_id}/social_networksB%Z#api/admin/freelancers/freelancer/v1b\x06proto3"
 
 var (
 	file_admin_freelancers_freelancer_v1_admin_proto_rawDescOnce sync.Once
@@ -2968,125 +3304,147 @@ func file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP() []byte {
 	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescData
 }
 
-var file_admin_freelancers_freelancer_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 54)
+var file_admin_freelancers_freelancer_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 63)
 var file_admin_freelancers_freelancer_v1_admin_proto_goTypes = []any{
-	(*GetFreelancersRequest)(nil),                                // 0: admin.freelancers.freelancer.v1.GetFreelancersRequest
-	(*GetFreelancersResponse)(nil),                               // 1: admin.freelancers.freelancer.v1.GetFreelancersResponse
-	(*SortFreelancersRequest)(nil),                               // 2: admin.freelancers.freelancer.v1.SortFreelancersRequest
-	(*SortFreelancersResponse)(nil),                              // 3: admin.freelancers.freelancer.v1.SortFreelancersResponse
-	(*SearchFreelancersRequest)(nil),                             // 4: admin.freelancers.freelancer.v1.SearchFreelancersRequest
-	(*SearchFreelancersResponse)(nil),                            // 5: admin.freelancers.freelancer.v1.SearchFreelancersResponse
-	(*GetFreelancerByIDRequest)(nil),                             // 6: admin.freelancers.freelancer.v1.GetFreelancerByIDRequest
-	(*GetFreelancerByIDResponse)(nil),                            // 7: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse
-	(*UpdateFreelancerRequest)(nil),                              // 8: admin.freelancers.freelancer.v1.UpdateFreelancerRequest
-	(*UpdateFreelancerResponse)(nil),                             // 9: admin.freelancers.freelancer.v1.UpdateFreelancerResponse
-	(*DeleteFreelancerRequest)(nil),                              // 10: admin.freelancers.freelancer.v1.DeleteFreelancerRequest
-	(*DeleteFreelancerResponse)(nil),                             // 11: admin.freelancers.freelancer.v1.DeleteFreelancerResponse
-	(*ActivateFreelancerRequest)(nil),                            // 12: admin.freelancers.freelancer.v1.ActivateFreelancerRequest
-	(*ActivateFreelancerResponse)(nil),                           // 13: admin.freelancers.freelancer.v1.ActivateFreelancerResponse
-	(*DeactivateFreelancerRequest)(nil),                          // 14: admin.freelancers.freelancer.v1.DeactivateFreelancerRequest
-	(*DeactivateFreelancerResponse)(nil),                         // 15: admin.freelancers.freelancer.v1.DeactivateFreelancerResponse
-	(*SaveFreelancerPhotoRequest)(nil),                           // 16: admin.freelancers.freelancer.v1.SaveFreelancerPhotoRequest
-	(*SaveFreelancerPhotoResponse)(nil),                          // 17: admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse
-	(*AddAdditionalCityRequest)(nil),                             // 18: admin.freelancers.freelancer.v1.AddAdditionalCityRequest
-	(*AddAdditionalCityResponse)(nil),                            // 19: admin.freelancers.freelancer.v1.AddAdditionalCityResponse
-	(*AddFreelancerAdditionalSpecialityRequest)(nil),             // 20: admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityRequest
-	(*AddFreelancerAdditionalSpecialityResponse)(nil),            // 21: admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse
-	(*DeleteFreelancerAdditionalCityRequest)(nil),                // 22: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityRequest
-	(*DeleteFreelancerAdditionalCityResponse)(nil),               // 23: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse
-	(*DeleteFreelancerAdditionalSpecialityRequest)(nil),          // 24: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityRequest
-	(*DeleteFreelancerAdditionalSpecialityResponse)(nil),         // 25: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse
-	(*AddRecommendationRequest)(nil),                             // 26: admin.freelancers.freelancer.v1.AddRecommendationRequest
-	(*AddRecommendationResponse)(nil),                            // 27: admin.freelancers.freelancer.v1.AddRecommendationResponse
-	(*DeleteRecommendationRequest)(nil),                          // 28: admin.freelancers.freelancer.v1.DeleteRecommendationRequest
-	(*DeleteRecommendationResponse)(nil),                         // 29: admin.freelancers.freelancer.v1.DeleteRecommendationResponse
-	(*ChangeRecommendationSortRequest)(nil),                      // 30: admin.freelancers.freelancer.v1.ChangeRecommendationSortRequest
-	(*ChangeRecommendationSortResponse)(nil),                     // 31: admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse
-	(*AddPriceListRequest)(nil),                                  // 32: admin.freelancers.freelancer.v1.AddPriceListRequest
-	(*AddPriceListResponse)(nil),                                 // 33: admin.freelancers.freelancer.v1.AddPriceListResponse
-	(*DeletePriceListRequest)(nil),                               // 34: admin.freelancers.freelancer.v1.DeletePriceListRequest
-	(*DeletePriceListResponse)(nil),                              // 35: admin.freelancers.freelancer.v1.DeletePriceListResponse
-	(*AddNetworkRequest)(nil),                                    // 36: admin.freelancers.freelancer.v1.AddNetworkRequest
-	(*AddNetworkResponse)(nil),                                   // 37: admin.freelancers.freelancer.v1.AddNetworkResponse
-	(*DeleteNetworkRequest)(nil),                                 // 38: admin.freelancers.freelancer.v1.DeleteNetworkRequest
-	(*DeleteNetworkResponse)(nil),                                // 39: admin.freelancers.freelancer.v1.DeleteNetworkResponse
-	(*GetFreelancersResponse_Freelancer)(nil),                    // 40: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer
-	(*GetFreelancersResponse_Freelancer_CooperationType)(nil),    // 41: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.CooperationType
-	(*SortFreelancersResponse_Freelancer)(nil),                   // 42: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer
-	(*SortFreelancersResponse_Freelancer_CooperationType)(nil),   // 43: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.CooperationType
-	(*SearchFreelancersResponse_Freelancer)(nil),                 // 44: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer
-	(*SearchFreelancersResponse_Freelancer_CooperationType)(nil), // 45: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.CooperationType
-	(*GetFreelancerByIDResponse_CityItem)(nil),                   // 46: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CityItem
-	(*GetFreelancerByIDResponse_SpecialityItem)(nil),             // 47: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.SpecialityItem
-	(*GetFreelancerByIDResponse_CooperationType)(nil),            // 48: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CooperationType
-	(*GetFreelancerByIDResponse_Society)(nil),                    // 49: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.Society
-	(*GetFreelancerByIDResponse_Recommendation)(nil),             // 50: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.Recommendation
-	(*GetFreelancerByIDResponse_PriceList)(nil),                  // 51: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.PriceList
-	(*AddRecommendationResponse_Doctor)(nil),                     // 52: admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor
-	(*AddPriceListRequest_PriceList)(nil),                        // 53: admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList
+	(*CityItem)(nil),                                     // 0: admin.freelancers.freelancer.v1.CityItem
+	(*SpecialityItem)(nil),                               // 1: admin.freelancers.freelancer.v1.SpecialityItem
+	(*CooperationType)(nil),                              // 2: admin.freelancers.freelancer.v1.CooperationType
+	(*Society)(nil),                                      // 3: admin.freelancers.freelancer.v1.Society
+	(*Recommendation)(nil),                               // 4: admin.freelancers.freelancer.v1.Recommendation
+	(*PriceList)(nil),                                    // 5: admin.freelancers.freelancer.v1.PriceList
+	(*GetFreelancersRequest)(nil),                        // 6: admin.freelancers.freelancer.v1.GetFreelancersRequest
+	(*GetFreelancersResponse)(nil),                       // 7: admin.freelancers.freelancer.v1.GetFreelancersResponse
+	(*SortFreelancersRequest)(nil),                       // 8: admin.freelancers.freelancer.v1.SortFreelancersRequest
+	(*SortFreelancersResponse)(nil),                      // 9: admin.freelancers.freelancer.v1.SortFreelancersResponse
+	(*SearchFreelancersRequest)(nil),                     // 10: admin.freelancers.freelancer.v1.SearchFreelancersRequest
+	(*SearchFreelancersResponse)(nil),                    // 11: admin.freelancers.freelancer.v1.SearchFreelancersResponse
+	(*GetFreelancerByIDRequest)(nil),                     // 12: admin.freelancers.freelancer.v1.GetFreelancerByIDRequest
+	(*GetFreelancerByIDResponse)(nil),                    // 13: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse
+	(*UpdateFreelancerRequest)(nil),                      // 14: admin.freelancers.freelancer.v1.UpdateFreelancerRequest
+	(*UpdateFreelancerResponse)(nil),                     // 15: admin.freelancers.freelancer.v1.UpdateFreelancerResponse
+	(*DeleteFreelancerRequest)(nil),                      // 16: admin.freelancers.freelancer.v1.DeleteFreelancerRequest
+	(*DeleteFreelancerResponse)(nil),                     // 17: admin.freelancers.freelancer.v1.DeleteFreelancerResponse
+	(*ActivateFreelancerRequest)(nil),                    // 18: admin.freelancers.freelancer.v1.ActivateFreelancerRequest
+	(*ActivateFreelancerResponse)(nil),                   // 19: admin.freelancers.freelancer.v1.ActivateFreelancerResponse
+	(*DeactivateFreelancerRequest)(nil),                  // 20: admin.freelancers.freelancer.v1.DeactivateFreelancerRequest
+	(*DeactivateFreelancerResponse)(nil),                 // 21: admin.freelancers.freelancer.v1.DeactivateFreelancerResponse
+	(*SaveFreelancerPhotoRequest)(nil),                   // 22: admin.freelancers.freelancer.v1.SaveFreelancerPhotoRequest
+	(*SaveFreelancerPhotoResponse)(nil),                  // 23: admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse
+	(*AddAdditionalCityRequest)(nil),                     // 24: admin.freelancers.freelancer.v1.AddAdditionalCityRequest
+	(*AddAdditionalCityResponse)(nil),                    // 25: admin.freelancers.freelancer.v1.AddAdditionalCityResponse
+	(*AddFreelancerAdditionalSpecialityRequest)(nil),     // 26: admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityRequest
+	(*AddFreelancerAdditionalSpecialityResponse)(nil),    // 27: admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse
+	(*DeleteFreelancerAdditionalCityRequest)(nil),        // 28: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityRequest
+	(*DeleteFreelancerAdditionalCityResponse)(nil),       // 29: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse
+	(*DeleteFreelancerAdditionalSpecialityRequest)(nil),  // 30: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityRequest
+	(*DeleteFreelancerAdditionalSpecialityResponse)(nil), // 31: admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse
+	(*AddRecommendationRequest)(nil),                     // 32: admin.freelancers.freelancer.v1.AddRecommendationRequest
+	(*AddRecommendationResponse)(nil),                    // 33: admin.freelancers.freelancer.v1.AddRecommendationResponse
+	(*DeleteRecommendationRequest)(nil),                  // 34: admin.freelancers.freelancer.v1.DeleteRecommendationRequest
+	(*DeleteRecommendationResponse)(nil),                 // 35: admin.freelancers.freelancer.v1.DeleteRecommendationResponse
+	(*ChangeRecommendationSortRequest)(nil),              // 36: admin.freelancers.freelancer.v1.ChangeRecommendationSortRequest
+	(*ChangeRecommendationSortResponse)(nil),             // 37: admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse
+	(*AddPriceListRequest)(nil),                          // 38: admin.freelancers.freelancer.v1.AddPriceListRequest
+	(*AddPriceListResponse)(nil),                         // 39: admin.freelancers.freelancer.v1.AddPriceListResponse
+	(*DeletePriceListRequest)(nil),                       // 40: admin.freelancers.freelancer.v1.DeletePriceListRequest
+	(*DeletePriceListResponse)(nil),                      // 41: admin.freelancers.freelancer.v1.DeletePriceListResponse
+	(*AddNetworkRequest)(nil),                            // 42: admin.freelancers.freelancer.v1.AddNetworkRequest
+	(*AddNetworkResponse)(nil),                           // 43: admin.freelancers.freelancer.v1.AddNetworkResponse
+	(*DeleteNetworkRequest)(nil),                         // 44: admin.freelancers.freelancer.v1.DeleteNetworkRequest
+	(*DeleteNetworkResponse)(nil),                        // 45: admin.freelancers.freelancer.v1.DeleteNetworkResponse
+	(*GetFreelancerAdditionalSpecialitiesRequest)(nil),   // 46: admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesRequest
+	(*GetFreelancerAdditionalSpecialitiesResponse)(nil),  // 47: admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse
+	(*GetFreelancerAdditionalCitiesRequest)(nil),         // 48: admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesRequest
+	(*GetFreelancerAdditionalCitiesResponse)(nil),        // 49: admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse
+	(*GetFreelancerCooperationTypesRequest)(nil),         // 50: admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesRequest
+	(*GetFreelancerCooperationTypesResponse)(nil),        // 51: admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse
+	(*GetFreelancerPriceListRequest)(nil),                // 52: admin.freelancers.freelancer.v1.GetFreelancerPriceListRequest
+	(*GetFreelancerPriceListResponse)(nil),               // 53: admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse
+	(*GetFreelancerRecommendationsRequest)(nil),          // 54: admin.freelancers.freelancer.v1.GetFreelancerRecommendationsRequest
+	(*GetFreelancerRecommendationsResponse)(nil),         // 55: admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse
+	(*GetFreelancerSocialNetworksRequest)(nil),           // 56: admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksRequest
+	(*GetFreelancerSocialNetworksResponse)(nil),          // 57: admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse
+	(*GetFreelancersResponse_Freelancer)(nil),            // 58: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer
+	(*SortFreelancersResponse_Freelancer)(nil),           // 59: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer
+	(*SearchFreelancersResponse_Freelancer)(nil),         // 60: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer
+	(*AddRecommendationResponse_Doctor)(nil),             // 61: admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor
+	(*AddPriceListRequest_PriceList)(nil),                // 62: admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList
 }
 var file_admin_freelancers_freelancer_v1_admin_proto_depIdxs = []int32{
-	40, // 0: admin.freelancers.freelancer.v1.GetFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer
-	42, // 1: admin.freelancers.freelancer.v1.SortFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer
-	44, // 2: admin.freelancers.freelancer.v1.SearchFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer
-	46, // 3: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.main_city:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CityItem
-	47, // 4: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.main_speciality:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.SpecialityItem
-	48, // 5: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.cooperation_type:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CooperationType
-	46, // 6: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.additional_cities:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.CityItem
-	47, // 7: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.additional_specialities:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.SpecialityItem
-	49, // 8: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.social_networks:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.Society
-	50, // 9: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.recommendations:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.Recommendation
-	51, // 10: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.price_list:type_name -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.PriceList
-	52, // 11: admin.freelancers.freelancer.v1.AddRecommendationResponse.doctor:type_name -> admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor
-	53, // 12: admin.freelancers.freelancer.v1.AddPriceListRequest.price_list:type_name -> admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList
-	41, // 13: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.CooperationType
-	43, // 14: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.CooperationType
-	45, // 15: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.CooperationType
-	0,  // 16: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:input_type -> admin.freelancers.freelancer.v1.GetFreelancersRequest
-	2,  // 17: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:input_type -> admin.freelancers.freelancer.v1.SortFreelancersRequest
-	4,  // 18: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:input_type -> admin.freelancers.freelancer.v1.SearchFreelancersRequest
-	6,  // 19: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:input_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDRequest
-	8,  // 20: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:input_type -> admin.freelancers.freelancer.v1.UpdateFreelancerRequest
-	10, // 21: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerRequest
-	12, // 22: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:input_type -> admin.freelancers.freelancer.v1.ActivateFreelancerRequest
-	14, // 23: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:input_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerRequest
-	16, // 24: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:input_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoRequest
-	18, // 25: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:input_type -> admin.freelancers.freelancer.v1.AddAdditionalCityRequest
-	20, // 26: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityRequest
-	22, // 27: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityRequest
-	24, // 28: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityRequest
-	26, // 29: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:input_type -> admin.freelancers.freelancer.v1.AddRecommendationRequest
-	28, // 30: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:input_type -> admin.freelancers.freelancer.v1.DeleteRecommendationRequest
-	30, // 31: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:input_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortRequest
-	32, // 32: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:input_type -> admin.freelancers.freelancer.v1.AddPriceListRequest
-	34, // 33: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:input_type -> admin.freelancers.freelancer.v1.DeletePriceListRequest
-	36, // 34: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:input_type -> admin.freelancers.freelancer.v1.AddNetworkRequest
-	38, // 35: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:input_type -> admin.freelancers.freelancer.v1.DeleteNetworkRequest
-	1,  // 36: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:output_type -> admin.freelancers.freelancer.v1.GetFreelancersResponse
-	3,  // 37: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:output_type -> admin.freelancers.freelancer.v1.SortFreelancersResponse
-	5,  // 38: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:output_type -> admin.freelancers.freelancer.v1.SearchFreelancersResponse
-	7,  // 39: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:output_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse
-	9,  // 40: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:output_type -> admin.freelancers.freelancer.v1.UpdateFreelancerResponse
-	11, // 41: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerResponse
-	13, // 42: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:output_type -> admin.freelancers.freelancer.v1.ActivateFreelancerResponse
-	15, // 43: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:output_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerResponse
-	17, // 44: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:output_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse
-	19, // 45: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:output_type -> admin.freelancers.freelancer.v1.AddAdditionalCityResponse
-	21, // 46: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse
-	23, // 47: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse
-	25, // 48: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse
-	27, // 49: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:output_type -> admin.freelancers.freelancer.v1.AddRecommendationResponse
-	29, // 50: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:output_type -> admin.freelancers.freelancer.v1.DeleteRecommendationResponse
-	31, // 51: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:output_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse
-	33, // 52: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:output_type -> admin.freelancers.freelancer.v1.AddPriceListResponse
-	35, // 53: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:output_type -> admin.freelancers.freelancer.v1.DeletePriceListResponse
-	37, // 54: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:output_type -> admin.freelancers.freelancer.v1.AddNetworkResponse
-	39, // 55: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:output_type -> admin.freelancers.freelancer.v1.DeleteNetworkResponse
-	36, // [36:56] is the sub-list for method output_type
-	16, // [16:36] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	58, // 0: admin.freelancers.freelancer.v1.GetFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer
+	59, // 1: admin.freelancers.freelancer.v1.SortFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer
+	60, // 2: admin.freelancers.freelancer.v1.SearchFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer
+	0,  // 3: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.main_city:type_name -> admin.freelancers.freelancer.v1.CityItem
+	1,  // 4: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.main_speciality:type_name -> admin.freelancers.freelancer.v1.SpecialityItem
+	2,  // 5: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	61, // 6: admin.freelancers.freelancer.v1.AddRecommendationResponse.doctor:type_name -> admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor
+	62, // 7: admin.freelancers.freelancer.v1.AddPriceListRequest.price_list:type_name -> admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList
+	1,  // 8: admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.freelancers.freelancer.v1.SpecialityItem
+	0,  // 9: admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse.additional_cities:type_name -> admin.freelancers.freelancer.v1.CityItem
+	2,  // 10: admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse.cooperation_types:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	5,  // 11: admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse.price_list:type_name -> admin.freelancers.freelancer.v1.PriceList
+	4,  // 12: admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse.recommendations:type_name -> admin.freelancers.freelancer.v1.Recommendation
+	3,  // 13: admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse.social_networks:type_name -> admin.freelancers.freelancer.v1.Society
+	2,  // 14: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	2,  // 15: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	2,  // 16: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	6,  // 17: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:input_type -> admin.freelancers.freelancer.v1.GetFreelancersRequest
+	8,  // 18: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:input_type -> admin.freelancers.freelancer.v1.SortFreelancersRequest
+	10, // 19: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:input_type -> admin.freelancers.freelancer.v1.SearchFreelancersRequest
+	12, // 20: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:input_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDRequest
+	14, // 21: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:input_type -> admin.freelancers.freelancer.v1.UpdateFreelancerRequest
+	16, // 22: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerRequest
+	18, // 23: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:input_type -> admin.freelancers.freelancer.v1.ActivateFreelancerRequest
+	20, // 24: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:input_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerRequest
+	22, // 25: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:input_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoRequest
+	24, // 26: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:input_type -> admin.freelancers.freelancer.v1.AddAdditionalCityRequest
+	26, // 27: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityRequest
+	28, // 28: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityRequest
+	30, // 29: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityRequest
+	32, // 30: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:input_type -> admin.freelancers.freelancer.v1.AddRecommendationRequest
+	34, // 31: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:input_type -> admin.freelancers.freelancer.v1.DeleteRecommendationRequest
+	36, // 32: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:input_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortRequest
+	38, // 33: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:input_type -> admin.freelancers.freelancer.v1.AddPriceListRequest
+	40, // 34: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:input_type -> admin.freelancers.freelancer.v1.DeletePriceListRequest
+	42, // 35: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:input_type -> admin.freelancers.freelancer.v1.AddNetworkRequest
+	44, // 36: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:input_type -> admin.freelancers.freelancer.v1.DeleteNetworkRequest
+	46, // 37: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalSpecialities:input_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesRequest
+	48, // 38: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalCities:input_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesRequest
+	50, // 39: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerCooperationTypes:input_type -> admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesRequest
+	52, // 40: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerPriceList:input_type -> admin.freelancers.freelancer.v1.GetFreelancerPriceListRequest
+	54, // 41: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerRecommendations:input_type -> admin.freelancers.freelancer.v1.GetFreelancerRecommendationsRequest
+	56, // 42: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerSocialNetworks:input_type -> admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksRequest
+	7,  // 43: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:output_type -> admin.freelancers.freelancer.v1.GetFreelancersResponse
+	9,  // 44: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:output_type -> admin.freelancers.freelancer.v1.SortFreelancersResponse
+	11, // 45: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:output_type -> admin.freelancers.freelancer.v1.SearchFreelancersResponse
+	13, // 46: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:output_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse
+	15, // 47: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:output_type -> admin.freelancers.freelancer.v1.UpdateFreelancerResponse
+	17, // 48: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerResponse
+	19, // 49: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:output_type -> admin.freelancers.freelancer.v1.ActivateFreelancerResponse
+	21, // 50: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:output_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerResponse
+	23, // 51: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:output_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse
+	25, // 52: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:output_type -> admin.freelancers.freelancer.v1.AddAdditionalCityResponse
+	27, // 53: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse
+	29, // 54: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse
+	31, // 55: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse
+	33, // 56: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:output_type -> admin.freelancers.freelancer.v1.AddRecommendationResponse
+	35, // 57: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:output_type -> admin.freelancers.freelancer.v1.DeleteRecommendationResponse
+	37, // 58: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:output_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse
+	39, // 59: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:output_type -> admin.freelancers.freelancer.v1.AddPriceListResponse
+	41, // 60: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:output_type -> admin.freelancers.freelancer.v1.DeletePriceListResponse
+	43, // 61: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:output_type -> admin.freelancers.freelancer.v1.AddNetworkResponse
+	45, // 62: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:output_type -> admin.freelancers.freelancer.v1.DeleteNetworkResponse
+	47, // 63: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalSpecialities:output_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse
+	49, // 64: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalCities:output_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse
+	51, // 65: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerCooperationTypes:output_type -> admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse
+	53, // 66: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerPriceList:output_type -> admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse
+	55, // 67: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerRecommendations:output_type -> admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse
+	57, // 68: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerSocialNetworks:output_type -> admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse
+	43, // [43:69] is the sub-list for method output_type
+	17, // [17:43] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_admin_freelancers_freelancer_v1_admin_proto_init() }
@@ -3100,7 +3458,7 @@ func file_admin_freelancers_freelancer_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_freelancers_freelancer_v1_admin_proto_rawDesc), len(file_admin_freelancers_freelancer_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   54,
+			NumMessages:   63,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -19,21 +19,24 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DoctorAdminService_GetDoctors_FullMethodName                 = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctors"
-	DoctorAdminService_GetDoctorsByIDs_FullMethodName            = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorsByIDs"
-	DoctorAdminService_SortDoctors_FullMethodName                = "/admin.doctors.doctors.v1.DoctorAdminService/SortDoctors"
-	DoctorAdminService_SearchDoctors_FullMethodName              = "/admin.doctors.doctors.v1.DoctorAdminService/SearchDoctors"
-	DoctorAdminService_GetDoctorByID_FullMethodName              = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorByID"
-	DoctorAdminService_UpdateDoctor_FullMethodName               = "/admin.doctors.doctors.v1.DoctorAdminService/UpdateDoctor"
-	DoctorAdminService_DeleteDoctor_FullMethodName               = "/admin.doctors.doctors.v1.DoctorAdminService/DeleteDoctor"
-	DoctorAdminService_ActivateDoctor_FullMethodName             = "/admin.doctors.doctors.v1.DoctorAdminService/ActivateDoctor"
-	DoctorAdminService_DeactivateDoctor_FullMethodName           = "/admin.doctors.doctors.v1.DoctorAdminService/DeactivateDoctor"
-	DoctorAdminService_SaveDoctorPhoto_FullMethodName            = "/admin.doctors.doctors.v1.DoctorAdminService/SaveDoctorPhoto"
-	DoctorAdminService_AddAdditionalCity_FullMethodName          = "/admin.doctors.doctors.v1.DoctorAdminService/AddAdditionalCity"
-	DoctorAdminService_AddAdditionalSpeciality_FullMethodName    = "/admin.doctors.doctors.v1.DoctorAdminService/AddAdditionalSpeciality"
-	DoctorAdminService_DeleteAdditionalCity_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/DeleteAdditionalCity"
-	DoctorAdminService_DeleteAdditionalSpeciality_FullMethodName = "/admin.doctors.doctors.v1.DoctorAdminService/DeleteAdditionalSpeciality"
-	DoctorAdminService_UpdateSubscribers_FullMethodName          = "/admin.doctors.doctors.v1.DoctorAdminService/UpdateSubscribers"
+	DoctorAdminService_GetDoctors_FullMethodName                      = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctors"
+	DoctorAdminService_GetDoctorsByIDs_FullMethodName                 = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorsByIDs"
+	DoctorAdminService_SortDoctors_FullMethodName                     = "/admin.doctors.doctors.v1.DoctorAdminService/SortDoctors"
+	DoctorAdminService_SearchDoctors_FullMethodName                   = "/admin.doctors.doctors.v1.DoctorAdminService/SearchDoctors"
+	DoctorAdminService_GetDoctorByID_FullMethodName                   = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorByID"
+	DoctorAdminService_UpdateDoctor_FullMethodName                    = "/admin.doctors.doctors.v1.DoctorAdminService/UpdateDoctor"
+	DoctorAdminService_DeleteDoctor_FullMethodName                    = "/admin.doctors.doctors.v1.DoctorAdminService/DeleteDoctor"
+	DoctorAdminService_ActivateDoctor_FullMethodName                  = "/admin.doctors.doctors.v1.DoctorAdminService/ActivateDoctor"
+	DoctorAdminService_DeactivateDoctor_FullMethodName                = "/admin.doctors.doctors.v1.DoctorAdminService/DeactivateDoctor"
+	DoctorAdminService_SaveDoctorPhoto_FullMethodName                 = "/admin.doctors.doctors.v1.DoctorAdminService/SaveDoctorPhoto"
+	DoctorAdminService_AddAdditionalCity_FullMethodName               = "/admin.doctors.doctors.v1.DoctorAdminService/AddAdditionalCity"
+	DoctorAdminService_AddAdditionalSpeciality_FullMethodName         = "/admin.doctors.doctors.v1.DoctorAdminService/AddAdditionalSpeciality"
+	DoctorAdminService_DeleteAdditionalCity_FullMethodName            = "/admin.doctors.doctors.v1.DoctorAdminService/DeleteAdditionalCity"
+	DoctorAdminService_DeleteAdditionalSpeciality_FullMethodName      = "/admin.doctors.doctors.v1.DoctorAdminService/DeleteAdditionalSpeciality"
+	DoctorAdminService_UpdateSubscribers_FullMethodName               = "/admin.doctors.doctors.v1.DoctorAdminService/UpdateSubscribers"
+	DoctorAdminService_GetDoctorAdditionalSpecialities_FullMethodName = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalSpecialities"
+	DoctorAdminService_GetDoctorAdditionalCities_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalCities"
+	DoctorAdminService_GetDoctorCooperationTypes_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorCooperationTypes"
 )
 
 // DoctorAdminServiceClient is the client API for DoctorAdminService service.
@@ -46,17 +49,6 @@ type DoctorAdminServiceClient interface {
 	GetDoctors(ctx context.Context, in *GetDoctorsRequest, opts ...grpc.CallOption) (*GetDoctorsResponse, error)
 	GetDoctorsByIDs(ctx context.Context, in *GetDoctorsByIDsRequest, opts ...grpc.CallOption) (*GetDoctorsByIDsResponse, error)
 	SortDoctors(ctx context.Context, in *SortDoctorsRequest, opts ...grpc.CallOption) (*SortDoctorsResponse, error)
-	// todo подумать тоже, а надо ли тут эту сортировку
-	//
-	//	rpc FilterDoctors(FilterDoctorsRequest) returns (FilterDoctorsResponse) {
-	//	    option (google.api.http) = {
-	//	        post: "/api/v1/admin/doctors/filter"
-	//	        body: "*"
-	//	    };
-	//	    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-	//	        summary: "Фильтрация врачей"
-	//	    };
-	//	}
 	SearchDoctors(ctx context.Context, in *SearchDoctorsRequest, opts ...grpc.CallOption) (*SearchDoctorsResponse, error)
 	GetDoctorByID(ctx context.Context, in *GetDoctorByIDRequest, opts ...grpc.CallOption) (*GetDoctorByIDResponse, error)
 	UpdateDoctor(ctx context.Context, in *UpdateDoctorRequest, opts ...grpc.CallOption) (*UpdateDoctorResponse, error)
@@ -69,6 +61,9 @@ type DoctorAdminServiceClient interface {
 	DeleteAdditionalCity(ctx context.Context, in *DeleteDoctorAdditionalCityRequest, opts ...grpc.CallOption) (*DeleteDoctorAdditionalCityResponse, error)
 	DeleteAdditionalSpeciality(ctx context.Context, in *DeleteDoctorAdditionalSpecialityRequest, opts ...grpc.CallOption) (*DeleteDoctorAdditionalSpecialityResponse, error)
 	UpdateSubscribers(ctx context.Context, in *UpdateSubscribersRequest, opts ...grpc.CallOption) (*UpdateSubscribersResponse, error)
+	GetDoctorAdditionalSpecialities(ctx context.Context, in *GetDoctorAdditionalSpecialitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalSpecialitiesResponse, error)
+	GetDoctorAdditionalCities(ctx context.Context, in *GetDoctorAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalCitiesResponse, error)
+	GetDoctorCooperationTypes(ctx context.Context, in *GetDoctorCooperationTypesRequest, opts ...grpc.CallOption) (*GetDoctorCooperationTypesResponse, error)
 }
 
 type doctorAdminServiceClient struct {
@@ -229,6 +224,36 @@ func (c *doctorAdminServiceClient) UpdateSubscribers(ctx context.Context, in *Up
 	return out, nil
 }
 
+func (c *doctorAdminServiceClient) GetDoctorAdditionalSpecialities(ctx context.Context, in *GetDoctorAdditionalSpecialitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalSpecialitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDoctorAdditionalSpecialitiesResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_GetDoctorAdditionalSpecialities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorAdminServiceClient) GetDoctorAdditionalCities(ctx context.Context, in *GetDoctorAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalCitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDoctorAdditionalCitiesResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_GetDoctorAdditionalCities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorAdminServiceClient) GetDoctorCooperationTypes(ctx context.Context, in *GetDoctorCooperationTypesRequest, opts ...grpc.CallOption) (*GetDoctorCooperationTypesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDoctorCooperationTypesResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_GetDoctorCooperationTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorAdminServiceServer is the server API for DoctorAdminService service.
 // All implementations should embed UnimplementedDoctorAdminServiceServer
 // for forward compatibility.
@@ -239,17 +264,6 @@ type DoctorAdminServiceServer interface {
 	GetDoctors(context.Context, *GetDoctorsRequest) (*GetDoctorsResponse, error)
 	GetDoctorsByIDs(context.Context, *GetDoctorsByIDsRequest) (*GetDoctorsByIDsResponse, error)
 	SortDoctors(context.Context, *SortDoctorsRequest) (*SortDoctorsResponse, error)
-	// todo подумать тоже, а надо ли тут эту сортировку
-	//
-	//	rpc FilterDoctors(FilterDoctorsRequest) returns (FilterDoctorsResponse) {
-	//	    option (google.api.http) = {
-	//	        post: "/api/v1/admin/doctors/filter"
-	//	        body: "*"
-	//	    };
-	//	    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-	//	        summary: "Фильтрация врачей"
-	//	    };
-	//	}
 	SearchDoctors(context.Context, *SearchDoctorsRequest) (*SearchDoctorsResponse, error)
 	GetDoctorByID(context.Context, *GetDoctorByIDRequest) (*GetDoctorByIDResponse, error)
 	UpdateDoctor(context.Context, *UpdateDoctorRequest) (*UpdateDoctorResponse, error)
@@ -262,6 +276,9 @@ type DoctorAdminServiceServer interface {
 	DeleteAdditionalCity(context.Context, *DeleteDoctorAdditionalCityRequest) (*DeleteDoctorAdditionalCityResponse, error)
 	DeleteAdditionalSpeciality(context.Context, *DeleteDoctorAdditionalSpecialityRequest) (*DeleteDoctorAdditionalSpecialityResponse, error)
 	UpdateSubscribers(context.Context, *UpdateSubscribersRequest) (*UpdateSubscribersResponse, error)
+	GetDoctorAdditionalSpecialities(context.Context, *GetDoctorAdditionalSpecialitiesRequest) (*GetDoctorAdditionalSpecialitiesResponse, error)
+	GetDoctorAdditionalCities(context.Context, *GetDoctorAdditionalCitiesRequest) (*GetDoctorAdditionalCitiesResponse, error)
+	GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error)
 }
 
 // UnimplementedDoctorAdminServiceServer should be embedded to have
@@ -315,6 +332,15 @@ func (UnimplementedDoctorAdminServiceServer) DeleteAdditionalSpeciality(context.
 }
 func (UnimplementedDoctorAdminServiceServer) UpdateSubscribers(context.Context, *UpdateSubscribersRequest) (*UpdateSubscribersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateSubscribers not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) GetDoctorAdditionalSpecialities(context.Context, *GetDoctorAdditionalSpecialitiesRequest) (*GetDoctorAdditionalSpecialitiesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDoctorAdditionalSpecialities not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) GetDoctorAdditionalCities(context.Context, *GetDoctorAdditionalCitiesRequest) (*GetDoctorAdditionalCitiesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDoctorAdditionalCities not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDoctorCooperationTypes not implemented")
 }
 func (UnimplementedDoctorAdminServiceServer) testEmbeddedByValue() {}
 
@@ -606,6 +632,60 @@ func _DoctorAdminService_UpdateSubscribers_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorAdminService_GetDoctorAdditionalSpecialities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorAdditionalSpecialitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).GetDoctorAdditionalSpecialities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_GetDoctorAdditionalSpecialities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).GetDoctorAdditionalSpecialities(ctx, req.(*GetDoctorAdditionalSpecialitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorAdminService_GetDoctorAdditionalCities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorAdditionalCitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).GetDoctorAdditionalCities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_GetDoctorAdditionalCities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).GetDoctorAdditionalCities(ctx, req.(*GetDoctorAdditionalCitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorAdminService_GetDoctorCooperationTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorCooperationTypesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).GetDoctorCooperationTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_GetDoctorCooperationTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).GetDoctorCooperationTypes(ctx, req.(*GetDoctorCooperationTypesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorAdminService_ServiceDesc is the grpc.ServiceDesc for DoctorAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -672,6 +752,18 @@ var DoctorAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateSubscribers",
 			Handler:    _DoctorAdminService_UpdateSubscribers_Handler,
+		},
+		{
+			MethodName: "GetDoctorAdditionalSpecialities",
+			Handler:    _DoctorAdminService_GetDoctorAdditionalSpecialities_Handler,
+		},
+		{
+			MethodName: "GetDoctorAdditionalCities",
+			Handler:    _DoctorAdminService_GetDoctorAdditionalCities_Handler,
+		},
+		{
+			MethodName: "GetDoctorCooperationTypes",
+			Handler:    _DoctorAdminService_GetDoctorCooperationTypes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -414,3 +414,111 @@ func (w *FreelancerAdminServiceServiceDesc) DeleteNetwork(ctx context.Context, i
 	}
 	return resp.(*DeleteNetworkResponse), err
 }
+
+func (w *FreelancerAdminServiceServiceDesc) GetFreelancerAdditionalSpecialities(ctx context.Context, in *GetFreelancerAdditionalSpecialitiesRequest) (*GetFreelancerAdditionalSpecialitiesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetFreelancerAdditionalSpecialities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalSpecialities",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetFreelancerAdditionalSpecialities(ctx, req.(*GetFreelancerAdditionalSpecialitiesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetFreelancerAdditionalSpecialitiesResponse), err
+}
+
+func (w *FreelancerAdminServiceServiceDesc) GetFreelancerAdditionalCities(ctx context.Context, in *GetFreelancerAdditionalCitiesRequest) (*GetFreelancerAdditionalCitiesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetFreelancerAdditionalCities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerAdditionalCities",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetFreelancerAdditionalCities(ctx, req.(*GetFreelancerAdditionalCitiesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetFreelancerAdditionalCitiesResponse), err
+}
+
+func (w *FreelancerAdminServiceServiceDesc) GetFreelancerCooperationTypes(ctx context.Context, in *GetFreelancerCooperationTypesRequest) (*GetFreelancerCooperationTypesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetFreelancerCooperationTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerCooperationTypes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetFreelancerCooperationTypes(ctx, req.(*GetFreelancerCooperationTypesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetFreelancerCooperationTypesResponse), err
+}
+
+func (w *FreelancerAdminServiceServiceDesc) GetFreelancerPriceList(ctx context.Context, in *GetFreelancerPriceListRequest) (*GetFreelancerPriceListResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetFreelancerPriceList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerPriceList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetFreelancerPriceList(ctx, req.(*GetFreelancerPriceListRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetFreelancerPriceListResponse), err
+}
+
+func (w *FreelancerAdminServiceServiceDesc) GetFreelancerRecommendations(ctx context.Context, in *GetFreelancerRecommendationsRequest) (*GetFreelancerRecommendationsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetFreelancerRecommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerRecommendations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetFreelancerRecommendations(ctx, req.(*GetFreelancerRecommendationsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetFreelancerRecommendationsResponse), err
+}
+
+func (w *FreelancerAdminServiceServiceDesc) GetFreelancerSocialNetworks(ctx context.Context, in *GetFreelancerSocialNetworksRequest) (*GetFreelancerSocialNetworksResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetFreelancerSocialNetworks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.freelancers.freelancer.v1.FreelancerAdminService/GetFreelancerSocialNetworks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetFreelancerSocialNetworks(ctx, req.(*GetFreelancerSocialNetworksRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetFreelancerSocialNetworksResponse), err
+}

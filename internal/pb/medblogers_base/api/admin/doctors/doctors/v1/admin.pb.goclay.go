@@ -324,3 +324,57 @@ func (w *DoctorAdminServiceServiceDesc) UpdateSubscribers(ctx context.Context, i
 	}
 	return resp.(*UpdateSubscribersResponse), err
 }
+
+func (w *DoctorAdminServiceServiceDesc) GetDoctorAdditionalSpecialities(ctx context.Context, in *GetDoctorAdditionalSpecialitiesRequest) (*GetDoctorAdditionalSpecialitiesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetDoctorAdditionalSpecialities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalSpecialities",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetDoctorAdditionalSpecialities(ctx, req.(*GetDoctorAdditionalSpecialitiesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetDoctorAdditionalSpecialitiesResponse), err
+}
+
+func (w *DoctorAdminServiceServiceDesc) GetDoctorAdditionalCities(ctx context.Context, in *GetDoctorAdditionalCitiesRequest) (*GetDoctorAdditionalCitiesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetDoctorAdditionalCities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalCities",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetDoctorAdditionalCities(ctx, req.(*GetDoctorAdditionalCitiesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetDoctorAdditionalCitiesResponse), err
+}
+
+func (w *DoctorAdminServiceServiceDesc) GetDoctorCooperationTypes(ctx context.Context, in *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetDoctorCooperationTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorCooperationTypes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetDoctorCooperationTypes(ctx, req.(*GetDoctorCooperationTypesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetDoctorCooperationTypesResponse), err
+}

@@ -28,16 +28,6 @@ service DoctorAdminService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сортировка врачей"};
   }
-  // todo подумать тоже, а надо ли тут эту сортировку
-  //    rpc FilterDoctors(FilterDoctorsRequest) returns (FilterDoctorsResponse) {
-  //        option (google.api.http) = {
-  //            post: "/api/v1/admin/doctors/filter"
-  //            body: "*"
-  //        };
-  //        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-  //            summary: "Фильтрация врачей"
-  //        };
-  //    }
   rpc SearchDoctors(SearchDoctorsRequest) returns (SearchDoctorsResponse) {
     option (google.api.http) = {
       post: "/api/v1/admin/doctors/search"
@@ -122,17 +112,33 @@ service DoctorAdminService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Ручное обновление подписчиков"};
   }
+  rpc GetDoctorAdditionalSpecialities(GetDoctorAdditionalSpecialitiesRequest) returns (GetDoctorAdditionalSpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/{doctor_id}/additional_specialities"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доп специальности конкретного врача"};
+  }
+  rpc GetDoctorAdditionalCities(GetDoctorAdditionalCitiesRequest) returns (GetDoctorAdditionalCitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/{doctor_id}/additional_cities"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доп города конкретного врача"};
+  }
+  rpc GetDoctorCooperationTypes(GetDoctorCooperationTypesRequest) returns (GetDoctorCooperationTypesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/cooperation_types"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Типы размещения доктора"};
+  }
+}
 
-  // todo как-будто бы создание вообще не нужно
-  //    rpc CreateDoctor(CreateDoctorRequest) returns (CreateDoctorResponse) {
-  //        option (google.api.http) = {
-  //            post: "/api/v1/admin/doctors/create"
-  //            body: "*"
-  //        };
-  //        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-  //            summary: "Создание врача"
-  //        };
-  //    }
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message CooperationType {
+  int64 id = 1;
+  string name = 2;
 }
 
 // -------------- Сервис по работе с докторов ---------------
@@ -147,11 +153,6 @@ message GetDoctorsResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
 }
 
@@ -166,11 +167,6 @@ message SortDoctorsResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
 }
 
@@ -187,11 +183,6 @@ message SearchDoctorsResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
 }
 
@@ -233,21 +224,6 @@ message GetDoctorByIDResponse {
   CooperationType cooperation_type = 23;
   string medical_directions = 24;
   string marketing_preferences = 25;
-
-  message CityItem {
-    int64 id = 1;
-    string name = 2;
-  }
-
-  message SpecialityItem {
-    int64 id = 1;
-    string name = 2;
-  }
-
-  message CooperationType {
-    int64 id = 1;
-    string name = 2;
-  }
 
   message SubscribersItem {
     string key = 1; // todo сделать текстовый енам
@@ -344,10 +320,24 @@ message GetDoctorsByIDsResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
-
-    message CooperationType {
-      int64 id = 1;
-      string name = 2;
-    }
   }
+}
+
+message GetDoctorAdditionalSpecialitiesRequest {
+  int64 doctor_id = 1;
+}
+message GetDoctorAdditionalSpecialitiesResponse {
+  repeated SpecialityItem additional_specialities = 1;
+}
+
+message GetDoctorAdditionalCitiesRequest {
+  int64 doctor_id = 1;
+}
+message GetDoctorAdditionalCitiesResponse {
+  repeated CityItem additional_cities = 1;
+}
+
+message GetDoctorCooperationTypesRequest {}
+message GetDoctorCooperationTypesResponse {
+  repeated CooperationType cooperation_types = 1;
 }
