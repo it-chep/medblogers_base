@@ -478,31 +478,28 @@ type GetDoctorByIDResponse struct {
 	Name  string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Slug  string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
 	// Соцсети
-	InstUrl      string `protobuf:"bytes,4,opt,name=inst_url,json=instUrl,proto3" json:"inst_url,omitempty"`
-	VkUrl        string `protobuf:"bytes,5,opt,name=vk_url,json=vkUrl,proto3" json:"vk_url,omitempty"`
-	DzenUrl      string `protobuf:"bytes,6,opt,name=dzen_url,json=dzenUrl,proto3" json:"dzen_url,omitempty"`
-	TgUrl        string `protobuf:"bytes,7,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
-	TgChannelUrl string `protobuf:"bytes,8,opt,name=tg_channel_url,json=tgChannelUrl,proto3" json:"tg_channel_url,omitempty"`
-	YoutubeUrl   string `protobuf:"bytes,9,opt,name=youtube_url,json=youtubeUrl,proto3" json:"youtube_url,omitempty"`
-	TiktokUrl    string `protobuf:"bytes,10,opt,name=tiktok_url,json=tiktokUrl,proto3" json:"tiktok_url,omitempty"`
-	SiteLink     string `protobuf:"bytes,11,opt,name=site_link,json=siteLink,proto3" json:"site_link,omitempty"`
-	// Города и специализации
-	AdditionalCities       []*CityItem                              `protobuf:"bytes,12,rep,name=additional_cities,json=additionalCities,proto3" json:"additional_cities,omitempty"`
-	AdditionalSpecialities []*SpecialityItem                        `protobuf:"bytes,13,rep,name=additional_specialities,json=additionalSpecialities,proto3" json:"additional_specialities,omitempty"`
-	MainCity               *CityItem                                `protobuf:"bytes,14,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
-	MainSpeciality         *SpecialityItem                          `protobuf:"bytes,15,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
-	SubscribersInfo        []*GetDoctorByIDResponse_SubscribersItem `protobuf:"bytes,16,rep,name=subscribers_info,json=subscribersInfo,proto3" json:"subscribers_info,omitempty"`
-	MainBlogTheme          string                                   `protobuf:"bytes,17,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
-	Image                  string                                   `protobuf:"bytes,18,opt,name=image,proto3" json:"image,omitempty"`
-	IsKfDoctor             bool                                     `protobuf:"varint,19,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
-	IsActive               bool                                     `protobuf:"varint,20,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	BirthDate              string                                   `protobuf:"bytes,21,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
-	CreatedAt              string                                   `protobuf:"bytes,22,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	CooperationType        *CooperationType                         `protobuf:"bytes,23,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
-	MedicalDirections      string                                   `protobuf:"bytes,24,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
-	MarketingPreferences   string                                   `protobuf:"bytes,25,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	InstUrl              string                                   `protobuf:"bytes,4,opt,name=inst_url,json=instUrl,proto3" json:"inst_url,omitempty"`
+	VkUrl                string                                   `protobuf:"bytes,5,opt,name=vk_url,json=vkUrl,proto3" json:"vk_url,omitempty"`
+	DzenUrl              string                                   `protobuf:"bytes,6,opt,name=dzen_url,json=dzenUrl,proto3" json:"dzen_url,omitempty"`
+	TgUrl                string                                   `protobuf:"bytes,7,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
+	TgChannelUrl         string                                   `protobuf:"bytes,8,opt,name=tg_channel_url,json=tgChannelUrl,proto3" json:"tg_channel_url,omitempty"`
+	YoutubeUrl           string                                   `protobuf:"bytes,9,opt,name=youtube_url,json=youtubeUrl,proto3" json:"youtube_url,omitempty"`
+	TiktokUrl            string                                   `protobuf:"bytes,10,opt,name=tiktok_url,json=tiktokUrl,proto3" json:"tiktok_url,omitempty"`
+	SiteLink             string                                   `protobuf:"bytes,11,opt,name=site_link,json=siteLink,proto3" json:"site_link,omitempty"`
+	MainCity             *CityItem                                `protobuf:"bytes,14,opt,name=main_city,json=mainCity,proto3" json:"main_city,omitempty"`
+	MainSpeciality       *SpecialityItem                          `protobuf:"bytes,15,opt,name=main_speciality,json=mainSpeciality,proto3" json:"main_speciality,omitempty"`
+	SubscribersInfo      []*GetDoctorByIDResponse_SubscribersItem `protobuf:"bytes,16,rep,name=subscribers_info,json=subscribersInfo,proto3" json:"subscribers_info,omitempty"`
+	MainBlogTheme        string                                   `protobuf:"bytes,17,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
+	Image                string                                   `protobuf:"bytes,18,opt,name=image,proto3" json:"image,omitempty"`
+	IsKfDoctor           bool                                     `protobuf:"varint,19,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
+	IsActive             bool                                     `protobuf:"varint,20,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	BirthDate            string                                   `protobuf:"bytes,21,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
+	CreatedAt            string                                   `protobuf:"bytes,22,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CooperationType      *CooperationType                         `protobuf:"bytes,23,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	MedicalDirections    string                                   `protobuf:"bytes,24,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
+	MarketingPreferences string                                   `protobuf:"bytes,25,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GetDoctorByIDResponse) Reset() {
@@ -610,20 +607,6 @@ func (x *GetDoctorByIDResponse) GetSiteLink() string {
 		return x.SiteLink
 	}
 	return ""
-}
-
-func (x *GetDoctorByIDResponse) GetAdditionalCities() []*CityItem {
-	if x != nil {
-		return x.AdditionalCities
-	}
-	return nil
-}
-
-func (x *GetDoctorByIDResponse) GetAdditionalSpecialities() []*SpecialityItem {
-	if x != nil {
-		return x.AdditionalSpecialities
-	}
-	return nil
 }
 
 func (x *GetDoctorByIDResponse) GetMainCity() *CityItem {
@@ -2377,7 +2360,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
 	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"3\n" +
 	"\x14GetDoctorByIDRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xf8\t\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xc4\b\n" +
 	"\x15GetDoctorByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2392,9 +2375,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"tiktok_url\x18\n" +
 	" \x01(\tR\ttiktokUrl\x12\x1b\n" +
-	"\tsite_link\x18\v \x01(\tR\bsiteLink\x12O\n" +
-	"\x11additional_cities\x18\f \x03(\v2\".admin.doctors.doctors.v1.CityItemR\x10additionalCities\x12a\n" +
-	"\x17additional_specialities\x18\r \x03(\v2(.admin.doctors.doctors.v1.SpecialityItemR\x16additionalSpecialities\x12?\n" +
+	"\tsite_link\x18\v \x01(\tR\bsiteLink\x12?\n" +
 	"\tmain_city\x18\x0e \x01(\v2\".admin.doctors.doctors.v1.CityItemR\bmainCity\x12Q\n" +
 	"\x0fmain_speciality\x18\x0f \x01(\v2(.admin.doctors.doctors.v1.SpecialityItemR\x0emainSpeciality\x12j\n" +
 	"\x10subscribers_info\x18\x10 \x03(\v2?.admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItemR\x0fsubscribersInfo\x12&\n" +
@@ -2564,62 +2545,60 @@ var file_admin_doctors_doctors_v1_admin_proto_depIdxs = []int32{
 	39, // 0: admin.doctors.doctors.v1.GetDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
 	40, // 1: admin.doctors.doctors.v1.SortDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
 	41, // 2: admin.doctors.doctors.v1.SearchDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
-	0,  // 3: admin.doctors.doctors.v1.GetDoctorByIDResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem
-	1,  // 4: admin.doctors.doctors.v1.GetDoctorByIDResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
-	0,  // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_city:type_name -> admin.doctors.doctors.v1.CityItem
-	1,  // 6: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_speciality:type_name -> admin.doctors.doctors.v1.SpecialityItem
-	42, // 7: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
-	2,  // 8: admin.doctors.doctors.v1.GetDoctorByIDResponse.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	11, // 9: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateDoctorRequest
-	44, // 10: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
-	1,  // 11: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
-	0,  // 12: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem
-	2,  // 13: admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse.cooperation_types:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 14: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 15: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 16: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 17: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	3,  // 18: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:input_type -> admin.doctors.doctors.v1.GetDoctorsRequest
-	31, // 19: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:input_type -> admin.doctors.doctors.v1.GetDoctorsByIDsRequest
-	5,  // 20: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:input_type -> admin.doctors.doctors.v1.SortDoctorsRequest
-	7,  // 21: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:input_type -> admin.doctors.doctors.v1.SearchDoctorsRequest
-	9,  // 22: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:input_type -> admin.doctors.doctors.v1.GetDoctorByIDRequest
-	11, // 23: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:input_type -> admin.doctors.doctors.v1.UpdateDoctorRequest
-	13, // 24: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:input_type -> admin.doctors.doctors.v1.DeleteDoctorRequest
-	15, // 25: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:input_type -> admin.doctors.doctors.v1.ActivateDoctorRequest
-	17, // 26: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:input_type -> admin.doctors.doctors.v1.DeactivateDoctorRequest
-	19, // 27: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:input_type -> admin.doctors.doctors.v1.SaveDoctorPhotoRequest
-	21, // 28: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
-	23, // 29: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
-	25, // 30: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
-	27, // 31: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
-	29, // 32: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:input_type -> admin.doctors.doctors.v1.UpdateSubscribersRequest
-	33, // 33: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest
-	35, // 34: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest
-	37, // 35: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:input_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest
-	4,  // 36: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:output_type -> admin.doctors.doctors.v1.GetDoctorsResponse
-	32, // 37: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:output_type -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse
-	6,  // 38: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:output_type -> admin.doctors.doctors.v1.SortDoctorsResponse
-	8,  // 39: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:output_type -> admin.doctors.doctors.v1.SearchDoctorsResponse
-	10, // 40: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:output_type -> admin.doctors.doctors.v1.GetDoctorByIDResponse
-	12, // 41: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:output_type -> admin.doctors.doctors.v1.UpdateDoctorResponse
-	14, // 42: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:output_type -> admin.doctors.doctors.v1.DeleteDoctorResponse
-	16, // 43: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:output_type -> admin.doctors.doctors.v1.ActivateDoctorResponse
-	18, // 44: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:output_type -> admin.doctors.doctors.v1.DeactivateDoctorResponse
-	20, // 45: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:output_type -> admin.doctors.doctors.v1.SaveDoctorPhotoResponse
-	22, // 46: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
-	24, // 47: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
-	26, // 48: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
-	28, // 49: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
-	30, // 50: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:output_type -> admin.doctors.doctors.v1.UpdateSubscribersResponse
-	34, // 51: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse
-	36, // 52: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse
-	38, // 53: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:output_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse
-	36, // [36:54] is the sub-list for method output_type
-	18, // [18:36] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	0,  // 3: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_city:type_name -> admin.doctors.doctors.v1.CityItem
+	1,  // 4: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_speciality:type_name -> admin.doctors.doctors.v1.SpecialityItem
+	42, // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
+	2,  // 6: admin.doctors.doctors.v1.GetDoctorByIDResponse.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	11, // 7: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateDoctorRequest
+	44, // 8: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
+	1,  // 9: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
+	0,  // 10: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem
+	2,  // 11: admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse.cooperation_types:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 12: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 13: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 14: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 15: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	3,  // 16: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:input_type -> admin.doctors.doctors.v1.GetDoctorsRequest
+	31, // 17: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:input_type -> admin.doctors.doctors.v1.GetDoctorsByIDsRequest
+	5,  // 18: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:input_type -> admin.doctors.doctors.v1.SortDoctorsRequest
+	7,  // 19: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:input_type -> admin.doctors.doctors.v1.SearchDoctorsRequest
+	9,  // 20: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:input_type -> admin.doctors.doctors.v1.GetDoctorByIDRequest
+	11, // 21: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:input_type -> admin.doctors.doctors.v1.UpdateDoctorRequest
+	13, // 22: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:input_type -> admin.doctors.doctors.v1.DeleteDoctorRequest
+	15, // 23: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:input_type -> admin.doctors.doctors.v1.ActivateDoctorRequest
+	17, // 24: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:input_type -> admin.doctors.doctors.v1.DeactivateDoctorRequest
+	19, // 25: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:input_type -> admin.doctors.doctors.v1.SaveDoctorPhotoRequest
+	21, // 26: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
+	23, // 27: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
+	25, // 28: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
+	27, // 29: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
+	29, // 30: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:input_type -> admin.doctors.doctors.v1.UpdateSubscribersRequest
+	33, // 31: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest
+	35, // 32: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest
+	37, // 33: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:input_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest
+	4,  // 34: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:output_type -> admin.doctors.doctors.v1.GetDoctorsResponse
+	32, // 35: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:output_type -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse
+	6,  // 36: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:output_type -> admin.doctors.doctors.v1.SortDoctorsResponse
+	8,  // 37: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:output_type -> admin.doctors.doctors.v1.SearchDoctorsResponse
+	10, // 38: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:output_type -> admin.doctors.doctors.v1.GetDoctorByIDResponse
+	12, // 39: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:output_type -> admin.doctors.doctors.v1.UpdateDoctorResponse
+	14, // 40: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:output_type -> admin.doctors.doctors.v1.DeleteDoctorResponse
+	16, // 41: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:output_type -> admin.doctors.doctors.v1.ActivateDoctorResponse
+	18, // 42: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:output_type -> admin.doctors.doctors.v1.DeactivateDoctorResponse
+	20, // 43: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:output_type -> admin.doctors.doctors.v1.SaveDoctorPhotoResponse
+	22, // 44: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
+	24, // 45: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
+	26, // 46: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
+	28, // 47: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
+	30, // 48: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:output_type -> admin.doctors.doctors.v1.UpdateSubscribersResponse
+	34, // 49: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse
+	36, // 50: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse
+	38, // 51: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:output_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse
+	34, // [34:52] is the sub-list for method output_type
+	16, // [16:34] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_admin_doctors_doctors_v1_admin_proto_init() }

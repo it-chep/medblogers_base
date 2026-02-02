@@ -831,21 +831,6 @@
         "siteLink": {
           "type": "string"
         },
-        "additionalCities": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/admin.doctors.doctors.v1.CityItem"
-          },
-          "title": "Города и специализации"
-        },
-        "additionalSpecialities": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/admin.doctors.doctors.v1.SpecialityItem"
-          }
-        },
         "mainCity": {
           "$ref": "#/definitions/admin.doctors.doctors.v1.CityItem"
         },

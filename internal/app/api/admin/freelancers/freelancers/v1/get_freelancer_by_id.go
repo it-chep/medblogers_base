@@ -2,9 +2,7 @@ package v1
 
 import (
 	"context"
-	"github.com/samber/lo"
 	"medblogers_base/internal/app/interceptor"
-	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_by_id/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/freelancer/v1"
 )
 
@@ -24,11 +22,11 @@ func (i *Implementation) GetFreelancerByID(ctx context.Context, req *desc.GetFre
 			//Email:, todo
 			PortfolioLink: res.PortfolioLink,
 			TgUrl:         res.TgURL,
-			MainCity: &desc.GetFreelancerByIDResponse_CityItem{
+			MainCity: &desc.CityItem{
 				Id:   res.City.ID,
 				Name: res.City.Name,
 			},
-			MainSpeciality: &desc.GetFreelancerByIDResponse_SpecialityItem{
+			MainSpeciality: &desc.SpecialityItem{
 				Id:   res.Speciality.ID,
 				Name: res.Speciality.Name,
 			},
@@ -43,39 +41,39 @@ func (i *Implementation) GetFreelancerByID(ctx context.Context, req *desc.GetFre
 			DateStarted:   res.StartWorking.Format("2006-01-02 15:04:05"),
 			PriceCategory: res.PriceCategory,
 
-			AdditionalCities: lo.Map(res.AdditionalCities, func(item dto.City, index int) *desc.GetFreelancerByIDResponse_CityItem {
-				return &desc.GetFreelancerByIDResponse_CityItem{
-					Id:   item.ID,
-					Name: item.Name,
-				}
-			}),
-			AdditionalSpecialities: lo.Map(res.AdditionalSpecialities, func(item dto.Speciality, index int) *desc.GetFreelancerByIDResponse_SpecialityItem {
-				return &desc.GetFreelancerByIDResponse_SpecialityItem{
-					Id:   item.ID,
-					Name: item.Name,
-				}
-			}),
-			SocialNetworks: lo.Map(res.SocialNetworks, func(item dto.Network, index int) *desc.GetFreelancerByIDResponse_Society {
-				return &desc.GetFreelancerByIDResponse_Society{
-					Id:   item.ID,
-					Name: item.Name,
-					Slug: item.Slug,
-				}
-			}),
-
-			PriceList: lo.Map(res.PriceList, func(item dto.PriceList, index int) *desc.GetFreelancerByIDResponse_PriceList {
-				return &desc.GetFreelancerByIDResponse_PriceList{
-					Id:     item.ID,
-					Name:   item.Name,
-					Amount: item.Amount,
-				}
-			}),
-			Recommendations: lo.Map(res.Recommendations, func(item dto.Recommendation, index int) *desc.GetFreelancerByIDResponse_Recommendation {
-				return &desc.GetFreelancerByIDResponse_Recommendation{
-					DoctorName: item.DoctorName,
-					DoctorId:   item.DoctorID,
-				}
-			}),
+			//AdditionalCities: lo.Map(res.AdditionalCities, func(item dto.City, index int) *desc.GetFreelancerByIDResponse_CityItem {
+			//	return &desc.GetFreelancerByIDResponse_CityItem{
+			//		Id:   item.ID,
+			//		Name: item.Name,
+			//	}
+			//}),
+			//AdditionalSpecialities: lo.Map(res.AdditionalSpecialities, func(item dto.Speciality, index int) *desc.GetFreelancerByIDResponse_SpecialityItem {
+			//	return &desc.GetFreelancerByIDResponse_SpecialityItem{
+			//		Id:   item.ID,
+			//		Name: item.Name,
+			//	}
+			//}),
+			//SocialNetworks: lo.Map(res.SocialNetworks, func(item dto.Network, index int) *desc.GetFreelancerByIDResponse_Society {
+			//	return &desc.GetFreelancerByIDResponse_Society{
+			//		Id:   item.ID,
+			//		Name: item.Name,
+			//		Slug: item.Slug,
+			//	}
+			//}),
+			//
+			//PriceList: lo.Map(res.PriceList, func(item dto.PriceList, index int) *desc.GetFreelancerByIDResponse_PriceList {
+			//	return &desc.GetFreelancerByIDResponse_PriceList{
+			//		Id:     item.ID,
+			//		Name:   item.Name,
+			//		Amount: item.Amount,
+			//	}
+			//}),
+			//Recommendations: lo.Map(res.Recommendations, func(item dto.Recommendation, index int) *desc.GetFreelancerByIDResponse_Recommendation {
+			//	return &desc.GetFreelancerByIDResponse_Recommendation{
+			//		DoctorName: item.DoctorName,
+			//		DoctorId:   item.DoctorID,
+			//	}
+			//}),
 		}
 		return nil
 	})

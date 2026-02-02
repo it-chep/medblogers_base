@@ -3,6 +3,8 @@ package dal
 import (
 	"context"
 	"github.com/georgysavva/scany/pgxscan"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/admin/entities/freelancers/dal/dao"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/speciality"
 	"medblogers_base/internal/pkg/postgres"
@@ -32,6 +34,9 @@ func (r *Repository) GetAdditionalSpecialities(ctx context.Context, freelancerID
 	var specialities dao.SpecialitiesDAO
 	err := pgxscan.Select(ctx, r.db, &specialities, sql, freelancerID)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, nil
+		}
 		return nil, err
 	}
 	return specialities.ToDomain(), nil

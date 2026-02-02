@@ -205,10 +205,6 @@ message GetDoctorByIDResponse {
   string tiktok_url = 10;
   string site_link = 11;
 
-  // Города и специализации
-  repeated CityItem additional_cities = 12;
-  repeated SpecialityItem additional_specialities = 13;
-
   CityItem main_city = 14;
   SpecialityItem main_speciality = 15;
 

@@ -32,24 +32,24 @@ func (i *Implementation) GetDoctorByID(ctx context.Context, req *desc.GetDoctorB
 			TgChannelUrl: docDTO.TgChannelURL,
 			SiteLink:     docDTO.SiteLink,
 
-			AdditionalSpecialities: lo.Map(docDTO.AdditionalSpecialities, func(item dto.Speciality, _ int) *desc.GetDoctorByIDResponse_SpecialityItem {
-				return &desc.GetDoctorByIDResponse_SpecialityItem{
-					Id:   item.ID,
-					Name: item.Name,
-				}
-			}),
-			AdditionalCities: lo.Map(docDTO.AdditionalCities, func(item dto.City, _ int) *desc.GetDoctorByIDResponse_CityItem {
-				return &desc.GetDoctorByIDResponse_CityItem{
-					Id:   item.ID,
-					Name: item.Name,
-				}
-			}),
+			//AdditionalSpecialities: lo.Map(docDTO.AdditionalSpecialities, func(item dto.Speciality, _ int) *desc.SpecialityItem {
+			//	return &desc.SpecialityItem{
+			//		Id:   item.ID,
+			//		Name: item.Name,
+			//	}
+			//}),
+			//AdditionalCities: lo.Map(docDTO.AdditionalCities, func(item dto.City, _ int) *desc.CityItem {
+			//	return &desc.CityItem{
+			//		Id:   item.ID,
+			//		Name: item.Name,
+			//	}
+			//}),
 
-			MainCity: &desc.GetDoctorByIDResponse_CityItem{
+			MainCity: &desc.CityItem{
 				Id:   docDTO.MainCity.ID,
 				Name: docDTO.MainCity.Name,
 			},
-			MainSpeciality: &desc.GetDoctorByIDResponse_SpecialityItem{
+			MainSpeciality: &desc.SpecialityItem{
 				Id:   docDTO.MainSpeciality.ID,
 				Name: docDTO.MainSpeciality.Name,
 			},

@@ -19,6 +19,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_additional_cities"
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_additional_specialities"
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_by_id"
+	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_cooperation_types"
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_price_list"
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_recommendations"
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_social_networks"
@@ -59,6 +60,7 @@ type FreelancerAggregator struct {
 	GetAdditionalCities       *get_additional_cities.Action
 	GetNetworks               *get_social_networks.Action
 	GetAdditionalSpecialities *get_additional_specialities.Action
+	GetCooperationTypes       *get_cooperation_types.Action
 }
 
 func New(clients *client.Aggregator, pool postgres.PoolWrapper) *FreelancerAggregator {
@@ -93,5 +95,6 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *FreelancerAggre
 		GetAdditionalCities:       get_additional_cities.New(pool),
 		GetNetworks:               get_social_networks.New(pool),
 		GetAdditionalSpecialities: get_additional_specialities.New(pool),
+		GetCooperationTypes:       get_cooperation_types.New(pool),
 	}
 }

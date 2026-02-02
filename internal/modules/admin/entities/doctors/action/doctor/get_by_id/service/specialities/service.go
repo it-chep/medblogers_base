@@ -7,7 +7,7 @@ import (
 )
 
 type Dal interface {
-	GetAdditionalSpecialities(ctx context.Context, doctorID int64) ([]*speciality.Speciality, error)
+	GetSpeciality(ctx context.Context, specialityID int64) (*speciality.Speciality, error)
 }
 
 type Service struct {
@@ -22,24 +22,14 @@ func New(dal Dal) *Service {
 
 func (s *Service) Enrich(ctx context.Context, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
 
-	specialities, err := s.dal.GetAdditionalSpecialities(ctx, docDTO.ID)
+	spec, err := s.dal.GetSpeciality(ctx, docDTO.ID)
 	if err != nil {
 		return nil, err
 	}
 
-	for _, spec := range specialities {
-		if int64(spec.ID()) == docDTO.MainSpeciality.ID {
-			docDTO.MainSpeciality = dto.Speciality{
-				ID:   docDTO.MainSpeciality.ID,
-				Name: spec.Name(),
-			}
-			continue
-		}
-
-		docDTO.AdditionalSpecialities = append(docDTO.AdditionalSpecialities, dto.Speciality{
-			ID:   int64(spec.ID()),
-			Name: spec.Name(),
-		})
+	docDTO.MainSpeciality = dto.Speciality{
+		ID:   int64(spec.ID()),
+		Name: spec.Name(),
 	}
 
 	return docDTO, nil

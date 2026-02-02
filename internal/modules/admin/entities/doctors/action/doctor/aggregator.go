@@ -10,6 +10,9 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_speciality"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_cooperation_types"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_cities"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_specialities"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/save_doctor_photo"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update_subscribers"
@@ -33,6 +36,10 @@ type DoctorModuleAggregator struct {
 	SaveDoctorPhoto   *save_doctor_photo.Action
 	UpdateSubscribers *update_subscribers.Action
 	UpdateDoctor      *update.Action
+
+	GetCooperationTypes             *get_cooperation_types.Action
+	GetDoctorAdditionalCities       *get_doctor_additional_cities.Action
+	GetDoctorAdditionalSpecialities *get_doctor_additional_specialities.Action
 }
 
 func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *DoctorModuleAggregator {
@@ -53,5 +60,9 @@ func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWra
 		SaveDoctorPhoto:   save_doctor_photo.New(clients, pool),
 		UpdateSubscribers: update_subscribers.New(clients),
 		UpdateDoctor:      update.New(pool),
+
+		GetCooperationTypes:             get_cooperation_types.New(pool),
+		GetDoctorAdditionalCities:       get_doctor_additional_cities.New(pool),
+		GetDoctorAdditionalSpecialities: get_doctor_additional_specialities.New(pool),
 	}
 }

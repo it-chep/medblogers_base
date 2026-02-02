@@ -1,20 +1,23 @@
 package get_doctor_additional_cities
 
-import "medblogers_base/internal/pkg/postgres"
-
-type Dal interface {
-}
+import (
+	"context"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_cities/dal"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_cities/service/cities"
+	"medblogers_base/internal/modules/admin/entities/doctors/domain/city"
+	"medblogers_base/internal/pkg/postgres"
+)
 
 type Action struct {
-	Dal Dal
+	cities *cities.Service
 }
 
 func New(pool postgres.PoolWrapper) *Action {
 	return &Action{
-		Dal: dal.NewRepository(pool),
+		cities: cities.New(dal.NewRepository(pool)),
 	}
 }
 
-func (a *Action) Do(ctx context.Context) ([]*freelancer.Freelancer, error) {
-	return a.commonDal.GetFreelancers(ctx)
+func (a *Action) Do(ctx context.Context, doctorID int64) ([]*city.City, error) {
+	return a.cities.GetAdditionalCities(ctx, doctorID)
 }
