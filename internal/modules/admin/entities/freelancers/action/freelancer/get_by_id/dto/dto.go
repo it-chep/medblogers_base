@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-type Recommendation struct {
-	DoctorID   int64
-	DoctorName string
-}
-
 type City struct {
 	ID   int64
 	Name string
@@ -18,18 +13,6 @@ type City struct {
 type Speciality struct {
 	ID   int64
 	Name string
-}
-
-type Network struct {
-	ID   int64
-	Name string
-	Slug string
-}
-
-type PriceList struct {
-	ID     int64
-	Name   string
-	Amount string
 }
 
 type FreelancerDTO struct {
@@ -47,19 +30,13 @@ type FreelancerDTO struct {
 	TgURL         string // тг личный
 	PortfolioLink string // Ссылка на портфолио
 
-	City                   City         // Основной город
-	AdditionalCities       []City       // Доп.Города
-	Speciality             Speciality   // Основная специальность
-	AdditionalSpecialities []Speciality // Доп.Специальности
-	SocialNetworks         []Network    // Соцсети в которых работает фрилансер
+	City       City       // Основной город
+	Speciality Speciality // Основная специальность
 
 	S3Key   string // ключик в базе
 	S3Image string // ссылка на S3
 
 	CooperationType int64
-
-	PriceList       []PriceList
-	Recommendations []Recommendation
 }
 
 func New(frlncr *freelancer.Freelancer) *FreelancerDTO {

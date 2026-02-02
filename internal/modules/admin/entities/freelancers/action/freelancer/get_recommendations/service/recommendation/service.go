@@ -3,7 +3,7 @@ package recommendation
 import (
 	"context"
 	"github.com/samber/lo"
-	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_by_id/dto"
+	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_recommendations/dto"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/doctor"
 )
 
@@ -21,23 +21,21 @@ func New(dal Dal) *Service {
 		dal: dal,
 	}
 }
-func (s *Service) Enrich(ctx context.Context, freelancerDTO *dto.FreelancerDTO) (*dto.FreelancerDTO, error) {
-	doctorIDs, err := s.dal.GetRecommendations(ctx, freelancerDTO.ID)
+func (s *Service) GetRecommendations(ctx context.Context, freelancerID int64) ([]dto.Recommendation, error) {
+	doctorIDs, err := s.dal.GetRecommendations(ctx, freelancerID)
 	if err != nil {
-		return freelancerDTO, err
+		return nil, err
 	}
 
 	recommendations, err := s.dal.GetRecommendationInfoByIDs(ctx, doctorIDs)
 	if err != nil {
-		return freelancerDTO, err
+		return nil, err
 	}
 
-	freelancerDTO.Recommendations = lo.Map(recommendations, func(item *doctor.Doctor, _ int) dto.Recommendation {
+	return lo.Map(recommendations, func(item *doctor.Doctor, _ int) dto.Recommendation {
 		return dto.Recommendation{
 			DoctorID:   int64(item.GetID()),
 			DoctorName: item.GetName(),
 		}
-	})
-
-	return freelancerDTO, nil
+	}), nil
 }

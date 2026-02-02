@@ -7,9 +7,8 @@ import (
 )
 
 type Dal interface {
-	GetCities(ctx context.Context, freelancerID int64) ([]*city.City, error)
+	GetCity(ctx context.Context, cityID int64) (*city.City, error)
 }
-
 type Service struct {
 	dal Dal
 }
@@ -21,24 +20,14 @@ func New(dal Dal) *Service {
 }
 
 func (s *Service) Enrich(ctx context.Context, freelancerDTO *dto.FreelancerDTO) (*dto.FreelancerDTO, error) {
-	cities, err := s.dal.GetCities(ctx, freelancerDTO.ID)
+	cityDomain, err := s.dal.GetCity(ctx, freelancerDTO.ID)
 	if err != nil {
 		return nil, err
 	}
 
-	for _, c := range cities {
-		if int64(c.ID()) == freelancerDTO.City.ID {
-			freelancerDTO.City = dto.City{
-				ID:   freelancerDTO.City.ID,
-				Name: c.Name(),
-			}
-			continue
-		}
-
-		freelancerDTO.AdditionalCities = append(freelancerDTO.AdditionalCities, dto.City{
-			ID:   int64(c.ID()),
-			Name: c.Name(),
-		})
+	freelancerDTO.City = dto.City{
+		ID:   int64(cityDomain.ID()),
+		Name: cityDomain.Name(),
 	}
 
 	return freelancerDTO, nil
