@@ -32,48 +32,14 @@ func (i *Implementation) GetFreelancerByID(ctx context.Context, req *desc.GetFre
 			},
 			IsActive: res.IsActive,
 			Image:    res.S3Image,
-			//CooperationType: &desc.GetFreelancerByIDResponse_CooperationType{
-			//	Id:,
-			//	Name:,
-			//},
+			CooperationType: &desc.CooperationType{
+				Id: res.CooperationType,
+				//Name:,
+			},
 			AgencyRepresentative: res.AgencyRepresentative,
 			//CreatedAt: todo
 			DateStarted:   res.StartWorking.Format("2006-01-02 15:04:05"),
 			PriceCategory: res.PriceCategory,
-
-			//AdditionalCities: lo.Map(res.AdditionalCities, func(item dto.City, index int) *desc.GetFreelancerByIDResponse_CityItem {
-			//	return &desc.GetFreelancerByIDResponse_CityItem{
-			//		Id:   item.ID,
-			//		Name: item.Name,
-			//	}
-			//}),
-			//AdditionalSpecialities: lo.Map(res.AdditionalSpecialities, func(item dto.Speciality, index int) *desc.GetFreelancerByIDResponse_SpecialityItem {
-			//	return &desc.GetFreelancerByIDResponse_SpecialityItem{
-			//		Id:   item.ID,
-			//		Name: item.Name,
-			//	}
-			//}),
-			//SocialNetworks: lo.Map(res.SocialNetworks, func(item dto.Network, index int) *desc.GetFreelancerByIDResponse_Society {
-			//	return &desc.GetFreelancerByIDResponse_Society{
-			//		Id:   item.ID,
-			//		Name: item.Name,
-			//		Slug: item.Slug,
-			//	}
-			//}),
-			//
-			//PriceList: lo.Map(res.PriceList, func(item dto.PriceList, index int) *desc.GetFreelancerByIDResponse_PriceList {
-			//	return &desc.GetFreelancerByIDResponse_PriceList{
-			//		Id:     item.ID,
-			//		Name:   item.Name,
-			//		Amount: item.Amount,
-			//	}
-			//}),
-			//Recommendations: lo.Map(res.Recommendations, func(item dto.Recommendation, index int) *desc.GetFreelancerByIDResponse_Recommendation {
-			//	return &desc.GetFreelancerByIDResponse_Recommendation{
-			//		DoctorName: item.DoctorName,
-			//		DoctorId:   item.DoctorID,
-			//	}
-			//}),
 		}
 		return nil
 	})

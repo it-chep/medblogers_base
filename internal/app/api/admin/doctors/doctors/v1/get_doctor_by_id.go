@@ -22,7 +22,10 @@ func (i *Implementation) GetDoctorByID(ctx context.Context, req *desc.GetDoctorB
 			Name: docDTO.Name,
 			Slug: docDTO.Slug,
 
-			// CooperationType:
+			CooperationType: &desc.CooperationType{
+				Id:   docDTO.CooperationType.ID(),
+				Name: docDTO.CooperationType.Name(),
+			},
 			InstUrl:      docDTO.InstURL,
 			TgUrl:        docDTO.TgURL,
 			VkUrl:        docDTO.VkURL,
@@ -31,19 +34,6 @@ func (i *Implementation) GetDoctorByID(ctx context.Context, req *desc.GetDoctorB
 			DzenUrl:      docDTO.DzenURL,
 			TgChannelUrl: docDTO.TgChannelURL,
 			SiteLink:     docDTO.SiteLink,
-
-			//AdditionalSpecialities: lo.Map(docDTO.AdditionalSpecialities, func(item dto.Speciality, _ int) *desc.SpecialityItem {
-			//	return &desc.SpecialityItem{
-			//		Id:   item.ID,
-			//		Name: item.Name,
-			//	}
-			//}),
-			//AdditionalCities: lo.Map(docDTO.AdditionalCities, func(item dto.City, _ int) *desc.CityItem {
-			//	return &desc.CityItem{
-			//		Id:   item.ID,
-			//		Name: item.Name,
-			//	}
-			//}),
 
 			MainCity: &desc.CityItem{
 				Id:   docDTO.MainCity.ID,
