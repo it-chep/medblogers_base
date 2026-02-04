@@ -710,13 +710,11 @@ type UpdateDoctorRequest struct {
 	MainCityId           int64  `protobuf:"varint,12,opt,name=main_city_id,json=mainCityId,proto3" json:"main_city_id,omitempty"`
 	MainSpecialityId     int64  `protobuf:"varint,13,opt,name=main_speciality_id,json=mainSpecialityId,proto3" json:"main_speciality_id,omitempty"`
 	MainBlogTheme        string `protobuf:"bytes,14,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
-	Image                string `protobuf:"bytes,15,opt,name=image,proto3" json:"image,omitempty"`
-	IsKfDoctor           bool   `protobuf:"varint,16,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
-	IsActive             bool   `protobuf:"varint,17,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	BirthDate            string `protobuf:"bytes,18,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
-	CooperationTypeId    int64  `protobuf:"varint,19,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
-	MedicalDirections    string `protobuf:"bytes,20,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
-	MarketingPreferences string `protobuf:"bytes,21,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
+	IsKfDoctor           bool   `protobuf:"varint,15,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
+	BirthDate            string `protobuf:"bytes,16,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
+	CooperationTypeId    int64  `protobuf:"varint,17,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
+	MedicalDirections    string `protobuf:"bytes,18,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
+	MarketingPreferences string `protobuf:"bytes,19,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -849,23 +847,9 @@ func (x *UpdateDoctorRequest) GetMainBlogTheme() string {
 	return ""
 }
 
-func (x *UpdateDoctorRequest) GetImage() string {
-	if x != nil {
-		return x.Image
-	}
-	return ""
-}
-
 func (x *UpdateDoctorRequest) GetIsKfDoctor() bool {
 	if x != nil {
 		return x.IsKfDoctor
-	}
-	return false
-}
-
-func (x *UpdateDoctorRequest) GetIsActive() bool {
-	if x != nil {
-		return x.IsActive
 	}
 	return false
 }
@@ -2557,7 +2541,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"subs_count\x18\x02 \x01(\tR\tsubsCount\x12&\n" +
 	"\x0fsubs_count_text\x18\x03 \x01(\tR\rsubsCountText\x12*\n" +
-	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"\xc1\x05\n" +
+	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"\x8e\x05\n" +
 	"\x13UpdateDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2576,16 +2560,14 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\fmain_city_id\x18\f \x01(\x03R\n" +
 	"mainCityId\x12,\n" +
 	"\x12main_speciality_id\x18\r \x01(\x03R\x10mainSpecialityId\x12&\n" +
-	"\x0fmain_blog_theme\x18\x0e \x01(\tR\rmainBlogTheme\x12\x14\n" +
-	"\x05image\x18\x0f \x01(\tR\x05image\x12 \n" +
-	"\fis_kf_doctor\x18\x10 \x01(\bR\n" +
-	"isKfDoctor\x12\x1b\n" +
-	"\tis_active\x18\x11 \x01(\bR\bisActive\x12\x1d\n" +
+	"\x0fmain_blog_theme\x18\x0e \x01(\tR\rmainBlogTheme\x12 \n" +
+	"\fis_kf_doctor\x18\x0f \x01(\bR\n" +
+	"isKfDoctor\x12\x1d\n" +
 	"\n" +
-	"birth_date\x18\x12 \x01(\tR\tbirthDate\x12.\n" +
-	"\x13cooperation_type_id\x18\x13 \x01(\x03R\x11cooperationTypeId\x12-\n" +
-	"\x12medical_directions\x18\x14 \x01(\tR\x11medicalDirections\x123\n" +
-	"\x15marketing_preferences\x18\x15 \x01(\tR\x14marketingPreferences\"\x16\n" +
+	"birth_date\x18\x10 \x01(\tR\tbirthDate\x12.\n" +
+	"\x13cooperation_type_id\x18\x11 \x01(\x03R\x11cooperationTypeId\x12-\n" +
+	"\x12medical_directions\x18\x12 \x01(\tR\x11medicalDirections\x123\n" +
+	"\x15marketing_preferences\x18\x13 \x01(\tR\x14marketingPreferences\"\x16\n" +
 	"\x14UpdateDoctorResponse\"2\n" +
 	"\x13DeleteDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x16\n" +

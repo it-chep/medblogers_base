@@ -801,10 +801,9 @@ type UpdateFreelancerRequest struct {
 	MainCityId           int64                  `protobuf:"varint,6,opt,name=main_city_id,json=mainCityId,proto3" json:"main_city_id,omitempty"`
 	MainSpecialityId     int64                  `protobuf:"varint,7,opt,name=main_speciality_id,json=mainSpecialityId,proto3" json:"main_speciality_id,omitempty"`
 	CooperationTypeId    int64                  `protobuf:"varint,8,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
-	IsActive             bool                   `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	AgencyRepresentative bool                   `protobuf:"varint,10,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
-	DateStarted          string                 `protobuf:"bytes,11,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
-	PriceCategory        int64                  `protobuf:"varint,12,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	AgencyRepresentative bool                   `protobuf:"varint,9,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
+	DateStarted          string                 `protobuf:"bytes,10,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
+	PriceCategory        int64                  `protobuf:"varint,11,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -893,13 +892,6 @@ func (x *UpdateFreelancerRequest) GetCooperationTypeId() int64 {
 		return x.CooperationTypeId
 	}
 	return 0
-}
-
-func (x *UpdateFreelancerRequest) GetIsActive() bool {
-	if x != nil {
-		return x.IsActive
-	}
-	return false
 }
 
 func (x *UpdateFreelancerRequest) GetAgencyRepresentative() bool {
@@ -3248,7 +3240,7 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12!\n" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
-	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\"\xc0\x03\n" +
+	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\"\xa3\x03\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3258,12 +3250,11 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\fmain_city_id\x18\x06 \x01(\x03R\n" +
 	"mainCityId\x12,\n" +
 	"\x12main_speciality_id\x18\a \x01(\x03R\x10mainSpecialityId\x12.\n" +
-	"\x13cooperation_type_id\x18\b \x01(\x03R\x11cooperationTypeId\x12\x1b\n" +
-	"\tis_active\x18\t \x01(\bR\bisActive\x123\n" +
-	"\x15agency_representative\x18\n" +
-	" \x01(\bR\x14agencyRepresentative\x12!\n" +
-	"\fdate_started\x18\v \x01(\tR\vdateStarted\x12%\n" +
-	"\x0eprice_category\x18\f \x01(\x03R\rpriceCategory\"\x1a\n" +
+	"\x13cooperation_type_id\x18\b \x01(\x03R\x11cooperationTypeId\x123\n" +
+	"\x15agency_representative\x18\t \x01(\bR\x14agencyRepresentative\x12!\n" +
+	"\fdate_started\x18\n" +
+	" \x01(\tR\vdateStarted\x12%\n" +
+	"\x0eprice_category\x18\v \x01(\x03R\rpriceCategory\"\x1a\n" +
 	"\x18UpdateFreelancerResponse\">\n" +
 	"\x17DeleteFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +

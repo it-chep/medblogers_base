@@ -803,13 +803,7 @@
         "mainBlogTheme": {
           "type": "string"
         },
-        "image": {
-          "type": "string"
-        },
         "isKfDoctor": {
-          "type": "boolean"
-        },
-        "isActive": {
           "type": "boolean"
         },
         "birthDate": {
@@ -1193,13 +1187,7 @@
         "mainBlogTheme": {
           "type": "string"
         },
-        "image": {
-          "type": "string"
-        },
         "isKfDoctor": {
-          "type": "boolean"
-        },
-        "isActive": {
           "type": "boolean"
         },
         "birthDate": {
