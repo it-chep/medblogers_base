@@ -26,7 +26,7 @@ type FullDoctorDAO struct {
 	SpecialityID      int64          `json:"speciallity_id" db:"speciallity_id"`
 	MedicalDirections sql.NullString `json:"medical_directions" db:"medical_directions"`
 	DateCreated       time.Time      `json:"date_created" db:"date_created"`
-	BirthDate         time.Time      `json:"birth_date" db:"birth_date"`
+	BirthDate         sql.NullTime   `json:"birth_date" db:"birth_date"`
 	S3Image           sql.NullString `json:"s3_image" db:"s3_image"`
 	IsKFDoctor        sql.NullBool   `json:"is_kf_doctor" db:"is_kf_doctor"`
 	CooperationType   sql.NullInt64  `json:"cooperation_type" db:"cooperation_type"`
@@ -52,7 +52,7 @@ func (d FullDoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithMainSpecialityID(d.SpecialityID),
 		doctor.WithMainCityID(d.CityID),
 		doctor.WithCreatedDate(d.DateCreated),
-		doctor.WithBirthDate(d.BirthDate),
+		doctor.WithBirthDate(d.BirthDate.Time),
 		doctor.WithMedicalDirection(d.MedicalDirections.String),
 		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
 		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),

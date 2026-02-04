@@ -13,8 +13,6 @@ create table if not exists admin_audit
     entity_name text,                           -- Название сущности. Пример: doctor, freelancer, getcourse_user
     entity_id   bigint                          -- ID сущности
 );
-
-create index concurrently on admin_audit (entity_name, entity_id);
 -- +goose StatementEnd
 
 -- +goose Down

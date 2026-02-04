@@ -21,7 +21,7 @@ func New(dal Dal) *Service {
 }
 
 func (s *Service) Enrich(ctx context.Context, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
-	cit, err := s.dal.GetCity(ctx, docDTO.ID)
+	cit, err := s.dal.GetCity(ctx, docDTO.MainCity.ID)
 	if err != nil {
 		return nil, err
 	}

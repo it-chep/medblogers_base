@@ -22,7 +22,7 @@ func New(dal Dal) *Service {
 
 func (s *Service) Enrich(ctx context.Context, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
 
-	spec, err := s.dal.GetSpeciality(ctx, docDTO.ID)
+	spec, err := s.dal.GetSpeciality(ctx, docDTO.MainSpeciality.ID)
 	if err != nil {
 		return nil, err
 	}

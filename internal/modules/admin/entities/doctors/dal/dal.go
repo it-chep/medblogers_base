@@ -94,7 +94,7 @@ func (r *Repository) GetCityByID(ctx context.Context, cityID int64) (*city.City,
 	return cityDAO.ToDomain(), nil
 }
 
-func (r *Repository) GetSpecialityByID(ctx context.Context, cityID int64) (*speciality.Speciality, error) {
+func (r *Repository) GetSpecialityByID(ctx context.Context, specialityID int64) (*speciality.Speciality, error) {
 	sql := `
 		select id, name 
 		from docstar_site_speciallity 
@@ -102,7 +102,7 @@ func (r *Repository) GetSpecialityByID(ctx context.Context, cityID int64) (*spec
 	`
 
 	var specialityDAO dao.SpecialityDAO
-	err := pgxscan.Get(ctx, r.db, &specialityDAO, sql, cityID)
+	err := pgxscan.Get(ctx, r.db, &specialityDAO, sql, specialityID)
 	if err != nil {
 		return nil, err
 	}

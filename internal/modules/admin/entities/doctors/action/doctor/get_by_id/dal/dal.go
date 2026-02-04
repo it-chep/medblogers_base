@@ -29,7 +29,7 @@ func (r *Repository) GetCity(ctx context.Context, cityID int64) (*city.City, err
 	`
 
 	var city dao.CityDAO
-	err := pgxscan.Select(ctx, r.db, &city, sql, cityID)
+	err := pgxscan.Get(ctx, r.db, &city, sql, cityID)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (r *Repository) GetSpeciality(ctx context.Context, specialityID int64) (*sp
 	`
 
 	var spec dao.SpecialityDAO
-	err := pgxscan.Select(ctx, r.db, &spec, sql, specialityID)
+	err := pgxscan.Get(ctx, r.db, &spec, sql, specialityID)
 	if err != nil {
 		return nil, err
 	}
