@@ -759,7 +759,73 @@
       }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctorBody": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "instUrl": {
+          "type": "string",
+          "title": "Соцсети"
+        },
+        "vkUrl": {
+          "type": "string"
+        },
+        "dzenUrl": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "tgChannelUrl": {
+          "type": "string"
+        },
+        "youtubeUrl": {
+          "type": "string"
+        },
+        "tiktokUrl": {
+          "type": "string"
+        },
+        "siteLink": {
+          "type": "string"
+        },
+        "mainCityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mainSpecialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mainBlogTheme": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "cooperationTypeId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "medicalDirections": {
+          "type": "string"
+        },
+        "marketingPreferences": {
+          "type": "string"
+        }
+      }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribersBody": {
       "type": "object",
@@ -1084,6 +1150,70 @@
         "doctorId": {
           "type": "string",
           "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "instUrl": {
+          "type": "string",
+          "title": "Соцсети"
+        },
+        "vkUrl": {
+          "type": "string"
+        },
+        "dzenUrl": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "tgChannelUrl": {
+          "type": "string"
+        },
+        "youtubeUrl": {
+          "type": "string"
+        },
+        "tiktokUrl": {
+          "type": "string"
+        },
+        "siteLink": {
+          "type": "string"
+        },
+        "mainCityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mainSpecialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mainBlogTheme": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isKfDoctor": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "cooperationTypeId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "medicalDirections": {
+          "type": "string"
+        },
+        "marketingPreferences": {
+          "type": "string"
         }
       }
     },

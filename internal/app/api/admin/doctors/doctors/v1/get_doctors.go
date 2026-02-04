@@ -20,12 +20,17 @@ func (i *Implementation) GetDoctors(ctx context.Context, req *desc.GetDoctorsReq
 
 		resp = &desc.GetDoctorsResponse{
 			Doctors: lo.Map(res, func(item *doctor.Doctor, index int) *desc.GetDoctorsResponse_Doctor {
+				cooperationType := item.GetCooperationType()
+
 				return &desc.GetDoctorsResponse_Doctor{
 					Id:       int64(item.GetID()),
 					Name:     item.GetName(),
 					IsActive: item.GetIsActive(),
 					// todo Image
-					//CooperationType: item.GetCooperationType(),
+					CooperationType: &desc.CooperationType{
+						Id:   cooperationType.ID(),
+						Name: cooperationType.Name(),
+					},
 				}
 			}),
 		}

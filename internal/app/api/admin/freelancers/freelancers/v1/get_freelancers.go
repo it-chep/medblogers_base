@@ -19,15 +19,16 @@ func (i *Implementation) GetFreelancers(ctx context.Context, req *desc.GetFreela
 
 		resp = &desc.GetFreelancersResponse{
 			Freelancers: lo.Map(res, func(item *freelancer.Freelancer, index int) *desc.GetFreelancersResponse_Freelancer {
+				cooperationType := item.GetCooperationType()
 				return &desc.GetFreelancersResponse_Freelancer{
 					Id:       item.GetID(),
 					Name:     item.GetName(),
 					Image:    item.GetS3Image(),
 					IsActive: item.GetIsActive(),
-					//CooperationType: &desc.GetFreelancersResponse_Freelancer_CooperationType{
-					//	Id: ,
-					//	Name: ,
-					//},
+					CooperationType: &desc.CooperationType{
+						Id:   cooperationType.ID(),
+						Name: cooperationType.Name(),
+					},
 				}
 			}),
 		}

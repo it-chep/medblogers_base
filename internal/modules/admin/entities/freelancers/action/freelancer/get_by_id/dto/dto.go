@@ -40,6 +40,7 @@ type FreelancerDTO struct {
 }
 
 func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
+	cooperationType := frlncr.GetCooperationType()
 	return &FreelancerDTO{
 		ID:                   frlncr.GetID(),
 		IsActive:             frlncr.IsActive(),
@@ -54,6 +55,6 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 		City:                 City{ID: frlncr.GetCityID()},
 		Speciality:           Speciality{ID: frlncr.GetSpecialityID()},
 		S3Key:                frlncr.GetS3Image(),
-		CooperationType:      frlncr.GetCooperationType(),
+		CooperationType:      cooperationType.ID(),
 	}
 }

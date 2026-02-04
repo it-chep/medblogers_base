@@ -278,6 +278,20 @@ message GetFreelancerByIDResponse {
 
 message UpdateFreelancerRequest {
   int64 freelancer_id = 1;
+
+  string name = 2;
+  string slug = 3;
+  string portfolio_link = 4;
+  string tg_url = 5;
+
+  int64 main_city_id = 6;
+  int64 main_speciality_id = 7;
+
+  int64 cooperation_type_id = 8;
+  bool agency_representative = 9;
+
+  string date_started = 10;
+  int64 price_category = 11;
 }
 
 message UpdateFreelancerResponse {}

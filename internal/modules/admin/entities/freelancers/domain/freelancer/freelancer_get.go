@@ -113,6 +113,6 @@ func (f *Freelancer) GetIsActive() bool {
 
 func (f *Freelancer) GetStartWorking() time.Time { return f.startWorking }
 
-func (f *Freelancer) GetCooperationType() int64 {
+func (f *Freelancer) GetCooperationType() CooperationType {
 	return f.cooperationType
 }

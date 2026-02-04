@@ -1201,7 +1201,46 @@
       }
     },
     "admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancerBody": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "portfolioLink": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "mainCityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mainSpecialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cooperationTypeId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "agencyRepresentative": {
+          "type": "boolean"
+        },
+        "dateStarted": {
+          "type": "string"
+        },
+        "priceCategory": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse": {
       "type": "object",

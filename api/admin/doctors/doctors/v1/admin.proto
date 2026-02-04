@@ -232,7 +232,30 @@ message GetDoctorByIDResponse {
 message UpdateDoctorRequest {
   int64 doctor_id = 1;
 
-  // todo
+  string name = 2;
+  string slug = 3;
+
+  // Соцсети
+  string inst_url = 4;
+  string vk_url = 5;
+  string dzen_url = 6;
+  string tg_url = 7;
+  string tg_channel_url = 8;
+  string youtube_url = 9;
+  string tiktok_url = 10;
+  string site_link = 11;
+
+  int64 main_city_id = 12;
+  int64 main_speciality_id = 13;
+
+  string main_blog_theme = 14;
+
+  bool is_kf_doctor = 15;
+
+  string birth_date = 16;
+  int64 cooperation_type_id = 17;
+  string medical_directions = 18;
+  string marketing_preferences = 19;
 }
 
 message UpdateDoctorResponse {}

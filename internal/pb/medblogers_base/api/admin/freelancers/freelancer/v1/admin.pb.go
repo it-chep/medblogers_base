@@ -792,10 +792,21 @@ func (x *GetFreelancerByIDResponse) GetPriceCategory() int64 {
 }
 
 type UpdateFreelancerRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FreelancerId  int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId         int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	Name                 string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug                 string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	PortfolioLink        string                 `protobuf:"bytes,4,opt,name=portfolio_link,json=portfolioLink,proto3" json:"portfolio_link,omitempty"`
+	TgUrl                string                 `protobuf:"bytes,5,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
+	MainCityId           int64                  `protobuf:"varint,6,opt,name=main_city_id,json=mainCityId,proto3" json:"main_city_id,omitempty"`
+	MainSpecialityId     int64                  `protobuf:"varint,7,opt,name=main_speciality_id,json=mainSpecialityId,proto3" json:"main_speciality_id,omitempty"`
+	CooperationTypeId    int64                  `protobuf:"varint,8,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
+	IsActive             bool                   `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	AgencyRepresentative bool                   `protobuf:"varint,10,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
+	DateStarted          string                 `protobuf:"bytes,11,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
+	PriceCategory        int64                  `protobuf:"varint,12,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *UpdateFreelancerRequest) Reset() {
@@ -831,6 +842,83 @@ func (*UpdateFreelancerRequest) Descriptor() ([]byte, []int) {
 func (x *UpdateFreelancerRequest) GetFreelancerId() int64 {
 	if x != nil {
 		return x.FreelancerId
+	}
+	return 0
+}
+
+func (x *UpdateFreelancerRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateFreelancerRequest) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *UpdateFreelancerRequest) GetPortfolioLink() string {
+	if x != nil {
+		return x.PortfolioLink
+	}
+	return ""
+}
+
+func (x *UpdateFreelancerRequest) GetTgUrl() string {
+	if x != nil {
+		return x.TgUrl
+	}
+	return ""
+}
+
+func (x *UpdateFreelancerRequest) GetMainCityId() int64 {
+	if x != nil {
+		return x.MainCityId
+	}
+	return 0
+}
+
+func (x *UpdateFreelancerRequest) GetMainSpecialityId() int64 {
+	if x != nil {
+		return x.MainSpecialityId
+	}
+	return 0
+}
+
+func (x *UpdateFreelancerRequest) GetCooperationTypeId() int64 {
+	if x != nil {
+		return x.CooperationTypeId
+	}
+	return 0
+}
+
+func (x *UpdateFreelancerRequest) GetIsActive() bool {
+	if x != nil {
+		return x.IsActive
+	}
+	return false
+}
+
+func (x *UpdateFreelancerRequest) GetAgencyRepresentative() bool {
+	if x != nil {
+		return x.AgencyRepresentative
+	}
+	return false
+}
+
+func (x *UpdateFreelancerRequest) GetDateStarted() string {
+	if x != nil {
+		return x.DateStarted
+	}
+	return ""
+}
+
+func (x *UpdateFreelancerRequest) GetPriceCategory() int64 {
+	if x != nil {
+		return x.PriceCategory
 	}
 	return 0
 }
@@ -3160,9 +3248,22 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12!\n" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
-	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\">\n" +
+	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\"\xc0\x03\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
-	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\x12%\n" +
+	"\x0eportfolio_link\x18\x04 \x01(\tR\rportfolioLink\x12\x15\n" +
+	"\x06tg_url\x18\x05 \x01(\tR\x05tgUrl\x12 \n" +
+	"\fmain_city_id\x18\x06 \x01(\x03R\n" +
+	"mainCityId\x12,\n" +
+	"\x12main_speciality_id\x18\a \x01(\x03R\x10mainSpecialityId\x12.\n" +
+	"\x13cooperation_type_id\x18\b \x01(\x03R\x11cooperationTypeId\x12\x1b\n" +
+	"\tis_active\x18\t \x01(\bR\bisActive\x123\n" +
+	"\x15agency_representative\x18\n" +
+	" \x01(\bR\x14agencyRepresentative\x12!\n" +
+	"\fdate_started\x18\v \x01(\tR\vdateStarted\x12%\n" +
+	"\x0eprice_category\x18\f \x01(\x03R\rpriceCategory\"\x1a\n" +
 	"\x18UpdateFreelancerResponse\">\n" +
 	"\x17DeleteFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +

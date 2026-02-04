@@ -27,7 +27,7 @@ type Freelancer struct {
 
 	s3Image string // ссылка на S3
 
-	cooperationType int64
+	cooperationType CooperationType
 }
 
 func New(options ...Option) *Freelancer {

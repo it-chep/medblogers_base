@@ -694,10 +694,31 @@ func (x *GetDoctorByIDResponse) GetMarketingPreferences() string {
 }
 
 type UpdateDoctorRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	Name     string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug     string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	// Соцсети
+	InstUrl              string `protobuf:"bytes,4,opt,name=inst_url,json=instUrl,proto3" json:"inst_url,omitempty"`
+	VkUrl                string `protobuf:"bytes,5,opt,name=vk_url,json=vkUrl,proto3" json:"vk_url,omitempty"`
+	DzenUrl              string `protobuf:"bytes,6,opt,name=dzen_url,json=dzenUrl,proto3" json:"dzen_url,omitempty"`
+	TgUrl                string `protobuf:"bytes,7,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
+	TgChannelUrl         string `protobuf:"bytes,8,opt,name=tg_channel_url,json=tgChannelUrl,proto3" json:"tg_channel_url,omitempty"`
+	YoutubeUrl           string `protobuf:"bytes,9,opt,name=youtube_url,json=youtubeUrl,proto3" json:"youtube_url,omitempty"`
+	TiktokUrl            string `protobuf:"bytes,10,opt,name=tiktok_url,json=tiktokUrl,proto3" json:"tiktok_url,omitempty"`
+	SiteLink             string `protobuf:"bytes,11,opt,name=site_link,json=siteLink,proto3" json:"site_link,omitempty"`
+	MainCityId           int64  `protobuf:"varint,12,opt,name=main_city_id,json=mainCityId,proto3" json:"main_city_id,omitempty"`
+	MainSpecialityId     int64  `protobuf:"varint,13,opt,name=main_speciality_id,json=mainSpecialityId,proto3" json:"main_speciality_id,omitempty"`
+	MainBlogTheme        string `protobuf:"bytes,14,opt,name=main_blog_theme,json=mainBlogTheme,proto3" json:"main_blog_theme,omitempty"`
+	Image                string `protobuf:"bytes,15,opt,name=image,proto3" json:"image,omitempty"`
+	IsKfDoctor           bool   `protobuf:"varint,16,opt,name=is_kf_doctor,json=isKfDoctor,proto3" json:"is_kf_doctor,omitempty"`
+	IsActive             bool   `protobuf:"varint,17,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	BirthDate            string `protobuf:"bytes,18,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
+	CooperationTypeId    int64  `protobuf:"varint,19,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
+	MedicalDirections    string `protobuf:"bytes,20,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
+	MarketingPreferences string `protobuf:"bytes,21,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *UpdateDoctorRequest) Reset() {
@@ -735,6 +756,146 @@ func (x *UpdateDoctorRequest) GetDoctorId() int64 {
 		return x.DoctorId
 	}
 	return 0
+}
+
+func (x *UpdateDoctorRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetInstUrl() string {
+	if x != nil {
+		return x.InstUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetVkUrl() string {
+	if x != nil {
+		return x.VkUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetDzenUrl() string {
+	if x != nil {
+		return x.DzenUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetTgUrl() string {
+	if x != nil {
+		return x.TgUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetTgChannelUrl() string {
+	if x != nil {
+		return x.TgChannelUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetYoutubeUrl() string {
+	if x != nil {
+		return x.YoutubeUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetTiktokUrl() string {
+	if x != nil {
+		return x.TiktokUrl
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetSiteLink() string {
+	if x != nil {
+		return x.SiteLink
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetMainCityId() int64 {
+	if x != nil {
+		return x.MainCityId
+	}
+	return 0
+}
+
+func (x *UpdateDoctorRequest) GetMainSpecialityId() int64 {
+	if x != nil {
+		return x.MainSpecialityId
+	}
+	return 0
+}
+
+func (x *UpdateDoctorRequest) GetMainBlogTheme() string {
+	if x != nil {
+		return x.MainBlogTheme
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetImage() string {
+	if x != nil {
+		return x.Image
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetIsKfDoctor() bool {
+	if x != nil {
+		return x.IsKfDoctor
+	}
+	return false
+}
+
+func (x *UpdateDoctorRequest) GetIsActive() bool {
+	if x != nil {
+		return x.IsActive
+	}
+	return false
+}
+
+func (x *UpdateDoctorRequest) GetBirthDate() string {
+	if x != nil {
+		return x.BirthDate
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetCooperationTypeId() int64 {
+	if x != nil {
+		return x.CooperationTypeId
+	}
+	return 0
+}
+
+func (x *UpdateDoctorRequest) GetMedicalDirections() string {
+	if x != nil {
+		return x.MedicalDirections
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetMarketingPreferences() string {
+	if x != nil {
+		return x.MarketingPreferences
+	}
+	return ""
 }
 
 type UpdateDoctorResponse struct {
@@ -2396,9 +2557,35 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"subs_count\x18\x02 \x01(\tR\tsubsCount\x12&\n" +
 	"\x0fsubs_count_text\x18\x03 \x01(\tR\rsubsCountText\x12*\n" +
-	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"2\n" +
+	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"\xc1\x05\n" +
 	"\x13UpdateDoctorRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x16\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x19\n" +
+	"\binst_url\x18\x04 \x01(\tR\ainstUrl\x12\x15\n" +
+	"\x06vk_url\x18\x05 \x01(\tR\x05vkUrl\x12\x19\n" +
+	"\bdzen_url\x18\x06 \x01(\tR\adzenUrl\x12\x15\n" +
+	"\x06tg_url\x18\a \x01(\tR\x05tgUrl\x12$\n" +
+	"\x0etg_channel_url\x18\b \x01(\tR\ftgChannelUrl\x12\x1f\n" +
+	"\vyoutube_url\x18\t \x01(\tR\n" +
+	"youtubeUrl\x12\x1d\n" +
+	"\n" +
+	"tiktok_url\x18\n" +
+	" \x01(\tR\ttiktokUrl\x12\x1b\n" +
+	"\tsite_link\x18\v \x01(\tR\bsiteLink\x12 \n" +
+	"\fmain_city_id\x18\f \x01(\x03R\n" +
+	"mainCityId\x12,\n" +
+	"\x12main_speciality_id\x18\r \x01(\x03R\x10mainSpecialityId\x12&\n" +
+	"\x0fmain_blog_theme\x18\x0e \x01(\tR\rmainBlogTheme\x12\x14\n" +
+	"\x05image\x18\x0f \x01(\tR\x05image\x12 \n" +
+	"\fis_kf_doctor\x18\x10 \x01(\bR\n" +
+	"isKfDoctor\x12\x1b\n" +
+	"\tis_active\x18\x11 \x01(\bR\bisActive\x12\x1d\n" +
+	"\n" +
+	"birth_date\x18\x12 \x01(\tR\tbirthDate\x12.\n" +
+	"\x13cooperation_type_id\x18\x13 \x01(\x03R\x11cooperationTypeId\x12-\n" +
+	"\x12medical_directions\x18\x14 \x01(\tR\x11medicalDirections\x123\n" +
+	"\x15marketing_preferences\x18\x15 \x01(\tR\x14marketingPreferences\"\x16\n" +
 	"\x14UpdateDoctorResponse\"2\n" +
 	"\x13DeleteDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x16\n" +
