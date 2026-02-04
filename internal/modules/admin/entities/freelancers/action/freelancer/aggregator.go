@@ -87,7 +87,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *FreelancerAggre
 		GetFreelancerByID:   get_by_id.New(clients, pool),
 		SaveFreelancerPhoto: save_freelancer_photo.New(clients, pool),
 		SearchFreelancers:   search.New(pool),
-		UpdateFreelancer:    update.New(),
+		UpdateFreelancer:    update.New(pool),
 		DeleteFreelancer:    delete_freelancer.New(pool),
 
 		GetPriceList:              get_price_list.New(pool),

@@ -104,6 +104,8 @@ func WithIsActive(isActive bool) Option {
 
 func WithCooperationTypeID(cooperationTypeId int64) Option {
 	return func(s *Freelancer) {
-		s.cooperationType = cooperationTypeId
+		s.cooperationType = CooperationType{
+			id: cooperationTypeId,
+		}
 	}
 }
