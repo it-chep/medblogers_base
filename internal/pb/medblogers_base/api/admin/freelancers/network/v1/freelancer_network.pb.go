@@ -23,6 +23,58 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SocialNetwork struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SocialNetwork) Reset() {
+	*x = SocialNetwork{}
+	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SocialNetwork) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SocialNetwork) ProtoMessage() {}
+
+func (x *SocialNetwork) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SocialNetwork.ProtoReflect.Descriptor instead.
+func (*SocialNetwork) Descriptor() ([]byte, []int) {
+	return file_admin_freelancers_network_v1_freelancer_network_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SocialNetwork) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SocialNetwork) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 type GetNetworksRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -31,7 +83,7 @@ type GetNetworksRequest struct {
 
 func (x *GetNetworksRequest) Reset() {
 	*x = GetNetworksRequest{}
-	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[0]
+	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +95,7 @@ func (x *GetNetworksRequest) String() string {
 func (*GetNetworksRequest) ProtoMessage() {}
 
 func (x *GetNetworksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[0]
+	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,18 +108,19 @@ func (x *GetNetworksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNetworksRequest.ProtoReflect.Descriptor instead.
 func (*GetNetworksRequest) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_network_v1_freelancer_network_proto_rawDescGZIP(), []int{0}
+	return file_admin_freelancers_network_v1_freelancer_network_proto_rawDescGZIP(), []int{1}
 }
 
 type GetNetworksResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	SocialNetworks []*SocialNetwork       `protobuf:"bytes,1,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetNetworksResponse) Reset() {
 	*x = GetNetworksResponse{}
-	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[1]
+	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -79,7 +132,7 @@ func (x *GetNetworksResponse) String() string {
 func (*GetNetworksResponse) ProtoMessage() {}
 
 func (x *GetNetworksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[1]
+	mi := &file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -92,18 +145,29 @@ func (x *GetNetworksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNetworksResponse.ProtoReflect.Descriptor instead.
 func (*GetNetworksResponse) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_network_v1_freelancer_network_proto_rawDescGZIP(), []int{1}
+	return file_admin_freelancers_network_v1_freelancer_network_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetNetworksResponse) GetSocialNetworks() []*SocialNetwork {
+	if x != nil {
+		return x.SocialNetworks
+	}
+	return nil
 }
 
 var File_admin_freelancers_network_v1_freelancer_network_proto protoreflect.FileDescriptor
 
 const file_admin_freelancers_network_v1_freelancer_network_proto_rawDesc = "" +
 	"\n" +
-	"5admin/freelancers/network/v1/freelancer_network.proto\x12\x1cadmin.freelancers.network.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x14\n" +
-	"\x12GetNetworksRequest\"\x15\n" +
-	"\x13GetNetworksResponse2\x8c\x02\n" +
-	"\x1eFreelancerAdminNetworksService\x12\xe9\x01\n" +
-	"\vGetNetworks\x120.admin.freelancers.network.v1.GetNetworksRequest\x1a1.admin.freelancers.network.v1.GetNetworksResponse\"u\x92AH\x12FПолучение специальностей фрилансеров\x82\xd3\xe4\x93\x02$\x12\"/api/v1/admin/freelancers/networksB\"Z api/admin/freelancers/network/v1b\x06proto3"
+	"5admin/freelancers/network/v1/freelancer_network.proto\x12\x1cadmin.freelancers.network.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"3\n" +
+	"\rSocialNetwork\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\x14\n" +
+	"\x12GetNetworksRequest\"k\n" +
+	"\x13GetNetworksResponse\x12T\n" +
+	"\x0fsocial_networks\x18\x01 \x03(\v2+.admin.freelancers.network.v1.SocialNetworkR\x0esocialNetworks2\x93\x02\n" +
+	"\x1eFreelancerAdminNetworksService\x12\xf0\x01\n" +
+	"\vGetNetworks\x120.admin.freelancers.network.v1.GetNetworksRequest\x1a1.admin.freelancers.network.v1.GetNetworksResponse\"|\x92AH\x12FПолучение специальностей фрилансеров\x82\xd3\xe4\x93\x02+\x12)/api/v1/admin/freelancers/social_networksB\"Z api/admin/freelancers/network/v1b\x06proto3"
 
 var (
 	file_admin_freelancers_network_v1_freelancer_network_proto_rawDescOnce sync.Once
@@ -117,19 +181,21 @@ func file_admin_freelancers_network_v1_freelancer_network_proto_rawDescGZIP() []
 	return file_admin_freelancers_network_v1_freelancer_network_proto_rawDescData
 }
 
-var file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_admin_freelancers_network_v1_freelancer_network_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_admin_freelancers_network_v1_freelancer_network_proto_goTypes = []any{
-	(*GetNetworksRequest)(nil),  // 0: admin.freelancers.network.v1.GetNetworksRequest
-	(*GetNetworksResponse)(nil), // 1: admin.freelancers.network.v1.GetNetworksResponse
+	(*SocialNetwork)(nil),       // 0: admin.freelancers.network.v1.SocialNetwork
+	(*GetNetworksRequest)(nil),  // 1: admin.freelancers.network.v1.GetNetworksRequest
+	(*GetNetworksResponse)(nil), // 2: admin.freelancers.network.v1.GetNetworksResponse
 }
 var file_admin_freelancers_network_v1_freelancer_network_proto_depIdxs = []int32{
-	0, // 0: admin.freelancers.network.v1.FreelancerAdminNetworksService.GetNetworks:input_type -> admin.freelancers.network.v1.GetNetworksRequest
-	1, // 1: admin.freelancers.network.v1.FreelancerAdminNetworksService.GetNetworks:output_type -> admin.freelancers.network.v1.GetNetworksResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: admin.freelancers.network.v1.GetNetworksResponse.social_networks:type_name -> admin.freelancers.network.v1.SocialNetwork
+	1, // 1: admin.freelancers.network.v1.FreelancerAdminNetworksService.GetNetworks:input_type -> admin.freelancers.network.v1.GetNetworksRequest
+	2, // 2: admin.freelancers.network.v1.FreelancerAdminNetworksService.GetNetworks:output_type -> admin.freelancers.network.v1.GetNetworksResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_admin_freelancers_network_v1_freelancer_network_proto_init() }
@@ -143,7 +209,7 @@ func file_admin_freelancers_network_v1_freelancer_network_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_freelancers_network_v1_freelancer_network_proto_rawDesc), len(file_admin_freelancers_network_v1_freelancer_network_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

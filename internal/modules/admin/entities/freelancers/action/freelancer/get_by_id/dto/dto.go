@@ -15,6 +15,11 @@ type Speciality struct {
 	Name string
 }
 
+type CooperationType struct {
+	ID   int64
+	Name string
+}
+
 type FreelancerDTO struct {
 	ID int64
 
@@ -36,7 +41,8 @@ type FreelancerDTO struct {
 	S3Key   string // ключик в базе
 	S3Image string // ссылка на S3
 
-	CooperationType int64
+	CooperationType CooperationType
+	CreatedAt       time.Time
 }
 
 func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
@@ -55,6 +61,10 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 		City:                 City{ID: frlncr.GetCityID()},
 		Speciality:           Speciality{ID: frlncr.GetSpecialityID()},
 		S3Key:                frlncr.GetS3Image(),
-		CooperationType:      cooperationType.ID(),
+		CooperationType: CooperationType{
+			ID:   cooperationType.ID(),
+			Name: cooperationType.Name(),
+		},
+		CreatedAt: frlncr.GetCreatedAt(),
 	}
 }

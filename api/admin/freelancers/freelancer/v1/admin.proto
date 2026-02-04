@@ -272,7 +272,7 @@ message GetFreelancerByIDResponse {
   string created_at = 12;
   string date_started = 13;
   int64 price_category = 14;
-
+  string email = 15;
   //  todo года работы
 }
 
@@ -386,14 +386,10 @@ message ChangeRecommendationSortResponse {}
 
 message AddPriceListRequest {
   int64 freelancer_id = 1;
-  PriceList price_list = 2;
-
-  message PriceList {
-    // Название услуги
-    string name = 1;
-    // Стоимость услуги
-    int64 amount = 2;
-  }
+  // Название услуги
+  string name = 2;
+  // Стоимость услуги
+  int64 amount = 3;
 }
 
 message AddPriceListResponse {

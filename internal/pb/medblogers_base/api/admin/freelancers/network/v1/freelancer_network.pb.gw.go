@@ -68,7 +68,7 @@ func RegisterFreelancerAdminNetworksServiceHandlerServer(ctx context.Context, mu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.network.v1.FreelancerAdminNetworksService/GetNetworks", runtime.WithHTTPPathPattern("/api/v1/admin/freelancers/networks"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.freelancers.network.v1.FreelancerAdminNetworksService/GetNetworks", runtime.WithHTTPPathPattern("/api/v1/admin/freelancers/social_networks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -126,7 +126,7 @@ func RegisterFreelancerAdminNetworksServiceHandlerClient(ctx context.Context, mu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.network.v1.FreelancerAdminNetworksService/GetNetworks", runtime.WithHTTPPathPattern("/api/v1/admin/freelancers/networks"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.freelancers.network.v1.FreelancerAdminNetworksService/GetNetworks", runtime.WithHTTPPathPattern("/api/v1/admin/freelancers/social_networks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -143,7 +143,7 @@ func RegisterFreelancerAdminNetworksServiceHandlerClient(ctx context.Context, mu
 }
 
 var (
-	pattern_FreelancerAdminNetworksService_GetNetworks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancers", "networks"}, ""))
+	pattern_FreelancerAdminNetworksService_GetNetworks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "freelancers", "social_networks"}, ""))
 )
 
 var (

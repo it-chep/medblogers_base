@@ -6,7 +6,7 @@ import (
 )
 
 type ImageGetter interface {
-	GeneratePresignedURL(ctx context.Context, s3Key string) (string, error)
+	GetDoctorPhotoLink(s3Key string) string
 }
 
 type Service struct {
@@ -20,10 +20,7 @@ func New(imageGetter ImageGetter) *Service {
 }
 
 func (s *Service) Enrich(ctx context.Context, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
-	doctorImageURL, err := s.imageGetter.GeneratePresignedURL(ctx, docDTO.S3Key.String())
-	if err != nil {
-		return docDTO, err
-	}
+	doctorImageURL := s.imageGetter.GetDoctorPhotoLink(docDTO.S3Key.String())
 
 	docDTO.Image = doctorImageURL
 

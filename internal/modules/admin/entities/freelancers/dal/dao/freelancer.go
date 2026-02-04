@@ -2,7 +2,6 @@ package dao
 
 import (
 	"database/sql"
-	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/samber/lo"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/doctor"
 	"medblogers_base/internal/modules/admin/entities/freelancers/domain/freelancer"
@@ -87,7 +86,7 @@ func (r Recommendations) ToDomain() []*doctor.Doctor {
 }
 
 type PriceListDao struct {
-	ID    int64          `db:"id"`
-	Name  string         `db:"name"`
-	Price pgtype.Numeric `db:"price"`
+	ID    int64  `db:"id"`
+	Name  string `db:"name"`
+	Price int64  `db:"price"`
 }

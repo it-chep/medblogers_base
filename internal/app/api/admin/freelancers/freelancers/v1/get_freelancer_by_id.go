@@ -4,6 +4,7 @@ import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/freelancer/v1"
+	"time"
 )
 
 func (i *Implementation) GetFreelancerByID(ctx context.Context, req *desc.GetFreelancerByIDRequest) (resp *desc.GetFreelancerByIDResponse, err error) {
@@ -16,10 +17,10 @@ func (i *Implementation) GetFreelancerByID(ctx context.Context, req *desc.GetFre
 		}
 
 		resp = &desc.GetFreelancerByIDResponse{
-			Id:   res.ID,
-			Name: res.Name,
-			Slug: res.Slug,
-			//Email:, todo
+			Id:            res.ID,
+			Name:          res.Name,
+			Slug:          res.Slug,
+			Email:         res.Email,
 			PortfolioLink: res.PortfolioLink,
 			TgUrl:         res.TgURL,
 			MainCity: &desc.CityItem{
@@ -33,13 +34,13 @@ func (i *Implementation) GetFreelancerByID(ctx context.Context, req *desc.GetFre
 			IsActive: res.IsActive,
 			Image:    res.S3Image,
 			CooperationType: &desc.CooperationType{
-				Id: res.CooperationType,
-				//Name:,
+				Id:   res.CooperationType.ID,
+				Name: res.CooperationType.Name,
 			},
 			AgencyRepresentative: res.AgencyRepresentative,
-			//CreatedAt: todo
-			DateStarted:   res.StartWorking.Format("2006-01-02 15:04:05"),
-			PriceCategory: res.PriceCategory,
+			CreatedAt:            res.CreatedAt.Format(time.DateTime),
+			DateStarted:          res.StartWorking.Format(time.DateTime),
+			PriceCategory:        res.PriceCategory,
 		}
 		return nil
 	})

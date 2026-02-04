@@ -8,8 +8,8 @@ import (
 	"github.com/samber/lo"
 	"medblogers_base/internal/modules/admin/entities/freelancers/action/freelancer/get_price_list/dto"
 	"medblogers_base/internal/modules/admin/entities/freelancers/dal/dao"
-	"medblogers_base/internal/pkg/converter"
 	"medblogers_base/internal/pkg/postgres"
+	"strconv"
 )
 
 type Repository struct {
@@ -41,7 +41,7 @@ func (r *Repository) GetPriceList(ctx context.Context, freelancerID int64) ([]dt
 		return dto.PriceList{
 			ID:     item.ID,
 			Name:   item.Name,
-			Amount: converter.NumericToDecimal(item.Price).String(),
+			Amount: strconv.FormatInt(item.Price, 10),
 		}
 	}), nil
 }

@@ -981,20 +981,6 @@
     "admin.freelancers.freelancer.v1.AddNetworkResponse": {
       "type": "object"
     },
-    "admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Название услуги"
-        },
-        "amount": {
-          "type": "string",
-          "format": "int64",
-          "title": "Стоимость услуги"
-        }
-      }
-    },
     "admin.freelancers.freelancer.v1.AddPriceListResponse": {
       "type": "object",
       "properties": {
@@ -1117,8 +1103,14 @@
     "admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceListBody": {
       "type": "object",
       "properties": {
-        "priceList": {
-          "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList"
+        "name": {
+          "type": "string",
+          "title": "Название услуги"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64",
+          "title": "Стоимость услуги"
         }
       }
     },
@@ -1309,6 +1301,10 @@
         "priceCategory": {
           "type": "string",
           "format": "int64"
+        },
+        "email": {
+          "type": "string",
+          "title": "todo года работы"
         }
       }
     },

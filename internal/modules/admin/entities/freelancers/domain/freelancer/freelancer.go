@@ -28,6 +28,7 @@ type Freelancer struct {
 	s3Image string // ссылка на S3
 
 	cooperationType CooperationType
+	createdAt       time.Time
 }
 
 func New(options ...Option) *Freelancer {

@@ -116,3 +116,7 @@ func (f *Freelancer) GetStartWorking() time.Time { return f.startWorking }
 func (f *Freelancer) GetCooperationType() CooperationType {
 	return f.cooperationType
 }
+
+func (f *Freelancer) GetCreatedAt() time.Time {
+	return f.createdAt
+}

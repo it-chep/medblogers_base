@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/admin/freelancers/networks": {
+    "/api/v1/admin/freelancers/social_networks": {
       "get": {
         "summary": "Получение специальностей фрилансеров",
         "operationId": "FreelancerAdminNetworksService_GetNetworks",
@@ -42,7 +42,28 @@
   },
   "definitions": {
     "admin.freelancers.network.v1.GetNetworksResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.network.v1.SocialNetwork"
+          }
+        }
+      }
+    },
+    "admin.freelancers.network.v1.SocialNetwork": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
     },
     "google.protobuf.Any": {
       "type": "object",

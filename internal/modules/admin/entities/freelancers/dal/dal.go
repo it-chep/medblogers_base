@@ -65,7 +65,7 @@ func (r *Repository) GetFreelancers(ctx context.Context) ([]*freelancer.Freelanc
 
 func (r *Repository) GetDoctorToRecommendation(ctx context.Context, doctorID int64) (*doctor.Doctor, error) {
 	sql := `
-		select id, name, slug
+		select id, name
 		from docstar_site_doctor 
 		where id = $1 and is_active is true
 	`

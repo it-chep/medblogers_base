@@ -27,7 +27,7 @@ func (r *Repository) GetAdditionalCities(ctx context.Context, freelancerID int64
 		select c.id, c.name 
 		from freelancer_city_m2m m2m 
 		    join freelancers_city c on m2m.city_id = c.id
-			join freelancer f on m2m.id = f.id
+         	join freelancer f on m2m.freelancer_id = f.id
 		where m2m.freelancer_id = $1 and f.city_id != m2m.city_id
 	`
 

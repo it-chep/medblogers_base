@@ -659,6 +659,7 @@ type GetFreelancerByIDResponse struct {
 	CreatedAt            string                 `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	DateStarted          string                 `protobuf:"bytes,13,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
 	PriceCategory        int64                  `protobuf:"varint,14,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Email                string                 `protobuf:"bytes,15,opt,name=email,proto3" json:"email,omitempty"` //  todo года работы
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -789,6 +790,13 @@ func (x *GetFreelancerByIDResponse) GetPriceCategory() int64 {
 		return x.PriceCategory
 	}
 	return 0
+}
+
+func (x *GetFreelancerByIDResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
 }
 
 type UpdateFreelancerRequest struct {
@@ -1920,9 +1928,12 @@ func (*ChangeRecommendationSortResponse) Descriptor() ([]byte, []int) {
 }
 
 type AddPriceListRequest struct {
-	state         protoimpl.MessageState         `protogen:"open.v1"`
-	FreelancerId  int64                          `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
-	PriceList     *AddPriceListRequest_PriceList `protobuf:"bytes,2,opt,name=price_list,json=priceList,proto3" json:"price_list,omitempty"`
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	FreelancerId int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
+	// Название услуги
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Стоимость услуги
+	Amount        int64 `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1964,11 +1975,18 @@ func (x *AddPriceListRequest) GetFreelancerId() int64 {
 	return 0
 }
 
-func (x *AddPriceListRequest) GetPriceList() *AddPriceListRequest_PriceList {
+func (x *AddPriceListRequest) GetName() string {
 	if x != nil {
-		return x.PriceList
+		return x.Name
 	}
-	return nil
+	return ""
+}
+
+func (x *AddPriceListRequest) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
 }
 
 type AddPriceListResponse struct {
@@ -3111,60 +3129,6 @@ func (x *AddRecommendationResponse_Doctor) GetImage() string {
 	return ""
 }
 
-type AddPriceListRequest_PriceList struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Название услуги
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// Стоимость услуги
-	Amount        int64 `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddPriceListRequest_PriceList) Reset() {
-	*x = AddPriceListRequest_PriceList{}
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[62]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddPriceListRequest_PriceList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddPriceListRequest_PriceList) ProtoMessage() {}
-
-func (x *AddPriceListRequest_PriceList) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[62]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddPriceListRequest_PriceList.ProtoReflect.Descriptor instead.
-func (*AddPriceListRequest_PriceList) Descriptor() ([]byte, []int) {
-	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP(), []int{38, 0}
-}
-
-func (x *AddPriceListRequest_PriceList) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *AddPriceListRequest_PriceList) GetAmount() int64 {
-	if x != nil {
-		return x.Amount
-	}
-	return 0
-}
-
 var File_admin_freelancers_freelancer_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
@@ -3223,7 +3187,7 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12[\n" +
 	"\x10cooperation_type\x18\x05 \x01(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x0fcooperationType\"?\n" +
 	"\x18GetFreelancerByIDRequest\x12#\n" +
-	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xe1\x04\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xf7\x04\n" +
 	"\x19GetFreelancerByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3240,7 +3204,8 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12!\n" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
-	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\"\xa3\x03\n" +
+	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\x12\x14\n" +
+	"\x05email\x18\x0f \x01(\tR\x05email\"\xa3\x03\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3307,14 +3272,11 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12+\n" +
 	"\x11recommendation_id\x18\x02 \x01(\x03R\x10recommendationId\x12\x12\n" +
 	"\x04sort\x18\x03 \x01(\x03R\x04sort\"\"\n" +
-	" ChangeRecommendationSortResponse\"\xd2\x01\n" +
+	" ChangeRecommendationSortResponse\"f\n" +
 	"\x13AddPriceListRequest\x12#\n" +
-	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12]\n" +
-	"\n" +
-	"price_list\x18\x02 \x01(\v2>.admin.freelancers.freelancer.v1.AddPriceListRequest.PriceListR\tpriceList\x1a7\n" +
-	"\tPriceList\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\"C\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\x03R\x06amount\"C\n" +
 	"\x14AddPriceListResponse\x12+\n" +
 	"\x12price_list_item_id\x18\x01 \x01(\x03R\x0fpriceListItemId\"j\n" +
 	"\x16DeletePriceListRequest\x12#\n" +
@@ -3396,7 +3358,7 @@ func file_admin_freelancers_freelancer_v1_admin_proto_rawDescGZIP() []byte {
 	return file_admin_freelancers_freelancer_v1_admin_proto_rawDescData
 }
 
-var file_admin_freelancers_freelancer_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 63)
+var file_admin_freelancers_freelancer_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
 var file_admin_freelancers_freelancer_v1_admin_proto_goTypes = []any{
 	(*CityItem)(nil),                                     // 0: admin.freelancers.freelancer.v1.CityItem
 	(*SpecialityItem)(nil),                               // 1: admin.freelancers.freelancer.v1.SpecialityItem
@@ -3460,7 +3422,6 @@ var file_admin_freelancers_freelancer_v1_admin_proto_goTypes = []any{
 	(*SortFreelancersResponse_Freelancer)(nil),           // 59: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer
 	(*SearchFreelancersResponse_Freelancer)(nil),         // 60: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer
 	(*AddRecommendationResponse_Doctor)(nil),             // 61: admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor
-	(*AddPriceListRequest_PriceList)(nil),                // 62: admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList
 }
 var file_admin_freelancers_freelancer_v1_admin_proto_depIdxs = []int32{
 	58, // 0: admin.freelancers.freelancer.v1.GetFreelancersResponse.freelancers:type_name -> admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer
@@ -3470,73 +3431,72 @@ var file_admin_freelancers_freelancer_v1_admin_proto_depIdxs = []int32{
 	1,  // 4: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.main_speciality:type_name -> admin.freelancers.freelancer.v1.SpecialityItem
 	2,  // 5: admin.freelancers.freelancer.v1.GetFreelancerByIDResponse.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
 	61, // 6: admin.freelancers.freelancer.v1.AddRecommendationResponse.doctor:type_name -> admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor
-	62, // 7: admin.freelancers.freelancer.v1.AddPriceListRequest.price_list:type_name -> admin.freelancers.freelancer.v1.AddPriceListRequest.PriceList
-	1,  // 8: admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.freelancers.freelancer.v1.SpecialityItem
-	0,  // 9: admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse.additional_cities:type_name -> admin.freelancers.freelancer.v1.CityItem
-	2,  // 10: admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse.cooperation_types:type_name -> admin.freelancers.freelancer.v1.CooperationType
-	5,  // 11: admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse.price_list:type_name -> admin.freelancers.freelancer.v1.PriceList
-	4,  // 12: admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse.recommendations:type_name -> admin.freelancers.freelancer.v1.Recommendation
-	3,  // 13: admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse.social_networks:type_name -> admin.freelancers.freelancer.v1.Society
-	2,  // 14: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
-	2,  // 15: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
-	2,  // 16: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
-	6,  // 17: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:input_type -> admin.freelancers.freelancer.v1.GetFreelancersRequest
-	8,  // 18: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:input_type -> admin.freelancers.freelancer.v1.SortFreelancersRequest
-	10, // 19: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:input_type -> admin.freelancers.freelancer.v1.SearchFreelancersRequest
-	12, // 20: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:input_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDRequest
-	14, // 21: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:input_type -> admin.freelancers.freelancer.v1.UpdateFreelancerRequest
-	16, // 22: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerRequest
-	18, // 23: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:input_type -> admin.freelancers.freelancer.v1.ActivateFreelancerRequest
-	20, // 24: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:input_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerRequest
-	22, // 25: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:input_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoRequest
-	24, // 26: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:input_type -> admin.freelancers.freelancer.v1.AddAdditionalCityRequest
-	26, // 27: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityRequest
-	28, // 28: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityRequest
-	30, // 29: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityRequest
-	32, // 30: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:input_type -> admin.freelancers.freelancer.v1.AddRecommendationRequest
-	34, // 31: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:input_type -> admin.freelancers.freelancer.v1.DeleteRecommendationRequest
-	36, // 32: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:input_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortRequest
-	38, // 33: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:input_type -> admin.freelancers.freelancer.v1.AddPriceListRequest
-	40, // 34: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:input_type -> admin.freelancers.freelancer.v1.DeletePriceListRequest
-	42, // 35: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:input_type -> admin.freelancers.freelancer.v1.AddNetworkRequest
-	44, // 36: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:input_type -> admin.freelancers.freelancer.v1.DeleteNetworkRequest
-	46, // 37: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalSpecialities:input_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesRequest
-	48, // 38: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalCities:input_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesRequest
-	50, // 39: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerCooperationTypes:input_type -> admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesRequest
-	52, // 40: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerPriceList:input_type -> admin.freelancers.freelancer.v1.GetFreelancerPriceListRequest
-	54, // 41: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerRecommendations:input_type -> admin.freelancers.freelancer.v1.GetFreelancerRecommendationsRequest
-	56, // 42: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerSocialNetworks:input_type -> admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksRequest
-	7,  // 43: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:output_type -> admin.freelancers.freelancer.v1.GetFreelancersResponse
-	9,  // 44: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:output_type -> admin.freelancers.freelancer.v1.SortFreelancersResponse
-	11, // 45: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:output_type -> admin.freelancers.freelancer.v1.SearchFreelancersResponse
-	13, // 46: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:output_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse
-	15, // 47: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:output_type -> admin.freelancers.freelancer.v1.UpdateFreelancerResponse
-	17, // 48: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerResponse
-	19, // 49: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:output_type -> admin.freelancers.freelancer.v1.ActivateFreelancerResponse
-	21, // 50: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:output_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerResponse
-	23, // 51: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:output_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse
-	25, // 52: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:output_type -> admin.freelancers.freelancer.v1.AddAdditionalCityResponse
-	27, // 53: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse
-	29, // 54: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse
-	31, // 55: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse
-	33, // 56: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:output_type -> admin.freelancers.freelancer.v1.AddRecommendationResponse
-	35, // 57: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:output_type -> admin.freelancers.freelancer.v1.DeleteRecommendationResponse
-	37, // 58: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:output_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse
-	39, // 59: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:output_type -> admin.freelancers.freelancer.v1.AddPriceListResponse
-	41, // 60: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:output_type -> admin.freelancers.freelancer.v1.DeletePriceListResponse
-	43, // 61: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:output_type -> admin.freelancers.freelancer.v1.AddNetworkResponse
-	45, // 62: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:output_type -> admin.freelancers.freelancer.v1.DeleteNetworkResponse
-	47, // 63: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalSpecialities:output_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse
-	49, // 64: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalCities:output_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse
-	51, // 65: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerCooperationTypes:output_type -> admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse
-	53, // 66: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerPriceList:output_type -> admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse
-	55, // 67: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerRecommendations:output_type -> admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse
-	57, // 68: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerSocialNetworks:output_type -> admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse
-	43, // [43:69] is the sub-list for method output_type
-	17, // [17:43] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	1,  // 7: admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.freelancers.freelancer.v1.SpecialityItem
+	0,  // 8: admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse.additional_cities:type_name -> admin.freelancers.freelancer.v1.CityItem
+	2,  // 9: admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse.cooperation_types:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	5,  // 10: admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse.price_list:type_name -> admin.freelancers.freelancer.v1.PriceList
+	4,  // 11: admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse.recommendations:type_name -> admin.freelancers.freelancer.v1.Recommendation
+	3,  // 12: admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse.social_networks:type_name -> admin.freelancers.freelancer.v1.Society
+	2,  // 13: admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	2,  // 14: admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	2,  // 15: admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer.cooperation_type:type_name -> admin.freelancers.freelancer.v1.CooperationType
+	6,  // 16: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:input_type -> admin.freelancers.freelancer.v1.GetFreelancersRequest
+	8,  // 17: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:input_type -> admin.freelancers.freelancer.v1.SortFreelancersRequest
+	10, // 18: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:input_type -> admin.freelancers.freelancer.v1.SearchFreelancersRequest
+	12, // 19: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:input_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDRequest
+	14, // 20: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:input_type -> admin.freelancers.freelancer.v1.UpdateFreelancerRequest
+	16, // 21: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerRequest
+	18, // 22: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:input_type -> admin.freelancers.freelancer.v1.ActivateFreelancerRequest
+	20, // 23: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:input_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerRequest
+	22, // 24: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:input_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoRequest
+	24, // 25: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:input_type -> admin.freelancers.freelancer.v1.AddAdditionalCityRequest
+	26, // 26: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityRequest
+	28, // 27: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityRequest
+	30, // 28: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:input_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityRequest
+	32, // 29: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:input_type -> admin.freelancers.freelancer.v1.AddRecommendationRequest
+	34, // 30: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:input_type -> admin.freelancers.freelancer.v1.DeleteRecommendationRequest
+	36, // 31: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:input_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortRequest
+	38, // 32: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:input_type -> admin.freelancers.freelancer.v1.AddPriceListRequest
+	40, // 33: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:input_type -> admin.freelancers.freelancer.v1.DeletePriceListRequest
+	42, // 34: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:input_type -> admin.freelancers.freelancer.v1.AddNetworkRequest
+	44, // 35: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:input_type -> admin.freelancers.freelancer.v1.DeleteNetworkRequest
+	46, // 36: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalSpecialities:input_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesRequest
+	48, // 37: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalCities:input_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesRequest
+	50, // 38: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerCooperationTypes:input_type -> admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesRequest
+	52, // 39: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerPriceList:input_type -> admin.freelancers.freelancer.v1.GetFreelancerPriceListRequest
+	54, // 40: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerRecommendations:input_type -> admin.freelancers.freelancer.v1.GetFreelancerRecommendationsRequest
+	56, // 41: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerSocialNetworks:input_type -> admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksRequest
+	7,  // 42: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancers:output_type -> admin.freelancers.freelancer.v1.GetFreelancersResponse
+	9,  // 43: admin.freelancers.freelancer.v1.FreelancerAdminService.SortFreelancers:output_type -> admin.freelancers.freelancer.v1.SortFreelancersResponse
+	11, // 44: admin.freelancers.freelancer.v1.FreelancerAdminService.SearchFreelancers:output_type -> admin.freelancers.freelancer.v1.SearchFreelancersResponse
+	13, // 45: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerByID:output_type -> admin.freelancers.freelancer.v1.GetFreelancerByIDResponse
+	15, // 46: admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancer:output_type -> admin.freelancers.freelancer.v1.UpdateFreelancerResponse
+	17, // 47: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancer:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerResponse
+	19, // 48: admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancer:output_type -> admin.freelancers.freelancer.v1.ActivateFreelancerResponse
+	21, // 49: admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancer:output_type -> admin.freelancers.freelancer.v1.DeactivateFreelancerResponse
+	23, // 50: admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhoto:output_type -> admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse
+	25, // 51: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCity:output_type -> admin.freelancers.freelancer.v1.AddAdditionalCityResponse
+	27, // 52: admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse
+	29, // 53: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCity:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse
+	31, // 54: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpeciality:output_type -> admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse
+	33, // 55: admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendation:output_type -> admin.freelancers.freelancer.v1.AddRecommendationResponse
+	35, // 56: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendation:output_type -> admin.freelancers.freelancer.v1.DeleteRecommendationResponse
+	37, // 57: admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSort:output_type -> admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse
+	39, // 58: admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceList:output_type -> admin.freelancers.freelancer.v1.AddPriceListResponse
+	41, // 59: admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceList:output_type -> admin.freelancers.freelancer.v1.DeletePriceListResponse
+	43, // 60: admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetwork:output_type -> admin.freelancers.freelancer.v1.AddNetworkResponse
+	45, // 61: admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetwork:output_type -> admin.freelancers.freelancer.v1.DeleteNetworkResponse
+	47, // 62: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalSpecialities:output_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse
+	49, // 63: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerAdditionalCities:output_type -> admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse
+	51, // 64: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerCooperationTypes:output_type -> admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse
+	53, // 65: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerPriceList:output_type -> admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse
+	55, // 66: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerRecommendations:output_type -> admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse
+	57, // 67: admin.freelancers.freelancer.v1.FreelancerAdminService.GetFreelancerSocialNetworks:output_type -> admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse
+	42, // [42:68] is the sub-list for method output_type
+	16, // [16:42] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_admin_freelancers_freelancer_v1_admin_proto_init() }
@@ -3550,7 +3510,7 @@ func file_admin_freelancers_freelancer_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_freelancers_freelancer_v1_admin_proto_rawDesc), len(file_admin_freelancers_freelancer_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   63,
+			NumMessages:   62,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
