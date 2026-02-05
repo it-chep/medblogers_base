@@ -498,6 +498,7 @@ type GetDoctorByIDResponse struct {
 	CooperationType      *CooperationType                         `protobuf:"bytes,23,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
 	MedicalDirections    string                                   `protobuf:"bytes,24,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
 	MarketingPreferences string                                   `protobuf:"bytes,25,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
+	Email                string                                   `protobuf:"bytes,26,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -693,6 +694,13 @@ func (x *GetDoctorByIDResponse) GetMarketingPreferences() string {
 	return ""
 }
 
+func (x *GetDoctorByIDResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 type UpdateDoctorRequest struct {
 	state    protoimpl.MessageState `protogen:"open.v1"`
 	DoctorId int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
@@ -715,6 +723,7 @@ type UpdateDoctorRequest struct {
 	CooperationTypeId    int64  `protobuf:"varint,17,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
 	MedicalDirections    string `protobuf:"bytes,18,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
 	MarketingPreferences string `protobuf:"bytes,19,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
+	Email                string `protobuf:"bytes,20,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -878,6 +887,13 @@ func (x *UpdateDoctorRequest) GetMedicalDirections() string {
 func (x *UpdateDoctorRequest) GetMarketingPreferences() string {
 	if x != nil {
 		return x.MarketingPreferences
+	}
+	return ""
+}
+
+func (x *UpdateDoctorRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
 	}
 	return ""
 }
@@ -1212,7 +1228,7 @@ func (x *SaveDoctorPhotoRequest) GetImageData() string {
 
 type SaveDoctorPhotoResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ImageUrl      string                 `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
+	Image         string                 `protobuf:"bytes,1,opt,name=image,proto3" json:"image,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1247,9 +1263,9 @@ func (*SaveDoctorPhotoResponse) Descriptor() ([]byte, []int) {
 	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *SaveDoctorPhotoResponse) GetImageUrl() string {
+func (x *SaveDoctorPhotoResponse) GetImage() string {
 	if x != nil {
-		return x.ImageUrl
+		return x.Image
 	}
 	return ""
 }
@@ -2505,7 +2521,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
 	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"3\n" +
 	"\x14GetDoctorByIDRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xc4\b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xda\b\n" +
 	"\x15GetDoctorByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2535,13 +2551,14 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"created_at\x18\x16 \x01(\tR\tcreatedAt\x12T\n" +
 	"\x10cooperation_type\x18\x17 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\x12-\n" +
 	"\x12medical_directions\x18\x18 \x01(\tR\x11medicalDirections\x123\n" +
-	"\x15marketing_preferences\x18\x19 \x01(\tR\x14marketingPreferences\x1a\x96\x01\n" +
+	"\x15marketing_preferences\x18\x19 \x01(\tR\x14marketingPreferences\x12\x14\n" +
+	"\x05email\x18\x1a \x01(\tR\x05email\x1a\x96\x01\n" +
 	"\x0fSubscribersItem\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x1d\n" +
 	"\n" +
 	"subs_count\x18\x02 \x01(\tR\tsubsCount\x12&\n" +
 	"\x0fsubs_count_text\x18\x03 \x01(\tR\rsubsCountText\x12*\n" +
-	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"\x8e\x05\n" +
+	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"\xa4\x05\n" +
 	"\x13UpdateDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2567,7 +2584,8 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"birth_date\x18\x10 \x01(\tR\tbirthDate\x12.\n" +
 	"\x13cooperation_type_id\x18\x11 \x01(\x03R\x11cooperationTypeId\x12-\n" +
 	"\x12medical_directions\x18\x12 \x01(\tR\x11medicalDirections\x123\n" +
-	"\x15marketing_preferences\x18\x13 \x01(\tR\x14marketingPreferences\"\x16\n" +
+	"\x15marketing_preferences\x18\x13 \x01(\tR\x14marketingPreferences\x12\x14\n" +
+	"\x05email\x18\x14 \x01(\tR\x05email\"\x16\n" +
 	"\x14UpdateDoctorResponse\"2\n" +
 	"\x13DeleteDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x16\n" +
@@ -2581,9 +2599,9 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x16SaveDoctorPhotoRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1d\n" +
 	"\n" +
-	"image_data\x18\x02 \x01(\tR\timageData\"6\n" +
-	"\x17SaveDoctorPhotoResponse\x12\x1b\n" +
-	"\timage_url\x18\x01 \x01(\tR\bimageUrl\"V\n" +
+	"image_data\x18\x02 \x01(\tR\timageData\"/\n" +
+	"\x17SaveDoctorPhotoResponse\x12\x14\n" +
+	"\x05image\x18\x01 \x01(\tR\x05image\"V\n" +
 	"\x1eAddDoctorAdditionalCityRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x17\n" +
 	"\acity_id\x18\x02 \x01(\x03R\x06cityId\"!\n" +

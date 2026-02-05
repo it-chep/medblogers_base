@@ -54,18 +54,20 @@ func (a *Action) Do(ctx context.Context, doctorID int64, imageData []byte) (stri
 		return "", err
 	}
 
-	// todo обратная совместимость
-	err = a.actionDal.SaveDoctorImage(ctx, doctorID, filename)
+	err = a.actionDal.SaveDoctorImage(ctx, doctorID, newImageURL)
 	if err != nil {
 		return "", err
 	}
 
-	err = a.image.DeleteImage(ctx, doc.GetS3Key().String())
-	if err != nil {
-		return "", err
+	// Если раньше была фотография, то мы должны ее удалить
+	if len(doc.GetS3Key().String()) != 0 {
+		err = a.image.DeleteImage(ctx, doc.GetS3Key().String())
+		if err != nil {
+			return "", err
+		}
 	}
 
-	return newImageURL, nil
+	return a.image.GetImageURL(newImageURL), nil
 }
 
 func (a *Action) generateNewImageName(doc *doctor.Doctor, imageData []byte) (string, error) {

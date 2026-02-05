@@ -194,7 +194,7 @@ func (g *Gateway) PutDoctorPhoto(ctx context.Context, file io.Reader, filename s
 
 func (g *Gateway) DelDoctorPhoto(ctx context.Context, filename string) error {
 	// Формируем полный ключ объекта
-	objectKey := fmt.Sprintf("images/user_%s", filename)
+	objectKey := filename
 
 	// Удаляем файл из S3
 	_, err := g.client.DeleteObject(ctx, &s3.DeleteObjectInput{
@@ -271,7 +271,7 @@ func (g *Gateway) PutFreelancerPhoto(ctx context.Context, file io.Reader, filena
 
 func (g *Gateway) DelFreelancerPhoto(ctx context.Context, filename string) error {
 	// Формируем полный ключ объекта
-	objectKey := fmt.Sprintf("images/user_%s", filename)
+	objectKey := filename
 
 	// Удаляем файл из S3
 	_, err := g.client.DeleteObject(ctx, &s3.DeleteObjectInput{

@@ -220,6 +220,7 @@ message GetDoctorByIDResponse {
   CooperationType cooperation_type = 23;
   string medical_directions = 24;
   string marketing_preferences = 25;
+  string email = 26;
 
   message SubscribersItem {
     string key = 1; // todo сделать текстовый енам
@@ -256,6 +257,7 @@ message UpdateDoctorRequest {
   int64 cooperation_type_id = 17;
   string medical_directions = 18;
   string marketing_preferences = 19;
+  string email = 20;
 }
 
 message UpdateDoctorResponse {}
@@ -284,7 +286,7 @@ message SaveDoctorPhotoRequest {
 }
 
 message SaveDoctorPhotoResponse {
-  string image_url = 1;
+  string image = 1;
 }
 
 message AddDoctorAdditionalCityRequest {

@@ -24,7 +24,7 @@ func (i *Implementation) SaveDoctorPhoto(ctx context.Context, req *desc.SaveDoct
 		}
 
 		resp = &desc.SaveDoctorPhotoResponse{
-			ImageUrl: imageURL,
+			Image: imageURL,
 		}
 
 		return nil

@@ -18,10 +18,10 @@ func (i *Implementation) GetDoctorByID(ctx context.Context, req *desc.GetDoctorB
 		}
 
 		resp = &desc.GetDoctorByIDResponse{
-			Id:   docDTO.ID,
-			Name: docDTO.Name,
-			Slug: docDTO.Slug,
-
+			Id:    docDTO.ID,
+			Name:  docDTO.Name,
+			Slug:  docDTO.Slug,
+			Email: docDTO.Email,
 			CooperationType: &desc.CooperationType{
 				Id:   docDTO.CooperationType.ID(),
 				Name: docDTO.CooperationType.Name(),

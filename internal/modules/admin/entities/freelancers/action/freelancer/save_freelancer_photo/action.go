@@ -54,18 +54,19 @@ func (a *Action) Do(ctx context.Context, freelancerID int64, imageData []byte) (
 		return "", err
 	}
 
-	// todo обратная совместимость
-	err = a.actionDal.SaveFreelancerImage(ctx, freelancerID, filename)
+	err = a.actionDal.SaveFreelancerImage(ctx, freelancerID, newImageURL)
 	if err != nil {
 		return "", err
 	}
 
-	err = a.image.DeleteImage(ctx, frncer.GetS3Image())
-	if err != nil {
-		return "", err
+	if len(frncer.GetS3Image()) != 0 {
+		err = a.image.DeleteImage(ctx, frncer.GetS3Image())
+		if err != nil {
+			return "", err
+		}
 	}
 
-	return newImageURL, nil
+	return a.image.GetImageURL(newImageURL), nil
 }
 
 func (a *Action) generateNewImageName(frncer *freelancer.Freelancer, imageData []byte) (string, error) {

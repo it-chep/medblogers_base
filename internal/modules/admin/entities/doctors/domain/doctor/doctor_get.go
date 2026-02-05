@@ -22,6 +22,11 @@ func (d *Doctor) GetSlug() string {
 	return d.slug
 }
 
+// GetEmail .
+func (d *Doctor) GetEmail() string {
+	return d.email
+}
+
 // GetInstURL .
 func (d *Doctor) GetInstURL() string {
 	return d.instURL

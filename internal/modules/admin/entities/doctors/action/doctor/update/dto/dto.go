@@ -1,8 +1,9 @@
 package dto
 
 type UpdateRequest struct {
-	Name string
-	Slug string
+	Name  string
+	Slug  string
+	Email string
 
 	InstURL      string
 	VkURL        string

@@ -20,6 +20,11 @@ func New(getter Getter) *Service {
 }
 
 func (s *Service) Enrich(_ context.Context, freelancerDTO *dto.FreelancerDTO) (*dto.FreelancerDTO, error) {
+	if len(freelancerDTO.S3Key) == 0 {
+		return freelancerDTO, nil
+	}
+
 	freelancerDTO.S3Image = s.getter.GetFreelancerPhotoLink(freelancerDTO.S3Key)
+
 	return freelancerDTO, nil
 }

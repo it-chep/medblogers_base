@@ -42,5 +42,6 @@ func getUpdateDoctorReq(req *desc.UpdateDoctorRequest) dto.UpdateRequest {
 		CooperationTypeID:    req.GetCooperationTypeId(),
 		MedicalDirections:    req.GetMedicalDirections(),
 		MarketingPreferences: req.GetMarketingPreferences(),
+		Email:                req.GetEmail(),
 	}
 }

@@ -19,7 +19,10 @@ func New(imageGetter ImageGetter) *Service {
 	}
 }
 
-func (s *Service) Enrich(ctx context.Context, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
+func (s *Service) Enrich(_ context.Context, docDTO *dto.DoctorDTO) (*dto.DoctorDTO, error) {
+	if len(docDTO.S3Key.String()) == 0 {
+		return docDTO, nil
+	}
 	doctorImageURL := s.imageGetter.GetDoctorPhotoLink(docDTO.S3Key.String())
 
 	docDTO.Image = doctorImageURL

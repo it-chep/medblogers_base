@@ -38,7 +38,8 @@ func (r *Repository) UpdateDoctor(ctx context.Context, doctorID int64, req dto.U
 		birth_date = $16,
 		cooperation_type = $17,
 		medical_directions = $18,
-		marketing_preferences = $19
+		marketing_preferences = $19,
+		email = $20
    	where id = $1
 	`
 
@@ -62,6 +63,7 @@ func (r *Repository) UpdateDoctor(ctx context.Context, doctorID int64, req dto.U
 		req.CooperationTypeID,
 		req.MedicalDirections,
 		req.MarketingPreferences,
+		req.Email,
 	}
 
 	_, err := r.db.Exec(ctx, sql, args...)

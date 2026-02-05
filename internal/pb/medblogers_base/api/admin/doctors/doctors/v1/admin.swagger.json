@@ -818,6 +818,9 @@
         },
         "marketingPreferences": {
           "type": "string"
+        },
+        "email": {
+          "type": "string"
         }
       }
     },
@@ -929,6 +932,9 @@
           "type": "string"
         },
         "marketingPreferences": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         }
       }
@@ -1044,7 +1050,7 @@
     "admin.doctors.doctors.v1.SaveDoctorPhotoResponse": {
       "type": "object",
       "properties": {
-        "imageUrl": {
+        "image": {
           "type": "string"
         }
       }
@@ -1201,6 +1207,9 @@
           "type": "string"
         },
         "marketingPreferences": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         }
       }

@@ -6,9 +6,10 @@ import (
 )
 
 type DoctorDTO struct {
-	ID   int64
-	Name string
-	Slug string
+	ID    int64
+	Name  string
+	Slug  string
+	Email string
 
 	InstURL      string
 	VkURL        string
@@ -65,6 +66,7 @@ func New(doc *doctor.Doctor) *DoctorDTO {
 		ID:           int64(doc.GetID()),
 		Name:         doc.GetName(),
 		Slug:         doc.GetSlug(),
+		Email:        doc.GetEmail(),
 		InstURL:      doc.GetInstURL(),
 		VkURL:        doc.GetVkURL(),
 		DzenURL:      doc.GetDzenURL(),

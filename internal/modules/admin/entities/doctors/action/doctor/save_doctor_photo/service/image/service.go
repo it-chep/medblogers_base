@@ -8,6 +8,7 @@ import (
 type Image interface {
 	PutDoctorPhoto(ctx context.Context, file io.Reader, filename string) (string, error)
 	DelDoctorPhoto(ctx context.Context, filename string) error
+	GetDoctorPhotoLink(s3Key string) string
 }
 
 type Service struct {
@@ -26,4 +27,8 @@ func (s *Service) DeleteImage(ctx context.Context, doctorSlug string) error {
 
 func (s *Service) SetImage(ctx context.Context, file io.Reader, doctorSlug string) (string, error) {
 	return s.image.PutDoctorPhoto(ctx, file, doctorSlug)
+}
+
+func (s *Service) GetImageURL(imageLink string) string {
+	return s.image.GetDoctorPhotoLink(imageLink)
 }
