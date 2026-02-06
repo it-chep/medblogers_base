@@ -292,6 +292,7 @@ message UpdateFreelancerRequest {
 
   string date_started = 10;
   int64 price_category = 11;
+  string email = 12;
 }
 
 message UpdateFreelancerResponse {}

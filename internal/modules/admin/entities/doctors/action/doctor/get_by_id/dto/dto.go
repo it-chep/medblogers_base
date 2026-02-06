@@ -41,10 +41,15 @@ type DoctorDTO struct {
 	MarketingPreferences string
 
 	SubscribersInfo []Subscribers
-	CooperationType doctor.CooperationType
+	CooperationType CooperationType
 }
 
 type City struct {
+	ID   int64
+	Name string
+}
+
+type CooperationType struct {
 	ID   int64
 	Name string
 }
@@ -62,6 +67,7 @@ type Subscribers struct {
 }
 
 func New(doc *doctor.Doctor) *DoctorDTO {
+	cooperationType := doc.GetCooperationType()
 	return &DoctorDTO{
 		ID:           int64(doc.GetID()),
 		Name:         doc.GetName(),
@@ -89,6 +95,8 @@ func New(doc *doctor.Doctor) *DoctorDTO {
 		CreatedAt:            doc.GetCreatedAt().Format(time.DateTime),
 		MedicalDirections:    doc.GetMedicalDirection(),
 		MarketingPreferences: doc.GetMarketingPreferences(),
-		CooperationType:      doc.GetCooperationType(),
+		CooperationType: CooperationType{
+			ID: cooperationType.ID(),
+		},
 	}
 }

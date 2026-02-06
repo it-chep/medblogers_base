@@ -319,7 +319,7 @@ message DeleteDoctorAdditionalSpecialityResponse {}
 
 message UpdateSubscribersRequest {
   int64 doctor_id = 1;
-  UpdateDoctorRequest update_subscribers = 2;
+  UpdateRequest update_subscribers = 2;
 
   message UpdateRequest {
     string key = 1;

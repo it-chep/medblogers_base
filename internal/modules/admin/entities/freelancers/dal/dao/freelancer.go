@@ -28,6 +28,7 @@ type FullFreelancerDAO struct {
 func (d FullFreelancerDAO) ToDomain() *freelancer.Freelancer {
 	return freelancer.New(
 		freelancer.WithID(d.ID),
+		freelancer.WithEmail(d.Email),
 		freelancer.WithName(d.Name),
 		freelancer.WithSlug(d.Slug),
 		freelancer.WithIsActive(d.IsActive),

@@ -828,7 +828,7 @@
       "type": "object",
       "properties": {
         "updateSubscribers": {
-          "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateDoctorRequest"
+          "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest"
         }
       }
     },
@@ -1144,78 +1144,20 @@
         }
       }
     },
-    "admin.doctors.doctors.v1.UpdateDoctorRequest": {
-      "type": "object",
-      "properties": {
-        "doctorId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "instUrl": {
-          "type": "string",
-          "title": "Соцсети"
-        },
-        "vkUrl": {
-          "type": "string"
-        },
-        "dzenUrl": {
-          "type": "string"
-        },
-        "tgUrl": {
-          "type": "string"
-        },
-        "tgChannelUrl": {
-          "type": "string"
-        },
-        "youtubeUrl": {
-          "type": "string"
-        },
-        "tiktokUrl": {
-          "type": "string"
-        },
-        "siteLink": {
-          "type": "string"
-        },
-        "mainCityId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "mainSpecialityId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "mainBlogTheme": {
-          "type": "string"
-        },
-        "isKfDoctor": {
-          "type": "boolean"
-        },
-        "birthDate": {
-          "type": "string"
-        },
-        "cooperationTypeId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "medicalDirections": {
-          "type": "string"
-        },
-        "marketingPreferences": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        }
-      }
-    },
     "admin.doctors.doctors.v1.UpdateDoctorResponse": {
       "type": "object"
+    },
+    "admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "subsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "admin.doctors.doctors.v1.UpdateSubscribersResponse": {
       "type": "object"

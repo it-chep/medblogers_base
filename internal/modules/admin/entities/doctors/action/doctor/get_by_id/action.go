@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/dal"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/dto"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/service/cities"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/service/cooperation_type"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/service/image"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/service/specialities"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id/service/subscribers"
@@ -21,21 +22,23 @@ type CommonDal interface {
 
 // Action активация доктора
 type Action struct {
-	commonDal           CommonDal
-	subscribersEnricher *subscribers.Service
-	cityEnricher        *cities.Service
-	specialityEnricher  *specialities.Service
-	imageEnricher       *image.Service
+	commonDal               CommonDal
+	subscribersEnricher     *subscribers.Service
+	cityEnricher            *cities.Service
+	specialityEnricher      *specialities.Service
+	imageEnricher           *image.Service
+	cooperationTypeEnricher *cooperation_type.Service
 }
 
 // New .
 func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	return &Action{
-		commonDal:           common_dal.NewRepository(pool),
-		subscribersEnricher: subscribers.New(clients.Subscribers),
-		cityEnricher:        cities.New(dal.NewRepository(pool)),
-		specialityEnricher:  specialities.New(dal.NewRepository(pool)),
-		imageEnricher:       image.New(clients.S3),
+		commonDal:               common_dal.NewRepository(pool),
+		subscribersEnricher:     subscribers.New(clients.Subscribers),
+		cityEnricher:            cities.New(dal.NewRepository(pool)),
+		specialityEnricher:      specialities.New(dal.NewRepository(pool)),
+		imageEnricher:           image.New(clients.S3),
+		cooperationTypeEnricher: cooperation_type.New(dal.NewRepository(pool)),
 	}
 }
 
@@ -52,6 +55,7 @@ func (a *Action) Do(ctx context.Context, doctorID int64) (_ *dto.DoctorDTO, err 
 		With(a.specialityEnricher.Enrich).
 		With(a.cityEnricher.Enrich).
 		With(a.subscribersEnricher.Enrich).
+		With(a.cooperationTypeEnricher.Enrich).
 		Run(ctx, docDTO).
 		Get()
 	if err != nil {

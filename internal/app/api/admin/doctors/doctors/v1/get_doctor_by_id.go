@@ -23,8 +23,8 @@ func (i *Implementation) GetDoctorByID(ctx context.Context, req *desc.GetDoctorB
 			Slug:  docDTO.Slug,
 			Email: docDTO.Email,
 			CooperationType: &desc.CooperationType{
-				Id:   docDTO.CooperationType.ID(),
-				Name: docDTO.CooperationType.Name(),
+				Id:   docDTO.CooperationType.ID,
+				Name: docDTO.CooperationType.Name,
 			},
 			InstUrl:      docDTO.InstURL,
 			TgUrl:        docDTO.TgURL,

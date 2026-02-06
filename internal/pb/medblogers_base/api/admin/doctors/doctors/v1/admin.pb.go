@@ -1623,9 +1623,9 @@ func (*DeleteDoctorAdditionalSpecialityResponse) Descriptor() ([]byte, []int) {
 }
 
 type UpdateSubscribersRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	DoctorId          int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
-	UpdateSubscribers *UpdateDoctorRequest   `protobuf:"bytes,2,opt,name=update_subscribers,json=updateSubscribers,proto3" json:"update_subscribers,omitempty"`
+	state             protoimpl.MessageState                  `protogen:"open.v1"`
+	DoctorId          int64                                   `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	UpdateSubscribers *UpdateSubscribersRequest_UpdateRequest `protobuf:"bytes,2,opt,name=update_subscribers,json=updateSubscribers,proto3" json:"update_subscribers,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -1667,7 +1667,7 @@ func (x *UpdateSubscribersRequest) GetDoctorId() int64 {
 	return 0
 }
 
-func (x *UpdateSubscribersRequest) GetUpdateSubscribers() *UpdateDoctorRequest {
+func (x *UpdateSubscribersRequest) GetUpdateSubscribers() *UpdateSubscribersRequest_UpdateRequest {
 	if x != nil {
 		return x.UpdateSubscribers
 	}
@@ -2617,10 +2617,10 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"'DeleteDoctorAdditionalSpecialityRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12#\n" +
 	"\rspeciality_id\x18\x02 \x01(\x03R\fspecialityId\"*\n" +
-	"(DeleteDoctorAdditionalSpecialityResponse\"\xd7\x01\n" +
+	"(DeleteDoctorAdditionalSpecialityResponse\"\xea\x01\n" +
 	"\x18UpdateSubscribersRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\\\n" +
-	"\x12update_subscribers\x18\x02 \x01(\v2-.admin.doctors.doctors.v1.UpdateDoctorRequestR\x11updateSubscribers\x1a@\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12o\n" +
+	"\x12update_subscribers\x18\x02 \x01(\v2@.admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequestR\x11updateSubscribers\x1a@\n" +
 	"\rUpdateRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x1d\n" +
 	"\n" +
@@ -2736,7 +2736,7 @@ var file_admin_doctors_doctors_v1_admin_proto_depIdxs = []int32{
 	1,  // 4: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_speciality:type_name -> admin.doctors.doctors.v1.SpecialityItem
 	42, // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
 	2,  // 6: admin.doctors.doctors.v1.GetDoctorByIDResponse.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	11, // 7: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateDoctorRequest
+	43, // 7: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
 	44, // 8: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
 	1,  // 9: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
 	0,  // 10: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem

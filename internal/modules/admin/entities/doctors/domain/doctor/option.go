@@ -173,6 +173,6 @@ func WithBirthDate(birthDate time.Time) Option {
 // WithCooperationType .
 func WithCooperationType(cooperationType int64) Option {
 	return func(s *Doctor) {
-		//s.cooperationType = CooperationType(cooperationType)
+		s.cooperationType = CooperationType{id: cooperationType}
 	}
 }

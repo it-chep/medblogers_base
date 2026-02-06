@@ -11,6 +11,14 @@ func (i *Implementation) UpdateSubscribers(ctx context.Context, req *desc.Update
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/update_subscribers", func(ctx context.Context) error {
-		return i.admin.Actions.DoctorModule.DoctorAgg.UpdateSubscribers.Do(ctx, req.GetDoctorId(), dto.UpdateSubscribersRequest{}) // todo поправить контракт
+		subs := req.GetUpdateSubscribers()
+		return i.admin.Actions.DoctorModule.DoctorAgg.UpdateSubscribers.Do(ctx, req.GetDoctorId(), dto.UpdateSubscribersRequest{
+			Data: []dto.SubscribersData{
+				{
+					Key:       subs.GetKey(),
+					SubsCount: subs.GetSubsCount(),
+				},
+			},
+		})
 	})
 }

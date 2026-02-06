@@ -812,6 +812,7 @@ type UpdateFreelancerRequest struct {
 	AgencyRepresentative bool                   `protobuf:"varint,9,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
 	DateStarted          string                 `protobuf:"bytes,10,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
 	PriceCategory        int64                  `protobuf:"varint,11,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
+	Email                string                 `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -921,6 +922,13 @@ func (x *UpdateFreelancerRequest) GetPriceCategory() int64 {
 		return x.PriceCategory
 	}
 	return 0
+}
+
+func (x *UpdateFreelancerRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
 }
 
 type UpdateFreelancerResponse struct {
@@ -3205,7 +3213,7 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12!\n" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
 	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\x12\x14\n" +
-	"\x05email\x18\x0f \x01(\tR\x05email\"\xa3\x03\n" +
+	"\x05email\x18\x0f \x01(\tR\x05email\"\xb9\x03\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3219,7 +3227,8 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\x15agency_representative\x18\t \x01(\bR\x14agencyRepresentative\x12!\n" +
 	"\fdate_started\x18\n" +
 	" \x01(\tR\vdateStarted\x12%\n" +
-	"\x0eprice_category\x18\v \x01(\x03R\rpriceCategory\"\x1a\n" +
+	"\x0eprice_category\x18\v \x01(\x03R\rpriceCategory\x12\x14\n" +
+	"\x05email\x18\f \x01(\tR\x05email\"\x1a\n" +
 	"\x18UpdateFreelancerResponse\">\n" +
 	"\x17DeleteFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +

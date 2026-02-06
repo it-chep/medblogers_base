@@ -109,3 +109,9 @@ func WithCooperationTypeID(cooperationTypeId int64) Option {
 		}
 	}
 }
+
+func WithEmail(email string) Option {
+	return func(s *Freelancer) {
+		s.email = email
+	}
+}

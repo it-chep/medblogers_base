@@ -3,8 +3,11 @@ package dal
 import (
 	"context"
 	"github.com/georgysavva/scany/pgxscan"
+	"github.com/jackc/pgx/v4"
+	"github.com/pkg/errors"
 	"medblogers_base/internal/modules/admin/entities/doctors/dal/dao"
 	"medblogers_base/internal/modules/admin/entities/doctors/domain/city"
+	"medblogers_base/internal/modules/admin/entities/doctors/domain/doctor"
 	"medblogers_base/internal/modules/admin/entities/doctors/domain/speciality"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -50,4 +53,23 @@ func (r *Repository) GetSpeciality(ctx context.Context, specialityID int64) (*sp
 		return nil, err
 	}
 	return spec.ToDomain(), err
+}
+
+func (r *Repository) GetCooperationType(ctx context.Context, cooperationTypeID int64) (*doctor.CooperationType, error) {
+	sql := `
+		select c.id as "id", c.name as "name"
+		from doctors_cooperation_type c
+		where c.id = $1
+	`
+
+	var cooperationType dao.CooperationTypeDAO
+	err := pgxscan.Get(ctx, r.db, &cooperationType, sql, cooperationTypeID)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return &doctor.CooperationType{}, nil
+		}
+		return nil, err
+	}
+
+	return cooperationType.ToDomain(), nil
 }
