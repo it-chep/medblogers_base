@@ -9,6 +9,7 @@ const (
 	Telegram
 	Instagram
 	Youtube
+	Vk
 )
 
 func (sm SocialMedia) String() string {
@@ -19,6 +20,9 @@ func (sm SocialMedia) String() string {
 		return "inst"
 	case Youtube:
 		return "youtube"
+	case Vk:
+		return "vk"
+
 	default:
 		return ""
 	}
@@ -32,6 +36,8 @@ func NewSocialMedia(sm string) SocialMedia {
 		return Instagram
 	case "youtube":
 		return Youtube
+	case "vk":
+		return Vk
 	}
 
 	return All
