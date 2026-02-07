@@ -61,7 +61,7 @@ func (w *AdminServiceServiceDesc) GetBlogs(ctx context.Context, in *GetBlogsRequ
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/GetBlogs",
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.GetBlogs(ctx, req.(*GetBlogsRequest))
@@ -79,7 +79,7 @@ func (w *AdminServiceServiceDesc) GetBlogByID(ctx context.Context, in *GetBlogBy
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/GetBlogByID",
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogByID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.GetBlogByID(ctx, req.(*GetBlogByIDRequest))
@@ -97,7 +97,7 @@ func (w *AdminServiceServiceDesc) CreateDraftBlog(ctx context.Context, in *Creat
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/CreateDraftBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/CreateDraftBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.CreateDraftBlog(ctx, req.(*CreateDraftBlogRequest))
@@ -115,7 +115,7 @@ func (w *AdminServiceServiceDesc) UpdateDraftBlog(ctx context.Context, in *Updat
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/UpdateDraftBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/UpdateDraftBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.UpdateDraftBlog(ctx, req.(*UpdateDraftBlogRequest))
@@ -133,7 +133,7 @@ func (w *AdminServiceServiceDesc) SaveBlogImage(ctx context.Context, in *SaveBlo
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/SaveBlogImage",
+		FullMethod: "/admin.blogs.v1.AdminService/SaveBlogImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.SaveBlogImage(ctx, req.(*SaveBlogImageRequest))
@@ -151,7 +151,7 @@ func (w *AdminServiceServiceDesc) DeleteBlogImage(ctx context.Context, in *Delet
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/DeleteBlogImage",
+		FullMethod: "/admin.blogs.v1.AdminService/DeleteBlogImage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.DeleteBlogImage(ctx, req.(*DeleteBlogImageRequest))
@@ -169,7 +169,7 @@ func (w *AdminServiceServiceDesc) PublishBlog(ctx context.Context, in *PublishBl
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/PublishBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/PublishBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.PublishBlog(ctx, req.(*PublishBlogRequest))
@@ -187,7 +187,7 @@ func (w *AdminServiceServiceDesc) UnPublishBlog(ctx context.Context, in *UnPubli
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/UnPublishBlog",
+		FullMethod: "/admin.blogs.v1.AdminService/UnPublishBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.UnPublishBlog(ctx, req.(*UnPublishBlogRequest))
@@ -205,7 +205,7 @@ func (w *AdminServiceServiceDesc) AddBlogCategory(ctx context.Context, in *AddBl
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/AddBlogCategory",
+		FullMethod: "/admin.blogs.v1.AdminService/AddBlogCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.AddBlogCategory(ctx, req.(*AddBlogCategoryRequest))
@@ -223,7 +223,7 @@ func (w *AdminServiceServiceDesc) DeleteBlogCategory(ctx context.Context, in *De
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/DeleteBlogCategory",
+		FullMethod: "/admin.blogs.v1.AdminService/DeleteBlogCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.DeleteBlogCategory(ctx, req.(*DeleteBlogCategoryRequest))
@@ -241,7 +241,7 @@ func (w *AdminServiceServiceDesc) GetBlogCategories(ctx context.Context, in *Get
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/AdminService/GetBlogCategories",
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogCategories",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return w.svc.GetBlogCategories(ctx, req.(*GetBlogCategoriesRequest))

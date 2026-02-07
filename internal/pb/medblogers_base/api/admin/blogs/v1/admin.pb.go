@@ -1527,17 +1527,17 @@ var File_admin_blogs_v1_admin_proto protoreflect.FileDescriptor
 
 const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\n" +
-	"\x1aadmin/blogs/v1/admin.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x11\n" +
-	"\x0fGetBlogsRequest\"\xbd\x01\n" +
-	"\x10GetBlogsResponse\x12,\n" +
-	"\x05blogs\x18\x01 \x03(\v2\x16.GetBlogsResponse.BlogR\x05blogs\x1a{\n" +
+	"\x1aadmin/blogs/v1/admin.proto\x12\x0eadmin.blogs.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x11\n" +
+	"\x0fGetBlogsRequest\"\xcc\x01\n" +
+	"\x10GetBlogsResponse\x12;\n" +
+	"\x05blogs\x18\x01 \x03(\v2%.admin.blogs.v1.GetBlogsResponse.BlogR\x05blogs\x1a{\n" +
 	"\x04Blog\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1b\n" +
 	"\tis_active\x18\x03 \x01(\bR\bisActive\x12'\n" +
 	"\x0fordering_number\x18\x04 \x01(\x03R\x0eorderingNumber\"-\n" +
 	"\x12GetBlogByIDRequest\x12\x17\n" +
-	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\x9a\x04\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xb8\x04\n" +
 	"\x13GetBlogByIDResponse\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x14\n" +
@@ -1547,11 +1547,11 @@ const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\fpreview_text\x18\x06 \x01(\tR\vpreviewText\x12'\n" +
 	"\x0fsociety_preview\x18\a \x01(\tR\x0esocietyPreview\x12.\n" +
 	"\x13additional_seo_text\x18\b \x01(\tR\x11additionalSeoText\x12'\n" +
-	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\x123\n" +
+	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\x12B\n" +
 	"\x06doctor\x18\n" +
-	" \x01(\v2\x1b.GetBlogByIDResponse.DoctorR\x06doctor\x12=\n" +
+	" \x01(\v2*.admin.blogs.v1.GetBlogByIDResponse.DoctorR\x06doctor\x12L\n" +
 	"\n" +
-	"categories\x18\v \x03(\v2\x1d.GetBlogByIDResponse.CategoryR\n" +
+	"categories\x18\v \x03(\v2,.admin.blogs.v1.GetBlogByIDResponse.CategoryR\n" +
 	"categories\x1aF\n" +
 	"\x06Doctor\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1f\n" +
@@ -1581,9 +1581,9 @@ const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\x14SaveBlogImageRequest\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x1d\n" +
 	"\n" +
-	"image_data\x18\x02 \x01(\tR\timageData\"\x8c\x01\n" +
-	"\x15SaveBlogImageResponse\x122\n" +
-	"\x05image\x18\x01 \x01(\v2\x1c.SaveBlogImageResponse.ImageR\x05image\x1a?\n" +
+	"image_data\x18\x02 \x01(\tR\timageData\"\x9b\x01\n" +
+	"\x15SaveBlogImageResponse\x12A\n" +
+	"\x05image\x18\x01 \x01(\v2+.admin.blogs.v1.SaveBlogImageResponse.ImageR\x05image\x1a?\n" +
 	"\x05Image\x12\x19\n" +
 	"\bimage_id\x18\x01 \x01(\tR\aimageId\x12\x1b\n" +
 	"\timage_url\x18\x02 \x01(\tR\bimageUrl\"L\n" +
@@ -1594,16 +1594,16 @@ const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\x12PublishBlogRequest\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12-\n" +
 	"\x10primary_image_id\x18\x02 \x01(\tH\x00R\x0eprimaryImageId\x88\x01\x01B\x13\n" +
-	"\x11_primary_image_id\"\x90\x01\n" +
-	"\x13PublishBlogResponse\x12<\n" +
-	"\x06errors\x18\x01 \x03(\v2$.PublishBlogResponse.ValidationErrorR\x06errors\x1a;\n" +
+	"\x11_primary_image_id\"\x9f\x01\n" +
+	"\x13PublishBlogResponse\x12K\n" +
+	"\x06errors\x18\x01 \x03(\v23.admin.blogs.v1.PublishBlogResponse.ValidationErrorR\x06errors\x1a;\n" +
 	"\x0fValidationError\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"/\n" +
 	"\x14UnPublishBlogRequest\x12\x17\n" +
-	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\x94\x01\n" +
-	"\x15UnPublishBlogResponse\x12>\n" +
-	"\x06errors\x18\x01 \x03(\v2&.UnPublishBlogResponse.ValidationErrorR\x06errors\x1a;\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xa3\x01\n" +
+	"\x15UnPublishBlogResponse\x12M\n" +
+	"\x06errors\x18\x01 \x03(\v25.admin.blogs.v1.UnPublishBlogResponse.ValidationErrorR\x06errors\x1a;\n" +
 	"\x0fValidationError\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"R\n" +
@@ -1617,26 +1617,26 @@ const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"categoryId\"\x1a\n" +
 	"\x18GetBlogCategoriesRequest\"\x19\n" +
 	"\x17AddBlogCategoryResponse\"\x1c\n" +
-	"\x1aDeleteBlogCategoryResponse\"\x90\x01\n" +
-	"\x19GetBlogCategoriesResponse\x12C\n" +
+	"\x1aDeleteBlogCategoryResponse\"\x9f\x01\n" +
+	"\x19GetBlogCategoriesResponse\x12R\n" +
 	"\n" +
-	"categories\x18\x01 \x03(\v2#.GetBlogCategoriesResponse.CategoryR\n" +
+	"categories\x18\x01 \x03(\v22.admin.blogs.v1.GetBlogCategoriesResponse.CategoryR\n" +
 	"categories\x1a.\n" +
 	"\bCategory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name2\xac\x0e\n" +
-	"\fAdminService\x12|\n" +
-	"\bGetBlogs\x12\x10.GetBlogsRequest\x1a\x11.GetBlogsResponse\"K\x92A.\x12,Получение списка статей\x82\xd3\xe4\x93\x02\x14\x12\x12/api/v1/admin/blog\x12\xa7\x01\n" +
-	"\vGetBlogByID\x12\x13.GetBlogByIDRequest\x1a\x14.GetBlogByIDResponse\"m\x92AF\x12DПолучение информации о статье по ее ID\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/v1/admin/blog/{blog_id}\x12\x9f\x01\n" +
-	"\x0fCreateDraftBlog\x12\x17.CreateDraftBlogRequest\x1a\x18.CreateDraftBlogResponse\"Y\x92A2\x120Создание черновика статьи\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/api/v1/admin/blog/create\x12\x9a\x01\n" +
-	"\x0fUpdateDraftBlog\x12\x17.UpdateDraftBlogRequest\x1a\x18.UpdateDraftBlogResponse\"T\x92A#\x12!Обновление статьи\x82\xd3\xe4\x93\x02(:\x01*\"#/api/v1/admin/blog/{blog_id}/update\x12\xb0\x01\n" +
-	"\rSaveBlogImage\x12\x15.SaveBlogImageRequest\x1a\x16.SaveBlogImageResponse\"p\x92A;\x129Сохранение картинки для статьи\x82\xd3\xe4\x93\x02,:\x01*\"'/api/v1/admin/blog/{blog_id}/save_image\x12\xbf\x01\n" +
-	"\x0fDeleteBlogImage\x12\x17.DeleteBlogImageRequest\x1a\x18.DeleteBlogImageResponse\"y\x92A7\x125Удаление картинки для статьи\x82\xd3\xe4\x93\x029:\x01*\"4/api/v1/admin/blog/{blog_id}/delete_image/{image_id}\x12\x8f\x01\n" +
-	"\vPublishBlog\x12\x13.PublishBlogRequest\x1a\x14.PublishBlogResponse\"U\x92A#\x12!Публикация статьи\x82\xd3\xe4\x93\x02):\x01*\"$/api/v1/admin/blog/{blog_id}/publish\x12\xa7\x01\n" +
-	"\rUnPublishBlog\x12\x15.UnPublishBlogRequest\x1a\x16.UnPublishBlogResponse\"g\x92A3\x121Снятие статьи с публикации\x82\xd3\xe4\x93\x02+:\x01*\"&/api/v1/admin/blog/{blog_id}/unpublish\x12\xa9\x01\n" +
-	"\x0fAddBlogCategory\x12\x17.AddBlogCategoryRequest\x1a\x18.AddBlogCategoryResponse\"c\x92A,\x12*Добавление тега статье\x82\xd3\xe4\x93\x02.:\x01*\")/api/v1/admin/blog/{blog_id}/add_category\x12\xb4\x01\n" +
-	"\x12DeleteBlogCategory\x12\x1a.DeleteBlogCategoryRequest\x1a\x1b.DeleteBlogCategoryResponse\"e\x92A+\x12)Удаление тега у статьи\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/blog/{blog_id}/delete_category\x12\xa0\x01\n" +
-	"\x11GetBlogCategories\x12\x19.GetBlogCategoriesRequest\x1a\x1a.GetBlogCategoriesResponse\"T\x92A,\x12*Получение тегов статей\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/admin/blog/categoriesB\x14Z\x12api/admin/blogs/v1b\x06proto3"
+	"\x04name\x18\x02 \x01(\tR\x04name2\xf7\x10\n" +
+	"\fAdminService\x12\x9a\x01\n" +
+	"\bGetBlogs\x12\x1f.admin.blogs.v1.GetBlogsRequest\x1a .admin.blogs.v1.GetBlogsResponse\"K\x92A.\x12,Получение списка статей\x82\xd3\xe4\x93\x02\x14\x12\x12/api/v1/admin/blog\x12\xc5\x01\n" +
+	"\vGetBlogByID\x12\".admin.blogs.v1.GetBlogByIDRequest\x1a#.admin.blogs.v1.GetBlogByIDResponse\"m\x92AF\x12DПолучение информации о статье по ее ID\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/v1/admin/blog/{blog_id}\x12\xbd\x01\n" +
+	"\x0fCreateDraftBlog\x12&.admin.blogs.v1.CreateDraftBlogRequest\x1a'.admin.blogs.v1.CreateDraftBlogResponse\"Y\x92A2\x120Создание черновика статьи\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/api/v1/admin/blog/create\x12\xb8\x01\n" +
+	"\x0fUpdateDraftBlog\x12&.admin.blogs.v1.UpdateDraftBlogRequest\x1a'.admin.blogs.v1.UpdateDraftBlogResponse\"T\x92A#\x12!Обновление статьи\x82\xd3\xe4\x93\x02(:\x01*\"#/api/v1/admin/blog/{blog_id}/update\x12\xce\x01\n" +
+	"\rSaveBlogImage\x12$.admin.blogs.v1.SaveBlogImageRequest\x1a%.admin.blogs.v1.SaveBlogImageResponse\"p\x92A;\x129Сохранение картинки для статьи\x82\xd3\xe4\x93\x02,:\x01*\"'/api/v1/admin/blog/{blog_id}/save_image\x12\xdd\x01\n" +
+	"\x0fDeleteBlogImage\x12&.admin.blogs.v1.DeleteBlogImageRequest\x1a'.admin.blogs.v1.DeleteBlogImageResponse\"y\x92A7\x125Удаление картинки для статьи\x82\xd3\xe4\x93\x029:\x01*\"4/api/v1/admin/blog/{blog_id}/delete_image/{image_id}\x12\xad\x01\n" +
+	"\vPublishBlog\x12\".admin.blogs.v1.PublishBlogRequest\x1a#.admin.blogs.v1.PublishBlogResponse\"U\x92A#\x12!Публикация статьи\x82\xd3\xe4\x93\x02):\x01*\"$/api/v1/admin/blog/{blog_id}/publish\x12\xc5\x01\n" +
+	"\rUnPublishBlog\x12$.admin.blogs.v1.UnPublishBlogRequest\x1a%.admin.blogs.v1.UnPublishBlogResponse\"g\x92A3\x121Снятие статьи с публикации\x82\xd3\xe4\x93\x02+:\x01*\"&/api/v1/admin/blog/{blog_id}/unpublish\x12\xc7\x01\n" +
+	"\x0fAddBlogCategory\x12&.admin.blogs.v1.AddBlogCategoryRequest\x1a'.admin.blogs.v1.AddBlogCategoryResponse\"c\x92A,\x12*Добавление тега статье\x82\xd3\xe4\x93\x02.:\x01*\")/api/v1/admin/blog/{blog_id}/add_category\x12\xd2\x01\n" +
+	"\x12DeleteBlogCategory\x12).admin.blogs.v1.DeleteBlogCategoryRequest\x1a*.admin.blogs.v1.DeleteBlogCategoryResponse\"e\x92A+\x12)Удаление тега у статьи\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/blog/{blog_id}/delete_category\x12\xbe\x01\n" +
+	"\x11GetBlogCategories\x12(.admin.blogs.v1.GetBlogCategoriesRequest\x1a).admin.blogs.v1.GetBlogCategoriesResponse\"T\x92A,\x12*Получение тегов статей\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/admin/blog/categoriesB\x14Z\x12api/admin/blogs/v1b\x06proto3"
 
 var (
 	file_admin_blogs_v1_admin_proto_rawDescOnce sync.Once
@@ -1652,66 +1652,66 @@ func file_admin_blogs_v1_admin_proto_rawDescGZIP() []byte {
 
 var file_admin_blogs_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_admin_blogs_v1_admin_proto_goTypes = []any{
-	(*GetBlogsRequest)(nil),                       // 0: GetBlogsRequest
-	(*GetBlogsResponse)(nil),                      // 1: GetBlogsResponse
-	(*GetBlogByIDRequest)(nil),                    // 2: GetBlogByIDRequest
-	(*GetBlogByIDResponse)(nil),                   // 3: GetBlogByIDResponse
-	(*CreateDraftBlogRequest)(nil),                // 4: CreateDraftBlogRequest
-	(*CreateDraftBlogResponse)(nil),               // 5: CreateDraftBlogResponse
-	(*UpdateDraftBlogRequest)(nil),                // 6: UpdateDraftBlogRequest
-	(*UpdateDraftBlogResponse)(nil),               // 7: UpdateDraftBlogResponse
-	(*SaveBlogImageRequest)(nil),                  // 8: SaveBlogImageRequest
-	(*SaveBlogImageResponse)(nil),                 // 9: SaveBlogImageResponse
-	(*DeleteBlogImageRequest)(nil),                // 10: DeleteBlogImageRequest
-	(*DeleteBlogImageResponse)(nil),               // 11: DeleteBlogImageResponse
-	(*PublishBlogRequest)(nil),                    // 12: PublishBlogRequest
-	(*PublishBlogResponse)(nil),                   // 13: PublishBlogResponse
-	(*UnPublishBlogRequest)(nil),                  // 14: UnPublishBlogRequest
-	(*UnPublishBlogResponse)(nil),                 // 15: UnPublishBlogResponse
-	(*AddBlogCategoryRequest)(nil),                // 16: AddBlogCategoryRequest
-	(*DeleteBlogCategoryRequest)(nil),             // 17: DeleteBlogCategoryRequest
-	(*GetBlogCategoriesRequest)(nil),              // 18: GetBlogCategoriesRequest
-	(*AddBlogCategoryResponse)(nil),               // 19: AddBlogCategoryResponse
-	(*DeleteBlogCategoryResponse)(nil),            // 20: DeleteBlogCategoryResponse
-	(*GetBlogCategoriesResponse)(nil),             // 21: GetBlogCategoriesResponse
-	(*GetBlogsResponse_Blog)(nil),                 // 22: GetBlogsResponse.Blog
-	(*GetBlogByIDResponse_Doctor)(nil),            // 23: GetBlogByIDResponse.Doctor
-	(*GetBlogByIDResponse_Category)(nil),          // 24: GetBlogByIDResponse.Category
-	(*SaveBlogImageResponse_Image)(nil),           // 25: SaveBlogImageResponse.Image
-	(*PublishBlogResponse_ValidationError)(nil),   // 26: PublishBlogResponse.ValidationError
-	(*UnPublishBlogResponse_ValidationError)(nil), // 27: UnPublishBlogResponse.ValidationError
-	(*GetBlogCategoriesResponse_Category)(nil),    // 28: GetBlogCategoriesResponse.Category
+	(*GetBlogsRequest)(nil),                       // 0: admin.blogs.v1.GetBlogsRequest
+	(*GetBlogsResponse)(nil),                      // 1: admin.blogs.v1.GetBlogsResponse
+	(*GetBlogByIDRequest)(nil),                    // 2: admin.blogs.v1.GetBlogByIDRequest
+	(*GetBlogByIDResponse)(nil),                   // 3: admin.blogs.v1.GetBlogByIDResponse
+	(*CreateDraftBlogRequest)(nil),                // 4: admin.blogs.v1.CreateDraftBlogRequest
+	(*CreateDraftBlogResponse)(nil),               // 5: admin.blogs.v1.CreateDraftBlogResponse
+	(*UpdateDraftBlogRequest)(nil),                // 6: admin.blogs.v1.UpdateDraftBlogRequest
+	(*UpdateDraftBlogResponse)(nil),               // 7: admin.blogs.v1.UpdateDraftBlogResponse
+	(*SaveBlogImageRequest)(nil),                  // 8: admin.blogs.v1.SaveBlogImageRequest
+	(*SaveBlogImageResponse)(nil),                 // 9: admin.blogs.v1.SaveBlogImageResponse
+	(*DeleteBlogImageRequest)(nil),                // 10: admin.blogs.v1.DeleteBlogImageRequest
+	(*DeleteBlogImageResponse)(nil),               // 11: admin.blogs.v1.DeleteBlogImageResponse
+	(*PublishBlogRequest)(nil),                    // 12: admin.blogs.v1.PublishBlogRequest
+	(*PublishBlogResponse)(nil),                   // 13: admin.blogs.v1.PublishBlogResponse
+	(*UnPublishBlogRequest)(nil),                  // 14: admin.blogs.v1.UnPublishBlogRequest
+	(*UnPublishBlogResponse)(nil),                 // 15: admin.blogs.v1.UnPublishBlogResponse
+	(*AddBlogCategoryRequest)(nil),                // 16: admin.blogs.v1.AddBlogCategoryRequest
+	(*DeleteBlogCategoryRequest)(nil),             // 17: admin.blogs.v1.DeleteBlogCategoryRequest
+	(*GetBlogCategoriesRequest)(nil),              // 18: admin.blogs.v1.GetBlogCategoriesRequest
+	(*AddBlogCategoryResponse)(nil),               // 19: admin.blogs.v1.AddBlogCategoryResponse
+	(*DeleteBlogCategoryResponse)(nil),            // 20: admin.blogs.v1.DeleteBlogCategoryResponse
+	(*GetBlogCategoriesResponse)(nil),             // 21: admin.blogs.v1.GetBlogCategoriesResponse
+	(*GetBlogsResponse_Blog)(nil),                 // 22: admin.blogs.v1.GetBlogsResponse.Blog
+	(*GetBlogByIDResponse_Doctor)(nil),            // 23: admin.blogs.v1.GetBlogByIDResponse.Doctor
+	(*GetBlogByIDResponse_Category)(nil),          // 24: admin.blogs.v1.GetBlogByIDResponse.Category
+	(*SaveBlogImageResponse_Image)(nil),           // 25: admin.blogs.v1.SaveBlogImageResponse.Image
+	(*PublishBlogResponse_ValidationError)(nil),   // 26: admin.blogs.v1.PublishBlogResponse.ValidationError
+	(*UnPublishBlogResponse_ValidationError)(nil), // 27: admin.blogs.v1.UnPublishBlogResponse.ValidationError
+	(*GetBlogCategoriesResponse_Category)(nil),    // 28: admin.blogs.v1.GetBlogCategoriesResponse.Category
 }
 var file_admin_blogs_v1_admin_proto_depIdxs = []int32{
-	22, // 0: GetBlogsResponse.blogs:type_name -> GetBlogsResponse.Blog
-	23, // 1: GetBlogByIDResponse.doctor:type_name -> GetBlogByIDResponse.Doctor
-	24, // 2: GetBlogByIDResponse.categories:type_name -> GetBlogByIDResponse.Category
-	25, // 3: SaveBlogImageResponse.image:type_name -> SaveBlogImageResponse.Image
-	26, // 4: PublishBlogResponse.errors:type_name -> PublishBlogResponse.ValidationError
-	27, // 5: UnPublishBlogResponse.errors:type_name -> UnPublishBlogResponse.ValidationError
-	28, // 6: GetBlogCategoriesResponse.categories:type_name -> GetBlogCategoriesResponse.Category
-	0,  // 7: AdminService.GetBlogs:input_type -> GetBlogsRequest
-	2,  // 8: AdminService.GetBlogByID:input_type -> GetBlogByIDRequest
-	4,  // 9: AdminService.CreateDraftBlog:input_type -> CreateDraftBlogRequest
-	6,  // 10: AdminService.UpdateDraftBlog:input_type -> UpdateDraftBlogRequest
-	8,  // 11: AdminService.SaveBlogImage:input_type -> SaveBlogImageRequest
-	10, // 12: AdminService.DeleteBlogImage:input_type -> DeleteBlogImageRequest
-	12, // 13: AdminService.PublishBlog:input_type -> PublishBlogRequest
-	14, // 14: AdminService.UnPublishBlog:input_type -> UnPublishBlogRequest
-	16, // 15: AdminService.AddBlogCategory:input_type -> AddBlogCategoryRequest
-	17, // 16: AdminService.DeleteBlogCategory:input_type -> DeleteBlogCategoryRequest
-	18, // 17: AdminService.GetBlogCategories:input_type -> GetBlogCategoriesRequest
-	1,  // 18: AdminService.GetBlogs:output_type -> GetBlogsResponse
-	3,  // 19: AdminService.GetBlogByID:output_type -> GetBlogByIDResponse
-	5,  // 20: AdminService.CreateDraftBlog:output_type -> CreateDraftBlogResponse
-	7,  // 21: AdminService.UpdateDraftBlog:output_type -> UpdateDraftBlogResponse
-	9,  // 22: AdminService.SaveBlogImage:output_type -> SaveBlogImageResponse
-	11, // 23: AdminService.DeleteBlogImage:output_type -> DeleteBlogImageResponse
-	13, // 24: AdminService.PublishBlog:output_type -> PublishBlogResponse
-	15, // 25: AdminService.UnPublishBlog:output_type -> UnPublishBlogResponse
-	19, // 26: AdminService.AddBlogCategory:output_type -> AddBlogCategoryResponse
-	20, // 27: AdminService.DeleteBlogCategory:output_type -> DeleteBlogCategoryResponse
-	21, // 28: AdminService.GetBlogCategories:output_type -> GetBlogCategoriesResponse
+	22, // 0: admin.blogs.v1.GetBlogsResponse.blogs:type_name -> admin.blogs.v1.GetBlogsResponse.Blog
+	23, // 1: admin.blogs.v1.GetBlogByIDResponse.doctor:type_name -> admin.blogs.v1.GetBlogByIDResponse.Doctor
+	24, // 2: admin.blogs.v1.GetBlogByIDResponse.categories:type_name -> admin.blogs.v1.GetBlogByIDResponse.Category
+	25, // 3: admin.blogs.v1.SaveBlogImageResponse.image:type_name -> admin.blogs.v1.SaveBlogImageResponse.Image
+	26, // 4: admin.blogs.v1.PublishBlogResponse.errors:type_name -> admin.blogs.v1.PublishBlogResponse.ValidationError
+	27, // 5: admin.blogs.v1.UnPublishBlogResponse.errors:type_name -> admin.blogs.v1.UnPublishBlogResponse.ValidationError
+	28, // 6: admin.blogs.v1.GetBlogCategoriesResponse.categories:type_name -> admin.blogs.v1.GetBlogCategoriesResponse.Category
+	0,  // 7: admin.blogs.v1.AdminService.GetBlogs:input_type -> admin.blogs.v1.GetBlogsRequest
+	2,  // 8: admin.blogs.v1.AdminService.GetBlogByID:input_type -> admin.blogs.v1.GetBlogByIDRequest
+	4,  // 9: admin.blogs.v1.AdminService.CreateDraftBlog:input_type -> admin.blogs.v1.CreateDraftBlogRequest
+	6,  // 10: admin.blogs.v1.AdminService.UpdateDraftBlog:input_type -> admin.blogs.v1.UpdateDraftBlogRequest
+	8,  // 11: admin.blogs.v1.AdminService.SaveBlogImage:input_type -> admin.blogs.v1.SaveBlogImageRequest
+	10, // 12: admin.blogs.v1.AdminService.DeleteBlogImage:input_type -> admin.blogs.v1.DeleteBlogImageRequest
+	12, // 13: admin.blogs.v1.AdminService.PublishBlog:input_type -> admin.blogs.v1.PublishBlogRequest
+	14, // 14: admin.blogs.v1.AdminService.UnPublishBlog:input_type -> admin.blogs.v1.UnPublishBlogRequest
+	16, // 15: admin.blogs.v1.AdminService.AddBlogCategory:input_type -> admin.blogs.v1.AddBlogCategoryRequest
+	17, // 16: admin.blogs.v1.AdminService.DeleteBlogCategory:input_type -> admin.blogs.v1.DeleteBlogCategoryRequest
+	18, // 17: admin.blogs.v1.AdminService.GetBlogCategories:input_type -> admin.blogs.v1.GetBlogCategoriesRequest
+	1,  // 18: admin.blogs.v1.AdminService.GetBlogs:output_type -> admin.blogs.v1.GetBlogsResponse
+	3,  // 19: admin.blogs.v1.AdminService.GetBlogByID:output_type -> admin.blogs.v1.GetBlogByIDResponse
+	5,  // 20: admin.blogs.v1.AdminService.CreateDraftBlog:output_type -> admin.blogs.v1.CreateDraftBlogResponse
+	7,  // 21: admin.blogs.v1.AdminService.UpdateDraftBlog:output_type -> admin.blogs.v1.UpdateDraftBlogResponse
+	9,  // 22: admin.blogs.v1.AdminService.SaveBlogImage:output_type -> admin.blogs.v1.SaveBlogImageResponse
+	11, // 23: admin.blogs.v1.AdminService.DeleteBlogImage:output_type -> admin.blogs.v1.DeleteBlogImageResponse
+	13, // 24: admin.blogs.v1.AdminService.PublishBlog:output_type -> admin.blogs.v1.PublishBlogResponse
+	15, // 25: admin.blogs.v1.AdminService.UnPublishBlog:output_type -> admin.blogs.v1.UnPublishBlogResponse
+	19, // 26: admin.blogs.v1.AdminService.AddBlogCategory:output_type -> admin.blogs.v1.AddBlogCategoryResponse
+	20, // 27: admin.blogs.v1.AdminService.DeleteBlogCategory:output_type -> admin.blogs.v1.DeleteBlogCategoryResponse
+	21, // 28: admin.blogs.v1.AdminService.GetBlogCategories:output_type -> admin.blogs.v1.GetBlogCategoriesResponse
 	18, // [18:29] is the sub-list for method output_type
 	7,  // [7:18] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name

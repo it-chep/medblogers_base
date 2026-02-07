@@ -3,12 +3,11 @@ package v1
 import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
-	"medblogers_base/internal/modules/admin/action/blog/action/get_blog_by_id/dto"
+	"medblogers_base/internal/modules/admin/entities/blog/action/get_blog_by_id/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 
-	"github.com/samber/lo"
-
 	"github.com/google/uuid"
+	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetBlogByID(ctx context.Context, req *desc.GetBlogByIDRequest) (resp *desc.GetBlogByIDResponse, _ error) {

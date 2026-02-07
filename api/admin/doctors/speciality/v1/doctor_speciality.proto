@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package admin.doctors.speciality.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/admin/doctors/speciality/v1";
+
+// -------------- Сервис по работе со специальностями докторов ---------------
+service DoctorAdminSpecialityService {
+    rpc GetSpecialities(GetDoctorsSpecialitiesRequest) returns (GetDoctorsSpecialitiesResponse) {
+        option (google.api.http) = {get: "/api/v1/admin/doctors/specialities"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальностей врачей"};
+    }
+    rpc SearchSpeciality(SearchDoctorsSpecialityRequest) returns (SearchDoctorsSpecialityResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/doctors/specialities/search"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск специальностей врачей"};
+    }
+    rpc CreateSpeciality(CreateDoctorsSpecialityRequest) returns (CreateDoctorsSpecialityResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/doctors/specialities/create"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Добавление специальности врача"};
+    }
+    rpc GetSpeciality(GetSpecialityRequest) returns (GetSpecialityResponse) {
+        option (google.api.http) = {get: "/api/v1/admin/doctors/speciality/{speciality_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение специальности врача"};
+    }
+    rpc AddAdditionalSpeciality(AddAdditionalSpecialityRequest) returns (AddAdditionalSpecialityResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/doctors/speciality/{speciality_id}/add_additional"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Добавление дополнительной специальности к основной"};
+    }
+    rpc DeleteAdditionalSpeciality(DeleteAdditionalSpecialityRequest) returns (DeleteAdditionalSpecialityResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/doctors/speciality/{speciality_id}/delete_additional/{additional_spec_id}"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление дополнительной специальности у основной"};
+    }
+    // todo а надо ли
+    //    rpc DeleteSpeciality(DeleteSpecialityRequest) returns (DeleteSpecialityResponse) {
+    //        option (google.api.http) = {
+    //            post: "/api/v1/admin/doctors/specialities/delete"
+    //            body: "*"
+    //        };
+    //        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    //            summary: "Удаление специальности врача"
+    //        };
+    //    }
+}
+
+
+
+// -------------- Сервис по работе со специальностями докторов ---------------
+message GetDoctorsSpecialitiesRequest {}
+
+message GetDoctorsSpecialitiesResponse {
+    repeated SpecialityItem specialities = 1;
+
+    message SpecialityItem {
+        int64 id = 1;
+        string name = 2;
+    }
+}
+
+message SearchDoctorsSpecialityRequest {
+    string query = 1;
+}
+
+message SearchDoctorsSpecialityResponse {
+    repeated SpecialityItem specialities = 1;
+
+    message SpecialityItem {
+        int64 id = 1;
+        string name = 2;
+    }
+}
+
+message CreateDoctorsSpecialityRequest {
+    string name = 1;
+}
+
+message CreateDoctorsSpecialityResponse {
+    int64 id = 1;
+    string name = 2;
+}
+
+message GetSpecialityRequest {
+    int64 speciality_id = 1;
+}
+
+message GetSpecialityResponse {}
+
+message AddAdditionalSpecialityRequest {
+    int64 speciality_id = 1;
+    int64 additional_spec_id = 2;
+}
+
+message AddAdditionalSpecialityResponse {}
+
+message DeleteAdditionalSpecialityRequest {
+    int64 speciality_id = 1;
+    int64 additional_spec_id = 2;
+}
+
+message DeleteAdditionalSpecialityResponse {}

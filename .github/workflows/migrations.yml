@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: 'Migration action'
+        description: 'Migration entities'
         required: true
         default: 'up'
         type: choice

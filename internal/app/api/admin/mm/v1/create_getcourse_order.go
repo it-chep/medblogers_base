@@ -2,7 +2,7 @@ package v1
 
 import (
 	"context"
-	"medblogers_base/internal/modules/admin/action/mm/action/create_getcourse_order/dto"
+	"medblogers_base/internal/modules/admin/entities/mm/action/create_getcourse_order/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 )
 

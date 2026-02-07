@@ -1,0 +1,97 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/freelancers/network/v1/freelancer_network.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FreelancerAdminNetworksService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/freelancers/social_networks": {
+      "get": {
+        "summary": "Получение специальностей фрилансеров",
+        "operationId": "FreelancerAdminNetworksService_GetNetworks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.network.v1.GetNetworksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerAdminNetworksService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.freelancers.network.v1.GetNetworksResponse": {
+      "type": "object",
+      "properties": {
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.network.v1.SocialNetwork"
+          }
+        }
+      }
+    },
+    "admin.freelancers.network.v1.SocialNetwork": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,10 @@ func (u *User) GetRoleID() int64 {
 	return u.roleID
 }
 
+func (u *User) GetID() int64 {
+	return u.id
+}
+
 func New(options ...Option) *User {
 	d := &User{}
 	for _, option := range options {
