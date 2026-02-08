@@ -1,7 +1,7 @@
 FROM golang:1.24.4-alpine AS builder
 
 # Устанавливаем системные зависимости для компиляции
-RUN apk add --no-cache \
+RUN apk add \
     ffmpeg-dev \
     make \
     gcc \
@@ -27,7 +27,7 @@ RUN CGO_ENABLED=1 GOOS=linux go build \
 FROM alpine:3.21
 
 # Устанавливаем только необходимые runtime зависимости
-RUN apk add --no-cache \
+RUN apk add \
     ffmpeg \
     ca-certificates \
     tzdata
