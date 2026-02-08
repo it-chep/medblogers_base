@@ -10,6 +10,8 @@ RUN apk add \
 
 WORKDIR /app
 
+COPY .env ./
+
 # Копируем файлы зависимостей
 COPY go.mod go.sum ./
 RUN go mod download
@@ -36,6 +38,8 @@ WORKDIR /app
 
 # Копируем бинарник из builder stage
 COPY --from=builder /app/main /app/main
+COPY --from=builder /app/.env /app/.env
+COPY --from=builder /app/k8s /app/k8s
 
 EXPOSE 8080 7002
 
