@@ -37,10 +37,6 @@ WORKDIR /app
 # Копируем бинарник из builder stage
 COPY --from=builder /app/main /app/main
 
-# Копируем статические файлы, если есть
-COPY --from=builder /app/static ./static
-COPY --from=builder /app/templates ./templates
-
 EXPOSE 8080 7002
 
 # Запускаем скомпилированный бинарник
