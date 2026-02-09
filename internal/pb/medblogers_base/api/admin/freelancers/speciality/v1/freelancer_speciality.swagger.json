@@ -1,0 +1,212 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/freelancers/speciality/v1/freelancer_speciality.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FreelancerAdminSpecialityService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/freelancers/specialities": {
+      "get": {
+        "summary": "Получение специальностей фрилансеров",
+        "operationId": "FreelancerAdminSpecialityService_GetSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.speciality.v1.GetSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers/specialities/create": {
+      "post": {
+        "summary": "Добавление специальности фрилансера",
+        "operationId": "FreelancerAdminSpecialityService_CreateSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.speciality.v1.CreateSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.speciality.v1.CreateSpecialityRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers/specialities/search": {
+      "post": {
+        "summary": "Поиск специальностей фрилансеров",
+        "operationId": "FreelancerAdminSpecialityService_SearchSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.speciality.v1.SearchSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.speciality.v1.SearchSpecialityRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminSpecialityService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.freelancers.speciality.v1.CreateSpecialityRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.speciality.v1.CreateSpecialityResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.speciality.v1.GetSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.speciality.v1.GetSpecialitiesResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "admin.freelancers.speciality.v1.GetSpecialitiesResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.speciality.v1.SearchSpecialityRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.speciality.v1.SearchSpecialityResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.speciality.v1.SearchSpecialityResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "admin.freelancers.speciality.v1.SearchSpecialityResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

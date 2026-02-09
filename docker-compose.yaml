@@ -34,6 +34,8 @@ services:
     expose:
       - 8080
     container_name: app
+    env_file:
+      - .env
     depends_on:
       - db
 

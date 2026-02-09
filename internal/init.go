@@ -19,11 +19,30 @@ import (
 
 	"medblogers_base/internal/pkg/worker_pool"
 
+	doctorCityAdminV1 "medblogers_base/internal/app/api/admin/doctors/city/v1"
+	doctorAdminV1 "medblogers_base/internal/app/api/admin/doctors/doctors/v1"
+	doctorSpecialityAdminV1 "medblogers_base/internal/app/api/admin/doctors/speciality/v1"
+
+	freelancerCityAdminV1 "medblogers_base/internal/app/api/admin/freelancers/city/v1"
+	freelancerAdminV1 "medblogers_base/internal/app/api/admin/freelancers/freelancers/v1"
+	freelancerNetworkAdminV1 "medblogers_base/internal/app/api/admin/freelancers/network/v1"
+	freelancerSpecialityAdminV1 "medblogers_base/internal/app/api/admin/freelancers/speciality/v1"
+
+	doctorCityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/city/v1"
+	doctorAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/doctors/v1"
+	doctorSpecialityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/speciality/v1"
+
+	freelancerCityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/city/v1"
+	freelancerAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/freelancer/v1"
+	freelancerNetworkAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/network/v1"
+	freelancerSpecialityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/speciality/v1"
+
+	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
+
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
 	blogAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
-	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
@@ -129,13 +148,20 @@ func (a *App) initControllers(_ context.Context) *App {
 	a.controllers = []transport.ServiceDesc{
 		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
-		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
 
 		// ADMIN
 		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 		mmDesc.NewAdminMastermindServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
+		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
+		doctorAdminDesc.NewDoctorAdminServiceServiceDesc(doctorAdminV1.New(a.modules.admin, a.modules.auth)),
+		doctorCityAdminDesc.NewDoctorAdminCityServiceServiceDesc(doctorCityAdminV1.New(a.modules.admin, a.modules.auth)),
+		doctorSpecialityAdminDesc.NewDoctorAdminSpecialityServiceServiceDesc(doctorSpecialityAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerAdminDesc.NewFreelancerAdminServiceServiceDesc(freelancerAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerCityAdminDesc.NewFreelancerAdminCityServiceServiceDesc(freelancerCityAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerSpecialityAdminDesc.NewFreelancerAdminSpecialityServiceServiceDesc(freelancerSpecialityAdminV1.New(a.modules.admin, a.modules.auth)),
+		freelancerNetworkAdminDesc.NewFreelancerAdminNetworksServiceServiceDesc(freelancerNetworkAdminV1.New(a.modules.admin, a.modules.auth)),
 	}
 
 	return a

@@ -1,0 +1,1566 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/freelancers/freelancer/v1/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FreelancerAdminService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/freelancer/cooperation_types": {
+      "get": {
+        "summary": "Типы размещения фрилансеров",
+        "operationId": "FreelancerAdminService_GetFreelancerCooperationTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}": {
+      "get": {
+        "summary": "Получение карточки фрилансера",
+        "operationId": "FreelancerAdminService_GetFreelancerByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/activate": {
+      "post": {
+        "summary": "Активация фрилансера",
+        "operationId": "FreelancerAdminService_ActivateFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.ActivateFreelancerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancerBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/add_additional_city": {
+      "post": {
+        "summary": "Добавление дополнительного города",
+        "operationId": "FreelancerAdminService_AddAdditionalCity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddAdditionalCityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCityBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/add_additional_speciality": {
+      "post": {
+        "summary": "Добавление доп специальности",
+        "operationId": "FreelancerAdminService_AddAdditionalSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpecialityBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/add_network": {
+      "post": {
+        "summary": "Добавление соцсети фрилансеру",
+        "operationId": "FreelancerAdminService_AddNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddNetworkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetworkBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/add_price_list": {
+      "post": {
+        "summary": "Добавление прайс-листа",
+        "operationId": "FreelancerAdminService_AddPriceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddPriceListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceListBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/add_recommendation": {
+      "post": {
+        "summary": "Добавление рекомендации",
+        "operationId": "FreelancerAdminService_AddRecommendation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendationBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/additional_cities": {
+      "get": {
+        "summary": "Доп города конкретного фрилансера",
+        "operationId": "FreelancerAdminService_GetFreelancerAdditionalCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/additional_specialities": {
+      "get": {
+        "summary": "Доп специальности конкретного фрилансера",
+        "operationId": "FreelancerAdminService_GetFreelancerAdditionalSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/change_recommendation_sort/{recommendationId}": {
+      "post": {
+        "summary": "Изменение порядкового номера рекомендации",
+        "operationId": "FreelancerAdminService_ChangeRecommendationSort",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "recommendationId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSortBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/deactivate": {
+      "post": {
+        "summary": "Деактивация фрилансера",
+        "operationId": "FreelancerAdminService_DeactivateFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeactivateFreelancerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancerBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/delete": {
+      "post": {
+        "summary": "Удаление фрилансера",
+        "operationId": "FreelancerAdminService_DeleteFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeleteFreelancerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancerBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/delete_additional_city": {
+      "post": {
+        "summary": "Удаление доп города",
+        "operationId": "FreelancerAdminService_DeleteAdditionalCity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCityBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/delete_additional_speciality": {
+      "post": {
+        "summary": "Удаление доп специальности",
+        "operationId": "FreelancerAdminService_DeleteAdditionalSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpecialityBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/delete_network": {
+      "post": {
+        "summary": "Удаление соцсети",
+        "operationId": "FreelancerAdminService_DeleteNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeleteNetworkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetworkBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/delete_price_list": {
+      "post": {
+        "summary": "Удаление прайс-листа",
+        "operationId": "FreelancerAdminService_DeletePriceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeletePriceListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceListBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/delete_recommendation": {
+      "post": {
+        "summary": "Удаление рекомендации",
+        "operationId": "FreelancerAdminService_DeleteRecommendation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.DeleteRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendationBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/price_list": {
+      "get": {
+        "summary": "Прайс-лист фрилансера",
+        "operationId": "FreelancerAdminService_GetFreelancerPriceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/recommendations": {
+      "get": {
+        "summary": "Рекомендации фрилансера",
+        "operationId": "FreelancerAdminService_GetFreelancerRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/save_photo": {
+      "post": {
+        "summary": "Сохранение фотографии фрилансера",
+        "operationId": "FreelancerAdminService_SaveFreelancerPhoto",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhotoBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/social_networks": {
+      "get": {
+        "summary": "Соцсети в которых работает фрилансер",
+        "operationId": "FreelancerAdminService_GetFreelancerSocialNetworks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancer/{freelancerId}/update": {
+      "post": {
+        "summary": "Обновление фрилансера",
+        "operationId": "FreelancerAdminService_UpdateFreelancer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.UpdateFreelancerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "freelancerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancerBody"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers": {
+      "get": {
+        "summary": "Получение фрилансеров",
+        "operationId": "FreelancerAdminService_GetFreelancers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers/search": {
+      "post": {
+        "summary": "Поиск фрилансера по параметрам",
+        "operationId": "FreelancerAdminService_SearchFreelancers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.SearchFreelancersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.SearchFreelancersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers/sort": {
+      "post": {
+        "summary": "Сортировка фрилансеров",
+        "operationId": "FreelancerAdminService_SortFreelancers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.SortFreelancersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.freelancer.v1.SortFreelancersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.freelancers.freelancer.v1.ActivateFreelancerResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.AddAdditionalCityResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.AddFreelancerAdditionalSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.AddNetworkResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.AddPriceListResponse": {
+      "type": "object",
+      "properties": {
+        "priceListItemId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.AddRecommendationResponse": {
+      "type": "object",
+      "properties": {
+        "doctor": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.AddRecommendationResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string"
+        },
+        "specialityName": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.ChangeRecommendationSortResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.CooperationType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.DeactivateFreelancerResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalCityResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.DeleteFreelancerAdditionalSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.DeleteFreelancerResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.DeleteNetworkResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.DeletePriceListResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.DeleteRecommendationResponse": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.ActivateFreelancerBody": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalCityBody": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.AddAdditionalSpecialityBody": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.AddNetworkBody": {
+      "type": "object",
+      "properties": {
+        "societyId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.AddPriceListBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Название услуги"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64",
+          "title": "Стоимость услуги"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.AddRecommendationBody": {
+      "type": "object",
+      "properties": {
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.ChangeRecommendationSortBody": {
+      "type": "object",
+      "properties": {
+        "sort": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeactivateFreelancerBody": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalCityBody": {
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteAdditionalSpecialityBody": {
+      "type": "object",
+      "properties": {
+        "specialityId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteFreelancerBody": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteNetworkBody": {
+      "type": "object",
+      "properties": {
+        "societyId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeletePriceListBody": {
+      "type": "object",
+      "properties": {
+        "priceListItemId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.DeleteRecommendationBody": {
+      "type": "object",
+      "properties": {
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.SaveFreelancerPhotoBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string",
+          "title": "файл в строке base64"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.FreelancerAdminService.UpdateFreelancerBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "portfolioLink": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "mainCityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "mainSpecialityId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cooperationTypeId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "agencyRepresentative": {
+          "type": "boolean"
+        },
+        "dateStarted": {
+          "type": "string"
+        },
+        "priceCategory": {
+          "type": "string",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerAdditionalCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "additionalCities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.CityItem"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerAdditionalSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "additionalSpecialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.SpecialityItem"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerByIDResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "portfolioLink": {
+          "type": "string"
+        },
+        "tgUrl": {
+          "type": "string"
+        },
+        "mainCity": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.CityItem"
+        },
+        "mainSpeciality": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.SpecialityItem"
+        },
+        "image": {
+          "type": "string"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.CooperationType"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "agencyRepresentative": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "dateStarted": {
+          "type": "string"
+        },
+        "priceCategory": {
+          "type": "string",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string",
+          "title": "todo года работы"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerCooperationTypesResponse": {
+      "type": "object",
+      "properties": {
+        "cooperationTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.CooperationType"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerPriceListResponse": {
+      "type": "object",
+      "properties": {
+        "priceList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.PriceList"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.Recommendation"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancerSocialNetworksResponse": {
+      "type": "object",
+      "properties": {
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.Society"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancersResponse": {
+      "type": "object",
+      "properties": {
+        "freelancers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.GetFreelancersResponse.Freelancer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.CooperationType"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.PriceList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.Recommendation": {
+      "type": "object",
+      "properties": {
+        "doctorId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "doctorName": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SaveFreelancerPhotoResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SearchFreelancersRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SearchFreelancersResponse": {
+      "type": "object",
+      "properties": {
+        "freelancers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SearchFreelancersResponse.Freelancer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.CooperationType"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.Society": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SortFreelancersRequest": {
+      "type": "object"
+    },
+    "admin.freelancers.freelancer.v1.SortFreelancersResponse": {
+      "type": "object",
+      "properties": {
+        "freelancers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer"
+          }
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SortFreelancersResponse.Freelancer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.freelancers.freelancer.v1.CooperationType"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.freelancer.v1.UpdateFreelancerResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

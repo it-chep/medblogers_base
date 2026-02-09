@@ -8,7 +8,7 @@ import (
 )
 
 type Implementation struct {
-	desc.UnimplementedAdminServiceServer
+	desc.UnsafeAdminServiceServer
 
 	admin  *admin.Module
 	auth   *auth.Module
