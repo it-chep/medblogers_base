@@ -91,6 +91,90 @@ func (x *Category) GetBgColor() string {
 	return ""
 }
 
+type BlogMiniatures struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Slug          string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
+	PreviewText   string                 `protobuf:"bytes,3,opt,name=preview_text,json=previewText,proto3" json:"preview_text,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	PhotoLink     string                 `protobuf:"bytes,5,opt,name=photo_link,json=photoLink,proto3" json:"photo_link,omitempty"`
+	Categories    []*Category            `protobuf:"bytes,6,rep,name=categories,proto3" json:"categories,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BlogMiniatures) Reset() {
+	*x = BlogMiniatures{}
+	mi := &file_blogs_v1_blogs_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BlogMiniatures) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BlogMiniatures) ProtoMessage() {}
+
+func (x *BlogMiniatures) ProtoReflect() protoreflect.Message {
+	mi := &file_blogs_v1_blogs_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BlogMiniatures.ProtoReflect.Descriptor instead.
+func (*BlogMiniatures) Descriptor() ([]byte, []int) {
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *BlogMiniatures) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *BlogMiniatures) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *BlogMiniatures) GetPreviewText() string {
+	if x != nil {
+		return x.PreviewText
+	}
+	return ""
+}
+
+func (x *BlogMiniatures) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *BlogMiniatures) GetPhotoLink() string {
+	if x != nil {
+		return x.PhotoLink
+	}
+	return ""
+}
+
+func (x *BlogMiniatures) GetCategories() []*Category {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
 type GetTopBlogsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -99,7 +183,7 @@ type GetTopBlogsRequest struct {
 
 func (x *GetTopBlogsRequest) Reset() {
 	*x = GetTopBlogsRequest{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[1]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111,7 +195,7 @@ func (x *GetTopBlogsRequest) String() string {
 func (*GetTopBlogsRequest) ProtoMessage() {}
 
 func (x *GetTopBlogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[1]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124,19 +208,19 @@ func (x *GetTopBlogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopBlogsRequest.ProtoReflect.Descriptor instead.
 func (*GetTopBlogsRequest) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{1}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{2}
 }
 
 type GetTopBlogsResponse struct {
-	state         protoimpl.MessageState                `protogen:"open.v1"`
-	Blogs         []*GetTopBlogsResponse_BlogMiniatures `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Blogs         []*BlogMiniatures      `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetTopBlogsResponse) Reset() {
 	*x = GetTopBlogsResponse{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[2]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -148,7 +232,7 @@ func (x *GetTopBlogsResponse) String() string {
 func (*GetTopBlogsResponse) ProtoMessage() {}
 
 func (x *GetTopBlogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[2]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,10 +245,10 @@ func (x *GetTopBlogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTopBlogsResponse.ProtoReflect.Descriptor instead.
 func (*GetTopBlogsResponse) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{2}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetTopBlogsResponse) GetBlogs() []*GetTopBlogsResponse_BlogMiniatures {
+func (x *GetTopBlogsResponse) GetBlogs() []*BlogMiniatures {
 	if x != nil {
 		return x.Blogs
 	}
@@ -179,7 +263,7 @@ type GetBlogsRequest struct {
 
 func (x *GetBlogsRequest) Reset() {
 	*x = GetBlogsRequest{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[3]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -191,7 +275,7 @@ func (x *GetBlogsRequest) String() string {
 func (*GetBlogsRequest) ProtoMessage() {}
 
 func (x *GetBlogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[3]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -204,19 +288,19 @@ func (x *GetBlogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogsRequest.ProtoReflect.Descriptor instead.
 func (*GetBlogsRequest) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{3}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{4}
 }
 
 type GetBlogsResponse struct {
-	state         protoimpl.MessageState             `protogen:"open.v1"`
-	Blogs         []*GetBlogsResponse_BlogMiniatures `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Blogs         []*BlogMiniatures      `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetBlogsResponse) Reset() {
 	*x = GetBlogsResponse{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[4]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +312,7 @@ func (x *GetBlogsResponse) String() string {
 func (*GetBlogsResponse) ProtoMessage() {}
 
 func (x *GetBlogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[4]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,10 +325,10 @@ func (x *GetBlogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogsResponse.ProtoReflect.Descriptor instead.
 func (*GetBlogsResponse) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{4}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetBlogsResponse) GetBlogs() []*GetBlogsResponse_BlogMiniatures {
+func (x *GetBlogsResponse) GetBlogs() []*BlogMiniatures {
 	if x != nil {
 		return x.Blogs
 	}
@@ -260,7 +344,7 @@ type GetBlogDetailRequest struct {
 
 func (x *GetBlogDetailRequest) Reset() {
 	*x = GetBlogDetailRequest{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[5]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -272,7 +356,7 @@ func (x *GetBlogDetailRequest) String() string {
 func (*GetBlogDetailRequest) ProtoMessage() {}
 
 func (x *GetBlogDetailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[5]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -285,7 +369,7 @@ func (x *GetBlogDetailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogDetailRequest.ProtoReflect.Descriptor instead.
 func (*GetBlogDetailRequest) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{5}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetBlogDetailRequest) GetBlogSlug() string {
@@ -313,7 +397,7 @@ type GetBlogDetailResponse struct {
 
 func (x *GetBlogDetailResponse) Reset() {
 	*x = GetBlogDetailResponse{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[6]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -325,7 +409,7 @@ func (x *GetBlogDetailResponse) String() string {
 func (*GetBlogDetailResponse) ProtoMessage() {}
 
 func (x *GetBlogDetailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[6]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -338,7 +422,7 @@ func (x *GetBlogDetailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogDetailResponse.ProtoReflect.Descriptor instead.
 func (*GetBlogDetailResponse) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{6}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetBlogDetailResponse) GetTitle() string {
@@ -420,7 +504,7 @@ type GetDoctorBlogsRequest struct {
 
 func (x *GetDoctorBlogsRequest) Reset() {
 	*x = GetDoctorBlogsRequest{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[7]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -432,7 +516,7 @@ func (x *GetDoctorBlogsRequest) String() string {
 func (*GetDoctorBlogsRequest) ProtoMessage() {}
 
 func (x *GetDoctorBlogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[7]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -445,7 +529,7 @@ func (x *GetDoctorBlogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorBlogsRequest.ProtoReflect.Descriptor instead.
 func (*GetDoctorBlogsRequest) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{7}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetDoctorBlogsRequest) GetDoctorSlug() string {
@@ -456,15 +540,15 @@ func (x *GetDoctorBlogsRequest) GetDoctorSlug() string {
 }
 
 type GetDoctorBlogsResponse struct {
-	state         protoimpl.MessageState                   `protogen:"open.v1"`
-	Blogs         []*GetDoctorBlogsResponse_BlogMiniatures `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Blogs         []*BlogMiniatures      `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetDoctorBlogsResponse) Reset() {
 	*x = GetDoctorBlogsResponse{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[8]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -476,7 +560,7 @@ func (x *GetDoctorBlogsResponse) String() string {
 func (*GetDoctorBlogsResponse) ProtoMessage() {}
 
 func (x *GetDoctorBlogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[8]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -489,43 +573,37 @@ func (x *GetDoctorBlogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDoctorBlogsResponse.ProtoReflect.Descriptor instead.
 func (*GetDoctorBlogsResponse) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{8}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *GetDoctorBlogsResponse) GetBlogs() []*GetDoctorBlogsResponse_BlogMiniatures {
+func (x *GetDoctorBlogsResponse) GetBlogs() []*BlogMiniatures {
 	if x != nil {
 		return x.Blogs
 	}
 	return nil
 }
 
-type GetTopBlogsResponse_BlogMiniatures struct {
+type GetBlogsCategoriesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Slug          string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
-	PreviewText   string                 `protobuf:"bytes,3,opt,name=preview_text,json=previewText,proto3" json:"preview_text,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	PhotoLink     string                 `protobuf:"bytes,5,opt,name=photo_link,json=photoLink,proto3" json:"photo_link,omitempty"`
-	Categories    []*Category            `protobuf:"bytes,6,rep,name=categories,proto3" json:"categories,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetTopBlogsResponse_BlogMiniatures) Reset() {
-	*x = GetTopBlogsResponse_BlogMiniatures{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[9]
+func (x *GetBlogsCategoriesRequest) Reset() {
+	*x = GetBlogsCategoriesRequest{}
+	mi := &file_blogs_v1_blogs_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetTopBlogsResponse_BlogMiniatures) String() string {
+func (x *GetBlogsCategoriesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetTopBlogsResponse_BlogMiniatures) ProtoMessage() {}
+func (*GetBlogsCategoriesRequest) ProtoMessage() {}
 
-func (x *GetTopBlogsResponse_BlogMiniatures) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[9]
+func (x *GetBlogsCategoriesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blogs_v1_blogs_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -536,80 +614,77 @@ func (x *GetTopBlogsResponse_BlogMiniatures) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetTopBlogsResponse_BlogMiniatures.ProtoReflect.Descriptor instead.
-func (*GetTopBlogsResponse_BlogMiniatures) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{2, 0}
+// Deprecated: Use GetBlogsCategoriesRequest.ProtoReflect.Descriptor instead.
+func (*GetBlogsCategoriesRequest) Descriptor() ([]byte, []int) {
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *GetTopBlogsResponse_BlogMiniatures) GetTitle() string {
+type GetBlogsCategoriesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Categories    []*Category            `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogsCategoriesResponse) Reset() {
+	*x = GetBlogsCategoriesResponse{}
+	mi := &file_blogs_v1_blogs_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogsCategoriesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogsCategoriesResponse) ProtoMessage() {}
+
+func (x *GetBlogsCategoriesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blogs_v1_blogs_proto_msgTypes[11]
 	if x != nil {
-		return x.Title
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
 	}
-	return ""
+	return mi.MessageOf(x)
 }
 
-func (x *GetTopBlogsResponse_BlogMiniatures) GetSlug() string {
-	if x != nil {
-		return x.Slug
-	}
-	return ""
+// Deprecated: Use GetBlogsCategoriesResponse.ProtoReflect.Descriptor instead.
+func (*GetBlogsCategoriesResponse) Descriptor() ([]byte, []int) {
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetTopBlogsResponse_BlogMiniatures) GetPreviewText() string {
-	if x != nil {
-		return x.PreviewText
-	}
-	return ""
-}
-
-func (x *GetTopBlogsResponse_BlogMiniatures) GetCreatedAt() string {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return ""
-}
-
-func (x *GetTopBlogsResponse_BlogMiniatures) GetPhotoLink() string {
-	if x != nil {
-		return x.PhotoLink
-	}
-	return ""
-}
-
-func (x *GetTopBlogsResponse_BlogMiniatures) GetCategories() []*Category {
+func (x *GetBlogsCategoriesResponse) GetCategories() []*Category {
 	if x != nil {
 		return x.Categories
 	}
 	return nil
 }
 
-type GetBlogsResponse_BlogMiniatures struct {
+type FilterBlogsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Slug          string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
-	PreviewText   string                 `protobuf:"bytes,3,opt,name=preview_text,json=previewText,proto3" json:"preview_text,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	PhotoLink     string                 `protobuf:"bytes,5,opt,name=photo_link,json=photoLink,proto3" json:"photo_link,omitempty"`
-	Categories    []*Category            `protobuf:"bytes,6,rep,name=categories,proto3" json:"categories,omitempty"`
+	CategoriesIds []int64                `protobuf:"varint,1,rep,packed,name=categories_ids,json=categoriesIds,proto3" json:"categories_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetBlogsResponse_BlogMiniatures) Reset() {
-	*x = GetBlogsResponse_BlogMiniatures{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[10]
+func (x *FilterBlogsRequest) Reset() {
+	*x = FilterBlogsRequest{}
+	mi := &file_blogs_v1_blogs_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetBlogsResponse_BlogMiniatures) String() string {
+func (x *FilterBlogsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetBlogsResponse_BlogMiniatures) ProtoMessage() {}
+func (*FilterBlogsRequest) ProtoMessage() {}
 
-func (x *GetBlogsResponse_BlogMiniatures) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[10]
+func (x *FilterBlogsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_blogs_v1_blogs_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -620,49 +695,58 @@ func (x *GetBlogsResponse_BlogMiniatures) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetBlogsResponse_BlogMiniatures.ProtoReflect.Descriptor instead.
-func (*GetBlogsResponse_BlogMiniatures) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{4, 0}
+// Deprecated: Use FilterBlogsRequest.ProtoReflect.Descriptor instead.
+func (*FilterBlogsRequest) Descriptor() ([]byte, []int) {
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GetBlogsResponse_BlogMiniatures) GetTitle() string {
+func (x *FilterBlogsRequest) GetCategoriesIds() []int64 {
 	if x != nil {
-		return x.Title
+		return x.CategoriesIds
 	}
-	return ""
+	return nil
 }
 
-func (x *GetBlogsResponse_BlogMiniatures) GetSlug() string {
+type FilterBlogsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Blogs         []*BlogMiniatures      `protobuf:"bytes,1,rep,name=blogs,proto3" json:"blogs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FilterBlogsResponse) Reset() {
+	*x = FilterBlogsResponse{}
+	mi := &file_blogs_v1_blogs_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FilterBlogsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilterBlogsResponse) ProtoMessage() {}
+
+func (x *FilterBlogsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_blogs_v1_blogs_proto_msgTypes[13]
 	if x != nil {
-		return x.Slug
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
 	}
-	return ""
+	return mi.MessageOf(x)
 }
 
-func (x *GetBlogsResponse_BlogMiniatures) GetPreviewText() string {
-	if x != nil {
-		return x.PreviewText
-	}
-	return ""
+// Deprecated: Use FilterBlogsResponse.ProtoReflect.Descriptor instead.
+func (*FilterBlogsResponse) Descriptor() ([]byte, []int) {
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *GetBlogsResponse_BlogMiniatures) GetCreatedAt() string {
+func (x *FilterBlogsResponse) GetBlogs() []*BlogMiniatures {
 	if x != nil {
-		return x.CreatedAt
-	}
-	return ""
-}
-
-func (x *GetBlogsResponse_BlogMiniatures) GetPhotoLink() string {
-	if x != nil {
-		return x.PhotoLink
-	}
-	return ""
-}
-
-func (x *GetBlogsResponse_BlogMiniatures) GetCategories() []*Category {
-	if x != nil {
-		return x.Categories
+		return x.Blogs
 	}
 	return nil
 }
@@ -679,7 +763,7 @@ type GetBlogDetailResponse_Doctor struct {
 
 func (x *GetBlogDetailResponse_Doctor) Reset() {
 	*x = GetBlogDetailResponse_Doctor{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[11]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -691,7 +775,7 @@ func (x *GetBlogDetailResponse_Doctor) String() string {
 func (*GetBlogDetailResponse_Doctor) ProtoMessage() {}
 
 func (x *GetBlogDetailResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[11]
+	mi := &file_blogs_v1_blogs_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -704,7 +788,7 @@ func (x *GetBlogDetailResponse_Doctor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBlogDetailResponse_Doctor.ProtoReflect.Descriptor instead.
 func (*GetBlogDetailResponse_Doctor) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{6, 0}
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{7, 0}
 }
 
 func (x *GetBlogDetailResponse_Doctor) GetName() string {
@@ -735,90 +819,6 @@ func (x *GetBlogDetailResponse_Doctor) GetSpecialityName() string {
 	return ""
 }
 
-type GetDoctorBlogsResponse_BlogMiniatures struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Slug          string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
-	PreviewText   string                 `protobuf:"bytes,3,opt,name=preview_text,json=previewText,proto3" json:"preview_text,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	PhotoLink     string                 `protobuf:"bytes,5,opt,name=photo_link,json=photoLink,proto3" json:"photo_link,omitempty"`
-	Categories    []*Category            `protobuf:"bytes,6,rep,name=categories,proto3" json:"categories,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) Reset() {
-	*x = GetDoctorBlogsResponse_BlogMiniatures{}
-	mi := &file_blogs_v1_blogs_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDoctorBlogsResponse_BlogMiniatures) ProtoMessage() {}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) ProtoReflect() protoreflect.Message {
-	mi := &file_blogs_v1_blogs_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDoctorBlogsResponse_BlogMiniatures.ProtoReflect.Descriptor instead.
-func (*GetDoctorBlogsResponse_BlogMiniatures) Descriptor() ([]byte, []int) {
-	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{8, 0}
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) GetSlug() string {
-	if x != nil {
-		return x.Slug
-	}
-	return ""
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) GetPreviewText() string {
-	if x != nil {
-		return x.PreviewText
-	}
-	return ""
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) GetCreatedAt() string {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return ""
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) GetPhotoLink() string {
-	if x != nil {
-		return x.PhotoLink
-	}
-	return ""
-}
-
-func (x *GetDoctorBlogsResponse_BlogMiniatures) GetCategories() []*Category {
-	if x != nil {
-		return x.Categories
-	}
-	return nil
-}
-
 var File_blogs_v1_blogs_proto protoreflect.FileDescriptor
 
 const file_blogs_v1_blogs_proto_rawDesc = "" +
@@ -829,10 +829,7 @@ const file_blogs_v1_blogs_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
 	"\n" +
 	"font_color\x18\x03 \x01(\tR\tfontColor\x12\x19\n" +
-	"\bbg_color\x18\x04 \x01(\tR\abgColor\"\x14\n" +
-	"\x12GetTopBlogsRequest\"\xab\x02\n" +
-	"\x13GetTopBlogsResponse\x12B\n" +
-	"\x05blogs\x18\x01 \x03(\v2,.blogs.v1.GetTopBlogsResponse.BlogMiniaturesR\x05blogs\x1a\xcf\x01\n" +
+	"\bbg_color\x18\x04 \x01(\tR\abgColor\"\xcf\x01\n" +
 	"\x0eBlogMiniatures\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12!\n" +
@@ -843,21 +840,13 @@ const file_blogs_v1_blogs_proto_rawDesc = "" +
 	"photo_link\x18\x05 \x01(\tR\tphotoLink\x122\n" +
 	"\n" +
 	"categories\x18\x06 \x03(\v2\x12.blogs.v1.CategoryR\n" +
-	"categories\"\x11\n" +
-	"\x0fGetBlogsRequest\"\xa5\x02\n" +
-	"\x10GetBlogsResponse\x12?\n" +
-	"\x05blogs\x18\x01 \x03(\v2).blogs.v1.GetBlogsResponse.BlogMiniaturesR\x05blogs\x1a\xcf\x01\n" +
-	"\x0eBlogMiniatures\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04slug\x18\x02 \x01(\tR\x04slug\x12!\n" +
-	"\fpreview_text\x18\x03 \x01(\tR\vpreviewText\x12\x1d\n" +
-	"\n" +
-	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x1d\n" +
-	"\n" +
-	"photo_link\x18\x05 \x01(\tR\tphotoLink\x122\n" +
-	"\n" +
-	"categories\x18\x06 \x03(\v2\x12.blogs.v1.CategoryR\n" +
-	"categories\"3\n" +
+	"categories\"\x14\n" +
+	"\x12GetTopBlogsRequest\"E\n" +
+	"\x13GetTopBlogsResponse\x12.\n" +
+	"\x05blogs\x18\x01 \x03(\v2\x18.blogs.v1.BlogMiniaturesR\x05blogs\"\x11\n" +
+	"\x0fGetBlogsRequest\"B\n" +
+	"\x10GetBlogsResponse\x12.\n" +
+	"\x05blogs\x18\x01 \x03(\v2\x18.blogs.v1.BlogMiniaturesR\x05blogs\"3\n" +
 	"\x14GetBlogDetailRequest\x12\x1b\n" +
 	"\tblog_slug\x18\x01 \x01(\tR\bblogSlug\"\xf4\x03\n" +
 	"\x15GetBlogDetailResponse\x12\x14\n" +
@@ -883,25 +872,25 @@ const file_blogs_v1_blogs_proto_rawDesc = "" +
 	"\x0fspeciality_name\x18\x04 \x01(\tR\x0especialityName\"8\n" +
 	"\x15GetDoctorBlogsRequest\x12\x1f\n" +
 	"\vdoctor_slug\x18\x01 \x01(\tR\n" +
-	"doctorSlug\"\xb1\x02\n" +
-	"\x16GetDoctorBlogsResponse\x12E\n" +
-	"\x05blogs\x18\x01 \x03(\v2/.blogs.v1.GetDoctorBlogsResponse.BlogMiniaturesR\x05blogs\x1a\xcf\x01\n" +
-	"\x0eBlogMiniatures\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04slug\x18\x02 \x01(\tR\x04slug\x12!\n" +
-	"\fpreview_text\x18\x03 \x01(\tR\vpreviewText\x12\x1d\n" +
+	"doctorSlug\"H\n" +
+	"\x16GetDoctorBlogsResponse\x12.\n" +
+	"\x05blogs\x18\x01 \x03(\v2\x18.blogs.v1.BlogMiniaturesR\x05blogs\"\x1b\n" +
+	"\x19GetBlogsCategoriesRequest\"P\n" +
+	"\x1aGetBlogsCategoriesResponse\x122\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\tR\tcreatedAt\x12\x1d\n" +
-	"\n" +
-	"photo_link\x18\x05 \x01(\tR\tphotoLink\x122\n" +
-	"\n" +
-	"categories\x18\x06 \x03(\v2\x12.blogs.v1.CategoryR\n" +
-	"categories2\x96\x05\n" +
+	"categories\x18\x01 \x03(\v2\x12.blogs.v1.CategoryR\n" +
+	"categories\";\n" +
+	"\x12FilterBlogsRequest\x12%\n" +
+	"\x0ecategories_ids\x18\x01 \x03(\x03R\rcategoriesIds\"E\n" +
+	"\x13FilterBlogsResponse\x12.\n" +
+	"\x05blogs\x18\x01 \x03(\v2\x18.blogs.v1.BlogMiniaturesR\x05blogs2\x93\b\n" +
 	"\vBlogService\x12\xac\x01\n" +
 	"\vGetTopBlogs\x12\x1c.blogs.v1.GetTopBlogsRequest\x1a\x1d.blogs.v1.GetTopBlogsResponse\"`\x92AD\x12BТоп-3 или топ статей, для главной и тд\x82\xd3\xe4\x93\x02\x13\x12\x11/api/v1/blogs/top\x12p\n" +
 	"\bGetBlogs\x12\x19.blogs.v1.GetBlogsRequest\x1a\x1a.blogs.v1.GetBlogsResponse\"-\x92A\x15\x12\x13Все статьи\x82\xd3\xe4\x93\x02\x0f\x12\r/api/v1/blogs\x12\xba\x01\n" +
 	"\x0eGetDoctorBlogs\x12\x1f.blogs.v1.GetDoctorBlogsRequest\x1a .blogs.v1.GetDoctorBlogsResponse\"e\x92A8\x126Статьи определенного доктора\x82\xd3\xe4\x93\x02$\x12\"/api/v1/blogs/doctor/{doctor_slug}\x12\xa8\x01\n" +
-	"\rGetBlogDetail\x12\x1e.blogs.v1.GetBlogDetailRequest\x1a\x1f.blogs.v1.GetBlogDetailResponse\"V\x92A3\x121Конкретная статья по слагу\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/blog/{blog_slug}B\x0eZ\fapi/blogs/v1b\x06proto3"
+	"\rGetBlogDetail\x12\x1e.blogs.v1.GetBlogDetailRequest\x1a\x1f.blogs.v1.GetBlogDetailResponse\"V\x92A3\x121Конкретная статья по слагу\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/blog/{blog_slug}\x12\xb8\x01\n" +
+	"\x12GetBlogsCategories\x12#.blogs.v1.GetBlogsCategoriesRequest\x1a$.blogs.v1.GetBlogsCategoriesResponse\"W\x92A4\x122Получения категорий статей\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/blogs/categories\x12\xbf\x01\n" +
+	"\vFilterBlogs\x12\x1c.blogs.v1.FilterBlogsRequest\x1a\x1d.blogs.v1.FilterBlogsResponse\"s\x92AQ\x12OФильтрация категорий по каким-то критериям\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/api/v1/blogs/filterB\x0eZ\fapi/blogs/v1b\x06proto3"
 
 var (
 	file_blogs_v1_blogs_proto_rawDescOnce sync.Once
@@ -915,41 +904,47 @@ func file_blogs_v1_blogs_proto_rawDescGZIP() []byte {
 	return file_blogs_v1_blogs_proto_rawDescData
 }
 
-var file_blogs_v1_blogs_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_blogs_v1_blogs_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_blogs_v1_blogs_proto_goTypes = []any{
-	(*Category)(nil),                              // 0: blogs.v1.Category
-	(*GetTopBlogsRequest)(nil),                    // 1: blogs.v1.GetTopBlogsRequest
-	(*GetTopBlogsResponse)(nil),                   // 2: blogs.v1.GetTopBlogsResponse
-	(*GetBlogsRequest)(nil),                       // 3: blogs.v1.GetBlogsRequest
-	(*GetBlogsResponse)(nil),                      // 4: blogs.v1.GetBlogsResponse
-	(*GetBlogDetailRequest)(nil),                  // 5: blogs.v1.GetBlogDetailRequest
-	(*GetBlogDetailResponse)(nil),                 // 6: blogs.v1.GetBlogDetailResponse
-	(*GetDoctorBlogsRequest)(nil),                 // 7: blogs.v1.GetDoctorBlogsRequest
-	(*GetDoctorBlogsResponse)(nil),                // 8: blogs.v1.GetDoctorBlogsResponse
-	(*GetTopBlogsResponse_BlogMiniatures)(nil),    // 9: blogs.v1.GetTopBlogsResponse.BlogMiniatures
-	(*GetBlogsResponse_BlogMiniatures)(nil),       // 10: blogs.v1.GetBlogsResponse.BlogMiniatures
-	(*GetBlogDetailResponse_Doctor)(nil),          // 11: blogs.v1.GetBlogDetailResponse.Doctor
-	(*GetDoctorBlogsResponse_BlogMiniatures)(nil), // 12: blogs.v1.GetDoctorBlogsResponse.BlogMiniatures
+	(*Category)(nil),                     // 0: blogs.v1.Category
+	(*BlogMiniatures)(nil),               // 1: blogs.v1.BlogMiniatures
+	(*GetTopBlogsRequest)(nil),           // 2: blogs.v1.GetTopBlogsRequest
+	(*GetTopBlogsResponse)(nil),          // 3: blogs.v1.GetTopBlogsResponse
+	(*GetBlogsRequest)(nil),              // 4: blogs.v1.GetBlogsRequest
+	(*GetBlogsResponse)(nil),             // 5: blogs.v1.GetBlogsResponse
+	(*GetBlogDetailRequest)(nil),         // 6: blogs.v1.GetBlogDetailRequest
+	(*GetBlogDetailResponse)(nil),        // 7: blogs.v1.GetBlogDetailResponse
+	(*GetDoctorBlogsRequest)(nil),        // 8: blogs.v1.GetDoctorBlogsRequest
+	(*GetDoctorBlogsResponse)(nil),       // 9: blogs.v1.GetDoctorBlogsResponse
+	(*GetBlogsCategoriesRequest)(nil),    // 10: blogs.v1.GetBlogsCategoriesRequest
+	(*GetBlogsCategoriesResponse)(nil),   // 11: blogs.v1.GetBlogsCategoriesResponse
+	(*FilterBlogsRequest)(nil),           // 12: blogs.v1.FilterBlogsRequest
+	(*FilterBlogsResponse)(nil),          // 13: blogs.v1.FilterBlogsResponse
+	(*GetBlogDetailResponse_Doctor)(nil), // 14: blogs.v1.GetBlogDetailResponse.Doctor
 }
 var file_blogs_v1_blogs_proto_depIdxs = []int32{
-	9,  // 0: blogs.v1.GetTopBlogsResponse.blogs:type_name -> blogs.v1.GetTopBlogsResponse.BlogMiniatures
-	10, // 1: blogs.v1.GetBlogsResponse.blogs:type_name -> blogs.v1.GetBlogsResponse.BlogMiniatures
-	11, // 2: blogs.v1.GetBlogDetailResponse.doctor:type_name -> blogs.v1.GetBlogDetailResponse.Doctor
-	0,  // 3: blogs.v1.GetBlogDetailResponse.categories:type_name -> blogs.v1.Category
-	12, // 4: blogs.v1.GetDoctorBlogsResponse.blogs:type_name -> blogs.v1.GetDoctorBlogsResponse.BlogMiniatures
-	0,  // 5: blogs.v1.GetTopBlogsResponse.BlogMiniatures.categories:type_name -> blogs.v1.Category
-	0,  // 6: blogs.v1.GetBlogsResponse.BlogMiniatures.categories:type_name -> blogs.v1.Category
-	0,  // 7: blogs.v1.GetDoctorBlogsResponse.BlogMiniatures.categories:type_name -> blogs.v1.Category
-	1,  // 8: blogs.v1.BlogService.GetTopBlogs:input_type -> blogs.v1.GetTopBlogsRequest
-	3,  // 9: blogs.v1.BlogService.GetBlogs:input_type -> blogs.v1.GetBlogsRequest
-	7,  // 10: blogs.v1.BlogService.GetDoctorBlogs:input_type -> blogs.v1.GetDoctorBlogsRequest
-	5,  // 11: blogs.v1.BlogService.GetBlogDetail:input_type -> blogs.v1.GetBlogDetailRequest
-	2,  // 12: blogs.v1.BlogService.GetTopBlogs:output_type -> blogs.v1.GetTopBlogsResponse
-	4,  // 13: blogs.v1.BlogService.GetBlogs:output_type -> blogs.v1.GetBlogsResponse
-	8,  // 14: blogs.v1.BlogService.GetDoctorBlogs:output_type -> blogs.v1.GetDoctorBlogsResponse
-	6,  // 15: blogs.v1.BlogService.GetBlogDetail:output_type -> blogs.v1.GetBlogDetailResponse
-	12, // [12:16] is the sub-list for method output_type
-	8,  // [8:12] is the sub-list for method input_type
+	0,  // 0: blogs.v1.BlogMiniatures.categories:type_name -> blogs.v1.Category
+	1,  // 1: blogs.v1.GetTopBlogsResponse.blogs:type_name -> blogs.v1.BlogMiniatures
+	1,  // 2: blogs.v1.GetBlogsResponse.blogs:type_name -> blogs.v1.BlogMiniatures
+	14, // 3: blogs.v1.GetBlogDetailResponse.doctor:type_name -> blogs.v1.GetBlogDetailResponse.Doctor
+	0,  // 4: blogs.v1.GetBlogDetailResponse.categories:type_name -> blogs.v1.Category
+	1,  // 5: blogs.v1.GetDoctorBlogsResponse.blogs:type_name -> blogs.v1.BlogMiniatures
+	0,  // 6: blogs.v1.GetBlogsCategoriesResponse.categories:type_name -> blogs.v1.Category
+	1,  // 7: blogs.v1.FilterBlogsResponse.blogs:type_name -> blogs.v1.BlogMiniatures
+	2,  // 8: blogs.v1.BlogService.GetTopBlogs:input_type -> blogs.v1.GetTopBlogsRequest
+	4,  // 9: blogs.v1.BlogService.GetBlogs:input_type -> blogs.v1.GetBlogsRequest
+	8,  // 10: blogs.v1.BlogService.GetDoctorBlogs:input_type -> blogs.v1.GetDoctorBlogsRequest
+	6,  // 11: blogs.v1.BlogService.GetBlogDetail:input_type -> blogs.v1.GetBlogDetailRequest
+	10, // 12: blogs.v1.BlogService.GetBlogsCategories:input_type -> blogs.v1.GetBlogsCategoriesRequest
+	12, // 13: blogs.v1.BlogService.FilterBlogs:input_type -> blogs.v1.FilterBlogsRequest
+	3,  // 14: blogs.v1.BlogService.GetTopBlogs:output_type -> blogs.v1.GetTopBlogsResponse
+	5,  // 15: blogs.v1.BlogService.GetBlogs:output_type -> blogs.v1.GetBlogsResponse
+	9,  // 16: blogs.v1.BlogService.GetDoctorBlogs:output_type -> blogs.v1.GetDoctorBlogsResponse
+	7,  // 17: blogs.v1.BlogService.GetBlogDetail:output_type -> blogs.v1.GetBlogDetailResponse
+	11, // 18: blogs.v1.BlogService.GetBlogsCategories:output_type -> blogs.v1.GetBlogsCategoriesResponse
+	13, // 19: blogs.v1.BlogService.FilterBlogs:output_type -> blogs.v1.FilterBlogsResponse
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name
 	8,  // [8:8] is the sub-list for extension extendee
 	0,  // [0:8] is the sub-list for field type_name
@@ -966,7 +961,7 @@ func file_blogs_v1_blogs_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blogs_v1_blogs_proto_rawDesc), len(file_blogs_v1_blogs_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

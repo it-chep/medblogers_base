@@ -1,14 +1,14 @@
-package get_blogs
+package filter_blogs
 
 import (
 	"context"
-	"medblogers_base/internal/modules/blogs/action/get_blogs/dal"
-	"medblogers_base/internal/modules/blogs/action/get_blogs/dto"
+	"medblogers_base/internal/modules/blogs/action/filter_blogs/dal"
+	"medblogers_base/internal/modules/blogs/action/filter_blogs/dto"
 	"medblogers_base/internal/modules/blogs/dal/blogs"
 	"medblogers_base/internal/pkg/postgres"
 )
 
-// Action получение всех статей
+// Action фильтрация статей по параметрам
 type Action struct {
 	dal       *dal.Repository
 	commonDal *blogs.Repository
@@ -23,9 +23,9 @@ func New(pool postgres.PoolWrapper) *Action {
 }
 
 // Do .
-func (a *Action) Do(ctx context.Context) (dto.Response, error) {
-	// Получаем статьи
-	blogs, err := a.dal.GetBlogs(ctx)
+func (a *Action) Do(ctx context.Context, req dto.FilterRequest) (dto.Response, error) {
+	// фильтруем статьи
+	blogs, err := a.dal.FilterBlogs(ctx, req)
 	if err != nil {
 		return dto.Response{}, err
 	}

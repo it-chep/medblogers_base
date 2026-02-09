@@ -30,7 +30,7 @@ func (a *Action) Do(ctx context.Context, doctorSlug string) (dto.Response, error
 		return dto.Response{}, err
 	}
 
-	blogPhotosMap, err := a.dal.GetPrimaryPhotos(ctx, blogs.GetIDs())
+	blogPhotosMap, err := a.commonDal.GetPrimaryPhotos(ctx, blogs.GetIDs())
 	if err != nil {
 		return dto.Response{}, err
 	}
