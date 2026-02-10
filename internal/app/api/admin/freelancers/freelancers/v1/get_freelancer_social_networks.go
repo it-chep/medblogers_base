@@ -11,7 +11,7 @@ import (
 func (i *Implementation) GetFreelancerSocialNetworks(ctx context.Context, req *desc.GetFreelancerSocialNetworksRequest) (resp *desc.GetFreelancerSocialNetworksResponse, err error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return resp, executor(ctx, "/api/v1/admin/freelancer/{freelancer_id}/social_networks", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/freelancer/{id}/social_networks", func(ctx context.Context) error {
 		networks, err := i.admin.Actions.FreelancerModule.FreelancerAgg.GetNetworks.Do(ctx, req.GetFreelancerId())
 		if err != nil {
 			return err
