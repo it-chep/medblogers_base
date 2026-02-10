@@ -33,6 +33,9 @@ func (r *Repository) GetCity(ctx context.Context, cityID int64) (*city.City, err
 	var cities dao.CityDAO
 	err := pgxscan.Get(ctx, r.db, &cities, sql, cityID)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return &city.City{}, nil
+		}
 		return nil, err
 	}
 	return cities.ToDomain(), nil
@@ -48,6 +51,9 @@ func (r *Repository) GetSpeciality(ctx context.Context, specialityID int64) (*sp
 	var specialities dao.SpecialityDAO
 	err := pgxscan.Get(ctx, r.db, &specialities, sql, specialityID)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return &speciality.Speciality{}, nil
+		}
 		return nil, err
 	}
 	return specialities.ToDomain(), nil
