@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	"medblogers_base/internal/app/interceptor"
-	"medblogers_base/internal/modules/admin/action/mm/action/get_mm_list/dto"
+	"medblogers_base/internal/modules/admin/entities/mm/action/get_mm_list/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 	"time"
 

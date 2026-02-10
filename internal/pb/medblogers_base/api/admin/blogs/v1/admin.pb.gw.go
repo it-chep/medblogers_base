@@ -486,7 +486,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -506,7 +506,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -526,7 +526,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -546,7 +546,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -566,7 +566,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -586,7 +586,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -606,7 +606,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -626,7 +626,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -646,7 +646,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/AddBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/add_category"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/AddBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/add_category"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -666,7 +666,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/DeleteBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_category"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_category"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -686,7 +686,7 @@ func RegisterAdminServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/.AdminService/GetBlogCategories", runtime.WithHTTPPathPattern("/api/v1/admin/blog/categories"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogCategories", runtime.WithHTTPPathPattern("/api/v1/admin/blog/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -744,7 +744,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogs", runtime.WithHTTPPathPattern("/api/v1/admin/blog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -761,7 +761,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogByID", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -778,7 +778,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/CreateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -795,7 +795,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UpdateDraftBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -812,7 +812,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/SaveBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/save_image"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -829,7 +829,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogImage", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_image/{image_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -846,7 +846,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/PublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -863,7 +863,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/UnPublishBlog", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/unpublish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -880,7 +880,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/AddBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/add_category"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/AddBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/add_category"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -897,7 +897,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/DeleteBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_category"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/DeleteBlogCategory", runtime.WithHTTPPathPattern("/api/v1/admin/blog/{blog_id}/delete_category"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -914,7 +914,7 @@ func RegisterAdminServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/.AdminService/GetBlogCategories", runtime.WithHTTPPathPattern("/api/v1/admin/blog/categories"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.blogs.v1.AdminService/GetBlogCategories", runtime.WithHTTPPathPattern("/api/v1/admin/blog/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

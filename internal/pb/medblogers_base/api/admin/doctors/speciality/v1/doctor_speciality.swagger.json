@@ -1,0 +1,355 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/doctors/speciality/v1/doctor_speciality.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DoctorAdminSpecialityService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/doctors/specialities": {
+      "get": {
+        "summary": "Получение специальностей врачей",
+        "operationId": "DoctorAdminSpecialityService_GetSpecialities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.GetDoctorsSpecialitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/specialities/create": {
+      "post": {
+        "summary": "Добавление специальности врача",
+        "operationId": "DoctorAdminSpecialityService_CreateSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.CreateDoctorsSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.CreateDoctorsSpecialityRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/specialities/search": {
+      "post": {
+        "summary": "Поиск специальностей врачей",
+        "operationId": "DoctorAdminSpecialityService_SearchSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.SearchDoctorsSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.SearchDoctorsSpecialityRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/speciality/{specialityId}": {
+      "get": {
+        "summary": "Получение специальности врача",
+        "operationId": "DoctorAdminSpecialityService_GetSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.GetSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "specialityId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DoctorAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/speciality/{specialityId}/add_additional": {
+      "post": {
+        "summary": "Добавление дополнительной специальности к основной",
+        "operationId": "DoctorAdminSpecialityService_AddAdditionalSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.AddAdditionalSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "specialityId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.DoctorAdminSpecialityService.AddAdditionalSpecialityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminSpecialityService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctors/speciality/{specialityId}/delete_additional/{additionalSpecId}": {
+      "post": {
+        "summary": "Удаление дополнительной специальности у основной",
+        "operationId": "DoctorAdminSpecialityService_DeleteAdditionalSpeciality",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.DeleteAdditionalSpecialityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "specialityId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "additionalSpecId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.speciality.v1.DoctorAdminSpecialityService.DeleteAdditionalSpecialityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminSpecialityService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.doctors.speciality.v1.AddAdditionalSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.speciality.v1.CreateDoctorsSpecialityRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.CreateDoctorsSpecialityResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.DeleteAdditionalSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.speciality.v1.DoctorAdminSpecialityService.AddAdditionalSpecialityBody": {
+      "type": "object",
+      "properties": {
+        "additionalSpecId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.DoctorAdminSpecialityService.DeleteAdditionalSpecialityBody": {
+      "type": "object"
+    },
+    "admin.doctors.speciality.v1.GetDoctorsSpecialitiesResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.speciality.v1.GetDoctorsSpecialitiesResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.GetDoctorsSpecialitiesResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.GetSpecialityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.speciality.v1.SearchDoctorsSpecialityRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.SearchDoctorsSpecialityResponse": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.speciality.v1.SearchDoctorsSpecialityResponse.SpecialityItem"
+          }
+        }
+      }
+    },
+    "admin.doctors.speciality.v1.SearchDoctorsSpecialityResponse.SpecialityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/freelancers/city/v1/freelancer_city.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FreelancerAdminCityService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/freelancers/cities": {
+      "get": {
+        "summary": "Получение городов фрилансеров",
+        "operationId": "FreelancerAdminCityService_GetCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.city.v1.GetCitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "FreelancerAdminCityService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers/cities/create": {
+      "post": {
+        "summary": "Создание нового города",
+        "operationId": "FreelancerAdminCityService_CreateCity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.city.v1.CreateCityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.city.v1.CreateCityRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminCityService"
+        ]
+      }
+    },
+    "/api/v1/admin/freelancers/cities/search": {
+      "post": {
+        "summary": "Поиск города по названию",
+        "operationId": "FreelancerAdminCityService_SearchCities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.city.v1.SearchCitiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.freelancers.city.v1.SearchCitiesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FreelancerAdminCityService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.freelancers.city.v1.CreateCityRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.city.v1.CreateCityResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.freelancers.city.v1.GetCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.city.v1.GetCitiesResponse.CityItem"
+          }
+        }
+      }
+    },
+    "admin.freelancers.city.v1.GetCitiesResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.city.v1.SearchCitiesRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.freelancers.city.v1.SearchCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.freelancers.city.v1.SearchCitiesResponse.CityItem"
+          }
+        }
+      }
+    },
+    "admin.freelancers.city.v1.SearchCitiesResponse.CityItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}
