@@ -1,0 +1,364 @@
+syntax = "proto3";
+
+package admin.doctors.doctors.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/admin/doctors/doctors/v1";
+
+// -------------- Сервис по работе с докторов ---------------
+service DoctorAdminService {
+  // Доктора
+  rpc GetDoctors(GetDoctorsRequest) returns (GetDoctorsResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctors"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение врачей"};
+  }
+  rpc GetDoctorsByIDs(GetDoctorsByIDsRequest) returns (GetDoctorsByIDsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctors_by_ids"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение врачей по IDs"};
+  }
+  rpc SortDoctors(SortDoctorsRequest) returns (SortDoctorsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctors/sort"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сортировка врачей"};
+  }
+  rpc SearchDoctors(SearchDoctorsRequest) returns (SearchDoctorsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctors/search"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Поиск врача по параметрам"};
+  }
+  rpc GetDoctorByID(GetDoctorByIDRequest) returns (GetDoctorByIDResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/admin/doctor/{doctor_id}"
+      // /api/v1/admin/doctors -> /api/v1/admin/doctor (без s) чтобы работало норм
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение карточки врача"};
+  }
+  rpc UpdateDoctor(UpdateDoctorRequest) returns (UpdateDoctorResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/update"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление врача"};
+  }
+  rpc DeleteDoctor(DeleteDoctorRequest) returns (DeleteDoctorResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/delete"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление врача"};
+  }
+  rpc ActivateDoctor(ActivateDoctorRequest) returns (ActivateDoctorResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/activate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Активация врача"};
+  }
+  rpc DeactivateDoctor(DeactivateDoctorRequest) returns (DeactivateDoctorResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/deactivate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Деактивация врача"};
+  }
+  rpc SaveDoctorPhoto(SaveDoctorPhotoRequest) returns (SaveDoctorPhotoResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/save_photo"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сохранение фотографии врача"};
+  }
+  rpc AddAdditionalCity(AddDoctorAdditionalCityRequest) returns (AddDoctorAdditionalCityResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/add_additional_city"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Добавление дополнительного города"};
+  }
+  rpc AddAdditionalSpeciality(AddDoctorAdditionalSpecialityRequest) returns (AddDoctorAdditionalSpecialityResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/add_additional_speciality"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Добавление доп специальности"};
+  }
+  rpc DeleteAdditionalCity(DeleteDoctorAdditionalCityRequest) returns (DeleteDoctorAdditionalCityResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/delete_additional_city"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление доп города"};
+  }
+  rpc DeleteAdditionalSpeciality(DeleteDoctorAdditionalSpecialityRequest) returns (DeleteDoctorAdditionalSpecialityResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/delete_additional_speciality"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление доп специальности"};
+  }
+  rpc UpdateSubscribers(UpdateSubscribersRequest) returns (UpdateSubscribersResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/update_subscribers"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Ручное обновление подписчиков"};
+  }
+  rpc GetDoctorAdditionalSpecialities(GetDoctorAdditionalSpecialitiesRequest) returns (GetDoctorAdditionalSpecialitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/{doctor_id}/additional_specialities"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доп специальности конкретного врача"};
+  }
+  rpc GetDoctorAdditionalCities(GetDoctorAdditionalCitiesRequest) returns (GetDoctorAdditionalCitiesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/{doctor_id}/additional_cities"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доп города конкретного врача"};
+  }
+  rpc GetDoctorCooperationTypes(GetDoctorCooperationTypesRequest) returns (GetDoctorCooperationTypesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/cooperation_types"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Типы размещения доктора"};
+  }
+}
+
+message CityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SpecialityItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message CooperationType {
+  int64 id = 1;
+  string name = 2;
+}
+
+// -------------- Сервис по работе с докторов ---------------
+message GetDoctorsRequest {}
+
+message GetDoctorsResponse {
+  repeated Doctor doctors = 1;
+  message Doctor {
+    int64 id = 1;
+    string name = 2;
+    string image = 3;
+    bool is_active = 4;
+
+    CooperationType cooperation_type = 5;
+  }
+}
+
+message SortDoctorsRequest {}
+
+message SortDoctorsResponse {
+  repeated Doctor doctors = 1;
+  message Doctor {
+    int64 id = 1;
+    string name = 2;
+    string image = 3;
+    bool is_active = 4;
+
+    CooperationType cooperation_type = 5;
+  }
+}
+
+message SearchDoctorsRequest {
+  string query = 1;
+}
+
+message SearchDoctorsResponse {
+  repeated Doctor doctors = 1;
+  message Doctor {
+    int64 id = 1;
+    string name = 2;
+    string image = 3;
+    bool is_active = 4;
+
+    CooperationType cooperation_type = 5;
+  }
+}
+
+message GetDoctorByIDRequest {
+  int64 doctor_id = 1;
+}
+
+message GetDoctorByIDResponse {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+
+  // Соцсети
+  string inst_url = 4;
+  string vk_url = 5;
+  string dzen_url = 6;
+  string tg_url = 7;
+  string tg_channel_url = 8;
+  string youtube_url = 9;
+  string tiktok_url = 10;
+  string site_link = 11;
+
+  CityItem main_city = 14;
+  SpecialityItem main_speciality = 15;
+
+  repeated SubscribersItem subscribers_info = 16;
+  string main_blog_theme = 17;
+  string image = 18;
+
+  bool is_kf_doctor = 19;
+  bool is_active = 20;
+
+  string birth_date = 21;
+  string created_at = 22;
+  CooperationType cooperation_type = 23;
+  string medical_directions = 24;
+  string marketing_preferences = 25;
+  string email = 26;
+
+  message SubscribersItem {
+    string key = 1; // todo сделать текстовый енам
+    string subs_count = 2;
+    string subs_count_text = 3;
+    string last_updated_date = 4;
+  }
+}
+
+message UpdateDoctorRequest {
+  int64 doctor_id = 1;
+
+  string name = 2;
+  string slug = 3;
+
+  // Соцсети
+  string inst_url = 4;
+  string vk_url = 5;
+  string dzen_url = 6;
+  string tg_url = 7;
+  string tg_channel_url = 8;
+  string youtube_url = 9;
+  string tiktok_url = 10;
+  string site_link = 11;
+
+  int64 main_city_id = 12;
+  int64 main_speciality_id = 13;
+
+  string main_blog_theme = 14;
+
+  bool is_kf_doctor = 15;
+
+  string birth_date = 16;
+  int64 cooperation_type_id = 17;
+  string medical_directions = 18;
+  string marketing_preferences = 19;
+  string email = 20;
+}
+
+message UpdateDoctorResponse {}
+
+message DeleteDoctorRequest {
+  int64 doctor_id = 1;
+}
+
+message DeleteDoctorResponse {}
+
+message ActivateDoctorRequest {
+  int64 doctor_id = 1;
+}
+
+message ActivateDoctorResponse {}
+
+message DeactivateDoctorRequest {
+  int64 doctor_id = 1;
+}
+
+message DeactivateDoctorResponse {}
+
+message SaveDoctorPhotoRequest {
+  int64 doctor_id = 1;
+  string image_data = 2; // файл в строке base64
+}
+
+message SaveDoctorPhotoResponse {
+  string image = 1;
+}
+
+message AddDoctorAdditionalCityRequest {
+  int64 doctor_id = 1;
+  int64 city_id = 2;
+}
+
+message AddDoctorAdditionalCityResponse {}
+
+message AddDoctorAdditionalSpecialityRequest {
+  int64 doctor_id = 1;
+  int64 speciality_id = 2;
+}
+
+message AddDoctorAdditionalSpecialityResponse {}
+
+message DeleteDoctorAdditionalCityRequest {
+  int64 doctor_id = 1;
+  int64 city_id = 2;
+}
+
+message DeleteDoctorAdditionalCityResponse {}
+
+message DeleteDoctorAdditionalSpecialityRequest {
+  int64 doctor_id = 1;
+  int64 speciality_id = 2;
+}
+
+message DeleteDoctorAdditionalSpecialityResponse {}
+
+message UpdateSubscribersRequest {
+  int64 doctor_id = 1;
+  UpdateRequest update_subscribers = 2;
+
+  message UpdateRequest {
+    string key = 1;
+    int64 subs_count = 2;
+  }
+}
+
+message UpdateSubscribersResponse {}
+
+message GetDoctorsByIDsRequest {
+  repeated int64 ids = 1;
+}
+message GetDoctorsByIDsResponse {
+  repeated Doctor doctors = 1;
+  message Doctor {
+    int64 id = 1;
+    string name = 2;
+    string image = 3;
+    bool is_active = 4;
+
+    CooperationType cooperation_type = 5;
+  }
+}
+
+message GetDoctorAdditionalSpecialitiesRequest {
+  int64 doctor_id = 1;
+}
+message GetDoctorAdditionalSpecialitiesResponse {
+  repeated SpecialityItem additional_specialities = 1;
+}
+
+message GetDoctorAdditionalCitiesRequest {
+  int64 doctor_id = 1;
+}
+message GetDoctorAdditionalCitiesResponse {
+  repeated CityItem additional_cities = 1;
+}
+
+message GetDoctorCooperationTypesRequest {}
+message GetDoctorCooperationTypesResponse {
+  repeated CooperationType cooperation_types = 1;
+}

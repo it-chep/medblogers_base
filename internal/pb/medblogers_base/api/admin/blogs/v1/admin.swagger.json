@@ -24,7 +24,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/GetBlogsResponse"
+              "$ref": "#/definitions/admin.blogs.v1.GetBlogsResponse"
             }
           },
           "default": {
@@ -47,7 +47,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/GetBlogCategoriesResponse"
+              "$ref": "#/definitions/admin.blogs.v1.GetBlogCategoriesResponse"
             }
           },
           "default": {
@@ -70,7 +70,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/CreateDraftBlogResponse"
+              "$ref": "#/definitions/admin.blogs.v1.CreateDraftBlogResponse"
             }
           },
           "default": {
@@ -86,7 +86,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CreateDraftBlogRequest"
+              "$ref": "#/definitions/admin.blogs.v1.CreateDraftBlogRequest"
             }
           }
         ],
@@ -103,7 +103,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/GetBlogByIDResponse"
+              "$ref": "#/definitions/admin.blogs.v1.GetBlogByIDResponse"
             }
           },
           "default": {
@@ -134,7 +134,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/AddBlogCategoryResponse"
+              "$ref": "#/definitions/admin.blogs.v1.AddBlogCategoryResponse"
             }
           },
           "default": {
@@ -156,7 +156,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.AddBlogCategoryBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.AddBlogCategoryBody"
             }
           }
         ],
@@ -173,7 +173,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/DeleteBlogCategoryResponse"
+              "$ref": "#/definitions/admin.blogs.v1.DeleteBlogCategoryResponse"
             }
           },
           "default": {
@@ -195,7 +195,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.DeleteBlogCategoryBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.DeleteBlogCategoryBody"
             }
           }
         ],
@@ -212,7 +212,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/DeleteBlogImageResponse"
+              "$ref": "#/definitions/admin.blogs.v1.DeleteBlogImageResponse"
             }
           },
           "default": {
@@ -240,7 +240,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.DeleteBlogImageBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.DeleteBlogImageBody"
             }
           }
         ],
@@ -257,7 +257,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/PublishBlogResponse"
+              "$ref": "#/definitions/admin.blogs.v1.PublishBlogResponse"
             }
           },
           "default": {
@@ -279,7 +279,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.PublishBlogBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.PublishBlogBody"
             }
           }
         ],
@@ -296,7 +296,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/SaveBlogImageResponse"
+              "$ref": "#/definitions/admin.blogs.v1.SaveBlogImageResponse"
             }
           },
           "default": {
@@ -318,7 +318,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.SaveBlogImageBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.SaveBlogImageBody"
             }
           }
         ],
@@ -335,7 +335,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/UnPublishBlogResponse"
+              "$ref": "#/definitions/admin.blogs.v1.UnPublishBlogResponse"
             }
           },
           "default": {
@@ -357,7 +357,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.UnPublishBlogBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.UnPublishBlogBody"
             }
           }
         ],
@@ -374,7 +374,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/UpdateDraftBlogResponse"
+              "$ref": "#/definitions/admin.blogs.v1.UpdateDraftBlogResponse"
             }
           },
           "default": {
@@ -396,7 +396,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AdminService.UpdateDraftBlogBody"
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.UpdateDraftBlogBody"
             }
           }
         ],
@@ -407,10 +407,10 @@
     }
   },
   "definitions": {
-    "AddBlogCategoryResponse": {
+    "admin.blogs.v1.AddBlogCategoryResponse": {
       "type": "object"
     },
-    "AdminService.AddBlogCategoryBody": {
+    "admin.blogs.v1.AdminService.AddBlogCategoryBody": {
       "type": "object",
       "properties": {
         "categoryId": {
@@ -419,7 +419,7 @@
         }
       }
     },
-    "AdminService.DeleteBlogCategoryBody": {
+    "admin.blogs.v1.AdminService.DeleteBlogCategoryBody": {
       "type": "object",
       "properties": {
         "categoryId": {
@@ -428,10 +428,10 @@
         }
       }
     },
-    "AdminService.DeleteBlogImageBody": {
+    "admin.blogs.v1.AdminService.DeleteBlogImageBody": {
       "type": "object"
     },
-    "AdminService.PublishBlogBody": {
+    "admin.blogs.v1.AdminService.PublishBlogBody": {
       "type": "object",
       "properties": {
         "primaryImageId": {
@@ -439,7 +439,7 @@
         }
       }
     },
-    "AdminService.SaveBlogImageBody": {
+    "admin.blogs.v1.AdminService.SaveBlogImageBody": {
       "type": "object",
       "properties": {
         "imageData": {
@@ -448,10 +448,10 @@
         }
       }
     },
-    "AdminService.UnPublishBlogBody": {
+    "admin.blogs.v1.AdminService.UnPublishBlogBody": {
       "type": "object"
     },
-    "AdminService.UpdateDraftBlogBody": {
+    "admin.blogs.v1.AdminService.UpdateDraftBlogBody": {
       "type": "object",
       "properties": {
         "slug": {
@@ -485,7 +485,7 @@
         }
       }
     },
-    "CreateDraftBlogRequest": {
+    "admin.blogs.v1.CreateDraftBlogRequest": {
       "type": "object",
       "properties": {
         "title": {
@@ -496,7 +496,7 @@
         }
       }
     },
-    "CreateDraftBlogResponse": {
+    "admin.blogs.v1.CreateDraftBlogResponse": {
       "type": "object",
       "properties": {
         "blogId": {
@@ -504,13 +504,13 @@
         }
       }
     },
-    "DeleteBlogCategoryResponse": {
+    "admin.blogs.v1.DeleteBlogCategoryResponse": {
       "type": "object"
     },
-    "DeleteBlogImageResponse": {
+    "admin.blogs.v1.DeleteBlogImageResponse": {
       "type": "object"
     },
-    "GetBlogByIDResponse": {
+    "admin.blogs.v1.GetBlogByIDResponse": {
       "type": "object",
       "properties": {
         "blogId": {
@@ -542,18 +542,18 @@
           "format": "int64"
         },
         "doctor": {
-          "$ref": "#/definitions/GetBlogByIDResponse.Doctor"
+          "$ref": "#/definitions/admin.blogs.v1.GetBlogByIDResponse.Doctor"
         },
         "categories": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GetBlogByIDResponse.Category"
+            "$ref": "#/definitions/admin.blogs.v1.GetBlogByIDResponse.Category"
           }
         }
       }
     },
-    "GetBlogByIDResponse.Category": {
+    "admin.blogs.v1.GetBlogByIDResponse.Category": {
       "type": "object",
       "properties": {
         "id": {
@@ -565,7 +565,7 @@
         }
       }
     },
-    "GetBlogByIDResponse.Doctor": {
+    "admin.blogs.v1.GetBlogByIDResponse.Doctor": {
       "type": "object",
       "properties": {
         "doctorId": {
@@ -577,19 +577,19 @@
         }
       }
     },
-    "GetBlogCategoriesResponse": {
+    "admin.blogs.v1.GetBlogCategoriesResponse": {
       "type": "object",
       "properties": {
         "categories": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GetBlogCategoriesResponse.Category"
+            "$ref": "#/definitions/admin.blogs.v1.GetBlogCategoriesResponse.Category"
           }
         }
       }
     },
-    "GetBlogCategoriesResponse.Category": {
+    "admin.blogs.v1.GetBlogCategoriesResponse.Category": {
       "type": "object",
       "properties": {
         "id": {
@@ -601,19 +601,19 @@
         }
       }
     },
-    "GetBlogsResponse": {
+    "admin.blogs.v1.GetBlogsResponse": {
       "type": "object",
       "properties": {
         "blogs": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/GetBlogsResponse.Blog"
+            "$ref": "#/definitions/admin.blogs.v1.GetBlogsResponse.Blog"
           }
         }
       }
     },
-    "GetBlogsResponse.Blog": {
+    "admin.blogs.v1.GetBlogsResponse.Blog": {
       "type": "object",
       "properties": {
         "blogId": {
@@ -631,19 +631,19 @@
         }
       }
     },
-    "PublishBlogResponse": {
+    "admin.blogs.v1.PublishBlogResponse": {
       "type": "object",
       "properties": {
         "errors": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/PublishBlogResponse.ValidationError"
+            "$ref": "#/definitions/admin.blogs.v1.PublishBlogResponse.ValidationError"
           }
         }
       }
     },
-    "PublishBlogResponse.ValidationError": {
+    "admin.blogs.v1.PublishBlogResponse.ValidationError": {
       "type": "object",
       "properties": {
         "field": {
@@ -654,15 +654,15 @@
         }
       }
     },
-    "SaveBlogImageResponse": {
+    "admin.blogs.v1.SaveBlogImageResponse": {
       "type": "object",
       "properties": {
         "image": {
-          "$ref": "#/definitions/SaveBlogImageResponse.Image"
+          "$ref": "#/definitions/admin.blogs.v1.SaveBlogImageResponse.Image"
         }
       }
     },
-    "SaveBlogImageResponse.Image": {
+    "admin.blogs.v1.SaveBlogImageResponse.Image": {
       "type": "object",
       "properties": {
         "imageId": {
@@ -673,19 +673,19 @@
         }
       }
     },
-    "UnPublishBlogResponse": {
+    "admin.blogs.v1.UnPublishBlogResponse": {
       "type": "object",
       "properties": {
         "errors": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/UnPublishBlogResponse.ValidationError"
+            "$ref": "#/definitions/admin.blogs.v1.UnPublishBlogResponse.ValidationError"
           }
         }
       }
     },
-    "UnPublishBlogResponse.ValidationError": {
+    "admin.blogs.v1.UnPublishBlogResponse.ValidationError": {
       "type": "object",
       "properties": {
         "field": {
@@ -696,7 +696,7 @@
         }
       }
     },
-    "UpdateDraftBlogResponse": {
+    "admin.blogs.v1.UpdateDraftBlogResponse": {
       "type": "object"
     },
     "google.protobuf.Any": {

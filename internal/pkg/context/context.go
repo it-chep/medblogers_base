@@ -12,6 +12,7 @@ type Key string
 
 const (
 	userEmailKey Key = "email"
+	userIDKey    Key = "user_id"
 )
 
 // WithValues returns ctx with values
@@ -65,4 +66,13 @@ func WithEmailContext(ctx context.Context, email string) context.Context {
 func GetEmailFromContext(ctx context.Context) string {
 	email, _ := ctx.Value(userEmailKey).(string)
 	return email
+}
+
+func WithUserIDContext(ctx context.Context, userID int64) context.Context {
+	return context.WithValue(ctx, userIDKey, userID)
+}
+
+func GetUserIDFromContext(ctx context.Context) int64 {
+	userID, _ := ctx.Value(userIDKey).(int64)
+	return userID
 }

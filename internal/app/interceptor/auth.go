@@ -44,8 +44,9 @@ func ExecuteWithPermissions(checker CheckPermissions) func(
 		}
 
 		userCtx := context.WithValue(ctx, "user", usr)
+		userIDCtx := pkgctx.WithUserIDContext(userCtx, usr.GetID())
 
-		return fn(userCtx)
+		return fn(userIDCtx)
 	}
 }
 
