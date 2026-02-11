@@ -39,7 +39,7 @@ func (r *Repository) FilterBlogs(ctx context.Context, filter dto.FilterRequest) 
 // sqlStmt к-ор запроса
 func sqlStmt(filter dto.FilterRequest) (_ string, phValues []any) {
 	defaultSql := `
-		select b.id, b.name, b.slug, b.preview_text, b.created_at, b.ordering_number 
+		select distinct b.id, b.name, b.slug, b.preview_text, b.created_at, b.ordering_number 
 		from blog b 
 			join m2m_blog_category mbc on b.id = mbc.blog_id
 		where b.is_active is true 
