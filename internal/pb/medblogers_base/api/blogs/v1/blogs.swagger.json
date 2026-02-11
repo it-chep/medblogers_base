@@ -70,6 +70,29 @@
         ]
       }
     },
+    "/api/v1/blogs/categories": {
+      "get": {
+        "summary": "Получения категорий статей",
+        "operationId": "BlogService_GetBlogsCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.GetBlogsCategoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
     "/api/v1/blogs/doctor/{doctorSlug}": {
       "get": {
         "summary": "Статьи определенного доктора",
@@ -94,6 +117,39 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
+    "/api/v1/blogs/filter": {
+      "post": {
+        "summary": "Фильтрация категорий по каким-то критериям",
+        "operationId": "BlogService_FilterBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.FilterBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.FilterBlogsRequest"
+            }
           }
         ],
         "tags": [
@@ -126,6 +182,33 @@
     }
   },
   "definitions": {
+    "blogs.v1.BlogMiniatures": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.Category"
+          }
+        }
+      }
+    },
     "blogs.v1.Category": {
       "type": "object",
       "properties": {
@@ -141,6 +224,30 @@
         },
         "bgColor": {
           "type": "string"
+        }
+      }
+    },
+    "blogs.v1.FilterBlogsRequest": {
+      "type": "object",
+      "properties": {
+        "categoriesIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "blogs.v1.FilterBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.BlogMiniatures"
+          }
         }
       }
     },
@@ -200,6 +307,18 @@
         }
       }
     },
+    "blogs.v1.GetBlogsCategoriesResponse": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.Category"
+          }
+        }
+      }
+    },
     "blogs.v1.GetBlogsResponse": {
       "type": "object",
       "properties": {
@@ -207,34 +326,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/blogs.v1.GetBlogsResponse.BlogMiniatures"
-          }
-        }
-      }
-    },
-    "blogs.v1.GetBlogsResponse.BlogMiniatures": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "previewText": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "photoLink": {
-          "type": "string"
-        },
-        "categories": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/blogs.v1.Category"
+            "$ref": "#/definitions/blogs.v1.BlogMiniatures"
           }
         }
       }
@@ -246,34 +338,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/blogs.v1.GetDoctorBlogsResponse.BlogMiniatures"
-          }
-        }
-      }
-    },
-    "blogs.v1.GetDoctorBlogsResponse.BlogMiniatures": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "previewText": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "photoLink": {
-          "type": "string"
-        },
-        "categories": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/blogs.v1.Category"
+            "$ref": "#/definitions/blogs.v1.BlogMiniatures"
           }
         }
       }
@@ -285,34 +350,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/blogs.v1.GetTopBlogsResponse.BlogMiniatures"
-          }
-        }
-      }
-    },
-    "blogs.v1.GetTopBlogsResponse.BlogMiniatures": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "previewText": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string"
-        },
-        "photoLink": {
-          "type": "string"
-        },
-        "categories": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/blogs.v1.Category"
+            "$ref": "#/definitions/blogs.v1.BlogMiniatures"
           }
         }
       }

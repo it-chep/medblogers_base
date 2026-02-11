@@ -19,10 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BlogService_GetTopBlogs_FullMethodName    = "/blogs.v1.BlogService/GetTopBlogs"
-	BlogService_GetBlogs_FullMethodName       = "/blogs.v1.BlogService/GetBlogs"
-	BlogService_GetDoctorBlogs_FullMethodName = "/blogs.v1.BlogService/GetDoctorBlogs"
-	BlogService_GetBlogDetail_FullMethodName  = "/blogs.v1.BlogService/GetBlogDetail"
+	BlogService_GetTopBlogs_FullMethodName        = "/blogs.v1.BlogService/GetTopBlogs"
+	BlogService_GetBlogs_FullMethodName           = "/blogs.v1.BlogService/GetBlogs"
+	BlogService_GetDoctorBlogs_FullMethodName     = "/blogs.v1.BlogService/GetDoctorBlogs"
+	BlogService_GetBlogDetail_FullMethodName      = "/blogs.v1.BlogService/GetBlogDetail"
+	BlogService_GetBlogsCategories_FullMethodName = "/blogs.v1.BlogService/GetBlogsCategories"
+	BlogService_FilterBlogs_FullMethodName        = "/blogs.v1.BlogService/FilterBlogs"
 )
 
 // BlogServiceClient is the client API for BlogService service.
@@ -35,6 +37,8 @@ type BlogServiceClient interface {
 	GetBlogs(ctx context.Context, in *GetBlogsRequest, opts ...grpc.CallOption) (*GetBlogsResponse, error)
 	GetDoctorBlogs(ctx context.Context, in *GetDoctorBlogsRequest, opts ...grpc.CallOption) (*GetDoctorBlogsResponse, error)
 	GetBlogDetail(ctx context.Context, in *GetBlogDetailRequest, opts ...grpc.CallOption) (*GetBlogDetailResponse, error)
+	GetBlogsCategories(ctx context.Context, in *GetBlogsCategoriesRequest, opts ...grpc.CallOption) (*GetBlogsCategoriesResponse, error)
+	FilterBlogs(ctx context.Context, in *FilterBlogsRequest, opts ...grpc.CallOption) (*FilterBlogsResponse, error)
 }
 
 type blogServiceClient struct {
@@ -85,6 +89,26 @@ func (c *blogServiceClient) GetBlogDetail(ctx context.Context, in *GetBlogDetail
 	return out, nil
 }
 
+func (c *blogServiceClient) GetBlogsCategories(ctx context.Context, in *GetBlogsCategoriesRequest, opts ...grpc.CallOption) (*GetBlogsCategoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBlogsCategoriesResponse)
+	err := c.cc.Invoke(ctx, BlogService_GetBlogsCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) FilterBlogs(ctx context.Context, in *FilterBlogsRequest, opts ...grpc.CallOption) (*FilterBlogsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FilterBlogsResponse)
+	err := c.cc.Invoke(ctx, BlogService_FilterBlogs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BlogServiceServer is the server API for BlogService service.
 // All implementations should embed UnimplementedBlogServiceServer
 // for forward compatibility.
@@ -95,6 +119,8 @@ type BlogServiceServer interface {
 	GetBlogs(context.Context, *GetBlogsRequest) (*GetBlogsResponse, error)
 	GetDoctorBlogs(context.Context, *GetDoctorBlogsRequest) (*GetDoctorBlogsResponse, error)
 	GetBlogDetail(context.Context, *GetBlogDetailRequest) (*GetBlogDetailResponse, error)
+	GetBlogsCategories(context.Context, *GetBlogsCategoriesRequest) (*GetBlogsCategoriesResponse, error)
+	FilterBlogs(context.Context, *FilterBlogsRequest) (*FilterBlogsResponse, error)
 }
 
 // UnimplementedBlogServiceServer should be embedded to have
@@ -115,6 +141,12 @@ func (UnimplementedBlogServiceServer) GetDoctorBlogs(context.Context, *GetDoctor
 }
 func (UnimplementedBlogServiceServer) GetBlogDetail(context.Context, *GetBlogDetailRequest) (*GetBlogDetailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBlogDetail not implemented")
+}
+func (UnimplementedBlogServiceServer) GetBlogsCategories(context.Context, *GetBlogsCategoriesRequest) (*GetBlogsCategoriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBlogsCategories not implemented")
+}
+func (UnimplementedBlogServiceServer) FilterBlogs(context.Context, *FilterBlogsRequest) (*FilterBlogsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method FilterBlogs not implemented")
 }
 func (UnimplementedBlogServiceServer) testEmbeddedByValue() {}
 
@@ -208,6 +240,42 @@ func _BlogService_GetBlogDetail_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BlogService_GetBlogsCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBlogsCategoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).GetBlogsCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BlogService_GetBlogsCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).GetBlogsCategories(ctx, req.(*GetBlogsCategoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_FilterBlogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterBlogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).FilterBlogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BlogService_FilterBlogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).FilterBlogs(ctx, req.(*FilterBlogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BlogService_ServiceDesc is the grpc.ServiceDesc for BlogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -230,6 +298,14 @@ var BlogService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBlogDetail",
 			Handler:    _BlogService_GetBlogDetail_Handler,
+		},
+		{
+			MethodName: "GetBlogsCategories",
+			Handler:    _BlogService_GetBlogsCategories_Handler,
+		},
+		{
+			MethodName: "FilterBlogs",
+			Handler:    _BlogService_FilterBlogs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

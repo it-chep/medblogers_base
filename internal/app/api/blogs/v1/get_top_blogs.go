@@ -17,8 +17,8 @@ func (i *Implementation) GetTopBlogs(ctx context.Context, req *desc.GetTopBlogsR
 	}
 
 	return &desc.GetTopBlogsResponse{
-		Blogs: lo.Map(resp.Blogs, func(item dto.Blog, index int) *desc.GetTopBlogsResponse_BlogMiniatures {
-			return &desc.GetTopBlogsResponse_BlogMiniatures{
+		Blogs: lo.Map(resp.Blogs, func(item dto.Blog, index int) *desc.BlogMiniatures {
+			return &desc.BlogMiniatures{
 				Title:       item.GetTitle(),
 				Slug:        item.GetSlug(),
 				PreviewText: item.GetPreviewText(),

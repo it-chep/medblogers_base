@@ -2,21 +2,23 @@ package v1
 
 import (
 	"context"
-	"medblogers_base/internal/modules/blogs/action/get_doctor_blogs/dto"
+	"github.com/samber/lo"
+	"medblogers_base/internal/modules/blogs/action/filter_blogs/dto"
 	"medblogers_base/internal/modules/blogs/domain/category"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	"medblogers_base/internal/pkg/converter"
-
-	"github.com/samber/lo"
 )
 
-func (i *Implementation) GetDoctorBlogs(ctx context.Context, req *desc.GetDoctorBlogsRequest) (*desc.GetDoctorBlogsResponse, error) {
-	resp, err := i.blogs.Actions.GetDoctorBlogs.Do(ctx, req.GetDoctorSlug())
+// FilterBlogs фильтрация статей
+func (i *Implementation) FilterBlogs(ctx context.Context, req *desc.FilterBlogsRequest) (_ *desc.FilterBlogsResponse, _ error) {
+	resp, err := i.blogs.Actions.FilterBlogs.Do(ctx, dto.FilterRequest{
+		CategoriesIDs: req.GetCategoriesIds(),
+	})
 	if err != nil {
 		return nil, err
 	}
 
-	return &desc.GetDoctorBlogsResponse{
+	return &desc.FilterBlogsResponse{
 		Blogs: lo.Map(resp.Blogs, func(item dto.Blog, index int) *desc.BlogMiniatures {
 			return &desc.BlogMiniatures{
 				Title:       item.GetTitle(),
