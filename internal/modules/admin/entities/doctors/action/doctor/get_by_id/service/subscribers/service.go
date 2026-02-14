@@ -27,10 +27,41 @@ func (s *Service) Enrich(ctx context.Context, docDTO *dto.DoctorDTO) (*dto.Docto
 		return nil, err
 	}
 
-	docDTO.SubscribersInfo = []dto.Subscribers{
-		{Key: "tg", SubsCount: subscribers.TgSubsCount, SubsCountText: subscribers.TgSubsCountText, LastUpdatedDate: subscribers.TgLastUpdatedDate},
-		{Key: "youtube", SubsCount: subscribers.YouTubeSubsCount, SubsCountText: subscribers.YouTubeSubsCountText, LastUpdatedDate: subscribers.YouTubeLastUpdatedDate},
-		{Key: "inst", SubsCount: subscribers.InstSubsCount, SubsCountText: subscribers.InstSubsCountText, LastUpdatedDate: subscribers.InstLastUpdatedDate},
+	docDTO.SubscribersInfo = []dto.Subscribers{}
+	if len(docDTO.InstURL) != 0 {
+		docDTO.SubscribersInfo = append(docDTO.SubscribersInfo, dto.Subscribers{
+			Key:             "inst",
+			SubsCount:       subscribers.InstSubsCount,
+			SubsCountText:   subscribers.InstSubsCountText,
+			LastUpdatedDate: subscribers.InstLastUpdatedDate,
+		})
+	}
+
+	if len(docDTO.YoutubeURL) != 0 {
+		docDTO.SubscribersInfo = append(docDTO.SubscribersInfo, dto.Subscribers{
+			Key:             "youtube",
+			SubsCount:       subscribers.YouTubeSubsCount,
+			SubsCountText:   subscribers.YouTubeSubsCountText,
+			LastUpdatedDate: subscribers.YouTubeLastUpdatedDate,
+		})
+	}
+
+	if len(docDTO.VkURL) != 0 {
+		docDTO.SubscribersInfo = append(docDTO.SubscribersInfo, dto.Subscribers{
+			Key:             "vk",
+			SubsCount:       subscribers.VkSubsCount,
+			SubsCountText:   subscribers.VkSubsCountText,
+			LastUpdatedDate: subscribers.VkLastUpdatedDate,
+		})
+	}
+
+	if len(docDTO.TgChannelURL) != 0 {
+		docDTO.SubscribersInfo = append(docDTO.SubscribersInfo, dto.Subscribers{
+			Key:             "tg",
+			SubsCount:       subscribers.TgSubsCount,
+			SubsCountText:   subscribers.TgSubsCountText,
+			LastUpdatedDate: subscribers.TgLastUpdatedDate,
+		})
 	}
 
 	return docDTO, nil

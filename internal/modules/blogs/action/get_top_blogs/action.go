@@ -31,7 +31,7 @@ func (a *Action) Do(ctx context.Context) (dto.Response, error) {
 	}
 
 	// Получаем первые фотографии статей
-	blogPhotosMap, err := a.dal.GetPrimaryPhotos(ctx, blogs.GetIDs())
+	blogPhotosMap, err := a.commonDal.GetPrimaryPhotos(ctx, blogs.GetIDs())
 	if err != nil {
 		return dto.Response{}, err
 	}

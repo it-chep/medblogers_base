@@ -21,7 +21,7 @@ func New(dal Dal) *Service {
 }
 
 func (s *Service) Enrich(ctx context.Context, freelancerDTO *dto.FreelancerDTO) (*dto.FreelancerDTO, error) {
-	specialityDomain, err := s.dal.GetSpeciality(ctx, freelancerDTO.ID)
+	specialityDomain, err := s.dal.GetSpeciality(ctx, freelancerDTO.Speciality.ID)
 	if err != nil {
 		return nil, err
 	}

@@ -2640,7 +2640,7 @@ type GetFreelancerResponse_PriceListItem struct {
 	// Название услуги
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Стоимость услуги
-	Amount        int64 `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount        string `protobuf:"bytes,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2682,11 +2682,11 @@ func (x *GetFreelancerResponse_PriceListItem) GetName() string {
 	return ""
 }
 
-func (x *GetFreelancerResponse_PriceListItem) GetAmount() int64 {
+func (x *GetFreelancerResponse_PriceListItem) GetAmount() string {
 	if x != nil {
 		return x.Amount
 	}
-	return 0
+	return ""
 }
 
 type GetSocialNetworksResponse_SocialNetworkItem struct {
@@ -3001,7 +3001,7 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x1a;\n" +
 	"\rPriceListItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amountJ\x04\b\x0f\x10\x10\"\x1a\n" +
+	"\x06amount\x18\x02 \x01(\tR\x06amountJ\x04\b\x0f\x10\x10\"\x1a\n" +
 	"\x18GetSocialNetworksRequest\"\xce\x01\n" +
 	"\x19GetSocialNetworksResponse\x12d\n" +
 	"\x0fsocial_networks\x18\x01 \x03(\v2;.freelancers.v1.GetSocialNetworksResponse.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +

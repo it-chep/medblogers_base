@@ -22,7 +22,6 @@ func (sm SocialMedia) String() string {
 		return "youtube"
 	case Vk:
 		return "vk"
-
 	default:
 		return ""
 	}
@@ -63,6 +62,7 @@ type CreateDoctorRequest struct {
 	Telegram  string
 	Instagram string
 	YouTube   string
+	Vk        string
 }
 
 type UpdateDoctorRequest struct {

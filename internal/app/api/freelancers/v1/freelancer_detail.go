@@ -4,6 +4,7 @@ import (
 	"context"
 	indto "medblogers_base/internal/modules/freelancers/action/freelancer_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+	"medblogers_base/internal/pkg/formatters"
 
 	"github.com/samber/lo"
 )
@@ -51,7 +52,7 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 		PriceList: lo.Map(freelancer.PriceList, func(item indto.PriceListItem, index int) *desc.GetFreelancerResponse_PriceListItem {
 			return &desc.GetFreelancerResponse_PriceListItem{
 				Name:   item.Name,
-				Amount: item.Price,
+				Amount: formatters.HumanPrice(item.Price),
 			}
 		}),
 

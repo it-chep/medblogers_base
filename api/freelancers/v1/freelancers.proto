@@ -377,7 +377,7 @@ message GetFreelancerResponse {
     // Название услуги
     string name = 1;
     // Стоимость услуги
-    int64 amount = 2;
+    string amount = 2;
   }
 }
 

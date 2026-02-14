@@ -41,6 +41,23 @@ service BlogService {
             summary: "Конкретная статья по слагу"
         };
     }
+    rpc GetBlogsCategories(GetBlogsCategoriesRequest) returns(GetBlogsCategoriesResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/blogs/categories"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получения категорий статей"
+        };
+    }
+    rpc FilterBlogs(FilterBlogsRequest) returns(FilterBlogsResponse)  {
+        option (google.api.http) = {
+            post: "/api/v1/blogs/filter"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Фильтрация категорий по каким-то критериям"
+        };
+    }
 }
 
 message Category {
@@ -50,36 +67,26 @@ message Category {
   string bg_color = 4;
 }
 
+message BlogMiniatures {
+    string title = 1;
+    string slug = 2;
+    string preview_text = 3;
+    string created_at = 4;
+    string photo_link = 5;
+
+    repeated Category categories = 6;
+}
+
 message GetTopBlogsRequest{}
 
 message GetTopBlogsResponse{
     repeated BlogMiniatures blogs = 1;
-
-    message BlogMiniatures {
-        string title = 1;
-        string slug = 2;
-        string preview_text = 3;
-        string created_at = 4;
-        string photo_link = 5;
-
-        repeated Category categories = 6;
-    }
 }
 
 message GetBlogsRequest{}
 
 message GetBlogsResponse{
     repeated BlogMiniatures blogs = 1;
-
-    message BlogMiniatures {
-        string title = 1;
-        string slug = 2;
-        string preview_text = 3;
-        string created_at = 4;
-        string photo_link = 5;
-
-        repeated Category categories = 6;
-    }
 }
 
 message GetBlogDetailRequest{
@@ -112,14 +119,17 @@ message GetDoctorBlogsRequest {
 
 message GetDoctorBlogsResponse {
     repeated BlogMiniatures blogs = 1;
+}
 
-    message BlogMiniatures {
-        string title = 1;
-        string slug = 2;
-        string preview_text = 3;
-        string created_at = 4;
-        string photo_link = 5;
+message GetBlogsCategoriesRequest {}
+message GetBlogsCategoriesResponse {
+    repeated Category categories = 1;
+}
 
-        repeated Category categories = 6;
-    }
+message FilterBlogsRequest {
+  repeated int64 categories_ids = 1;
+}
+
+message FilterBlogsResponse {
+    repeated BlogMiniatures blogs = 1;
 }

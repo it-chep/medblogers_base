@@ -126,3 +126,39 @@ func (w *BlogServiceServiceDesc) GetBlogDetail(ctx context.Context, in *GetBlogD
 	}
 	return resp.(*GetBlogDetailResponse), err
 }
+
+func (w *BlogServiceServiceDesc) GetBlogsCategories(ctx context.Context, in *GetBlogsCategoriesRequest) (*GetBlogsCategoriesResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBlogsCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/blogs.v1.BlogService/GetBlogsCategories",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBlogsCategories(ctx, req.(*GetBlogsCategoriesRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBlogsCategoriesResponse), err
+}
+
+func (w *BlogServiceServiceDesc) FilterBlogs(ctx context.Context, in *FilterBlogsRequest) (*FilterBlogsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.FilterBlogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/blogs.v1.BlogService/FilterBlogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.FilterBlogs(ctx, req.(*FilterBlogsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*FilterBlogsResponse), err
+}
