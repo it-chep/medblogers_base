@@ -9,6 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.27.38
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.36
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.63.2
+	github.com/dustin/go-humanize v1.0.1
 	github.com/georgysavva/scany v1.2.2
 	github.com/go-chi/chi/v5 v5.2.3
 	github.com/go-playground/validator/v10 v10.22.1
@@ -18,7 +19,6 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.1.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.3
 	github.com/jackc/pgconn v1.14.3
-	github.com/jackc/pgtype v1.14.0
 	github.com/jackc/pgx/v4 v4.18.3
 	github.com/jackc/pgx/v5 v5.8.0
 	github.com/joho/godotenv v1.5.1
@@ -103,8 +103,8 @@ require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgproto3/v2 v2.3.3 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
+	github.com/jackc/pgtype v1.14.0 // indirect
 	github.com/jackc/puddle v1.3.0 // indirect
-	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect

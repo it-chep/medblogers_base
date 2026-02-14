@@ -852,7 +852,6 @@
         },
         "amount": {
           "type": "string",
-          "format": "int64",
           "title": "Стоимость услуги"
         }
       }
