@@ -30,6 +30,8 @@ type VipCardDao struct {
 	ShortMessage         sql.NullString `db:"short_message"`
 	BlogInfo             sql.NullString `db:"blog_info"`
 	AdvertisingPriceFrom sql.NullInt64  `db:"advertising_price_from"`
+
+	EndDate sql.NullTime `db:"end_date"`
 }
 
 func (v *VipCardDao) ToDomain() *vip_card.VipCard {
@@ -40,5 +42,6 @@ func (v *VipCardDao) ToDomain() *vip_card.VipCard {
 		vip_card.WithShortMessage(v.ShortMessage.String),
 		vip_card.WithBlogInfo(v.BlogInfo.String),
 		vip_card.WithAdvertisingPriceFrom(v.AdvertisingPriceFrom.Int64),
+		vip_card.WithEndDate(v.EndDate.Time),
 	)
 }

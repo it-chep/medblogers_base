@@ -1,5 +1,7 @@
 package vip_card
 
+import "time"
+
 // Option .
 type Option func(c *VipCard)
 
@@ -42,5 +44,11 @@ func WithBlogInfo(blogInfo string) Option {
 func WithAdvertisingPriceFrom(advertisingPriceFrom int64) Option {
 	return func(s *VipCard) {
 		s.advertisingPriceFrom = advertisingPriceFrom
+	}
+}
+
+func WithEndDate(endDate time.Time) Option {
+	return func(s *VipCard) {
+		s.endDate = endDate
 	}
 }

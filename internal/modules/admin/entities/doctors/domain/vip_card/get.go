@@ -38,4 +38,6 @@ func (v *VipCard) GetDoctorID() int64 {
 }
 
 // GetEndDate .
-func (v *VipCard) GetEndDate() time.Time {}
+func (v *VipCard) GetEndDate() time.Time {
+	return v.endDate
+}
