@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/dal"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/service/additional_items"
 	"medblogers_base/internal/modules/doctors/action/doctor_detail/service/doctor"
+	"medblogers_base/internal/modules/doctors/dal/doctor_dal"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
@@ -27,7 +28,7 @@ type Action struct {
 func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	repo := dal.NewRepository(pool)
 	return &Action{
-		doctorService:          doctor.New(repo),
+		doctorService:          doctor.New(doctor_dal.NewRepository(pool)),
 		additionalItemsService: additional_items.New(repo),
 		subscribersEnricher:    enricher.NewSubscribersEnricher(clients.Subscribers),
 		imagesEnricher:         enricher.NewImageEnricher(clients.S3),

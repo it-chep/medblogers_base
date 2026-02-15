@@ -2,7 +2,6 @@ package dal
 
 import (
 	"context"
-	"fmt"
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/city"
@@ -10,10 +9,6 @@ import (
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 
-	"github.com/jackc/pgx/v4"
-	"github.com/pkg/errors"
-
-	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 
 	"github.com/georgysavva/scany/pgxscan"
@@ -28,30 +23,6 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	return &Repository{
 		db: db,
 	}
-}
-
-// GetDoctorInfo получает информацию о докторе
-func (r Repository) GetDoctorInfo(ctx context.Context, slug string) (*doctor.Doctor, error) {
-	sql := `
-		select 
-			id, name, slug, 
-			inst_url, vk_url, dzen_url, tg_url, youtube_url, prodoctorov, tg_channel_url, tiktok_url, 
-			s3_image, is_active, medical_directions, main_blog_theme, 
-			city_id, speciallity_id, is_kf_doctor
-		from docstar_site_doctor
-		where slug = $1
-	`
-
-	var doctorDAO dao.DoctorDAO
-	err := pgxscan.Get(ctx, r.db, &doctorDAO, sql, slug)
-	switch {
-	case errors.Is(err, pgx.ErrNoRows):
-		return nil, fmt.Errorf("doctor with slug %s not found", slug)
-	case err != nil:
-		return nil, fmt.Errorf("failed to get doctor: %w", err)
-	}
-
-	return doctorDAO.ToDomain(), nil
 }
 
 // GetDoctorAdditionalCities получение информации о городах доктора
