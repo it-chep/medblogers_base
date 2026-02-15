@@ -2705,7 +2705,7 @@ type FilterResponse_VipInfo struct {
 	CanBarter            bool                   `protobuf:"varint,1,opt,name=can_barter,json=canBarter,proto3" json:"can_barter,omitempty"`
 	CanBuyAdvertising    bool                   `protobuf:"varint,2,opt,name=can_buy_advertising,json=canBuyAdvertising,proto3" json:"can_buy_advertising,omitempty"`
 	CanSellAdvertising   bool                   `protobuf:"varint,3,opt,name=can_sell_advertising,json=canSellAdvertising,proto3" json:"can_sell_advertising,omitempty"`
-	AdvertisingPriceFrom int64                  `protobuf:"varint,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
+	AdvertisingPriceFrom string                 `protobuf:"bytes,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2761,11 +2761,11 @@ func (x *FilterResponse_VipInfo) GetCanSellAdvertising() bool {
 	return false
 }
 
-func (x *FilterResponse_VipInfo) GetAdvertisingPriceFrom() int64 {
+func (x *FilterResponse_VipInfo) GetAdvertisingPriceFrom() string {
 	if x != nil {
 		return x.AdvertisingPriceFrom
 	}
-	return 0
+	return ""
 }
 
 type CreateDoctorResponse_ValidationError struct {
@@ -3047,7 +3047,7 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"can_barter\x18\x01 \x01(\bR\tcanBarter\x12.\n" +
 	"\x13can_buy_advertising\x18\x02 \x01(\bR\x11canBuyAdvertising\x120\n" +
 	"\x14can_sell_advertising\x18\x03 \x01(\bR\x12canSellAdvertising\x124\n" +
-	"\x16advertising_price_from\x18\x05 \x01(\x03R\x14advertisingPriceFrom\"\x98\a\n" +
+	"\x16advertising_price_from\x18\x05 \x01(\tR\x14advertisingPriceFrom\"\x98\a\n" +
 	"\x13CreateDoctorRequest\x12 \n" +
 	"\x05email\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x18\xff\x01`\x01R\x05email\x12&\n" +

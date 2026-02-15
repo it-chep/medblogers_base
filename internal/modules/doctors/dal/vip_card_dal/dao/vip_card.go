@@ -5,6 +5,23 @@ import (
 	"medblogers_base/internal/modules/doctors/domain/vip_card"
 )
 
+type VipMiniature struct {
+	DoctorID             int64         `db:"doctor_id"`
+	CanBarter            sql.NullBool  `db:"can_barter"`
+	CanBuyAdvertising    sql.NullBool  `db:"can_buy_advertising"`
+	CanSellAdvertising   sql.NullBool  `db:"can_sell_advertising"`
+	AdvertisingPriceFrom sql.NullInt64 `db:"advertising_price_from"`
+}
+
+func (v *VipMiniature) ToDomain() *vip_card.VipCard {
+	return vip_card.New(
+		vip_card.WithCanBarter(v.CanBarter.Bool),
+		vip_card.WithCanBuyAdvertising(v.CanBuyAdvertising.Bool),
+		vip_card.WithCanSellAdvertising(v.CanSellAdvertising.Bool),
+		vip_card.WithAdvertisingPriceFrom(v.AdvertisingPriceFrom.Int64),
+	)
+}
+
 type VipCardDao struct {
 	CanBarter          sql.NullBool `db:"can_barter"`
 	CanBuyAdvertising  sql.NullBool `db:"can_buy_advertising"`

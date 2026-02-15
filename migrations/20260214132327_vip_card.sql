@@ -15,13 +15,18 @@ create table if not exists vip_card
     blog_info              text,   -- Расширенное описание: сколько лет блогу, как часто ведёт тг-канал
 
     -- Настройка вип карточки
-    is_active              bool,
     end_date               timestamp
 );
+
+alter table docstar_site_doctor
+    add column is_vip bool default false;
 
 -- +goose StatementEnd
 
 -- +goose Down
 -- +goose StatementBegin
 drop table vip_card;
+
+alter table docstar_site_doctor
+    drop column is_vip;
 -- +goose StatementEnd

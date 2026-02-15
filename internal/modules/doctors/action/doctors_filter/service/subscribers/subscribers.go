@@ -69,7 +69,7 @@ func (s *Service) FilterDoctorsBySubscribersWithDoctorsIDs(ctx context.Context, 
 }
 
 // MapDoctorsWithSubscribers маппим параметры докторов с сортировкой и данными из подписчиков
-func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, subsMap map[int64]dto.DoctorSubscribersInfoDTO, orderedIDs []int64) []dto.Doctor {
+func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, subsMap map[int64]dto.DoctorSubscribersInfoDTO, orderedIDs []int64) dto.Doctors {
 	mappedDoctors := make([]dto.Doctor, 0, len(subsMap))
 
 	for _, doctorID := range orderedIDs {
@@ -110,6 +110,7 @@ func (s *Service) MapDoctorsWithSubscribers(doctorsMap map[int64]dto.Doctor, sub
 
 			S3Key:      doctorData.S3Key,
 			IsKFDoctor: doctorData.IsKFDoctor,
+			IsVip:      doctorData.IsVip,
 		})
 	}
 

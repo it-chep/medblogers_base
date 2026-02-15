@@ -144,3 +144,8 @@ func (d *Doctor) GetS3Key() S3Key {
 func (d *Doctor) GetIsKFDoctor() bool {
 	return d.isKFDoctor
 }
+
+// GetIsVip получение инфы об активности випки
+func (d *Doctor) GetIsVip() bool {
+	return d.isVip
+}

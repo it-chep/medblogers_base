@@ -124,6 +124,24 @@ service DoctorAdminService {
     option (google.api.http) = {get: "/api/v1/admin/doctor/cooperation_types"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Типы размещения доктора"};
   }
+  rpc ChangeDoctorVipActivity(ChangeDoctorVipActivityRequest) returns (ChangeDoctorVipActivityResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/change_vip_activity"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Ручное изменение активности ВИП статуса"};
+  }
+  rpc GetDoctorVipInfo(GetDoctorVipInfoRequest) returns (GetDoctorVipInfoResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/doctor/{doctor_id}/vip_info"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение информации о випке доктора"};
+  }
+  rpc ChangeDoctorVipInfo(ChangeDoctorVipInfoRequest) returns (ChangeDoctorVipInfoResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctor/{doctor_id}/change_vip_info"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение информации о випке доктора"};
+  }
 }
 
 message CityItem {
@@ -362,3 +380,20 @@ message GetDoctorCooperationTypesRequest {}
 message GetDoctorCooperationTypesResponse {
   repeated CooperationType cooperation_types = 1;
 }
+
+message ChangeDoctorVipActivityRequest {
+  int64 doctor_id = 1;
+  bool is_vip_active = 2;
+}
+
+message ChangeDoctorVipActivityResponse {}
+
+message GetDoctorVipInfoRequest {
+  int64 doctor_id = 1;
+}
+message GetDoctorVipInfoResponse {}
+
+message ChangeDoctorVipInfoRequest{
+  int64 doctor_id = 1;
+}
+message ChangeDoctorVipInfoResponse{}

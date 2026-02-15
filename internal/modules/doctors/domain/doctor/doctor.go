@@ -76,6 +76,7 @@ type Doctor struct {
 	cooperationType CooperationType // Тип размещения
 
 	isKFDoctor bool // доктор из клиники фомина
+	isVip      bool
 }
 
 func New(options ...Option) *Doctor {

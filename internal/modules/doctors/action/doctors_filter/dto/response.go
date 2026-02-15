@@ -1,5 +1,7 @@
 package dto
 
+import "github.com/samber/lo"
+
 type Doctor struct {
 	ID   int64
 	Name string
@@ -32,6 +34,16 @@ type Doctor struct {
 	S3Key string
 
 	IsKFDoctor bool
+	IsVip      bool
+}
+
+type Doctors []Doctor
+
+// GetVipIDs получение только ID випов
+func (d Doctors) GetVipIDs() []int64 {
+	return lo.FilterMap(d, func(item Doctor, index int) (int64, bool) {
+		return item.ID, !item.IsVip
+	})
 }
 
 type City struct {
@@ -44,8 +56,17 @@ type Speciality struct {
 	Name string
 }
 
+type VipInfo struct {
+	CanBarter            bool
+	CanBuyAdvertising    bool
+	CanSellAdvertising   bool
+	AdvertisingPriceFrom int64
+}
+
 type Response struct {
-	Doctors          []Doctor
+	Doctors []Doctor
+	Vip     map[int64]VipInfo
+
 	Pages            int64
 	SubscribersCount string
 }

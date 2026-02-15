@@ -255,6 +255,86 @@
         ]
       }
     },
+    "/api/v1/admin/doctor/{doctorId}/change_vip_activity": {
+      "post": {
+        "summary": "Ручное изменение активности ВИП статуса",
+        "operationId": "DoctorAdminService_ChangeDoctorVipActivity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.ChangeDoctorVipActivityResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipActivityBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/doctor/{doctorId}/change_vip_info": {
+      "post": {
+        "summary": "Получение информации о випке доктора",
+        "operationId": "DoctorAdminService_ChangeDoctorVipInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfoBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
     "/api/v1/admin/doctor/{doctorId}/deactivate": {
       "post": {
         "summary": "Деактивация врача",
@@ -535,6 +615,38 @@
         ]
       }
     },
+    "/api/v1/admin/doctor/{doctorId}/vip_info": {
+      "get": {
+        "summary": "Получение информации о випке доктора",
+        "operationId": "DoctorAdminService_GetDoctorVipInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.GetDoctorVipInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
     "/api/v1/admin/doctors": {
       "get": {
         "summary": "Получение врачей",
@@ -668,6 +780,12 @@
     "admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse": {
       "type": "object"
     },
+    "admin.doctors.doctors.v1.ChangeDoctorVipActivityResponse": {
+      "type": "object"
+    },
+    "admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse": {
+      "type": "object"
+    },
     "admin.doctors.doctors.v1.CityItem": {
       "type": "object",
       "properties": {
@@ -724,6 +842,17 @@
           "format": "int64"
         }
       }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipActivityBody": {
+      "type": "object",
+      "properties": {
+        "isVipActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfoBody": {
+      "type": "object"
     },
     "admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctorBody": {
       "type": "object"
@@ -968,6 +1097,9 @@
           }
         }
       }
+    },
+    "admin.doctors.doctors.v1.GetDoctorVipInfoResponse": {
+      "type": "object"
     },
     "admin.doctors.doctors.v1.GetDoctorsByIDsRequest": {
       "type": "object",

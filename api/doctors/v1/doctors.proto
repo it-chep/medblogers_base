@@ -255,7 +255,7 @@ message FilterResponse {
     bool can_barter = 1;
     bool can_buy_advertising = 2;
     bool can_sell_advertising = 3;
-    int64 advertising_price_from = 5;
+    string advertising_price_from = 5;
   }
 }
 
