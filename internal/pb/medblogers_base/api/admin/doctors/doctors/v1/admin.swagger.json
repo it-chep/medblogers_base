@@ -852,7 +852,31 @@
       }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfoBody": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "canBarter": {
+          "type": "boolean"
+        },
+        "canBuyAdvertising": {
+          "type": "boolean"
+        },
+        "canSellAdvertising": {
+          "type": "boolean"
+        },
+        "shortMessage": {
+          "type": "string"
+        },
+        "advertisingPriceFrom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blogInfo": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        }
+      }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctorBody": {
       "type": "object"
@@ -1099,7 +1123,31 @@
       }
     },
     "admin.doctors.doctors.v1.GetDoctorVipInfoResponse": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "canBarter": {
+          "type": "boolean"
+        },
+        "canBuyAdvertising": {
+          "type": "boolean"
+        },
+        "canSellAdvertising": {
+          "type": "boolean"
+        },
+        "shortMessage": {
+          "type": "string"
+        },
+        "advertisingPriceFrom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blogInfo": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        }
+      }
     },
     "admin.doctors.doctors.v1.GetDoctorsByIDsRequest": {
       "type": "object",

@@ -391,9 +391,24 @@ message ChangeDoctorVipActivityResponse {}
 message GetDoctorVipInfoRequest {
   int64 doctor_id = 1;
 }
-message GetDoctorVipInfoResponse {}
-
-message ChangeDoctorVipInfoRequest{
-  int64 doctor_id = 1;
+message GetDoctorVipInfoResponse {
+  bool can_barter = 1;
+  bool can_buy_advertising = 2;
+  bool can_sell_advertising = 3;
+  string short_message = 4;
+  int64 advertising_price_from = 5;
+  string blog_info = 6;
+  string end_date = 7;
 }
-message ChangeDoctorVipInfoResponse{}
+
+message ChangeDoctorVipInfoRequest {
+  int64 doctor_id = 1;
+  bool can_barter = 2;
+  bool can_buy_advertising = 3;
+  bool can_sell_advertising = 4;
+  string short_message = 5;
+  int64 advertising_price_from = 6;
+  string blog_info = 7;
+  string end_date = 8;
+}
+message ChangeDoctorVipInfoResponse {}

@@ -2187,9 +2187,16 @@ func (x *GetDoctorVipInfoRequest) GetDoctorId() int64 {
 }
 
 type GetDoctorVipInfoResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	CanBarter            bool                   `protobuf:"varint,1,opt,name=can_barter,json=canBarter,proto3" json:"can_barter,omitempty"`
+	CanBuyAdvertising    bool                   `protobuf:"varint,2,opt,name=can_buy_advertising,json=canBuyAdvertising,proto3" json:"can_buy_advertising,omitempty"`
+	CanSellAdvertising   bool                   `protobuf:"varint,3,opt,name=can_sell_advertising,json=canSellAdvertising,proto3" json:"can_sell_advertising,omitempty"`
+	ShortMessage         string                 `protobuf:"bytes,4,opt,name=short_message,json=shortMessage,proto3" json:"short_message,omitempty"`
+	AdvertisingPriceFrom int64                  `protobuf:"varint,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
+	BlogInfo             string                 `protobuf:"bytes,6,opt,name=blog_info,json=blogInfo,proto3" json:"blog_info,omitempty"`
+	EndDate              string                 `protobuf:"bytes,7,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *GetDoctorVipInfoResponse) Reset() {
@@ -2222,11 +2229,67 @@ func (*GetDoctorVipInfoResponse) Descriptor() ([]byte, []int) {
 	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{42}
 }
 
+func (x *GetDoctorVipInfoResponse) GetCanBarter() bool {
+	if x != nil {
+		return x.CanBarter
+	}
+	return false
+}
+
+func (x *GetDoctorVipInfoResponse) GetCanBuyAdvertising() bool {
+	if x != nil {
+		return x.CanBuyAdvertising
+	}
+	return false
+}
+
+func (x *GetDoctorVipInfoResponse) GetCanSellAdvertising() bool {
+	if x != nil {
+		return x.CanSellAdvertising
+	}
+	return false
+}
+
+func (x *GetDoctorVipInfoResponse) GetShortMessage() string {
+	if x != nil {
+		return x.ShortMessage
+	}
+	return ""
+}
+
+func (x *GetDoctorVipInfoResponse) GetAdvertisingPriceFrom() int64 {
+	if x != nil {
+		return x.AdvertisingPriceFrom
+	}
+	return 0
+}
+
+func (x *GetDoctorVipInfoResponse) GetBlogInfo() string {
+	if x != nil {
+		return x.BlogInfo
+	}
+	return ""
+}
+
+func (x *GetDoctorVipInfoResponse) GetEndDate() string {
+	if x != nil {
+		return x.EndDate
+	}
+	return ""
+}
+
 type ChangeDoctorVipInfoRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId             int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	CanBarter            bool                   `protobuf:"varint,2,opt,name=can_barter,json=canBarter,proto3" json:"can_barter,omitempty"`
+	CanBuyAdvertising    bool                   `protobuf:"varint,3,opt,name=can_buy_advertising,json=canBuyAdvertising,proto3" json:"can_buy_advertising,omitempty"`
+	CanSellAdvertising   bool                   `protobuf:"varint,4,opt,name=can_sell_advertising,json=canSellAdvertising,proto3" json:"can_sell_advertising,omitempty"`
+	ShortMessage         string                 `protobuf:"bytes,5,opt,name=short_message,json=shortMessage,proto3" json:"short_message,omitempty"`
+	AdvertisingPriceFrom int64                  `protobuf:"varint,6,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
+	BlogInfo             string                 `protobuf:"bytes,7,opt,name=blog_info,json=blogInfo,proto3" json:"blog_info,omitempty"`
+	EndDate              string                 `protobuf:"bytes,8,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *ChangeDoctorVipInfoRequest) Reset() {
@@ -2264,6 +2327,55 @@ func (x *ChangeDoctorVipInfoRequest) GetDoctorId() int64 {
 		return x.DoctorId
 	}
 	return 0
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetCanBarter() bool {
+	if x != nil {
+		return x.CanBarter
+	}
+	return false
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetCanBuyAdvertising() bool {
+	if x != nil {
+		return x.CanBuyAdvertising
+	}
+	return false
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetCanSellAdvertising() bool {
+	if x != nil {
+		return x.CanSellAdvertising
+	}
+	return false
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetShortMessage() string {
+	if x != nil {
+		return x.ShortMessage
+	}
+	return ""
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetAdvertisingPriceFrom() int64 {
+	if x != nil {
+		return x.AdvertisingPriceFrom
+	}
+	return 0
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetBlogInfo() string {
+	if x != nil {
+		return x.BlogInfo
+	}
+	return ""
+}
+
+func (x *ChangeDoctorVipInfoRequest) GetEndDate() string {
+	if x != nil {
+		return x.EndDate
+	}
+	return ""
 }
 
 type ChangeDoctorVipInfoResponse struct {
@@ -2900,10 +3012,26 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\ris_vip_active\x18\x02 \x01(\bR\visVipActive\"!\n" +
 	"\x1fChangeDoctorVipActivityResponse\"6\n" +
 	"\x17GetDoctorVipInfoRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x1a\n" +
-	"\x18GetDoctorVipInfoResponse\"9\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xae\x02\n" +
+	"\x18GetDoctorVipInfoResponse\x12\x1d\n" +
+	"\n" +
+	"can_barter\x18\x01 \x01(\bR\tcanBarter\x12.\n" +
+	"\x13can_buy_advertising\x18\x02 \x01(\bR\x11canBuyAdvertising\x120\n" +
+	"\x14can_sell_advertising\x18\x03 \x01(\bR\x12canSellAdvertising\x12#\n" +
+	"\rshort_message\x18\x04 \x01(\tR\fshortMessage\x124\n" +
+	"\x16advertising_price_from\x18\x05 \x01(\x03R\x14advertisingPriceFrom\x12\x1b\n" +
+	"\tblog_info\x18\x06 \x01(\tR\bblogInfo\x12\x19\n" +
+	"\bend_date\x18\a \x01(\tR\aendDate\"\xcd\x02\n" +
 	"\x1aChangeDoctorVipInfoRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x1d\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1d\n" +
+	"\n" +
+	"can_barter\x18\x02 \x01(\bR\tcanBarter\x12.\n" +
+	"\x13can_buy_advertising\x18\x03 \x01(\bR\x11canBuyAdvertising\x120\n" +
+	"\x14can_sell_advertising\x18\x04 \x01(\bR\x12canSellAdvertising\x12#\n" +
+	"\rshort_message\x18\x05 \x01(\tR\fshortMessage\x124\n" +
+	"\x16advertising_price_from\x18\x06 \x01(\x03R\x14advertisingPriceFrom\x12\x1b\n" +
+	"\tblog_info\x18\a \x01(\tR\bblogInfo\x12\x19\n" +
+	"\bend_date\x18\b \x01(\tR\aendDate\"\x1d\n" +
 	"\x1bChangeDoctorVipInfoResponse2\xbd'\n" +
 	"\x12DoctorAdminService\x12\xaa\x01\n" +
 	"\n" +

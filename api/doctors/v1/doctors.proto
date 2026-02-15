@@ -418,7 +418,7 @@ message GetDoctorVipResponse {
   bool can_sell_advertising = 3;
   string short_message = 4;
   int64 advertising_price_from = 5;
-  string blog_info = 7;
+  string blog_info = 6;
 }
 
 message CheatersCountRequest {}

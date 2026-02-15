@@ -614,3 +614,36 @@ func (g *Gateway) DeactivateDoctor(ctx context.Context, doctorID int64) error {
 
 	return nil
 }
+
+// ChangeVipActivity изменение активности вип карточки
+func (g *Gateway) ChangeVipActivity(ctx context.Context, doctorID int64, activity bool) error {
+	if doctorID == 0 {
+		return errors.New("medblogersID is required")
+	}
+
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   fmt.Sprintf("/doctors/%d/change_vip_activity", int(doctorID)),
+	}
+
+	body, err := json.Marshal(dto.ChangeVipActivityRequest{
+		Activity: activity,
+	})
+	if err != nil {
+		return err
+	}
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodPatch, endpointURL.String(), bytes.NewReader(body))
+	if err != nil {
+		return err
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	_, err = g.client.Do(req)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

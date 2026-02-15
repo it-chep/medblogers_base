@@ -1805,7 +1805,7 @@ type GetDoctorVipResponse struct {
 	CanSellAdvertising   bool                   `protobuf:"varint,3,opt,name=can_sell_advertising,json=canSellAdvertising,proto3" json:"can_sell_advertising,omitempty"`
 	ShortMessage         string                 `protobuf:"bytes,4,opt,name=short_message,json=shortMessage,proto3" json:"short_message,omitempty"`
 	AdvertisingPriceFrom int64                  `protobuf:"varint,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
-	BlogInfo             string                 `protobuf:"bytes,7,opt,name=blog_info,json=blogInfo,proto3" json:"blog_info,omitempty"`
+	BlogInfo             string                 `protobuf:"bytes,6,opt,name=blog_info,json=blogInfo,proto3" json:"blog_info,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -3155,7 +3155,7 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x14can_sell_advertising\x18\x03 \x01(\bR\x12canSellAdvertising\x12#\n" +
 	"\rshort_message\x18\x04 \x01(\tR\fshortMessage\x124\n" +
 	"\x16advertising_price_from\x18\x05 \x01(\x03R\x14advertisingPriceFrom\x12\x1b\n" +
-	"\tblog_info\x18\a \x01(\tR\bblogInfo\"\x16\n" +
+	"\tblog_info\x18\x06 \x01(\tR\bblogInfo\"\x16\n" +
 	"\x14CheatersCountRequest\">\n" +
 	"\x15CheatersCountResponse\x12%\n" +
 	"\x0echeaters_count\x18\x01 \x01(\x03R\rcheatersCount2\xbe\x16\n" +

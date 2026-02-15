@@ -1,12 +1,12 @@
-package dal
+package vip_card_dal
 
 import (
 	"context"
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/jackc/pgx/v4"
 	"github.com/pkg/errors"
-	"medblogers_base/internal/modules/doctors/dal/vip_card_dal/dao"
-	"medblogers_base/internal/modules/doctors/domain/vip_card"
+	"medblogers_base/internal/modules/admin/entities/doctors/dal/vip_card_dal/dao"
+	"medblogers_base/internal/modules/admin/entities/doctors/domain/vip_card"
 	"medblogers_base/internal/pkg/postgres"
 )
 
@@ -25,15 +25,15 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) GetVipCardInfo(ctx context.Context, doctorID int64) (*vip_card.VipCard, error) {
 	sql := `
 		select 
-		    vc.can_barter, 
-		    vc.can_buy_advertising, 
-		    vc.can_sell_advertising, 
-		    vc.short_message, 
-		    vc.advertising_price_from, 
-		    vc.blog_info
-		from vip_card vc 
-		join docstar_site_doctor d on vc.doctor_id = d.id
-		where vc.doctor_id = $1 and d.is_vip is true
+		    can_barter, 
+		    can_buy_advertising, 
+		    can_sell_advertising, 
+		    short_message, 
+		    advertising_price_from,
+		    blog_info,
+		    end_date
+		from vip_card
+		where doctor_id = $1
 	`
 
 	var cardDao dao.VipCardDao
