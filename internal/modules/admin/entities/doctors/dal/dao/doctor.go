@@ -67,6 +67,7 @@ type DoctorMiniatureDao struct {
 	CooperationType sql.NullInt64  `json:"cooperation_type" db:"cooperation_type"`
 	IsActive        bool           `json:"is_active" db:"is_active"`
 	S3Image         sql.NullString `json:"s3_image" db:"s3_image"`
+	DateCreated     time.Time      `json:"date_created" db:"date_created"`
 }
 
 type DoctorMiniatureList []DoctorMiniatureDao
@@ -79,6 +80,7 @@ func (d DoctorMiniatureDao) ToDomain() *doctor.Doctor {
 		doctor.WithIsActive(d.IsActive),
 		doctor.WithCooperationType(d.CooperationType.Int64),
 		doctor.WithS3Image(doctor.S3Key(d.S3Image.String)),
+		doctor.WithCreatedDate(d.DateCreated),
 	)
 }
 
