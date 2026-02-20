@@ -378,3 +378,57 @@ func (w *DoctorAdminServiceServiceDesc) GetDoctorCooperationTypes(ctx context.Co
 	}
 	return resp.(*GetDoctorCooperationTypesResponse), err
 }
+
+func (w *DoctorAdminServiceServiceDesc) ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.ChangeDoctorVipActivity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipActivity",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.ChangeDoctorVipActivity(ctx, req.(*ChangeDoctorVipActivityRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*ChangeDoctorVipActivityResponse), err
+}
+
+func (w *DoctorAdminServiceServiceDesc) GetDoctorVipInfo(ctx context.Context, in *GetDoctorVipInfoRequest) (*GetDoctorVipInfoResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetDoctorVipInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorVipInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetDoctorVipInfo(ctx, req.(*GetDoctorVipInfoRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetDoctorVipInfoResponse), err
+}
+
+func (w *DoctorAdminServiceServiceDesc) ChangeDoctorVipInfo(ctx context.Context, in *ChangeDoctorVipInfoRequest) (*ChangeDoctorVipInfoResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.ChangeDoctorVipInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.ChangeDoctorVipInfo(ctx, req.(*ChangeDoctorVipInfoRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*ChangeDoctorVipInfoResponse), err
+}

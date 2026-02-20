@@ -49,6 +49,39 @@
         ]
       }
     },
+    "/api/v1/blacklist_count": {
+      "post": {
+        "summary": "Получает количество пользователей в ЧС",
+        "operationId": "DoctorService_CheatersCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CheatersCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.CheatersCountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/cities_list": {
       "get": {
         "summary": "Получение городов для регистрации",
@@ -137,6 +170,37 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/doctor.v1.GetDoctorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
+    "/api/v1/doctors/{doctorSlug}/vip": {
+      "get": {
+        "summary": "Получение детальной информации про ВИП карточку доктора",
+        "operationId": "DoctorService_GetDoctorVip",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.GetDoctorVipResponse"
             }
           },
           "default": {
@@ -500,6 +564,18 @@
     }
   },
   "definitions": {
+    "doctor.v1.CheatersCountRequest": {
+      "type": "object"
+    },
+    "doctor.v1.CheatersCountResponse": {
+      "type": "object",
+      "properties": {
+        "cheatersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "doctor.v1.CheckCheatingRequest": {
       "type": "object",
       "properties": {
@@ -740,6 +816,26 @@
         },
         "vkSubsCountText": {
           "type": "string"
+        },
+        "vipInfo": {
+          "$ref": "#/definitions/doctor.v1.FilterResponse.VipInfo"
+        }
+      }
+    },
+    "doctor.v1.FilterResponse.VipInfo": {
+      "type": "object",
+      "properties": {
+        "canBarter": {
+          "type": "boolean"
+        },
+        "canBuyAdvertising": {
+          "type": "boolean"
+        },
+        "canSellAdvertising": {
+          "type": "boolean"
+        },
+        "advertisingPriceFrom": {
+          "type": "string"
         }
       }
     },
@@ -878,6 +974,30 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.GetDoctorVipResponse": {
+      "type": "object",
+      "properties": {
+        "canBarter": {
+          "type": "boolean"
+        },
+        "canBuyAdvertising": {
+          "type": "boolean"
+        },
+        "canSellAdvertising": {
+          "type": "boolean"
+        },
+        "shortMessage": {
+          "type": "string"
+        },
+        "advertisingPriceFrom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blogInfo": {
           "type": "string"
         }
       }

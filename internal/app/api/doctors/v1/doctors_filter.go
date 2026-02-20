@@ -2,10 +2,10 @@ package v1
 
 import (
 	"context"
+	"github.com/samber/lo"
 	"medblogers_base/internal/modules/doctors/action/doctors_filter/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
-
-	"github.com/samber/lo"
+	"medblogers_base/internal/pkg/formatters"
 )
 
 // Filter - /api/v1/doctors/filter [GET]
@@ -17,8 +17,7 @@ func (i *Implementation) Filter(ctx context.Context, req *desc.FilterRequest) (*
 		return nil, err
 	}
 
-	filterDTO := i.newFilterResponse(filterResultDomain)
-	return filterDTO, nil
+	return i.newFilterResponse(filterResultDomain), nil
 }
 
 func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) dto.Filter {
@@ -50,6 +49,7 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) dto.Filter 
 
 func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.FilterResponse {
 	doctorsResponse := make([]*desc.FilterResponse_DoctorItem, 0, len(filterDomain.Doctors))
+	vipMap := filterDomain.Vip
 	for _, item := range filterDomain.Doctors {
 		if item.InstSubsCount == "0" {
 			item.InstSubsCount = ""
@@ -65,6 +65,17 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 
 		if item.VkSubsCount == "0" {
 			item.VkSubsCount = ""
+		}
+
+		vipDesc := &desc.FilterResponse_VipInfo{}
+		vipInfo, ok := vipMap[item.ID]
+		if ok {
+			vipDesc = &desc.FilterResponse_VipInfo{
+				CanBarter:            vipInfo.CanBarter,
+				CanSellAdvertising:   vipInfo.CanSellAdvertising,
+				CanBuyAdvertising:    vipInfo.CanBuyAdvertising,
+				AdvertisingPriceFrom: formatters.HumanPrice(vipInfo.AdvertisingPriceFrom),
+			}
 		}
 
 		doctorsResponse = append(doctorsResponse, &desc.FilterResponse_DoctorItem{
@@ -102,6 +113,7 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			}),
 			Image:      item.Image,
 			IsKfDoctor: item.IsKFDoctor,
+			VipInfo:    vipDesc,
 		})
 	}
 

@@ -532,3 +532,37 @@ func (g *Gateway) CheckTelegramInBlackList(ctx context.Context, telegram string)
 
 	return response.IsInBlackList, nil
 }
+
+// GetBlackListCount получить количество записей из черного списка
+func (g *Gateway) GetBlackListCount(ctx context.Context) (int64, error) {
+	var response dto.BlackListCountResponse
+	endpointURL := &url.URL{
+		Scheme: defaultScheme,
+		Host:   g.host,
+		Path:   "/doctors/blacklist_count/",
+	}
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpointURL.String(), nil)
+	if err != nil {
+		return 0, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := g.client.Do(req)
+	if err != nil {
+		return 0, err
+	}
+
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 0, err
+	}
+
+	err = json.Unmarshal(body, &response)
+	if err != nil {
+		return 0, err
+	}
+
+	return response.BlackListCount, nil
+}

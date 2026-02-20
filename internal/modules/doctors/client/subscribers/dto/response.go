@@ -89,3 +89,7 @@ type GetDoctorsByFilterResponse struct {
 type CheckTelegramInBlackListResponse struct {
 	IsInBlackList bool `json:"is_in_blacklist"`
 }
+
+type BlackListCountResponse struct {
+	BlackListCount int64 `json:"count"`
+}

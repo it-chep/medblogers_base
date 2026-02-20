@@ -63,6 +63,7 @@ type DoctorMiniatureDAO struct {
 	IsKFDoctor   sql.NullBool   `db:"is_kf_doctor"`
 	YouTubeURL   sql.NullString `db:"youtube_url"`
 	VkLinkURL    sql.NullString `db:"vk_url"`
+	IsVip        sql.NullBool   `db:"is_vip"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -79,6 +80,7 @@ func (d DoctorMiniatureDAO) ToDomain() *doctor.Doctor {
 		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),
 		doctor.WithYoutubeURL(d.YouTubeURL.String),
 		doctor.WithVkURL(d.VkLinkURL.String),
+		doctor.WithIsVip(d.IsVip.Bool),
 	)
 }
 
