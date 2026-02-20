@@ -124,6 +124,15 @@ message GetDoctorBlogsResponse {
 message GetBlogsCategoriesRequest {}
 message GetBlogsCategoriesResponse {
     repeated Category categories = 1;
+    int64 all_blogs_count = 2;
+
+    message Category {
+        int64 id = 1;
+        string name = 2;
+        string font_color = 3;
+        string bg_color = 4;
+        int64 blogs_count = 5;
+    }
 }
 
 message FilterBlogsRequest {

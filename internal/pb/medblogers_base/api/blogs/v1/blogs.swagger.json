@@ -314,8 +314,34 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/blogs.v1.Category"
+            "$ref": "#/definitions/blogs.v1.GetBlogsCategoriesResponse.Category"
           }
+        },
+        "allBlogsCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "blogs.v1.GetBlogsCategoriesResponse.Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "fontColor": {
+          "type": "string"
+        },
+        "bgColor": {
+          "type": "string"
+        },
+        "blogsCount": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
