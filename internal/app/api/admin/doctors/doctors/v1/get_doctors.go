@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/app/interceptor"
 	"medblogers_base/internal/modules/admin/entities/doctors/domain/doctor"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/doctors/v1"
+	"medblogers_base/internal/pkg/formatters"
 )
 
 func (i *Implementation) GetDoctors(ctx context.Context, req *desc.GetDoctorsRequest) (resp *desc.GetDoctorsResponse, err error) {
@@ -31,6 +32,7 @@ func (i *Implementation) GetDoctors(ctx context.Context, req *desc.GetDoctorsReq
 						Id:   cooperationType.ID(),
 						Name: cooperationType.Name(),
 					},
+					CreatedAt: formatters.TimeRuFormat(item.GetCreatedAt()),
 				}
 			}),
 		}

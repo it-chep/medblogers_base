@@ -153,6 +153,8 @@ message GetDoctorsResponse {
     bool is_active = 4;
 
     CooperationType cooperation_type = 5;
+
+    string created_at = 6;
   }
 }
 
