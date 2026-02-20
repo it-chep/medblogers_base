@@ -8,19 +8,21 @@ import (
 )
 
 func (i *Implementation) GetBlogsCategories(ctx context.Context, req *desc.GetBlogsCategoriesRequest) (_ *desc.GetBlogsCategoriesResponse, _ error) {
-	categories, err := i.blogs.Actions.GetBlogsCategories.Do(ctx)
+	resp, err := i.blogs.Actions.GetBlogsCategories.Do(ctx)
 	if err != nil {
 		return nil, err
 	}
 
 	return &desc.GetBlogsCategoriesResponse{
-		Categories: lo.Map(categories, func(item *category.Category, _ int) *desc.Category {
-			return &desc.Category{
-				Id:        item.ID(),
-				Name:      item.Name(),
-				FontColor: item.FontColor(),
-				BgColor:   item.BgColor(),
+		Categories: lo.Map(resp.Categories, func(item *category.Category, _ int) *desc.GetBlogsCategoriesResponse_Category {
+			return &desc.GetBlogsCategoriesResponse_Category{
+				Id:         item.ID(),
+				Name:       item.Name(),
+				FontColor:  item.FontColor(),
+				BgColor:    item.BgColor(),
+				BlogsCount: resp.CategoryCountMap[item.ID()],
 			}
 		}),
+		AllBlogsCount: resp.AllBlogsCount,
 	}, nil
 }
