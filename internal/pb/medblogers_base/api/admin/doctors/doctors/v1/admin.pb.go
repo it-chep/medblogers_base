@@ -2421,6 +2421,7 @@ type GetDoctorsResponse_Doctor struct {
 	Image           string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
 	IsActive        bool                   `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	CooperationType *CooperationType       `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	CreatedAt       string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2488,6 +2489,13 @@ func (x *GetDoctorsResponse_Doctor) GetCooperationType() *CooperationType {
 		return x.CooperationType
 	}
 	return nil
+}
+
+func (x *GetDoctorsResponse_Doctor) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
 }
 
 type SortDoctorsResponse_Doctor struct {
@@ -2852,15 +2860,17 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x0fCooperationType\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"\x13\n" +
-	"\x11GetDoctorsRequest\"\x9b\x02\n" +
+	"\x11GetDoctorsRequest\"\xba\x02\n" +
 	"\x12GetDoctorsResponse\x12M\n" +
-	"\adoctors\x18\x01 \x03(\v23.admin.doctors.doctors.v1.GetDoctorsResponse.DoctorR\adoctors\x1a\xb5\x01\n" +
+	"\adoctors\x18\x01 \x03(\v23.admin.doctors.doctors.v1.GetDoctorsResponse.DoctorR\adoctors\x1a\xd4\x01\n" +
 	"\x06Doctor\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05image\x18\x03 \x01(\tR\x05image\x12\x1b\n" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
-	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"\x14\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\"\x14\n" +
 	"\x12SortDoctorsRequest\"\x9d\x02\n" +
 	"\x13SortDoctorsResponse\x12N\n" +
 	"\adoctors\x18\x01 \x03(\v24.admin.doctors.doctors.v1.SortDoctorsResponse.DoctorR\adoctors\x1a\xb5\x01\n" +

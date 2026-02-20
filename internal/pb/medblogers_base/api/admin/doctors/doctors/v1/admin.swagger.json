@@ -1224,6 +1224,9 @@
         },
         "cooperationType": {
           "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
+        },
+        "createdAt": {
+          "type": "string"
         }
       }
     },

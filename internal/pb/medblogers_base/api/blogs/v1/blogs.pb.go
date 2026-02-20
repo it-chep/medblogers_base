@@ -620,8 +620,9 @@ func (*GetBlogsCategoriesRequest) Descriptor() ([]byte, []int) {
 }
 
 type GetBlogsCategoriesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Categories    []*Category            `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+	state         protoimpl.MessageState                 `protogen:"open.v1"`
+	Categories    []*GetBlogsCategoriesResponse_Category `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+	AllBlogsCount int64                                  `protobuf:"varint,2,opt,name=all_blogs_count,json=allBlogsCount,proto3" json:"all_blogs_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -656,11 +657,18 @@ func (*GetBlogsCategoriesResponse) Descriptor() ([]byte, []int) {
 	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetBlogsCategoriesResponse) GetCategories() []*Category {
+func (x *GetBlogsCategoriesResponse) GetCategories() []*GetBlogsCategoriesResponse_Category {
 	if x != nil {
 		return x.Categories
 	}
 	return nil
+}
+
+func (x *GetBlogsCategoriesResponse) GetAllBlogsCount() int64 {
+	if x != nil {
+		return x.AllBlogsCount
+	}
+	return 0
 }
 
 type FilterBlogsRequest struct {
@@ -819,6 +827,82 @@ func (x *GetBlogDetailResponse_Doctor) GetSpecialityName() string {
 	return ""
 }
 
+type GetBlogsCategoriesResponse_Category struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	FontColor     string                 `protobuf:"bytes,3,opt,name=font_color,json=fontColor,proto3" json:"font_color,omitempty"`
+	BgColor       string                 `protobuf:"bytes,4,opt,name=bg_color,json=bgColor,proto3" json:"bg_color,omitempty"`
+	BlogsCount    int64                  `protobuf:"varint,5,opt,name=blogs_count,json=blogsCount,proto3" json:"blogs_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBlogsCategoriesResponse_Category) Reset() {
+	*x = GetBlogsCategoriesResponse_Category{}
+	mi := &file_blogs_v1_blogs_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBlogsCategoriesResponse_Category) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBlogsCategoriesResponse_Category) ProtoMessage() {}
+
+func (x *GetBlogsCategoriesResponse_Category) ProtoReflect() protoreflect.Message {
+	mi := &file_blogs_v1_blogs_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBlogsCategoriesResponse_Category.ProtoReflect.Descriptor instead.
+func (*GetBlogsCategoriesResponse_Category) Descriptor() ([]byte, []int) {
+	return file_blogs_v1_blogs_proto_rawDescGZIP(), []int{11, 0}
+}
+
+func (x *GetBlogsCategoriesResponse_Category) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *GetBlogsCategoriesResponse_Category) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetBlogsCategoriesResponse_Category) GetFontColor() string {
+	if x != nil {
+		return x.FontColor
+	}
+	return ""
+}
+
+func (x *GetBlogsCategoriesResponse_Category) GetBgColor() string {
+	if x != nil {
+		return x.BgColor
+	}
+	return ""
+}
+
+func (x *GetBlogsCategoriesResponse_Category) GetBlogsCount() int64 {
+	if x != nil {
+		return x.BlogsCount
+	}
+	return 0
+}
+
 var File_blogs_v1_blogs_proto protoreflect.FileDescriptor
 
 const file_blogs_v1_blogs_proto_rawDesc = "" +
@@ -875,11 +959,20 @@ const file_blogs_v1_blogs_proto_rawDesc = "" +
 	"doctorSlug\"H\n" +
 	"\x16GetDoctorBlogsResponse\x12.\n" +
 	"\x05blogs\x18\x01 \x03(\v2\x18.blogs.v1.BlogMiniaturesR\x05blogs\"\x1b\n" +
-	"\x19GetBlogsCategoriesRequest\"P\n" +
-	"\x1aGetBlogsCategoriesResponse\x122\n" +
+	"\x19GetBlogsCategoriesRequest\"\x9f\x02\n" +
+	"\x1aGetBlogsCategoriesResponse\x12M\n" +
 	"\n" +
-	"categories\x18\x01 \x03(\v2\x12.blogs.v1.CategoryR\n" +
-	"categories\";\n" +
+	"categories\x18\x01 \x03(\v2-.blogs.v1.GetBlogsCategoriesResponse.CategoryR\n" +
+	"categories\x12&\n" +
+	"\x0fall_blogs_count\x18\x02 \x01(\x03R\rallBlogsCount\x1a\x89\x01\n" +
+	"\bCategory\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
+	"\n" +
+	"font_color\x18\x03 \x01(\tR\tfontColor\x12\x19\n" +
+	"\bbg_color\x18\x04 \x01(\tR\abgColor\x12\x1f\n" +
+	"\vblogs_count\x18\x05 \x01(\x03R\n" +
+	"blogsCount\";\n" +
 	"\x12FilterBlogsRequest\x12%\n" +
 	"\x0ecategories_ids\x18\x01 \x03(\x03R\rcategoriesIds\"E\n" +
 	"\x13FilterBlogsResponse\x12.\n" +
@@ -904,23 +997,24 @@ func file_blogs_v1_blogs_proto_rawDescGZIP() []byte {
 	return file_blogs_v1_blogs_proto_rawDescData
 }
 
-var file_blogs_v1_blogs_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_blogs_v1_blogs_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_blogs_v1_blogs_proto_goTypes = []any{
-	(*Category)(nil),                     // 0: blogs.v1.Category
-	(*BlogMiniatures)(nil),               // 1: blogs.v1.BlogMiniatures
-	(*GetTopBlogsRequest)(nil),           // 2: blogs.v1.GetTopBlogsRequest
-	(*GetTopBlogsResponse)(nil),          // 3: blogs.v1.GetTopBlogsResponse
-	(*GetBlogsRequest)(nil),              // 4: blogs.v1.GetBlogsRequest
-	(*GetBlogsResponse)(nil),             // 5: blogs.v1.GetBlogsResponse
-	(*GetBlogDetailRequest)(nil),         // 6: blogs.v1.GetBlogDetailRequest
-	(*GetBlogDetailResponse)(nil),        // 7: blogs.v1.GetBlogDetailResponse
-	(*GetDoctorBlogsRequest)(nil),        // 8: blogs.v1.GetDoctorBlogsRequest
-	(*GetDoctorBlogsResponse)(nil),       // 9: blogs.v1.GetDoctorBlogsResponse
-	(*GetBlogsCategoriesRequest)(nil),    // 10: blogs.v1.GetBlogsCategoriesRequest
-	(*GetBlogsCategoriesResponse)(nil),   // 11: blogs.v1.GetBlogsCategoriesResponse
-	(*FilterBlogsRequest)(nil),           // 12: blogs.v1.FilterBlogsRequest
-	(*FilterBlogsResponse)(nil),          // 13: blogs.v1.FilterBlogsResponse
-	(*GetBlogDetailResponse_Doctor)(nil), // 14: blogs.v1.GetBlogDetailResponse.Doctor
+	(*Category)(nil),                            // 0: blogs.v1.Category
+	(*BlogMiniatures)(nil),                      // 1: blogs.v1.BlogMiniatures
+	(*GetTopBlogsRequest)(nil),                  // 2: blogs.v1.GetTopBlogsRequest
+	(*GetTopBlogsResponse)(nil),                 // 3: blogs.v1.GetTopBlogsResponse
+	(*GetBlogsRequest)(nil),                     // 4: blogs.v1.GetBlogsRequest
+	(*GetBlogsResponse)(nil),                    // 5: blogs.v1.GetBlogsResponse
+	(*GetBlogDetailRequest)(nil),                // 6: blogs.v1.GetBlogDetailRequest
+	(*GetBlogDetailResponse)(nil),               // 7: blogs.v1.GetBlogDetailResponse
+	(*GetDoctorBlogsRequest)(nil),               // 8: blogs.v1.GetDoctorBlogsRequest
+	(*GetDoctorBlogsResponse)(nil),              // 9: blogs.v1.GetDoctorBlogsResponse
+	(*GetBlogsCategoriesRequest)(nil),           // 10: blogs.v1.GetBlogsCategoriesRequest
+	(*GetBlogsCategoriesResponse)(nil),          // 11: blogs.v1.GetBlogsCategoriesResponse
+	(*FilterBlogsRequest)(nil),                  // 12: blogs.v1.FilterBlogsRequest
+	(*FilterBlogsResponse)(nil),                 // 13: blogs.v1.FilterBlogsResponse
+	(*GetBlogDetailResponse_Doctor)(nil),        // 14: blogs.v1.GetBlogDetailResponse.Doctor
+	(*GetBlogsCategoriesResponse_Category)(nil), // 15: blogs.v1.GetBlogsCategoriesResponse.Category
 }
 var file_blogs_v1_blogs_proto_depIdxs = []int32{
 	0,  // 0: blogs.v1.BlogMiniatures.categories:type_name -> blogs.v1.Category
@@ -929,7 +1023,7 @@ var file_blogs_v1_blogs_proto_depIdxs = []int32{
 	14, // 3: blogs.v1.GetBlogDetailResponse.doctor:type_name -> blogs.v1.GetBlogDetailResponse.Doctor
 	0,  // 4: blogs.v1.GetBlogDetailResponse.categories:type_name -> blogs.v1.Category
 	1,  // 5: blogs.v1.GetDoctorBlogsResponse.blogs:type_name -> blogs.v1.BlogMiniatures
-	0,  // 6: blogs.v1.GetBlogsCategoriesResponse.categories:type_name -> blogs.v1.Category
+	15, // 6: blogs.v1.GetBlogsCategoriesResponse.categories:type_name -> blogs.v1.GetBlogsCategoriesResponse.Category
 	1,  // 7: blogs.v1.FilterBlogsResponse.blogs:type_name -> blogs.v1.BlogMiniatures
 	2,  // 8: blogs.v1.BlogService.GetTopBlogs:input_type -> blogs.v1.GetTopBlogsRequest
 	4,  // 9: blogs.v1.BlogService.GetBlogs:input_type -> blogs.v1.GetBlogsRequest
@@ -961,7 +1055,7 @@ func file_blogs_v1_blogs_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blogs_v1_blogs_proto_rawDesc), len(file_blogs_v1_blogs_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

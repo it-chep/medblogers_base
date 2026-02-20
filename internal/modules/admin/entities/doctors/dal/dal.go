@@ -64,7 +64,8 @@ func (r *Repository) GetDoctors(ctx context.Context) ([]*doctor.Doctor, error) {
 			name,
 			s3_image,
 			cooperation_type,
-			is_active
+			is_active,
+			date_created
 		from docstar_site_doctor
 		order by id desc 
 	`
