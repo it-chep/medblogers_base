@@ -22,7 +22,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // FilterDoctors фильтрация докторов
 func (r *Repository) FilterDoctors(ctx context.Context, specialitiesIDs []int64) ([]*doctor.Doctor, error) {
 	sql := `
-		select d.id,
+		select distinct d.id,
 			d.name,
 			d.s3_image,
 			d.cooperation_type,
