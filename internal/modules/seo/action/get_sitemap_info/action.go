@@ -30,7 +30,8 @@ func (a *Action) Do(ctx context.Context) ([]string, error) {
 	sitemap = append(
 		sitemap, []string{
 			"/welcome", "/blogs", "/helpers", "/welcome_freelancer",
-			"/new_club_participant", "/new_freelancer",
+			"/new_club_participant", "/new_freelancer", "/editorial_policy",
+			"/methodology", "/authors",
 		}...,
 	)
 
