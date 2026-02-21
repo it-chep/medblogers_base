@@ -124,6 +124,13 @@ service DoctorAdminService {
     option (google.api.http) = {get: "/api/v1/admin/doctor/cooperation_types"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Типы размещения доктора"};
   }
+  rpc FilterDoctors(FilterDoctorsRequest) returns (FilterDoctorsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/doctors/filter"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация врачей по параметрам"};
+  }
 }
 
 message CityItem {
@@ -363,4 +370,23 @@ message GetDoctorAdditionalCitiesResponse {
 message GetDoctorCooperationTypesRequest {}
 message GetDoctorCooperationTypesResponse {
   repeated CooperationType cooperation_types = 1;
+}
+
+
+message FilterDoctorsRequest {
+  repeated int64 specialities = 1;
+}
+
+message FilterDoctorsResponse {
+  repeated Doctor doctors = 1;
+  message Doctor {
+    int64 id = 1;
+    string name = 2;
+    string image = 3;
+    bool is_active = 4;
+
+    CooperationType cooperation_type = 5;
+
+    string created_at = 6;
+  }
 }

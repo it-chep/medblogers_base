@@ -558,6 +558,39 @@
         ]
       }
     },
+    "/api/v1/admin/doctors/filter": {
+      "post": {
+        "summary": "Фильтрация врачей по параметрам",
+        "operationId": "DoctorAdminService_FilterDoctors",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.FilterDoctorsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.FilterDoctorsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
     "/api/v1/admin/doctors/search": {
       "post": {
         "summary": "Поиск врача по параметрам",
@@ -829,6 +862,54 @@
       "properties": {
         "updateSubscribers": {
           "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.FilterDoctorsRequest": {
+      "type": "object",
+      "properties": {
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.FilterDoctorsResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/admin.doctors.doctors.v1.CooperationType"
+        },
+        "createdAt": {
+          "type": "string"
         }
       }
     },

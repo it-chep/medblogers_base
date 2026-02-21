@@ -37,6 +37,7 @@ const (
 	DoctorAdminService_GetDoctorAdditionalSpecialities_FullMethodName = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalSpecialities"
 	DoctorAdminService_GetDoctorAdditionalCities_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalCities"
 	DoctorAdminService_GetDoctorCooperationTypes_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorCooperationTypes"
+	DoctorAdminService_FilterDoctors_FullMethodName                   = "/admin.doctors.doctors.v1.DoctorAdminService/FilterDoctors"
 )
 
 // DoctorAdminServiceClient is the client API for DoctorAdminService service.
@@ -64,6 +65,7 @@ type DoctorAdminServiceClient interface {
 	GetDoctorAdditionalSpecialities(ctx context.Context, in *GetDoctorAdditionalSpecialitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalSpecialitiesResponse, error)
 	GetDoctorAdditionalCities(ctx context.Context, in *GetDoctorAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalCitiesResponse, error)
 	GetDoctorCooperationTypes(ctx context.Context, in *GetDoctorCooperationTypesRequest, opts ...grpc.CallOption) (*GetDoctorCooperationTypesResponse, error)
+	FilterDoctors(ctx context.Context, in *FilterDoctorsRequest, opts ...grpc.CallOption) (*FilterDoctorsResponse, error)
 }
 
 type doctorAdminServiceClient struct {
@@ -254,6 +256,16 @@ func (c *doctorAdminServiceClient) GetDoctorCooperationTypes(ctx context.Context
 	return out, nil
 }
 
+func (c *doctorAdminServiceClient) FilterDoctors(ctx context.Context, in *FilterDoctorsRequest, opts ...grpc.CallOption) (*FilterDoctorsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FilterDoctorsResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_FilterDoctors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorAdminServiceServer is the server API for DoctorAdminService service.
 // All implementations should embed UnimplementedDoctorAdminServiceServer
 // for forward compatibility.
@@ -279,6 +291,7 @@ type DoctorAdminServiceServer interface {
 	GetDoctorAdditionalSpecialities(context.Context, *GetDoctorAdditionalSpecialitiesRequest) (*GetDoctorAdditionalSpecialitiesResponse, error)
 	GetDoctorAdditionalCities(context.Context, *GetDoctorAdditionalCitiesRequest) (*GetDoctorAdditionalCitiesResponse, error)
 	GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error)
+	FilterDoctors(context.Context, *FilterDoctorsRequest) (*FilterDoctorsResponse, error)
 }
 
 // UnimplementedDoctorAdminServiceServer should be embedded to have
@@ -341,6 +354,9 @@ func (UnimplementedDoctorAdminServiceServer) GetDoctorAdditionalCities(context.C
 }
 func (UnimplementedDoctorAdminServiceServer) GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDoctorCooperationTypes not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) FilterDoctors(context.Context, *FilterDoctorsRequest) (*FilterDoctorsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method FilterDoctors not implemented")
 }
 func (UnimplementedDoctorAdminServiceServer) testEmbeddedByValue() {}
 
@@ -686,6 +702,24 @@ func _DoctorAdminService_GetDoctorCooperationTypes_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorAdminService_FilterDoctors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterDoctorsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).FilterDoctors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_FilterDoctors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).FilterDoctors(ctx, req.(*FilterDoctorsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorAdminService_ServiceDesc is the grpc.ServiceDesc for DoctorAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -764,6 +798,10 @@ var DoctorAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDoctorCooperationTypes",
 			Handler:    _DoctorAdminService_GetDoctorCooperationTypes_Handler,
+		},
+		{
+			MethodName: "FilterDoctors",
+			Handler:    _DoctorAdminService_FilterDoctors_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
