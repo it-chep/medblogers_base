@@ -8,6 +8,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/deactivate"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_city"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_speciality"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/filter_doctors"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_by_id"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_cooperation_types"
@@ -40,6 +41,8 @@ type DoctorModuleAggregator struct {
 	GetCooperationTypes             *get_cooperation_types.Action
 	GetDoctorAdditionalCities       *get_doctor_additional_cities.Action
 	GetDoctorAdditionalSpecialities *get_doctor_additional_specialities.Action
+
+	FilterDoctors *filter_doctors.Action
 }
 
 func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *DoctorModuleAggregator {
@@ -64,5 +67,7 @@ func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWra
 		GetCooperationTypes:             get_cooperation_types.New(pool),
 		GetDoctorAdditionalCities:       get_doctor_additional_cities.New(pool),
 		GetDoctorAdditionalSpecialities: get_doctor_additional_specialities.New(pool),
+
+		FilterDoctors: filter_doctors.New(pool),
 	}
 }
