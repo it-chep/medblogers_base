@@ -379,6 +379,24 @@ func (w *DoctorAdminServiceServiceDesc) GetDoctorCooperationTypes(ctx context.Co
 	return resp.(*GetDoctorCooperationTypesResponse), err
 }
 
+func (w *DoctorAdminServiceServiceDesc) FilterDoctors(ctx context.Context, in *FilterDoctorsRequest) (*FilterDoctorsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.FilterDoctors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/FilterDoctors",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.FilterDoctors(ctx, req.(*FilterDoctorsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*FilterDoctorsResponse), err
+}
+
 func (w *DoctorAdminServiceServiceDesc) ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.ChangeDoctorVipActivity(ctx, in)

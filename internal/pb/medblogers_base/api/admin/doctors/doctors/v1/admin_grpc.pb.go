@@ -37,6 +37,7 @@ const (
 	DoctorAdminService_GetDoctorAdditionalSpecialities_FullMethodName = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalSpecialities"
 	DoctorAdminService_GetDoctorAdditionalCities_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalCities"
 	DoctorAdminService_GetDoctorCooperationTypes_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorCooperationTypes"
+	DoctorAdminService_FilterDoctors_FullMethodName                   = "/admin.doctors.doctors.v1.DoctorAdminService/FilterDoctors"
 	DoctorAdminService_ChangeDoctorVipActivity_FullMethodName         = "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipActivity"
 	DoctorAdminService_GetDoctorVipInfo_FullMethodName                = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorVipInfo"
 	DoctorAdminService_ChangeDoctorVipInfo_FullMethodName             = "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipInfo"
@@ -67,6 +68,7 @@ type DoctorAdminServiceClient interface {
 	GetDoctorAdditionalSpecialities(ctx context.Context, in *GetDoctorAdditionalSpecialitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalSpecialitiesResponse, error)
 	GetDoctorAdditionalCities(ctx context.Context, in *GetDoctorAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalCitiesResponse, error)
 	GetDoctorCooperationTypes(ctx context.Context, in *GetDoctorCooperationTypesRequest, opts ...grpc.CallOption) (*GetDoctorCooperationTypesResponse, error)
+	FilterDoctors(ctx context.Context, in *FilterDoctorsRequest, opts ...grpc.CallOption) (*FilterDoctorsResponse, error)
 	ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest, opts ...grpc.CallOption) (*ChangeDoctorVipActivityResponse, error)
 	GetDoctorVipInfo(ctx context.Context, in *GetDoctorVipInfoRequest, opts ...grpc.CallOption) (*GetDoctorVipInfoResponse, error)
 	ChangeDoctorVipInfo(ctx context.Context, in *ChangeDoctorVipInfoRequest, opts ...grpc.CallOption) (*ChangeDoctorVipInfoResponse, error)
@@ -260,6 +262,16 @@ func (c *doctorAdminServiceClient) GetDoctorCooperationTypes(ctx context.Context
 	return out, nil
 }
 
+func (c *doctorAdminServiceClient) FilterDoctors(ctx context.Context, in *FilterDoctorsRequest, opts ...grpc.CallOption) (*FilterDoctorsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FilterDoctorsResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_FilterDoctors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *doctorAdminServiceClient) ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest, opts ...grpc.CallOption) (*ChangeDoctorVipActivityResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangeDoctorVipActivityResponse)
@@ -315,6 +327,7 @@ type DoctorAdminServiceServer interface {
 	GetDoctorAdditionalSpecialities(context.Context, *GetDoctorAdditionalSpecialitiesRequest) (*GetDoctorAdditionalSpecialitiesResponse, error)
 	GetDoctorAdditionalCities(context.Context, *GetDoctorAdditionalCitiesRequest) (*GetDoctorAdditionalCitiesResponse, error)
 	GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error)
+	FilterDoctors(context.Context, *FilterDoctorsRequest) (*FilterDoctorsResponse, error)
 	ChangeDoctorVipActivity(context.Context, *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error)
 	GetDoctorVipInfo(context.Context, *GetDoctorVipInfoRequest) (*GetDoctorVipInfoResponse, error)
 	ChangeDoctorVipInfo(context.Context, *ChangeDoctorVipInfoRequest) (*ChangeDoctorVipInfoResponse, error)
@@ -380,6 +393,9 @@ func (UnimplementedDoctorAdminServiceServer) GetDoctorAdditionalCities(context.C
 }
 func (UnimplementedDoctorAdminServiceServer) GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDoctorCooperationTypes not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) FilterDoctors(context.Context, *FilterDoctorsRequest) (*FilterDoctorsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method FilterDoctors not implemented")
 }
 func (UnimplementedDoctorAdminServiceServer) ChangeDoctorVipActivity(context.Context, *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangeDoctorVipActivity not implemented")
@@ -734,6 +750,24 @@ func _DoctorAdminService_GetDoctorCooperationTypes_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorAdminService_FilterDoctors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterDoctorsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).FilterDoctors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_FilterDoctors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).FilterDoctors(ctx, req.(*FilterDoctorsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DoctorAdminService_ChangeDoctorVipActivity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeDoctorVipActivityRequest)
 	if err := dec(in); err != nil {
@@ -866,6 +900,10 @@ var DoctorAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDoctorCooperationTypes",
 			Handler:    _DoctorAdminService_GetDoctorCooperationTypes_Handler,
+		},
+		{
+			MethodName: "FilterDoctors",
+			Handler:    _DoctorAdminService_FilterDoctors_Handler,
 		},
 		{
 			MethodName: "ChangeDoctorVipActivity",
