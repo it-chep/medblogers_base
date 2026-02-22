@@ -2,6 +2,8 @@ package v1
 
 import (
 	"context"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"medblogers_base/internal/app/interceptor"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/doctors/doctors/v1"
 	"time"
@@ -11,9 +13,13 @@ func (i *Implementation) GetDoctorVipInfo(ctx context.Context, req *desc.GetDoct
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
 	return resp, executor(ctx, "/api/v1/admin/doctor/{doctor_id}/vip_info", func(ctx context.Context) error {
-		vipInfo, err := i.admin.Actions.DoctorModule.DoctorAgg.GetDoctorVipInfo.Do(ctx, req.GetDoctorId())
+		isVip, vipInfo, err := i.admin.Actions.DoctorModule.DoctorAgg.GetDoctorVipInfo.Do(ctx, req.GetDoctorId())
 		if err != nil {
 			return err
+		}
+
+		if vipInfo == nil {
+			return status.Error(codes.NotFound, "Doctor not found")
 		}
 
 		resp = &desc.GetDoctorVipInfoResponse{
@@ -24,6 +30,7 @@ func (i *Implementation) GetDoctorVipInfo(ctx context.Context, req *desc.GetDoct
 			BlogInfo:             vipInfo.GetBlogInfo(),
 			ShortMessage:         vipInfo.GetShortMessage(),
 			EndDate:              vipInfo.GetEndDate().Format(time.DateTime),
+			IsActive:             isVip,
 		}
 		return nil
 	})

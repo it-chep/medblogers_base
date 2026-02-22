@@ -1146,6 +1146,9 @@
         },
         "endDate": {
           "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },

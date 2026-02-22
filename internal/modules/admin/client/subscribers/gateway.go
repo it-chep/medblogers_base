@@ -634,7 +634,7 @@ func (g *Gateway) ChangeVipActivity(ctx context.Context, doctorID int64, activit
 		return err
 	}
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodPatch, endpointURL.String(), bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, endpointURL.String(), bytes.NewReader(body))
 	if err != nil {
 		return err
 	}

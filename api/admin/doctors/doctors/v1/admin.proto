@@ -401,6 +401,7 @@ message GetDoctorVipInfoResponse {
   int64 advertising_price_from = 5;
   string blog_info = 6;
   string end_date = 7;
+  bool is_active = 8;
 }
 
 message ChangeDoctorVipInfoRequest {

@@ -67,15 +67,15 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			item.VkSubsCount = ""
 		}
 
-		vipDesc := &desc.FilterResponse_VipInfo{}
 		vipInfo, ok := vipMap[item.ID]
-		if ok {
-			vipDesc = &desc.FilterResponse_VipInfo{
-				CanBarter:            vipInfo.CanBarter,
-				CanSellAdvertising:   vipInfo.CanSellAdvertising,
-				CanBuyAdvertising:    vipInfo.CanBuyAdvertising,
-				AdvertisingPriceFrom: formatters.HumanPrice(vipInfo.AdvertisingPriceFrom),
-			}
+		vipDesc := &desc.FilterResponse_VipInfo{
+			CanBarter:            vipInfo.CanBarter,
+			CanSellAdvertising:   vipInfo.CanSellAdvertising,
+			CanBuyAdvertising:    vipInfo.CanBuyAdvertising,
+			AdvertisingPriceFrom: formatters.HumanPrice(vipInfo.AdvertisingPriceFrom),
+		}
+		if !ok {
+			vipDesc = nil
 		}
 
 		doctorsResponse = append(doctorsResponse, &desc.FilterResponse_DoctorItem{
@@ -114,6 +114,7 @@ func (i *Implementation) newFilterResponse(filterDomain dto.Response) *desc.Filt
 			Image:      item.Image,
 			IsKfDoctor: item.IsKFDoctor,
 			VipInfo:    vipDesc,
+			IsVip:      item.IsVip,
 		})
 	}
 

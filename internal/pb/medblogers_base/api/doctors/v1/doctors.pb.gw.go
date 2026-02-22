@@ -671,7 +671,7 @@ func RegisterDoctorServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctorVip", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_slug}/vip"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctorVip", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_slug}/vip_info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -956,7 +956,7 @@ func RegisterDoctorServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctorVip", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_slug}/vip"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/doctor.v1.DoctorService/GetDoctorVip", runtime.WithHTTPPathPattern("/api/v1/doctors/{doctor_slug}/vip_info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1018,7 +1018,7 @@ var (
 	pattern_DoctorService_Filter_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "filter-doctors"}, ""))
 	pattern_DoctorService_CreateDoctor_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "doctors", "create"}, ""))
 	pattern_DoctorService_GetDoctor_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "doctors", "doctor_slug"}, ""))
-	pattern_DoctorService_GetDoctorVip_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "v1", "doctors", "doctor_slug", "vip"}, ""))
+	pattern_DoctorService_GetDoctorVip_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "v1", "doctors", "doctor_slug", "vip_info"}, ""))
 	pattern_DoctorService_CheckCheating_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "blacklist_check"}, ""))
 	pattern_DoctorService_CheatersCount_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "blacklist_count"}, ""))
 )

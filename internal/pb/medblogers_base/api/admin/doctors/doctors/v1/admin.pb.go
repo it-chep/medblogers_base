@@ -2195,6 +2195,7 @@ type GetDoctorVipInfoResponse struct {
 	AdvertisingPriceFrom int64                  `protobuf:"varint,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
 	BlogInfo             string                 `protobuf:"bytes,6,opt,name=blog_info,json=blogInfo,proto3" json:"blog_info,omitempty"`
 	EndDate              string                 `protobuf:"bytes,7,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	IsActive             bool                   `protobuf:"varint,8,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2276,6 +2277,13 @@ func (x *GetDoctorVipInfoResponse) GetEndDate() string {
 		return x.EndDate
 	}
 	return ""
+}
+
+func (x *GetDoctorVipInfoResponse) GetIsActive() bool {
+	if x != nil {
+		return x.IsActive
+	}
+	return false
 }
 
 type ChangeDoctorVipInfoRequest struct {
@@ -3022,7 +3030,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\ris_vip_active\x18\x02 \x01(\bR\visVipActive\"!\n" +
 	"\x1fChangeDoctorVipActivityResponse\"6\n" +
 	"\x17GetDoctorVipInfoRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xae\x02\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xcb\x02\n" +
 	"\x18GetDoctorVipInfoResponse\x12\x1d\n" +
 	"\n" +
 	"can_barter\x18\x01 \x01(\bR\tcanBarter\x12.\n" +
@@ -3031,7 +3039,8 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\rshort_message\x18\x04 \x01(\tR\fshortMessage\x124\n" +
 	"\x16advertising_price_from\x18\x05 \x01(\x03R\x14advertisingPriceFrom\x12\x1b\n" +
 	"\tblog_info\x18\x06 \x01(\tR\bblogInfo\x12\x19\n" +
-	"\bend_date\x18\a \x01(\tR\aendDate\"\xcd\x02\n" +
+	"\bend_date\x18\a \x01(\tR\aendDate\x12\x1b\n" +
+	"\tis_active\x18\b \x01(\bR\bisActive\"\xcd\x02\n" +
 	"\x1aChangeDoctorVipInfoRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1d\n" +
 	"\n" +

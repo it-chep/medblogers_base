@@ -9,6 +9,7 @@ import (
 
 type Dal interface {
 	GetVipCardInfo(ctx context.Context, doctorID int64) (*vip_card.VipCard, error)
+	GetVipCardActivity(ctx context.Context, doctorID int64) (bool, error)
 }
 
 type Action struct {
@@ -21,6 +22,16 @@ func New(pool postgres.PoolWrapper) *Action {
 	}
 }
 
-func (a *Action) Do(ctx context.Context, doctorID int64) (*vip_card.VipCard, error) {
-	return a.dal.GetVipCardInfo(ctx, doctorID)
+func (a *Action) Do(ctx context.Context, doctorID int64) (bool, *vip_card.VipCard, error) {
+	isActive, err := a.dal.GetVipCardActivity(ctx, doctorID)
+	if err != nil {
+		isActive = false
+	}
+
+	vipInfo, err := a.dal.GetVipCardInfo(ctx, doctorID)
+	if err != nil {
+		return false, nil, nil
+	}
+
+	return isActive, vipInfo, nil
 }

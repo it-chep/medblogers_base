@@ -25,7 +25,7 @@ func (v *VipMiniature) ToDomain() *vip_card.VipCard {
 type VipCardDao struct {
 	CanBarter          sql.NullBool `db:"can_barter"`
 	CanBuyAdvertising  sql.NullBool `db:"can_buy_advertising"`
-	CanSellAdvertising sql.NullBool `db:"can_buy_advertising"`
+	CanSellAdvertising sql.NullBool `db:"can_sell_advertising"`
 
 	ShortMessage         sql.NullString `db:"short_message"`
 	BlogInfo             sql.NullString `db:"blog_info"`

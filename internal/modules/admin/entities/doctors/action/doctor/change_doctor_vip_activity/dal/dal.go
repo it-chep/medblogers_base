@@ -19,7 +19,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // ChangeDoctorVipActivity изменение активности випки
 func (r *Repository) ChangeDoctorVipActivity(ctx context.Context, doctorID int64, activity bool) error {
 	sql := `
-		update docstar_site_doctor set is_vip = $1 where doctor_id = $2
+		update docstar_site_doctor set is_vip = $1 where id = $2
 	`
 
 	_, err := r.db.Exec(ctx, sql, activity, doctorID)

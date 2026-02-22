@@ -2526,6 +2526,7 @@ type FilterResponse_DoctorItem struct {
 	VkSubsCount          string                  `protobuf:"bytes,18,opt,name=vk_subs_count,json=vkSubsCount,proto3" json:"vk_subs_count,omitempty"`
 	VkSubsCountText      string                  `protobuf:"bytes,19,opt,name=vk_subs_count_text,json=vkSubsCountText,proto3" json:"vk_subs_count_text,omitempty"`
 	VipInfo              *FilterResponse_VipInfo `protobuf:"bytes,20,opt,name=vip_info,json=vipInfo,proto3" json:"vip_info,omitempty"`
+	IsVip                bool                    `protobuf:"varint,21,opt,name=is_vip,json=isVip,proto3" json:"is_vip,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -2698,6 +2699,13 @@ func (x *FilterResponse_DoctorItem) GetVipInfo() *FilterResponse_VipInfo {
 		return x.VipInfo
 	}
 	return nil
+}
+
+func (x *FilterResponse_DoctorItem) GetIsVip() bool {
+	if x != nil {
+		return x.IsVip
+	}
+	return false
 }
 
 type FilterResponse_VipInfo struct {
@@ -3012,10 +3020,10 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x04sort\x18\a \x01(\x0e2\x1d.doctor.v1.FilterRequest.SortR\x04sort\"1\n" +
 	"\x04Sort\x12\x14\n" +
 	"\x10SUBSCRIBERS_DESC\x10\x00\x12\x13\n" +
-	"\x0fSUBSCRIBERS_ASC\x10\x01\"\xb3\b\n" +
+	"\x0fSUBSCRIBERS_ASC\x10\x01\"\xca\b\n" +
 	"\x0eFilterResponse\x12>\n" +
 	"\adoctors\x18\x01 \x03(\v2$.doctor.v1.FilterResponse.DoctorItemR\adoctors\x12+\n" +
-	"\x11subscribers_count\x18\x03 \x01(\tR\x10subscribersCount\x1a\xf0\x05\n" +
+	"\x11subscribers_count\x18\x03 \x01(\tR\x10subscribersCount\x1a\x87\x06\n" +
 	"\n" +
 	"DoctorItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
@@ -3041,7 +3049,8 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\avk_link\x18\x11 \x01(\tR\x06vkLink\x12\"\n" +
 	"\rvk_subs_count\x18\x12 \x01(\tR\vvkSubsCount\x12+\n" +
 	"\x12vk_subs_count_text\x18\x13 \x01(\tR\x0fvkSubsCountText\x12<\n" +
-	"\bvip_info\x18\x14 \x01(\v2!.doctor.v1.FilterResponse.VipInfoR\avipInfo\x1a\xc0\x01\n" +
+	"\bvip_info\x18\x14 \x01(\v2!.doctor.v1.FilterResponse.VipInfoR\avipInfo\x12\x15\n" +
+	"\x06is_vip\x18\x15 \x01(\bR\x05isVip\x1a\xc0\x01\n" +
 	"\aVipInfo\x12\x1d\n" +
 	"\n" +
 	"can_barter\x18\x01 \x01(\bR\tcanBarter\x12.\n" +
@@ -3158,7 +3167,7 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\tblog_info\x18\x06 \x01(\tR\bblogInfo\"\x16\n" +
 	"\x14CheatersCountRequest\">\n" +
 	"\x15CheatersCountResponse\x12%\n" +
-	"\x0echeaters_count\x18\x01 \x01(\x03R\rcheatersCount2\xbe\x16\n" +
+	"\x0echeaters_count\x18\x01 \x01(\x03R\rcheatersCount2\xc3\x16\n" +
 	"\rDoctorService\x12\x8c\x01\n" +
 	"\vGetSettings\x12\x1d.doctor.v1.GetSettingsRequest\x1a\x1e.doctor.v1.GetSettingsResponse\">\x92A#\x12!Доступные фильтры\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/settings\x12\x93\x02\n" +
 	"\vGetCounters\x12\x1d.doctor.v1.GetCountersRequest\x1a\x1e.doctor.v1.GetCountersResponse\"\xc4\x01\x92A\xa3\x01\x12\xa0\x01Получение информации по счетчикам (количество докторов в базе, количество подписчиков)\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/counters_info\x12\xed\x01\n" +
@@ -3170,8 +3179,8 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x06Search\x12\x18.doctor.v1.SearchRequest\x1a\x19.doctor.v1.SearchResponse\"\x93\x01\x92Ar\x12pПоиск доктора, города, специальности по переданным значениям\x82\xd3\xe4\x93\x02\x18\x12\x16/api/v1/search-doctors\x12\xb0\x01\n" +
 	"\x06Filter\x12\x18.doctor.v1.FilterRequest\x1a\x19.doctor.v1.FilterResponse\"q\x92AP\x12NФильтрация докторов по доступным фильтрам\x82\xd3\xe4\x93\x02\x18\x12\x16/api/v1/filter-doctors\x12\x9c\x01\n" +
 	"\fCreateDoctor\x12\x1e.doctor.v1.CreateDoctorRequest\x1a\x1f.doctor.v1.CreateDoctorResponse\"K\x92A'\x12%Регистрация доктора\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/api/v1/doctors/create\x12\xc2\x01\n" +
-	"\tGetDoctor\x12\x1b.doctor.v1.GetDoctorRequest\x1a\x1c.doctor.v1.GetDoctorResponse\"z\x92AR\x12PПолучение детальной информации про доктора\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/doctors/{doctor_slug}\x12\xe8\x01\n" +
-	"\fGetDoctorVip\x12\x1e.doctor.v1.GetDoctorVipRequest\x1a\x1f.doctor.v1.GetDoctorVipResponse\"\x96\x01\x92Aj\x12hПолучение детальной информации про ВИП карточку доктора\x82\xd3\xe4\x93\x02#\x12!/api/v1/doctors/{doctor_slug}/vip\x12\xd7\x01\n" +
+	"\tGetDoctor\x12\x1b.doctor.v1.GetDoctorRequest\x1a\x1c.doctor.v1.GetDoctorResponse\"z\x92AR\x12PПолучение детальной информации про доктора\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/doctors/{doctor_slug}\x12\xed\x01\n" +
+	"\fGetDoctorVip\x12\x1e.doctor.v1.GetDoctorVipRequest\x1a\x1f.doctor.v1.GetDoctorVipResponse\"\x9b\x01\x92Aj\x12hПолучение детальной информации про ВИП карточку доктора\x82\xd3\xe4\x93\x02(\x12&/api/v1/doctors/{doctor_slug}/vip_info\x12\xd7\x01\n" +
 	"\rCheckCheating\x12\x1f.doctor.v1.CheckCheatingRequest\x1a .doctor.v1.CheckCheatingResponse\"\x82\x01\x92A]\x12[Проверяет состоит ли данный канал в черном списке\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/blacklist_check\x12\xc3\x01\n" +
 	"\rCheatersCount\x12\x1f.doctor.v1.CheatersCountRequest\x1a .doctor.v1.CheatersCountResponse\"o\x92AJ\x12HПолучает количество пользователей в ЧС\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/blacklist_countB\x10Z\x0eapi/doctors/v1b\x06proto3"
 

@@ -192,7 +192,7 @@
         ]
       }
     },
-    "/api/v1/doctors/{doctorSlug}/vip": {
+    "/api/v1/doctors/{doctorSlug}/vip_info": {
       "get": {
         "summary": "Получение детальной информации про ВИП карточку доктора",
         "operationId": "DoctorService_GetDoctorVip",
@@ -819,6 +819,9 @@
         },
         "vipInfo": {
           "$ref": "#/definitions/doctor.v1.FilterResponse.VipInfo"
+        },
+        "isVip": {
+          "type": "boolean"
         }
       }
     },

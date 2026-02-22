@@ -47,3 +47,17 @@ func (r *Repository) GetVipCardInfo(ctx context.Context, doctorID int64) (*vip_c
 
 	return cardDao.ToDomain(), nil
 }
+
+func (r *Repository) GetVipCardActivity(ctx context.Context, doctorID int64) (bool, error) {
+	sql := `select is_vip from docstar_site_doctor where id = $1`
+
+	var isVip bool
+	err := pgxscan.Get(ctx, r.db, &isVip, sql, doctorID)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return false, nil
+		}
+		return false, err
+	}
+	return isVip, nil
+}

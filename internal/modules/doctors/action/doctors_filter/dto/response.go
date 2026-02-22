@@ -42,7 +42,7 @@ type Doctors []Doctor
 // GetVipIDs получение только ID випов
 func (d Doctors) GetVipIDs() []int64 {
 	return lo.FilterMap(d, func(item Doctor, index int) (int64, bool) {
-		return item.ID, !item.IsVip
+		return item.ID, item.IsVip
 	})
 }
 

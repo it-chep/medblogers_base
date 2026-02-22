@@ -27,7 +27,7 @@ func (i *Implementation) ChangeDoctorVipInfo(ctx context.Context, req *desc.Chan
 }
 
 func prepareUpdateVipInfoRequest(req *desc.ChangeDoctorVipInfoRequest) (dto.UpdateRequest, error) {
-	endDate, err := time.Parse(time.DateTime, req.GetEndDate())
+	endDate, err := time.Parse(time.DateOnly, req.GetEndDate())
 	if err != nil {
 		return dto.UpdateRequest{}, err
 	}
