@@ -29,7 +29,7 @@ func (i *Implementation) GetDoctorVipInfo(ctx context.Context, req *desc.GetDoct
 			AdvertisingPriceFrom: vipInfo.GetAdvertisingPriceFrom(),
 			BlogInfo:             vipInfo.GetBlogInfo(),
 			ShortMessage:         vipInfo.GetShortMessage(),
-			EndDate:              vipInfo.GetEndDate().Format(time.DateTime),
+			EndDate:              vipInfo.GetEndDate().Format(time.DateOnly),
 			IsActive:             isVip,
 		}
 		return nil
