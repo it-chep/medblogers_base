@@ -70,8 +70,7 @@ service DoctorService {
   }
   rpc CheatersCount(CheatersCountRequest) returns (CheatersCountResponse) {
     option (google.api.http) = {
-      post: "/api/v1/blacklist_count"
-      body: "*"
+      get: "/api/v1/blacklist_count"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получает количество пользователей в ЧС"};
   }

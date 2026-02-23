@@ -3167,7 +3167,7 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\tblog_info\x18\x06 \x01(\tR\bblogInfo\"\x16\n" +
 	"\x14CheatersCountRequest\">\n" +
 	"\x15CheatersCountResponse\x12%\n" +
-	"\x0echeaters_count\x18\x01 \x01(\x03R\rcheatersCount2\xc3\x16\n" +
+	"\x0echeaters_count\x18\x01 \x01(\x03R\rcheatersCount2\xc0\x16\n" +
 	"\rDoctorService\x12\x8c\x01\n" +
 	"\vGetSettings\x12\x1d.doctor.v1.GetSettingsRequest\x1a\x1e.doctor.v1.GetSettingsResponse\">\x92A#\x12!Доступные фильтры\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/settings\x12\x93\x02\n" +
 	"\vGetCounters\x12\x1d.doctor.v1.GetCountersRequest\x1a\x1e.doctor.v1.GetCountersResponse\"\xc4\x01\x92A\xa3\x01\x12\xa0\x01Получение информации по счетчикам (количество докторов в базе, количество подписчиков)\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/counters_info\x12\xed\x01\n" +
@@ -3181,8 +3181,8 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\fCreateDoctor\x12\x1e.doctor.v1.CreateDoctorRequest\x1a\x1f.doctor.v1.CreateDoctorResponse\"K\x92A'\x12%Регистрация доктора\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/api/v1/doctors/create\x12\xc2\x01\n" +
 	"\tGetDoctor\x12\x1b.doctor.v1.GetDoctorRequest\x1a\x1c.doctor.v1.GetDoctorResponse\"z\x92AR\x12PПолучение детальной информации про доктора\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/v1/doctors/{doctor_slug}\x12\xed\x01\n" +
 	"\fGetDoctorVip\x12\x1e.doctor.v1.GetDoctorVipRequest\x1a\x1f.doctor.v1.GetDoctorVipResponse\"\x9b\x01\x92Aj\x12hПолучение детальной информации про ВИП карточку доктора\x82\xd3\xe4\x93\x02(\x12&/api/v1/doctors/{doctor_slug}/vip_info\x12\xd7\x01\n" +
-	"\rCheckCheating\x12\x1f.doctor.v1.CheckCheatingRequest\x1a .doctor.v1.CheckCheatingResponse\"\x82\x01\x92A]\x12[Проверяет состоит ли данный канал в черном списке\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/blacklist_check\x12\xc3\x01\n" +
-	"\rCheatersCount\x12\x1f.doctor.v1.CheatersCountRequest\x1a .doctor.v1.CheatersCountResponse\"o\x92AJ\x12HПолучает количество пользователей в ЧС\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/blacklist_countB\x10Z\x0eapi/doctors/v1b\x06proto3"
+	"\rCheckCheating\x12\x1f.doctor.v1.CheckCheatingRequest\x1a .doctor.v1.CheckCheatingResponse\"\x82\x01\x92A]\x12[Проверяет состоит ли данный канал в черном списке\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/api/v1/blacklist_check\x12\xc0\x01\n" +
+	"\rCheatersCount\x12\x1f.doctor.v1.CheatersCountRequest\x1a .doctor.v1.CheatersCountResponse\"l\x92AJ\x12HПолучает количество пользователей в ЧС\x82\xd3\xe4\x93\x02\x19\x12\x17/api/v1/blacklist_countB\x10Z\x0eapi/doctors/v1b\x06proto3"
 
 var (
 	file_doctors_v1_doctors_proto_rawDescOnce sync.Once

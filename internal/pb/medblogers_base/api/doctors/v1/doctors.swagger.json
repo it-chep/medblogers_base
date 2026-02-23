@@ -50,7 +50,7 @@
       }
     },
     "/api/v1/blacklist_count": {
-      "post": {
+      "get": {
         "summary": "Получает количество пользователей в ЧС",
         "operationId": "DoctorService_CheatersCount",
         "responses": {
@@ -67,16 +67,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/doctor.v1.CheatersCountRequest"
-            }
-          }
-        ],
         "tags": [
           "DoctorService"
         ]
@@ -564,9 +554,6 @@
     }
   },
   "definitions": {
-    "doctor.v1.CheatersCountRequest": {
-      "type": "object"
-    },
     "doctor.v1.CheatersCountResponse": {
       "type": "object",
       "properties": {
