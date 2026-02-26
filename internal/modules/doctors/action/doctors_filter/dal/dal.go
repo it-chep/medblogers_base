@@ -8,9 +8,11 @@ import (
 	cityDAO "medblogers_base/internal/modules/doctors/dal/city_dal/dao"
 	"medblogers_base/internal/modules/doctors/dal/doctor_dal/dao"
 	specialityDAO "medblogers_base/internal/modules/doctors/dal/speciality_dal/dao"
+	vipDAO "medblogers_base/internal/modules/doctors/dal/vip_card_dal/dao"
 	"medblogers_base/internal/modules/doctors/domain/city"
 	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"medblogers_base/internal/modules/doctors/domain/speciality"
+	"medblogers_base/internal/modules/doctors/domain/vip_card"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 	"strings"
@@ -89,10 +91,12 @@ func (r *Repository) GetDoctors(ctx context.Context, currentPage int64) (map[doc
 	logger.Message(ctx, "[Repo] Селект докторов из базы без фильтров")
 	sql := `
 		select 
-			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url, s3_image, is_kf_doctor, youtube_url, vk_url
+			id, name, slug, inst_url, 
+			city_id, speciallity_id, tg_channel_url, s3_image, 
+			is_kf_doctor, youtube_url, vk_url, is_vip
 		from docstar_site_doctor d
 		where d.is_active = true
-		order by d.name asc 
+		order by d.is_vip desc 
 		limit $1 
 		offset $2
 	`
@@ -141,7 +145,8 @@ func (r *Repository) GetDoctorsByIDs(ctx context.Context, currentPage int64, ids
 	logger.Message(ctx, "[Repo] Селект докторов из базы по IDs")
 	sql := `
 		select 
-			id, name, slug, inst_url, city_id, speciallity_id, tg_channel_url, s3_image, is_kf_doctor, youtube_url, vk_url
+			id, name, slug, inst_url, city_id, speciallity_id, 
+			tg_channel_url, s3_image, is_kf_doctor, youtube_url, vk_url, is_vip
 		from docstar_site_doctor d
 		where d.is_active = true and d.id = any($1::bigint[])
 	`
@@ -190,7 +195,8 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 		d.s3_image, 
 		d.is_kf_doctor,
 		d.youtube_url,
-		d.vk_url
+		d.vk_url,
+		d.is_vip
 	from
     	docstar_site_doctor d
 	where 
@@ -231,7 +237,34 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 		%s
 		%s
 		group by d.id, d.name
-        order by d.name asc
+        order by d.is_vip desc
 		offset 0
     `, defaultSql, whereStmtBuilder.String()), phValues
+}
+
+// GetVipInfo получение вип инфы по пользователям
+func (r *Repository) GetVipInfo(ctx context.Context, doctorIDs []int64) (map[int64]*vip_card.VipCard, error) {
+	sql := `
+		select 
+		    doctor_id,
+		    can_barter, 
+		    can_buy_advertising, 
+		    can_sell_advertising, 
+		    advertising_price_from 
+		from vip_card
+		where doctor_id = any($1)
+	`
+
+	var vips []vipDAO.VipMiniature
+	err := pgxscan.Select(ctx, r.db, &vips, sql, doctorIDs)
+	if err != nil {
+		return nil, err
+	}
+
+	vipMap := make(map[int64]*vip_card.VipCard, len(vips))
+	for _, vip := range vips {
+		vipMap[vip.DoctorID] = vip.ToDomain()
+	}
+
+	return vipMap, nil
 }

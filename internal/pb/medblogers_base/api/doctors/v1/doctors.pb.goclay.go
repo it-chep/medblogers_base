@@ -253,6 +253,24 @@ func (w *DoctorServiceServiceDesc) GetDoctor(ctx context.Context, in *GetDoctorR
 	return resp.(*GetDoctorResponse), err
 }
 
+func (w *DoctorServiceServiceDesc) GetDoctorVip(ctx context.Context, in *GetDoctorVipRequest) (*GetDoctorVipResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetDoctorVip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/GetDoctorVip",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetDoctorVip(ctx, req.(*GetDoctorVipRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetDoctorVipResponse), err
+}
+
 func (w *DoctorServiceServiceDesc) CheckCheating(ctx context.Context, in *CheckCheatingRequest) (*CheckCheatingResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.CheckCheating(ctx, in)
@@ -269,4 +287,22 @@ func (w *DoctorServiceServiceDesc) CheckCheating(ctx context.Context, in *CheckC
 		return nil, err
 	}
 	return resp.(*CheckCheatingResponse), err
+}
+
+func (w *DoctorServiceServiceDesc) CheatersCount(ctx context.Context, in *CheatersCountRequest) (*CheatersCountResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.CheatersCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/CheatersCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.CheatersCount(ctx, req.(*CheatersCountRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*CheatersCountResponse), err
 }

@@ -78,6 +78,13 @@ func WithVkURL(vkURL string) Option {
 	}
 }
 
+// WithIsVip .
+func WithIsVip(isVip bool) Option {
+	return func(s *Doctor) {
+		s.isVip = isVip
+	}
+}
+
 // WithTikTokURL .
 func WithTikTokURL(tikTokURL string) Option {
 	return func(s *Doctor) {

@@ -44,3 +44,7 @@ type SubscribersItem struct {
 type UpdateSubscribersRequest struct {
 	Items []SubscribersItem `json:"items"`
 }
+
+type ChangeVipActivityRequest struct {
+	Activity bool `json:"vip_activity"`
+}

@@ -5,6 +5,8 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/activate"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/add_additional_city"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/add_additional_speciality"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/change_doctor_vip_activity"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/change_vip_info"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/deactivate"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_city"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_speciality"
@@ -14,6 +16,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_cooperation_types"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_cities"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_specialities"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_vip_info"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/save_doctor_photo"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update_subscribers"
@@ -43,6 +46,11 @@ type DoctorModuleAggregator struct {
 	GetDoctorAdditionalSpecialities *get_doctor_additional_specialities.Action
 
 	FilterDoctors *filter_doctors.Action
+
+	// vip
+	GetDoctorVipInfo        *get_doctor_vip_info.Action
+	ChangeVipInfo           *change_vip_info.Action
+	ChangeDoctorVipActivity *change_doctor_vip_activity.Action
 }
 
 func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *DoctorModuleAggregator {
@@ -69,5 +77,10 @@ func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWra
 		GetDoctorAdditionalSpecialities: get_doctor_additional_specialities.New(pool),
 
 		FilterDoctors: filter_doctors.New(pool),
+
+		// vip
+		GetDoctorVipInfo:        get_doctor_vip_info.New(pool),
+		ChangeVipInfo:           change_vip_info.New(pool),
+		ChangeDoctorVipActivity: change_doctor_vip_activity.New(clients, pool),
 	}
 }

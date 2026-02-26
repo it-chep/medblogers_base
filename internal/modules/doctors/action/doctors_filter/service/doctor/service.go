@@ -65,7 +65,7 @@ func (s *Service) GetDoctorsByFilter(ctx context.Context, filter dto.Filter) (ma
 }
 
 // GetDoctors - дефолтное получение докторов без фильтров
-func (s *Service) GetDoctors(ctx context.Context, currentPage int64) ([]dto.Doctor, error) {
+func (s *Service) GetDoctors(ctx context.Context, currentPage int64) (dto.Doctors, error) {
 	logger.Message(ctx, "[Filter][Service] Дефолтное получение докторов")
 	// Получаем докторов
 	doctorsMap, orderedIDs, err := s.storage.GetDoctors(ctx, currentPage)
@@ -122,13 +122,14 @@ func (s *Service) convertToDTOMap(doctorsMap map[doctor.MedblogersID]*doctor.Doc
 			IsKFDoctor:       doc.GetIsKFDoctor(),
 			Specialities:     make([]dto.Speciality, 0),
 			Cities:           make([]dto.City, 0),
+			IsVip:            doc.GetIsVip(),
 		}
 	}
 
 	return dtoMap
 }
 
-func (s *Service) TrimFallbackDoctors(filter dto.Filter, doctorsMap map[int64]dto.Doctor, orderedIDs []int64) []dto.Doctor {
+func (s *Service) TrimFallbackDoctors(filter dto.Filter, doctorsMap map[int64]dto.Doctor, orderedIDs []int64) dto.Doctors {
 	if len(doctorsMap) == 0 {
 		return []dto.Doctor{}
 	}

@@ -10,6 +10,7 @@ type EntityName string
 const (
 	DoctorEntity     EntityName = "doctor"
 	FreelancerEntity EntityName = "freelancer"
+	DoctorVipEntity  EntityName = "doctor_vip"
 )
 
 type LogData struct {

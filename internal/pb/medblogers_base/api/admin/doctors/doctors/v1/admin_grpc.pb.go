@@ -38,6 +38,9 @@ const (
 	DoctorAdminService_GetDoctorAdditionalCities_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorAdditionalCities"
 	DoctorAdminService_GetDoctorCooperationTypes_FullMethodName       = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorCooperationTypes"
 	DoctorAdminService_FilterDoctors_FullMethodName                   = "/admin.doctors.doctors.v1.DoctorAdminService/FilterDoctors"
+	DoctorAdminService_ChangeDoctorVipActivity_FullMethodName         = "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipActivity"
+	DoctorAdminService_GetDoctorVipInfo_FullMethodName                = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorVipInfo"
+	DoctorAdminService_ChangeDoctorVipInfo_FullMethodName             = "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipInfo"
 )
 
 // DoctorAdminServiceClient is the client API for DoctorAdminService service.
@@ -66,6 +69,9 @@ type DoctorAdminServiceClient interface {
 	GetDoctorAdditionalCities(ctx context.Context, in *GetDoctorAdditionalCitiesRequest, opts ...grpc.CallOption) (*GetDoctorAdditionalCitiesResponse, error)
 	GetDoctorCooperationTypes(ctx context.Context, in *GetDoctorCooperationTypesRequest, opts ...grpc.CallOption) (*GetDoctorCooperationTypesResponse, error)
 	FilterDoctors(ctx context.Context, in *FilterDoctorsRequest, opts ...grpc.CallOption) (*FilterDoctorsResponse, error)
+	ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest, opts ...grpc.CallOption) (*ChangeDoctorVipActivityResponse, error)
+	GetDoctorVipInfo(ctx context.Context, in *GetDoctorVipInfoRequest, opts ...grpc.CallOption) (*GetDoctorVipInfoResponse, error)
+	ChangeDoctorVipInfo(ctx context.Context, in *ChangeDoctorVipInfoRequest, opts ...grpc.CallOption) (*ChangeDoctorVipInfoResponse, error)
 }
 
 type doctorAdminServiceClient struct {
@@ -266,6 +272,36 @@ func (c *doctorAdminServiceClient) FilterDoctors(ctx context.Context, in *Filter
 	return out, nil
 }
 
+func (c *doctorAdminServiceClient) ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest, opts ...grpc.CallOption) (*ChangeDoctorVipActivityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangeDoctorVipActivityResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_ChangeDoctorVipActivity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorAdminServiceClient) GetDoctorVipInfo(ctx context.Context, in *GetDoctorVipInfoRequest, opts ...grpc.CallOption) (*GetDoctorVipInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDoctorVipInfoResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_GetDoctorVipInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorAdminServiceClient) ChangeDoctorVipInfo(ctx context.Context, in *ChangeDoctorVipInfoRequest, opts ...grpc.CallOption) (*ChangeDoctorVipInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangeDoctorVipInfoResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_ChangeDoctorVipInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorAdminServiceServer is the server API for DoctorAdminService service.
 // All implementations should embed UnimplementedDoctorAdminServiceServer
 // for forward compatibility.
@@ -292,6 +328,9 @@ type DoctorAdminServiceServer interface {
 	GetDoctorAdditionalCities(context.Context, *GetDoctorAdditionalCitiesRequest) (*GetDoctorAdditionalCitiesResponse, error)
 	GetDoctorCooperationTypes(context.Context, *GetDoctorCooperationTypesRequest) (*GetDoctorCooperationTypesResponse, error)
 	FilterDoctors(context.Context, *FilterDoctorsRequest) (*FilterDoctorsResponse, error)
+	ChangeDoctorVipActivity(context.Context, *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error)
+	GetDoctorVipInfo(context.Context, *GetDoctorVipInfoRequest) (*GetDoctorVipInfoResponse, error)
+	ChangeDoctorVipInfo(context.Context, *ChangeDoctorVipInfoRequest) (*ChangeDoctorVipInfoResponse, error)
 }
 
 // UnimplementedDoctorAdminServiceServer should be embedded to have
@@ -357,6 +396,15 @@ func (UnimplementedDoctorAdminServiceServer) GetDoctorCooperationTypes(context.C
 }
 func (UnimplementedDoctorAdminServiceServer) FilterDoctors(context.Context, *FilterDoctorsRequest) (*FilterDoctorsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method FilterDoctors not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) ChangeDoctorVipActivity(context.Context, *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ChangeDoctorVipActivity not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) GetDoctorVipInfo(context.Context, *GetDoctorVipInfoRequest) (*GetDoctorVipInfoResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetDoctorVipInfo not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) ChangeDoctorVipInfo(context.Context, *ChangeDoctorVipInfoRequest) (*ChangeDoctorVipInfoResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ChangeDoctorVipInfo not implemented")
 }
 func (UnimplementedDoctorAdminServiceServer) testEmbeddedByValue() {}
 
@@ -720,6 +768,60 @@ func _DoctorAdminService_FilterDoctors_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorAdminService_ChangeDoctorVipActivity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeDoctorVipActivityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).ChangeDoctorVipActivity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_ChangeDoctorVipActivity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).ChangeDoctorVipActivity(ctx, req.(*ChangeDoctorVipActivityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorAdminService_GetDoctorVipInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorVipInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).GetDoctorVipInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_GetDoctorVipInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).GetDoctorVipInfo(ctx, req.(*GetDoctorVipInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorAdminService_ChangeDoctorVipInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeDoctorVipInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).ChangeDoctorVipInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_ChangeDoctorVipInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).ChangeDoctorVipInfo(ctx, req.(*ChangeDoctorVipInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorAdminService_ServiceDesc is the grpc.ServiceDesc for DoctorAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -802,6 +904,18 @@ var DoctorAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FilterDoctors",
 			Handler:    _DoctorAdminService_FilterDoctors_Handler,
+		},
+		{
+			MethodName: "ChangeDoctorVipActivity",
+			Handler:    _DoctorAdminService_ChangeDoctorVipActivity_Handler,
+		},
+		{
+			MethodName: "GetDoctorVipInfo",
+			Handler:    _DoctorAdminService_GetDoctorVipInfo_Handler,
+		},
+		{
+			MethodName: "ChangeDoctorVipInfo",
+			Handler:    _DoctorAdminService_ChangeDoctorVipInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
