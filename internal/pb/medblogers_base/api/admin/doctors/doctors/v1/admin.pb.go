@@ -2510,6 +2510,182 @@ func (*ChangeDoctorVipInfoResponse) Descriptor() ([]byte, []int) {
 	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{46}
 }
 
+type DoctorAccrueMBCRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	MbcCount      int64                  `protobuf:"varint,2,opt,name=mbc_count,json=mbcCount,proto3" json:"mbc_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DoctorAccrueMBCRequest) Reset() {
+	*x = DoctorAccrueMBCRequest{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DoctorAccrueMBCRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DoctorAccrueMBCRequest) ProtoMessage() {}
+
+func (x *DoctorAccrueMBCRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DoctorAccrueMBCRequest.ProtoReflect.Descriptor instead.
+func (*DoctorAccrueMBCRequest) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *DoctorAccrueMBCRequest) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+func (x *DoctorAccrueMBCRequest) GetMbcCount() int64 {
+	if x != nil {
+		return x.MbcCount
+	}
+	return 0
+}
+
+type DoctorAccrueMBCResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DoctorAccrueMBCResponse) Reset() {
+	*x = DoctorAccrueMBCResponse{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DoctorAccrueMBCResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DoctorAccrueMBCResponse) ProtoMessage() {}
+
+func (x *DoctorAccrueMBCResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DoctorAccrueMBCResponse.ProtoReflect.Descriptor instead.
+func (*DoctorAccrueMBCResponse) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{48}
+}
+
+type DoctorMBCHistoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DoctorMBCHistoryRequest) Reset() {
+	*x = DoctorMBCHistoryRequest{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DoctorMBCHistoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DoctorMBCHistoryRequest) ProtoMessage() {}
+
+func (x *DoctorMBCHistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DoctorMBCHistoryRequest.ProtoReflect.Descriptor instead.
+func (*DoctorMBCHistoryRequest) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *DoctorMBCHistoryRequest) GetDoctorId() int64 {
+	if x != nil {
+		return x.DoctorId
+	}
+	return 0
+}
+
+type DoctorMBCHistoryResponse struct {
+	state         protoimpl.MessageState                     `protogen:"open.v1"`
+	Items         []*DoctorMBCHistoryResponse_MBCHistoryItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DoctorMBCHistoryResponse) Reset() {
+	*x = DoctorMBCHistoryResponse{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DoctorMBCHistoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DoctorMBCHistoryResponse) ProtoMessage() {}
+
+func (x *DoctorMBCHistoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DoctorMBCHistoryResponse.ProtoReflect.Descriptor instead.
+func (*DoctorMBCHistoryResponse) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *DoctorMBCHistoryResponse) GetItems() []*DoctorMBCHistoryResponse_MBCHistoryItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
 type GetDoctorsResponse_Doctor struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -2524,7 +2700,7 @@ type GetDoctorsResponse_Doctor struct {
 
 func (x *GetDoctorsResponse_Doctor) Reset() {
 	*x = GetDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[47]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2536,7 +2712,7 @@ func (x *GetDoctorsResponse_Doctor) String() string {
 func (*GetDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *GetDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[47]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2607,7 +2783,7 @@ type SortDoctorsResponse_Doctor struct {
 
 func (x *SortDoctorsResponse_Doctor) Reset() {
 	*x = SortDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[48]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2619,7 +2795,7 @@ func (x *SortDoctorsResponse_Doctor) String() string {
 func (*SortDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *SortDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[48]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2683,7 +2859,7 @@ type SearchDoctorsResponse_Doctor struct {
 
 func (x *SearchDoctorsResponse_Doctor) Reset() {
 	*x = SearchDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[49]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2695,7 +2871,7 @@ func (x *SearchDoctorsResponse_Doctor) String() string {
 func (*SearchDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *SearchDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[49]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2758,7 +2934,7 @@ type GetDoctorByIDResponse_SubscribersItem struct {
 
 func (x *GetDoctorByIDResponse_SubscribersItem) Reset() {
 	*x = GetDoctorByIDResponse_SubscribersItem{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[50]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2770,7 +2946,7 @@ func (x *GetDoctorByIDResponse_SubscribersItem) String() string {
 func (*GetDoctorByIDResponse_SubscribersItem) ProtoMessage() {}
 
 func (x *GetDoctorByIDResponse_SubscribersItem) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[50]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2824,7 +3000,7 @@ type UpdateSubscribersRequest_UpdateRequest struct {
 
 func (x *UpdateSubscribersRequest_UpdateRequest) Reset() {
 	*x = UpdateSubscribersRequest_UpdateRequest{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[51]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2836,7 +3012,7 @@ func (x *UpdateSubscribersRequest_UpdateRequest) String() string {
 func (*UpdateSubscribersRequest_UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateSubscribersRequest_UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[51]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2879,7 +3055,7 @@ type GetDoctorsByIDsResponse_Doctor struct {
 
 func (x *GetDoctorsByIDsResponse_Doctor) Reset() {
 	*x = GetDoctorsByIDsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[52]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2891,7 +3067,7 @@ func (x *GetDoctorsByIDsResponse_Doctor) String() string {
 func (*GetDoctorsByIDsResponse_Doctor) ProtoMessage() {}
 
 func (x *GetDoctorsByIDsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[52]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2956,7 +3132,7 @@ type FilterDoctorsResponse_Doctor struct {
 
 func (x *FilterDoctorsResponse_Doctor) Reset() {
 	*x = FilterDoctorsResponse_Doctor{}
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[53]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2968,7 +3144,7 @@ func (x *FilterDoctorsResponse_Doctor) String() string {
 func (*FilterDoctorsResponse_Doctor) ProtoMessage() {}
 
 func (x *FilterDoctorsResponse_Doctor) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[53]
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3022,6 +3198,58 @@ func (x *FilterDoctorsResponse_Doctor) GetCooperationType() *CooperationType {
 func (x *FilterDoctorsResponse_Doctor) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return ""
+}
+
+type DoctorMBCHistoryResponse_MBCHistoryItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MbcCount      int64                  `protobuf:"varint,1,opt,name=mbc_count,json=mbcCount,proto3" json:"mbc_count,omitempty"`
+	OccurredAt    string                 `protobuf:"bytes,2,opt,name=occurred_at,json=occurredAt,proto3" json:"occurred_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DoctorMBCHistoryResponse_MBCHistoryItem) Reset() {
+	*x = DoctorMBCHistoryResponse_MBCHistoryItem{}
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DoctorMBCHistoryResponse_MBCHistoryItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DoctorMBCHistoryResponse_MBCHistoryItem) ProtoMessage() {}
+
+func (x *DoctorMBCHistoryResponse_MBCHistoryItem) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_doctors_doctors_v1_admin_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DoctorMBCHistoryResponse_MBCHistoryItem.ProtoReflect.Descriptor instead.
+func (*DoctorMBCHistoryResponse_MBCHistoryItem) Descriptor() ([]byte, []int) {
+	return file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP(), []int{50, 0}
+}
+
+func (x *DoctorMBCHistoryResponse_MBCHistoryItem) GetMbcCount() int64 {
+	if x != nil {
+		return x.MbcCount
+	}
+	return 0
+}
+
+func (x *DoctorMBCHistoryResponse_MBCHistoryItem) GetOccurredAt() string {
+	if x != nil {
+		return x.OccurredAt
 	}
 	return ""
 }
@@ -3235,7 +3463,19 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x16advertising_price_from\x18\x06 \x01(\x03R\x14advertisingPriceFrom\x12\x1b\n" +
 	"\tblog_info\x18\a \x01(\tR\bblogInfo\x12\x19\n" +
 	"\bend_date\x18\b \x01(\tR\aendDate\"\x1d\n" +
-	"\x1bChangeDoctorVipInfoResponse2\x99)\n" +
+	"\x1bChangeDoctorVipInfoResponse\"R\n" +
+	"\x16DoctorAccrueMBCRequest\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1b\n" +
+	"\tmbc_count\x18\x02 \x01(\x03R\bmbcCount\"\x19\n" +
+	"\x17DoctorAccrueMBCResponse\"6\n" +
+	"\x17DoctorMBCHistoryRequest\x12\x1b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xc3\x01\n" +
+	"\x18DoctorMBCHistoryResponse\x12W\n" +
+	"\x05items\x18\x01 \x03(\v2A.admin.doctors.doctors.v1.DoctorMBCHistoryResponse.MBCHistoryItemR\x05items\x1aN\n" +
+	"\x0eMBCHistoryItem\x12\x1b\n" +
+	"\tmbc_count\x18\x01 \x01(\x03R\bmbcCount\x12\x1f\n" +
+	"\voccurred_at\x18\x02 \x01(\tR\n" +
+	"occurredAt2\xfe,\n" +
 	"\x12DoctorAdminService\x12\xaa\x01\n" +
 	"\n" +
 	"GetDoctors\x12+.admin.doctors.doctors.v1.GetDoctorsRequest\x1a,.admin.doctors.doctors.v1.GetDoctorsResponse\"A\x92A!\x12\x1fПолучение врачей\x82\xd3\xe4\x93\x02\x17\x12\x15/api/v1/admin/doctors\x12\xcc\x01\n" +
@@ -3259,7 +3499,9 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\rFilterDoctors\x12..admin.doctors.doctors.v1.FilterDoctorsRequest\x1a/.admin.doctors.doctors.v1.FilterDoctorsResponse\"g\x92A=\x12;Фильтрация врачей по параметрам\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/api/v1/admin/doctors/filter\x12\x9f\x02\n" +
 	"\x17ChangeDoctorVipActivity\x128.admin.doctors.doctors.v1.ChangeDoctorVipActivityRequest\x1a9.admin.doctors.doctors.v1.ChangeDoctorVipActivityResponse\"\x8e\x01\x92AL\x12JРучное изменение активности ВИП статуса\x82\xd3\xe4\x93\x029:\x01*\"4/api/v1/admin/doctor/{doctor_id}/change_vip_activity\x12\xf5\x01\n" +
 	"\x10GetDoctorVipInfo\x121.admin.doctors.doctors.v1.GetDoctorVipInfoRequest\x1a2.admin.doctors.doctors.v1.GetDoctorVipInfoResponse\"z\x92AF\x12DПолучение информации о випке доктора\x82\xd3\xe4\x93\x02+\x12)/api/v1/admin/doctor/{doctor_id}/vip_info\x12\x89\x02\n" +
-	"\x13ChangeDoctorVipInfo\x124.admin.doctors.doctors.v1.ChangeDoctorVipInfoRequest\x1a5.admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse\"\x84\x01\x92AF\x12DПолучение информации о випке доктора\x82\xd3\xe4\x93\x025:\x01*\"0/api/v1/admin/doctor/{doctor_id}/change_vip_infoB\x1eZ\x1capi/admin/doctors/doctors/v1b\x06proto3"
+	"\x13ChangeDoctorVipInfo\x124.admin.doctors.doctors.v1.ChangeDoctorVipInfoRequest\x1a5.admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse\"\x84\x01\x92AF\x12DПолучение информации о випке доктора\x82\xd3\xe4\x93\x025:\x01*\"0/api/v1/admin/doctor/{doctor_id}/change_vip_info\x12\xdf\x01\n" +
+	"\x0fDoctorAccrueMBC\x120.admin.doctors.doctors.v1.DoctorAccrueMBCRequest\x1a1.admin.doctors.doctors.v1.DoctorAccrueMBCResponse\"g\x92A.\x12,Начислить MBS баллы врачу\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/admin/doctor/{doctor_id}/accure_mbc\x12\x80\x02\n" +
+	"\x10DoctorMBCHistory\x121.admin.doctors.doctors.v1.DoctorMBCHistoryRequest\x1a2.admin.doctors.doctors.v1.DoctorMBCHistoryResponse\"\x84\x01\x92AM\x12KИстория начислений врачу за послений год\x82\xd3\xe4\x93\x02.\x12,/api/v1/admin/doctor/{doctor_id}/mbc_historyB\x1eZ\x1capi/admin/doctors/doctors/v1b\x06proto3"
 
 var (
 	file_admin_doctors_doctors_v1_admin_proto_rawDescOnce sync.Once
@@ -3273,7 +3515,7 @@ func file_admin_doctors_doctors_v1_admin_proto_rawDescGZIP() []byte {
 	return file_admin_doctors_doctors_v1_admin_proto_rawDescData
 }
 
-var file_admin_doctors_doctors_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 54)
+var file_admin_doctors_doctors_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 59)
 var file_admin_doctors_doctors_v1_admin_proto_goTypes = []any{
 	(*CityItem)(nil),                                 // 0: admin.doctors.doctors.v1.CityItem
 	(*SpecialityItem)(nil),                           // 1: admin.doctors.doctors.v1.SpecialityItem
@@ -3322,82 +3564,92 @@ var file_admin_doctors_doctors_v1_admin_proto_goTypes = []any{
 	(*GetDoctorVipInfoResponse)(nil),                 // 44: admin.doctors.doctors.v1.GetDoctorVipInfoResponse
 	(*ChangeDoctorVipInfoRequest)(nil),               // 45: admin.doctors.doctors.v1.ChangeDoctorVipInfoRequest
 	(*ChangeDoctorVipInfoResponse)(nil),              // 46: admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse
-	(*GetDoctorsResponse_Doctor)(nil),                // 47: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
-	(*SortDoctorsResponse_Doctor)(nil),               // 48: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
-	(*SearchDoctorsResponse_Doctor)(nil),             // 49: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
-	(*GetDoctorByIDResponse_SubscribersItem)(nil),    // 50: admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
-	(*UpdateSubscribersRequest_UpdateRequest)(nil),   // 51: admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
-	(*GetDoctorsByIDsResponse_Doctor)(nil),           // 52: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
-	(*FilterDoctorsResponse_Doctor)(nil),             // 53: admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor
+	(*DoctorAccrueMBCRequest)(nil),                   // 47: admin.doctors.doctors.v1.DoctorAccrueMBCRequest
+	(*DoctorAccrueMBCResponse)(nil),                  // 48: admin.doctors.doctors.v1.DoctorAccrueMBCResponse
+	(*DoctorMBCHistoryRequest)(nil),                  // 49: admin.doctors.doctors.v1.DoctorMBCHistoryRequest
+	(*DoctorMBCHistoryResponse)(nil),                 // 50: admin.doctors.doctors.v1.DoctorMBCHistoryResponse
+	(*GetDoctorsResponse_Doctor)(nil),                // 51: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
+	(*SortDoctorsResponse_Doctor)(nil),               // 52: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
+	(*SearchDoctorsResponse_Doctor)(nil),             // 53: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
+	(*GetDoctorByIDResponse_SubscribersItem)(nil),    // 54: admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
+	(*UpdateSubscribersRequest_UpdateRequest)(nil),   // 55: admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
+	(*GetDoctorsByIDsResponse_Doctor)(nil),           // 56: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
+	(*FilterDoctorsResponse_Doctor)(nil),             // 57: admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor
+	(*DoctorMBCHistoryResponse_MBCHistoryItem)(nil),  // 58: admin.doctors.doctors.v1.DoctorMBCHistoryResponse.MBCHistoryItem
 }
 var file_admin_doctors_doctors_v1_admin_proto_depIdxs = []int32{
-	47, // 0: admin.doctors.doctors.v1.GetDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
-	48, // 1: admin.doctors.doctors.v1.SortDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
-	49, // 2: admin.doctors.doctors.v1.SearchDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
+	51, // 0: admin.doctors.doctors.v1.GetDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsResponse.Doctor
+	52, // 1: admin.doctors.doctors.v1.SortDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SortDoctorsResponse.Doctor
+	53, // 2: admin.doctors.doctors.v1.SearchDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor
 	0,  // 3: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_city:type_name -> admin.doctors.doctors.v1.CityItem
 	1,  // 4: admin.doctors.doctors.v1.GetDoctorByIDResponse.main_speciality:type_name -> admin.doctors.doctors.v1.SpecialityItem
-	50, // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
+	54, // 5: admin.doctors.doctors.v1.GetDoctorByIDResponse.subscribers_info:type_name -> admin.doctors.doctors.v1.GetDoctorByIDResponse.SubscribersItem
 	2,  // 6: admin.doctors.doctors.v1.GetDoctorByIDResponse.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	51, // 7: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
-	52, // 8: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
+	55, // 7: admin.doctors.doctors.v1.UpdateSubscribersRequest.update_subscribers:type_name -> admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest
+	56, // 8: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.doctors:type_name -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor
 	1,  // 9: admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse.additional_specialities:type_name -> admin.doctors.doctors.v1.SpecialityItem
 	0,  // 10: admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse.additional_cities:type_name -> admin.doctors.doctors.v1.CityItem
 	2,  // 11: admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse.cooperation_types:type_name -> admin.doctors.doctors.v1.CooperationType
-	53, // 12: admin.doctors.doctors.v1.FilterDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor
-	2,  // 13: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 14: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 15: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 16: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	2,  // 17: admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
-	3,  // 18: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:input_type -> admin.doctors.doctors.v1.GetDoctorsRequest
-	31, // 19: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:input_type -> admin.doctors.doctors.v1.GetDoctorsByIDsRequest
-	5,  // 20: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:input_type -> admin.doctors.doctors.v1.SortDoctorsRequest
-	7,  // 21: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:input_type -> admin.doctors.doctors.v1.SearchDoctorsRequest
-	9,  // 22: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:input_type -> admin.doctors.doctors.v1.GetDoctorByIDRequest
-	11, // 23: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:input_type -> admin.doctors.doctors.v1.UpdateDoctorRequest
-	13, // 24: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:input_type -> admin.doctors.doctors.v1.DeleteDoctorRequest
-	15, // 25: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:input_type -> admin.doctors.doctors.v1.ActivateDoctorRequest
-	17, // 26: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:input_type -> admin.doctors.doctors.v1.DeactivateDoctorRequest
-	19, // 27: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:input_type -> admin.doctors.doctors.v1.SaveDoctorPhotoRequest
-	21, // 28: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
-	23, // 29: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
-	25, // 30: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
-	27, // 31: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
-	29, // 32: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:input_type -> admin.doctors.doctors.v1.UpdateSubscribersRequest
-	33, // 33: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest
-	35, // 34: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest
-	37, // 35: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:input_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest
-	39, // 36: admin.doctors.doctors.v1.DoctorAdminService.FilterDoctors:input_type -> admin.doctors.doctors.v1.FilterDoctorsRequest
-	41, // 37: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipActivity:input_type -> admin.doctors.doctors.v1.ChangeDoctorVipActivityRequest
-	43, // 38: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorVipInfo:input_type -> admin.doctors.doctors.v1.GetDoctorVipInfoRequest
-	45, // 39: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfo:input_type -> admin.doctors.doctors.v1.ChangeDoctorVipInfoRequest
-	4,  // 40: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:output_type -> admin.doctors.doctors.v1.GetDoctorsResponse
-	32, // 41: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:output_type -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse
-	6,  // 42: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:output_type -> admin.doctors.doctors.v1.SortDoctorsResponse
-	8,  // 43: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:output_type -> admin.doctors.doctors.v1.SearchDoctorsResponse
-	10, // 44: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:output_type -> admin.doctors.doctors.v1.GetDoctorByIDResponse
-	12, // 45: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:output_type -> admin.doctors.doctors.v1.UpdateDoctorResponse
-	14, // 46: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:output_type -> admin.doctors.doctors.v1.DeleteDoctorResponse
-	16, // 47: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:output_type -> admin.doctors.doctors.v1.ActivateDoctorResponse
-	18, // 48: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:output_type -> admin.doctors.doctors.v1.DeactivateDoctorResponse
-	20, // 49: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:output_type -> admin.doctors.doctors.v1.SaveDoctorPhotoResponse
-	22, // 50: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
-	24, // 51: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
-	26, // 52: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
-	28, // 53: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
-	30, // 54: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:output_type -> admin.doctors.doctors.v1.UpdateSubscribersResponse
-	34, // 55: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse
-	36, // 56: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse
-	38, // 57: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:output_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse
-	40, // 58: admin.doctors.doctors.v1.DoctorAdminService.FilterDoctors:output_type -> admin.doctors.doctors.v1.FilterDoctorsResponse
-	42, // 59: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipActivity:output_type -> admin.doctors.doctors.v1.ChangeDoctorVipActivityResponse
-	44, // 60: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorVipInfo:output_type -> admin.doctors.doctors.v1.GetDoctorVipInfoResponse
-	46, // 61: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfo:output_type -> admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse
-	40, // [40:62] is the sub-list for method output_type
-	18, // [18:40] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	57, // 12: admin.doctors.doctors.v1.FilterDoctorsResponse.doctors:type_name -> admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor
+	58, // 13: admin.doctors.doctors.v1.DoctorMBCHistoryResponse.items:type_name -> admin.doctors.doctors.v1.DoctorMBCHistoryResponse.MBCHistoryItem
+	2,  // 14: admin.doctors.doctors.v1.GetDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 15: admin.doctors.doctors.v1.SortDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 16: admin.doctors.doctors.v1.SearchDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 17: admin.doctors.doctors.v1.GetDoctorsByIDsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	2,  // 18: admin.doctors.doctors.v1.FilterDoctorsResponse.Doctor.cooperation_type:type_name -> admin.doctors.doctors.v1.CooperationType
+	3,  // 19: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:input_type -> admin.doctors.doctors.v1.GetDoctorsRequest
+	31, // 20: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:input_type -> admin.doctors.doctors.v1.GetDoctorsByIDsRequest
+	5,  // 21: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:input_type -> admin.doctors.doctors.v1.SortDoctorsRequest
+	7,  // 22: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:input_type -> admin.doctors.doctors.v1.SearchDoctorsRequest
+	9,  // 23: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:input_type -> admin.doctors.doctors.v1.GetDoctorByIDRequest
+	11, // 24: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:input_type -> admin.doctors.doctors.v1.UpdateDoctorRequest
+	13, // 25: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:input_type -> admin.doctors.doctors.v1.DeleteDoctorRequest
+	15, // 26: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:input_type -> admin.doctors.doctors.v1.ActivateDoctorRequest
+	17, // 27: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:input_type -> admin.doctors.doctors.v1.DeactivateDoctorRequest
+	19, // 28: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:input_type -> admin.doctors.doctors.v1.SaveDoctorPhotoRequest
+	21, // 29: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityRequest
+	23, // 30: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityRequest
+	25, // 31: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityRequest
+	27, // 32: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:input_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityRequest
+	29, // 33: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:input_type -> admin.doctors.doctors.v1.UpdateSubscribersRequest
+	33, // 34: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesRequest
+	35, // 35: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:input_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesRequest
+	37, // 36: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:input_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesRequest
+	39, // 37: admin.doctors.doctors.v1.DoctorAdminService.FilterDoctors:input_type -> admin.doctors.doctors.v1.FilterDoctorsRequest
+	41, // 38: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipActivity:input_type -> admin.doctors.doctors.v1.ChangeDoctorVipActivityRequest
+	43, // 39: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorVipInfo:input_type -> admin.doctors.doctors.v1.GetDoctorVipInfoRequest
+	45, // 40: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfo:input_type -> admin.doctors.doctors.v1.ChangeDoctorVipInfoRequest
+	47, // 41: admin.doctors.doctors.v1.DoctorAdminService.DoctorAccrueMBC:input_type -> admin.doctors.doctors.v1.DoctorAccrueMBCRequest
+	49, // 42: admin.doctors.doctors.v1.DoctorAdminService.DoctorMBCHistory:input_type -> admin.doctors.doctors.v1.DoctorMBCHistoryRequest
+	4,  // 43: admin.doctors.doctors.v1.DoctorAdminService.GetDoctors:output_type -> admin.doctors.doctors.v1.GetDoctorsResponse
+	32, // 44: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorsByIDs:output_type -> admin.doctors.doctors.v1.GetDoctorsByIDsResponse
+	6,  // 45: admin.doctors.doctors.v1.DoctorAdminService.SortDoctors:output_type -> admin.doctors.doctors.v1.SortDoctorsResponse
+	8,  // 46: admin.doctors.doctors.v1.DoctorAdminService.SearchDoctors:output_type -> admin.doctors.doctors.v1.SearchDoctorsResponse
+	10, // 47: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorByID:output_type -> admin.doctors.doctors.v1.GetDoctorByIDResponse
+	12, // 48: admin.doctors.doctors.v1.DoctorAdminService.UpdateDoctor:output_type -> admin.doctors.doctors.v1.UpdateDoctorResponse
+	14, // 49: admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctor:output_type -> admin.doctors.doctors.v1.DeleteDoctorResponse
+	16, // 50: admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctor:output_type -> admin.doctors.doctors.v1.ActivateDoctorResponse
+	18, // 51: admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctor:output_type -> admin.doctors.doctors.v1.DeactivateDoctorResponse
+	20, // 52: admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhoto:output_type -> admin.doctors.doctors.v1.SaveDoctorPhotoResponse
+	22, // 53: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalCity:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalCityResponse
+	24, // 54: admin.doctors.doctors.v1.DoctorAdminService.AddAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.AddDoctorAdditionalSpecialityResponse
+	26, // 55: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCity:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalCityResponse
+	28, // 56: admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalSpeciality:output_type -> admin.doctors.doctors.v1.DeleteDoctorAdditionalSpecialityResponse
+	30, // 57: admin.doctors.doctors.v1.DoctorAdminService.UpdateSubscribers:output_type -> admin.doctors.doctors.v1.UpdateSubscribersResponse
+	34, // 58: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalSpecialities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalSpecialitiesResponse
+	36, // 59: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorAdditionalCities:output_type -> admin.doctors.doctors.v1.GetDoctorAdditionalCitiesResponse
+	38, // 60: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorCooperationTypes:output_type -> admin.doctors.doctors.v1.GetDoctorCooperationTypesResponse
+	40, // 61: admin.doctors.doctors.v1.DoctorAdminService.FilterDoctors:output_type -> admin.doctors.doctors.v1.FilterDoctorsResponse
+	42, // 62: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipActivity:output_type -> admin.doctors.doctors.v1.ChangeDoctorVipActivityResponse
+	44, // 63: admin.doctors.doctors.v1.DoctorAdminService.GetDoctorVipInfo:output_type -> admin.doctors.doctors.v1.GetDoctorVipInfoResponse
+	46, // 64: admin.doctors.doctors.v1.DoctorAdminService.ChangeDoctorVipInfo:output_type -> admin.doctors.doctors.v1.ChangeDoctorVipInfoResponse
+	48, // 65: admin.doctors.doctors.v1.DoctorAdminService.DoctorAccrueMBC:output_type -> admin.doctors.doctors.v1.DoctorAccrueMBCResponse
+	50, // 66: admin.doctors.doctors.v1.DoctorAdminService.DoctorMBCHistory:output_type -> admin.doctors.doctors.v1.DoctorMBCHistoryResponse
+	43, // [43:67] is the sub-list for method output_type
+	19, // [19:43] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_admin_doctors_doctors_v1_admin_proto_init() }
@@ -3411,7 +3663,7 @@ func file_admin_doctors_doctors_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_doctors_doctors_v1_admin_proto_rawDesc), len(file_admin_doctors_doctors_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   54,
+			NumMessages:   59,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

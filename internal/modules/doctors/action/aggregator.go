@@ -14,6 +14,8 @@ import (
 	"medblogers_base/internal/modules/doctors/action/get_main_specialities_list"
 	"medblogers_base/internal/modules/doctors/action/get_pages_count"
 	"medblogers_base/internal/modules/doctors/action/get_seo_detail"
+	"medblogers_base/internal/modules/doctors/action/medblogers_rating"
+	"medb
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count"
 	"medblogers_base/internal/modules/doctors/action/search_doctor"
 	"medblogers_base/internal/modules/doctors/action/settings"
@@ -38,6 +40,7 @@ type Aggregator struct {
 	BlackListCheck         *blacklist_check.Action
 	BlackListCount         *blacklist_count.Action
 	DoctorVipInfo          *doctor_vip_info.Action
+	MedblogersRating       *medblogers_rating.Action
 
 	// Seo
 	GetSeoDetail *get_seo_detail.Action
@@ -61,6 +64,7 @@ func NewAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config
 		BlackListCheck:         blacklist_check.New(clients),
 		BlackListCount:         blacklist_count.New(clients),
 		DoctorVipInfo:          doctor_vip_info.New(pool),
+		MedblogersRating:       medblogers_rating.New(clients, pool),
 
 		// Seo
 		GetSeoDetail: get_seo_detail.NewAction(clients, pool),

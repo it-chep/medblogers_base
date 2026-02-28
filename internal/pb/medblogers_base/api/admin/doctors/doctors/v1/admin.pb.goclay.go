@@ -450,3 +450,39 @@ func (w *DoctorAdminServiceServiceDesc) ChangeDoctorVipInfo(ctx context.Context,
 	}
 	return resp.(*ChangeDoctorVipInfoResponse), err
 }
+
+func (w *DoctorAdminServiceServiceDesc) DoctorAccrueMBC(ctx context.Context, in *DoctorAccrueMBCRequest) (*DoctorAccrueMBCResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.DoctorAccrueMBC(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/DoctorAccrueMBC",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.DoctorAccrueMBC(ctx, req.(*DoctorAccrueMBCRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*DoctorAccrueMBCResponse), err
+}
+
+func (w *DoctorAdminServiceServiceDesc) DoctorMBCHistory(ctx context.Context, in *DoctorMBCHistoryRequest) (*DoctorMBCHistoryResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.DoctorMBCHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.doctors.doctors.v1.DoctorAdminService/DoctorMBCHistory",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.DoctorMBCHistory(ctx, req.(*DoctorMBCHistoryRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*DoctorMBCHistoryResponse), err
+}

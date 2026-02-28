@@ -33,6 +33,7 @@ const (
 	DoctorService_GetDoctorVip_FullMethodName              = "/doctor.v1.DoctorService/GetDoctorVip"
 	DoctorService_CheckCheating_FullMethodName             = "/doctor.v1.DoctorService/CheckCheating"
 	DoctorService_CheatersCount_FullMethodName             = "/doctor.v1.DoctorService/CheatersCount"
+	DoctorService_MedblogersRating_FullMethodName          = "/doctor.v1.DoctorService/MedblogersRating"
 )
 
 // DoctorServiceClient is the client API for DoctorService service.
@@ -55,6 +56,7 @@ type DoctorServiceClient interface {
 	GetDoctorVip(ctx context.Context, in *GetDoctorVipRequest, opts ...grpc.CallOption) (*GetDoctorVipResponse, error)
 	CheckCheating(ctx context.Context, in *CheckCheatingRequest, opts ...grpc.CallOption) (*CheckCheatingResponse, error)
 	CheatersCount(ctx context.Context, in *CheatersCountRequest, opts ...grpc.CallOption) (*CheatersCountResponse, error)
+	MedblogersRating(ctx context.Context, in *MedblogersRatingRequest, opts ...grpc.CallOption) (*MedblogersRatingResponse, error)
 }
 
 type doctorServiceClient struct {
@@ -205,6 +207,16 @@ func (c *doctorServiceClient) CheatersCount(ctx context.Context, in *CheatersCou
 	return out, nil
 }
 
+func (c *doctorServiceClient) MedblogersRating(ctx context.Context, in *MedblogersRatingRequest, opts ...grpc.CallOption) (*MedblogersRatingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MedblogersRatingResponse)
+	err := c.cc.Invoke(ctx, DoctorService_MedblogersRating_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorServiceServer is the server API for DoctorService service.
 // All implementations should embed UnimplementedDoctorServiceServer
 // for forward compatibility.
@@ -225,6 +237,7 @@ type DoctorServiceServer interface {
 	GetDoctorVip(context.Context, *GetDoctorVipRequest) (*GetDoctorVipResponse, error)
 	CheckCheating(context.Context, *CheckCheatingRequest) (*CheckCheatingResponse, error)
 	CheatersCount(context.Context, *CheatersCountRequest) (*CheatersCountResponse, error)
+	MedblogersRating(context.Context, *MedblogersRatingRequest) (*MedblogersRatingResponse, error)
 }
 
 // UnimplementedDoctorServiceServer should be embedded to have
@@ -275,6 +288,9 @@ func (UnimplementedDoctorServiceServer) CheckCheating(context.Context, *CheckChe
 }
 func (UnimplementedDoctorServiceServer) CheatersCount(context.Context, *CheatersCountRequest) (*CheatersCountResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheatersCount not implemented")
+}
+func (UnimplementedDoctorServiceServer) MedblogersRating(context.Context, *MedblogersRatingRequest) (*MedblogersRatingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MedblogersRating not implemented")
 }
 func (UnimplementedDoctorServiceServer) testEmbeddedByValue() {}
 
@@ -548,6 +564,24 @@ func _DoctorService_CheatersCount_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorService_MedblogersRating_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MedblogersRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).MedblogersRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorService_MedblogersRating_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).MedblogersRating(ctx, req.(*MedblogersRatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorService_ServiceDesc is the grpc.ServiceDesc for DoctorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -610,6 +644,10 @@ var DoctorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheatersCount",
 			Handler:    _DoctorService_CheatersCount_Handler,
+		},
+		{
+			MethodName: "MedblogersRating",
+			Handler:    _DoctorService_MedblogersRating_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

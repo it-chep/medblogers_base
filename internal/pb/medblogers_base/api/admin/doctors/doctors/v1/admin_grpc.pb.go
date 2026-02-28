@@ -41,6 +41,8 @@ const (
 	DoctorAdminService_ChangeDoctorVipActivity_FullMethodName         = "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipActivity"
 	DoctorAdminService_GetDoctorVipInfo_FullMethodName                = "/admin.doctors.doctors.v1.DoctorAdminService/GetDoctorVipInfo"
 	DoctorAdminService_ChangeDoctorVipInfo_FullMethodName             = "/admin.doctors.doctors.v1.DoctorAdminService/ChangeDoctorVipInfo"
+	DoctorAdminService_DoctorAccrueMBC_FullMethodName                 = "/admin.doctors.doctors.v1.DoctorAdminService/DoctorAccrueMBC"
+	DoctorAdminService_DoctorMBCHistory_FullMethodName                = "/admin.doctors.doctors.v1.DoctorAdminService/DoctorMBCHistory"
 )
 
 // DoctorAdminServiceClient is the client API for DoctorAdminService service.
@@ -72,6 +74,8 @@ type DoctorAdminServiceClient interface {
 	ChangeDoctorVipActivity(ctx context.Context, in *ChangeDoctorVipActivityRequest, opts ...grpc.CallOption) (*ChangeDoctorVipActivityResponse, error)
 	GetDoctorVipInfo(ctx context.Context, in *GetDoctorVipInfoRequest, opts ...grpc.CallOption) (*GetDoctorVipInfoResponse, error)
 	ChangeDoctorVipInfo(ctx context.Context, in *ChangeDoctorVipInfoRequest, opts ...grpc.CallOption) (*ChangeDoctorVipInfoResponse, error)
+	DoctorAccrueMBC(ctx context.Context, in *DoctorAccrueMBCRequest, opts ...grpc.CallOption) (*DoctorAccrueMBCResponse, error)
+	DoctorMBCHistory(ctx context.Context, in *DoctorMBCHistoryRequest, opts ...grpc.CallOption) (*DoctorMBCHistoryResponse, error)
 }
 
 type doctorAdminServiceClient struct {
@@ -302,6 +306,26 @@ func (c *doctorAdminServiceClient) ChangeDoctorVipInfo(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *doctorAdminServiceClient) DoctorAccrueMBC(ctx context.Context, in *DoctorAccrueMBCRequest, opts ...grpc.CallOption) (*DoctorAccrueMBCResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DoctorAccrueMBCResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_DoctorAccrueMBC_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *doctorAdminServiceClient) DoctorMBCHistory(ctx context.Context, in *DoctorMBCHistoryRequest, opts ...grpc.CallOption) (*DoctorMBCHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DoctorMBCHistoryResponse)
+	err := c.cc.Invoke(ctx, DoctorAdminService_DoctorMBCHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorAdminServiceServer is the server API for DoctorAdminService service.
 // All implementations should embed UnimplementedDoctorAdminServiceServer
 // for forward compatibility.
@@ -331,6 +355,8 @@ type DoctorAdminServiceServer interface {
 	ChangeDoctorVipActivity(context.Context, *ChangeDoctorVipActivityRequest) (*ChangeDoctorVipActivityResponse, error)
 	GetDoctorVipInfo(context.Context, *GetDoctorVipInfoRequest) (*GetDoctorVipInfoResponse, error)
 	ChangeDoctorVipInfo(context.Context, *ChangeDoctorVipInfoRequest) (*ChangeDoctorVipInfoResponse, error)
+	DoctorAccrueMBC(context.Context, *DoctorAccrueMBCRequest) (*DoctorAccrueMBCResponse, error)
+	DoctorMBCHistory(context.Context, *DoctorMBCHistoryRequest) (*DoctorMBCHistoryResponse, error)
 }
 
 // UnimplementedDoctorAdminServiceServer should be embedded to have
@@ -405,6 +431,12 @@ func (UnimplementedDoctorAdminServiceServer) GetDoctorVipInfo(context.Context, *
 }
 func (UnimplementedDoctorAdminServiceServer) ChangeDoctorVipInfo(context.Context, *ChangeDoctorVipInfoRequest) (*ChangeDoctorVipInfoResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangeDoctorVipInfo not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) DoctorAccrueMBC(context.Context, *DoctorAccrueMBCRequest) (*DoctorAccrueMBCResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DoctorAccrueMBC not implemented")
+}
+func (UnimplementedDoctorAdminServiceServer) DoctorMBCHistory(context.Context, *DoctorMBCHistoryRequest) (*DoctorMBCHistoryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DoctorMBCHistory not implemented")
 }
 func (UnimplementedDoctorAdminServiceServer) testEmbeddedByValue() {}
 
@@ -822,6 +854,42 @@ func _DoctorAdminService_ChangeDoctorVipInfo_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorAdminService_DoctorAccrueMBC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DoctorAccrueMBCRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).DoctorAccrueMBC(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_DoctorAccrueMBC_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).DoctorAccrueMBC(ctx, req.(*DoctorAccrueMBCRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DoctorAdminService_DoctorMBCHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DoctorMBCHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorAdminServiceServer).DoctorMBCHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DoctorAdminService_DoctorMBCHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorAdminServiceServer).DoctorMBCHistory(ctx, req.(*DoctorMBCHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DoctorAdminService_ServiceDesc is the grpc.ServiceDesc for DoctorAdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -916,6 +984,14 @@ var DoctorAdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeDoctorVipInfo",
 			Handler:    _DoctorAdminService_ChangeDoctorVipInfo_Handler,
+		},
+		{
+			MethodName: "DoctorAccrueMBC",
+			Handler:    _DoctorAdminService_DoctorAccrueMBC_Handler,
+		},
+		{
+			MethodName: "DoctorMBCHistory",
+			Handler:    _DoctorAdminService_DoctorMBCHistory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

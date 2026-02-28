@@ -306,3 +306,21 @@ func (w *DoctorServiceServiceDesc) CheatersCount(ctx context.Context, in *Cheate
 	}
 	return resp.(*CheatersCountResponse), err
 }
+
+func (w *DoctorServiceServiceDesc) MedblogersRating(ctx context.Context, in *MedblogersRatingRequest) (*MedblogersRatingResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.MedblogersRating(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/doctor.v1.DoctorService/MedblogersRating",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.MedblogersRating(ctx, req.(*MedblogersRatingRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*MedblogersRatingResponse), err
+}
