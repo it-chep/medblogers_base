@@ -1,6 +1,7 @@
 package dto
 
 type RatingItem struct {
+	DoctorID       int64
 	Slug           string
 	Name           string
 	S3Image        string
@@ -10,4 +11,9 @@ type RatingItem struct {
 	SpecialityID   int64
 	SpecialityName string
 	MBCCoins       int64
+}
+
+type MBC struct {
+	DoctorID int64
+	MBCCount int64
 }

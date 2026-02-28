@@ -19,7 +19,6 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_specialities"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_vip_info"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/mbc_history"
-	"med
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/save_doctor_photo"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update_subscribers"

@@ -15,7 +15,6 @@ import (
 	"medblogers_base/internal/modules/doctors/action/get_pages_count"
 	"medblogers_base/internal/modules/doctors/action/get_seo_detail"
 	"medblogers_base/internal/modules/doctors/action/medblogers_rating"
-	"medb
 	"medblogers_base/internal/modules/doctors/action/preliminary_filter_count"
 	"medblogers_base/internal/modules/doctors/action/search_doctor"
 	"medblogers_base/internal/modules/doctors/action/settings"
