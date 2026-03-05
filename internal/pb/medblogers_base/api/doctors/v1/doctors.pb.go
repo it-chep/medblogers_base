@@ -1804,7 +1804,7 @@ type GetDoctorVipResponse struct {
 	CanBuyAdvertising    bool                   `protobuf:"varint,2,opt,name=can_buy_advertising,json=canBuyAdvertising,proto3" json:"can_buy_advertising,omitempty"`
 	CanSellAdvertising   bool                   `protobuf:"varint,3,opt,name=can_sell_advertising,json=canSellAdvertising,proto3" json:"can_sell_advertising,omitempty"`
 	ShortMessage         string                 `protobuf:"bytes,4,opt,name=short_message,json=shortMessage,proto3" json:"short_message,omitempty"`
-	AdvertisingPriceFrom int64                  `protobuf:"varint,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
+	AdvertisingPriceFrom string                 `protobuf:"bytes,5,opt,name=advertising_price_from,json=advertisingPriceFrom,proto3" json:"advertising_price_from,omitempty"`
 	BlogInfo             string                 `protobuf:"bytes,6,opt,name=blog_info,json=blogInfo,proto3" json:"blog_info,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -1868,11 +1868,11 @@ func (x *GetDoctorVipResponse) GetShortMessage() string {
 	return ""
 }
 
-func (x *GetDoctorVipResponse) GetAdvertisingPriceFrom() int64 {
+func (x *GetDoctorVipResponse) GetAdvertisingPriceFrom() string {
 	if x != nil {
 		return x.AdvertisingPriceFrom
 	}
-	return 0
+	return ""
 }
 
 func (x *GetDoctorVipResponse) GetBlogInfo() string {
@@ -3163,7 +3163,7 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\x13can_buy_advertising\x18\x02 \x01(\bR\x11canBuyAdvertising\x120\n" +
 	"\x14can_sell_advertising\x18\x03 \x01(\bR\x12canSellAdvertising\x12#\n" +
 	"\rshort_message\x18\x04 \x01(\tR\fshortMessage\x124\n" +
-	"\x16advertising_price_from\x18\x05 \x01(\x03R\x14advertisingPriceFrom\x12\x1b\n" +
+	"\x16advertising_price_from\x18\x05 \x01(\tR\x14advertisingPriceFrom\x12\x1b\n" +
 	"\tblog_info\x18\x06 \x01(\tR\bblogInfo\"\x16\n" +
 	"\x14CheatersCountRequest\">\n" +
 	"\x15CheatersCountResponse\x12%\n" +

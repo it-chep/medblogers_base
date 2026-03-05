@@ -984,8 +984,7 @@
           "type": "string"
         },
         "advertisingPriceFrom": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "blogInfo": {
           "type": "string"

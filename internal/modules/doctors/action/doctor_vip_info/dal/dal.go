@@ -33,7 +33,8 @@ func (r *Repository) GetVipCardInfo(ctx context.Context, doctorID int64) (*vip_c
 		    vc.blog_info
 		from vip_card vc 
 			join docstar_site_doctor d on vc.doctor_id = d.id
-		where vc.doctor_id = $1 and d.is_vip is true
+		where vc.doctor_id = $1 
+		  and d.is_vip is true
 	`
 
 	var cardDao dao.VipCardDao
