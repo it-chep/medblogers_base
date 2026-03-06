@@ -71,6 +71,46 @@
         ]
       }
     },
+    "/api/v1/admin/doctor/{doctorId}/accure_mbc": {
+      "post": {
+        "summary": "Начислить MBS баллы врачу",
+        "operationId": "DoctorAdminService_DoctorAccrueMBC",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAccrueMBCResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorAdminService.DoctorAccrueMBCBody"
+            }
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
     "/api/v1/admin/doctor/{doctorId}/activate": {
       "post": {
         "summary": "Активация врача",
@@ -495,6 +535,38 @@
         ]
       }
     },
+    "/api/v1/admin/doctor/{doctorId}/mbc_history": {
+      "get": {
+        "summary": "История начислений врачу за послений год",
+        "operationId": "DoctorAdminService_DoctorMBCHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorMBCHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DoctorAdminService"
+        ]
+      }
+    },
     "/api/v1/admin/doctor/{doctorId}/save_photo": {
       "post": {
         "summary": "Сохранение фотографии врача",
@@ -855,6 +927,9 @@
     "admin.doctors.doctors.v1.DeleteDoctorResponse": {
       "type": "object"
     },
+    "admin.doctors.doctors.v1.DoctorAccrueMBCResponse": {
+      "type": "object"
+    },
     "admin.doctors.doctors.v1.DoctorAdminService.ActivateDoctorBody": {
       "type": "object"
     },
@@ -934,6 +1009,15 @@
     },
     "admin.doctors.doctors.v1.DoctorAdminService.DeleteDoctorBody": {
       "type": "object"
+    },
+    "admin.doctors.doctors.v1.DoctorAdminService.DoctorAccrueMBCBody": {
+      "type": "object",
+      "properties": {
+        "mbcCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.SaveDoctorPhotoBody": {
       "type": "object",
@@ -1015,6 +1099,30 @@
       "properties": {
         "updateSubscribers": {
           "$ref": "#/definitions/admin.doctors.doctors.v1.UpdateSubscribersRequest.UpdateRequest"
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorMBCHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.doctors.doctors.v1.DoctorMBCHistoryResponse.MBCHistoryItem"
+          }
+        }
+      }
+    },
+    "admin.doctors.doctors.v1.DoctorMBCHistoryResponse.MBCHistoryItem": {
+      "type": "object",
+      "properties": {
+        "mbcCount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "occurredAt": {
+          "type": "string"
         }
       }
     },

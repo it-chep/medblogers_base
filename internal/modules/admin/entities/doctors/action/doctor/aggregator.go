@@ -2,6 +2,7 @@ package doctor
 
 import (
 	"medblogers_base/internal/modules/admin/client"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/accrue_mbc"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/activate"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/add_additional_city"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/add_additional_speciality"
@@ -17,6 +18,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_cities"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_additional_specialities"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/get_doctor_vip_info"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/mbc_history"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/save_doctor_photo"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/update_subscribers"
@@ -46,6 +48,10 @@ type DoctorModuleAggregator struct {
 	GetDoctorAdditionalSpecialities *get_doctor_additional_specialities.Action
 
 	FilterDoctors *filter_doctors.Action
+
+	// mbc
+	AccrueMBC  *accrue_mbc.Action
+	MBCHistory *mbc_history.Action
 
 	// vip
 	GetDoctorVipInfo        *get_doctor_vip_info.Action
@@ -77,6 +83,10 @@ func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWra
 		GetDoctorAdditionalSpecialities: get_doctor_additional_specialities.New(pool),
 
 		FilterDoctors: filter_doctors.New(pool),
+
+		// mbc
+		AccrueMBC:  accrue_mbc.New(pool),
+		MBCHistory: mbc_history.New(pool),
 
 		// vip
 		GetDoctorVipInfo:        get_doctor_vip_info.New(pool),

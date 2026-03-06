@@ -325,6 +325,29 @@
         ]
       }
     },
+    "/api/v1/medblogers_rating": {
+      "get": {
+        "summary": "Получение рейтинга медблогерс",
+        "operationId": "DoctorService_MedblogersRating",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/doctor.v1.MedblogersRatingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "DoctorService"
+        ]
+      }
+    },
     "/api/v1/pages_count": {
       "get": {
         "summary": "Получение страниц страниц для фильтрации",
@@ -1091,6 +1114,42 @@
           "format": "int64"
         },
         "specialityName": {
+          "type": "string"
+        }
+      }
+    },
+    "doctor.v1.MedblogersRatingResponse": {
+      "type": "object",
+      "properties": {
+        "doctors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/doctor.v1.MedblogersRatingResponse.Doctor"
+          }
+        }
+      }
+    },
+    "doctor.v1.MedblogersRatingResponse.Doctor": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mbcCoins": {
+          "type": "string",
+          "format": "int64"
+        },
+        "city": {
+          "$ref": "#/definitions/doctor.v1.CityItem"
+        },
+        "speciality": {
+          "$ref": "#/definitions/doctor.v1.SpecialityItem"
+        },
+        "image": {
           "type": "string"
         }
       }

@@ -69,10 +69,12 @@ service DoctorService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Проверяет состоит ли данный канал в черном списке"};
   }
   rpc CheatersCount(CheatersCountRequest) returns (CheatersCountResponse) {
-    option (google.api.http) = {
-      get: "/api/v1/blacklist_count"
-    };
+    option (google.api.http) = {get: "/api/v1/blacklist_count"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получает количество пользователей в ЧС"};
+  }
+  rpc MedblogersRating(MedblogersRatingRequest) returns (MedblogersRatingResponse) {
+    option (google.api.http) = {get: "/api/v1/medblogers_rating"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение рейтинга медблогерс"};
   }
 }
 
@@ -424,4 +426,18 @@ message GetDoctorVipResponse {
 message CheatersCountRequest {}
 message CheatersCountResponse {
   int64 cheaters_count = 1;
+}
+
+message MedblogersRatingRequest {}
+message MedblogersRatingResponse {
+  repeated Doctor doctors = 1;
+
+  message Doctor {
+    string slug = 1;
+    string name = 2;
+    int64 mbc_coins = 3;
+    CityItem city = 4;
+    SpecialityItem speciality = 5;
+    string image = 6;
+  }
 }
