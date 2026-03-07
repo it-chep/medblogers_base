@@ -199,6 +199,7 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 		d.is_vip
 	from
     	docstar_site_doctor d
+		left join vip_card vc on vc.doctor_id = d.id
 	where 
     	d.is_active = true
         `
@@ -230,6 +231,28 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 			)`, phCounter, phCounter))
 		phValues = append(phValues, pq.Int64Array(filter.Specialities))
 		phCounter++
+	}
+
+	if filter.CanBarter {
+		whereStmtBuilder.WriteString(`and vc.can_barter is true`)
+	}
+
+	if filter.CanBuyAdv {
+		whereStmtBuilder.WriteString(`and vc.can_buy_advertising is true`)
+	}
+
+	if filter.CanSellAdv {
+		whereStmtBuilder.WriteString(`and vc.can_sell_advertising is true`)
+	}
+
+	if filter.HasBlogs {
+		whereStmtBuilder.WriteString(`
+		and exists (
+			select 1
+			from blog b
+			where b.doctor_id = d.id
+			  and b.is_active is true
+		)`)
 	}
 
 	// возвращаем для первой страницы

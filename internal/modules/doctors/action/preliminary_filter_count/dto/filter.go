@@ -10,4 +10,8 @@ type Filter struct {
 	Page         int64
 	Cities       []int64
 	Specialities []int64
+	CanBarter    bool
+	CanBuyAdv    bool
+	CanSellAdv   bool
+	HasBlogs     bool
 }
