@@ -1,6 +1,7 @@
 package doctor
 
 import (
+	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/client"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/accrue_mbc"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/activate"
@@ -8,6 +9,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/add_additional_speciality"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/change_doctor_vip_activity"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/change_vip_info"
+	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/check_expired_vip_cards"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/deactivate"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_city"
 	"medblogers_base/internal/modules/admin/entities/doctors/action/doctor/delete_additional_speciality"
@@ -57,9 +59,10 @@ type DoctorModuleAggregator struct {
 	GetDoctorVipInfo        *get_doctor_vip_info.Action
 	ChangeVipInfo           *change_vip_info.Action
 	ChangeDoctorVipActivity *change_doctor_vip_activity.Action
+	CheckExpiredVipCards    *check_expired_vip_cards.Action
 }
 
-func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWrapper) *DoctorModuleAggregator {
+func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWrapper, config config.AppConfig) *DoctorModuleAggregator {
 	return &DoctorModuleAggregator{
 		GetDoctors: get.New(pool),
 
@@ -92,5 +95,6 @@ func NewDoctorModuleAggregator(clients *client.Aggregator, pool postgres.PoolWra
 		GetDoctorVipInfo:        get_doctor_vip_info.New(pool),
 		ChangeVipInfo:           change_vip_info.New(pool),
 		ChangeDoctorVipActivity: change_doctor_vip_activity.New(clients, pool),
+		CheckExpiredVipCards:    check_expired_vip_cards.New(clients, pool, config),
 	}
 }

@@ -210,6 +210,11 @@ message FilterRequest {
   int64 page = 6;
   Sort sort = 7;
 
+  bool can_barter = 8;
+  bool can_buy_advertising = 9;
+  bool can_sell_advertising = 10;
+  bool has_blogs = 11;
+
   enum Sort {
     SUBSCRIBERS_DESC = 0;
     SUBSCRIBERS_ASC = 1;
@@ -382,6 +387,11 @@ message PreliminaryFilterCountRequest {
   repeated int64 specialities = 4;
   repeated string social_media = 5;
   int64 page = 6;
+
+  bool can_barter = 7;
+  bool can_buy_advertising = 8;
+  bool can_sell_advertising = 9;
+  bool has_blogs = 10;
 }
 
 message PreliminaryFilterCountResponse {

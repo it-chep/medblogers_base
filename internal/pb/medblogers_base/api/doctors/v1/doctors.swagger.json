@@ -295,6 +295,30 @@
               "SUBSCRIBERS_ASC"
             ],
             "default": "SUBSCRIBERS_DESC"
+          },
+          {
+            "name": "canBarter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "canBuyAdvertising",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "canSellAdvertising",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "hasBlogs",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -491,6 +515,30 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "canBarter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "canBuyAdvertising",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "canSellAdvertising",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "hasBlogs",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [

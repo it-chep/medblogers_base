@@ -36,7 +36,12 @@ func (a *Action) Do(ctx context.Context, filter dto.Filter) (int64, error) {
 	}
 
 	// Получение по фильтрам из базы если есть
-	if len(filter.Cities) != 0 || len(filter.Specialities) != 0 {
+	if len(filter.Cities) != 0 ||
+		len(filter.Specialities) != 0 ||
+		filter.CanBarter ||
+		filter.CanBuyAdv ||
+		filter.CanSellAdv ||
+		filter.HasBlogs {
 		return a.getDoctorsByCitiesAndSpecialitiesFilter(ctx, filter)
 	}
 
@@ -85,6 +90,10 @@ func (a *Action) defaultFilter(filter dto.Filter) bool {
 	if len(filter.Cities) == 0 &&
 		len(filter.Specialities) == 0 &&
 		len(filter.SocialMedia) == 0 &&
+		!filter.CanBarter &&
+		!filter.CanBuyAdv &&
+		!filter.CanSellAdv &&
+		!filter.HasBlogs &&
 		filter.MaxSubscribers == 5_000_000 &&
 		filter.MinSubscribers == 100 {
 

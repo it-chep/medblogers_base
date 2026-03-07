@@ -50,6 +50,11 @@ type Filter struct {
 	Cities       []int64
 	Specialities []int64
 
+	CanBarter  bool
+	CanBuyAdv  bool
+	CanSellAdv bool
+	HasBlogs   bool
+
 	// Сортировка
 	Sort Sort
 }

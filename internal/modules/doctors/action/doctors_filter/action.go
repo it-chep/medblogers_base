@@ -38,7 +38,12 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 // По этим ID сходить в подписчики и отфильтровать там подписчиков, тк если мы лимитом получим 30 из подписчиков,
 // то мы можем не добрать позже при фильтрации по городам и специальностям
 func (a Action) Do(ctx context.Context, filter dto.Filter) (dto.Response, error) {
-	if len(filter.Cities) != 0 || len(filter.Specialities) != 0 {
+	if len(filter.Cities) != 0 ||
+		len(filter.Specialities) != 0 ||
+		filter.CanBarter ||
+		filter.CanBuyAdv ||
+		filter.CanSellAdv ||
+		filter.HasBlogs {
 		return a.getDoctorsByCitiesAndSpecialitiesFilter(ctx, filter)
 	}
 
