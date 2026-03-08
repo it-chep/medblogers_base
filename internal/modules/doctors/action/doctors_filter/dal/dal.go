@@ -234,15 +234,15 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 	}
 
 	if filter.CanBarter {
-		whereStmtBuilder.WriteString(`and vc.can_barter is true`)
+		whereStmtBuilder.WriteString(` and vc.can_barter is true`)
 	}
 
 	if filter.CanBuyAdv {
-		whereStmtBuilder.WriteString(`and vc.can_buy_advertising is true`)
+		whereStmtBuilder.WriteString(` and vc.can_buy_advertising is true`)
 	}
 
 	if filter.CanSellAdv {
-		whereStmtBuilder.WriteString(`and vc.can_sell_advertising is true`)
+		whereStmtBuilder.WriteString(` and vc.can_sell_advertising is true`)
 	}
 
 	if filter.HasBlogs {
