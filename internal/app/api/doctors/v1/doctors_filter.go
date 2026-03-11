@@ -43,6 +43,10 @@ func (i *Implementation) requestToFilterDTO(req *desc.FilterRequest) dto.Filter 
 		Cities:         req.Cities,
 		Specialities:   req.Specialities,
 		SocialMedia:    req.SocialMedia,
+		CanBarter:      req.CanBarter,
+		CanBuyAdv:      req.CanBuyAdvertising,
+		CanSellAdv:     req.CanSellAdvertising,
+		HasBlogs:       req.HasBlogs,
 		Sort:           dto.Sort(req.Sort),
 	}
 }

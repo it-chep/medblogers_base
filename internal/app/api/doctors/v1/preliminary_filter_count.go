@@ -34,8 +34,13 @@ func (i *Implementation) requestToPreliminaryFilterDTO(req *desc.PreliminaryFilt
 	return dto.Filter{
 		MaxSubscribers: maxSubscribers,
 		MinSubscribers: minSubscribers,
-		Cities:         req.Cities,
-		Specialities:   req.Specialities,
-		SocialMedia:    req.SocialMedia,
+		Cities:         req.GetCities(),
+		Specialities:   req.GetSpecialities(),
+		SocialMedia:    req.GetSocialMedia(),
+
+		CanBarter:  req.GetCanBarter(),
+		CanBuyAdv:  req.GetCanBuyAdvertising(),
+		CanSellAdv: req.GetCanSellAdvertising(),
+		HasBlogs:   req.GetHasBlogs(),
 	}
 }
