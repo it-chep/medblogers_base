@@ -1611,14 +1611,18 @@ func (x *PreliminaryFilterCountResponse) GetDoctorsCount() int64 {
 }
 
 type PagesCountRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	MaxSubscribers int64                  `protobuf:"varint,1,opt,name=max_subscribers,json=maxSubscribers,proto3" json:"max_subscribers,omitempty"`
-	MinSubscribers int64                  `protobuf:"varint,2,opt,name=min_subscribers,json=minSubscribers,proto3" json:"min_subscribers,omitempty"`
-	Cities         []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
-	Specialities   []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
-	SocialMedia    []string               `protobuf:"bytes,5,rep,name=social_media,json=socialMedia,proto3" json:"social_media,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	MaxSubscribers     int64                  `protobuf:"varint,1,opt,name=max_subscribers,json=maxSubscribers,proto3" json:"max_subscribers,omitempty"`
+	MinSubscribers     int64                  `protobuf:"varint,2,opt,name=min_subscribers,json=minSubscribers,proto3" json:"min_subscribers,omitempty"`
+	Cities             []int64                `protobuf:"varint,3,rep,packed,name=cities,proto3" json:"cities,omitempty"`
+	Specialities       []int64                `protobuf:"varint,4,rep,packed,name=specialities,proto3" json:"specialities,omitempty"`
+	SocialMedia        []string               `protobuf:"bytes,5,rep,name=social_media,json=socialMedia,proto3" json:"social_media,omitempty"`
+	CanBarter          bool                   `protobuf:"varint,6,opt,name=can_barter,json=canBarter,proto3" json:"can_barter,omitempty"`
+	CanBuyAdvertising  bool                   `protobuf:"varint,7,opt,name=can_buy_advertising,json=canBuyAdvertising,proto3" json:"can_buy_advertising,omitempty"`
+	CanSellAdvertising bool                   `protobuf:"varint,8,opt,name=can_sell_advertising,json=canSellAdvertising,proto3" json:"can_sell_advertising,omitempty"`
+	HasBlogs           bool                   `protobuf:"varint,9,opt,name=has_blogs,json=hasBlogs,proto3" json:"has_blogs,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *PagesCountRequest) Reset() {
@@ -1684,6 +1688,34 @@ func (x *PagesCountRequest) GetSocialMedia() []string {
 		return x.SocialMedia
 	}
 	return nil
+}
+
+func (x *PagesCountRequest) GetCanBarter() bool {
+	if x != nil {
+		return x.CanBarter
+	}
+	return false
+}
+
+func (x *PagesCountRequest) GetCanBuyAdvertising() bool {
+	if x != nil {
+		return x.CanBuyAdvertising
+	}
+	return false
+}
+
+func (x *PagesCountRequest) GetCanSellAdvertising() bool {
+	if x != nil {
+		return x.CanSellAdvertising
+	}
+	return false
+}
+
+func (x *PagesCountRequest) GetHasBlogs() bool {
+	if x != nil {
+		return x.HasBlogs
+	}
+	return false
 }
 
 type PagesCountResponse struct {
@@ -3380,13 +3412,18 @@ const file_doctors_v1_doctors_proto_rawDesc = "" +
 	"\thas_blogs\x18\n" +
 	" \x01(\bR\bhasBlogs\"E\n" +
 	"\x1ePreliminaryFilterCountResponse\x12#\n" +
-	"\rdoctors_count\x18\x01 \x01(\x03R\fdoctorsCount\"\xc4\x01\n" +
+	"\rdoctors_count\x18\x01 \x01(\x03R\fdoctorsCount\"\xe2\x02\n" +
 	"\x11PagesCountRequest\x12'\n" +
 	"\x0fmax_subscribers\x18\x01 \x01(\x03R\x0emaxSubscribers\x12'\n" +
 	"\x0fmin_subscribers\x18\x02 \x01(\x03R\x0eminSubscribers\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
 	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12!\n" +
-	"\fsocial_media\x18\x05 \x03(\tR\vsocialMedia\"5\n" +
+	"\fsocial_media\x18\x05 \x03(\tR\vsocialMedia\x12\x1d\n" +
+	"\n" +
+	"can_barter\x18\x06 \x01(\bR\tcanBarter\x12.\n" +
+	"\x13can_buy_advertising\x18\a \x01(\bR\x11canBuyAdvertising\x120\n" +
+	"\x14can_sell_advertising\x18\b \x01(\bR\x12canSellAdvertising\x12\x1b\n" +
+	"\thas_blogs\x18\t \x01(\bR\bhasBlogs\"5\n" +
 	"\x12PagesCountResponse\x12\x1f\n" +
 	"\vpages_count\x18\x01 \x01(\x03R\n" +
 	"pagesCount\"2\n" +

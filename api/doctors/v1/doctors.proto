@@ -406,6 +406,11 @@ message PagesCountRequest {
   repeated int64 cities = 3;
   repeated int64 specialities = 4;
   repeated string social_media = 5;
+
+  bool can_barter = 6;
+  bool can_buy_advertising = 7;
+  bool can_sell_advertising = 8;
+  bool has_blogs = 9;
 }
 
 message PagesCountResponse {

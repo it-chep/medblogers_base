@@ -29,7 +29,11 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 
 func (a *Action) Do(ctx context.Context, filter dto.Filter) (int64, error) {
 	// Получение по фильтрам из базы если есть
-	if len(filter.Cities) != 0 || len(filter.Specialities) != 0 {
+	if len(filter.Cities) != 0 || len(filter.Specialities) != 0 ||
+		filter.CanBarter ||
+		filter.CanBuyAdv ||
+		filter.CanSellAdv ||
+		filter.HasBlogs {
 		return a.getDoctorsByCitiesAndSpecialitiesFilter(ctx, filter)
 	}
 
