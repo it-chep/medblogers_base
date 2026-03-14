@@ -11,8 +11,8 @@ import (
 //go:generate mockgen -destination=mocks/mocks.go -package=mocks . Storage
 
 type Storage interface {
-	GetDoctorAdditionalCities(ctx context.Context, doctorID doctor.MedblogersID) (map[city.CityID]*city.City, error)
-	GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) (map[speciality.SpecialityID]*speciality.Speciality, error)
+	GetDoctorAdditionalCities(ctx context.Context, doctorID doctor.MedblogersID) ([]*city.City, error)
+	GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) ([]*speciality.Speciality, error)
 }
 
 type Service struct {

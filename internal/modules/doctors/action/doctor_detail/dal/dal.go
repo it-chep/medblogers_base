@@ -26,14 +26,14 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 // GetDoctorAdditionalCities получение информации о городах доктора
-func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doctor.MedblogersID) (map[city.CityID]*city.City, error) {
+func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doctor.MedblogersID) ([]*city.City, error) {
 	logger.Message(ctx, "[Dal] Получение дополнительных городов доктора")
 	sql := `
 		select c.id, c.name
         from docstar_site_city c
-        inner join docstar_site_doctor_additional_cities dc ON c.id = dc.city_id
+        	inner join docstar_site_doctor_additional_cities dc ON c.id = dc.city_id
         where dc.doctor_id = $1
-        order by c.name
+        order by dc.id
 	`
 
 	var cities []*cityDAO.CityDAO
@@ -41,23 +41,23 @@ func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doct
 		return nil, err
 	}
 
-	result := make(map[city.CityID]*city.City, len(cities))
+	result := make([]*city.City, len(cities), 0)
 	for _, c := range cities {
-		result[city.CityID(c.ID)] = c.ToDomain()
+		result = append(result, c.ToDomain())
 	}
 
 	return result, nil
 }
 
 // GetDoctorAdditionalSpecialities получение информации о специальностях доктора
-func (r Repository) GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) (map[speciality.SpecialityID]*speciality.Speciality, error) {
+func (r Repository) GetDoctorAdditionalSpecialities(ctx context.Context, doctorID doctor.MedblogersID) ([]*speciality.Speciality, error) {
 	logger.Message(ctx, "[Dal] Получение дополнительных специальностей доктора")
 	sql := `
 		select s.id, s.name
 		from docstar_site_speciallity s
-		inner join docstar_site_doctor_additional_specialties dc ON s.id = dc.speciallity_id
+			inner join docstar_site_doctor_additional_specialties dc ON s.id = dc.speciallity_id
 		where dc.doctor_id = $1
-        order by s.name
+        order by dc.id
 	`
 
 	var specialities []*specialityDAO.SpecialityDAO
@@ -65,9 +65,9 @@ func (r Repository) GetDoctorAdditionalSpecialities(ctx context.Context, doctorI
 		return nil, err
 	}
 
-	result := make(map[speciality.SpecialityID]*speciality.Speciality, len(specialities))
+	result := make([]*speciality.Speciality, len(specialities), 0)
 	for _, s := range specialities {
-		result[speciality.SpecialityID(s.ID)] = s.ToDomain()
+		result = append(result, s.ToDomain())
 	}
 
 	return result, nil
