@@ -9,4 +9,9 @@ type Filter struct {
 	// Дефолтные фильтры
 	Cities       []int64
 	Specialities []int64
+
+	CanBarter  bool
+	CanBuyAdv  bool
+	CanSellAdv bool
+	HasBlogs   bool
 }

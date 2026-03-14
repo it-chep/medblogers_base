@@ -37,5 +37,10 @@ func (i *Implementation) requestToPagesCountDTO(req *desc.PagesCountRequest) dto
 		Cities:         req.Cities,
 		Specialities:   req.Specialities,
 		SocialMedia:    req.SocialMedia,
+
+		CanBarter:  req.GetCanBarter(),
+		CanBuyAdv:  req.GetCanBuyAdvertising(),
+		CanSellAdv: req.GetCanSellAdvertising(),
+		HasBlogs:   req.GetHasBlogs(),
 	}
 }

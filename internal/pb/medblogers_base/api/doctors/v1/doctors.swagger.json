@@ -436,6 +436,30 @@
               "type": "string"
             },
             "collectionFormat": "multi"
+          },
+          {
+            "name": "canBarter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "canBuyAdvertising",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "canSellAdvertising",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "hasBlogs",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
