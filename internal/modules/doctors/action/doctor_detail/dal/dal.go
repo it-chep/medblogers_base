@@ -41,7 +41,7 @@ func (r Repository) GetDoctorAdditionalCities(ctx context.Context, doctorID doct
 		return nil, err
 	}
 
-	result := make([]*city.City, len(cities), 0)
+	result := make([]*city.City, 0, len(cities))
 	for _, c := range cities {
 		result = append(result, c.ToDomain())
 	}
@@ -65,7 +65,7 @@ func (r Repository) GetDoctorAdditionalSpecialities(ctx context.Context, doctorI
 		return nil, err
 	}
 
-	result := make([]*speciality.Speciality, len(specialities), 0)
+	result := make([]*speciality.Speciality, 0, len(specialities))
 	for _, s := range specialities {
 		result = append(result, s.ToDomain())
 	}
