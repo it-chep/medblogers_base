@@ -245,6 +245,10 @@ func sqlStmt(filter dto.Filter) (_ string, phValues []any) {
 		whereStmtBuilder.WriteString(` and vc.can_sell_advertising is true`)
 	}
 
+	if filter.CanBarter || filter.CanBuyAdv || filter.CanSellAdv {
+		whereStmtBuilder.WriteString(` and d.is_vip is true`)
+	}
+
 	if filter.HasBlogs {
 		whereStmtBuilder.WriteString(`
 		and exists (
