@@ -132,7 +132,7 @@ func (a *App) initModules(_ context.Context) *App {
 
 func (a *App) initWorkers(_ context.Context) *App {
 	workers := []worker_pool.Worker{
-		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.PushUsersToMM, "*/5 * * * *"),
+		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.PushUsersToMM, "*/3 * * * *"),
 		worker_pool.NewWorker(a.modules.admin.Actions.MMModule.CheckSbID, "0 18 * * *"),
 		worker_pool.NewWorker(a.modules.admin.Actions.DoctorModule.DoctorAgg.CheckExpiredVipCards, "0 13 * * *"),
 	}

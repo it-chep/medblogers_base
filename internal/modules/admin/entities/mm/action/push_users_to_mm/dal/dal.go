@@ -32,7 +32,7 @@ func (r *Repository) GetNearestMM(ctx context.Context) (dto.MM, error) {
 		from mm 
 		where is_active is true 
 		  and state = $1 
-		  and mm_datetime between now() - interval '5 minutes' and now()
+		  and mm_datetime between now() and now() + interval '5 minutes'
   	`
 
 	var mm dto.MM

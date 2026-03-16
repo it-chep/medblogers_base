@@ -49,6 +49,9 @@ func (a *Action) Do(ctx context.Context) error {
 		logger.Error(ctx, "get users error", err)
 		return err
 	}
+	if len(usersToNotificate) == 0 {
+		return nil
+	}
 
 	newsletterID := uuid.New()
 	err = a.dal.CreateNewsletter(ctx, newsletterID, usersToNotificate.GetSbIDs())
