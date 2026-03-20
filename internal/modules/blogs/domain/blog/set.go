@@ -7,8 +7,8 @@ import (
 )
 
 // SetPrimaryPhotoURL сетим главную фотку
-func (b *Blog) SetPrimaryPhotoURL(photoID uuid.UUID, fileType string) {
+func (b *Blog) SetPrimaryPhotoURL(bucket string, photoID uuid.UUID, fileType string) {
 	filename := fmt.Sprintf("%s.%s", photoID.String(), fileType)
 
-	b.primaryPhotoURL = fmt.Sprintf("https://storage.yandexcloud.net/medblogers-blogs/images/%s", filename)
+	b.primaryPhotoURL = fmt.Sprintf("https://storage.yandexcloud.net/%s/images/%s", bucket, filename)
 }

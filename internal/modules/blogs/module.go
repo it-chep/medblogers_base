@@ -15,6 +15,6 @@ type Module struct {
 func NewModule(pool postgres.PoolWrapper, cfg config.AppConfig) *Module {
 	clients := client.NewAggregator(cfg)
 	return &Module{
-		Actions: action.NewAggregator(pool, clients),
+		Actions: action.NewAggregator(pool, clients, cfg),
 	}
 }

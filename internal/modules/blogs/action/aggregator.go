@@ -1,6 +1,7 @@
 package action
 
 import (
+	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/blogs/action/filter_blogs"
 	"medblogers_base/internal/modules/blogs/action/get_blog_detail"
 	"medblogers_base/internal/modules/blogs/action/get_blogs"
@@ -22,13 +23,13 @@ type Aggregator struct {
 }
 
 // NewAggregator конструктор
-func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator) *Aggregator {
+func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppConfig) *Aggregator {
 	return &Aggregator{
-		GetBlogs:           get_blogs.New(pool),
-		GetTopBlogs:        get_top_blogs.New(pool),
-		GetBlogDetail:      get_blog_detail.New(pool, clients),
-		GetDoctorBlogs:     get_doctor_blogs.New(pool),
+		GetBlogs:           get_blogs.New(pool, cfg),
+		GetTopBlogs:        get_top_blogs.New(pool, cfg),
+		GetBlogDetail:      get_blog_detail.New(pool, clients, cfg),
+		GetDoctorBlogs:     get_doctor_blogs.New(pool, cfg),
 		GetBlogsCategories: get_blogs_categories.New(pool),
-		FilterBlogs:        filter_blogs.New(pool),
+		FilterBlogs:        filter_blogs.New(pool, cfg),
 	}
 }
