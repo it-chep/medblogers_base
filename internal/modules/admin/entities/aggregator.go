@@ -43,7 +43,7 @@ func NewAggregator(httpConns map[string]http.Executor, config config.AppConfig, 
 	clients := client.NewAggregator(httpConns, config)
 
 	return &Aggregator{
-		BlogModule: blog_action.New(pool, clients),
+		BlogModule: blog_action.New(pool, clients, config),
 		MMModule:   mm_action.New(pool, clients, config),
 		DoctorModule: DoctorModule{
 			DoctorAgg:     doctor_action.NewDoctorModuleAggregator(clients, pool, config),

@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/client"
 	"medblogers_base/internal/modules/admin/entities/blog/action/save_blog_image/dal"
 	"medblogers_base/internal/pkg/postgres"
@@ -18,15 +19,21 @@ type S3 interface {
 	PutBlogPhoto(ctx context.Context, file io.Reader, filename string) (string, error)
 }
 
+type Config interface {
+	GetS3Config() config.S3Config
+}
+
 type Action struct {
 	s3Gateway S3
 	dal       *dal.Repository
+	config    Config
 }
 
-func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppConfig) *Action {
 	return &Action{
 		dal:       dal.NewRepository(pool),
 		s3Gateway: clients.S3,
+		config:    cfg,
 	}
 }
 
@@ -49,5 +56,7 @@ func (a *Action) Do(ctx context.Context, blogID uuid.UUID, imageData []byte) (uu
 	}
 
 	// todo некрасиво поправить хардкод
-	return imageID, fmt.Sprintf("https://storage.yandexcloud.net/medblogers-blogs/images/%s", filename), nil
+	blogsBucket := a.config.GetS3Config().Bucket.Blogs
+
+	return imageID, fmt.Sprintf("https://storage.yandexcloud.net/%s/images/%s", blogsBucket, filename), nil
 }

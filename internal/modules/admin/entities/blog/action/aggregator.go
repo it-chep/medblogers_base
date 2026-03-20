@@ -1,6 +1,7 @@
 package action
 
 import (
+	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/client"
 	"medblogers_base/internal/modules/admin/entities/blog/action/add_blog_category"
 	"medblogers_base/internal/modules/admin/entities/blog/action/create_draft_blog"
@@ -34,12 +35,12 @@ type BlogModuleAggregator struct {
 	GetCategories      *get_categories.Action
 }
 
-func New(pool postgres.PoolWrapper, clients *client.Aggregator) *BlogModuleAggregator {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppConfig) *BlogModuleAggregator {
 	return &BlogModuleAggregator{
 		CreateDraftBlog: create_draft_blog.New(pool),
 		UpdateDraftBlog: update_draft_blog.New(pool),
 
-		SaveBlogImage:   save_blog_image.New(pool, clients),
+		SaveBlogImage:   save_blog_image.New(pool, clients, cfg),
 		DeleteBlogImage: delete_blog_image.New(pool, clients),
 
 		GetBlogs:    get_blogs.New(pool),
