@@ -11,11 +11,13 @@ import (
 	"google.golang.org/grpc/metadata"
 	blogAdminV1 "medblogers_base/internal/app/api/admin/blog/v1"
 	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
+	settingsAdminV1 "medblogers_base/internal/app/api/admin/settings/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
+	settingsV1 "medblogers_base/internal/app/api/settings/v1"
 
 	"medblogers_base/internal/pkg/worker_pool"
 
@@ -37,7 +39,9 @@ import (
 	freelancerNetworkAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/network/v1"
 	freelancerSpecialityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/speciality/v1"
 
+	settingsAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/settings/v1"
 	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
+	settingsDesc "medblogers_base/internal/pb/medblogers_base/api/settings/v1"
 
 	"medblogers_base/internal/app/middleware"
 	moduleAuth "medblogers_base/internal/modules/auth"
@@ -56,6 +60,7 @@ import (
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
 	moduleSeo "medblogers_base/internal/modules/seo"
+	moduleSettings "medblogers_base/internal/modules/settings"
 
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -125,6 +130,7 @@ func (a *App) initModules(_ context.Context) *App {
 		auth:        moduleAuth.New(a.postgres),
 		blogs:       moduleBlogs.NewModule(a.postgres, a.config),
 		seo:         moduleSeo.New(a.postgres),
+		settings:    moduleSettings.New(a.postgres, a.config),
 	}
 
 	return a
@@ -151,6 +157,7 @@ func (a *App) initControllers(_ context.Context) *App {
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
+		settingsDesc.NewSettingsServiceServiceDesc(settingsV1.New(a.modules.settings)),
 
 		// ADMIN
 		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
@@ -163,6 +170,7 @@ func (a *App) initControllers(_ context.Context) *App {
 		freelancerCityAdminDesc.NewFreelancerAdminCityServiceServiceDesc(freelancerCityAdminV1.New(a.modules.admin, a.modules.auth)),
 		freelancerSpecialityAdminDesc.NewFreelancerAdminSpecialityServiceServiceDesc(freelancerSpecialityAdminV1.New(a.modules.admin, a.modules.auth)),
 		freelancerNetworkAdminDesc.NewFreelancerAdminNetworksServiceServiceDesc(freelancerNetworkAdminV1.New(a.modules.admin, a.modules.auth)),
+		settingsAdminDesc.NewBannerAdminServiceServiceDesc(settingsAdminV1.New(a.modules.admin, a.modules.auth, a.config)),
 	}
 
 	return a

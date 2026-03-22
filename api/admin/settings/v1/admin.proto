@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package admin.settings.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/admin/settings/v1";
+
+service BannerAdminService {
+  rpc GetBanners(GetBannersRequest) returns (GetBannersResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/banners"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение всех баннеров"};
+  }
+
+  rpc GetBannerByID(GetBannerByIDRequest) returns (GetBannerByIDResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/banner/{banner_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение баннера по id"};
+  }
+
+  rpc CreateBanner(CreateBannerRequest) returns (CreateBannerResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/banner/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание баннера"};
+  }
+
+  rpc UpdateBanner(UpdateBannerRequest) returns (UpdateBannerResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/banner/{banner_id}/update"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление баннера"};
+  }
+
+  rpc ActivateBanner(ActivateBannerRequest) returns (ActivateBannerResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/banner/{banner_id}/activate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Активация баннера"};
+  }
+
+  rpc DeactivateBanner(DeactivateBannerRequest) returns (DeactivateBannerResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/banner/{banner_id}/deactivate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Деактивация баннера"};
+  }
+
+  rpc SaveBannerDesktopImage(SaveBannerDesktopImageRequest) returns (SaveBannerDesktopImageResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/banner/{banner_id}/save_desktop_image"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сохранение desktop картинки баннера"};
+  }
+
+  rpc SaveBannerMobileImage(SaveBannerMobileImageRequest) returns (SaveBannerMobileImageResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/banner/{banner_id}/save_mobile_image"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сохранение mobile картинки баннера"};
+  }
+}
+
+message Banner {
+  int64 id = 1;
+  string name = 2;
+  bool is_active = 3;
+  int64 ordering_number = 4;
+  string desktop_image = 5;
+  string desktop_file_type = 6;
+  string mobile_image = 7;
+  string mobile_file_type = 8;
+  string banner_link = 9;
+}
+
+message GetBannersRequest {}
+
+message GetBannersResponse {
+  repeated Banner banners = 1;
+}
+
+message GetBannerByIDRequest {
+  int64 banner_id = 1;
+}
+
+message GetBannerByIDResponse {
+  Banner banner = 1;
+}
+
+message CreateBannerRequest {
+  string name = 1;
+  int64 ordering_number = 2;
+  string banner_link = 3;
+}
+
+message CreateBannerResponse {
+  int64 banner_id = 1;
+}
+
+message UpdateBannerRequest {
+  int64 banner_id = 1;
+  string name = 2;
+  int64 ordering_number = 3;
+  string banner_link = 4;
+}
+
+message UpdateBannerResponse {}
+
+message ActivateBannerRequest {
+  int64 banner_id = 1;
+}
+
+message ActivateBannerResponse {}
+
+message DeactivateBannerRequest {
+  int64 banner_id = 1;
+}
+
+message DeactivateBannerResponse {}
+
+message SaveBannerDesktopImageRequest {
+  int64 banner_id = 1;
+  string image_data = 2;
+}
+
+message SaveBannerDesktopImageResponse {
+  string image = 1;
+}
+
+message SaveBannerMobileImageRequest {
+  int64 banner_id = 1;
+  string image_data = 2;
+}
+
+message SaveBannerMobileImageResponse {
+  string image = 1;
+}

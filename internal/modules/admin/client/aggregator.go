@@ -21,6 +21,7 @@ func NewAggregator(httpConns map[string]pkgHttp.Executor, cfg config.AppConfig) 
 			cfg.GetFreelancersPhotosBucket(),
 			cfg.GetUserPhotosBucket(),
 			cfg.GetBlogsPhotosBucket(),
+			cfg.GetSettingsBucket(),
 			s3.NewS3Client(cfg.GetS3Config()),
 			s3.NewPresignClient(cfg.GetS3Config()),
 		),

@@ -38,6 +38,7 @@ type Gateway struct {
 	freelancersBucketName string // todo сделать общую структуру с баскетами
 	doctorsBucketName     string
 	blogsBucketName       string
+	settingsBucketName    string
 	region                string
 	client                S3Client
 	presignClient         S3PresignClient
@@ -87,13 +88,14 @@ func NewPresignClient(cfg config.S3Config) S3PresignClient {
 }
 
 // NewGateway .
-func NewGateway(freelancerBucketName, doctorsBucketName, blogsBucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
+func NewGateway(freelancerBucketName, doctorsBucketName, blogsBucketName, settingsBucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
 	return &Gateway{
 		client:                client,
 		presignClient:         presignClient,
 		freelancersBucketName: freelancerBucketName,
 		doctorsBucketName:     doctorsBucketName,
 		blogsBucketName:       blogsBucketName,
+		settingsBucketName:    settingsBucketName,
 	}
 }
 
@@ -118,6 +120,10 @@ func (g *Gateway) GetFreelancerPhotoLink(s3Key string) string {
 
 func (g *Gateway) GetDoctorPhotoLink(s3Key string) string {
 	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.doctorsBucketName, s3Key)
+}
+
+func (g *Gateway) GetSettingsPhotoLink(s3Key string) string {
+	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.settingsBucketName, s3Key)
 }
 
 // PutBlogPhoto загружает фотографию в хранилище
@@ -156,6 +162,46 @@ func (g *Gateway) DelBlogPhoto(ctx context.Context, filename string) error {
 	// Удаляем файл из S3
 	_, err := g.client.DeleteObject(ctx, &s3.DeleteObjectInput{
 		Bucket: aws.String(g.blogsBucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		return fmt.Errorf("failed to delete file: %w", err)
+	}
+
+	return nil
+}
+
+func (g *Gateway) PutSettingsPhoto(ctx context.Context, file io.Reader, filename string) (string, error) {
+	ext := filepath.Ext(filename)
+	contentType := mime.TypeByExtension(ext)
+	if contentType == "" {
+		contentType = "application/octet-stream"
+	}
+
+	objectKey := fmt.Sprintf("images/%s", filename)
+
+	_, err := g.client.PutObject(ctx, &s3.PutObjectInput{
+		Bucket:      aws.String(g.settingsBucketName),
+		Key:         lo.ToPtr(objectKey),
+		Body:        file,
+		ContentType: aws.String(contentType),
+		Metadata: map[string]string{
+			"uploaded_at": time.Now().Format(time.RFC3339),
+			"origin_name": filename,
+		},
+	})
+	if err != nil {
+		return "", fmt.Errorf("failed to upload file: %w", err)
+	}
+
+	return objectKey, nil
+}
+
+func (g *Gateway) DelSettingsPhoto(ctx context.Context, filename string) error {
+	objectKey := fmt.Sprintf("images/%s", filename)
+
+	_, err := g.client.DeleteObject(ctx, &s3.DeleteObjectInput{
+		Bucket: aws.String(g.settingsBucketName),
 		Key:    aws.String(objectKey),
 	})
 	if err != nil {

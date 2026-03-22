@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package settings.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/settings/v1";
+
+service SettingsService {
+  rpc GetBanners(GetBannersRequest) returns (GetBannersResponse) {
+    option (google.api.http) = {get: "/api/v1/settings/banners"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение активных баннеров"};
+  }
+}
+
+message GetBannersRequest {}
+
+message GetBannersResponse {
+  repeated Banner banners = 1;
+
+  message Banner {
+    int64 id = 1;
+    string name = 2;
+    int64 ordering_number = 3;
+    string desktop_image = 4;
+    string desktop_file_type = 5;
+    string mobile_image = 6;
+    string mobile_file_type = 7;
+    string banner_link = 8;
+  }
+}

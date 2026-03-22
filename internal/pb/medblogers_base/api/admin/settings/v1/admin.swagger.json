@@ -1,0 +1,478 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/settings/v1/admin.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BannerAdminService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/banner/create": {
+      "post": {
+        "summary": "Создание баннера",
+        "operationId": "BannerAdminService_CreateBanner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.CreateBannerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.CreateBannerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banner/{bannerId}": {
+      "get": {
+        "summary": "Получение баннера по id",
+        "operationId": "BannerAdminService_GetBannerByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.GetBannerByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bannerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banner/{bannerId}/activate": {
+      "post": {
+        "summary": "Активация баннера",
+        "operationId": "BannerAdminService_ActivateBanner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.ActivateBannerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bannerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.BannerAdminService.ActivateBannerBody"
+            }
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banner/{bannerId}/deactivate": {
+      "post": {
+        "summary": "Деактивация баннера",
+        "operationId": "BannerAdminService_DeactivateBanner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.DeactivateBannerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bannerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.BannerAdminService.DeactivateBannerBody"
+            }
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banner/{bannerId}/save_desktop_image": {
+      "post": {
+        "summary": "Сохранение desktop картинки баннера",
+        "operationId": "BannerAdminService_SaveBannerDesktopImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.SaveBannerDesktopImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bannerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.BannerAdminService.SaveBannerDesktopImageBody"
+            }
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banner/{bannerId}/save_mobile_image": {
+      "post": {
+        "summary": "Сохранение mobile картинки баннера",
+        "operationId": "BannerAdminService_SaveBannerMobileImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.SaveBannerMobileImageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bannerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.BannerAdminService.SaveBannerMobileImageBody"
+            }
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banner/{bannerId}/update": {
+      "post": {
+        "summary": "Обновление баннера",
+        "operationId": "BannerAdminService_UpdateBanner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.UpdateBannerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bannerId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.BannerAdminService.UpdateBannerBody"
+            }
+          }
+        ],
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/banners": {
+      "get": {
+        "summary": "Получение всех баннеров",
+        "operationId": "BannerAdminService_GetBanners",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.settings.v1.GetBannersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "BannerAdminService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.settings.v1.ActivateBannerResponse": {
+      "type": "object"
+    },
+    "admin.settings.v1.Banner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "orderingNumber": {
+          "type": "string",
+          "format": "int64"
+        },
+        "desktopImage": {
+          "type": "string"
+        },
+        "desktopFileType": {
+          "type": "string"
+        },
+        "mobileImage": {
+          "type": "string"
+        },
+        "mobileFileType": {
+          "type": "string"
+        },
+        "bannerLink": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.BannerAdminService.ActivateBannerBody": {
+      "type": "object"
+    },
+    "admin.settings.v1.BannerAdminService.DeactivateBannerBody": {
+      "type": "object"
+    },
+    "admin.settings.v1.BannerAdminService.SaveBannerDesktopImageBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.BannerAdminService.SaveBannerMobileImageBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.BannerAdminService.UpdateBannerBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "orderingNumber": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bannerLink": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.CreateBannerRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "orderingNumber": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bannerLink": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.CreateBannerResponse": {
+      "type": "object",
+      "properties": {
+        "bannerId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.settings.v1.DeactivateBannerResponse": {
+      "type": "object"
+    },
+    "admin.settings.v1.GetBannerByIDResponse": {
+      "type": "object",
+      "properties": {
+        "banner": {
+          "$ref": "#/definitions/admin.settings.v1.Banner"
+        }
+      }
+    },
+    "admin.settings.v1.GetBannersResponse": {
+      "type": "object",
+      "properties": {
+        "banners": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.settings.v1.Banner"
+          }
+        }
+      }
+    },
+    "admin.settings.v1.SaveBannerDesktopImageResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.SaveBannerMobileImageResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.settings.v1.UpdateBannerResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

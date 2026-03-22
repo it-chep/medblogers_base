@@ -8,6 +8,7 @@ import (
 	"medblogers_base/internal/modules/blogs"
 	"medblogers_base/internal/modules/freelancers"
 	"medblogers_base/internal/modules/seo"
+	"medblogers_base/internal/modules/settings"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
 	"medblogers_base/internal/pkg/postgres"
@@ -30,6 +31,7 @@ type modules struct {
 	freelancers *freelancers.Module
 	blogs       *blogs.Module
 	seo         *seo.Module
+	settings    *settings.Module
 }
 
 type App struct {
