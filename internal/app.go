@@ -7,6 +7,7 @@ import (
 	"medblogers_base/internal/modules/auth"
 	"medblogers_base/internal/modules/blogs"
 	"medblogers_base/internal/modules/freelancers"
+	"medblogers_base/internal/modules/promo_offers"
 	"medblogers_base/internal/modules/seo"
 	pkgConfig "medblogers_base/internal/pkg/config"
 	pkgHttp "medblogers_base/internal/pkg/http"
@@ -29,6 +30,7 @@ type modules struct {
 	doctors     *doctors.Module
 	freelancers *freelancers.Module
 	blogs       *blogs.Module
+	promoOffers *promo_offers.Module
 	seo         *seo.Module
 }
 

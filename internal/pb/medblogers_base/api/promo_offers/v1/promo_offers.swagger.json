@@ -1,0 +1,519 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "promo_offers/v1/promo_offers.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PromoOffersService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/promo_offers/brand/{brandSlug}": {
+      "get": {
+        "summary": "Карточка бренда",
+        "operationId": "PromoOffersService_GetBrandCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.GetBrandCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    },
+    "/api/v1/promo_offers/brands/filter": {
+      "post": {
+        "summary": "Фильтрация брендов",
+        "operationId": "PromoOffersService_FilterBrands",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.FilterBrandsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.FilterBrandsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    },
+    "/api/v1/promo_offers/filter": {
+      "post": {
+        "summary": "Фильтрация промо-офферов",
+        "operationId": "PromoOffersService_FilterOffers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.FilterOffersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.FilterOffersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    },
+    "/api/v1/promo_offers/filter/settings": {
+      "post": {
+        "summary": "Доступные фильтры по промо-офферам",
+        "operationId": "PromoOffersService_GetFilterSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.GetFilterSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.GetFilterSettingsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    },
+    "/api/v1/promo_offers/offer/{offerId}": {
+      "get": {
+        "summary": "Карточка оффера",
+        "operationId": "PromoOffersService_GetOfferCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.GetOfferCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "promo_offers.v1.BrandItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "topic": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "website": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.BrandSocialNetworkItem"
+          }
+        }
+      }
+    },
+    "promo_offers.v1.BrandPreview": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        }
+      }
+    },
+    "promo_offers.v1.BrandSocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "promo_offers.v1.FilterBrandsRequest": {
+      "type": "object",
+      "properties": {
+        "topicIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "socialNetworkIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "query": {
+          "type": "string"
+        },
+        "page": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "promo_offers.v1.FilterBrandsResponse": {
+      "type": "object",
+      "properties": {
+        "brands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.BrandItem"
+          }
+        }
+      }
+    },
+    "promo_offers.v1.FilterCountItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "offersCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "promo_offers.v1.FilterOffersRequest": {
+      "type": "object",
+      "properties": {
+        "cooperationTypeIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "topicIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "socialNetworkIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "contentFormatIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "brandIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "query": {
+          "type": "string"
+        },
+        "priceFrom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "priceTo": {
+          "type": "string",
+          "format": "int64"
+        },
+        "page": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "promo_offers.v1.FilterOffersResponse": {
+      "type": "object",
+      "properties": {
+        "offers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.OfferItem"
+          }
+        }
+      }
+    },
+    "promo_offers.v1.GetBrandCardResponse": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/promo_offers.v1.BrandItem"
+        }
+      }
+    },
+    "promo_offers.v1.GetFilterSettingsRequest": {
+      "type": "object"
+    },
+    "promo_offers.v1.GetFilterSettingsResponse": {
+      "type": "object",
+      "properties": {
+        "cooperationTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.FilterCountItem"
+          }
+        },
+        "all": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "promo_offers.v1.GetOfferCardResponse": {
+      "type": "object",
+      "properties": {
+        "offer": {
+          "$ref": "#/definitions/promo_offers.v1.OfferItem"
+        }
+      }
+    },
+    "promo_offers.v1.NamedItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "promo_offers.v1.OfferItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string",
+          "format": "int64"
+        },
+        "publicationDate": {
+          "type": "string"
+        },
+        "adMarkingResponsible": {
+          "type": "string"
+        },
+        "responsesCapacity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "topic": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "contentFormat": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "brand": {
+          "$ref": "#/definitions/promo_offers.v1.BrandPreview"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.SocialNetworkItem"
+          }
+        }
+      }
+    },
+    "promo_offers.v1.SocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ import (
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
 	freelancersV1 "medblogers_base/internal/app/api/freelancers/v1"
+	promoOffersV1 "medblogers_base/internal/app/api/promo_offers/v1"
 	seoV1 "medblogers_base/internal/app/api/seo/v1"
 
 	"medblogers_base/internal/pkg/worker_pool"
@@ -46,6 +47,7 @@ import (
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
+	promoOffersDesc "medblogers_base/internal/pb/medblogers_base/api/promo_offers/v1"
 	seoDesc "medblogers_base/internal/pb/medblogers_base/api/seo/v1"
 	"medblogers_base/internal/pkg/token"
 
@@ -55,6 +57,7 @@ import (
 	moduleBlogs "medblogers_base/internal/modules/blogs"
 	moduledoctors "medblogers_base/internal/modules/doctors"
 	moduleFreelancers "medblogers_base/internal/modules/freelancers"
+	modulePromoOffers "medblogers_base/internal/modules/promo_offers"
 	moduleSeo "medblogers_base/internal/modules/seo"
 
 	pkgConfig "medblogers_base/internal/pkg/config"
@@ -124,6 +127,7 @@ func (a *App) initModules(_ context.Context) *App {
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
 		auth:        moduleAuth.New(a.postgres),
 		blogs:       moduleBlogs.NewModule(a.postgres, a.config),
+		promoOffers: modulePromoOffers.New(a.postgres),
 		seo:         moduleSeo.New(a.postgres),
 	}
 
@@ -150,6 +154,7 @@ func (a *App) initControllers(_ context.Context) *App {
 		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
+		promoOffersDesc.NewPromoOffersServiceServiceDesc(promoOffersV1.NewService(a.modules.promoOffers)),
 		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
 
 		// ADMIN
