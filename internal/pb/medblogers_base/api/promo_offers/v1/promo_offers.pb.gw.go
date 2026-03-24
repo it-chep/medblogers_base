@@ -155,6 +155,45 @@ func local_request_PromoOffersService_GetBrandCard_0(ctx context.Context, marsha
 	return msg, metadata, err
 }
 
+func request_PromoOffersService_GetBrandOffers_0(ctx context.Context, marshaler runtime.Marshaler, client PromoOffersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetBrandOffersRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["brand_slug"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "brand_slug")
+	}
+	protoReq.BrandSlug, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "brand_slug", err)
+	}
+	msg, err := client.GetBrandOffers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PromoOffersService_GetBrandOffers_0(ctx context.Context, marshaler runtime.Marshaler, server PromoOffersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetBrandOffersRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["brand_slug"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "brand_slug")
+	}
+	protoReq.BrandSlug, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "brand_slug", err)
+	}
+	msg, err := server.GetBrandOffers(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_PromoOffersService_GetOfferCard_0(ctx context.Context, marshaler runtime.Marshaler, client PromoOffersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetOfferCardRequest
@@ -279,6 +318,26 @@ func RegisterPromoOffersServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 		forward_PromoOffersService_GetBrandCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_PromoOffersService_GetBrandOffers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/promo_offers.v1.PromoOffersService/GetBrandOffers", runtime.WithHTTPPathPattern("/api/v1/promo_offers/brand/{brand_slug}/offers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PromoOffersService_GetBrandOffers_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersService_GetBrandOffers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodGet, pattern_PromoOffersService_GetOfferCard_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -408,6 +467,23 @@ func RegisterPromoOffersServiceHandlerClient(ctx context.Context, mux *runtime.S
 		}
 		forward_PromoOffersService_GetBrandCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_PromoOffersService_GetBrandOffers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/promo_offers.v1.PromoOffersService/GetBrandOffers", runtime.WithHTTPPathPattern("/api/v1/promo_offers/brand/{brand_slug}/offers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PromoOffersService_GetBrandOffers_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersService_GetBrandOffers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_PromoOffersService_GetOfferCard_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -433,6 +509,7 @@ var (
 	pattern_PromoOffersService_FilterOffers_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "promo_offers", "filter"}, ""))
 	pattern_PromoOffersService_FilterBrands_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "promo_offers", "brands", "filter"}, ""))
 	pattern_PromoOffersService_GetBrandCard_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "promo_offers", "brand", "brand_slug"}, ""))
+	pattern_PromoOffersService_GetBrandOffers_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "promo_offers", "brand", "brand_slug", "offers"}, ""))
 	pattern_PromoOffersService_GetOfferCard_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "promo_offers", "offer", "offer_id"}, ""))
 )
 
@@ -441,5 +518,6 @@ var (
 	forward_PromoOffersService_FilterOffers_0      = runtime.ForwardResponseMessage
 	forward_PromoOffersService_FilterBrands_0      = runtime.ForwardResponseMessage
 	forward_PromoOffersService_GetBrandCard_0      = runtime.ForwardResponseMessage
+	forward_PromoOffersService_GetBrandOffers_0    = runtime.ForwardResponseMessage
 	forward_PromoOffersService_GetOfferCard_0      = runtime.ForwardResponseMessage
 )

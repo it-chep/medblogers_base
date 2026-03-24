@@ -4,6 +4,7 @@ import (
 	"time"
 
 	brandDetailDTO "medblogers_base/internal/modules/promo_offers/action/brand_detail/dto"
+	brandOffersDTO "medblogers_base/internal/modules/promo_offers/action/brand_offers/dto"
 	filterBrandsDTO "medblogers_base/internal/modules/promo_offers/action/filter_brands/dto"
 	filterOffersDTO "medblogers_base/internal/modules/promo_offers/action/filter_offers/dto"
 	filterSettingsDTO "medblogers_base/internal/modules/promo_offers/action/filter_settings/dto"
@@ -39,6 +40,18 @@ func newGetBrandCardResponse(item *brandDetailDTO.Brand) *desc.GetBrandCardRespo
 	return &desc.GetBrandCardResponse{
 		Brand: newBrandItemFromDetail(item),
 	}
+}
+
+func newGetBrandOffersResponse(resp brandOffersDTO.Response) *desc.GetBrandOffersResponse {
+	result := &desc.GetBrandOffersResponse{
+		Offers: make([]*desc.OfferItem, 0, len(resp.Offers)),
+	}
+
+	for _, item := range resp.Offers {
+		result.Offers = append(result.Offers, newOfferItemFromBrandOffers(item))
+	}
+
+	return result
 }
 
 func newGetOfferCardResponse(item *offerDetailDTO.Offer) *desc.GetOfferCardResponse {
@@ -108,6 +121,33 @@ func newOfferItemFromDetail(item *offerDetailDTO.Offer) *desc.OfferItem {
 		Topic:                newNamedItemFromDetail(item.Topic),
 		ContentFormat:        newNamedItemFromDetail(item.ContentFormat),
 		Brand:                newBrandPreviewFromDetail(item.Brand),
+		SocialNetworks:       make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
+	}
+
+	for _, social := range item.SocialNetworks {
+		resp.SocialNetworks = append(resp.SocialNetworks, &desc.SocialNetworkItem{
+			Id:   social.ID,
+			Name: social.Name,
+			Slug: social.Slug,
+		})
+	}
+
+	return resp
+}
+
+func newOfferItemFromBrandOffers(item brandOffersDTO.Offer) *desc.OfferItem {
+	resp := &desc.OfferItem{
+		Id:                   item.ID,
+		Title:                item.Title,
+		Description:          item.Description,
+		Price:                item.Price,
+		PublicationDate:      formatDate(item.PublicationDate),
+		AdMarkingResponsible: item.AdMarkingResponsible,
+		ResponsesCapacity:    item.ResponsesCapacity,
+		CooperationType:      newNamedItemFromBrandOffers(item.CooperationType),
+		Topic:                newNamedItemFromBrandOffers(item.Topic),
+		ContentFormat:        newNamedItemFromBrandOffers(item.ContentFormat),
+		Brand:                newBrandPreviewFromBrandOffers(item.Brand),
 		SocialNetworks:       make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
@@ -196,6 +236,17 @@ func newNamedItemFromDetail(item *offerDetailDTO.NamedItem) *desc.NamedItem {
 	}
 }
 
+func newNamedItemFromBrandOffers(item *brandOffersDTO.NamedItem) *desc.NamedItem {
+	if item == nil {
+		return nil
+	}
+
+	return &desc.NamedItem{
+		Id:   item.ID,
+		Name: item.Name,
+	}
+}
+
 func newTopicFromFilter(item *filterBrandsDTO.Topic) *desc.NamedItem {
 	if item == nil {
 		return nil
@@ -232,6 +283,19 @@ func newBrandPreviewFromFilter(item *filterOffersDTO.BrandPreview) *desc.BrandPr
 }
 
 func newBrandPreviewFromDetail(item *offerDetailDTO.BrandPreview) *desc.BrandPreview {
+	if item == nil {
+		return nil
+	}
+
+	return &desc.BrandPreview{
+		Id:    item.ID,
+		Title: item.Title,
+		Slug:  item.Slug,
+		Photo: item.Photo,
+	}
+}
+
+func newBrandPreviewFromBrandOffers(item *brandOffersDTO.BrandPreview) *desc.BrandPreview {
 	if item == nil {
 		return nil
 	}

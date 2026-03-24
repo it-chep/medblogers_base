@@ -12,9 +12,18 @@ import (
 	"medblogers_base/internal/pkg/postgres"
 )
 
+type ActionDal interface {
+	GetAllCount(ctx context.Context) (int64, error)
+	GetCooperationTypeCounts(ctx context.Context) ([]dto.CountItem, error)
+}
+
+type CommonDal interface {
+	GetCooperationTypesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+}
+
 type Action struct {
-	repository *actionDal.Repository
-	commonDal  *commonDal.Repository
+	repository ActionDal
+	commonDal  CommonDal
 }
 
 func New(pool postgres.PoolWrapper) *Action {

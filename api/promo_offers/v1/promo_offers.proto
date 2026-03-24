@@ -37,6 +37,11 @@ service PromoOffersService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка бренда"};
   }
 
+  rpc GetBrandOffers(GetBrandOffersRequest) returns (GetBrandOffersResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offers/brand/{brand_slug}/offers"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Офферы конкретного бренда"};
+  }
+
   rpc GetOfferCard(GetOfferCardRequest) returns (GetOfferCardResponse) {
     option (google.api.http) = {get: "/api/v1/promo_offers/offer/{offer_id}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка оффера"};
@@ -129,6 +134,14 @@ message GetBrandCardRequest {
 
 message GetBrandCardResponse {
   BrandItem brand = 1;
+}
+
+message GetBrandOffersRequest {
+  string brand_slug = 1;
+}
+
+message GetBrandOffersResponse {
+  repeated OfferItem offers = 1;
 }
 
 message GetOfferCardRequest {

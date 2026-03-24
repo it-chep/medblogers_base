@@ -9,14 +9,28 @@ import (
 	"medblogers_base/internal/modules/promo_offers/action/offer_detail/dto"
 	commonDal "medblogers_base/internal/modules/promo_offers/dal"
 	commonDAO "medblogers_base/internal/modules/promo_offers/dal/dao"
+	brandDomain "medblogers_base/internal/modules/promo_offers/domain/brand"
+	offerDomain "medblogers_base/internal/modules/promo_offers/domain/offer"
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
 
+type ActionDal interface {
+	GetOfferByID(ctx context.Context, id uuid.UUID) (*offerDomain.Offer, error)
+}
+
+type CommonDal interface {
+	GetCooperationTypesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetContentFormatsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64]*brandDomain.Brand, error)
+	GetOfferSocialNetworks(ctx context.Context, offerIDs []uuid.UUID) (map[uuid.UUID][]commonDAO.OfferSocialNetworkDAO, error)
+}
+
 type Action struct {
-	repository *actionDal.Repository
-	commonDal  *commonDal.Repository
+	repository ActionDal
+	commonDal  CommonDal
 }
 
 func New(pool postgres.PoolWrapper) *Action {

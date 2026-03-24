@@ -47,6 +47,37 @@
         ]
       }
     },
+    "/api/v1/promo_offers/brand/{brandSlug}/offers": {
+      "get": {
+        "summary": "Офферы конкретного бренда",
+        "operationId": "PromoOffersService_GetBrandOffers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.GetBrandOffersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    },
     "/api/v1/promo_offers/brands/filter": {
       "post": {
         "summary": "Фильтрация брендов",
@@ -411,6 +442,18 @@
       "properties": {
         "brand": {
           "$ref": "#/definitions/promo_offers.v1.BrandItem"
+        }
+      }
+    },
+    "promo_offers.v1.GetBrandOffersResponse": {
+      "type": "object",
+      "properties": {
+        "offers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.OfferItem"
+          }
         }
       }
     },

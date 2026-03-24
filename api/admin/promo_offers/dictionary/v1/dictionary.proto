@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package admin.promo_offers.dictionary.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/admin/promo_offers/dictionary/v1";
+
+service PromoOffersAdminDictionaryService {
+  rpc GetTopics(GetTopicsRequest) returns (GetTopicsResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/topics"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение тематик"};
+  }
+  rpc CreateTopic(CreateTopicRequest) returns (CreateTopicResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/topics/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание тематики"};
+  }
+
+  rpc GetCooperationTypes(GetCooperationTypesRequest) returns (GetCooperationTypesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/cooperation_types"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение типов сотрудничества"};
+  }
+  rpc CreateCooperationType(CreateCooperationTypeRequest) returns (CreateCooperationTypeResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/cooperation_types/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание типа сотрудничества"};
+  }
+
+  rpc GetContentFormats(GetContentFormatsRequest) returns (GetContentFormatsResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/content_formats"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение форматов контента"};
+  }
+  rpc CreateContentFormat(CreateContentFormatRequest) returns (CreateContentFormatResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/content_formats/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание формата контента"};
+  }
+
+  rpc GetSocialNetworks(GetSocialNetworksRequest) returns (GetSocialNetworksResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/social_networks"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение социальных сетей"};
+  }
+}
+
+message NamedItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SocialNetworkItem {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+}
+
+message GetTopicsRequest {}
+
+message GetTopicsResponse {
+  repeated NamedItem topics = 1;
+}
+
+message CreateTopicRequest {
+  string name = 1;
+}
+
+message CreateTopicResponse {
+  int64 id = 1;
+}
+
+message GetCooperationTypesRequest {}
+
+message GetCooperationTypesResponse {
+  repeated NamedItem cooperation_types = 1;
+}
+
+message CreateCooperationTypeRequest {
+  string name = 1;
+}
+
+message CreateCooperationTypeResponse {
+  int64 id = 1;
+}
+
+message GetContentFormatsRequest {}
+
+message GetContentFormatsResponse {
+  repeated NamedItem content_formats = 1;
+}
+
+message CreateContentFormatRequest {
+  string name = 1;
+}
+
+message CreateContentFormatResponse {
+  int64 id = 1;
+}
+
+message GetSocialNetworksRequest {}
+
+message GetSocialNetworksResponse {
+  repeated SocialNetworkItem social_networks = 1;
+}

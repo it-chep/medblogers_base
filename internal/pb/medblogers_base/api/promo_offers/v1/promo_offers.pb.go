@@ -871,6 +871,94 @@ func (x *GetBrandCardResponse) GetBrand() *BrandItem {
 	return nil
 }
 
+type GetBrandOffersRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BrandSlug     string                 `protobuf:"bytes,1,opt,name=brand_slug,json=brandSlug,proto3" json:"brand_slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBrandOffersRequest) Reset() {
+	*x = GetBrandOffersRequest{}
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBrandOffersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBrandOffersRequest) ProtoMessage() {}
+
+func (x *GetBrandOffersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBrandOffersRequest.ProtoReflect.Descriptor instead.
+func (*GetBrandOffersRequest) Descriptor() ([]byte, []int) {
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetBrandOffersRequest) GetBrandSlug() string {
+	if x != nil {
+		return x.BrandSlug
+	}
+	return ""
+}
+
+type GetBrandOffersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Offers        []*OfferItem           `protobuf:"bytes,1,rep,name=offers,proto3" json:"offers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBrandOffersResponse) Reset() {
+	*x = GetBrandOffersResponse{}
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBrandOffersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBrandOffersResponse) ProtoMessage() {}
+
+func (x *GetBrandOffersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBrandOffersResponse.ProtoReflect.Descriptor instead.
+func (*GetBrandOffersResponse) Descriptor() ([]byte, []int) {
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetBrandOffersResponse) GetOffers() []*OfferItem {
+	if x != nil {
+		return x.Offers
+	}
+	return nil
+}
+
 type GetOfferCardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OfferId       string                 `protobuf:"bytes,1,opt,name=offer_id,json=offerId,proto3" json:"offer_id,omitempty"`
@@ -880,7 +968,7 @@ type GetOfferCardRequest struct {
 
 func (x *GetOfferCardRequest) Reset() {
 	*x = GetOfferCardRequest{}
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[12]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -892,7 +980,7 @@ func (x *GetOfferCardRequest) String() string {
 func (*GetOfferCardRequest) ProtoMessage() {}
 
 func (x *GetOfferCardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[12]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -905,7 +993,7 @@ func (x *GetOfferCardRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOfferCardRequest.ProtoReflect.Descriptor instead.
 func (*GetOfferCardRequest) Descriptor() ([]byte, []int) {
-	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{12}
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetOfferCardRequest) GetOfferId() string {
@@ -924,7 +1012,7 @@ type GetOfferCardResponse struct {
 
 func (x *GetOfferCardResponse) Reset() {
 	*x = GetOfferCardResponse{}
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[13]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -936,7 +1024,7 @@ func (x *GetOfferCardResponse) String() string {
 func (*GetOfferCardResponse) ProtoMessage() {}
 
 func (x *GetOfferCardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[13]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -949,7 +1037,7 @@ func (x *GetOfferCardResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOfferCardResponse.ProtoReflect.Descriptor instead.
 func (*GetOfferCardResponse) Descriptor() ([]byte, []int) {
-	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{13}
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetOfferCardResponse) GetOffer() *OfferItem {
@@ -970,7 +1058,7 @@ type FilterCountItem struct {
 
 func (x *FilterCountItem) Reset() {
 	*x = FilterCountItem{}
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[14]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -982,7 +1070,7 @@ func (x *FilterCountItem) String() string {
 func (*FilterCountItem) ProtoMessage() {}
 
 func (x *FilterCountItem) ProtoReflect() protoreflect.Message {
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[14]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -995,7 +1083,7 @@ func (x *FilterCountItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FilterCountItem.ProtoReflect.Descriptor instead.
 func (*FilterCountItem) Descriptor() ([]byte, []int) {
-	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{14}
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *FilterCountItem) GetId() int64 {
@@ -1027,7 +1115,7 @@ type GetFilterSettingsRequest struct {
 
 func (x *GetFilterSettingsRequest) Reset() {
 	*x = GetFilterSettingsRequest{}
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[15]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1039,7 +1127,7 @@ func (x *GetFilterSettingsRequest) String() string {
 func (*GetFilterSettingsRequest) ProtoMessage() {}
 
 func (x *GetFilterSettingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[15]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1052,7 +1140,7 @@ func (x *GetFilterSettingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFilterSettingsRequest.ProtoReflect.Descriptor instead.
 func (*GetFilterSettingsRequest) Descriptor() ([]byte, []int) {
-	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{15}
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{17}
 }
 
 type GetFilterSettingsResponse struct {
@@ -1065,7 +1153,7 @@ type GetFilterSettingsResponse struct {
 
 func (x *GetFilterSettingsResponse) Reset() {
 	*x = GetFilterSettingsResponse{}
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[16]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1077,7 +1165,7 @@ func (x *GetFilterSettingsResponse) String() string {
 func (*GetFilterSettingsResponse) ProtoMessage() {}
 
 func (x *GetFilterSettingsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[16]
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1090,7 +1178,7 @@ func (x *GetFilterSettingsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFilterSettingsResponse.ProtoReflect.Descriptor instead.
 func (*GetFilterSettingsResponse) Descriptor() ([]byte, []int) {
-	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{16}
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetFilterSettingsResponse) GetCooperationTypes() []*FilterCountItem {
@@ -1179,7 +1267,12 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\n" +
 	"brand_slug\x18\x01 \x01(\tR\tbrandSlug\"H\n" +
 	"\x14GetBrandCardResponse\x120\n" +
-	"\x05brand\x18\x01 \x01(\v2\x1a.promo_offers.v1.BrandItemR\x05brand\"0\n" +
+	"\x05brand\x18\x01 \x01(\v2\x1a.promo_offers.v1.BrandItemR\x05brand\"6\n" +
+	"\x15GetBrandOffersRequest\x12\x1d\n" +
+	"\n" +
+	"brand_slug\x18\x01 \x01(\tR\tbrandSlug\"L\n" +
+	"\x16GetBrandOffersResponse\x122\n" +
+	"\x06offers\x18\x01 \x03(\v2\x1a.promo_offers.v1.OfferItemR\x06offers\"0\n" +
 	"\x13GetOfferCardRequest\x12\x19\n" +
 	"\boffer_id\x18\x01 \x01(\tR\aofferId\"H\n" +
 	"\x14GetOfferCardResponse\x120\n" +
@@ -1191,12 +1284,13 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x18GetFilterSettingsRequest\"|\n" +
 	"\x19GetFilterSettingsResponse\x12M\n" +
 	"\x11cooperation_types\x18\x01 \x03(\v2 .promo_offers.v1.FilterCountItemR\x10cooperationTypes\x12\x10\n" +
-	"\x03all\x18\x02 \x01(\x03R\x03all2\xc5\a\n" +
+	"\x03all\x18\x02 \x01(\x03R\x03all2\x96\t\n" +
 	"\x12PromoOffersService\x12\xe0\x01\n" +
 	"\x11GetFilterSettings\x12).promo_offers.v1.GetFilterSettingsRequest\x1a*.promo_offers.v1.GetFilterSettingsResponse\"t\x92AB\x12@Доступные фильтры по промо-офферам\x82\xd3\xe4\x93\x02):\x01*\"$/api/v1/promo_offers/filter/settings\x12\xb6\x01\n" +
 	"\fFilterOffers\x12$.promo_offers.v1.FilterOffersRequest\x1a%.promo_offers.v1.FilterOffersResponse\"Y\x92A0\x12.Фильтрация промо-офферов\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/api/v1/promo_offers/filter\x12\xb2\x01\n" +
 	"\fFilterBrands\x12$.promo_offers.v1.FilterBrandsRequest\x1a%.promo_offers.v1.FilterBrandsResponse\"U\x92A%\x12#Фильтрация брендов\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/promo_offers/brands/filter\x12\xae\x01\n" +
-	"\fGetBrandCard\x12$.promo_offers.v1.GetBrandCardRequest\x1a%.promo_offers.v1.GetBrandCardResponse\"Q\x92A\x1f\x12\x1dКарточка бренда\x82\xd3\xe4\x93\x02)\x12'/api/v1/promo_offers/brand/{brand_slug}\x12\xac\x01\n" +
+	"\fGetBrandCard\x12$.promo_offers.v1.GetBrandCardRequest\x1a%.promo_offers.v1.GetBrandCardResponse\"Q\x92A\x1f\x12\x1dКарточка бренда\x82\xd3\xe4\x93\x02)\x12'/api/v1/promo_offers/brand/{brand_slug}\x12\xce\x01\n" +
+	"\x0eGetBrandOffers\x12&.promo_offers.v1.GetBrandOffersRequest\x1a'.promo_offers.v1.GetBrandOffersResponse\"k\x92A2\x120Офферы конкретного бренда\x82\xd3\xe4\x93\x020\x12./api/v1/promo_offers/brand/{brand_slug}/offers\x12\xac\x01\n" +
 	"\fGetOfferCard\x12$.promo_offers.v1.GetOfferCardRequest\x1a%.promo_offers.v1.GetOfferCardResponse\"O\x92A\x1f\x12\x1dКарточка оффера\x82\xd3\xe4\x93\x02'\x12%/api/v1/promo_offers/offer/{offer_id}B\x15Z\x13api/promo_offers/v1b\x06proto3"
 
 var (
@@ -1211,7 +1305,7 @@ func file_promo_offers_v1_promo_offers_proto_rawDescGZIP() []byte {
 	return file_promo_offers_v1_promo_offers_proto_rawDescData
 }
 
-var file_promo_offers_v1_promo_offers_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_promo_offers_v1_promo_offers_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_promo_offers_v1_promo_offers_proto_goTypes = []any{
 	(*NamedItem)(nil),                 // 0: promo_offers.v1.NamedItem
 	(*SocialNetworkItem)(nil),         // 1: promo_offers.v1.SocialNetworkItem
@@ -1225,11 +1319,13 @@ var file_promo_offers_v1_promo_offers_proto_goTypes = []any{
 	(*FilterBrandsResponse)(nil),      // 9: promo_offers.v1.FilterBrandsResponse
 	(*GetBrandCardRequest)(nil),       // 10: promo_offers.v1.GetBrandCardRequest
 	(*GetBrandCardResponse)(nil),      // 11: promo_offers.v1.GetBrandCardResponse
-	(*GetOfferCardRequest)(nil),       // 12: promo_offers.v1.GetOfferCardRequest
-	(*GetOfferCardResponse)(nil),      // 13: promo_offers.v1.GetOfferCardResponse
-	(*FilterCountItem)(nil),           // 14: promo_offers.v1.FilterCountItem
-	(*GetFilterSettingsRequest)(nil),  // 15: promo_offers.v1.GetFilterSettingsRequest
-	(*GetFilterSettingsResponse)(nil), // 16: promo_offers.v1.GetFilterSettingsResponse
+	(*GetBrandOffersRequest)(nil),     // 12: promo_offers.v1.GetBrandOffersRequest
+	(*GetBrandOffersResponse)(nil),    // 13: promo_offers.v1.GetBrandOffersResponse
+	(*GetOfferCardRequest)(nil),       // 14: promo_offers.v1.GetOfferCardRequest
+	(*GetOfferCardResponse)(nil),      // 15: promo_offers.v1.GetOfferCardResponse
+	(*FilterCountItem)(nil),           // 16: promo_offers.v1.FilterCountItem
+	(*GetFilterSettingsRequest)(nil),  // 17: promo_offers.v1.GetFilterSettingsRequest
+	(*GetFilterSettingsResponse)(nil), // 18: promo_offers.v1.GetFilterSettingsResponse
 }
 var file_promo_offers_v1_promo_offers_proto_depIdxs = []int32{
 	0,  // 0: promo_offers.v1.BrandItem.topic:type_name -> promo_offers.v1.NamedItem
@@ -1242,23 +1338,26 @@ var file_promo_offers_v1_promo_offers_proto_depIdxs = []int32{
 	5,  // 7: promo_offers.v1.FilterOffersResponse.offers:type_name -> promo_offers.v1.OfferItem
 	4,  // 8: promo_offers.v1.FilterBrandsResponse.brands:type_name -> promo_offers.v1.BrandItem
 	4,  // 9: promo_offers.v1.GetBrandCardResponse.brand:type_name -> promo_offers.v1.BrandItem
-	5,  // 10: promo_offers.v1.GetOfferCardResponse.offer:type_name -> promo_offers.v1.OfferItem
-	14, // 11: promo_offers.v1.GetFilterSettingsResponse.cooperation_types:type_name -> promo_offers.v1.FilterCountItem
-	15, // 12: promo_offers.v1.PromoOffersService.GetFilterSettings:input_type -> promo_offers.v1.GetFilterSettingsRequest
-	6,  // 13: promo_offers.v1.PromoOffersService.FilterOffers:input_type -> promo_offers.v1.FilterOffersRequest
-	8,  // 14: promo_offers.v1.PromoOffersService.FilterBrands:input_type -> promo_offers.v1.FilterBrandsRequest
-	10, // 15: promo_offers.v1.PromoOffersService.GetBrandCard:input_type -> promo_offers.v1.GetBrandCardRequest
-	12, // 16: promo_offers.v1.PromoOffersService.GetOfferCard:input_type -> promo_offers.v1.GetOfferCardRequest
-	16, // 17: promo_offers.v1.PromoOffersService.GetFilterSettings:output_type -> promo_offers.v1.GetFilterSettingsResponse
-	7,  // 18: promo_offers.v1.PromoOffersService.FilterOffers:output_type -> promo_offers.v1.FilterOffersResponse
-	9,  // 19: promo_offers.v1.PromoOffersService.FilterBrands:output_type -> promo_offers.v1.FilterBrandsResponse
-	11, // 20: promo_offers.v1.PromoOffersService.GetBrandCard:output_type -> promo_offers.v1.GetBrandCardResponse
-	13, // 21: promo_offers.v1.PromoOffersService.GetOfferCard:output_type -> promo_offers.v1.GetOfferCardResponse
-	17, // [17:22] is the sub-list for method output_type
-	12, // [12:17] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	5,  // 10: promo_offers.v1.GetBrandOffersResponse.offers:type_name -> promo_offers.v1.OfferItem
+	5,  // 11: promo_offers.v1.GetOfferCardResponse.offer:type_name -> promo_offers.v1.OfferItem
+	16, // 12: promo_offers.v1.GetFilterSettingsResponse.cooperation_types:type_name -> promo_offers.v1.FilterCountItem
+	17, // 13: promo_offers.v1.PromoOffersService.GetFilterSettings:input_type -> promo_offers.v1.GetFilterSettingsRequest
+	6,  // 14: promo_offers.v1.PromoOffersService.FilterOffers:input_type -> promo_offers.v1.FilterOffersRequest
+	8,  // 15: promo_offers.v1.PromoOffersService.FilterBrands:input_type -> promo_offers.v1.FilterBrandsRequest
+	10, // 16: promo_offers.v1.PromoOffersService.GetBrandCard:input_type -> promo_offers.v1.GetBrandCardRequest
+	12, // 17: promo_offers.v1.PromoOffersService.GetBrandOffers:input_type -> promo_offers.v1.GetBrandOffersRequest
+	14, // 18: promo_offers.v1.PromoOffersService.GetOfferCard:input_type -> promo_offers.v1.GetOfferCardRequest
+	18, // 19: promo_offers.v1.PromoOffersService.GetFilterSettings:output_type -> promo_offers.v1.GetFilterSettingsResponse
+	7,  // 20: promo_offers.v1.PromoOffersService.FilterOffers:output_type -> promo_offers.v1.FilterOffersResponse
+	9,  // 21: promo_offers.v1.PromoOffersService.FilterBrands:output_type -> promo_offers.v1.FilterBrandsResponse
+	11, // 22: promo_offers.v1.PromoOffersService.GetBrandCard:output_type -> promo_offers.v1.GetBrandCardResponse
+	13, // 23: promo_offers.v1.PromoOffersService.GetBrandOffers:output_type -> promo_offers.v1.GetBrandOffersResponse
+	15, // 24: promo_offers.v1.PromoOffersService.GetOfferCard:output_type -> promo_offers.v1.GetOfferCardResponse
+	19, // [19:25] is the sub-list for method output_type
+	13, // [13:19] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_promo_offers_v1_promo_offers_proto_init() }
@@ -1272,7 +1371,7 @@ func file_promo_offers_v1_promo_offers_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_promo_offers_v1_promo_offers_proto_rawDesc), len(file_promo_offers_v1_promo_offers_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

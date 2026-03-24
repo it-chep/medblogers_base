@@ -23,6 +23,7 @@ const (
 	PromoOffersService_FilterOffers_FullMethodName      = "/promo_offers.v1.PromoOffersService/FilterOffers"
 	PromoOffersService_FilterBrands_FullMethodName      = "/promo_offers.v1.PromoOffersService/FilterBrands"
 	PromoOffersService_GetBrandCard_FullMethodName      = "/promo_offers.v1.PromoOffersService/GetBrandCard"
+	PromoOffersService_GetBrandOffers_FullMethodName    = "/promo_offers.v1.PromoOffersService/GetBrandOffers"
 	PromoOffersService_GetOfferCard_FullMethodName      = "/promo_offers.v1.PromoOffersService/GetOfferCard"
 )
 
@@ -34,6 +35,7 @@ type PromoOffersServiceClient interface {
 	FilterOffers(ctx context.Context, in *FilterOffersRequest, opts ...grpc.CallOption) (*FilterOffersResponse, error)
 	FilterBrands(ctx context.Context, in *FilterBrandsRequest, opts ...grpc.CallOption) (*FilterBrandsResponse, error)
 	GetBrandCard(ctx context.Context, in *GetBrandCardRequest, opts ...grpc.CallOption) (*GetBrandCardResponse, error)
+	GetBrandOffers(ctx context.Context, in *GetBrandOffersRequest, opts ...grpc.CallOption) (*GetBrandOffersResponse, error)
 	GetOfferCard(ctx context.Context, in *GetOfferCardRequest, opts ...grpc.CallOption) (*GetOfferCardResponse, error)
 }
 
@@ -85,6 +87,16 @@ func (c *promoOffersServiceClient) GetBrandCard(ctx context.Context, in *GetBran
 	return out, nil
 }
 
+func (c *promoOffersServiceClient) GetBrandOffers(ctx context.Context, in *GetBrandOffersRequest, opts ...grpc.CallOption) (*GetBrandOffersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBrandOffersResponse)
+	err := c.cc.Invoke(ctx, PromoOffersService_GetBrandOffers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *promoOffersServiceClient) GetOfferCard(ctx context.Context, in *GetOfferCardRequest, opts ...grpc.CallOption) (*GetOfferCardResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetOfferCardResponse)
@@ -103,6 +115,7 @@ type PromoOffersServiceServer interface {
 	FilterOffers(context.Context, *FilterOffersRequest) (*FilterOffersResponse, error)
 	FilterBrands(context.Context, *FilterBrandsRequest) (*FilterBrandsResponse, error)
 	GetBrandCard(context.Context, *GetBrandCardRequest) (*GetBrandCardResponse, error)
+	GetBrandOffers(context.Context, *GetBrandOffersRequest) (*GetBrandOffersResponse, error)
 	GetOfferCard(context.Context, *GetOfferCardRequest) (*GetOfferCardResponse, error)
 }
 
@@ -124,6 +137,9 @@ func (UnimplementedPromoOffersServiceServer) FilterBrands(context.Context, *Filt
 }
 func (UnimplementedPromoOffersServiceServer) GetBrandCard(context.Context, *GetBrandCardRequest) (*GetBrandCardResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBrandCard not implemented")
+}
+func (UnimplementedPromoOffersServiceServer) GetBrandOffers(context.Context, *GetBrandOffersRequest) (*GetBrandOffersResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBrandOffers not implemented")
 }
 func (UnimplementedPromoOffersServiceServer) GetOfferCard(context.Context, *GetOfferCardRequest) (*GetOfferCardResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetOfferCard not implemented")
@@ -220,6 +236,24 @@ func _PromoOffersService_GetBrandCard_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PromoOffersService_GetBrandOffers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBrandOffersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PromoOffersServiceServer).GetBrandOffers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PromoOffersService_GetBrandOffers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PromoOffersServiceServer).GetBrandOffers(ctx, req.(*GetBrandOffersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PromoOffersService_GetOfferCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOfferCardRequest)
 	if err := dec(in); err != nil {
@@ -260,6 +294,10 @@ var PromoOffersService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBrandCard",
 			Handler:    _PromoOffersService_GetBrandCard_Handler,
+		},
+		{
+			MethodName: "GetBrandOffers",
+			Handler:    _PromoOffersService_GetBrandOffers_Handler,
 		},
 		{
 			MethodName: "GetOfferCard",

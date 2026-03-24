@@ -16,9 +16,21 @@ import (
 	"medblogers_base/internal/pkg/postgres"
 )
 
+type ActionDal interface {
+	FilterOffers(ctx context.Context, req dto.OfferFilter) ([]*offerDomain.Offer, error)
+}
+
+type CommonDal interface {
+	GetOfferSocialNetworks(ctx context.Context, offerIDs []uuid.UUID) (map[uuid.UUID][]commonDAO.OfferSocialNetworkDAO, error)
+	GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64]*brandDomain.Brand, error)
+	GetCooperationTypesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetContentFormatsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+}
+
 type Action struct {
-	repository *actionDal.Repository
-	commonDal  *commonDal.Repository
+	repository ActionDal
+	commonDal  CommonDal
 }
 
 func New(pool postgres.PoolWrapper) *Action {

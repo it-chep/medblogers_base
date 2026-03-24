@@ -1,0 +1,523 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/promo_offers/brand/v1/brand.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PromoOffersAdminBrandService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/promo_offers/brand/{brandId}": {
+      "get": {
+        "summary": "Получение карточки бренда",
+        "operationId": "PromoOffersAdminBrandService_GetBrandByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.GetBrandByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/brand/{brandId}/activate": {
+      "post": {
+        "summary": "Активация бренда",
+        "operationId": "PromoOffersAdminBrandService_ActivateBrand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.ActivateBrandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrandBody"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/brand/{brandId}/deactivate": {
+      "post": {
+        "summary": "Деактивация бренда",
+        "operationId": "PromoOffersAdminBrandService_DeactivateBrand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.DeactivateBrandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrandBody"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/brand/{brandId}/update": {
+      "post": {
+        "summary": "Обновление бренда",
+        "operationId": "PromoOffersAdminBrandService_UpdateBrand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.UpdateBrandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.UpdateBrandBody"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/brands": {
+      "get": {
+        "summary": "Получение брендов",
+        "operationId": "PromoOffersAdminBrandService_GetBrands",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.GetBrandsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "topicIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "socialNetworkIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "isActive",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/brands/create": {
+      "post": {
+        "summary": "Создание бренда",
+        "operationId": "PromoOffersAdminBrandService_CreateBrand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.CreateBrandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.CreateBrandRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.promo_offers.brand.v1.ActivateBrandResponse": {
+      "type": "object"
+    },
+    "admin.promo_offers.brand.v1.BrandItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "topic": {
+          "$ref": "#/definitions/admin.promo_offers.brand.v1.NamedItem"
+        },
+        "website": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandSocialNetworkItem"
+          }
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.BrandListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "topic": {
+          "$ref": "#/definitions/admin.promo_offers.brand.v1.NamedItem"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.BrandSocialNetworkInput": {
+      "type": "object",
+      "properties": {
+        "socialNetworkId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.BrandSocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.CreateBrandRequest": {
+      "type": "object",
+      "properties": {
+        "photo": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "website": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandSocialNetworkInput"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.CreateBrandResponse": {
+      "type": "object",
+      "properties": {
+        "brandId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.DeactivateBrandResponse": {
+      "type": "object"
+    },
+    "admin.promo_offers.brand.v1.GetBrandByIDResponse": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandItem"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.GetBrandsResponse": {
+      "type": "object",
+      "properties": {
+        "brands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandListItem"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.NamedItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrandBody": {
+      "type": "object"
+    },
+    "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrandBody": {
+      "type": "object"
+    },
+    "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.UpdateBrandBody": {
+      "type": "object",
+      "properties": {
+        "photo": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "website": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandSocialNetworkInput"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.UpdateBrandResponse": {
+      "type": "object"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,13 +6,24 @@ import (
 	actionDal "medblogers_base/internal/modules/promo_offers/action/brand_detail/dal"
 	"medblogers_base/internal/modules/promo_offers/action/brand_detail/dto"
 	commonDal "medblogers_base/internal/modules/promo_offers/dal"
+	commonDAO "medblogers_base/internal/modules/promo_offers/dal/dao"
+	brandDomain "medblogers_base/internal/modules/promo_offers/domain/brand"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
 
+type ActionDal interface {
+	GetBrandBySlug(ctx context.Context, slug string) (*brandDomain.Brand, error)
+}
+
+type CommonDal interface {
+	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetBrandSocialNetworks(ctx context.Context, brandIDs []int64) (map[int64][]commonDAO.BrandSocialNetworkDAO, error)
+}
+
 type Action struct {
-	repository *actionDal.Repository
-	commonDal  *commonDal.Repository
+	repository ActionDal
+	commonDal  CommonDal
 }
 
 func New(pool postgres.PoolWrapper) *Action {
