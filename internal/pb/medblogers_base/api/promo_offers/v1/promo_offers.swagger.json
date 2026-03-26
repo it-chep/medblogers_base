@@ -254,7 +254,7 @@
         "photo": {
           "type": "string"
         },
-        "topic": {
+        "businessCategory": {
           "$ref": "#/definitions/promo_offers.v1.NamedItem"
         },
         "website": {
@@ -311,30 +311,12 @@
     "promo_offers.v1.FilterBrandsRequest": {
       "type": "object",
       "properties": {
-        "topicIds": {
+        "businessCategoryIds": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "int64"
           }
-        },
-        "socialNetworkIds": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "query": {
-          "type": "string"
-        },
-        "page": {
-          "type": "string",
-          "format": "int64"
-        },
-        "limit": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -366,6 +348,39 @@
         }
       }
     },
+    "promo_offers.v1.FilterOfferItem": {
+      "type": "object",
+      "properties": {
+        "photo": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "brandDescription": {
+          "type": "string"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "description": {
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.SocialNetworkItem"
+          }
+        },
+        "businessCategory": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
     "promo_offers.v1.FilterOffersRequest": {
       "type": "object",
       "properties": {
@@ -376,52 +391,12 @@
             "format": "int64"
           }
         },
-        "topicIds": {
+        "businessCategoryIds": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "int64"
           }
-        },
-        "socialNetworkIds": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "contentFormatIds": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "brandIds": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "query": {
-          "type": "string"
-        },
-        "priceFrom": {
-          "type": "string",
-          "format": "int64"
-        },
-        "priceTo": {
-          "type": "string",
-          "format": "int64"
-        },
-        "page": {
-          "type": "string",
-          "format": "int64"
-        },
-        "limit": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -432,7 +407,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/promo_offers.v1.OfferItem"
+            "$ref": "#/definitions/promo_offers.v1.FilterOfferItem"
           }
         }
       }
@@ -480,7 +455,7 @@
       "type": "object",
       "properties": {
         "offer": {
-          "$ref": "#/definitions/promo_offers.v1.OfferItem"
+          "$ref": "#/definitions/promo_offers.v1.OfferCardItem"
         }
       }
     },
@@ -492,6 +467,61 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "promo_offers.v1.OfferCardBrandItem": {
+      "type": "object",
+      "properties": {
+        "photo": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.BrandSocialNetworkItem"
+          }
+        },
+        "businessCategory": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        }
+      }
+    },
+    "promo_offers.v1.OfferCardItem": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/promo_offers.v1.OfferCardBrandItem"
+        },
+        "description": {
+          "type": "string"
+        },
+        "cooperationType": {
+          "$ref": "#/definitions/promo_offers.v1.NamedItem"
+        },
+        "price": {
+          "type": "string",
+          "format": "int64"
+        },
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/promo_offers.v1.SocialNetworkItem"
+          }
+        },
+        "createdAt": {
           "type": "string"
         }
       }
@@ -525,7 +555,7 @@
         "cooperationType": {
           "$ref": "#/definitions/promo_offers.v1.NamedItem"
         },
-        "topic": {
+        "businessCategory": {
           "$ref": "#/definitions/promo_offers.v1.NamedItem"
         },
         "contentFormat": {

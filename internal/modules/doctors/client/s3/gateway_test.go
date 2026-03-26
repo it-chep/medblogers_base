@@ -3,7 +3,7 @@ package s3
 import (
 	"context"
 	"medblogers_base/internal/modules/doctors/client/s3/mocks"
-	"medbloge
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/aws"

@@ -1,11 +1,11 @@
 package dto
 
 type BrandFilter struct {
-	TopicIDs         []int64
-	SocialNetworkIDs []int64
+	BusinessCategoryIDs []int64
+	SocialNetworkIDs    []int64
 }
 
-type Topic struct {
+type BusinessCategory struct {
 	ID   int64
 	Name string
 }
@@ -18,14 +18,14 @@ type SocialNetwork struct {
 }
 
 type Brand struct {
-	ID             int64
-	Title          string
-	Slug           string
-	Photo          string
-	Topic          *Topic
-	Website        string
-	Description    string
-	SocialNetworks []SocialNetwork
+	ID               int64
+	Title            string
+	Slug             string
+	Photo            string
+	BusinessCategory *BusinessCategory
+	Website          string
+	Description      string
+	SocialNetworks   []SocialNetwork
 }
 
 type Response struct {

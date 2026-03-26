@@ -6,15 +6,15 @@ import (
 )
 
 type Brand struct {
-	id          int64
-	photo       string
-	title       string
-	slug        string
-	topicID     int64
-	website     string
-	description string
-	isActive    bool
-	createdAt   *time.Time
+	id                 int64
+	photo              string
+	title              string
+	slug               string
+	businessCategoryID int64
+	website            string
+	description        string
+	isActive           bool
+	createdAt          *time.Time
 }
 
 func New(options ...Option) *Brand {
@@ -34,12 +34,12 @@ func (b Brands) IDs() []int64 {
 	})
 }
 
-func (b Brands) TopicIDs() []int64 {
+func (b Brands) BusinessCategoryIDs() []int64 {
 	return lo.FilterMap(b, func(item *Brand, _ int) (int64, bool) {
-		if item.GetTopicID() <= 0 {
+		if item.GetBusinessCategoryID() <= 0 {
 			return 0, false
 		}
 
-		return item.GetTopicID(), true
+		return item.GetBusinessCategoryID(), true
 	})
 }

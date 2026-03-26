@@ -26,8 +26,7 @@ type CommonDal interface {
 	GetOfferSocialNetworks(ctx context.Context, offerIDs []uuid.UUID) (map[uuid.UUID][]commonDAO.OfferSocialNetworkDAO, error)
 	GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64]*brandDomain.Brand, error)
 	GetCooperationTypesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
-	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
-	GetContentFormatsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetBusinessCategoriesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
 }
 
 type Action struct {
@@ -58,8 +57,7 @@ func (a *Action) Do(ctx context.Context, req dto.OfferFilter) (dto.Response, err
 		socialsMap          map[uuid.UUID][]commonDAO.OfferSocialNetworkDAO
 		brandsMap           map[int64]*brandDomain.Brand
 		cooperationTypesMap map[int64]string
-		topicsMap           map[int64]string
-		contentFormatsMap   map[int64]string
+		categoriesMap       map[int64]string
 	)
 
 	g, _ := async.WithContext(ctx)
@@ -92,63 +90,41 @@ func (a *Action) Do(ctx context.Context, req dto.OfferFilter) (dto.Response, err
 	})
 
 	g.GoWithContext(func(ctx context.Context) error {
-		items, err := a.commonDal.GetTopicsByIDs(ctx, ids.topicIDs)
+		items, err := a.commonDal.GetBusinessCategoriesByIDs(ctx, ids.businessCategoryIDs)
 		if err != nil {
 			return err
 		}
-		topicsMap = items
+		categoriesMap = items
 		return nil
 	})
-
-	g.GoWithContext(func(ctx context.Context) error {
-		items, err := a.commonDal.GetContentFormatsByIDs(ctx, ids.contentFormatIDs)
-		if err != nil {
-			return err
-		}
-		contentFormatsMap = items
-		return nil
-	})
-
-	photosMap := a.brandsPhotos.GetBrandsPhotos(ctx)
 
 	if err := g.Wait(); err != nil {
 		return dto.Response{}, err
 	}
 
+	photosMap := a.brandsPhotos.GetBrandsPhotos(ctx)
 	resp := dto.Response{
 		Offers: make([]dto.Offer, 0, len(offers)),
 	}
 
 	for _, item := range offers {
 		offerItem := dto.Offer{
-			ID:                   item.GetID().String(),
-			Title:                item.GetTitle(),
-			Description:          item.GetDescription(),
-			Price:                item.GetPrice(),
-			PublicationDate:      item.GetPublicationDate(),
-			AdMarkingResponsible: item.GetAdMarkingResponsible(),
-			ResponsesCapacity:    item.GetResponsesCapacity(),
+			Description: item.GetDescription(),
+			CreatedAt:   item.GetCreatedAt(),
 		}
 
 		if name, ok := cooperationTypesMap[item.GetCooperationTypeID()]; ok {
 			offerItem.CooperationType = &dto.NamedItem{ID: item.GetCooperationTypeID(), Name: name}
 		}
 
-		if name, ok := topicsMap[item.GetTopicID()]; ok {
-			offerItem.Topic = &dto.NamedItem{ID: item.GetTopicID(), Name: name}
-		}
-
-		if name, ok := contentFormatsMap[item.GetContentFormatID()]; ok {
-			offerItem.ContentFormat = &dto.NamedItem{ID: item.GetContentFormatID(), Name: name}
+		if name, ok := categoriesMap[item.GetBusinessCategoryID()]; ok {
+			offerItem.BusinessCategory = &dto.NamedItem{ID: item.GetBusinessCategoryID(), Name: name}
 		}
 
 		if brandItem, ok := brandsMap[item.GetBrandID()]; ok {
-			offerItem.Brand = &dto.BrandPreview{
-				ID:    brandItem.GetID(),
-				Title: brandItem.GetTitle(),
-				Slug:  brandItem.GetSlug(),
-				Photo: photosMap[brandItem.GetPhoto()],
-			}
+			offerItem.Photo = photosMap[brandItem.GetPhoto()]
+			offerItem.Title = brandItem.GetTitle()
+			offerItem.BrandDescription = brandItem.GetDescription()
 		}
 
 		for _, social := range socialsMap[item.GetID()] {
@@ -166,20 +142,18 @@ func (a *Action) Do(ctx context.Context, req dto.OfferFilter) (dto.Response, err
 }
 
 type offerIDs struct {
-	offerIDs           []uuid.UUID
-	brandIDs           []int64
-	cooperationTypeIDs []int64
-	topicIDs           []int64
-	contentFormatIDs   []int64
+	offerIDs            []uuid.UUID
+	brandIDs            []int64
+	cooperationTypeIDs  []int64
+	businessCategoryIDs []int64
 }
 
 func collectOfferIDs(offers []*offerDomain.Offer) offerIDs {
 	result := offerIDs{
-		offerIDs:           make([]uuid.UUID, 0, len(offers)),
-		brandIDs:           make([]int64, 0, len(offers)),
-		cooperationTypeIDs: make([]int64, 0, len(offers)),
-		topicIDs:           make([]int64, 0, len(offers)),
-		contentFormatIDs:   make([]int64, 0, len(offers)),
+		offerIDs:            make([]uuid.UUID, 0, len(offers)),
+		brandIDs:            make([]int64, 0, len(offers)),
+		cooperationTypeIDs:  make([]int64, 0, len(offers)),
+		businessCategoryIDs: make([]int64, 0, len(offers)),
 	}
 
 	for _, item := range offers {
@@ -190,11 +164,8 @@ func collectOfferIDs(offers []*offerDomain.Offer) offerIDs {
 		if item.GetCooperationTypeID() > 0 {
 			result.cooperationTypeIDs = append(result.cooperationTypeIDs, item.GetCooperationTypeID())
 		}
-		if item.GetTopicID() > 0 {
-			result.topicIDs = append(result.topicIDs, item.GetTopicID())
-		}
-		if item.GetContentFormatID() > 0 {
-			result.contentFormatIDs = append(result.contentFormatIDs, item.GetContentFormatID())
+		if item.GetBusinessCategoryID() > 0 {
+			result.businessCategoryIDs = append(result.businessCategoryIDs, item.GetBusinessCategoryID())
 		}
 	}
 

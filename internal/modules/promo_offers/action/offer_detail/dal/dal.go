@@ -21,13 +21,12 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) GetOfferByID(ctx context.Context, id uuid.UUID) (*offerDomain.Offer, error) {
 	sql := `
-		select id, cooperation_type_id, topic_id, title, description, price, content_format_id, brand_id,
-		       publication_date, ad_marking_responsible, responses_capacity, is_active, created_at
+		select id, cooperation_type_id, description, price, brand_id, created_at
 		from promo_offer
 		where id = $1 and is_active is true
 	`
 
-	var row dao.OfferDAO
+	var row dao.OfferCardDAO
 	if err := pgxscan.Get(ctx, r.db, &row, sql, id); err != nil {
 		return nil, err
 	}

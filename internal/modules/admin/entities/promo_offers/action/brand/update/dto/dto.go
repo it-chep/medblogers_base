@@ -6,11 +6,11 @@ type SocialNetworkInput struct {
 }
 
 type UpdateRequest struct {
-	Photo          string
-	Title          string
-	Slug           string
-	TopicID        int64
-	Website        string
-	Description    string
-	SocialNetworks []SocialNetworkInput
+	Photo              string
+	Title              string
+	Slug               string
+	BusinessCategoryID int64
+	Website            string
+	Description        string
+	SocialNetworks     []SocialNetworkInput
 }

@@ -26,15 +26,14 @@ func (r *Repository) FilterOffers(ctx context.Context, filter filterDTO.OfferFil
 	whereStmt, phValues := buildOfferFilterWhere(filter)
 
 	sql := `
-		select id, cooperation_type_id, topic_id, title, description, price, content_format_id, brand_id,
-		       publication_date, ad_marking_responsible, responses_capacity, is_active, created_at
+		select id, cooperation_type_id, business_category_id, description, brand_id, created_at
 		from promo_offer o
 		where o.is_active is true
 	` + whereStmt + `
 		order by o.created_at desc, o.id desc
 	`
 
-	var rows []dao.OfferDAO
+	var rows []dao.FilterOfferDAO
 	if err := pgxscan.Select(ctx, r.db, &rows, sql, phValues...); err != nil {
 		return nil, err
 	}

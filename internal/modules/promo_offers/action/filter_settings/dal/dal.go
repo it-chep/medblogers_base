@@ -47,10 +47,6 @@ func (r *Repository) GetCooperationTypeCounts(ctx context.Context) ([]dto.CountI
 
 	result := make([]dto.CountItem, 0, len(rows))
 	for _, row := range rows {
-		if !row.ID.Valid {
-			continue
-		}
-
 		result = append(result, dto.CountItem{
 			ID:          row.ID.Int64,
 			OffersCount: row.OffersCount,

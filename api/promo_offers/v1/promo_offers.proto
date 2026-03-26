@@ -78,7 +78,7 @@ message BrandItem {
   string title = 2;
   string slug = 3;
   string photo = 4;
-  NamedItem topic = 5;
+  NamedItem business_category = 5;
   string website = 6;
   string description = 7;
   repeated BrandSocialNetworkItem social_networks = 8;
@@ -93,35 +93,52 @@ message OfferItem {
   string ad_marking_responsible = 6;
   int64 responses_capacity = 7;
   NamedItem cooperation_type = 8;
-  NamedItem topic = 9;
+  NamedItem business_category = 9;
   NamedItem content_format = 10;
   BrandPreview brand = 11;
   repeated SocialNetworkItem social_networks = 12;
 }
 
+message OfferCardBrandItem {
+  string photo = 1;
+  string title = 2;
+  string description = 3;
+  string about = 4;
+  repeated BrandSocialNetworkItem social_networks = 5;
+  NamedItem business_category = 6;
+}
+
+message OfferCardItem {
+  OfferCardBrandItem brand = 1;
+  string description = 2;
+  NamedItem cooperation_type = 3;
+  int64 price = 4;
+  repeated SocialNetworkItem social_networks = 5;
+  string created_at = 6;
+}
+
+message FilterOfferItem {
+  string photo = 1;
+  string title = 2;
+  string brand_description = 3;
+  NamedItem cooperation_type = 4;
+  string description = 5;
+  repeated SocialNetworkItem social_networks = 6;
+  NamedItem business_category = 7;
+  string created_at = 8;
+}
+
 message FilterOffersRequest {
   repeated int64 cooperation_type_ids = 1;
-  repeated int64 topic_ids = 2;
-  repeated int64 social_network_ids = 3;
-  repeated int64 content_format_ids = 4;
-  repeated int64 brand_ids = 5;
-  string query = 6;
-  int64 price_from = 7;
-  int64 price_to = 8;
-  int64 page = 9;
-  int64 limit = 10;
+  repeated int64 business_category_ids = 2;
 }
 
 message FilterOffersResponse {
-  repeated OfferItem offers = 1;
+  repeated FilterOfferItem offers = 1;
 }
 
 message FilterBrandsRequest {
-  repeated int64 topic_ids = 1;
-  repeated int64 social_network_ids = 2;
-  string query = 3;
-  int64 page = 4;
-  int64 limit = 5;
+  repeated int64 business_category_ids = 1;
 }
 
 message FilterBrandsResponse {
@@ -149,7 +166,7 @@ message GetOfferCardRequest {
 }
 
 message GetOfferCardResponse {
-  OfferItem offer = 1;
+  OfferCardItem offer = 1;
 }
 
 message FilterCountItem {

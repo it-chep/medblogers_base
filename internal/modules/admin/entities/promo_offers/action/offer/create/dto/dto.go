@@ -2,7 +2,7 @@ package dto
 
 type CreateRequest struct {
 	CooperationTypeID    int64
-	TopicID              int64
+	BusinessCategoryID   int64
 	Title                string
 	Description          string
 	Price                int64

@@ -27,7 +27,7 @@ func (r *Repository) GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64
 	}
 
 	sql := `
-		select id, photo, title, slug, topic_id, website, description, is_active, created_at
+		select id, photo, title, slug, business_category_id, website, description, is_active, created_at
 		from brand
 		where id = any($1::bigint[])
 	`
@@ -46,14 +46,14 @@ func (r *Repository) GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64
 	return result, nil
 }
 
-func (r *Repository) GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error) {
+func (r *Repository) GetBusinessCategoriesByIDs(ctx context.Context, ids []int64) (map[int64]string, error) {
 	if len(ids) == 0 {
 		return map[int64]string{}, nil
 	}
 
 	sql := `
 		select id, name
-		from promo_offer_topic
+		from promo_offer_business_category
 		where id = any($1::bigint[])
 	`
 

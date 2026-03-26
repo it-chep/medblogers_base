@@ -16,6 +16,6 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) CreateTopic(ctx context.Context, name string) (int64, error) {
 	var id int64
-	err := r.db.QueryRow(ctx, `insert into promo_offer_topic (name) values ($1) returning id`, name).Scan(&id)
+	err := r.db.QueryRow(ctx, `insert into promo_offer_business_category (name) values ($1) returning id`, name).Scan(&id)
 	return id, err
 }

@@ -10,7 +10,7 @@ import (
 type Offer struct {
 	id                   uuid.UUID
 	cooperationTypeID    int64
-	topicID              int64
+	businessCategoryID   int64
 	title                string
 	description          string
 	price                int64
@@ -60,13 +60,13 @@ func (o Offers) CooperationTypeIDs() []int64 {
 	})
 }
 
-func (o Offers) TopicIDs() []int64 {
+func (o Offers) BusinessCategoryIDs() []int64 {
 	return lo.FilterMap(o, func(item *Offer, _ int) (int64, bool) {
-		if item.GetTopicID() <= 0 {
+		if item.GetBusinessCategoryID() <= 0 {
 			return 0, false
 		}
 
-		return item.GetTopicID(), true
+		return item.GetBusinessCategoryID(), true
 	})
 }
 

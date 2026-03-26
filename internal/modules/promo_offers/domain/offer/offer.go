@@ -9,7 +9,7 @@ import (
 type Offer struct {
 	id                   uuid.UUID
 	cooperationTypeID    int64
-	topicID              int64
+	businessCategoryID   int64
 	title                string
 	description          string
 	price                int64

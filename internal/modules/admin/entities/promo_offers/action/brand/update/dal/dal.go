@@ -21,7 +21,7 @@ func (r *Repository) UpdateBrand(ctx context.Context, brandID int64, req dto.Upd
 		set photo = $2,
 			title = $3,
 			slug = $4,
-			topic_id = $5,
+			business_category_id = $5,
 			website = $6,
 			description = $7
 		where id = $1
@@ -32,7 +32,7 @@ func (r *Repository) UpdateBrand(ctx context.Context, brandID int64, req dto.Upd
 		req.Photo,
 		req.Title,
 		req.Slug,
-		req.TopicID,
+		req.BusinessCategoryID,
 		req.Website,
 		req.Description,
 	)

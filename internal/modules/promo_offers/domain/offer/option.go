@@ -20,9 +20,9 @@ func WithCooperationTypeID(cooperationTypeID int64) Option {
 	}
 }
 
-func WithTopicID(topicID int64) Option {
+func WithBusinessCategoryID(businessCategoryID int64) Option {
 	return func(o *Offer) {
-		o.topicID = topicID
+		o.businessCategoryID = businessCategoryID
 	}
 }
 

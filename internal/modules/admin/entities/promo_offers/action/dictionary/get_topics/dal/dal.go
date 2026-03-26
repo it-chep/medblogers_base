@@ -22,7 +22,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) GetTopics(ctx context.Context) (dictionary.NamedItems, error) {
 	sql := `
 		select id, name
-		from promo_offer_topic
+		from promo_offer_business_category
 		order by id desc
 	`
 

@@ -14,7 +14,7 @@ import (
 
 func newFilterOffersResponse(resp filterOffersDTO.Response) *desc.FilterOffersResponse {
 	result := &desc.FilterOffersResponse{
-		Offers: make([]*desc.OfferItem, 0, len(resp.Offers)),
+		Offers: make([]*desc.FilterOfferItem, 0, len(resp.Offers)),
 	}
 
 	for _, item := range resp.Offers {
@@ -56,7 +56,7 @@ func newGetBrandOffersResponse(resp brandOffersDTO.Response) *desc.GetBrandOffer
 
 func newGetOfferCardResponse(item *offerDetailDTO.Offer) *desc.GetOfferCardResponse {
 	return &desc.GetOfferCardResponse{
-		Offer: newOfferItemFromDetail(item),
+		Offer: newOfferCardItem(item),
 	}
 }
 
@@ -81,20 +81,16 @@ func newGetFilterSettingsResponse(item *filterSettingsDTO.Response) *desc.GetFil
 	return resp
 }
 
-func newOfferItemFromFilter(item filterOffersDTO.Offer) *desc.OfferItem {
-	resp := &desc.OfferItem{
-		Id:                   item.ID,
-		Title:                item.Title,
-		Description:          item.Description,
-		Price:                item.Price,
-		PublicationDate:      formatDate(item.PublicationDate),
-		AdMarkingResponsible: item.AdMarkingResponsible,
-		ResponsesCapacity:    item.ResponsesCapacity,
-		CooperationType:      newNamedItemFromFilter(item.CooperationType),
-		Topic:                newNamedItemFromFilter(item.Topic),
-		ContentFormat:        newNamedItemFromFilter(item.ContentFormat),
-		Brand:                newBrandPreviewFromFilter(item.Brand),
-		SocialNetworks:       make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
+func newOfferItemFromFilter(item filterOffersDTO.Offer) *desc.FilterOfferItem {
+	resp := &desc.FilterOfferItem{
+		Photo:            item.Photo,
+		Title:            item.Title,
+		BrandDescription: item.BrandDescription,
+		CooperationType:  newNamedItemFromFilter(item.CooperationType),
+		Description:      item.Description,
+		BusinessCategory: newNamedItemFromFilter(item.BusinessCategory),
+		CreatedAt:        formatDateTime(item.CreatedAt),
+		SocialNetworks:   make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
 	for _, social := range item.SocialNetworks {
@@ -108,20 +104,18 @@ func newOfferItemFromFilter(item filterOffersDTO.Offer) *desc.OfferItem {
 	return resp
 }
 
-func newOfferItemFromDetail(item *offerDetailDTO.Offer) *desc.OfferItem {
-	resp := &desc.OfferItem{
-		Id:                   item.ID,
-		Title:                item.Title,
-		Description:          item.Description,
-		Price:                item.Price,
-		PublicationDate:      formatDate(item.PublicationDate),
-		AdMarkingResponsible: item.AdMarkingResponsible,
-		ResponsesCapacity:    item.ResponsesCapacity,
-		CooperationType:      newNamedItemFromDetail(item.CooperationType),
-		Topic:                newNamedItemFromDetail(item.Topic),
-		ContentFormat:        newNamedItemFromDetail(item.ContentFormat),
-		Brand:                newBrandPreviewFromDetail(item.Brand),
-		SocialNetworks:       make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
+func newOfferCardItem(item *offerDetailDTO.Offer) *desc.OfferCardItem {
+	if item == nil {
+		return nil
+	}
+
+	resp := &desc.OfferCardItem{
+		Brand:           newOfferCardBrandItem(item.Brand),
+		Description:     item.Description,
+		CooperationType: newNamedItemFromDetail(item.CooperationType),
+		Price:           item.Price,
+		CreatedAt:       formatDateTime(item.CreatedAt),
+		SocialNetworks:  make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
 	for _, social := range item.SocialNetworks {
@@ -129,6 +123,32 @@ func newOfferItemFromDetail(item *offerDetailDTO.Offer) *desc.OfferItem {
 			Id:   social.ID,
 			Name: social.Name,
 			Slug: social.Slug,
+		})
+	}
+
+	return resp
+}
+
+func newOfferCardBrandItem(item *offerDetailDTO.Brand) *desc.OfferCardBrandItem {
+	if item == nil {
+		return nil
+	}
+
+	resp := &desc.OfferCardBrandItem{
+		Photo:            item.Photo,
+		Title:            item.Title,
+		Description:      item.Description,
+		About:            item.About,
+		BusinessCategory: newNamedItemFromDetail(item.BusinessCategory),
+		SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
+	}
+
+	for _, social := range item.SocialNetworks {
+		resp.SocialNetworks = append(resp.SocialNetworks, &desc.BrandSocialNetworkItem{
+			Id:   social.ID,
+			Name: social.Name,
+			Slug: social.Slug,
+			Link: social.Link,
 		})
 	}
 
@@ -145,7 +165,7 @@ func newOfferItemFromBrandOffers(item brandOffersDTO.Offer) *desc.OfferItem {
 		AdMarkingResponsible: item.AdMarkingResponsible,
 		ResponsesCapacity:    item.ResponsesCapacity,
 		CooperationType:      newNamedItemFromBrandOffers(item.CooperationType),
-		Topic:                newNamedItemFromBrandOffers(item.Topic),
+		BusinessCategory:     newNamedItemFromBrandOffers(item.BusinessCategory),
 		ContentFormat:        newNamedItemFromBrandOffers(item.ContentFormat),
 		Brand:                newBrandPreviewFromBrandOffers(item.Brand),
 		SocialNetworks:       make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
@@ -164,14 +184,14 @@ func newOfferItemFromBrandOffers(item brandOffersDTO.Offer) *desc.OfferItem {
 
 func newBrandItemFromFilter(item filterBrandsDTO.Brand) *desc.BrandItem {
 	resp := &desc.BrandItem{
-		Id:             item.ID,
-		Title:          item.Title,
-		Slug:           item.Slug,
-		Photo:          item.Photo,
-		Topic:          newTopicFromFilter(item.Topic),
-		Website:        item.Website,
-		Description:    item.Description,
-		SocialNetworks: make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
+		Id:               item.ID,
+		Title:            item.Title,
+		Slug:             item.Slug,
+		Photo:            item.Photo,
+		BusinessCategory: newBusinessCategoryFromFilter(item.BusinessCategory),
+		Website:          item.Website,
+		Description:      item.Description,
+		SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
 	for _, social := range item.SocialNetworks {
@@ -192,14 +212,14 @@ func newBrandItemFromDetail(item *brandDetailDTO.Brand) *desc.BrandItem {
 	}
 
 	resp := &desc.BrandItem{
-		Id:             item.ID,
-		Title:          item.Title,
-		Slug:           item.Slug,
-		Photo:          item.Photo,
-		Topic:          newTopicFromDetail(item.Topic),
-		Website:        item.Website,
-		Description:    item.Description,
-		SocialNetworks: make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
+		Id:               item.ID,
+		Title:            item.Title,
+		Slug:             item.Slug,
+		Photo:            item.Photo,
+		BusinessCategory: newBusinessCategoryFromDetail(item.BusinessCategory),
+		Website:          item.Website,
+		Description:      item.Description,
+		SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
 	for _, social := range item.SocialNetworks {
@@ -247,7 +267,7 @@ func newNamedItemFromBrandOffers(item *brandOffersDTO.NamedItem) *desc.NamedItem
 	}
 }
 
-func newTopicFromFilter(item *filterBrandsDTO.Topic) *desc.NamedItem {
+func newBusinessCategoryFromFilter(item *filterBrandsDTO.BusinessCategory) *desc.NamedItem {
 	if item == nil {
 		return nil
 	}
@@ -258,7 +278,7 @@ func newTopicFromFilter(item *filterBrandsDTO.Topic) *desc.NamedItem {
 	}
 }
 
-func newTopicFromDetail(item *brandDetailDTO.Topic) *desc.NamedItem {
+func newBusinessCategoryFromDetail(item *brandDetailDTO.BusinessCategory) *desc.NamedItem {
 	if item == nil {
 		return nil
 	}
@@ -266,32 +286,6 @@ func newTopicFromDetail(item *brandDetailDTO.Topic) *desc.NamedItem {
 	return &desc.NamedItem{
 		Id:   item.ID,
 		Name: item.Name,
-	}
-}
-
-func newBrandPreviewFromFilter(item *filterOffersDTO.BrandPreview) *desc.BrandPreview {
-	if item == nil {
-		return nil
-	}
-
-	return &desc.BrandPreview{
-		Id:    item.ID,
-		Title: item.Title,
-		Slug:  item.Slug,
-		Photo: item.Photo,
-	}
-}
-
-func newBrandPreviewFromDetail(item *offerDetailDTO.BrandPreview) *desc.BrandPreview {
-	if item == nil {
-		return nil
-	}
-
-	return &desc.BrandPreview{
-		Id:    item.ID,
-		Title: item.Title,
-		Slug:  item.Slug,
-		Photo: item.Photo,
 	}
 }
 
@@ -314,4 +308,12 @@ func formatDate(value *time.Time) string {
 	}
 
 	return value.Format(time.DateOnly)
+}
+
+func formatDateTime(value *time.Time) string {
+	if value == nil {
+		return ""
+	}
+
+	return value.Format(time.RFC3339)
 }

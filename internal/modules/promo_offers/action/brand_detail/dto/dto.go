@@ -1,6 +1,6 @@
 package dto
 
-type Topic struct {
+type BusinessCategory struct {
 	ID   int64
 	Name string
 }
@@ -13,12 +13,12 @@ type SocialNetwork struct {
 }
 
 type Brand struct {
-	ID             int64
-	Title          string
-	Slug           string
-	Photo          string
-	Topic          *Topic
-	Website        string
-	Description    string
-	SocialNetworks []SocialNetwork
+	ID               int64
+	Title            string
+	Slug             string
+	Photo            string
+	BusinessCategory *BusinessCategory
+	Website          string
+	Description      string
+	SocialNetworks   []SocialNetwork
 }

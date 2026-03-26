@@ -29,7 +29,7 @@ type Offer struct {
 	AdMarkingResponsible string
 	ResponsesCapacity    int64
 	CooperationType      *NamedItem
-	Topic                *NamedItem
+	BusinessCategory     *NamedItem
 	ContentFormat        *NamedItem
 	Brand                *BrandPreview
 	SocialNetworks       []SocialNetwork

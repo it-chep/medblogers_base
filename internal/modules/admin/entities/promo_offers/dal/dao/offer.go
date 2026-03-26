@@ -2,6 +2,7 @@ package dao
 
 import (
 	"database/sql"
+	"time"
 
 	"github.com/google/uuid"
 
@@ -11,7 +12,7 @@ import (
 type OfferDAO struct {
 	ID                   uuid.UUID      `db:"id"`
 	CooperationTypeID    sql.NullInt64  `db:"cooperation_type_id"`
-	TopicID              sql.NullInt64  `db:"topic_id"`
+	BusinessCategoryID   sql.NullInt64  `db:"business_category_id"`
 	Title                string         `db:"title"`
 	Description          sql.NullString `db:"description"`
 	Price                sql.NullInt64  `db:"price"`
@@ -25,20 +26,56 @@ type OfferDAO struct {
 }
 
 func (d OfferDAO) ToDomain() *offerDomain.Offer {
+	var cooperationTypeID int64
+	if d.CooperationTypeID.Valid {
+		cooperationTypeID = d.CooperationTypeID.Int64
+	}
+
+	var businessCategoryID int64
+	if d.BusinessCategoryID.Valid {
+		businessCategoryID = d.BusinessCategoryID.Int64
+	}
+
+	var price int64
+	if d.Price.Valid {
+		price = d.Price.Int64
+	}
+
+	var contentFormatID int64
+	if d.ContentFormatID.Valid {
+		contentFormatID = d.ContentFormatID.Int64
+	}
+
+	var brandID int64
+	if d.BrandID.Valid {
+		brandID = d.BrandID.Int64
+	}
+
+	var publicationDate *time.Time
+	if d.PublicationDate.Valid {
+		tm := d.PublicationDate.Time
+		publicationDate = &tm
+	}
+
+	var responsesCapacity int64
+	if d.ResponsesCapacity.Valid {
+		responsesCapacity = d.ResponsesCapacity.Int64
+	}
+
 	return offerDomain.New(
 		offerDomain.WithID(d.ID),
-		offerDomain.WithCooperationTypeID(nullInt64(d.CooperationTypeID)),
-		offerDomain.WithTopicID(nullInt64(d.TopicID)),
+		offerDomain.WithCooperationTypeID(cooperationTypeID),
+		offerDomain.WithBusinessCategoryID(businessCategoryID),
 		offerDomain.WithTitle(d.Title),
 		offerDomain.WithDescription(d.Description.String),
-		offerDomain.WithPrice(nullInt64(d.Price)),
-		offerDomain.WithContentFormatID(nullInt64(d.ContentFormatID)),
-		offerDomain.WithBrandID(nullInt64(d.BrandID)),
-		offerDomain.WithPublicationDate(nullTime(d.PublicationDate)),
+		offerDomain.WithPrice(price),
+		offerDomain.WithContentFormatID(contentFormatID),
+		offerDomain.WithBrandID(brandID),
+		offerDomain.WithPublicationDate(publicationDate),
 		offerDomain.WithAdMarkingResponsible(d.AdMarkingResponsible.String),
-		offerDomain.WithResponsesCapacity(nullInt64(d.ResponsesCapacity)),
+		offerDomain.WithResponsesCapacity(responsesCapacity),
 		offerDomain.WithIsActive(d.IsActive.Valid && d.IsActive.Bool),
-		offerDomain.WithCreatedAt(nullTime(d.CreatedAt)),
+		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
 	)
 }
 

@@ -1,9 +1,6 @@
 package dao
 
 import (
-	"database/sql"
-	"time"
-
 	"github.com/google/uuid"
 
 	"medblogers_base/internal/modules/admin/entities/promo_offers/domain/dictionary"
@@ -68,21 +65,4 @@ type OfferSocialNetworkDAO struct {
 	SocialNetworkID int64
 	Name            string
 	Slug            string
-}
-
-func nullInt64(v sql.NullInt64) int64 {
-	if !v.Valid {
-		return 0
-	}
-
-	return v.Int64
-}
-
-func nullTime(v sql.NullTime) *time.Time {
-	if !v.Valid {
-		return nil
-	}
-
-	tm := v.Time
-	return &tm
 }

@@ -18,7 +18,7 @@ type ActionDal interface {
 }
 
 type CommonDal interface {
-	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetBusinessCategoriesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
 	GetBrandSocialNetworks(ctx context.Context, brandIDs []int64) (map[int64]dictionary.BrandSocialNetworks, error)
 }
 
@@ -42,7 +42,7 @@ func (a *Action) Do(ctx context.Context) ([]dto.Brand, error) {
 		return nil, err
 	}
 
-	topicsMap, err := a.commonDal.GetTopicsByIDs(ctx, brands.TopicIDs())
+	businessCategoriesMap, err := a.commonDal.GetBusinessCategoriesByIDs(ctx, brands.BusinessCategoryIDs())
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (a *Action) Do(ctx context.Context) ([]dto.Brand, error) {
 	for _, item := range brands {
 		result = append(result, dto.NewBrand(
 			item,
-			topicsMap[item.GetTopicID()],
+			businessCategoriesMap[item.GetBusinessCategoryID()],
 			socialsMap[item.GetID()],
 			a.image.GetImageURL(item.GetPhoto()),
 		))

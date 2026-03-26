@@ -19,7 +19,7 @@ type ActionDal interface {
 }
 
 type CommonDal interface {
-	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetBusinessCategoriesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
 	GetBrandSocialNetworks(ctx context.Context, brandIDs []int64) (map[int64][]commonDAO.BrandSocialNetworkDAO, error)
 }
 
@@ -45,7 +45,7 @@ func (a *Action) Do(ctx context.Context, slug string) (*dto.Brand, error) {
 		return nil, err
 	}
 
-	topicsMap, err := a.commonDal.GetTopicsByIDs(ctx, []int64{brand.GetTopicID()})
+	businessCategoriesMap, err := a.commonDal.GetBusinessCategoriesByIDs(ctx, []int64{brand.GetBusinessCategoryID()})
 	if err != nil {
 		return nil, err
 	}
@@ -64,9 +64,9 @@ func (a *Action) Do(ctx context.Context, slug string) (*dto.Brand, error) {
 		Description: brand.GetDescription(),
 	}
 
-	if topicName, ok := topicsMap[brand.GetTopicID()]; ok {
-		resp.Topic = &dto.Topic{
-			ID:   brand.GetTopicID(),
+	if topicName, ok := businessCategoriesMap[brand.GetBusinessCategoryID()]; ok {
+		resp.BusinessCategory = &dto.BusinessCategory{
+			ID:   brand.GetBusinessCategoryID(),
 			Name: topicName,
 		}
 	}

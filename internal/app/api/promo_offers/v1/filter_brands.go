@@ -9,8 +9,7 @@ import (
 
 func (i *Implementation) FilterBrands(ctx context.Context, req *desc.FilterBrandsRequest) (*desc.FilterBrandsResponse, error) {
 	resp, err := i.promoOffers.Actions.FilterBrands.Do(ctx, actionDTO.BrandFilter{
-		TopicIDs:         req.GetTopicIds(),
-		SocialNetworkIDs: req.GetSocialNetworkIds(),
+		BusinessCategoryIDs: req.GetBusinessCategoryIds(),
 	})
 	if err != nil {
 		return nil, err

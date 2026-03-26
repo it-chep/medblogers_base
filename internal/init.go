@@ -12,6 +12,7 @@ import (
 	blogAdminV1 "medblogers_base/internal/app/api/admin/blog/v1"
 	mmV1 "medblogers_base/internal/app/api/admin/mm/v1"
 	promoOfferBrandAdminV1 "medblogers_base/internal/app/api/admin/promo_offers/brand/v1"
+	promoOfferOfferAdminV1 "medblogers_base/internal/app/api/admin/promo_offers/offer/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
@@ -46,6 +47,7 @@ import (
 	blogAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
 	promoOfferBrandAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/promo_offers/brand/v1"
+	promoOfferOfferAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/promo_offers/offer/v1"
 	blogsDesc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	doctorsDesc "medblogers_base/internal/pb/medblogers_base/api/doctors/v1"
 	freelancersDesc "medblogers_base/internal/pb/medblogers_base/api/freelancers/v1"
@@ -163,6 +165,7 @@ func (a *App) initControllers(_ context.Context) *App {
 		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),
 		mmDesc.NewAdminMastermindServiceServiceDesc(mmV1.NewMMService(a.modules.admin, a.modules.auth)),
 		promoOfferBrandAdminDesc.NewPromoOffersAdminBrandServiceServiceDesc(promoOfferBrandAdminV1.New(a.modules.admin, a.modules.auth)),
+		promoOfferOfferAdminDesc.NewPromoOffersAdminOfferServiceServiceDesc(promoOfferOfferAdminV1.New(a.modules.admin, a.modules.auth)),
 		authDesc.NewAuthServiceServiceDesc(authV1.NewAuthService(a.modules.auth, a.config)),
 		doctorAdminDesc.NewDoctorAdminServiceServiceDesc(doctorAdminV1.New(a.modules.admin, a.modules.auth)),
 		doctorCityAdminDesc.NewDoctorAdminCityServiceServiceDesc(doctorCityAdminV1.New(a.modules.admin, a.modules.auth)),

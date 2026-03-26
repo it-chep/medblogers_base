@@ -21,7 +21,7 @@ func (r *Repository) CreateOffer(ctx context.Context, req dto.CreateRequest) (uu
 	sql := `
 		insert into promo_offer (
 			cooperation_type_id,
-			topic_id,
+			business_category_id,
 			title,
 			description,
 			price,
@@ -38,7 +38,7 @@ func (r *Repository) CreateOffer(ctx context.Context, req dto.CreateRequest) (uu
 	var offerID uuid.UUID
 	err := r.db.QueryRow(ctx, sql,
 		req.CooperationTypeID,
-		req.TopicID,
+		req.BusinessCategoryID,
 		req.Title,
 		req.Description,
 		req.Price,

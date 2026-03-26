@@ -11,25 +11,25 @@ import (
 
 func newCreateBrandDTO(req *desc.CreateBrandRequest) createDTO.CreateRequest {
 	return createDTO.CreateRequest{
-		Photo:          req.GetPhoto(),
-		Title:          req.GetTitle(),
-		Slug:           req.GetSlug(),
-		TopicID:        req.GetTopicId(),
-		Website:        req.GetWebsite(),
-		Description:    req.GetDescription(),
-		SocialNetworks: newCreateBrandSocialNetworks(req.GetSocialNetworks()),
+		Photo:              req.GetPhoto(),
+		Title:              req.GetTitle(),
+		Slug:               req.GetSlug(),
+		BusinessCategoryID: req.GetTopicId(),
+		Website:            req.GetWebsite(),
+		Description:        req.GetDescription(),
+		SocialNetworks:     newCreateBrandSocialNetworks(req.GetSocialNetworks()),
 	}
 }
 
 func newUpdateBrandDTO(req *desc.UpdateBrandRequest) updateDTO.UpdateRequest {
 	return updateDTO.UpdateRequest{
-		Photo:          req.GetPhoto(),
-		Title:          req.GetTitle(),
-		Slug:           req.GetSlug(),
-		TopicID:        req.GetTopicId(),
-		Website:        req.GetWebsite(),
-		Description:    req.GetDescription(),
-		SocialNetworks: newUpdateBrandSocialNetworks(req.GetSocialNetworks()),
+		Photo:              req.GetPhoto(),
+		Title:              req.GetTitle(),
+		Slug:               req.GetSlug(),
+		BusinessCategoryID: req.GetTopicId(),
+		Website:            req.GetWebsite(),
+		Description:        req.GetDescription(),
+		SocialNetworks:     newUpdateBrandSocialNetworks(req.GetSocialNetworks()),
 	}
 }
 
@@ -44,7 +44,7 @@ func newGetBrandsResponse(items []getDTO.Brand) *desc.GetBrandsResponse {
 			Title:     item.Title,
 			Slug:      item.Slug,
 			Photo:     item.Photo,
-			Topic:     newNamedItem(item.Topic),
+			Topic:     newNamedItem(item.BusinessCategory),
 			IsActive:  item.IsActive,
 			CreatedAt: formatDateTime(item.CreatedAt),
 		})
@@ -64,7 +64,7 @@ func newGetBrandByIDResponse(item *getDTO.Brand) *desc.GetBrandByIDResponse {
 			Title:          item.Title,
 			Slug:           item.Slug,
 			Photo:          item.Photo,
-			Topic:          newNamedItem(item.Topic),
+			Topic:          newNamedItem(item.BusinessCategory),
 			Website:        item.Website,
 			Description:    item.Description,
 			SocialNetworks: make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),

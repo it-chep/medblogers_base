@@ -8,11 +8,11 @@ create table if not exists promo_offer_cooperation_type
     name varchar(100) not null unique -- название типа сотрудничества
 );
 
--- Справочник тематики офферов и брендов
-create table if not exists promo_offer_topic
+-- Справочник бизнес-категорий офферов и брендов
+create table if not exists promo_offer_business_category
 (
     id   bigserial primary key,
-    name varchar(100) not null unique -- название тематики
+    name varchar(100) not null unique -- название бизнес-категории
 );
 
 -- Справочник форматов контента/размещения
@@ -29,7 +29,7 @@ create table if not exists brand
     photo       text,                    -- фото бренда/компании
     title       text,                    -- заголовок
     slug        text not null unique,    -- slug бренда
-    topic_id    bigint,                  -- тема компании
+    business_category_id bigint,         -- бизнес-категория компании
     website     text,                    -- сайт компании
     description text,                    -- описание компании
     is_active   bool      default false, -- признак активности
@@ -52,7 +52,7 @@ create table if not exists promo_offer
 (
     id                     uuid primary key default gen_random_uuid(),
     cooperation_type_id    bigint,                  -- тип сотрудничества
-    topic_id               bigint,                  -- тема оффера
+    business_category_id   bigint,                  -- бизнес-категория оффера
     title                  text not null,           -- заголовок
     description            text,                    -- описание, что надо сделать и что прорекламировать
     price                  bigint,                  -- цена
@@ -81,7 +81,7 @@ values ('Бартер'),
        ('Разовое')
 on conflict (name) do nothing;
 
-insert into promo_offer_topic (name)
+insert into promo_offer_business_category (name)
 values ('Фармакология'),
        ('Блогер'),
        ('Мед. одежда'),
@@ -97,13 +97,13 @@ values ('Рилс'),
        ('Любой контент')
 on conflict (name) do nothing;
 
-create index if not exists idx_brand_topic on brand (topic_id);
+create index if not exists idx_brand_business_category on brand (business_category_id);
 
 create index if not exists idx_brand_social_networks_brand on brand_social_networks (brand_id);
 create index if not exists idx_brand_social_networks_network on brand_social_networks (social_network_id);
 
 create index if not exists idx_promo_offer_cooperation_type on promo_offer (cooperation_type_id);
-create index if not exists idx_promo_offer_topic on promo_offer (topic_id);
+create index if not exists idx_promo_offer_business_category on promo_offer (business_category_id);
 create index if not exists idx_promo_offer_content_format on promo_offer (content_format_id);
 create index if not exists idx_promo_offer_brand on promo_offer (brand_id);
 create index if not exists idx_promo_offer_created_at on promo_offer (created_at desc);
@@ -121,6 +121,6 @@ drop table if exists brand_social_networks;
 drop table if exists promo_offer;
 drop table if exists brand;
 drop table if exists promo_offer_content_format;
-drop table if exists promo_offer_topic;
+drop table if exists promo_offer_business_category;
 drop table if exists promo_offer_cooperation_type;
 -- +goose StatementEnd

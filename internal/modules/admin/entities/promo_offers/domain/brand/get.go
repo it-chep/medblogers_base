@@ -18,8 +18,8 @@ func (b *Brand) GetSlug() string {
 	return b.slug
 }
 
-func (b *Brand) GetTopicID() int64 {
-	return b.topicID
+func (b *Brand) GetBusinessCategoryID() int64 {
+	return b.businessCategoryID
 }
 
 func (b *Brand) GetWebsite() string {

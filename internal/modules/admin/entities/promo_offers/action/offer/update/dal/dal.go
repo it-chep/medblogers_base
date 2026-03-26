@@ -21,7 +21,7 @@ func (r *Repository) UpdateOffer(ctx context.Context, offerID uuid.UUID, req dto
 	sql := `
 		update promo_offer
 		set cooperation_type_id = $2,
-			topic_id = $3,
+			business_category_id = $3,
 			title = $4,
 			description = $5,
 			price = $6,
@@ -36,7 +36,7 @@ func (r *Repository) UpdateOffer(ctx context.Context, offerID uuid.UUID, req dto
 	_, err := r.db.Exec(ctx, sql,
 		offerID,
 		req.CooperationTypeID,
-		req.TopicID,
+		req.BusinessCategoryID,
 		req.Title,
 		req.Description,
 		req.Price,

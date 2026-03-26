@@ -11,15 +11,15 @@ import (
 )
 
 type BrandDAO struct {
-	ID          int64          `db:"id"`
-	Photo       sql.NullString `db:"photo"`
-	Title       sql.NullString `db:"title"`
-	Slug        string         `db:"slug"`
-	TopicID     sql.NullInt64  `db:"topic_id"`
-	Website     sql.NullString `db:"website"`
-	Description sql.NullString `db:"description"`
-	IsActive    sql.NullBool   `db:"is_active"`
-	CreatedAt   sql.NullTime   `db:"created_at"`
+	ID                 int64          `db:"id"`
+	Photo              sql.NullString `db:"photo"`
+	Title              sql.NullString `db:"title"`
+	Slug               string         `db:"slug"`
+	BusinessCategoryID sql.NullInt64  `db:"business_category_id"`
+	Website            sql.NullString `db:"website"`
+	Description        sql.NullString `db:"description"`
+	IsActive           sql.NullBool   `db:"is_active"`
+	CreatedAt          sql.NullTime   `db:"created_at"`
 }
 
 func (d BrandDAO) ToDomain() *brandDomain.Brand {
@@ -28,18 +28,18 @@ func (d BrandDAO) ToDomain() *brandDomain.Brand {
 		brandDomain.WithPhoto(d.Photo.String),
 		brandDomain.WithTitle(d.Title.String),
 		brandDomain.WithSlug(d.Slug),
-		brandDomain.WithTopicID(nullInt64(d.TopicID)),
+		brandDomain.WithBusinessCategoryID(d.BusinessCategoryID.Int64),
 		brandDomain.WithWebsite(d.Website.String),
 		brandDomain.WithDescription(d.Description.String),
 		brandDomain.WithIsActive(d.IsActive.Valid && d.IsActive.Bool),
-		brandDomain.WithCreatedAt(nullTime(d.CreatedAt)),
+		brandDomain.WithCreatedAt(&d.CreatedAt.Time),
 	)
 }
 
 type OfferDAO struct {
 	ID                   uuid.UUID      `db:"id"`
 	CooperationTypeID    sql.NullInt64  `db:"cooperation_type_id"`
-	TopicID              sql.NullInt64  `db:"topic_id"`
+	BusinessCategoryID   sql.NullInt64  `db:"business_category_id"`
 	Title                string         `db:"title"`
 	Description          sql.NullString `db:"description"`
 	Price                sql.NullInt64  `db:"price"`
@@ -53,20 +53,66 @@ type OfferDAO struct {
 }
 
 func (d OfferDAO) ToDomain() *offerDomain.Offer {
+	var publicationDate *time.Time
+	if d.PublicationDate.Valid {
+		tm := d.PublicationDate.Time
+		publicationDate = &tm
+	}
+
 	return offerDomain.New(
 		offerDomain.WithID(d.ID),
-		offerDomain.WithCooperationTypeID(nullInt64(d.CooperationTypeID)),
-		offerDomain.WithTopicID(nullInt64(d.TopicID)),
+		offerDomain.WithCooperationTypeID(d.CooperationTypeID.Int64),
+		offerDomain.WithBusinessCategoryID(d.BusinessCategoryID.Int64),
 		offerDomain.WithTitle(d.Title),
 		offerDomain.WithDescription(d.Description.String),
-		offerDomain.WithPrice(nullInt64(d.Price)),
-		offerDomain.WithContentFormatID(nullInt64(d.ContentFormatID)),
-		offerDomain.WithBrandID(nullInt64(d.BrandID)),
-		offerDomain.WithPublicationDate(nullTime(d.PublicationDate)),
+		offerDomain.WithPrice(d.Price.Int64),
+		offerDomain.WithContentFormatID(d.ContentFormatID.Int64),
+		offerDomain.WithBrandID(d.BrandID.Int64),
+		offerDomain.WithPublicationDate(publicationDate),
 		offerDomain.WithAdMarkingResponsible(d.AdMarkingResponsible.String),
-		offerDomain.WithResponsesCapacity(nullInt64(d.ResponsesCapacity)),
+		offerDomain.WithResponsesCapacity(d.ResponsesCapacity.Int64),
 		offerDomain.WithIsActive(d.IsActive.Valid && d.IsActive.Bool),
-		offerDomain.WithCreatedAt(nullTime(d.CreatedAt)),
+		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
+	)
+}
+
+type FilterOfferDAO struct {
+	ID                 uuid.UUID      `db:"id"`
+	CooperationTypeID  sql.NullInt64  `db:"cooperation_type_id"`
+	BusinessCategoryID sql.NullInt64  `db:"business_category_id"`
+	Description        sql.NullString `db:"description"`
+	BrandID            sql.NullInt64  `db:"brand_id"`
+	CreatedAt          sql.NullTime   `db:"created_at"`
+}
+
+func (d FilterOfferDAO) ToDomain() *offerDomain.Offer {
+	return offerDomain.New(
+		offerDomain.WithID(d.ID),
+		offerDomain.WithCooperationTypeID(d.CooperationTypeID.Int64),
+		offerDomain.WithBusinessCategoryID(d.BusinessCategoryID.Int64),
+		offerDomain.WithDescription(d.Description.String),
+		offerDomain.WithBrandID(d.BrandID.Int64),
+		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
+	)
+}
+
+type OfferCardDAO struct {
+	ID                uuid.UUID      `db:"id"`
+	CooperationTypeID sql.NullInt64  `db:"cooperation_type_id"`
+	Description       sql.NullString `db:"description"`
+	Price             sql.NullInt64  `db:"price"`
+	BrandID           sql.NullInt64  `db:"brand_id"`
+	CreatedAt         sql.NullTime   `db:"created_at"`
+}
+
+func (d OfferCardDAO) ToDomain() *offerDomain.Offer {
+	return offerDomain.New(
+		offerDomain.WithID(d.ID),
+		offerDomain.WithCooperationTypeID(d.CooperationTypeID.Int64),
+		offerDomain.WithDescription(d.Description.String),
+		offerDomain.WithPrice(d.Price.Int64),
+		offerDomain.WithBrandID(d.BrandID.Int64),
+		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
 	)
 }
 
@@ -110,21 +156,4 @@ type OfferSocialNetworkDAO struct {
 type FilterCountDAO struct {
 	ID          sql.NullInt64 `db:"id"`
 	OffersCount int64         `db:"offers_count"`
-}
-
-func nullInt64(v sql.NullInt64) int64 {
-	if !v.Valid {
-		return 0
-	}
-
-	return v.Int64
-}
-
-func nullTime(v sql.NullTime) *time.Time {
-	if !v.Valid {
-		return nil
-	}
-
-	tm := v.Time
-	return &tm
 }

@@ -28,9 +28,9 @@ func WithSlug(slug string) Option {
 	}
 }
 
-func WithTopicID(topicID int64) Option {
+func WithBusinessCategoryID(businessCategoryID int64) Option {
 	return func(b *Brand) {
-		b.topicID = topicID
+		b.businessCategoryID = businessCategoryID
 	}
 }
 

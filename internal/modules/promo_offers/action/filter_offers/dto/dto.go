@@ -11,13 +11,6 @@ type NamedItem struct {
 	Name string
 }
 
-type BrandPreview struct {
-	ID    int64
-	Title string
-	Slug  string
-	Photo string
-}
-
 type SocialNetwork struct {
 	ID   int64
 	Name string
@@ -25,18 +18,14 @@ type SocialNetwork struct {
 }
 
 type Offer struct {
-	ID                   string
-	Title                string
-	Description          string
-	Price                int64
-	PublicationDate      *time.Time
-	AdMarkingResponsible string
-	ResponsesCapacity    int64
-	CooperationType      *NamedItem
-	Topic                *NamedItem
-	ContentFormat        *NamedItem
-	Brand                *BrandPreview
-	SocialNetworks       []SocialNetwork
+	Photo            string
+	Title            string
+	BrandDescription string
+	CooperationType  *NamedItem
+	Description      string
+	SocialNetworks   []SocialNetwork
+	BusinessCategory *NamedItem
+	CreatedAt        *time.Time
 }
 
 type Response struct {

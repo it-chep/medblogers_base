@@ -24,9 +24,9 @@ type ActionDal interface {
 
 type CommonDal interface {
 	GetCooperationTypesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
-	GetTopicsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
-	GetContentFormatsByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
+	GetBusinessCategoriesByIDs(ctx context.Context, ids []int64) (map[int64]string, error)
 	GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64]*brandDomain.Brand, error)
+	GetBrandSocialNetworks(ctx context.Context, brandIDs []int64) (map[int64][]commonDAO.BrandSocialNetworkDAO, error)
 	GetOfferSocialNetworks(ctx context.Context, offerIDs []uuid.UUID) (map[uuid.UUID][]commonDAO.OfferSocialNetworkDAO, error)
 }
 
@@ -47,9 +47,8 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 func (a *Action) Do(ctx context.Context, id uuid.UUID) (*dto.Offer, error) {
 	var (
 		cooperationTypesMap map[int64]string
-		topicsMap           map[int64]string
-		contentFormatsMap   map[int64]string
-		brandsMap           map[int64]*dto.BrandPreview
+		brandsMap           map[int64]*brandDomain.Brand
+		brandSocialsMap     map[int64][]commonDAO.BrandSocialNetworkDAO
 		socialsMap          map[uuid.UUID][]commonDAO.OfferSocialNetworkDAO
 	)
 
@@ -73,43 +72,23 @@ func (a *Action) Do(ctx context.Context, id uuid.UUID) (*dto.Offer, error) {
 	})
 
 	g.Go(func() {
-		items, gErr := a.commonDal.GetTopicsByIDs(ctx, []int64{offer.GetTopicID()})
-		if gErr != nil {
-			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении темы", gErr)
-			return
-		}
-
-		topicsMap = items
-	})
-
-	g.Go(func() {
-		items, gErr := a.commonDal.GetContentFormatsByIDs(ctx, []int64{offer.GetContentFormatID()})
-		if gErr != nil {
-			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении формата контента", gErr)
-			return
-		}
-
-		contentFormatsMap = items
-	})
-
-	g.Go(func() {
 		items, gErr := a.commonDal.GetBrandsByIDs(ctx, []int64{offer.GetBrandID()})
 		if gErr != nil {
 			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении бренда", gErr)
 			return
 		}
 
-		mapped := make(map[int64]*dto.BrandPreview, len(items))
-		for id, item := range items {
-			mapped[id] = &dto.BrandPreview{
-				ID:    item.GetID(),
-				Title: item.GetTitle(),
-				Slug:  item.GetSlug(),
-				Photo: a.image.EnrichPhotoByKey(item.GetPhoto()),
-			}
+		brandsMap = items
+	})
+
+	g.Go(func() {
+		items, gErr := a.commonDal.GetBrandSocialNetworks(ctx, []int64{offer.GetBrandID()})
+		if gErr != nil {
+			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении соцсетей бренда", gErr)
+			return
 		}
 
-		brandsMap = mapped
+		brandSocialsMap = items
 	})
 
 	g.Go(func() {
@@ -125,29 +104,42 @@ func (a *Action) Do(ctx context.Context, id uuid.UUID) (*dto.Offer, error) {
 	g.Wait()
 
 	resp := &dto.Offer{
-		ID:                   offer.GetID().String(),
-		Title:                offer.GetTitle(),
-		Description:          offer.GetDescription(),
-		Price:                offer.GetPrice(),
-		PublicationDate:      offer.GetPublicationDate(),
-		AdMarkingResponsible: offer.GetAdMarkingResponsible(),
-		ResponsesCapacity:    offer.GetResponsesCapacity(),
+		Description: offer.GetDescription(),
+		Price:       offer.GetPrice(),
+		CreatedAt:   offer.GetCreatedAt(),
 	}
 
 	if name, ok := cooperationTypesMap[offer.GetCooperationTypeID()]; ok {
 		resp.CooperationType = &dto.NamedItem{ID: offer.GetCooperationTypeID(), Name: name}
 	}
 
-	if name, ok := topicsMap[offer.GetTopicID()]; ok {
-		resp.Topic = &dto.NamedItem{ID: offer.GetTopicID(), Name: name}
-	}
-
-	if name, ok := contentFormatsMap[offer.GetContentFormatID()]; ok {
-		resp.ContentFormat = &dto.NamedItem{ID: offer.GetContentFormatID(), Name: name}
-	}
-
 	if brandItem, ok := brandsMap[offer.GetBrandID()]; ok {
-		resp.Brand = brandItem
+		brand := &dto.Brand{
+			Photo:       a.image.EnrichPhotoByKey(brandItem.GetPhoto()),
+			Title:       brandItem.GetTitle(),
+			Description: brandItem.GetDescription(),
+			About:       brandItem.GetDescription(),
+		}
+
+		if brandItem.GetBusinessCategoryID() > 0 {
+			businessCategoriesMap, err := a.commonDal.GetBusinessCategoriesByIDs(ctx, []int64{brandItem.GetBusinessCategoryID()})
+			if err != nil {
+				logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении темы бренда", err)
+			} else if name, ok := businessCategoriesMap[brandItem.GetBusinessCategoryID()]; ok {
+				brand.BusinessCategory = &dto.NamedItem{ID: brandItem.GetBusinessCategoryID(), Name: name}
+			}
+		}
+
+		for _, social := range brandSocialsMap[brandItem.GetID()] {
+			brand.SocialNetworks = append(brand.SocialNetworks, dto.BrandSocialNetwork{
+				ID:   social.SocialNetworkID,
+				Name: social.Name,
+				Slug: social.Slug,
+				Link: social.Link,
+			})
+		}
+
+		resp.Brand = brand
 	}
 
 	for _, social := range socialsMap[offer.GetID()] {

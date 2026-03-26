@@ -28,17 +28,17 @@ func (r *Repository) FilterBrands(ctx context.Context, filter filterDTO.BrandFil
 		phValues []any
 		ph       = 1
 		sql      = `
-			select id, photo, title, slug, topic_id, website, description, is_active, created_at
+			select id, photo, title, slug, business_category_id, website, description, is_active, created_at
 			from brand b
 			where b.is_active is true
 		`
 	)
 
-	if len(filter.TopicIDs) > 0 {
+	if len(filter.BusinessCategoryIDs) > 0 {
 		builder.WriteString(fmt.Sprintf(`
-			and b.topic_id = any($%d::bigint[])
+			and b.business_category_id = any($%d::bigint[])
 		`, ph))
-		phValues = append(phValues, pq.Int64Array(filter.TopicIDs))
+		phValues = append(phValues, pq.Int64Array(filter.BusinessCategoryIDs))
 		ph++
 	}
 

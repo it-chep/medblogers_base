@@ -68,7 +68,7 @@ func NewAggregator(httpConns map[string]http.Executor, config config.AppConfig, 
 		},
 		PromoOffers: PromoOffersModule{
 			BrandAgg:      promo_offer_brand_action.New(clients, pool),
-			OfferAgg:      promo_offer_offer_action.New(pool),
+			OfferAgg:      promo_offer_offer_action.New(clients, pool),
 			DictionaryAgg: promo_offer_dictionary_action.New(pool),
 		},
 	}

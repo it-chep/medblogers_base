@@ -14,8 +14,8 @@ func (o *Offer) GetCooperationTypeID() int64 {
 	return o.cooperationTypeID
 }
 
-func (o *Offer) GetTopicID() int64 {
-	return o.topicID
+func (o *Offer) GetBusinessCategoryID() int64 {
+	return o.businessCategoryID
 }
 
 func (o *Offer) GetTitle() string {

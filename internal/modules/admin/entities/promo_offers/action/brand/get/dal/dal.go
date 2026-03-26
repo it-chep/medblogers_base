@@ -20,7 +20,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) GetBrands(ctx context.Context) (brandDomain.Brands, error) {
 	sql := `
-		select id, photo, title, slug, topic_id, website, description, is_active, created_at
+		select id, photo, title, slug, business_category_id, website, description, is_active, created_at
 		from brand
 		order by id desc
 	`
