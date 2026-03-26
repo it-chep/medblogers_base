@@ -30,6 +30,13 @@ service PromoOffersAdminBrandService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление бренда"};
   }
+  rpc SaveBrandPhoto(SaveBrandPhotoRequest) returns (SaveBrandPhotoResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/save_photo"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сохранение фотографии бренда"};
+  }
   rpc ActivateBrand(ActivateBrandRequest) returns (ActivateBrandResponse) {
     option (google.api.http) = {
       post: "/api/v1/admin/promo_offers/brand/{brand_id}/activate"
@@ -133,6 +140,15 @@ message UpdateBrandRequest {
 }
 
 message UpdateBrandResponse {}
+
+message SaveBrandPhotoRequest {
+  int64 brand_id = 1;
+  string image_data = 2; // файл в строке base64
+}
+
+message SaveBrandPhotoResponse {
+  string image = 1;
+}
 
 message ActivateBrandRequest {
   int64 brand_id = 1;

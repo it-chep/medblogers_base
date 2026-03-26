@@ -55,7 +55,7 @@ func TestGetDoctorSubscribers(t *testing.T) {
 			TgLastUpdatedDate:   "11.05.2004",
 			InstSubsCount:       "123",
 			InstSubsCountText:   "подписчика",
-			InstLastUpdatedDate: "11.05.2004",
+			InstLastUpdatedDate: "",
 		}
 		result, err := gw.GetDoctorSubscribers(context.Background(), doctor.MedblogersID(1))
 
@@ -141,14 +141,17 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 		}, nil)
 
 		gw := NewGateway("", deps.http)
-		expectedResult := map[int64]indto.GetDoctorsByFilterDoctor{
-			1: indto.GetDoctorsByFilterDoctor{
-				DoctorID:          1,
-				TgSubsCount:       "123",
-				TgSubsCountText:   "подписчика",
-				InstSubsCount:     "123",
-				InstSubsCountText: "подписчика",
+		expectedResult := indto.GetDoctorsByFilterResponse{
+			Doctors: map[int64]indto.GetDoctorsByFilterDoctor{
+				1: {
+					DoctorID:          1,
+					TgSubsCount:       "123",
+					TgSubsCountText:   "подписчика",
+					InstSubsCount:     "123",
+					InstSubsCountText: "подписчика",
+				},
 			},
+			OrderedIDs: []int64{1},
 		}
 
 		result, err := gw.GetDoctorsByFilter(context.Background(), indto.GetDoctorsByFilterRequest{
@@ -161,12 +164,13 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 
 		require.NoError(t, err, "Не должно быть ошибки")
 		require.NotNil(t, result, "Результат не должен быть nil")
-		require.Len(t, result, 1, "Должен вернуться один доктор")
-		assert.Equal(t, expectedResult[1].DoctorID, result.Doctors[1].DoctorID, "ID доктора не совпадает")
-		assert.Equal(t, expectedResult[1].TgSubsCount, result.Doctors[1].TgSubsCount, "Количество подписчиков TG не совпадает")
-		assert.Equal(t, expectedResult[1].TgSubsCountText, result.Doctors[1].TgSubsCountText, "Текст подписчиков TG не совпадает")
-		assert.Equal(t, expectedResult[1].InstSubsCount, result.Doctors[1].InstSubsCount, "Количество подписчиков Instagram не совпадает")
-		assert.Equal(t, expectedResult[1].InstSubsCountText, result.Doctors[1].InstSubsCountText, "Текст подписчиков Instagram не совпадает")
+		require.Len(t, result.Doctors, 1, "Должен вернуться один доктор")
+		assert.Equal(t, expectedResult.Doctors[1].DoctorID, result.Doctors[1].DoctorID, "ID доктора не совпадает")
+		assert.Equal(t, expectedResult.Doctors[1].TgSubsCount, result.Doctors[1].TgSubsCount, "Количество подписчиков TG не совпадает")
+		assert.Equal(t, expectedResult.Doctors[1].TgSubsCountText, result.Doctors[1].TgSubsCountText, "Текст подписчиков TG не совпадает")
+		assert.Equal(t, expectedResult.Doctors[1].InstSubsCount, result.Doctors[1].InstSubsCount, "Количество подписчиков Instagram не совпадает")
+		assert.Equal(t, expectedResult.Doctors[1].InstSubsCountText, result.Doctors[1].InstSubsCountText, "Текст подписчиков Instagram не совпадает")
+		assert.Equal(t, expectedResult.OrderedIDs, result.OrderedIDs, "Порядок ID докторов не совпадает")
 	})
 
 	t.Run("Ошибка при получении данных", func(t *testing.T) {
@@ -176,7 +180,7 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 		deps.http.EXPECT().Do(gomock.Any()).Return(&http.Response{StatusCode: http.StatusInternalServerError}, errors.New("internal server error"))
 		gw := NewGateway("", deps.http)
 
-		expectedResult := map[int64]indto.GetDoctorsByFilterDoctor{}
+		expectedResult := indto.GetDoctorsByFilterResponse{}
 		result, err := gw.GetDoctorsByFilter(context.Background(), indto.GetDoctorsByFilterRequest{
 			SocialMedia: []indto.SocialMedia{
 				indto.Telegram,
@@ -509,7 +513,7 @@ func TestCreateDoctor(t *testing.T) {
 		})
 
 		require.Error(t, err)
-		require.Equal(t, int64(http.StatusInternalServerError), statusCode)
+		require.Equal(t, int64(0), statusCode)
 		assert.ErrorIs(t, err, expectedErr)
 	})
 

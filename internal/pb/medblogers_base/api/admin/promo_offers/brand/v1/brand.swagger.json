@@ -128,6 +128,46 @@
         ]
       }
     },
+    "/api/v1/admin/promo_offers/brand/{brandId}/save_photo": {
+      "post": {
+        "summary": "Сохранение фотографии бренда",
+        "operationId": "PromoOffersAdminBrandService_SaveBrandPhoto",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.SaveBrandPhotoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhotoBody"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
     "/api/v1/admin/promo_offers/brand/{brandId}/update": {
       "post": {
         "summary": "Обновление бренда",
@@ -457,6 +497,15 @@
     "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrandBody": {
       "type": "object"
     },
+    "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhotoBody": {
+      "type": "object",
+      "properties": {
+        "imageData": {
+          "type": "string",
+          "title": "файл в строке base64"
+        }
+      }
+    },
     "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.UpdateBrandBody": {
       "type": "object",
       "properties": {
@@ -485,6 +534,14 @@
             "type": "object",
             "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandSocialNetworkInput"
           }
+        }
+      }
+    },
+    "admin.promo_offers.brand.v1.SaveBrandPhotoResponse": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
         }
       }
     },

@@ -8,6 +8,7 @@ import (
 	"medblogers_base/internal/modules/freelancers/domain/doctor"
 	"mime"
 	"path/filepath"
+	"strings"
 	"time"
 
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
@@ -38,6 +39,7 @@ type Gateway struct {
 	freelancersBucketName string // todo сделать общую структуру с баскетами
 	doctorsBucketName     string
 	blogsBucketName       string
+	brandsBucketName      string
 	region                string
 	client                S3Client
 	presignClient         S3PresignClient
@@ -87,13 +89,14 @@ func NewPresignClient(cfg config.S3Config) S3PresignClient {
 }
 
 // NewGateway .
-func NewGateway(freelancerBucketName, doctorsBucketName, blogsBucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
+func NewGateway(freelancerBucketName, doctorsBucketName, blogsBucketName, brandsBucketName string, client S3Client, presignClient S3PresignClient) *Gateway {
 	return &Gateway{
 		client:                client,
 		presignClient:         presignClient,
 		freelancersBucketName: freelancerBucketName,
 		doctorsBucketName:     doctorsBucketName,
 		blogsBucketName:       blogsBucketName,
+		brandsBucketName:      brandsBucketName,
 	}
 }
 
@@ -118,6 +121,18 @@ func (g *Gateway) GetFreelancerPhotoLink(s3Key string) string {
 
 func (g *Gateway) GetDoctorPhotoLink(s3Key string) string {
 	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.doctorsBucketName, s3Key)
+}
+
+func (g *Gateway) GetBrandPhotoLink(s3Key string) string {
+	if s3Key == "" {
+		return ""
+	}
+
+	if strings.HasPrefix(s3Key, "http://") || strings.HasPrefix(s3Key, "https://") {
+		return s3Key
+	}
+
+	return fmt.Sprintf("https://storage.yandexcloud.net/%s/%s", g.brandsBucketName, s3Key)
 }
 
 // PutBlogPhoto загружает фотографию в хранилище
@@ -165,6 +180,49 @@ func (g *Gateway) DelBlogPhoto(ctx context.Context, filename string) error {
 	return nil
 }
 
+func (g *Gateway) PutBrandPhoto(ctx context.Context, file io.Reader, filename string) (string, error) {
+	ext := filepath.Ext(filename)
+	contentType := mime.TypeByExtension(ext)
+	if contentType == "" {
+		contentType = "application/octet-stream"
+	}
+
+	objectKey := fmt.Sprintf("images/brand_%s", filename)
+
+	_, err := g.client.PutObject(ctx, &s3.PutObjectInput{
+		Bucket:      aws.String(g.brandsBucketName),
+		Key:         lo.ToPtr(objectKey),
+		Body:        file,
+		ContentType: aws.String(contentType),
+		Metadata: map[string]string{
+			"uploaded_at": time.Now().Format(time.RFC3339),
+			"origin_name": filename,
+		},
+	})
+	if err != nil {
+		return "", fmt.Errorf("failed to upload file: %w", err)
+	}
+
+	return objectKey, nil
+}
+
+func (g *Gateway) DelBrandPhoto(ctx context.Context, filename string) error {
+	objectKey := g.normalizeBrandObjectKey(filename)
+	if objectKey == "" || strings.HasPrefix(objectKey, "http://") || strings.HasPrefix(objectKey, "https://") {
+		return nil
+	}
+
+	_, err := g.client.DeleteObject(ctx, &s3.DeleteObjectInput{
+		Bucket: aws.String(g.brandsBucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		return fmt.Errorf("failed to delete file: %w", err)
+	}
+
+	return nil
+}
+
 func (g *Gateway) PutDoctorPhoto(ctx context.Context, file io.Reader, filename string) (string, error) {
 	ext := filepath.Ext(filename)
 	contentType := mime.TypeByExtension(ext)
@@ -190,6 +248,19 @@ func (g *Gateway) PutDoctorPhoto(ctx context.Context, file io.Reader, filename s
 	}
 
 	return objectKey, nil
+}
+
+func (g *Gateway) normalizeBrandObjectKey(value string) string {
+	if value == "" {
+		return ""
+	}
+
+	prefix := fmt.Sprintf("https://storage.yandexcloud.net/%s/", g.brandsBucketName)
+	if strings.HasPrefix(value, prefix) {
+		return strings.TrimPrefix(value, prefix)
+	}
+
+	return value
 }
 
 func (g *Gateway) DelDoctorPhoto(ctx context.Context, filename string) error {

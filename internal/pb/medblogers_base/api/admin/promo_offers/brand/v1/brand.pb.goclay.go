@@ -127,6 +127,24 @@ func (w *PromoOffersAdminBrandServiceServiceDesc) UpdateBrand(ctx context.Contex
 	return resp.(*UpdateBrandResponse), err
 }
 
+func (w *PromoOffersAdminBrandServiceServiceDesc) SaveBrandPhoto(ctx context.Context, in *SaveBrandPhotoRequest) (*SaveBrandPhotoResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.SaveBrandPhoto(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/SaveBrandPhoto",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.SaveBrandPhoto(ctx, req.(*SaveBrandPhotoRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*SaveBrandPhotoResponse), err
+}
+
 func (w *PromoOffersAdminBrandServiceServiceDesc) ActivateBrand(ctx context.Context, in *ActivateBrandRequest) (*ActivateBrandResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.ActivateBrand(ctx, in)

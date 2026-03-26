@@ -48,6 +48,34 @@ func (mr *MockAppConfigMockRecorder) GetAllowedHosts() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllowedHosts", reflect.TypeOf((*MockAppConfig)(nil).GetAllowedHosts))
 }
 
+// GetBlogsPhotosBucket mocks base method.
+func (m *MockAppConfig) GetBlogsPhotosBucket() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetBlogsPhotosBucket")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetBlogsPhotosBucket indicates an expected call of GetBlogsPhotosBucket.
+func (mr *MockAppConfigMockRecorder) GetBlogsPhotosBucket() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBlogsPhotosBucket", reflect.TypeOf((*MockAppConfig)(nil).GetBlogsPhotosBucket))
+}
+
+// GetBrandsPhotosBucket mocks base method.
+func (m *MockAppConfig) GetBrandsPhotosBucket() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetBrandsPhotosBucket")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetBrandsPhotosBucket indicates an expected call of GetBrandsPhotosBucket.
+func (mr *MockAppConfigMockRecorder) GetBrandsPhotosBucket() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBrandsPhotosBucket", reflect.TypeOf((*MockAppConfig)(nil).GetBrandsPhotosBucket))
+}
+
 // GetCreateNotificationChatID mocks base method.
 func (m *MockAppConfig) GetCreateNotificationChatID() int64 {
 	m.ctrl.T.Helper()
@@ -60,6 +88,20 @@ func (m *MockAppConfig) GetCreateNotificationChatID() int64 {
 func (mr *MockAppConfigMockRecorder) GetCreateNotificationChatID() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCreateNotificationChatID", reflect.TypeOf((*MockAppConfig)(nil).GetCreateNotificationChatID))
+}
+
+// GetFreelancersPhotosBucket mocks base method.
+func (m *MockAppConfig) GetFreelancersPhotosBucket() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetFreelancersPhotosBucket")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetFreelancersPhotosBucket indicates an expected call of GetFreelancersPhotosBucket.
+func (mr *MockAppConfigMockRecorder) GetFreelancersPhotosBucket() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFreelancersPhotosBucket", reflect.TypeOf((*MockAppConfig)(nil).GetFreelancersPhotosBucket))
 }
 
 // GetS3AccessKey mocks base method.
@@ -130,6 +172,34 @@ func (m *MockAppConfig) GetS3SecretKey() string {
 func (mr *MockAppConfigMockRecorder) GetS3SecretKey() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetS3SecretKey", reflect.TypeOf((*MockAppConfig)(nil).GetS3SecretKey))
+}
+
+// GetJWTRefreshSecret mocks base method.
+func (m *MockAppConfig) GetJWTRefreshSecret() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetJWTRefreshSecret")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetJWTRefreshSecret indicates an expected call of GetJWTRefreshSecret.
+func (mr *MockAppConfigMockRecorder) GetJWTRefreshSecret() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetJWTRefreshSecret", reflect.TypeOf((*MockAppConfig)(nil).GetJWTRefreshSecret))
+}
+
+// GetJWTSecret mocks base method.
+func (m *MockAppConfig) GetJWTSecret() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetJWTSecret")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetJWTSecret indicates an expected call of GetJWTSecret.
+func (mr *MockAppConfigMockRecorder) GetJWTSecret() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetJWTSecret", reflect.TypeOf((*MockAppConfig)(nil).GetJWTSecret))
 }
 
 // GetSalebotHost mocks base method.

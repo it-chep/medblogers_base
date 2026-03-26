@@ -2,6 +2,8 @@ package filter_offers
 
 import (
 	"context"
+	"medblogers_base/internal/modules/promo_offers/client"
+	"medblogers_base/internal/modules/promo_offers/service/image"
 
 	"github.com/google/uuid"
 
@@ -29,14 +31,16 @@ type CommonDal interface {
 }
 
 type Action struct {
-	repository ActionDal
-	commonDal  CommonDal
+	repository   ActionDal
+	commonDal    CommonDal
+	brandsPhotos *image.Service
 }
 
-func New(pool postgres.PoolWrapper) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 	return &Action{
-		repository: actionDal.NewRepository(pool),
-		commonDal:  commonDal.NewRepository(pool),
+		repository:   actionDal.NewRepository(pool),
+		commonDal:    commonDal.NewRepository(pool),
+		brandsPhotos: image.New(clients.S3),
 	}
 }
 
@@ -105,6 +109,8 @@ func (a *Action) Do(ctx context.Context, req dto.OfferFilter) (dto.Response, err
 		return nil
 	})
 
+	photosMap := a.brandsPhotos.GetBrandsPhotos(ctx)
+
 	if err := g.Wait(); err != nil {
 		return dto.Response{}, err
 	}
@@ -141,7 +147,7 @@ func (a *Action) Do(ctx context.Context, req dto.OfferFilter) (dto.Response, err
 				ID:    brandItem.GetID(),
 				Title: brandItem.GetTitle(),
 				Slug:  brandItem.GetSlug(),
-				Photo: brandItem.GetPhoto(),
+				Photo: photosMap[brandItem.GetPhoto()],
 			}
 		}
 

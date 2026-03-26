@@ -2,6 +2,8 @@ package offer_detail
 
 import (
 	"context"
+	"medblogers_base/internal/modules/promo_offers/client"
+	"medblogers_base/internal/modules/promo_offers/service/image"
 
 	"github.com/google/uuid"
 
@@ -31,12 +33,14 @@ type CommonDal interface {
 type Action struct {
 	repository ActionDal
 	commonDal  CommonDal
+	image      *image.Service
 }
 
-func New(pool postgres.PoolWrapper) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 	return &Action{
 		repository: actionDal.NewRepository(pool),
 		commonDal:  commonDal.NewRepository(pool),
+		image:      image.New(clients.S3),
 	}
 }
 
@@ -101,7 +105,7 @@ func (a *Action) Do(ctx context.Context, id uuid.UUID) (*dto.Offer, error) {
 				ID:    item.GetID(),
 				Title: item.GetTitle(),
 				Slug:  item.GetSlug(),
-				Photo: item.GetPhoto(),
+				Photo: a.image.EnrichPhotoByKey(item.GetPhoto()),
 			}
 		}
 

@@ -67,7 +67,7 @@ func NewAggregator(httpConns map[string]http.Executor, config config.AppConfig, 
 			NetworksAgg:   freelancer_network_action.New(pool),
 		},
 		PromoOffers: PromoOffersModule{
-			BrandAgg:      promo_offer_brand_action.New(pool),
+			BrandAgg:      promo_offer_brand_action.New(clients, pool),
 			OfferAgg:      promo_offer_offer_action.New(pool),
 			DictionaryAgg: promo_offer_dictionary_action.New(pool),
 		},

@@ -2,11 +2,13 @@ package filter_brands
 
 import (
 	"context"
+	"medblogers_base/internal/modules/promo_offers/service/image"
 
 	"github.com/samber/lo"
 
 	actionDal "medblogers_base/internal/modules/promo_offers/action/filter_brands/dal"
 	"medblogers_base/internal/modules/promo_offers/action/filter_brands/dto"
+	"medblogers_base/internal/modules/promo_offers/client"
 	commonDal "medblogers_base/internal/modules/promo_offers/dal"
 	commonDAO "medblogers_base/internal/modules/promo_offers/dal/dao"
 	brandDomain "medblogers_base/internal/modules/promo_offers/domain/brand"
@@ -24,14 +26,16 @@ type CommonDal interface {
 }
 
 type Action struct {
-	repository ActionDal
-	commonDal  CommonDal
+	repository   ActionDal
+	commonDal    CommonDal
+	brandsPhotos *image.Service
 }
 
-func New(pool postgres.PoolWrapper) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 	return &Action{
-		repository: actionDal.NewRepository(pool),
-		commonDal:  commonDal.NewRepository(pool),
+		repository:   actionDal.NewRepository(pool),
+		commonDal:    commonDal.NewRepository(pool),
+		brandsPhotos: image.New(clients.S3),
 	}
 }
 
@@ -56,13 +60,15 @@ func (a *Action) Do(ctx context.Context, req dto.BrandFilter) (dto.Response, err
 		return dto.Response{}, err
 	}
 
+	photosMap := a.brandsPhotos.GetBrandsPhotos(ctx)
+
 	resp := dto.Response{
 		Brands: lo.Map(brands, func(item *brandDomain.Brand, _ int) dto.Brand {
 			brandItem := dto.Brand{
 				ID:          item.GetID(),
 				Title:       item.GetTitle(),
 				Slug:        item.GetSlug(),
-				Photo:       item.GetPhoto(),
+				Photo:       photosMap[item.GetPhoto()],
 				Website:     item.GetWebsite(),
 				Description: item.GetDescription(),
 			}

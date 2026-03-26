@@ -5,9 +5,11 @@ import (
 
 	actionDal "medblogers_base/internal/modules/promo_offers/action/brand_detail/dal"
 	"medblogers_base/internal/modules/promo_offers/action/brand_detail/dto"
+	"medblogers_base/internal/modules/promo_offers/client"
 	commonDal "medblogers_base/internal/modules/promo_offers/dal"
 	commonDAO "medblogers_base/internal/modules/promo_offers/dal/dao"
 	brandDomain "medblogers_base/internal/modules/promo_offers/domain/brand"
+	"medblogers_base/internal/modules/promo_offers/service/image"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -24,12 +26,14 @@ type CommonDal interface {
 type Action struct {
 	repository ActionDal
 	commonDal  CommonDal
+	image      *image.Service
 }
 
-func New(pool postgres.PoolWrapper) *Action {
+func New(pool postgres.PoolWrapper, clients *client.Aggregator) *Action {
 	return &Action{
 		repository: actionDal.NewRepository(pool),
 		commonDal:  commonDal.NewRepository(pool),
+		image:      image.New(clients.S3),
 	}
 }
 
@@ -55,7 +59,7 @@ func (a *Action) Do(ctx context.Context, slug string) (*dto.Brand, error) {
 		ID:          brand.GetID(),
 		Title:       brand.GetTitle(),
 		Slug:        brand.GetSlug(),
-		Photo:       brand.GetPhoto(),
+		Photo:       a.image.EnrichPhotoByKey(brand.GetPhoto()),
 		Website:     brand.GetWebsite(),
 		Description: brand.GetDescription(),
 	}

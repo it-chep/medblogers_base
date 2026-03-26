@@ -121,7 +121,7 @@ func TestEnrichAdditionalCities(t *testing.T) {
 				1: {city.BuildCity(city.WithID(10), city.WithName("мск"))},
 			},
 			expected: map[int64]dto.Doctor{
-				1: {ID: 1, MainCityID: 10, City: "мск"},
+				1: {ID: 1, MainCityID: 10, Cities: []dto.City{{ID: 10, Name: "мск"}}},
 			},
 		},
 		{
@@ -137,7 +137,11 @@ func TestEnrichAdditionalCities(t *testing.T) {
 				},
 			},
 			expected: map[int64]dto.Doctor{
-				1: {ID: 1, MainCityID: 10, City: "мск, спб, екб"},
+				1: {ID: 1, MainCityID: 10, Cities: []dto.City{
+					{ID: 10, Name: "мск"},
+					{ID: 20, Name: "спб"},
+					{ID: 30, Name: "екб"},
+				}},
 			},
 		},
 		{
@@ -155,8 +159,11 @@ func TestEnrichAdditionalCities(t *testing.T) {
 				},
 			},
 			expected: map[int64]dto.Doctor{
-				1: {ID: 1, MainCityID: 10, City: "мск, екб"},
-				2: {ID: 2, MainCityID: 20, City: "спб"},
+				1: {ID: 1, MainCityID: 10, Cities: []dto.City{
+					{ID: 10, Name: "мск"},
+					{ID: 30, Name: "екб"},
+				}},
+				2: {ID: 2, MainCityID: 20, Cities: []dto.City{{ID: 20, Name: "спб"}}},
 			},
 		},
 	}
