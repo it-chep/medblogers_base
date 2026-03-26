@@ -88,6 +88,46 @@
         ]
       }
     },
+    "/api/v1/admin/promo_offers/brand/{brandId}/add_network": {
+      "post": {
+        "summary": "Добавление соцсети бренду",
+        "operationId": "PromoOffersAdminBrandService_AddNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.AddNetworkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.AddNetworkBody"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
     "/api/v1/admin/promo_offers/brand/{brandId}/deactivate": {
       "post": {
         "summary": "Деактивация бренда",
@@ -120,6 +160,46 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrandBody"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminBrandService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/brand/{brandId}/delete_network": {
+      "post": {
+        "summary": "Удаление соцсети у бренда",
+        "operationId": "PromoOffersAdminBrandService_DeleteNetwork",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.DeleteNetworkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeleteNetworkBody"
             }
           }
         ],
@@ -319,6 +399,9 @@
     "admin.promo_offers.brand.v1.ActivateBrandResponse": {
       "type": "object"
     },
+    "admin.promo_offers.brand.v1.AddNetworkResponse": {
+      "type": "object"
+    },
     "admin.promo_offers.brand.v1.BrandItem": {
       "type": "object",
       "properties": {
@@ -459,6 +542,9 @@
     "admin.promo_offers.brand.v1.DeactivateBrandResponse": {
       "type": "object"
     },
+    "admin.promo_offers.brand.v1.DeleteNetworkResponse": {
+      "type": "object"
+    },
     "admin.promo_offers.brand.v1.GetBrandByIDResponse": {
       "type": "object",
       "properties": {
@@ -494,8 +580,29 @@
     "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrandBody": {
       "type": "object"
     },
+    "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.AddNetworkBody": {
+      "type": "object",
+      "properties": {
+        "socialNetworkId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
     "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrandBody": {
       "type": "object"
+    },
+    "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeleteNetworkBody": {
+      "type": "object",
+      "properties": {
+        "socialNetworkId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhotoBody": {
       "type": "object",

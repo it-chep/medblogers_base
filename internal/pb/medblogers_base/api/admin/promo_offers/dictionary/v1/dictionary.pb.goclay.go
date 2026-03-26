@@ -55,40 +55,40 @@ func (w *PromoOffersAdminDictionaryServiceServiceDesc) RegisterHTTP(
 
 // Wrap all http methods with interceptor support
 
-func (w *PromoOffersAdminDictionaryServiceServiceDesc) GetTopics(ctx context.Context, in *GetTopicsRequest) (*GetTopicsResponse, error) {
+func (w *PromoOffersAdminDictionaryServiceServiceDesc) GetBusinessCategories(ctx context.Context, in *GetBusinessCategoriesRequest) (*GetBusinessCategoriesResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
-		return w.svc.GetTopics(ctx, in)
+		return w.svc.GetBusinessCategories(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetTopics",
+		FullMethod: "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetBusinessCategories",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return w.svc.GetTopics(ctx, req.(*GetTopicsRequest))
+		return w.svc.GetBusinessCategories(ctx, req.(*GetBusinessCategoriesRequest))
 	}
 	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
 	if err != nil || resp == nil {
 		return nil, err
 	}
-	return resp.(*GetTopicsResponse), err
+	return resp.(*GetBusinessCategoriesResponse), err
 }
 
-func (w *PromoOffersAdminDictionaryServiceServiceDesc) CreateTopic(ctx context.Context, in *CreateTopicRequest) (*CreateTopicResponse, error) {
+func (w *PromoOffersAdminDictionaryServiceServiceDesc) CreateBusinessCategory(ctx context.Context, in *CreateBusinessCategoryRequest) (*CreateBusinessCategoryResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
-		return w.svc.CreateTopic(ctx, in)
+		return w.svc.CreateBusinessCategory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     w,
-		FullMethod: "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateTopic",
+		FullMethod: "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateBusinessCategory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return w.svc.CreateTopic(ctx, req.(*CreateTopicRequest))
+		return w.svc.CreateBusinessCategory(ctx, req.(*CreateBusinessCategoryRequest))
 	}
 	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
 	if err != nil || resp == nil {
 		return nil, err
 	}
-	return resp.(*CreateTopicResponse), err
+	return resp.(*CreateBusinessCategoryResponse), err
 }
 
 func (w *PromoOffersAdminDictionaryServiceServiceDesc) GetCooperationTypes(ctx context.Context, in *GetCooperationTypesRequest) (*GetCooperationTypesResponse, error) {

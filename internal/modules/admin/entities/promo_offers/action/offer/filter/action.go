@@ -7,7 +7,7 @@ import (
 	actionDal "medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/filter/dal"
 	filterDTO "medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/filter/dto"
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/get"
-	getDTO "medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/get/d
+	getDTO "medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/get/dto"
 	offerDomain "medblogers_base/internal/modules/admin/entities/promo_offers/domain/offer"
 	"medblogers_base/internal/pkg/postgres"
 )

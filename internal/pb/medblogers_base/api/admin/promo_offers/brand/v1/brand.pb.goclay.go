@@ -127,6 +127,42 @@ func (w *PromoOffersAdminBrandServiceServiceDesc) UpdateBrand(ctx context.Contex
 	return resp.(*UpdateBrandResponse), err
 }
 
+func (w *PromoOffersAdminBrandServiceServiceDesc) AddNetwork(ctx context.Context, in *AddNetworkRequest) (*AddNetworkResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.AddNetwork(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/AddNetwork",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.AddNetwork(ctx, req.(*AddNetworkRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*AddNetworkResponse), err
+}
+
+func (w *PromoOffersAdminBrandServiceServiceDesc) DeleteNetwork(ctx context.Context, in *DeleteNetworkRequest) (*DeleteNetworkResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.DeleteNetwork(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/DeleteNetwork",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.DeleteNetwork(ctx, req.(*DeleteNetworkRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*DeleteNetworkResponse), err
+}
+
 func (w *PromoOffersAdminBrandServiceServiceDesc) SaveBrandPhoto(ctx context.Context, in *SaveBrandPhotoRequest) (*SaveBrandPhotoResponse, error) {
 	if w.opts.UnaryInterceptor == nil {
 		return w.svc.SaveBrandPhoto(ctx, in)

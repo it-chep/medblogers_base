@@ -23,6 +23,8 @@ const (
 	PromoOffersAdminBrandService_GetBrandByID_FullMethodName    = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/GetBrandByID"
 	PromoOffersAdminBrandService_CreateBrand_FullMethodName     = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/CreateBrand"
 	PromoOffersAdminBrandService_UpdateBrand_FullMethodName     = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/UpdateBrand"
+	PromoOffersAdminBrandService_AddNetwork_FullMethodName      = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/AddNetwork"
+	PromoOffersAdminBrandService_DeleteNetwork_FullMethodName   = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/DeleteNetwork"
 	PromoOffersAdminBrandService_SaveBrandPhoto_FullMethodName  = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/SaveBrandPhoto"
 	PromoOffersAdminBrandService_ActivateBrand_FullMethodName   = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/ActivateBrand"
 	PromoOffersAdminBrandService_DeactivateBrand_FullMethodName = "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/DeactivateBrand"
@@ -36,6 +38,8 @@ type PromoOffersAdminBrandServiceClient interface {
 	GetBrandByID(ctx context.Context, in *GetBrandByIDRequest, opts ...grpc.CallOption) (*GetBrandByIDResponse, error)
 	CreateBrand(ctx context.Context, in *CreateBrandRequest, opts ...grpc.CallOption) (*CreateBrandResponse, error)
 	UpdateBrand(ctx context.Context, in *UpdateBrandRequest, opts ...grpc.CallOption) (*UpdateBrandResponse, error)
+	AddNetwork(ctx context.Context, in *AddNetworkRequest, opts ...grpc.CallOption) (*AddNetworkResponse, error)
+	DeleteNetwork(ctx context.Context, in *DeleteNetworkRequest, opts ...grpc.CallOption) (*DeleteNetworkResponse, error)
 	SaveBrandPhoto(ctx context.Context, in *SaveBrandPhotoRequest, opts ...grpc.CallOption) (*SaveBrandPhotoResponse, error)
 	ActivateBrand(ctx context.Context, in *ActivateBrandRequest, opts ...grpc.CallOption) (*ActivateBrandResponse, error)
 	DeactivateBrand(ctx context.Context, in *DeactivateBrandRequest, opts ...grpc.CallOption) (*DeactivateBrandResponse, error)
@@ -89,6 +93,26 @@ func (c *promoOffersAdminBrandServiceClient) UpdateBrand(ctx context.Context, in
 	return out, nil
 }
 
+func (c *promoOffersAdminBrandServiceClient) AddNetwork(ctx context.Context, in *AddNetworkRequest, opts ...grpc.CallOption) (*AddNetworkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddNetworkResponse)
+	err := c.cc.Invoke(ctx, PromoOffersAdminBrandService_AddNetwork_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *promoOffersAdminBrandServiceClient) DeleteNetwork(ctx context.Context, in *DeleteNetworkRequest, opts ...grpc.CallOption) (*DeleteNetworkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteNetworkResponse)
+	err := c.cc.Invoke(ctx, PromoOffersAdminBrandService_DeleteNetwork_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *promoOffersAdminBrandServiceClient) SaveBrandPhoto(ctx context.Context, in *SaveBrandPhotoRequest, opts ...grpc.CallOption) (*SaveBrandPhotoResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SaveBrandPhotoResponse)
@@ -127,6 +151,8 @@ type PromoOffersAdminBrandServiceServer interface {
 	GetBrandByID(context.Context, *GetBrandByIDRequest) (*GetBrandByIDResponse, error)
 	CreateBrand(context.Context, *CreateBrandRequest) (*CreateBrandResponse, error)
 	UpdateBrand(context.Context, *UpdateBrandRequest) (*UpdateBrandResponse, error)
+	AddNetwork(context.Context, *AddNetworkRequest) (*AddNetworkResponse, error)
+	DeleteNetwork(context.Context, *DeleteNetworkRequest) (*DeleteNetworkResponse, error)
 	SaveBrandPhoto(context.Context, *SaveBrandPhotoRequest) (*SaveBrandPhotoResponse, error)
 	ActivateBrand(context.Context, *ActivateBrandRequest) (*ActivateBrandResponse, error)
 	DeactivateBrand(context.Context, *DeactivateBrandRequest) (*DeactivateBrandResponse, error)
@@ -150,6 +176,12 @@ func (UnimplementedPromoOffersAdminBrandServiceServer) CreateBrand(context.Conte
 }
 func (UnimplementedPromoOffersAdminBrandServiceServer) UpdateBrand(context.Context, *UpdateBrandRequest) (*UpdateBrandResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateBrand not implemented")
+}
+func (UnimplementedPromoOffersAdminBrandServiceServer) AddNetwork(context.Context, *AddNetworkRequest) (*AddNetworkResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddNetwork not implemented")
+}
+func (UnimplementedPromoOffersAdminBrandServiceServer) DeleteNetwork(context.Context, *DeleteNetworkRequest) (*DeleteNetworkResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteNetwork not implemented")
 }
 func (UnimplementedPromoOffersAdminBrandServiceServer) SaveBrandPhoto(context.Context, *SaveBrandPhotoRequest) (*SaveBrandPhotoResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SaveBrandPhoto not implemented")
@@ -252,6 +284,42 @@ func _PromoOffersAdminBrandService_UpdateBrand_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PromoOffersAdminBrandService_AddNetwork_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddNetworkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PromoOffersAdminBrandServiceServer).AddNetwork(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PromoOffersAdminBrandService_AddNetwork_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PromoOffersAdminBrandServiceServer).AddNetwork(ctx, req.(*AddNetworkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PromoOffersAdminBrandService_DeleteNetwork_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteNetworkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PromoOffersAdminBrandServiceServer).DeleteNetwork(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PromoOffersAdminBrandService_DeleteNetwork_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PromoOffersAdminBrandServiceServer).DeleteNetwork(ctx, req.(*DeleteNetworkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PromoOffersAdminBrandService_SaveBrandPhoto_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SaveBrandPhotoRequest)
 	if err := dec(in); err != nil {
@@ -328,6 +396,14 @@ var PromoOffersAdminBrandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBrand",
 			Handler:    _PromoOffersAdminBrandService_UpdateBrand_Handler,
+		},
+		{
+			MethodName: "AddNetwork",
+			Handler:    _PromoOffersAdminBrandService_AddNetwork_Handler,
+		},
+		{
+			MethodName: "DeleteNetwork",
+			Handler:    _PromoOffersAdminBrandService_DeleteNetwork_Handler,
 		},
 		{
 			MethodName: "SaveBrandPhoto",

@@ -30,6 +30,20 @@ service PromoOffersAdminBrandService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление бренда"};
   }
+  rpc AddNetwork(AddNetworkRequest) returns (AddNetworkResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/add_network"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Добавление соцсети бренду"};
+  }
+  rpc DeleteNetwork(DeleteNetworkRequest) returns (DeleteNetworkResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/delete_network"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление соцсети у бренда"};
+  }
   rpc SaveBrandPhoto(SaveBrandPhotoRequest) returns (SaveBrandPhotoResponse) {
     option (google.api.http) = {
       post: "/api/v1/admin/promo_offers/brand/{brand_id}/save_photo"
@@ -140,6 +154,21 @@ message UpdateBrandRequest {
 }
 
 message UpdateBrandResponse {}
+
+message AddNetworkRequest {
+  int64 brand_id = 1;
+  int64 social_network_id = 2;
+  string link = 3;
+}
+
+message AddNetworkResponse {}
+
+message DeleteNetworkRequest {
+  int64 brand_id = 1;
+  int64 social_network_id = 2;
+}
+
+message DeleteNetworkResponse {}
 
 message SaveBrandPhotoRequest {
   int64 brand_id = 1;

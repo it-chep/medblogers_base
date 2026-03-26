@@ -122,21 +122,21 @@ xo:
 	rm $(XO_OUTPUT_PATH)/goosedbversion.xo.go
 	rm $(XO_OUTPUT_PATH)/xo_db.xo.go
 
-
-.PHONY: generate
-generate:
-	protoc \
-		-I ./api \
-		-I ./vendor.protogen \
-		--go_out=./internal/pb/medblogers_base \
-		--go-grpc_out=./internal/pb/medblogers_base \
-		--grpc-gateway_out=./internal/pb/medblogers_base \
-		--validate_out="lang=go:./internal/pb/medblogers_base" \
-		--openapiv2_out=./internal/pb/medblogers_base \
-		--openapiv2_opt logtostderr=true \
-		--openapiv2_opt allow_merge=true \
-		--openapiv2_opt merge_file_name=medblogers_api \
-		./api/doctors/v1/* ./api/freelancers/v1/* ./api/auth/v1/* ./api/admin/v1/* ./api/blogs/v1/*
+# deprecate
+#.PHONY: generate
+#generate:
+#	protoc \
+#		-I ./api \
+#		-I ./vendor.protogen \
+#		--go_out=./internal/pb/medblogers_base \
+#		--go-grpc_out=./internal/pb/medblogers_base \
+#		--grpc-gateway_out=./internal/pb/medblogers_base \
+#		--validate_out="lang=go:./internal/pb/medblogers_base" \
+#		--openapiv2_out=./internal/pb/medblogers_base \
+#		--openapiv2_opt logtostderr=true \
+#		--openapiv2_opt allow_merge=true \
+#		--openapiv2_opt merge_file_name=medblogers_api \
+#		./api/doctors/v1/* ./api/freelancers/v1/* ./api/auth/v1/* ./api/admin/v1/* ./api/blogs/v1/*
 
 
 .PHONY: buf

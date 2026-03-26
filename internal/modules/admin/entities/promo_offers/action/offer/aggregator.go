@@ -2,14 +2,13 @@ package offer
 
 import (
 	"medblogers_base/internal/modules/admin/client"
-	"medblogers_base/internal/modules/a
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/activate"
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/create"
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/deactivate"
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/filter"
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/get"
 	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/get_by_id"
-	"medblogers_base/internal/modules/admin/client"
+	"medblogers_base/internal/modules/admin/entities/promo_offers/action/offer/update"
 	"medblogers_base/internal/pkg/postgres"
 )
 

@@ -891,6 +891,190 @@ func (*UpdateBrandResponse) Descriptor() ([]byte, []int) {
 	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{12}
 }
 
+type AddNetworkRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BrandId         int64                  `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
+	SocialNetworkId int64                  `protobuf:"varint,2,opt,name=social_network_id,json=socialNetworkId,proto3" json:"social_network_id,omitempty"`
+	Link            string                 `protobuf:"bytes,3,opt,name=link,proto3" json:"link,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *AddNetworkRequest) Reset() {
+	*x = AddNetworkRequest{}
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddNetworkRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddNetworkRequest) ProtoMessage() {}
+
+func (x *AddNetworkRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddNetworkRequest.ProtoReflect.Descriptor instead.
+func (*AddNetworkRequest) Descriptor() ([]byte, []int) {
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *AddNetworkRequest) GetBrandId() int64 {
+	if x != nil {
+		return x.BrandId
+	}
+	return 0
+}
+
+func (x *AddNetworkRequest) GetSocialNetworkId() int64 {
+	if x != nil {
+		return x.SocialNetworkId
+	}
+	return 0
+}
+
+func (x *AddNetworkRequest) GetLink() string {
+	if x != nil {
+		return x.Link
+	}
+	return ""
+}
+
+type AddNetworkResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddNetworkResponse) Reset() {
+	*x = AddNetworkResponse{}
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddNetworkResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddNetworkResponse) ProtoMessage() {}
+
+func (x *AddNetworkResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddNetworkResponse.ProtoReflect.Descriptor instead.
+func (*AddNetworkResponse) Descriptor() ([]byte, []int) {
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{14}
+}
+
+type DeleteNetworkRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BrandId         int64                  `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
+	SocialNetworkId int64                  `protobuf:"varint,2,opt,name=social_network_id,json=socialNetworkId,proto3" json:"social_network_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *DeleteNetworkRequest) Reset() {
+	*x = DeleteNetworkRequest{}
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteNetworkRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteNetworkRequest) ProtoMessage() {}
+
+func (x *DeleteNetworkRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteNetworkRequest.ProtoReflect.Descriptor instead.
+func (*DeleteNetworkRequest) Descriptor() ([]byte, []int) {
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *DeleteNetworkRequest) GetBrandId() int64 {
+	if x != nil {
+		return x.BrandId
+	}
+	return 0
+}
+
+func (x *DeleteNetworkRequest) GetSocialNetworkId() int64 {
+	if x != nil {
+		return x.SocialNetworkId
+	}
+	return 0
+}
+
+type DeleteNetworkResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteNetworkResponse) Reset() {
+	*x = DeleteNetworkResponse{}
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteNetworkResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteNetworkResponse) ProtoMessage() {}
+
+func (x *DeleteNetworkResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteNetworkResponse.ProtoReflect.Descriptor instead.
+func (*DeleteNetworkResponse) Descriptor() ([]byte, []int) {
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{16}
+}
+
 type SaveBrandPhotoRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	BrandId       int64                  `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
@@ -901,7 +1085,7 @@ type SaveBrandPhotoRequest struct {
 
 func (x *SaveBrandPhotoRequest) Reset() {
 	*x = SaveBrandPhotoRequest{}
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[13]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -913,7 +1097,7 @@ func (x *SaveBrandPhotoRequest) String() string {
 func (*SaveBrandPhotoRequest) ProtoMessage() {}
 
 func (x *SaveBrandPhotoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[13]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -926,7 +1110,7 @@ func (x *SaveBrandPhotoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveBrandPhotoRequest.ProtoReflect.Descriptor instead.
 func (*SaveBrandPhotoRequest) Descriptor() ([]byte, []int) {
-	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{13}
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *SaveBrandPhotoRequest) GetBrandId() int64 {
@@ -952,7 +1136,7 @@ type SaveBrandPhotoResponse struct {
 
 func (x *SaveBrandPhotoResponse) Reset() {
 	*x = SaveBrandPhotoResponse{}
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[14]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -964,7 +1148,7 @@ func (x *SaveBrandPhotoResponse) String() string {
 func (*SaveBrandPhotoResponse) ProtoMessage() {}
 
 func (x *SaveBrandPhotoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[14]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -977,7 +1161,7 @@ func (x *SaveBrandPhotoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveBrandPhotoResponse.ProtoReflect.Descriptor instead.
 func (*SaveBrandPhotoResponse) Descriptor() ([]byte, []int) {
-	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{14}
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *SaveBrandPhotoResponse) GetImage() string {
@@ -996,7 +1180,7 @@ type ActivateBrandRequest struct {
 
 func (x *ActivateBrandRequest) Reset() {
 	*x = ActivateBrandRequest{}
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[15]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1008,7 +1192,7 @@ func (x *ActivateBrandRequest) String() string {
 func (*ActivateBrandRequest) ProtoMessage() {}
 
 func (x *ActivateBrandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[15]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1021,7 +1205,7 @@ func (x *ActivateBrandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateBrandRequest.ProtoReflect.Descriptor instead.
 func (*ActivateBrandRequest) Descriptor() ([]byte, []int) {
-	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{15}
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ActivateBrandRequest) GetBrandId() int64 {
@@ -1039,7 +1223,7 @@ type ActivateBrandResponse struct {
 
 func (x *ActivateBrandResponse) Reset() {
 	*x = ActivateBrandResponse{}
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[16]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1051,7 +1235,7 @@ func (x *ActivateBrandResponse) String() string {
 func (*ActivateBrandResponse) ProtoMessage() {}
 
 func (x *ActivateBrandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[16]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1064,7 +1248,7 @@ func (x *ActivateBrandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateBrandResponse.ProtoReflect.Descriptor instead.
 func (*ActivateBrandResponse) Descriptor() ([]byte, []int) {
-	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{16}
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{20}
 }
 
 type DeactivateBrandRequest struct {
@@ -1076,7 +1260,7 @@ type DeactivateBrandRequest struct {
 
 func (x *DeactivateBrandRequest) Reset() {
 	*x = DeactivateBrandRequest{}
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[17]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1088,7 +1272,7 @@ func (x *DeactivateBrandRequest) String() string {
 func (*DeactivateBrandRequest) ProtoMessage() {}
 
 func (x *DeactivateBrandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[17]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1101,7 +1285,7 @@ func (x *DeactivateBrandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateBrandRequest.ProtoReflect.Descriptor instead.
 func (*DeactivateBrandRequest) Descriptor() ([]byte, []int) {
-	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{17}
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *DeactivateBrandRequest) GetBrandId() int64 {
@@ -1119,7 +1303,7 @@ type DeactivateBrandResponse struct {
 
 func (x *DeactivateBrandResponse) Reset() {
 	*x = DeactivateBrandResponse{}
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[18]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1131,7 +1315,7 @@ func (x *DeactivateBrandResponse) String() string {
 func (*DeactivateBrandResponse) ProtoMessage() {}
 
 func (x *DeactivateBrandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[18]
+	mi := &file_admin_promo_offers_brand_v1_brand_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1144,7 +1328,7 @@ func (x *DeactivateBrandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeactivateBrandResponse.ProtoReflect.Descriptor instead.
 func (*DeactivateBrandResponse) Descriptor() ([]byte, []int) {
-	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{18}
+	return file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP(), []int{22}
 }
 
 var File_admin_promo_offers_brand_v1_brand_proto protoreflect.FileDescriptor
@@ -1219,7 +1403,16 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\awebsite\x18\x06 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12]\n" +
 	"\x0fsocial_networks\x18\b \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\"\x15\n" +
-	"\x13UpdateBrandResponse\"Q\n" +
+	"\x13UpdateBrandResponse\"n\n" +
+	"\x11AddNetworkRequest\x12\x19\n" +
+	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12*\n" +
+	"\x11social_network_id\x18\x02 \x01(\x03R\x0fsocialNetworkId\x12\x12\n" +
+	"\x04link\x18\x03 \x01(\tR\x04link\"\x14\n" +
+	"\x12AddNetworkResponse\"]\n" +
+	"\x14DeleteNetworkRequest\x12\x19\n" +
+	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12*\n" +
+	"\x11social_network_id\x18\x02 \x01(\x03R\x0fsocialNetworkId\"\x17\n" +
+	"\x15DeleteNetworkResponse\"Q\n" +
 	"\x15SaveBrandPhotoRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12\x1d\n" +
 	"\n" +
@@ -1231,12 +1424,15 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x15ActivateBrandResponse\"3\n" +
 	"\x16DeactivateBrandRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\x19\n" +
-	"\x17DeactivateBrandResponse2\xa0\f\n" +
+	"\x17DeactivateBrandResponse2\xfd\x0f\n" +
 	"\x1cPromoOffersAdminBrandService\x12\xbb\x01\n" +
 	"\tGetBrands\x12-.admin.promo_offers.brand.v1.GetBrandsRequest\x1a..admin.promo_offers.brand.v1.GetBrandsResponse\"O\x92A#\x12!Получение брендов\x82\xd3\xe4\x93\x02#\x12!/api/v1/admin/promo_offers/brands\x12\xdd\x01\n" +
 	"\fGetBrandByID\x120.admin.promo_offers.brand.v1.GetBrandByIDRequest\x1a1.admin.promo_offers.brand.v1.GetBrandByIDResponse\"h\x92A2\x120Получение карточки бренда\x82\xd3\xe4\x93\x02-\x12+/api/v1/admin/promo_offers/brand/{brand_id}\x12\xc7\x01\n" +
 	"\vCreateBrand\x12/.admin.promo_offers.brand.v1.CreateBrandRequest\x1a0.admin.promo_offers.brand.v1.CreateBrandResponse\"U\x92A\x1f\x12\x1dСоздание бренда\x82\xd3\xe4\x93\x02-:\x01*\"(/api/v1/admin/promo_offers/brands/create\x12\xd5\x01\n" +
-	"\vUpdateBrand\x12/.admin.promo_offers.brand.v1.UpdateBrandRequest\x1a0.admin.promo_offers.brand.v1.UpdateBrandResponse\"c\x92A#\x12!Обновление бренда\x82\xd3\xe4\x93\x027:\x01*\"2/api/v1/admin/promo_offers/brand/{brand_id}/update\x12\xf7\x01\n" +
+	"\vUpdateBrand\x12/.admin.promo_offers.brand.v1.UpdateBrandRequest\x1a0.admin.promo_offers.brand.v1.UpdateBrandResponse\"c\x92A#\x12!Обновление бренда\x82\xd3\xe4\x93\x027:\x01*\"2/api/v1/admin/promo_offers/brand/{brand_id}/update\x12\xe6\x01\n" +
+	"\n" +
+	"AddNetwork\x12..admin.promo_offers.brand.v1.AddNetworkRequest\x1a/.admin.promo_offers.brand.v1.AddNetworkResponse\"w\x92A2\x120Добавление соцсети бренду\x82\xd3\xe4\x93\x02<:\x01*\"7/api/v1/admin/promo_offers/brand/{brand_id}/add_network\x12\xf1\x01\n" +
+	"\rDeleteNetwork\x121.admin.promo_offers.brand.v1.DeleteNetworkRequest\x1a2.admin.promo_offers.brand.v1.DeleteNetworkResponse\"y\x92A1\x12/Удаление соцсети у бренда\x82\xd3\xe4\x93\x02?:\x01*\":/api/v1/admin/promo_offers/brand/{brand_id}/delete_network\x12\xf7\x01\n" +
 	"\x0eSaveBrandPhoto\x122.admin.promo_offers.brand.v1.SaveBrandPhotoRequest\x1a3.admin.promo_offers.brand.v1.SaveBrandPhotoResponse\"|\x92A8\x126Сохранение фотографии бренда\x82\xd3\xe4\x93\x02;:\x01*\"6/api/v1/admin/promo_offers/brand/{brand_id}/save_photo\x12\xdb\x01\n" +
 	"\rActivateBrand\x121.admin.promo_offers.brand.v1.ActivateBrandRequest\x1a2.admin.promo_offers.brand.v1.ActivateBrandResponse\"c\x92A!\x12\x1fАктивация бренда\x82\xd3\xe4\x93\x029:\x01*\"4/api/v1/admin/promo_offers/brand/{brand_id}/activate\x12\xe7\x01\n" +
 	"\x0fDeactivateBrand\x123.admin.promo_offers.brand.v1.DeactivateBrandRequest\x1a4.admin.promo_offers.brand.v1.DeactivateBrandResponse\"i\x92A%\x12#Деактивация бренда\x82\xd3\xe4\x93\x02;:\x01*\"6/api/v1/admin/promo_offers/brand/{brand_id}/deactivateB!Z\x1fapi/admin/promo_offers/brand/v1b\x06proto3"
@@ -1253,7 +1449,7 @@ func file_admin_promo_offers_brand_v1_brand_proto_rawDescGZIP() []byte {
 	return file_admin_promo_offers_brand_v1_brand_proto_rawDescData
 }
 
-var file_admin_promo_offers_brand_v1_brand_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_admin_promo_offers_brand_v1_brand_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_admin_promo_offers_brand_v1_brand_proto_goTypes = []any{
 	(*NamedItem)(nil),               // 0: admin.promo_offers.brand.v1.NamedItem
 	(*BrandSocialNetworkItem)(nil),  // 1: admin.promo_offers.brand.v1.BrandSocialNetworkItem
@@ -1268,12 +1464,16 @@ var file_admin_promo_offers_brand_v1_brand_proto_goTypes = []any{
 	(*CreateBrandResponse)(nil),     // 10: admin.promo_offers.brand.v1.CreateBrandResponse
 	(*UpdateBrandRequest)(nil),      // 11: admin.promo_offers.brand.v1.UpdateBrandRequest
 	(*UpdateBrandResponse)(nil),     // 12: admin.promo_offers.brand.v1.UpdateBrandResponse
-	(*SaveBrandPhotoRequest)(nil),   // 13: admin.promo_offers.brand.v1.SaveBrandPhotoRequest
-	(*SaveBrandPhotoResponse)(nil),  // 14: admin.promo_offers.brand.v1.SaveBrandPhotoResponse
-	(*ActivateBrandRequest)(nil),    // 15: admin.promo_offers.brand.v1.ActivateBrandRequest
-	(*ActivateBrandResponse)(nil),   // 16: admin.promo_offers.brand.v1.ActivateBrandResponse
-	(*DeactivateBrandRequest)(nil),  // 17: admin.promo_offers.brand.v1.DeactivateBrandRequest
-	(*DeactivateBrandResponse)(nil), // 18: admin.promo_offers.brand.v1.DeactivateBrandResponse
+	(*AddNetworkRequest)(nil),       // 13: admin.promo_offers.brand.v1.AddNetworkRequest
+	(*AddNetworkResponse)(nil),      // 14: admin.promo_offers.brand.v1.AddNetworkResponse
+	(*DeleteNetworkRequest)(nil),    // 15: admin.promo_offers.brand.v1.DeleteNetworkRequest
+	(*DeleteNetworkResponse)(nil),   // 16: admin.promo_offers.brand.v1.DeleteNetworkResponse
+	(*SaveBrandPhotoRequest)(nil),   // 17: admin.promo_offers.brand.v1.SaveBrandPhotoRequest
+	(*SaveBrandPhotoResponse)(nil),  // 18: admin.promo_offers.brand.v1.SaveBrandPhotoResponse
+	(*ActivateBrandRequest)(nil),    // 19: admin.promo_offers.brand.v1.ActivateBrandRequest
+	(*ActivateBrandResponse)(nil),   // 20: admin.promo_offers.brand.v1.ActivateBrandResponse
+	(*DeactivateBrandRequest)(nil),  // 21: admin.promo_offers.brand.v1.DeactivateBrandRequest
+	(*DeactivateBrandResponse)(nil), // 22: admin.promo_offers.brand.v1.DeactivateBrandResponse
 }
 var file_admin_promo_offers_brand_v1_brand_proto_depIdxs = []int32{
 	0,  // 0: admin.promo_offers.brand.v1.BrandListItem.topic:type_name -> admin.promo_offers.brand.v1.NamedItem
@@ -1287,18 +1487,22 @@ var file_admin_promo_offers_brand_v1_brand_proto_depIdxs = []int32{
 	7,  // 8: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.GetBrandByID:input_type -> admin.promo_offers.brand.v1.GetBrandByIDRequest
 	9,  // 9: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.CreateBrand:input_type -> admin.promo_offers.brand.v1.CreateBrandRequest
 	11, // 10: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.UpdateBrand:input_type -> admin.promo_offers.brand.v1.UpdateBrandRequest
-	13, // 11: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhoto:input_type -> admin.promo_offers.brand.v1.SaveBrandPhotoRequest
-	15, // 12: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrand:input_type -> admin.promo_offers.brand.v1.ActivateBrandRequest
-	17, // 13: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrand:input_type -> admin.promo_offers.brand.v1.DeactivateBrandRequest
-	6,  // 14: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.GetBrands:output_type -> admin.promo_offers.brand.v1.GetBrandsResponse
-	8,  // 15: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.GetBrandByID:output_type -> admin.promo_offers.brand.v1.GetBrandByIDResponse
-	10, // 16: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.CreateBrand:output_type -> admin.promo_offers.brand.v1.CreateBrandResponse
-	12, // 17: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.UpdateBrand:output_type -> admin.promo_offers.brand.v1.UpdateBrandResponse
-	14, // 18: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhoto:output_type -> admin.promo_offers.brand.v1.SaveBrandPhotoResponse
-	16, // 19: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrand:output_type -> admin.promo_offers.brand.v1.ActivateBrandResponse
-	18, // 20: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrand:output_type -> admin.promo_offers.brand.v1.DeactivateBrandResponse
-	14, // [14:21] is the sub-list for method output_type
-	7,  // [7:14] is the sub-list for method input_type
+	13, // 11: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.AddNetwork:input_type -> admin.promo_offers.brand.v1.AddNetworkRequest
+	15, // 12: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeleteNetwork:input_type -> admin.promo_offers.brand.v1.DeleteNetworkRequest
+	17, // 13: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhoto:input_type -> admin.promo_offers.brand.v1.SaveBrandPhotoRequest
+	19, // 14: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrand:input_type -> admin.promo_offers.brand.v1.ActivateBrandRequest
+	21, // 15: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrand:input_type -> admin.promo_offers.brand.v1.DeactivateBrandRequest
+	6,  // 16: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.GetBrands:output_type -> admin.promo_offers.brand.v1.GetBrandsResponse
+	8,  // 17: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.GetBrandByID:output_type -> admin.promo_offers.brand.v1.GetBrandByIDResponse
+	10, // 18: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.CreateBrand:output_type -> admin.promo_offers.brand.v1.CreateBrandResponse
+	12, // 19: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.UpdateBrand:output_type -> admin.promo_offers.brand.v1.UpdateBrandResponse
+	14, // 20: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.AddNetwork:output_type -> admin.promo_offers.brand.v1.AddNetworkResponse
+	16, // 21: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeleteNetwork:output_type -> admin.promo_offers.brand.v1.DeleteNetworkResponse
+	18, // 22: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.SaveBrandPhoto:output_type -> admin.promo_offers.brand.v1.SaveBrandPhotoResponse
+	20, // 23: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.ActivateBrand:output_type -> admin.promo_offers.brand.v1.ActivateBrandResponse
+	22, // 24: admin.promo_offers.brand.v1.PromoOffersAdminBrandService.DeactivateBrand:output_type -> admin.promo_offers.brand.v1.DeactivateBrandResponse
+	16, // [16:25] is the sub-list for method output_type
+	7,  // [7:16] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
 	7,  // [7:7] is the sub-list for extension extendee
 	0,  // [0:7] is the sub-list for field type_name
@@ -1316,7 +1520,7 @@ func file_admin_promo_offers_brand_v1_brand_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_promo_offers_brand_v1_brand_proto_rawDesc), len(file_admin_promo_offers_brand_v1_brand_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -19,21 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PromoOffersAdminDictionaryService_GetTopics_FullMethodName             = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetTopics"
-	PromoOffersAdminDictionaryService_CreateTopic_FullMethodName           = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateTopic"
-	PromoOffersAdminDictionaryService_GetCooperationTypes_FullMethodName   = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetCooperationTypes"
-	PromoOffersAdminDictionaryService_CreateCooperationType_FullMethodName = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateCooperationType"
-	PromoOffersAdminDictionaryService_GetContentFormats_FullMethodName     = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetContentFormats"
-	PromoOffersAdminDictionaryService_CreateContentFormat_FullMethodName   = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateContentFormat"
-	PromoOffersAdminDictionaryService_GetSocialNetworks_FullMethodName     = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetSocialNetworks"
+	PromoOffersAdminDictionaryService_GetBusinessCategories_FullMethodName  = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetBusinessCategories"
+	PromoOffersAdminDictionaryService_CreateBusinessCategory_FullMethodName = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateBusinessCategory"
+	PromoOffersAdminDictionaryService_GetCooperationTypes_FullMethodName    = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetCooperationTypes"
+	PromoOffersAdminDictionaryService_CreateCooperationType_FullMethodName  = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateCooperationType"
+	PromoOffersAdminDictionaryService_GetContentFormats_FullMethodName      = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetContentFormats"
+	PromoOffersAdminDictionaryService_CreateContentFormat_FullMethodName    = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/CreateContentFormat"
+	PromoOffersAdminDictionaryService_GetSocialNetworks_FullMethodName      = "/admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService/GetSocialNetworks"
 )
 
 // PromoOffersAdminDictionaryServiceClient is the client API for PromoOffersAdminDictionaryService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PromoOffersAdminDictionaryServiceClient interface {
-	GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (*GetTopicsResponse, error)
-	CreateTopic(ctx context.Context, in *CreateTopicRequest, opts ...grpc.CallOption) (*CreateTopicResponse, error)
+	GetBusinessCategories(ctx context.Context, in *GetBusinessCategoriesRequest, opts ...grpc.CallOption) (*GetBusinessCategoriesResponse, error)
+	CreateBusinessCategory(ctx context.Context, in *CreateBusinessCategoryRequest, opts ...grpc.CallOption) (*CreateBusinessCategoryResponse, error)
 	GetCooperationTypes(ctx context.Context, in *GetCooperationTypesRequest, opts ...grpc.CallOption) (*GetCooperationTypesResponse, error)
 	CreateCooperationType(ctx context.Context, in *CreateCooperationTypeRequest, opts ...grpc.CallOption) (*CreateCooperationTypeResponse, error)
 	GetContentFormats(ctx context.Context, in *GetContentFormatsRequest, opts ...grpc.CallOption) (*GetContentFormatsResponse, error)
@@ -49,20 +49,20 @@ func NewPromoOffersAdminDictionaryServiceClient(cc grpc.ClientConnInterface) Pro
 	return &promoOffersAdminDictionaryServiceClient{cc}
 }
 
-func (c *promoOffersAdminDictionaryServiceClient) GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (*GetTopicsResponse, error) {
+func (c *promoOffersAdminDictionaryServiceClient) GetBusinessCategories(ctx context.Context, in *GetBusinessCategoriesRequest, opts ...grpc.CallOption) (*GetBusinessCategoriesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTopicsResponse)
-	err := c.cc.Invoke(ctx, PromoOffersAdminDictionaryService_GetTopics_FullMethodName, in, out, cOpts...)
+	out := new(GetBusinessCategoriesResponse)
+	err := c.cc.Invoke(ctx, PromoOffersAdminDictionaryService_GetBusinessCategories_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *promoOffersAdminDictionaryServiceClient) CreateTopic(ctx context.Context, in *CreateTopicRequest, opts ...grpc.CallOption) (*CreateTopicResponse, error) {
+func (c *promoOffersAdminDictionaryServiceClient) CreateBusinessCategory(ctx context.Context, in *CreateBusinessCategoryRequest, opts ...grpc.CallOption) (*CreateBusinessCategoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateTopicResponse)
-	err := c.cc.Invoke(ctx, PromoOffersAdminDictionaryService_CreateTopic_FullMethodName, in, out, cOpts...)
+	out := new(CreateBusinessCategoryResponse)
+	err := c.cc.Invoke(ctx, PromoOffersAdminDictionaryService_CreateBusinessCategory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,8 +123,8 @@ func (c *promoOffersAdminDictionaryServiceClient) GetSocialNetworks(ctx context.
 // All implementations should embed UnimplementedPromoOffersAdminDictionaryServiceServer
 // for forward compatibility.
 type PromoOffersAdminDictionaryServiceServer interface {
-	GetTopics(context.Context, *GetTopicsRequest) (*GetTopicsResponse, error)
-	CreateTopic(context.Context, *CreateTopicRequest) (*CreateTopicResponse, error)
+	GetBusinessCategories(context.Context, *GetBusinessCategoriesRequest) (*GetBusinessCategoriesResponse, error)
+	CreateBusinessCategory(context.Context, *CreateBusinessCategoryRequest) (*CreateBusinessCategoryResponse, error)
 	GetCooperationTypes(context.Context, *GetCooperationTypesRequest) (*GetCooperationTypesResponse, error)
 	CreateCooperationType(context.Context, *CreateCooperationTypeRequest) (*CreateCooperationTypeResponse, error)
 	GetContentFormats(context.Context, *GetContentFormatsRequest) (*GetContentFormatsResponse, error)
@@ -139,11 +139,11 @@ type PromoOffersAdminDictionaryServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPromoOffersAdminDictionaryServiceServer struct{}
 
-func (UnimplementedPromoOffersAdminDictionaryServiceServer) GetTopics(context.Context, *GetTopicsRequest) (*GetTopicsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetTopics not implemented")
+func (UnimplementedPromoOffersAdminDictionaryServiceServer) GetBusinessCategories(context.Context, *GetBusinessCategoriesRequest) (*GetBusinessCategoriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBusinessCategories not implemented")
 }
-func (UnimplementedPromoOffersAdminDictionaryServiceServer) CreateTopic(context.Context, *CreateTopicRequest) (*CreateTopicResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateTopic not implemented")
+func (UnimplementedPromoOffersAdminDictionaryServiceServer) CreateBusinessCategory(context.Context, *CreateBusinessCategoryRequest) (*CreateBusinessCategoryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateBusinessCategory not implemented")
 }
 func (UnimplementedPromoOffersAdminDictionaryServiceServer) GetCooperationTypes(context.Context, *GetCooperationTypesRequest) (*GetCooperationTypesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCooperationTypes not implemented")
@@ -180,38 +180,38 @@ func RegisterPromoOffersAdminDictionaryServiceServer(s grpc.ServiceRegistrar, sr
 	s.RegisterService(&PromoOffersAdminDictionaryService_ServiceDesc, srv)
 }
 
-func _PromoOffersAdminDictionaryService_GetTopics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTopicsRequest)
+func _PromoOffersAdminDictionaryService_GetBusinessCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBusinessCategoriesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PromoOffersAdminDictionaryServiceServer).GetTopics(ctx, in)
+		return srv.(PromoOffersAdminDictionaryServiceServer).GetBusinessCategories(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PromoOffersAdminDictionaryService_GetTopics_FullMethodName,
+		FullMethod: PromoOffersAdminDictionaryService_GetBusinessCategories_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PromoOffersAdminDictionaryServiceServer).GetTopics(ctx, req.(*GetTopicsRequest))
+		return srv.(PromoOffersAdminDictionaryServiceServer).GetBusinessCategories(ctx, req.(*GetBusinessCategoriesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PromoOffersAdminDictionaryService_CreateTopic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTopicRequest)
+func _PromoOffersAdminDictionaryService_CreateBusinessCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBusinessCategoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PromoOffersAdminDictionaryServiceServer).CreateTopic(ctx, in)
+		return srv.(PromoOffersAdminDictionaryServiceServer).CreateBusinessCategory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PromoOffersAdminDictionaryService_CreateTopic_FullMethodName,
+		FullMethod: PromoOffersAdminDictionaryService_CreateBusinessCategory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PromoOffersAdminDictionaryServiceServer).CreateTopic(ctx, req.(*CreateTopicRequest))
+		return srv.(PromoOffersAdminDictionaryServiceServer).CreateBusinessCategory(ctx, req.(*CreateBusinessCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -314,12 +314,12 @@ var PromoOffersAdminDictionaryService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PromoOffersAdminDictionaryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetTopics",
-			Handler:    _PromoOffersAdminDictionaryService_GetTopics_Handler,
+			MethodName: "GetBusinessCategories",
+			Handler:    _PromoOffersAdminDictionaryService_GetBusinessCategories_Handler,
 		},
 		{
-			MethodName: "CreateTopic",
-			Handler:    _PromoOffersAdminDictionaryService_CreateTopic_Handler,
+			MethodName: "CreateBusinessCategory",
+			Handler:    _PromoOffersAdminDictionaryService_CreateBusinessCategory_Handler,
 		},
 		{
 			MethodName: "GetCooperationTypes",

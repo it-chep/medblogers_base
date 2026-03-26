@@ -16,6 +16,62 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/admin/promo_offers/business_categories": {
+      "get": {
+        "summary": "Получение бизнес-категорий",
+        "operationId": "PromoOffersAdminDictionaryService_GetBusinessCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/business_categories/create": {
+      "post": {
+        "summary": "Создание бизнес-категории",
+        "operationId": "PromoOffersAdminDictionaryService_CreateBusinessCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
     "/api/v1/admin/promo_offers/content_formats": {
       "get": {
         "summary": "Получение форматов контента",
@@ -150,65 +206,26 @@
           "PromoOffersAdminDictionaryService"
         ]
       }
-    },
-    "/api/v1/admin/promo_offers/topics": {
-      "get": {
-        "summary": "Получение тематик",
-        "operationId": "PromoOffersAdminDictionaryService_GetTopics",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.GetTopicsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "tags": [
-          "PromoOffersAdminDictionaryService"
-        ]
-      }
-    },
-    "/api/v1/admin/promo_offers/topics/create": {
-      "post": {
-        "summary": "Создание тематики",
-        "operationId": "PromoOffersAdminDictionaryService_CreateTopic",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateTopicResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateTopicRequest"
-            }
-          }
-        ],
-        "tags": [
-          "PromoOffersAdminDictionaryService"
-        ]
-      }
     }
   },
   "definitions": {
+    "admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "admin.promo_offers.dictionary.v1.CreateContentFormatRequest": {
       "type": "object",
       "properties": {
@@ -243,20 +260,15 @@
         }
       }
     },
-    "admin.promo_offers.dictionary.v1.CreateTopicRequest": {
+    "admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "admin.promo_offers.dictionary.v1.CreateTopicResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
+        "businessCategories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.dictionary.v1.NamedItem"
+          }
         }
       }
     },
@@ -292,18 +304,6 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/admin.promo_offers.dictionary.v1.SocialNetworkItem"
-          }
-        }
-      }
-    },
-    "admin.promo_offers.dictionary.v1.GetTopicsResponse": {
-      "type": "object",
-      "properties": {
-        "topics": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/admin.promo_offers.dictionary.v1.NamedItem"
           }
         }
       }

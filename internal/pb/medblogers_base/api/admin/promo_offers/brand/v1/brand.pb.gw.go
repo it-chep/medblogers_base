@@ -181,6 +181,96 @@ func local_request_PromoOffersAdminBrandService_UpdateBrand_0(ctx context.Contex
 	return msg, metadata, err
 }
 
+func request_PromoOffersAdminBrandService_AddNetwork_0(ctx context.Context, marshaler runtime.Marshaler, client PromoOffersAdminBrandServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddNetworkRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["brand_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "brand_id")
+	}
+	protoReq.BrandId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "brand_id", err)
+	}
+	msg, err := client.AddNetwork(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PromoOffersAdminBrandService_AddNetwork_0(ctx context.Context, marshaler runtime.Marshaler, server PromoOffersAdminBrandServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq AddNetworkRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["brand_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "brand_id")
+	}
+	protoReq.BrandId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "brand_id", err)
+	}
+	msg, err := server.AddNetwork(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_PromoOffersAdminBrandService_DeleteNetwork_0(ctx context.Context, marshaler runtime.Marshaler, client PromoOffersAdminBrandServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteNetworkRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["brand_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "brand_id")
+	}
+	protoReq.BrandId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "brand_id", err)
+	}
+	msg, err := client.DeleteNetwork(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PromoOffersAdminBrandService_DeleteNetwork_0(ctx context.Context, marshaler runtime.Marshaler, server PromoOffersAdminBrandServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteNetworkRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["brand_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "brand_id")
+	}
+	protoReq.BrandId, err = runtime.Int64(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "brand_id", err)
+	}
+	msg, err := server.DeleteNetwork(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_PromoOffersAdminBrandService_SaveBrandPhoto_0(ctx context.Context, marshaler runtime.Marshaler, client PromoOffersAdminBrandServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq SaveBrandPhotoRequest
@@ -402,6 +492,46 @@ func RegisterPromoOffersAdminBrandServiceHandlerServer(ctx context.Context, mux 
 		}
 		forward_PromoOffersAdminBrandService_UpdateBrand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PromoOffersAdminBrandService_AddNetwork_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/AddNetwork", runtime.WithHTTPPathPattern("/api/v1/admin/promo_offers/brand/{brand_id}/add_network"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PromoOffersAdminBrandService_AddNetwork_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersAdminBrandService_AddNetwork_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PromoOffersAdminBrandService_DeleteNetwork_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/DeleteNetwork", runtime.WithHTTPPathPattern("/api/v1/admin/promo_offers/brand/{brand_id}/delete_network"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PromoOffersAdminBrandService_DeleteNetwork_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersAdminBrandService_DeleteNetwork_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PromoOffersAdminBrandService_SaveBrandPhoto_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -570,6 +700,40 @@ func RegisterPromoOffersAdminBrandServiceHandlerClient(ctx context.Context, mux 
 		}
 		forward_PromoOffersAdminBrandService_UpdateBrand_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PromoOffersAdminBrandService_AddNetwork_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/AddNetwork", runtime.WithHTTPPathPattern("/api/v1/admin/promo_offers/brand/{brand_id}/add_network"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PromoOffersAdminBrandService_AddNetwork_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersAdminBrandService_AddNetwork_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PromoOffersAdminBrandService_DeleteNetwork_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.promo_offers.brand.v1.PromoOffersAdminBrandService/DeleteNetwork", runtime.WithHTTPPathPattern("/api/v1/admin/promo_offers/brand/{brand_id}/delete_network"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PromoOffersAdminBrandService_DeleteNetwork_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersAdminBrandService_DeleteNetwork_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PromoOffersAdminBrandService_SaveBrandPhoto_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -629,6 +793,8 @@ var (
 	pattern_PromoOffersAdminBrandService_GetBrandByID_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id"}, ""))
 	pattern_PromoOffersAdminBrandService_CreateBrand_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"api", "v1", "admin", "promo_offers", "brands", "create"}, ""))
 	pattern_PromoOffersAdminBrandService_UpdateBrand_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id", "update"}, ""))
+	pattern_PromoOffersAdminBrandService_AddNetwork_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id", "add_network"}, ""))
+	pattern_PromoOffersAdminBrandService_DeleteNetwork_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id", "delete_network"}, ""))
 	pattern_PromoOffersAdminBrandService_SaveBrandPhoto_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id", "save_photo"}, ""))
 	pattern_PromoOffersAdminBrandService_ActivateBrand_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id", "activate"}, ""))
 	pattern_PromoOffersAdminBrandService_DeactivateBrand_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "v1", "admin", "promo_offers", "brand", "brand_id", "deactivate"}, ""))
@@ -639,6 +805,8 @@ var (
 	forward_PromoOffersAdminBrandService_GetBrandByID_0    = runtime.ForwardResponseMessage
 	forward_PromoOffersAdminBrandService_CreateBrand_0     = runtime.ForwardResponseMessage
 	forward_PromoOffersAdminBrandService_UpdateBrand_0     = runtime.ForwardResponseMessage
+	forward_PromoOffersAdminBrandService_AddNetwork_0      = runtime.ForwardResponseMessage
+	forward_PromoOffersAdminBrandService_DeleteNetwork_0   = runtime.ForwardResponseMessage
 	forward_PromoOffersAdminBrandService_SaveBrandPhoto_0  = runtime.ForwardResponseMessage
 	forward_PromoOffersAdminBrandService_ActivateBrand_0   = runtime.ForwardResponseMessage
 	forward_PromoOffersAdminBrandService_DeactivateBrand_0 = runtime.ForwardResponseMessage

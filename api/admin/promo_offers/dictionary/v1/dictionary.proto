@@ -8,16 +8,16 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 option go_package = "api/admin/promo_offers/dictionary/v1";
 
 service PromoOffersAdminDictionaryService {
-  rpc GetTopics(GetTopicsRequest) returns (GetTopicsResponse) {
-    option (google.api.http) = {get: "/api/v1/admin/promo_offers/topics"};
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение тематик"};
+  rpc GetBusinessCategories(GetBusinessCategoriesRequest) returns (GetBusinessCategoriesResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/business_categories"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение бизнес-категорий"};
   }
-  rpc CreateTopic(CreateTopicRequest) returns (CreateTopicResponse) {
+  rpc CreateBusinessCategory(CreateBusinessCategoryRequest) returns (CreateBusinessCategoryResponse) {
     option (google.api.http) = {
-      post: "/api/v1/admin/promo_offers/topics/create"
+      post: "/api/v1/admin/promo_offers/business_categories/create"
       body: "*"
     };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание тематики"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание бизнес-категории"};
   }
 
   rpc GetCooperationTypes(GetCooperationTypesRequest) returns (GetCooperationTypesResponse) {
@@ -61,17 +61,17 @@ message SocialNetworkItem {
   string slug = 3;
 }
 
-message GetTopicsRequest {}
+message GetBusinessCategoriesRequest {}
 
-message GetTopicsResponse {
-  repeated NamedItem topics = 1;
+message GetBusinessCategoriesResponse {
+  repeated NamedItem business_categories = 1;
 }
 
-message CreateTopicRequest {
+message CreateBusinessCategoryRequest {
   string name = 1;
 }
 
-message CreateTopicResponse {
+message CreateBusinessCategoryResponse {
   int64 id = 1;
 }
 

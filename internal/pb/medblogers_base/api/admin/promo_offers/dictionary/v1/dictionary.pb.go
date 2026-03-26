@@ -135,26 +135,26 @@ func (x *SocialNetworkItem) GetSlug() string {
 	return ""
 }
 
-type GetTopicsRequest struct {
+type GetBusinessCategoriesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetTopicsRequest) Reset() {
-	*x = GetTopicsRequest{}
+func (x *GetBusinessCategoriesRequest) Reset() {
+	*x = GetBusinessCategoriesRequest{}
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetTopicsRequest) String() string {
+func (x *GetBusinessCategoriesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetTopicsRequest) ProtoMessage() {}
+func (*GetBusinessCategoriesRequest) ProtoMessage() {}
 
-func (x *GetTopicsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetBusinessCategoriesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -166,32 +166,32 @@ func (x *GetTopicsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetTopicsRequest.ProtoReflect.Descriptor instead.
-func (*GetTopicsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetBusinessCategoriesRequest.ProtoReflect.Descriptor instead.
+func (*GetBusinessCategoriesRequest) Descriptor() ([]byte, []int) {
 	return file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDescGZIP(), []int{2}
 }
 
-type GetTopicsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Topics        []*NamedItem           `protobuf:"bytes,1,rep,name=topics,proto3" json:"topics,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+type GetBusinessCategoriesResponse struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	BusinessCategories []*NamedItem           `protobuf:"bytes,1,rep,name=business_categories,json=businessCategories,proto3" json:"business_categories,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
-func (x *GetTopicsResponse) Reset() {
-	*x = GetTopicsResponse{}
+func (x *GetBusinessCategoriesResponse) Reset() {
+	*x = GetBusinessCategoriesResponse{}
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetTopicsResponse) String() string {
+func (x *GetBusinessCategoriesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetTopicsResponse) ProtoMessage() {}
+func (*GetBusinessCategoriesResponse) ProtoMessage() {}
 
-func (x *GetTopicsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetBusinessCategoriesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -203,39 +203,39 @@ func (x *GetTopicsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetTopicsResponse.ProtoReflect.Descriptor instead.
-func (*GetTopicsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetBusinessCategoriesResponse.ProtoReflect.Descriptor instead.
+func (*GetBusinessCategoriesResponse) Descriptor() ([]byte, []int) {
 	return file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetTopicsResponse) GetTopics() []*NamedItem {
+func (x *GetBusinessCategoriesResponse) GetBusinessCategories() []*NamedItem {
 	if x != nil {
-		return x.Topics
+		return x.BusinessCategories
 	}
 	return nil
 }
 
-type CreateTopicRequest struct {
+type CreateBusinessCategoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateTopicRequest) Reset() {
-	*x = CreateTopicRequest{}
+func (x *CreateBusinessCategoryRequest) Reset() {
+	*x = CreateBusinessCategoryRequest{}
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateTopicRequest) String() string {
+func (x *CreateBusinessCategoryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateTopicRequest) ProtoMessage() {}
+func (*CreateBusinessCategoryRequest) ProtoMessage() {}
 
-func (x *CreateTopicRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateBusinessCategoryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -247,39 +247,39 @@ func (x *CreateTopicRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateTopicRequest.ProtoReflect.Descriptor instead.
-func (*CreateTopicRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateBusinessCategoryRequest.ProtoReflect.Descriptor instead.
+func (*CreateBusinessCategoryRequest) Descriptor() ([]byte, []int) {
 	return file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CreateTopicRequest) GetName() string {
+func (x *CreateBusinessCategoryRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-type CreateTopicResponse struct {
+type CreateBusinessCategoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateTopicResponse) Reset() {
-	*x = CreateTopicResponse{}
+func (x *CreateBusinessCategoryResponse) Reset() {
+	*x = CreateBusinessCategoryResponse{}
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateTopicResponse) String() string {
+func (x *CreateBusinessCategoryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateTopicResponse) ProtoMessage() {}
+func (*CreateBusinessCategoryResponse) ProtoMessage() {}
 
-func (x *CreateTopicResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateBusinessCategoryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -291,12 +291,12 @@ func (x *CreateTopicResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateTopicResponse.ProtoReflect.Descriptor instead.
-func (*CreateTopicResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateBusinessCategoryResponse.ProtoReflect.Descriptor instead.
+func (*CreateBusinessCategoryResponse) Descriptor() ([]byte, []int) {
 	return file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CreateTopicResponse) GetId() int64 {
+func (x *CreateBusinessCategoryResponse) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
@@ -730,13 +730,13 @@ const file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDesc = "" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\"\x12\n" +
-	"\x10GetTopicsRequest\"X\n" +
-	"\x11GetTopicsResponse\x12C\n" +
-	"\x06topics\x18\x01 \x03(\v2+.admin.promo_offers.dictionary.v1.NamedItemR\x06topics\"(\n" +
-	"\x12CreateTopicRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"%\n" +
-	"\x13CreateTopicResponse\x12\x0e\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\"\x1e\n" +
+	"\x1cGetBusinessCategoriesRequest\"}\n" +
+	"\x1dGetBusinessCategoriesResponse\x12\\\n" +
+	"\x13business_categories\x18\x01 \x03(\v2+.admin.promo_offers.dictionary.v1.NamedItemR\x12businessCategories\"3\n" +
+	"\x1dCreateBusinessCategoryRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"0\n" +
+	"\x1eCreateBusinessCategoryResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\x1c\n" +
 	"\x1aGetCooperationTypesRequest\"w\n" +
 	"\x1bGetCooperationTypesResponse\x12X\n" +
@@ -754,10 +754,10 @@ const file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\x1a\n" +
 	"\x18GetSocialNetworksRequest\"y\n" +
 	"\x19GetSocialNetworksResponse\x12\\\n" +
-	"\x0fsocial_networks\x18\x01 \x03(\v23.admin.promo_offers.dictionary.v1.SocialNetworkItemR\x0esocialNetworks2\xe1\r\n" +
-	"!PromoOffersAdminDictionaryService\x12\xc5\x01\n" +
-	"\tGetTopics\x122.admin.promo_offers.dictionary.v1.GetTopicsRequest\x1a3.admin.promo_offers.dictionary.v1.GetTopicsResponse\"O\x92A#\x12!Получение тематик\x82\xd3\xe4\x93\x02#\x12!/api/v1/admin/promo_offers/topics\x12\xd5\x01\n" +
-	"\vCreateTopic\x124.admin.promo_offers.dictionary.v1.CreateTopicRequest\x1a5.admin.promo_offers.dictionary.v1.CreateTopicResponse\"Y\x92A#\x12!Создание тематики\x82\xd3\xe4\x93\x02-:\x01*\"(/api/v1/admin/promo_offers/topics/create\x12\x87\x02\n" +
+	"\x0fsocial_networks\x18\x01 \x03(\v23.admin.promo_offers.dictionary.v1.SocialNetworkItemR\x0esocialNetworks2\xe0\x0e\n" +
+	"!PromoOffersAdminDictionaryService\x12\x87\x02\n" +
+	"\x15GetBusinessCategories\x12>.admin.promo_offers.dictionary.v1.GetBusinessCategoriesRequest\x1a?.admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse\"m\x92A4\x122Получение бизнес-категорий\x82\xd3\xe4\x93\x020\x12./api/v1/admin/promo_offers/business_categories\x12\x92\x02\n" +
+	"\x16CreateBusinessCategory\x12?.admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest\x1a@.admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse\"u\x92A2\x120Создание бизнес-категории\x82\xd3\xe4\x93\x02::\x01*\"5/api/v1/admin/promo_offers/business_categories/create\x12\x87\x02\n" +
 	"\x13GetCooperationTypes\x12<.admin.promo_offers.dictionary.v1.GetCooperationTypesRequest\x1a=.admin.promo_offers.dictionary.v1.GetCooperationTypesResponse\"s\x92A<\x12:Получение типов сотрудничества\x82\xd3\xe4\x93\x02.\x12,/api/v1/admin/promo_offers/cooperation_types\x12\x93\x02\n" +
 	"\x15CreateCooperationType\x12>.admin.promo_offers.dictionary.v1.CreateCooperationTypeRequest\x1a?.admin.promo_offers.dictionary.v1.CreateCooperationTypeResponse\"y\x92A8\x126Создание типа сотрудничества\x82\xd3\xe4\x93\x028:\x01*\"3/api/v1/admin/promo_offers/cooperation_types/create\x12\xf9\x01\n" +
 	"\x11GetContentFormats\x12:.admin.promo_offers.dictionary.v1.GetContentFormatsRequest\x1a;.admin.promo_offers.dictionary.v1.GetContentFormatsResponse\"k\x92A6\x124Получение форматов контента\x82\xd3\xe4\x93\x02,\x12*/api/v1/admin/promo_offers/content_formats\x12\x85\x02\n" +
@@ -778,37 +778,37 @@ func file_admin_promo_offers_dictionary_v1_dictionary_proto_rawDescGZIP() []byte
 
 var file_admin_promo_offers_dictionary_v1_dictionary_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_admin_promo_offers_dictionary_v1_dictionary_proto_goTypes = []any{
-	(*NamedItem)(nil),                     // 0: admin.promo_offers.dictionary.v1.NamedItem
-	(*SocialNetworkItem)(nil),             // 1: admin.promo_offers.dictionary.v1.SocialNetworkItem
-	(*GetTopicsRequest)(nil),              // 2: admin.promo_offers.dictionary.v1.GetTopicsRequest
-	(*GetTopicsResponse)(nil),             // 3: admin.promo_offers.dictionary.v1.GetTopicsResponse
-	(*CreateTopicRequest)(nil),            // 4: admin.promo_offers.dictionary.v1.CreateTopicRequest
-	(*CreateTopicResponse)(nil),           // 5: admin.promo_offers.dictionary.v1.CreateTopicResponse
-	(*GetCooperationTypesRequest)(nil),    // 6: admin.promo_offers.dictionary.v1.GetCooperationTypesRequest
-	(*GetCooperationTypesResponse)(nil),   // 7: admin.promo_offers.dictionary.v1.GetCooperationTypesResponse
-	(*CreateCooperationTypeRequest)(nil),  // 8: admin.promo_offers.dictionary.v1.CreateCooperationTypeRequest
-	(*CreateCooperationTypeResponse)(nil), // 9: admin.promo_offers.dictionary.v1.CreateCooperationTypeResponse
-	(*GetContentFormatsRequest)(nil),      // 10: admin.promo_offers.dictionary.v1.GetContentFormatsRequest
-	(*GetContentFormatsResponse)(nil),     // 11: admin.promo_offers.dictionary.v1.GetContentFormatsResponse
-	(*CreateContentFormatRequest)(nil),    // 12: admin.promo_offers.dictionary.v1.CreateContentFormatRequest
-	(*CreateContentFormatResponse)(nil),   // 13: admin.promo_offers.dictionary.v1.CreateContentFormatResponse
-	(*GetSocialNetworksRequest)(nil),      // 14: admin.promo_offers.dictionary.v1.GetSocialNetworksRequest
-	(*GetSocialNetworksResponse)(nil),     // 15: admin.promo_offers.dictionary.v1.GetSocialNetworksResponse
+	(*NamedItem)(nil),                      // 0: admin.promo_offers.dictionary.v1.NamedItem
+	(*SocialNetworkItem)(nil),              // 1: admin.promo_offers.dictionary.v1.SocialNetworkItem
+	(*GetBusinessCategoriesRequest)(nil),   // 2: admin.promo_offers.dictionary.v1.GetBusinessCategoriesRequest
+	(*GetBusinessCategoriesResponse)(nil),  // 3: admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse
+	(*CreateBusinessCategoryRequest)(nil),  // 4: admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest
+	(*CreateBusinessCategoryResponse)(nil), // 5: admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse
+	(*GetCooperationTypesRequest)(nil),     // 6: admin.promo_offers.dictionary.v1.GetCooperationTypesRequest
+	(*GetCooperationTypesResponse)(nil),    // 7: admin.promo_offers.dictionary.v1.GetCooperationTypesResponse
+	(*CreateCooperationTypeRequest)(nil),   // 8: admin.promo_offers.dictionary.v1.CreateCooperationTypeRequest
+	(*CreateCooperationTypeResponse)(nil),  // 9: admin.promo_offers.dictionary.v1.CreateCooperationTypeResponse
+	(*GetContentFormatsRequest)(nil),       // 10: admin.promo_offers.dictionary.v1.GetContentFormatsRequest
+	(*GetContentFormatsResponse)(nil),      // 11: admin.promo_offers.dictionary.v1.GetContentFormatsResponse
+	(*CreateContentFormatRequest)(nil),     // 12: admin.promo_offers.dictionary.v1.CreateContentFormatRequest
+	(*CreateContentFormatResponse)(nil),    // 13: admin.promo_offers.dictionary.v1.CreateContentFormatResponse
+	(*GetSocialNetworksRequest)(nil),       // 14: admin.promo_offers.dictionary.v1.GetSocialNetworksRequest
+	(*GetSocialNetworksResponse)(nil),      // 15: admin.promo_offers.dictionary.v1.GetSocialNetworksResponse
 }
 var file_admin_promo_offers_dictionary_v1_dictionary_proto_depIdxs = []int32{
-	0,  // 0: admin.promo_offers.dictionary.v1.GetTopicsResponse.topics:type_name -> admin.promo_offers.dictionary.v1.NamedItem
+	0,  // 0: admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse.business_categories:type_name -> admin.promo_offers.dictionary.v1.NamedItem
 	0,  // 1: admin.promo_offers.dictionary.v1.GetCooperationTypesResponse.cooperation_types:type_name -> admin.promo_offers.dictionary.v1.NamedItem
 	0,  // 2: admin.promo_offers.dictionary.v1.GetContentFormatsResponse.content_formats:type_name -> admin.promo_offers.dictionary.v1.NamedItem
 	1,  // 3: admin.promo_offers.dictionary.v1.GetSocialNetworksResponse.social_networks:type_name -> admin.promo_offers.dictionary.v1.SocialNetworkItem
-	2,  // 4: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetTopics:input_type -> admin.promo_offers.dictionary.v1.GetTopicsRequest
-	4,  // 5: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateTopic:input_type -> admin.promo_offers.dictionary.v1.CreateTopicRequest
+	2,  // 4: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetBusinessCategories:input_type -> admin.promo_offers.dictionary.v1.GetBusinessCategoriesRequest
+	4,  // 5: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateBusinessCategory:input_type -> admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest
 	6,  // 6: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetCooperationTypes:input_type -> admin.promo_offers.dictionary.v1.GetCooperationTypesRequest
 	8,  // 7: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateCooperationType:input_type -> admin.promo_offers.dictionary.v1.CreateCooperationTypeRequest
 	10, // 8: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetContentFormats:input_type -> admin.promo_offers.dictionary.v1.GetContentFormatsRequest
 	12, // 9: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateContentFormat:input_type -> admin.promo_offers.dictionary.v1.CreateContentFormatRequest
 	14, // 10: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetSocialNetworks:input_type -> admin.promo_offers.dictionary.v1.GetSocialNetworksRequest
-	3,  // 11: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetTopics:output_type -> admin.promo_offers.dictionary.v1.GetTopicsResponse
-	5,  // 12: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateTopic:output_type -> admin.promo_offers.dictionary.v1.CreateTopicResponse
+	3,  // 11: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetBusinessCategories:output_type -> admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse
+	5,  // 12: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateBusinessCategory:output_type -> admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse
 	7,  // 13: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetCooperationTypes:output_type -> admin.promo_offers.dictionary.v1.GetCooperationTypesResponse
 	9,  // 14: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.CreateCooperationType:output_type -> admin.promo_offers.dictionary.v1.CreateCooperationTypeResponse
 	11, // 15: admin.promo_offers.dictionary.v1.PromoOffersAdminDictionaryService.GetContentFormats:output_type -> admin.promo_offers.dictionary.v1.GetContentFormatsResponse
