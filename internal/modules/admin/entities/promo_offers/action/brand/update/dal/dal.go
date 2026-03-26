@@ -18,18 +18,16 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) UpdateBrand(ctx context.Context, brandID int64, req dto.UpdateRequest) error {
 	sql := `
 		update brand
-		set photo = $2,
-			title = $3,
-			slug = $4,
-			business_category_id = $5,
-			website = $6,
-			description = $7
+		set title = $2,
+			slug = $3,
+			business_category_id = $4,
+			website = $5,
+			description = $6
 		where id = $1
 	`
 
 	_, err := r.db.Exec(ctx, sql,
 		brandID,
-		req.Photo,
 		req.Title,
 		req.Slug,
 		req.BusinessCategoryID,

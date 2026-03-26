@@ -30,7 +30,7 @@ func newFilterOffersRequest(req *desc.FilterOffersRequest) filterDTO.Request {
 func newCreateOfferDTO(req *desc.CreateOfferRequest) createDTO.CreateRequest {
 	return createDTO.CreateRequest{
 		CooperationTypeID:    req.GetCooperationTypeId(),
-		BusinessCategoryID:   req.GetTopicId(),
+		BusinessCategoryID:   req.GetBusinessCategoryId(),
 		Title:                req.GetTitle(),
 		Description:          req.GetDescription(),
 		Price:                req.GetPrice(),
@@ -46,7 +46,7 @@ func newCreateOfferDTO(req *desc.CreateOfferRequest) createDTO.CreateRequest {
 func newUpdateOfferDTO(req *desc.UpdateOfferRequest) updateDTO.UpdateRequest {
 	return updateDTO.UpdateRequest{
 		CooperationTypeID:    req.GetCooperationTypeId(),
-		BusinessCategoryID:   req.GetTopicId(),
+		BusinessCategoryID:   req.GetBusinessCategoryId(),
 		Title:                req.GetTitle(),
 		Description:          req.GetDescription(),
 		Price:                req.GetPrice(),
@@ -72,7 +72,7 @@ func newGetOffersResponse(items []getDTO.Offer) *desc.GetOffersResponse {
 			PublicationDate:   formatDateTime(item.PublicationDate),
 			ResponsesCapacity: item.ResponsesCapacity,
 			CooperationType:   newNamedItem(item.CooperationType),
-			Topic:             newNamedItem(item.BusinessCategory),
+			BusinessCategory:  newNamedItem(item.BusinessCategory),
 			ContentFormat:     newNamedItem(item.ContentFormat),
 			Brand:             newBrandPreview(item.Brand),
 			IsActive:          item.IsActive,
@@ -110,7 +110,7 @@ func newGetOfferByIDResponse(item *getDTO.Offer) *desc.GetOfferByIDResponse {
 			AdMarkingResponsible: item.AdMarkingResponsible,
 			ResponsesCapacity:    item.ResponsesCapacity,
 			CooperationType:      newNamedItem(item.CooperationType),
-			Topic:                newNamedItem(item.BusinessCategory),
+			BusinessCategory:     newNamedItem(item.BusinessCategory),
 			ContentFormat:        newNamedItem(item.ContentFormat),
 			Brand:                newBrandPreview(item.Brand),
 			SocialNetworks:       make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),

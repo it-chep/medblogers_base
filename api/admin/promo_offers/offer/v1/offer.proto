@@ -78,7 +78,7 @@ message OfferListItem {
   string publication_date = 4;
   int64 responses_capacity = 5;
   NamedItem cooperation_type = 6;
-  NamedItem topic = 7;
+  NamedItem business_category = 7;
   NamedItem content_format = 8;
   BrandPreview brand = 9;
   bool is_active = 10;
@@ -94,7 +94,7 @@ message OfferItem {
   string ad_marking_responsible = 6;
   int64 responses_capacity = 7;
   NamedItem cooperation_type = 8;
-  NamedItem topic = 9;
+  NamedItem business_category = 9;
   NamedItem content_format = 10;
   BrandPreview brand = 11;
   repeated SocialNetworkItem social_networks = 12;
@@ -133,7 +133,7 @@ message GetOfferByIDResponse {
 
 message CreateOfferRequest {
   int64 cooperation_type_id = 1;
-  int64 topic_id = 2;
+  int64 business_category_id = 2;
   string title = 3;
   string description = 4;
   int64 price = 5;
@@ -152,7 +152,7 @@ message CreateOfferResponse {
 message UpdateOfferRequest {
   string offer_id = 1;
   int64 cooperation_type_id = 2;
-  int64 topic_id = 3;
+  int64 business_category_id = 3;
   string title = 4;
   string description = 5;
   int64 price = 6;

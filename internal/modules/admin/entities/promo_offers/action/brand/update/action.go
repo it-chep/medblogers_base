@@ -38,6 +38,7 @@ func (a *Action) Do(ctx context.Context, brandID int64, req dto.UpdateRequest) e
 	}
 
 	return transaction.Exec(ctx, func(ctx context.Context) error {
+		// todo audit log
 		if err := a.actionDal.UpdateBrand(ctx, brandID, req); err != nil {
 			return err
 		}

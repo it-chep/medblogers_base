@@ -196,16 +196,16 @@ func (x *BrandSocialNetworkInput) GetLink() string {
 }
 
 type BrandListItem struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Slug          string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
-	Photo         string                 `protobuf:"bytes,4,opt,name=photo,proto3" json:"photo,omitempty"`
-	Topic         *NamedItem             `protobuf:"bytes,5,opt,name=topic,proto3" json:"topic,omitempty"`
-	IsActive      bool                   `protobuf:"varint,6,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title            string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Slug             string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	Photo            string                 `protobuf:"bytes,4,opt,name=photo,proto3" json:"photo,omitempty"`
+	BusinessCategory *NamedItem             `protobuf:"bytes,5,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
+	IsActive         bool                   `protobuf:"varint,6,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CreatedAt        string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *BrandListItem) Reset() {
@@ -266,9 +266,9 @@ func (x *BrandListItem) GetPhoto() string {
 	return ""
 }
 
-func (x *BrandListItem) GetTopic() *NamedItem {
+func (x *BrandListItem) GetBusinessCategory() *NamedItem {
 	if x != nil {
-		return x.Topic
+		return x.BusinessCategory
 	}
 	return nil
 }
@@ -288,19 +288,19 @@ func (x *BrandListItem) GetCreatedAt() string {
 }
 
 type BrandItem struct {
-	state          protoimpl.MessageState    `protogen:"open.v1"`
-	Id             int64                     `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title          string                    `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Slug           string                    `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
-	Photo          string                    `protobuf:"bytes,4,opt,name=photo,proto3" json:"photo,omitempty"`
-	Topic          *NamedItem                `protobuf:"bytes,5,opt,name=topic,proto3" json:"topic,omitempty"`
-	Website        string                    `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
-	Description    string                    `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
-	SocialNetworks []*BrandSocialNetworkItem `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	IsActive       bool                      `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	CreatedAt      string                    `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state            protoimpl.MessageState    `protogen:"open.v1"`
+	Id               int64                     `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title            string                    `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Slug             string                    `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	Photo            string                    `protobuf:"bytes,4,opt,name=photo,proto3" json:"photo,omitempty"`
+	BusinessCategory *NamedItem                `protobuf:"bytes,5,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
+	Website          string                    `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Description      string                    `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	SocialNetworks   []*BrandSocialNetworkItem `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	IsActive         bool                      `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	CreatedAt        string                    `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *BrandItem) Reset() {
@@ -361,9 +361,9 @@ func (x *BrandItem) GetPhoto() string {
 	return ""
 }
 
-func (x *BrandItem) GetTopic() *NamedItem {
+func (x *BrandItem) GetBusinessCategory() *NamedItem {
 	if x != nil {
-		return x.Topic
+		return x.BusinessCategory
 	}
 	return nil
 }
@@ -404,15 +404,15 @@ func (x *BrandItem) GetCreatedAt() string {
 }
 
 type GetBrandsRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Query            string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	TopicIds         []int64                `protobuf:"varint,2,rep,packed,name=topic_ids,json=topicIds,proto3" json:"topic_ids,omitempty"`
-	SocialNetworkIds []int64                `protobuf:"varint,3,rep,packed,name=social_network_ids,json=socialNetworkIds,proto3" json:"social_network_ids,omitempty"`
-	IsActive         *bool                  `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3,oneof" json:"is_active,omitempty"`
-	Page             int64                  `protobuf:"varint,5,opt,name=page,proto3" json:"page,omitempty"`
-	Limit            int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	Query               string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	BusinessCategoryIds []int64                `protobuf:"varint,2,rep,packed,name=business_category_ids,json=businessCategoryIds,proto3" json:"business_category_ids,omitempty"`
+	SocialNetworkIds    []int64                `protobuf:"varint,3,rep,packed,name=social_network_ids,json=socialNetworkIds,proto3" json:"social_network_ids,omitempty"`
+	IsActive            *bool                  `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3,oneof" json:"is_active,omitempty"`
+	Page                int64                  `protobuf:"varint,5,opt,name=page,proto3" json:"page,omitempty"`
+	Limit               int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetBrandsRequest) Reset() {
@@ -452,9 +452,9 @@ func (x *GetBrandsRequest) GetQuery() string {
 	return ""
 }
 
-func (x *GetBrandsRequest) GetTopicIds() []int64 {
+func (x *GetBrandsRequest) GetBusinessCategoryIds() []int64 {
 	if x != nil {
-		return x.TopicIds
+		return x.BusinessCategoryIds
 	}
 	return nil
 }
@@ -620,16 +620,16 @@ func (x *GetBrandByIDResponse) GetBrand() *BrandItem {
 }
 
 type CreateBrandRequest struct {
-	state          protoimpl.MessageState     `protogen:"open.v1"`
-	Photo          string                     `protobuf:"bytes,1,opt,name=photo,proto3" json:"photo,omitempty"`
-	Title          string                     `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Slug           string                     `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
-	TopicId        int64                      `protobuf:"varint,4,opt,name=topic_id,json=topicId,proto3" json:"topic_id,omitempty"`
-	Website        string                     `protobuf:"bytes,5,opt,name=website,proto3" json:"website,omitempty"`
-	Description    string                     `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
-	SocialNetworks []*BrandSocialNetworkInput `protobuf:"bytes,7,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state              protoimpl.MessageState     `protogen:"open.v1"`
+	Photo              string                     `protobuf:"bytes,1,opt,name=photo,proto3" json:"photo,omitempty"`
+	Title              string                     `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Slug               string                     `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	BusinessCategoryId int64                      `protobuf:"varint,4,opt,name=business_category_id,json=businessCategoryId,proto3" json:"business_category_id,omitempty"`
+	Website            string                     `protobuf:"bytes,5,opt,name=website,proto3" json:"website,omitempty"`
+	Description        string                     `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	SocialNetworks     []*BrandSocialNetworkInput `protobuf:"bytes,7,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *CreateBrandRequest) Reset() {
@@ -683,9 +683,9 @@ func (x *CreateBrandRequest) GetSlug() string {
 	return ""
 }
 
-func (x *CreateBrandRequest) GetTopicId() int64 {
+func (x *CreateBrandRequest) GetBusinessCategoryId() int64 {
 	if x != nil {
-		return x.TopicId
+		return x.BusinessCategoryId
 	}
 	return 0
 }
@@ -756,17 +756,17 @@ func (x *CreateBrandResponse) GetBrandId() int64 {
 }
 
 type UpdateBrandRequest struct {
-	state          protoimpl.MessageState     `protogen:"open.v1"`
-	BrandId        int64                      `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
-	Photo          string                     `protobuf:"bytes,2,opt,name=photo,proto3" json:"photo,omitempty"`
-	Title          string                     `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Slug           string                     `protobuf:"bytes,4,opt,name=slug,proto3" json:"slug,omitempty"`
-	TopicId        int64                      `protobuf:"varint,5,opt,name=topic_id,json=topicId,proto3" json:"topic_id,omitempty"`
-	Website        string                     `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
-	Description    string                     `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
-	SocialNetworks []*BrandSocialNetworkInput `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state              protoimpl.MessageState     `protogen:"open.v1"`
+	BrandId            int64                      `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
+	Photo              string                     `protobuf:"bytes,2,opt,name=photo,proto3" json:"photo,omitempty"`
+	Title              string                     `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Slug               string                     `protobuf:"bytes,4,opt,name=slug,proto3" json:"slug,omitempty"`
+	BusinessCategoryId int64                      `protobuf:"varint,5,opt,name=business_category_id,json=businessCategoryId,proto3" json:"business_category_id,omitempty"`
+	Website            string                     `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Description        string                     `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	SocialNetworks     []*BrandSocialNetworkInput `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *UpdateBrandRequest) Reset() {
@@ -827,9 +827,9 @@ func (x *UpdateBrandRequest) GetSlug() string {
 	return ""
 }
 
-func (x *UpdateBrandRequest) GetTopicId() int64 {
+func (x *UpdateBrandRequest) GetBusinessCategoryId() int64 {
 	if x != nil {
-		return x.TopicId
+		return x.BusinessCategoryId
 	}
 	return 0
 }
@@ -1346,32 +1346,32 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x04link\x18\x04 \x01(\tR\x04link\"Y\n" +
 	"\x17BrandSocialNetworkInput\x12*\n" +
 	"\x11social_network_id\x18\x01 \x01(\x03R\x0fsocialNetworkId\x12\x12\n" +
-	"\x04link\x18\x02 \x01(\tR\x04link\"\xd9\x01\n" +
+	"\x04link\x18\x02 \x01(\tR\x04link\"\xf0\x01\n" +
 	"\rBrandListItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
-	"\x05photo\x18\x04 \x01(\tR\x05photo\x12<\n" +
-	"\x05topic\x18\x05 \x01(\v2&.admin.promo_offers.brand.v1.NamedItemR\x05topic\x12\x1b\n" +
+	"\x05photo\x18\x04 \x01(\tR\x05photo\x12S\n" +
+	"\x11business_category\x18\x05 \x01(\v2&.admin.promo_offers.brand.v1.NamedItemR\x10businessCategory\x12\x1b\n" +
 	"\tis_active\x18\x06 \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\"\xef\x02\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\"\x86\x03\n" +
 	"\tBrandItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
-	"\x05photo\x18\x04 \x01(\tR\x05photo\x12<\n" +
-	"\x05topic\x18\x05 \x01(\v2&.admin.promo_offers.brand.v1.NamedItemR\x05topic\x12\x18\n" +
+	"\x05photo\x18\x04 \x01(\tR\x05photo\x12S\n" +
+	"\x11business_category\x18\x05 \x01(\v2&.admin.promo_offers.brand.v1.NamedItemR\x10businessCategory\x12\x18\n" +
 	"\awebsite\x18\x06 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12\\\n" +
 	"\x0fsocial_networks\x18\b \x03(\v23.admin.promo_offers.brand.v1.BrandSocialNetworkItemR\x0esocialNetworks\x12\x1b\n" +
 	"\tis_active\x18\t \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\tR\tcreatedAt\"\xcd\x01\n" +
+	" \x01(\tR\tcreatedAt\"\xe4\x01\n" +
 	"\x10GetBrandsRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\x12\x1b\n" +
-	"\ttopic_ids\x18\x02 \x03(\x03R\btopicIds\x12,\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x122\n" +
+	"\x15business_category_ids\x18\x02 \x03(\x03R\x13businessCategoryIds\x12,\n" +
 	"\x12social_network_ids\x18\x03 \x03(\x03R\x10socialNetworkIds\x12 \n" +
 	"\tis_active\x18\x04 \x01(\bH\x00R\bisActive\x88\x01\x01\x12\x12\n" +
 	"\x04page\x18\x05 \x01(\x03R\x04page\x12\x14\n" +
@@ -1383,23 +1383,23 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x13GetBrandByIDRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"T\n" +
 	"\x14GetBrandByIDResponse\x12<\n" +
-	"\x05brand\x18\x01 \x01(\v2&.admin.promo_offers.brand.v1.BrandItemR\x05brand\"\x8a\x02\n" +
+	"\x05brand\x18\x01 \x01(\v2&.admin.promo_offers.brand.v1.BrandItemR\x05brand\"\xa1\x02\n" +
 	"\x12CreateBrandRequest\x12\x14\n" +
 	"\x05photo\x18\x01 \x01(\tR\x05photo\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x19\n" +
-	"\btopic_id\x18\x04 \x01(\x03R\atopicId\x12\x18\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\x120\n" +
+	"\x14business_category_id\x18\x04 \x01(\x03R\x12businessCategoryId\x12\x18\n" +
 	"\awebsite\x18\x05 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\x06 \x01(\tR\vdescription\x12]\n" +
 	"\x0fsocial_networks\x18\a \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\"0\n" +
 	"\x13CreateBrandResponse\x12\x19\n" +
-	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\xa5\x02\n" +
+	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\xbc\x02\n" +
 	"\x12UpdateBrandRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12\x14\n" +
 	"\x05photo\x18\x02 \x01(\tR\x05photo\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
-	"\x04slug\x18\x04 \x01(\tR\x04slug\x12\x19\n" +
-	"\btopic_id\x18\x05 \x01(\x03R\atopicId\x12\x18\n" +
+	"\x04slug\x18\x04 \x01(\tR\x04slug\x120\n" +
+	"\x14business_category_id\x18\x05 \x01(\x03R\x12businessCategoryId\x12\x18\n" +
 	"\awebsite\x18\x06 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12]\n" +
 	"\x0fsocial_networks\x18\b \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\"\x15\n" +
@@ -1476,8 +1476,8 @@ var file_admin_promo_offers_brand_v1_brand_proto_goTypes = []any{
 	(*DeactivateBrandResponse)(nil), // 22: admin.promo_offers.brand.v1.DeactivateBrandResponse
 }
 var file_admin_promo_offers_brand_v1_brand_proto_depIdxs = []int32{
-	0,  // 0: admin.promo_offers.brand.v1.BrandListItem.topic:type_name -> admin.promo_offers.brand.v1.NamedItem
-	0,  // 1: admin.promo_offers.brand.v1.BrandItem.topic:type_name -> admin.promo_offers.brand.v1.NamedItem
+	0,  // 0: admin.promo_offers.brand.v1.BrandListItem.business_category:type_name -> admin.promo_offers.brand.v1.NamedItem
+	0,  // 1: admin.promo_offers.brand.v1.BrandItem.business_category:type_name -> admin.promo_offers.brand.v1.NamedItem
 	1,  // 2: admin.promo_offers.brand.v1.BrandItem.social_networks:type_name -> admin.promo_offers.brand.v1.BrandSocialNetworkItem
 	3,  // 3: admin.promo_offers.brand.v1.GetBrandsResponse.brands:type_name -> admin.promo_offers.brand.v1.BrandListItem
 	4,  // 4: admin.promo_offers.brand.v1.GetBrandByIDResponse.brand:type_name -> admin.promo_offers.brand.v1.BrandItem

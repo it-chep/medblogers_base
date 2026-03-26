@@ -17,14 +17,13 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) CreateBrand(ctx context.Context, req dto.CreateRequest) (int64, error) {
 	sql := `
-		insert into brand (photo, title, slug, business_category_id, website, description)
-		values ($1, $2, $3, $4, $5, $6)
+		insert into brand (title, slug, business_category_id, website, description)
+		values ($1, $2, $3, $4, $5)
 		returning id
 	`
 
 	var brandID int64
 	err := r.db.QueryRow(ctx, sql,
-		req.Photo,
 		req.Title,
 		req.Slug,
 		req.BusinessCategoryID,

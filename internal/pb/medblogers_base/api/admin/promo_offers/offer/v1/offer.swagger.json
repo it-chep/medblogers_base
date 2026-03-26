@@ -305,7 +305,7 @@
           "type": "string",
           "format": "int64"
         },
-        "topicId": {
+        "businessCategoryId": {
           "type": "string",
           "format": "int64"
         },
@@ -453,7 +453,7 @@
         "cooperationType": {
           "$ref": "#/definitions/admin.promo_offers.offer.v1.NamedItem"
         },
-        "topic": {
+        "businessCategory": {
           "$ref": "#/definitions/admin.promo_offers.offer.v1.NamedItem"
         },
         "contentFormat": {
@@ -500,7 +500,7 @@
         "cooperationType": {
           "$ref": "#/definitions/admin.promo_offers.offer.v1.NamedItem"
         },
-        "topic": {
+        "businessCategory": {
           "$ref": "#/definitions/admin.promo_offers.offer.v1.NamedItem"
         },
         "contentFormat": {
@@ -530,7 +530,7 @@
           "type": "string",
           "format": "int64"
         },
-        "topicId": {
+        "businessCategoryId": {
           "type": "string",
           "format": "int64"
         },

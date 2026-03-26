@@ -89,7 +89,7 @@ message BrandListItem {
   string title = 2;
   string slug = 3;
   string photo = 4;
-  NamedItem topic = 5;
+  NamedItem business_category = 5;
   bool is_active = 6;
   string created_at = 7;
 }
@@ -99,7 +99,7 @@ message BrandItem {
   string title = 2;
   string slug = 3;
   string photo = 4;
-  NamedItem topic = 5;
+  NamedItem business_category = 5;
   string website = 6;
   string description = 7;
   repeated BrandSocialNetworkItem social_networks = 8;
@@ -109,7 +109,7 @@ message BrandItem {
 
 message GetBrandsRequest {
   string query = 1;
-  repeated int64 topic_ids = 2;
+  repeated int64 business_category_ids = 2;
   repeated int64 social_network_ids = 3;
   optional bool is_active = 4;
   int64 page = 5;
@@ -132,7 +132,7 @@ message CreateBrandRequest {
   string photo = 1;
   string title = 2;
   string slug = 3;
-  int64 topic_id = 4;
+  int64 business_category_id = 4;
   string website = 5;
   string description = 6;
   repeated BrandSocialNetworkInput social_networks = 7;
@@ -147,7 +147,7 @@ message UpdateBrandRequest {
   string photo = 2;
   string title = 3;
   string slug = 4;
-  int64 topic_id = 5;
+  int64 business_category_id = 5;
   string website = 6;
   string description = 7;
   repeated BrandSocialNetworkInput social_networks = 8;

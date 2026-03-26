@@ -11,10 +11,9 @@ import (
 
 func newCreateBrandDTO(req *desc.CreateBrandRequest) createDTO.CreateRequest {
 	return createDTO.CreateRequest{
-		Photo:              req.GetPhoto(),
 		Title:              req.GetTitle(),
 		Slug:               req.GetSlug(),
-		BusinessCategoryID: req.GetTopicId(),
+		BusinessCategoryID: req.GetBusinessCategoryId(),
 		Website:            req.GetWebsite(),
 		Description:        req.GetDescription(),
 		SocialNetworks:     newCreateBrandSocialNetworks(req.GetSocialNetworks()),
@@ -23,10 +22,9 @@ func newCreateBrandDTO(req *desc.CreateBrandRequest) createDTO.CreateRequest {
 
 func newUpdateBrandDTO(req *desc.UpdateBrandRequest) updateDTO.UpdateRequest {
 	return updateDTO.UpdateRequest{
-		Photo:              req.GetPhoto(),
 		Title:              req.GetTitle(),
 		Slug:               req.GetSlug(),
-		BusinessCategoryID: req.GetTopicId(),
+		BusinessCategoryID: req.GetBusinessCategoryId(),
 		Website:            req.GetWebsite(),
 		Description:        req.GetDescription(),
 		SocialNetworks:     newUpdateBrandSocialNetworks(req.GetSocialNetworks()),
@@ -40,13 +38,13 @@ func newGetBrandsResponse(items []getDTO.Brand) *desc.GetBrandsResponse {
 
 	for _, item := range items {
 		resp.Brands = append(resp.Brands, &desc.BrandListItem{
-			Id:        item.ID,
-			Title:     item.Title,
-			Slug:      item.Slug,
-			Photo:     item.Photo,
-			Topic:     newNamedItem(item.BusinessCategory),
-			IsActive:  item.IsActive,
-			CreatedAt: formatDateTime(item.CreatedAt),
+			Id:               item.ID,
+			Title:            item.Title,
+			Slug:             item.Slug,
+			Photo:            item.Photo,
+			BusinessCategory: newNamedItem(item.BusinessCategory),
+			IsActive:         item.IsActive,
+			CreatedAt:        formatDateTime(item.CreatedAt),
 		})
 	}
 
@@ -60,16 +58,16 @@ func newGetBrandByIDResponse(item *getDTO.Brand) *desc.GetBrandByIDResponse {
 
 	resp := &desc.GetBrandByIDResponse{
 		Brand: &desc.BrandItem{
-			Id:             item.ID,
-			Title:          item.Title,
-			Slug:           item.Slug,
-			Photo:          item.Photo,
-			Topic:          newNamedItem(item.BusinessCategory),
-			Website:        item.Website,
-			Description:    item.Description,
-			SocialNetworks: make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
-			IsActive:       item.IsActive,
-			CreatedAt:      formatDateTime(item.CreatedAt),
+			Id:               item.ID,
+			Title:            item.Title,
+			Slug:             item.Slug,
+			Photo:            item.Photo,
+			BusinessCategory: newNamedItem(item.BusinessCategory),
+			Website:          item.Website,
+			Description:      item.Description,
+			SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
+			IsActive:         item.IsActive,
+			CreatedAt:        formatDateTime(item.CreatedAt),
 		},
 	}
 

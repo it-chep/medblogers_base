@@ -211,7 +211,7 @@ type OfferListItem struct {
 	PublicationDate   string                 `protobuf:"bytes,4,opt,name=publication_date,json=publicationDate,proto3" json:"publication_date,omitempty"`
 	ResponsesCapacity int64                  `protobuf:"varint,5,opt,name=responses_capacity,json=responsesCapacity,proto3" json:"responses_capacity,omitempty"`
 	CooperationType   *NamedItem             `protobuf:"bytes,6,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
-	Topic             *NamedItem             `protobuf:"bytes,7,opt,name=topic,proto3" json:"topic,omitempty"`
+	BusinessCategory  *NamedItem             `protobuf:"bytes,7,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
 	ContentFormat     *NamedItem             `protobuf:"bytes,8,opt,name=content_format,json=contentFormat,proto3" json:"content_format,omitempty"`
 	Brand             *BrandPreview          `protobuf:"bytes,9,opt,name=brand,proto3" json:"brand,omitempty"`
 	IsActive          bool                   `protobuf:"varint,10,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
@@ -292,9 +292,9 @@ func (x *OfferListItem) GetCooperationType() *NamedItem {
 	return nil
 }
 
-func (x *OfferListItem) GetTopic() *NamedItem {
+func (x *OfferListItem) GetBusinessCategory() *NamedItem {
 	if x != nil {
-		return x.Topic
+		return x.BusinessCategory
 	}
 	return nil
 }
@@ -337,7 +337,7 @@ type OfferItem struct {
 	AdMarkingResponsible string                 `protobuf:"bytes,6,opt,name=ad_marking_responsible,json=adMarkingResponsible,proto3" json:"ad_marking_responsible,omitempty"`
 	ResponsesCapacity    int64                  `protobuf:"varint,7,opt,name=responses_capacity,json=responsesCapacity,proto3" json:"responses_capacity,omitempty"`
 	CooperationType      *NamedItem             `protobuf:"bytes,8,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
-	Topic                *NamedItem             `protobuf:"bytes,9,opt,name=topic,proto3" json:"topic,omitempty"`
+	BusinessCategory     *NamedItem             `protobuf:"bytes,9,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
 	ContentFormat        *NamedItem             `protobuf:"bytes,10,opt,name=content_format,json=contentFormat,proto3" json:"content_format,omitempty"`
 	Brand                *BrandPreview          `protobuf:"bytes,11,opt,name=brand,proto3" json:"brand,omitempty"`
 	SocialNetworks       []*SocialNetworkItem   `protobuf:"bytes,12,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
@@ -433,9 +433,9 @@ func (x *OfferItem) GetCooperationType() *NamedItem {
 	return nil
 }
 
-func (x *OfferItem) GetTopic() *NamedItem {
+func (x *OfferItem) GetBusinessCategory() *NamedItem {
 	if x != nil {
-		return x.Topic
+		return x.BusinessCategory
 	}
 	return nil
 }
@@ -782,7 +782,7 @@ func (x *GetOfferByIDResponse) GetOffer() *OfferItem {
 type CreateOfferRequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	CooperationTypeId    int64                  `protobuf:"varint,1,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
-	TopicId              int64                  `protobuf:"varint,2,opt,name=topic_id,json=topicId,proto3" json:"topic_id,omitempty"`
+	BusinessCategoryId   int64                  `protobuf:"varint,2,opt,name=business_category_id,json=businessCategoryId,proto3" json:"business_category_id,omitempty"`
 	Title                string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Description          string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	Price                int64                  `protobuf:"varint,5,opt,name=price,proto3" json:"price,omitempty"`
@@ -833,9 +833,9 @@ func (x *CreateOfferRequest) GetCooperationTypeId() int64 {
 	return 0
 }
 
-func (x *CreateOfferRequest) GetTopicId() int64 {
+func (x *CreateOfferRequest) GetBusinessCategoryId() int64 {
 	if x != nil {
-		return x.TopicId
+		return x.BusinessCategoryId
 	}
 	return 0
 }
@@ -951,7 +951,7 @@ type UpdateOfferRequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	OfferId              string                 `protobuf:"bytes,1,opt,name=offer_id,json=offerId,proto3" json:"offer_id,omitempty"`
 	CooperationTypeId    int64                  `protobuf:"varint,2,opt,name=cooperation_type_id,json=cooperationTypeId,proto3" json:"cooperation_type_id,omitempty"`
-	TopicId              int64                  `protobuf:"varint,3,opt,name=topic_id,json=topicId,proto3" json:"topic_id,omitempty"`
+	BusinessCategoryId   int64                  `protobuf:"varint,3,opt,name=business_category_id,json=businessCategoryId,proto3" json:"business_category_id,omitempty"`
 	Title                string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
 	Description          string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Price                int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
@@ -1009,9 +1009,9 @@ func (x *UpdateOfferRequest) GetCooperationTypeId() int64 {
 	return 0
 }
 
-func (x *UpdateOfferRequest) GetTopicId() int64 {
+func (x *UpdateOfferRequest) GetBusinessCategoryId() int64 {
 	if x != nil {
-		return x.TopicId
+		return x.BusinessCategoryId
 	}
 	return 0
 }
@@ -1291,21 +1291,21 @@ const file_admin_promo_offers_offer_v1_offer_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
-	"\x05photo\x18\x04 \x01(\tR\x05photo\"\x82\x04\n" +
+	"\x05photo\x18\x04 \x01(\tR\x05photo\"\x99\x04\n" +
 	"\rOfferListItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
 	"\x05price\x18\x03 \x01(\x03R\x05price\x12)\n" +
 	"\x10publication_date\x18\x04 \x01(\tR\x0fpublicationDate\x12-\n" +
 	"\x12responses_capacity\x18\x05 \x01(\x03R\x11responsesCapacity\x12Q\n" +
-	"\x10cooperation_type\x18\x06 \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x0fcooperationType\x12<\n" +
-	"\x05topic\x18\a \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x05topic\x12M\n" +
+	"\x10cooperation_type\x18\x06 \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x0fcooperationType\x12S\n" +
+	"\x11business_category\x18\a \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x10businessCategory\x12M\n" +
 	"\x0econtent_format\x18\b \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\rcontentFormat\x12?\n" +
 	"\x05brand\x18\t \x01(\v2).admin.promo_offers.offer.v1.BrandPreviewR\x05brand\x12\x1b\n" +
 	"\tis_active\x18\n" +
 	" \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\v \x01(\tR\tcreatedAt\"\xaf\x05\n" +
+	"created_at\x18\v \x01(\tR\tcreatedAt\"\xc6\x05\n" +
 	"\tOfferItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -1314,8 +1314,8 @@ const file_admin_promo_offers_offer_v1_offer_proto_rawDesc = "" +
 	"\x10publication_date\x18\x05 \x01(\tR\x0fpublicationDate\x124\n" +
 	"\x16ad_marking_responsible\x18\x06 \x01(\tR\x14adMarkingResponsible\x12-\n" +
 	"\x12responses_capacity\x18\a \x01(\x03R\x11responsesCapacity\x12Q\n" +
-	"\x10cooperation_type\x18\b \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x0fcooperationType\x12<\n" +
-	"\x05topic\x18\t \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x05topic\x12M\n" +
+	"\x10cooperation_type\x18\b \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x0fcooperationType\x12S\n" +
+	"\x11business_category\x18\t \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\x10businessCategory\x12M\n" +
 	"\x0econtent_format\x18\n" +
 	" \x01(\v2&.admin.promo_offers.offer.v1.NamedItemR\rcontentFormat\x12?\n" +
 	"\x05brand\x18\v \x01(\v2).admin.promo_offers.offer.v1.BrandPreviewR\x05brand\x12W\n" +
@@ -1343,10 +1343,10 @@ const file_admin_promo_offers_offer_v1_offer_proto_rawDesc = "" +
 	"\x13GetOfferByIDRequest\x12\x19\n" +
 	"\boffer_id\x18\x01 \x01(\tR\aofferId\"T\n" +
 	"\x14GetOfferByIDResponse\x12<\n" +
-	"\x05offer\x18\x01 \x01(\v2&.admin.promo_offers.offer.v1.OfferItemR\x05offer\"\xb2\x03\n" +
+	"\x05offer\x18\x01 \x01(\v2&.admin.promo_offers.offer.v1.OfferItemR\x05offer\"\xc9\x03\n" +
 	"\x12CreateOfferRequest\x12.\n" +
-	"\x13cooperation_type_id\x18\x01 \x01(\x03R\x11cooperationTypeId\x12\x19\n" +
-	"\btopic_id\x18\x02 \x01(\x03R\atopicId\x12\x14\n" +
+	"\x13cooperation_type_id\x18\x01 \x01(\x03R\x11cooperationTypeId\x120\n" +
+	"\x14business_category_id\x18\x02 \x01(\x03R\x12businessCategoryId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x14\n" +
 	"\x05price\x18\x05 \x01(\x03R\x05price\x12*\n" +
@@ -1358,11 +1358,11 @@ const file_admin_promo_offers_offer_v1_offer_proto_rawDesc = "" +
 	" \x01(\x03R\x11responsesCapacity\x12,\n" +
 	"\x12social_network_ids\x18\v \x03(\x03R\x10socialNetworkIds\"0\n" +
 	"\x13CreateOfferResponse\x12\x19\n" +
-	"\boffer_id\x18\x01 \x01(\tR\aofferId\"\xcd\x03\n" +
+	"\boffer_id\x18\x01 \x01(\tR\aofferId\"\xe4\x03\n" +
 	"\x12UpdateOfferRequest\x12\x19\n" +
 	"\boffer_id\x18\x01 \x01(\tR\aofferId\x12.\n" +
-	"\x13cooperation_type_id\x18\x02 \x01(\x03R\x11cooperationTypeId\x12\x19\n" +
-	"\btopic_id\x18\x03 \x01(\x03R\atopicId\x12\x14\n" +
+	"\x13cooperation_type_id\x18\x02 \x01(\x03R\x11cooperationTypeId\x120\n" +
+	"\x14business_category_id\x18\x03 \x01(\x03R\x12businessCategoryId\x12\x14\n" +
 	"\x05title\x18\x04 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\x14\n" +
 	"\x05price\x18\x06 \x01(\x03R\x05price\x12*\n" +
@@ -1425,11 +1425,11 @@ var file_admin_promo_offers_offer_v1_offer_proto_goTypes = []any{
 }
 var file_admin_promo_offers_offer_v1_offer_proto_depIdxs = []int32{
 	0,  // 0: admin.promo_offers.offer.v1.OfferListItem.cooperation_type:type_name -> admin.promo_offers.offer.v1.NamedItem
-	0,  // 1: admin.promo_offers.offer.v1.OfferListItem.topic:type_name -> admin.promo_offers.offer.v1.NamedItem
+	0,  // 1: admin.promo_offers.offer.v1.OfferListItem.business_category:type_name -> admin.promo_offers.offer.v1.NamedItem
 	0,  // 2: admin.promo_offers.offer.v1.OfferListItem.content_format:type_name -> admin.promo_offers.offer.v1.NamedItem
 	2,  // 3: admin.promo_offers.offer.v1.OfferListItem.brand:type_name -> admin.promo_offers.offer.v1.BrandPreview
 	0,  // 4: admin.promo_offers.offer.v1.OfferItem.cooperation_type:type_name -> admin.promo_offers.offer.v1.NamedItem
-	0,  // 5: admin.promo_offers.offer.v1.OfferItem.topic:type_name -> admin.promo_offers.offer.v1.NamedItem
+	0,  // 5: admin.promo_offers.offer.v1.OfferItem.business_category:type_name -> admin.promo_offers.offer.v1.NamedItem
 	0,  // 6: admin.promo_offers.offer.v1.OfferItem.content_format:type_name -> admin.promo_offers.offer.v1.NamedItem
 	2,  // 7: admin.promo_offers.offer.v1.OfferItem.brand:type_name -> admin.promo_offers.offer.v1.BrandPreview
 	1,  // 8: admin.promo_offers.offer.v1.OfferItem.social_networks:type_name -> admin.promo_offers.offer.v1.SocialNetworkItem

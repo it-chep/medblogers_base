@@ -314,7 +314,7 @@
             "type": "string"
           },
           {
-            "name": "topicIds",
+            "name": "businessCategoryIds",
             "in": "query",
             "required": false,
             "type": "array",
@@ -418,7 +418,7 @@
         "photo": {
           "type": "string"
         },
-        "topic": {
+        "businessCategory": {
           "$ref": "#/definitions/admin.promo_offers.brand.v1.NamedItem"
         },
         "website": {
@@ -458,7 +458,7 @@
         "photo": {
           "type": "string"
         },
-        "topic": {
+        "businessCategory": {
           "$ref": "#/definitions/admin.promo_offers.brand.v1.NamedItem"
         },
         "isActive": {
@@ -511,7 +511,7 @@
         "slug": {
           "type": "string"
         },
-        "topicId": {
+        "businessCategoryId": {
           "type": "string",
           "format": "int64"
         },
@@ -625,7 +625,7 @@
         "slug": {
           "type": "string"
         },
-        "topicId": {
+        "businessCategoryId": {
           "type": "string",
           "format": "int64"
         },

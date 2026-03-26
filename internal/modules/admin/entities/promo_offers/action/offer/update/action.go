@@ -40,6 +40,8 @@ func (a *Action) Do(ctx context.Context, offerID uuid.UUID, req dto.UpdateReques
 	}
 
 	return transaction.Exec(ctx, func(ctx context.Context) error {
+		// todo audit log
+
 		if err := a.actionDal.UpdateOffer(ctx, offerID, req); err != nil {
 			return err
 		}
