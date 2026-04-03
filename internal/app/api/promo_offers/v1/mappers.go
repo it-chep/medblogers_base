@@ -1,8 +1,7 @@
 package v1
 
 import (
-	"time"
-
+	"github.com/samber/lo"
 	brandDetailDTO "medblogers_base/internal/modules/promo_offers/action/brand_detail/dto"
 	brandOffersDTO "medblogers_base/internal/modules/promo_offers/action/brand_offers/dto"
 	filterBrandsDTO "medblogers_base/internal/modules/promo_offers/action/filter_brands/dto"
@@ -10,6 +9,7 @@ import (
 	filterSettingsDTO "medblogers_base/internal/modules/promo_offers/action/filter_settings/dto"
 	offerDetailDTO "medblogers_base/internal/modules/promo_offers/action/offer_detail/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/promo_offers/v1"
+	"medblogers_base/internal/pkg/formatters"
 )
 
 func newFilterOffersResponse(resp filterOffersDTO.Response) *desc.FilterOffersResponse {
@@ -83,13 +83,14 @@ func newGetFilterSettingsResponse(item *filterSettingsDTO.Response) *desc.GetFil
 
 func newOfferItemFromFilter(item filterOffersDTO.Offer) *desc.FilterOfferItem {
 	resp := &desc.FilterOfferItem{
+		Id:               item.ID,
 		Photo:            item.Photo,
 		Title:            item.Title,
 		BrandDescription: item.BrandDescription,
 		CooperationType:  newNamedItemFromFilter(item.CooperationType),
 		Description:      item.Description,
 		BusinessCategory: newNamedItemFromFilter(item.BusinessCategory),
-		CreatedAt:        formatDateTime(item.CreatedAt),
+		CreatedAt:        formatters.TimeRuFormat(item.CreatedAt),
 		SocialNetworks:   make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
@@ -114,7 +115,7 @@ func newOfferCardItem(item *offerDetailDTO.Offer) *desc.OfferCardItem {
 		Description:     item.Description,
 		CooperationType: newNamedItemFromDetail(item.CooperationType),
 		Price:           item.Price,
-		CreatedAt:       formatDateTime(item.CreatedAt),
+		CreatedAt:       formatters.TimeRuFormat(item.CreatedAt),
 		SocialNetworks:  make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
@@ -161,7 +162,7 @@ func newOfferItemFromBrandOffers(item brandOffersDTO.Offer) *desc.OfferItem {
 		Title:                item.Title,
 		Description:          item.Description,
 		Price:                item.Price,
-		PublicationDate:      formatDate(item.PublicationDate),
+		PublicationDate:      formatters.TimeRuFormat(lo.FromPtr(item.PublicationDate)),
 		AdMarkingResponsible: item.AdMarkingResponsible,
 		ResponsesCapacity:    item.ResponsesCapacity,
 		CooperationType:      newNamedItemFromBrandOffers(item.CooperationType),
@@ -189,7 +190,7 @@ func newBrandItemFromFilter(item filterBrandsDTO.Brand) *desc.BrandItem {
 		Slug:             item.Slug,
 		Photo:            item.Photo,
 		BusinessCategory: newBusinessCategoryFromFilter(item.BusinessCategory),
-		Website:          item.Website,
+		SiteLink:         item.Website,
 		Description:      item.Description,
 		SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
@@ -217,7 +218,7 @@ func newBrandItemFromDetail(item *brandDetailDTO.Brand) *desc.BrandItem {
 		Slug:             item.Slug,
 		Photo:            item.Photo,
 		BusinessCategory: newBusinessCategoryFromDetail(item.BusinessCategory),
-		Website:          item.Website,
+		SiteLink:         item.Website,
 		Description:      item.Description,
 		SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
@@ -300,20 +301,4 @@ func newBrandPreviewFromBrandOffers(item *brandOffersDTO.BrandPreview) *desc.Bra
 		Slug:  item.Slug,
 		Photo: item.Photo,
 	}
-}
-
-func formatDate(value *time.Time) string {
-	if value == nil {
-		return ""
-	}
-
-	return value.Format(time.DateOnly)
-}
-
-func formatDateTime(value *time.Time) string {
-	if value == nil {
-		return ""
-	}
-
-	return value.Format(time.RFC3339)
 }

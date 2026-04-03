@@ -233,6 +233,45 @@ func local_request_PromoOffersService_GetOfferCard_0(ctx context.Context, marsha
 	return msg, metadata, err
 }
 
+func request_PromoOffersService_GetBrandByOffer_0(ctx context.Context, marshaler runtime.Marshaler, client PromoOffersServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetBrandByOfferRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["offer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "offer_id")
+	}
+	protoReq.OfferId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "offer_id", err)
+	}
+	msg, err := client.GetBrandByOffer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PromoOffersService_GetBrandByOffer_0(ctx context.Context, marshaler runtime.Marshaler, server PromoOffersServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetBrandByOfferRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["offer_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "offer_id")
+	}
+	protoReq.OfferId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "offer_id", err)
+	}
+	msg, err := server.GetBrandByOffer(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterPromoOffersServiceHandlerServer registers the http handlers for service PromoOffersService to "mux".
 // UnaryRPC     :call PromoOffersServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -358,6 +397,26 @@ func RegisterPromoOffersServiceHandlerServer(ctx context.Context, mux *runtime.S
 			return
 		}
 		forward_PromoOffersService_GetOfferCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_PromoOffersService_GetBrandByOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/promo_offers.v1.PromoOffersService/GetBrandByOffer", runtime.WithHTTPPathPattern("/api/v1/promo_offers/brand/by_offer/{offer_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PromoOffersService_GetBrandByOffer_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersService_GetBrandByOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -501,6 +560,23 @@ func RegisterPromoOffersServiceHandlerClient(ctx context.Context, mux *runtime.S
 		}
 		forward_PromoOffersService_GetOfferCard_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_PromoOffersService_GetBrandByOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/promo_offers.v1.PromoOffersService/GetBrandByOffer", runtime.WithHTTPPathPattern("/api/v1/promo_offers/brand/by_offer/{offer_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PromoOffersService_GetBrandByOffer_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PromoOffersService_GetBrandByOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
@@ -511,6 +587,7 @@ var (
 	pattern_PromoOffersService_GetBrandCard_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "promo_offers", "brand", "brand_slug"}, ""))
 	pattern_PromoOffersService_GetBrandOffers_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "promo_offers", "brand", "brand_slug", "offers"}, ""))
 	pattern_PromoOffersService_GetOfferCard_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "promo_offers", "offer", "offer_id"}, ""))
+	pattern_PromoOffersService_GetBrandByOffer_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "promo_offers", "brand", "by_offer", "offer_id"}, ""))
 )
 
 var (
@@ -520,4 +597,5 @@ var (
 	forward_PromoOffersService_GetBrandCard_0      = runtime.ForwardResponseMessage
 	forward_PromoOffersService_GetBrandOffers_0    = runtime.ForwardResponseMessage
 	forward_PromoOffersService_GetOfferCard_0      = runtime.ForwardResponseMessage
+	forward_PromoOffersService_GetBrandByOffer_0   = runtime.ForwardResponseMessage
 )

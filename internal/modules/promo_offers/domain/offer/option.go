@@ -80,7 +80,7 @@ func WithIsActive(isActive bool) Option {
 	}
 }
 
-func WithCreatedAt(createdAt *time.Time) Option {
+func WithCreatedAt(createdAt time.Time) Option {
 	return func(o *Offer) {
 		o.createdAt = createdAt
 	}

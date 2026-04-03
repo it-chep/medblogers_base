@@ -54,6 +54,6 @@ func (o *Offer) GetIsActive() bool {
 	return o.isActive
 }
 
-func (o *Offer) GetCreatedAt() *time.Time {
+func (o *Offer) GetCreatedAt() time.Time {
 	return o.createdAt
 }

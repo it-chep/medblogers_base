@@ -16,6 +16,37 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/promo_offers/brand/by_offer/{offerId}": {
+      "get": {
+        "summary": "Карточка оффера",
+        "operationId": "PromoOffersService_GetBrandByOffer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/promo_offers.v1.GetBrandByOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PromoOffersService"
+        ]
+      }
+    },
     "/api/v1/promo_offers/brand/{brandSlug}": {
       "get": {
         "summary": "Карточка бренда",
@@ -257,7 +288,7 @@
         "businessCategory": {
           "$ref": "#/definitions/promo_offers.v1.NamedItem"
         },
-        "website": {
+        "siteLink": {
           "type": "string"
         },
         "description": {
@@ -351,6 +382,9 @@
     "promo_offers.v1.FilterOfferItem": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "photo": {
           "type": "string"
         },
@@ -409,6 +443,14 @@
             "type": "object",
             "$ref": "#/definitions/promo_offers.v1.FilterOfferItem"
           }
+        }
+      }
+    },
+    "promo_offers.v1.GetBrandByOfferResponse": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/promo_offers.v1.BrandItem"
         }
       }
     },

@@ -25,6 +25,7 @@ const (
 	PromoOffersService_GetBrandCard_FullMethodName      = "/promo_offers.v1.PromoOffersService/GetBrandCard"
 	PromoOffersService_GetBrandOffers_FullMethodName    = "/promo_offers.v1.PromoOffersService/GetBrandOffers"
 	PromoOffersService_GetOfferCard_FullMethodName      = "/promo_offers.v1.PromoOffersService/GetOfferCard"
+	PromoOffersService_GetBrandByOffer_FullMethodName   = "/promo_offers.v1.PromoOffersService/GetBrandByOffer"
 )
 
 // PromoOffersServiceClient is the client API for PromoOffersService service.
@@ -37,6 +38,7 @@ type PromoOffersServiceClient interface {
 	GetBrandCard(ctx context.Context, in *GetBrandCardRequest, opts ...grpc.CallOption) (*GetBrandCardResponse, error)
 	GetBrandOffers(ctx context.Context, in *GetBrandOffersRequest, opts ...grpc.CallOption) (*GetBrandOffersResponse, error)
 	GetOfferCard(ctx context.Context, in *GetOfferCardRequest, opts ...grpc.CallOption) (*GetOfferCardResponse, error)
+	GetBrandByOffer(ctx context.Context, in *GetBrandByOfferRequest, opts ...grpc.CallOption) (*GetBrandByOfferResponse, error)
 }
 
 type promoOffersServiceClient struct {
@@ -107,6 +109,16 @@ func (c *promoOffersServiceClient) GetOfferCard(ctx context.Context, in *GetOffe
 	return out, nil
 }
 
+func (c *promoOffersServiceClient) GetBrandByOffer(ctx context.Context, in *GetBrandByOfferRequest, opts ...grpc.CallOption) (*GetBrandByOfferResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBrandByOfferResponse)
+	err := c.cc.Invoke(ctx, PromoOffersService_GetBrandByOffer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PromoOffersServiceServer is the server API for PromoOffersService service.
 // All implementations should embed UnimplementedPromoOffersServiceServer
 // for forward compatibility.
@@ -117,6 +129,7 @@ type PromoOffersServiceServer interface {
 	GetBrandCard(context.Context, *GetBrandCardRequest) (*GetBrandCardResponse, error)
 	GetBrandOffers(context.Context, *GetBrandOffersRequest) (*GetBrandOffersResponse, error)
 	GetOfferCard(context.Context, *GetOfferCardRequest) (*GetOfferCardResponse, error)
+	GetBrandByOffer(context.Context, *GetBrandByOfferRequest) (*GetBrandByOfferResponse, error)
 }
 
 // UnimplementedPromoOffersServiceServer should be embedded to have
@@ -143,6 +156,9 @@ func (UnimplementedPromoOffersServiceServer) GetBrandOffers(context.Context, *Ge
 }
 func (UnimplementedPromoOffersServiceServer) GetOfferCard(context.Context, *GetOfferCardRequest) (*GetOfferCardResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetOfferCard not implemented")
+}
+func (UnimplementedPromoOffersServiceServer) GetBrandByOffer(context.Context, *GetBrandByOfferRequest) (*GetBrandByOfferResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBrandByOffer not implemented")
 }
 func (UnimplementedPromoOffersServiceServer) testEmbeddedByValue() {}
 
@@ -272,6 +288,24 @@ func _PromoOffersService_GetOfferCard_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PromoOffersService_GetBrandByOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBrandByOfferRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PromoOffersServiceServer).GetBrandByOffer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PromoOffersService_GetBrandByOffer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PromoOffersServiceServer).GetBrandByOffer(ctx, req.(*GetBrandByOfferRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PromoOffersService_ServiceDesc is the grpc.ServiceDesc for PromoOffersService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -302,6 +336,10 @@ var PromoOffersService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOfferCard",
 			Handler:    _PromoOffersService_GetOfferCard_Handler,
+		},
+		{
+			MethodName: "GetBrandByOffer",
+			Handler:    _PromoOffersService_GetBrandByOffer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

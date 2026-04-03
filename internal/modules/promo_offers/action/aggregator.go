@@ -1,6 +1,7 @@
 package action
 
 import (
+	"medblogers_base/internal/modules/promo_offers/action/brand_by_offer"
 	"medblogers_base/internal/modules/promo_offers/action/brand_detail"
 	"medblogers_base/internal/modules/promo_offers/action/brand_offers"
 	"medblogers_base/internal/modules/promo_offers/action/filter_brands"
@@ -18,6 +19,7 @@ type Aggregator struct {
 	BrandDetail  *brand_detail.Action
 	BrandOffers  *brand_offers.Action
 	OfferDetail  *offer_detail.Action
+	BrandByOffer *brand_by_offer.Action
 }
 
 func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator) *Aggregator {
@@ -28,5 +30,6 @@ func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator) *Aggre
 		BrandDetail:  brand_detail.New(pool, clients),
 		BrandOffers:  brand_offers.New(pool),
 		OfferDetail:  offer_detail.New(pool, clients),
+		BrandByOffer: brand_by_offer.New(pool, clients),
 	}
 }

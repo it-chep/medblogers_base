@@ -187,7 +187,7 @@ func (g *Gateway) PutBrandPhoto(ctx context.Context, file io.Reader, filename st
 		contentType = "application/octet-stream"
 	}
 
-	objectKey := fmt.Sprintf("images/brand_%s", filename)
+	objectKey := fmt.Sprintf("brands_photos/brand_%s", filename)
 
 	_, err := g.client.PutObject(ctx, &s3.PutObjectInput{
 		Bucket:      aws.String(g.brandsBucketName),

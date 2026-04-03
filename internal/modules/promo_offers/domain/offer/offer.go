@@ -19,7 +19,7 @@ type Offer struct {
 	adMarkingResponsible string
 	responsesCapacity    int64
 	isActive             bool
-	createdAt            *time.Time
+	createdAt            time.Time
 }
 
 func New(options ...Option) *Offer {

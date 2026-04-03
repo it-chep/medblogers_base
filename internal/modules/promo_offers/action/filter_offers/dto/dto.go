@@ -18,6 +18,7 @@ type SocialNetwork struct {
 }
 
 type Offer struct {
+	ID               string
 	Photo            string
 	Title            string
 	BrandDescription string
@@ -25,7 +26,7 @@ type Offer struct {
 	Description      string
 	SocialNetworks   []SocialNetwork
 	BusinessCategory *NamedItem
-	CreatedAt        *time.Time
+	CreatedAt        time.Time
 }
 
 type Response struct {

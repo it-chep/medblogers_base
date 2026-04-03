@@ -162,3 +162,21 @@ func (w *PromoOffersServiceServiceDesc) GetOfferCard(ctx context.Context, in *Ge
 	}
 	return resp.(*GetOfferCardResponse), err
 }
+
+func (w *PromoOffersServiceServiceDesc) GetBrandByOffer(ctx context.Context, in *GetBrandByOfferRequest) (*GetBrandByOfferResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBrandByOffer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/promo_offers.v1.PromoOffersService/GetBrandByOffer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBrandByOffer(ctx, req.(*GetBrandByOfferRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBrandByOfferResponse), err
+}

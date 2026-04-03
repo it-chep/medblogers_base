@@ -109,6 +109,7 @@ func (a *Action) Do(ctx context.Context, req dto.OfferFilter) (dto.Response, err
 
 	for _, item := range offers {
 		offerItem := dto.Offer{
+			ID:          item.GetID().String(),
 			Description: item.GetDescription(),
 			CreatedAt:   item.GetCreatedAt(),
 		}

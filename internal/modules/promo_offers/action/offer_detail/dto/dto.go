@@ -42,5 +42,5 @@ type Offer struct {
 	CooperationType *NamedItem
 	Price           int64
 	SocialNetworks  []SocialNetwork
-	CreatedAt       *time.Time
+	CreatedAt       time.Time
 }

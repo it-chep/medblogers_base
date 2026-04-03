@@ -72,7 +72,7 @@ func (d OfferDAO) ToDomain() *offerDomain.Offer {
 		offerDomain.WithAdMarkingResponsible(d.AdMarkingResponsible.String),
 		offerDomain.WithResponsesCapacity(d.ResponsesCapacity.Int64),
 		offerDomain.WithIsActive(d.IsActive.Valid && d.IsActive.Bool),
-		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
+		offerDomain.WithCreatedAt(d.CreatedAt.Time),
 	)
 }
 
@@ -92,7 +92,7 @@ func (d FilterOfferDAO) ToDomain() *offerDomain.Offer {
 		offerDomain.WithBusinessCategoryID(d.BusinessCategoryID.Int64),
 		offerDomain.WithDescription(d.Description.String),
 		offerDomain.WithBrandID(d.BrandID.Int64),
-		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
+		offerDomain.WithCreatedAt(d.CreatedAt.Time),
 	)
 }
 
@@ -112,7 +112,7 @@ func (d OfferCardDAO) ToDomain() *offerDomain.Offer {
 		offerDomain.WithDescription(d.Description.String),
 		offerDomain.WithPrice(d.Price.Int64),
 		offerDomain.WithBrandID(d.BrandID.Int64),
-		offerDomain.WithCreatedAt(&d.CreatedAt.Time),
+		offerDomain.WithCreatedAt(d.CreatedAt.Time),
 	)
 }
 

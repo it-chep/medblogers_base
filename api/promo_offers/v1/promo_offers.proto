@@ -46,6 +46,11 @@ service PromoOffersService {
     option (google.api.http) = {get: "/api/v1/promo_offers/offer/{offer_id}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка оффера"};
   }
+
+  rpc GetBrandByOffer(GetBrandByOfferRequest) returns (GetBrandByOfferResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offers/brand/by_offer/{offer_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка оффера"};
+  }
 }
 
 message NamedItem {
@@ -79,7 +84,7 @@ message BrandItem {
   string slug = 3;
   string photo = 4;
   NamedItem business_category = 5;
-  string website = 6;
+  string site_link = 6;
   string description = 7;
   repeated BrandSocialNetworkItem social_networks = 8;
 }
@@ -118,14 +123,15 @@ message OfferCardItem {
 }
 
 message FilterOfferItem {
-  string photo = 1;
-  string title = 2;
-  string brand_description = 3;
-  NamedItem cooperation_type = 4;
-  string description = 5;
-  repeated SocialNetworkItem social_networks = 6;
-  NamedItem business_category = 7;
-  string created_at = 8;
+  string id = 1;
+  string photo = 2;
+  string title = 3;
+  string brand_description = 4;
+  NamedItem cooperation_type = 5;
+  string description = 6;
+  repeated SocialNetworkItem social_networks = 7;
+  NamedItem business_category = 8;
+  string created_at = 9;
 }
 
 message FilterOffersRequest {
@@ -180,4 +186,12 @@ message GetFilterSettingsRequest {}
 message GetFilterSettingsResponse {
   repeated FilterCountItem cooperation_types = 1;
   int64 all = 2;
+}
+
+
+message GetBrandByOfferRequest {
+  string offer_id = 1;
+}
+message GetBrandByOfferResponse {
+  BrandItem brand = 1;
 }

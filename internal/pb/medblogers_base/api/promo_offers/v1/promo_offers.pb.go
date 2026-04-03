@@ -278,7 +278,7 @@ type BrandItem struct {
 	Slug             string                    `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
 	Photo            string                    `protobuf:"bytes,4,opt,name=photo,proto3" json:"photo,omitempty"`
 	BusinessCategory *NamedItem                `protobuf:"bytes,5,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
-	Website          string                    `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	SiteLink         string                    `protobuf:"bytes,6,opt,name=site_link,json=siteLink,proto3" json:"site_link,omitempty"`
 	Description      string                    `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	SocialNetworks   []*BrandSocialNetworkItem `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
 	unknownFields    protoimpl.UnknownFields
@@ -350,9 +350,9 @@ func (x *BrandItem) GetBusinessCategory() *NamedItem {
 	return nil
 }
 
-func (x *BrandItem) GetWebsite() string {
+func (x *BrandItem) GetSiteLink() string {
 	if x != nil {
-		return x.Website
+		return x.SiteLink
 	}
 	return ""
 }
@@ -673,14 +673,15 @@ func (x *OfferCardItem) GetCreatedAt() string {
 
 type FilterOfferItem struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Photo            string                 `protobuf:"bytes,1,opt,name=photo,proto3" json:"photo,omitempty"`
-	Title            string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	BrandDescription string                 `protobuf:"bytes,3,opt,name=brand_description,json=brandDescription,proto3" json:"brand_description,omitempty"`
-	CooperationType  *NamedItem             `protobuf:"bytes,4,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
-	Description      string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	SocialNetworks   []*SocialNetworkItem   `protobuf:"bytes,6,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	BusinessCategory *NamedItem             `protobuf:"bytes,7,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
-	CreatedAt        string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Photo            string                 `protobuf:"bytes,2,opt,name=photo,proto3" json:"photo,omitempty"`
+	Title            string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	BrandDescription string                 `protobuf:"bytes,4,opt,name=brand_description,json=brandDescription,proto3" json:"brand_description,omitempty"`
+	CooperationType  *NamedItem             `protobuf:"bytes,5,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
+	Description      string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	SocialNetworks   []*SocialNetworkItem   `protobuf:"bytes,7,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	BusinessCategory *NamedItem             `protobuf:"bytes,8,opt,name=business_category,json=businessCategory,proto3" json:"business_category,omitempty"`
+	CreatedAt        string                 `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -713,6 +714,13 @@ func (x *FilterOfferItem) ProtoReflect() protoreflect.Message {
 // Deprecated: Use FilterOfferItem.ProtoReflect.Descriptor instead.
 func (*FilterOfferItem) Descriptor() ([]byte, []int) {
 	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *FilterOfferItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 func (x *FilterOfferItem) GetPhoto() string {
@@ -1367,6 +1375,94 @@ func (x *GetFilterSettingsResponse) GetAll() int64 {
 	return 0
 }
 
+type GetBrandByOfferRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OfferId       string                 `protobuf:"bytes,1,opt,name=offer_id,json=offerId,proto3" json:"offer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBrandByOfferRequest) Reset() {
+	*x = GetBrandByOfferRequest{}
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBrandByOfferRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBrandByOfferRequest) ProtoMessage() {}
+
+func (x *GetBrandByOfferRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBrandByOfferRequest.ProtoReflect.Descriptor instead.
+func (*GetBrandByOfferRequest) Descriptor() ([]byte, []int) {
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetBrandByOfferRequest) GetOfferId() string {
+	if x != nil {
+		return x.OfferId
+	}
+	return ""
+}
+
+type GetBrandByOfferResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Brand         *BrandItem             `protobuf:"bytes,1,opt,name=brand,proto3" json:"brand,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBrandByOfferResponse) Reset() {
+	*x = GetBrandByOfferResponse{}
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBrandByOfferResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBrandByOfferResponse) ProtoMessage() {}
+
+func (x *GetBrandByOfferResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_promo_offers_v1_promo_offers_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBrandByOfferResponse.ProtoReflect.Descriptor instead.
+func (*GetBrandByOfferResponse) Descriptor() ([]byte, []int) {
+	return file_promo_offers_v1_promo_offers_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetBrandByOfferResponse) GetBrand() *BrandItem {
+	if x != nil {
+		return x.Brand
+	}
+	return nil
+}
+
 var File_promo_offers_v1_promo_offers_proto protoreflect.FileDescriptor
 
 const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
@@ -1388,14 +1484,14 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
-	"\x05photo\x18\x04 \x01(\tR\x05photo\"\xb2\x02\n" +
+	"\x05photo\x18\x04 \x01(\tR\x05photo\"\xb5\x02\n" +
 	"\tBrandItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
 	"\x05photo\x18\x04 \x01(\tR\x05photo\x12G\n" +
-	"\x11business_category\x18\x05 \x01(\v2\x1a.promo_offers.v1.NamedItemR\x10businessCategory\x12\x18\n" +
-	"\awebsite\x18\x06 \x01(\tR\awebsite\x12 \n" +
+	"\x11business_category\x18\x05 \x01(\v2\x1a.promo_offers.v1.NamedItemR\x10businessCategory\x12\x1b\n" +
+	"\tsite_link\x18\x06 \x01(\tR\bsiteLink\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12P\n" +
 	"\x0fsocial_networks\x18\b \x03(\v2'.promo_offers.v1.BrandSocialNetworkItemR\x0esocialNetworks\"\xce\x04\n" +
 	"\tOfferItem\x12\x0e\n" +
@@ -1426,17 +1522,18 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x05price\x18\x04 \x01(\x03R\x05price\x12K\n" +
 	"\x0fsocial_networks\x18\x05 \x03(\v2\".promo_offers.v1.SocialNetworkItemR\x0esocialNetworks\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\tR\tcreatedAt\"\x88\x03\n" +
-	"\x0fFilterOfferItem\x12\x14\n" +
-	"\x05photo\x18\x01 \x01(\tR\x05photo\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12+\n" +
-	"\x11brand_description\x18\x03 \x01(\tR\x10brandDescription\x12E\n" +
-	"\x10cooperation_type\x18\x04 \x01(\v2\x1a.promo_offers.v1.NamedItemR\x0fcooperationType\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12K\n" +
-	"\x0fsocial_networks\x18\x06 \x03(\v2\".promo_offers.v1.SocialNetworkItemR\x0esocialNetworks\x12G\n" +
-	"\x11business_category\x18\a \x01(\v2\x1a.promo_offers.v1.NamedItemR\x10businessCategory\x12\x1d\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\"\x98\x03\n" +
+	"\x0fFilterOfferItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05photo\x18\x02 \x01(\tR\x05photo\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12+\n" +
+	"\x11brand_description\x18\x04 \x01(\tR\x10brandDescription\x12E\n" +
+	"\x10cooperation_type\x18\x05 \x01(\v2\x1a.promo_offers.v1.NamedItemR\x0fcooperationType\x12 \n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\x12K\n" +
+	"\x0fsocial_networks\x18\a \x03(\v2\".promo_offers.v1.SocialNetworkItemR\x0esocialNetworks\x12G\n" +
+	"\x11business_category\x18\b \x01(\v2\x1a.promo_offers.v1.NamedItemR\x10businessCategory\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\b \x01(\tR\tcreatedAt\"{\n" +
+	"created_at\x18\t \x01(\tR\tcreatedAt\"{\n" +
 	"\x13FilterOffersRequest\x120\n" +
 	"\x14cooperation_type_ids\x18\x01 \x03(\x03R\x12cooperationTypeIds\x122\n" +
 	"\x15business_category_ids\x18\x02 \x03(\x03R\x13businessCategoryIds\"P\n" +
@@ -1467,14 +1564,20 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x18GetFilterSettingsRequest\"|\n" +
 	"\x19GetFilterSettingsResponse\x12M\n" +
 	"\x11cooperation_types\x18\x01 \x03(\v2 .promo_offers.v1.FilterCountItemR\x10cooperationTypes\x12\x10\n" +
-	"\x03all\x18\x02 \x01(\x03R\x03all2\x96\t\n" +
+	"\x03all\x18\x02 \x01(\x03R\x03all\"3\n" +
+	"\x16GetBrandByOfferRequest\x12\x19\n" +
+	"\boffer_id\x18\x01 \x01(\tR\aofferId\"K\n" +
+	"\x17GetBrandByOfferResponse\x120\n" +
+	"\x05brand\x18\x01 \x01(\v2\x1a.promo_offers.v1.BrandItemR\x05brand2\xd7\n" +
+	"\n" +
 	"\x12PromoOffersService\x12\xe0\x01\n" +
 	"\x11GetFilterSettings\x12).promo_offers.v1.GetFilterSettingsRequest\x1a*.promo_offers.v1.GetFilterSettingsResponse\"t\x92AB\x12@Доступные фильтры по промо-офферам\x82\xd3\xe4\x93\x02):\x01*\"$/api/v1/promo_offers/filter/settings\x12\xb6\x01\n" +
 	"\fFilterOffers\x12$.promo_offers.v1.FilterOffersRequest\x1a%.promo_offers.v1.FilterOffersResponse\"Y\x92A0\x12.Фильтрация промо-офферов\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/api/v1/promo_offers/filter\x12\xb2\x01\n" +
 	"\fFilterBrands\x12$.promo_offers.v1.FilterBrandsRequest\x1a%.promo_offers.v1.FilterBrandsResponse\"U\x92A%\x12#Фильтрация брендов\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/promo_offers/brands/filter\x12\xae\x01\n" +
 	"\fGetBrandCard\x12$.promo_offers.v1.GetBrandCardRequest\x1a%.promo_offers.v1.GetBrandCardResponse\"Q\x92A\x1f\x12\x1dКарточка бренда\x82\xd3\xe4\x93\x02)\x12'/api/v1/promo_offers/brand/{brand_slug}\x12\xce\x01\n" +
 	"\x0eGetBrandOffers\x12&.promo_offers.v1.GetBrandOffersRequest\x1a'.promo_offers.v1.GetBrandOffersResponse\"k\x92A2\x120Офферы конкретного бренда\x82\xd3\xe4\x93\x020\x12./api/v1/promo_offers/brand/{brand_slug}/offers\x12\xac\x01\n" +
-	"\fGetOfferCard\x12$.promo_offers.v1.GetOfferCardRequest\x1a%.promo_offers.v1.GetOfferCardResponse\"O\x92A\x1f\x12\x1dКарточка оффера\x82\xd3\xe4\x93\x02'\x12%/api/v1/promo_offers/offer/{offer_id}B\x15Z\x13api/promo_offers/v1b\x06proto3"
+	"\fGetOfferCard\x12$.promo_offers.v1.GetOfferCardRequest\x1a%.promo_offers.v1.GetOfferCardResponse\"O\x92A\x1f\x12\x1dКарточка оффера\x82\xd3\xe4\x93\x02'\x12%/api/v1/promo_offers/offer/{offer_id}\x12\xbe\x01\n" +
+	"\x0fGetBrandByOffer\x12'.promo_offers.v1.GetBrandByOfferRequest\x1a(.promo_offers.v1.GetBrandByOfferResponse\"X\x92A\x1f\x12\x1dКарточка оффера\x82\xd3\xe4\x93\x020\x12./api/v1/promo_offers/brand/by_offer/{offer_id}B\x15Z\x13api/promo_offers/v1b\x06proto3"
 
 var (
 	file_promo_offers_v1_promo_offers_proto_rawDescOnce sync.Once
@@ -1488,7 +1591,7 @@ func file_promo_offers_v1_promo_offers_proto_rawDescGZIP() []byte {
 	return file_promo_offers_v1_promo_offers_proto_rawDescData
 }
 
-var file_promo_offers_v1_promo_offers_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_promo_offers_v1_promo_offers_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_promo_offers_v1_promo_offers_proto_goTypes = []any{
 	(*NamedItem)(nil),                 // 0: promo_offers.v1.NamedItem
 	(*SocialNetworkItem)(nil),         // 1: promo_offers.v1.SocialNetworkItem
@@ -1512,6 +1615,8 @@ var file_promo_offers_v1_promo_offers_proto_goTypes = []any{
 	(*FilterCountItem)(nil),           // 19: promo_offers.v1.FilterCountItem
 	(*GetFilterSettingsRequest)(nil),  // 20: promo_offers.v1.GetFilterSettingsRequest
 	(*GetFilterSettingsResponse)(nil), // 21: promo_offers.v1.GetFilterSettingsResponse
+	(*GetBrandByOfferRequest)(nil),    // 22: promo_offers.v1.GetBrandByOfferRequest
+	(*GetBrandByOfferResponse)(nil),   // 23: promo_offers.v1.GetBrandByOfferResponse
 }
 var file_promo_offers_v1_promo_offers_proto_depIdxs = []int32{
 	0,  // 0: promo_offers.v1.BrandItem.business_category:type_name -> promo_offers.v1.NamedItem
@@ -1535,23 +1640,26 @@ var file_promo_offers_v1_promo_offers_proto_depIdxs = []int32{
 	5,  // 18: promo_offers.v1.GetBrandOffersResponse.offers:type_name -> promo_offers.v1.OfferItem
 	7,  // 19: promo_offers.v1.GetOfferCardResponse.offer:type_name -> promo_offers.v1.OfferCardItem
 	19, // 20: promo_offers.v1.GetFilterSettingsResponse.cooperation_types:type_name -> promo_offers.v1.FilterCountItem
-	20, // 21: promo_offers.v1.PromoOffersService.GetFilterSettings:input_type -> promo_offers.v1.GetFilterSettingsRequest
-	9,  // 22: promo_offers.v1.PromoOffersService.FilterOffers:input_type -> promo_offers.v1.FilterOffersRequest
-	11, // 23: promo_offers.v1.PromoOffersService.FilterBrands:input_type -> promo_offers.v1.FilterBrandsRequest
-	13, // 24: promo_offers.v1.PromoOffersService.GetBrandCard:input_type -> promo_offers.v1.GetBrandCardRequest
-	15, // 25: promo_offers.v1.PromoOffersService.GetBrandOffers:input_type -> promo_offers.v1.GetBrandOffersRequest
-	17, // 26: promo_offers.v1.PromoOffersService.GetOfferCard:input_type -> promo_offers.v1.GetOfferCardRequest
-	21, // 27: promo_offers.v1.PromoOffersService.GetFilterSettings:output_type -> promo_offers.v1.GetFilterSettingsResponse
-	10, // 28: promo_offers.v1.PromoOffersService.FilterOffers:output_type -> promo_offers.v1.FilterOffersResponse
-	12, // 29: promo_offers.v1.PromoOffersService.FilterBrands:output_type -> promo_offers.v1.FilterBrandsResponse
-	14, // 30: promo_offers.v1.PromoOffersService.GetBrandCard:output_type -> promo_offers.v1.GetBrandCardResponse
-	16, // 31: promo_offers.v1.PromoOffersService.GetBrandOffers:output_type -> promo_offers.v1.GetBrandOffersResponse
-	18, // 32: promo_offers.v1.PromoOffersService.GetOfferCard:output_type -> promo_offers.v1.GetOfferCardResponse
-	27, // [27:33] is the sub-list for method output_type
-	21, // [21:27] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	4,  // 21: promo_offers.v1.GetBrandByOfferResponse.brand:type_name -> promo_offers.v1.BrandItem
+	20, // 22: promo_offers.v1.PromoOffersService.GetFilterSettings:input_type -> promo_offers.v1.GetFilterSettingsRequest
+	9,  // 23: promo_offers.v1.PromoOffersService.FilterOffers:input_type -> promo_offers.v1.FilterOffersRequest
+	11, // 24: promo_offers.v1.PromoOffersService.FilterBrands:input_type -> promo_offers.v1.FilterBrandsRequest
+	13, // 25: promo_offers.v1.PromoOffersService.GetBrandCard:input_type -> promo_offers.v1.GetBrandCardRequest
+	15, // 26: promo_offers.v1.PromoOffersService.GetBrandOffers:input_type -> promo_offers.v1.GetBrandOffersRequest
+	17, // 27: promo_offers.v1.PromoOffersService.GetOfferCard:input_type -> promo_offers.v1.GetOfferCardRequest
+	22, // 28: promo_offers.v1.PromoOffersService.GetBrandByOffer:input_type -> promo_offers.v1.GetBrandByOfferRequest
+	21, // 29: promo_offers.v1.PromoOffersService.GetFilterSettings:output_type -> promo_offers.v1.GetFilterSettingsResponse
+	10, // 30: promo_offers.v1.PromoOffersService.FilterOffers:output_type -> promo_offers.v1.FilterOffersResponse
+	12, // 31: promo_offers.v1.PromoOffersService.FilterBrands:output_type -> promo_offers.v1.FilterBrandsResponse
+	14, // 32: promo_offers.v1.PromoOffersService.GetBrandCard:output_type -> promo_offers.v1.GetBrandCardResponse
+	16, // 33: promo_offers.v1.PromoOffersService.GetBrandOffers:output_type -> promo_offers.v1.GetBrandOffersResponse
+	18, // 34: promo_offers.v1.PromoOffersService.GetOfferCard:output_type -> promo_offers.v1.GetOfferCardResponse
+	23, // 35: promo_offers.v1.PromoOffersService.GetBrandByOffer:output_type -> promo_offers.v1.GetBrandByOfferResponse
+	29, // [29:36] is the sub-list for method output_type
+	22, // [22:29] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_promo_offers_v1_promo_offers_proto_init() }
@@ -1565,7 +1673,7 @@ func file_promo_offers_v1_promo_offers_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_promo_offers_v1_promo_offers_proto_rawDesc), len(file_promo_offers_v1_promo_offers_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
