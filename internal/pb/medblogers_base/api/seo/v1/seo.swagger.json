@@ -16,6 +16,37 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/brand/seo/{brandSlug}": {
+      "get": {
+        "summary": "Получение SEO информации для карточки бренда",
+        "operationId": "Seo_GetBrandSeoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/seo.v1.GetBrandSeoDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "brandSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Seo"
+        ]
+      }
+    },
     "/api/v1/freelancers/seo/{freelancersSlug}": {
       "get": {
         "summary": "Получение SEO информации для карточки специалиста",
@@ -37,6 +68,37 @@
         "parameters": [
           {
             "name": "freelancersSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Seo"
+        ]
+      }
+    },
+    "/api/v1/promo_offer/seo/{offerId}": {
+      "get": {
+        "summary": "Получение SEO информации для карточки оффера",
+        "operationId": "Seo_GetPromoOfferSeoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/seo.v1.GetPromoOfferSeoDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offerId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -131,6 +193,20 @@
         }
       }
     },
+    "seo.v1.GetBrandSeoDataResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
     "seo.v1.GetDoctorSeoDataResponse": {
       "type": "object",
       "properties": {
@@ -146,6 +222,20 @@
       }
     },
     "seo.v1.GetFreelancersSeoDataResponse": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "seo.v1.GetPromoOfferSeoDataResponse": {
       "type": "object",
       "properties": {
         "title": {

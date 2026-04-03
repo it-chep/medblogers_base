@@ -311,6 +311,214 @@ func (x *GetSitemapInfoResponse) GetItems() []*GetSitemapInfoResponse_SitemapIte
 	return nil
 }
 
+type GetBrandSeoDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BrandSlug     string                 `protobuf:"bytes,1,opt,name=brand_slug,json=brandSlug,proto3" json:"brand_slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBrandSeoDataRequest) Reset() {
+	*x = GetBrandSeoDataRequest{}
+	mi := &file_seo_v1_seo_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBrandSeoDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBrandSeoDataRequest) ProtoMessage() {}
+
+func (x *GetBrandSeoDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBrandSeoDataRequest.ProtoReflect.Descriptor instead.
+func (*GetBrandSeoDataRequest) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetBrandSeoDataRequest) GetBrandSlug() string {
+	if x != nil {
+		return x.BrandSlug
+	}
+	return ""
+}
+
+type GetBrandSeoDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Image         string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBrandSeoDataResponse) Reset() {
+	*x = GetBrandSeoDataResponse{}
+	mi := &file_seo_v1_seo_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBrandSeoDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBrandSeoDataResponse) ProtoMessage() {}
+
+func (x *GetBrandSeoDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBrandSeoDataResponse.ProtoReflect.Descriptor instead.
+func (*GetBrandSeoDataResponse) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetBrandSeoDataResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GetBrandSeoDataResponse) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *GetBrandSeoDataResponse) GetImage() string {
+	if x != nil {
+		return x.Image
+	}
+	return ""
+}
+
+type GetPromoOfferSeoDataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OfferId       string                 `protobuf:"bytes,1,opt,name=offer_id,json=offerId,proto3" json:"offer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPromoOfferSeoDataRequest) Reset() {
+	*x = GetPromoOfferSeoDataRequest{}
+	mi := &file_seo_v1_seo_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPromoOfferSeoDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPromoOfferSeoDataRequest) ProtoMessage() {}
+
+func (x *GetPromoOfferSeoDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPromoOfferSeoDataRequest.ProtoReflect.Descriptor instead.
+func (*GetPromoOfferSeoDataRequest) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetPromoOfferSeoDataRequest) GetOfferId() string {
+	if x != nil {
+		return x.OfferId
+	}
+	return ""
+}
+
+type GetPromoOfferSeoDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Image         string                 `protobuf:"bytes,3,opt,name=image,proto3" json:"image,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPromoOfferSeoDataResponse) Reset() {
+	*x = GetPromoOfferSeoDataResponse{}
+	mi := &file_seo_v1_seo_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPromoOfferSeoDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPromoOfferSeoDataResponse) ProtoMessage() {}
+
+func (x *GetPromoOfferSeoDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPromoOfferSeoDataResponse.ProtoReflect.Descriptor instead.
+func (*GetPromoOfferSeoDataResponse) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetPromoOfferSeoDataResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *GetPromoOfferSeoDataResponse) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *GetPromoOfferSeoDataResponse) GetImage() string {
+	if x != nil {
+		return x.Image
+	}
+	return ""
+}
+
 type GetSitemapInfoResponse_SitemapItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
@@ -323,7 +531,7 @@ type GetSitemapInfoResponse_SitemapItem struct {
 
 func (x *GetSitemapInfoResponse_SitemapItem) Reset() {
 	*x = GetSitemapInfoResponse_SitemapItem{}
-	mi := &file_seo_v1_seo_proto_msgTypes[6]
+	mi := &file_seo_v1_seo_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -335,7 +543,7 @@ func (x *GetSitemapInfoResponse_SitemapItem) String() string {
 func (*GetSitemapInfoResponse_SitemapItem) ProtoMessage() {}
 
 func (x *GetSitemapInfoResponse_SitemapItem) ProtoReflect() protoreflect.Message {
-	mi := &file_seo_v1_seo_proto_msgTypes[6]
+	mi := &file_seo_v1_seo_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -405,11 +613,26 @@ const file_seo_v1_seo_proto_rawDesc = "" +
 	"\flast_updated\x18\x02 \x01(\tR\vlastUpdated\x12\x1f\n" +
 	"\vchange_freq\x18\x03 \x01(\tR\n" +
 	"changeFreq\x12\x1a\n" +
-	"\bpriority\x18\x04 \x01(\tR\bpriority2\x86\x05\n" +
+	"\bpriority\x18\x04 \x01(\tR\bpriority\"7\n" +
+	"\x16GetBrandSeoDataRequest\x12\x1d\n" +
+	"\n" +
+	"brand_slug\x18\x01 \x01(\tR\tbrandSlug\"g\n" +
+	"\x17GetBrandSeoDataResponse\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
+	"\x05image\x18\x03 \x01(\tR\x05image\"8\n" +
+	"\x1bGetPromoOfferSeoDataRequest\x12\x19\n" +
+	"\boffer_id\x18\x01 \x01(\tR\aofferId\"l\n" +
+	"\x1cGetPromoOfferSeoDataResponse\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
+	"\x05image\x18\x03 \x01(\tR\x05image2\xbd\b\n" +
 	"\x03Seo\x12\xcb\x01\n" +
 	"\x10GetDoctorSeoData\x12\x1f.seo.v1.GetDoctorSeoDataRequest\x1a .seo.v1.GetDoctorSeoDataResponse\"t\x92AP\x12NПолучение SEO информации для карточки врача\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v1/seo/{doctor_slug}\x12\xf8\x01\n" +
 	"\x15GetFreelancersSeoData\x12$.seo.v1.GetFreelancersSeoDataRequest\x1a%.seo.v1.GetFreelancersSeoDataResponse\"\x91\x01\x92A\\\x12ZПолучение SEO информации для карточки специалиста\x82\xd3\xe4\x93\x02,\x12*/api/v1/freelancers/seo/{freelancers_slug}\x12\xb5\x01\n" +
-	"\x0eGetSitemapInfo\x12\x1d.seo.v1.GetSitemapInfoRequest\x1a\x1e.seo.v1.GetSitemapInfoResponse\"d\x92AA\x12?Получение урлов для генерации sitemap\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/seo/sitemap_infoB\fZ\n" +
+	"\x0eGetSitemapInfo\x12\x1d.seo.v1.GetSitemapInfoRequest\x1a\x1e.seo.v1.GetSitemapInfoResponse\"d\x92AA\x12?Получение урлов для генерации sitemap\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/seo/sitemap_info\x12\xcf\x01\n" +
+	"\x0fGetBrandSeoData\x12\x1e.seo.v1.GetBrandSeoDataRequest\x1a\x1f.seo.v1.GetBrandSeoDataResponse\"{\x92AR\x12PПолучение SEO информации для карточки бренда\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/brand/seo/{brand_slug}\x12\xe2\x01\n" +
+	"\x14GetPromoOfferSeoData\x12#.seo.v1.GetPromoOfferSeoDataRequest\x1a$.seo.v1.GetPromoOfferSeoDataResponse\"\x7f\x92AR\x12PПолучение SEO информации для карточки оффера\x82\xd3\xe4\x93\x02$\x12\"/api/v1/promo_offer/seo/{offer_id}B\fZ\n" +
 	"api/seo/v1b\x06proto3"
 
 var (
@@ -424,7 +647,7 @@ func file_seo_v1_seo_proto_rawDescGZIP() []byte {
 	return file_seo_v1_seo_proto_rawDescData
 }
 
-var file_seo_v1_seo_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_seo_v1_seo_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_seo_v1_seo_proto_goTypes = []any{
 	(*GetDoctorSeoDataRequest)(nil),            // 0: seo.v1.GetDoctorSeoDataRequest
 	(*GetDoctorSeoDataResponse)(nil),           // 1: seo.v1.GetDoctorSeoDataResponse
@@ -432,21 +655,29 @@ var file_seo_v1_seo_proto_goTypes = []any{
 	(*GetFreelancersSeoDataResponse)(nil),      // 3: seo.v1.GetFreelancersSeoDataResponse
 	(*GetSitemapInfoRequest)(nil),              // 4: seo.v1.GetSitemapInfoRequest
 	(*GetSitemapInfoResponse)(nil),             // 5: seo.v1.GetSitemapInfoResponse
-	(*GetSitemapInfoResponse_SitemapItem)(nil), // 6: seo.v1.GetSitemapInfoResponse.SitemapItem
+	(*GetBrandSeoDataRequest)(nil),             // 6: seo.v1.GetBrandSeoDataRequest
+	(*GetBrandSeoDataResponse)(nil),            // 7: seo.v1.GetBrandSeoDataResponse
+	(*GetPromoOfferSeoDataRequest)(nil),        // 8: seo.v1.GetPromoOfferSeoDataRequest
+	(*GetPromoOfferSeoDataResponse)(nil),       // 9: seo.v1.GetPromoOfferSeoDataResponse
+	(*GetSitemapInfoResponse_SitemapItem)(nil), // 10: seo.v1.GetSitemapInfoResponse.SitemapItem
 }
 var file_seo_v1_seo_proto_depIdxs = []int32{
-	6, // 0: seo.v1.GetSitemapInfoResponse.items:type_name -> seo.v1.GetSitemapInfoResponse.SitemapItem
-	0, // 1: seo.v1.Seo.GetDoctorSeoData:input_type -> seo.v1.GetDoctorSeoDataRequest
-	2, // 2: seo.v1.Seo.GetFreelancersSeoData:input_type -> seo.v1.GetFreelancersSeoDataRequest
-	4, // 3: seo.v1.Seo.GetSitemapInfo:input_type -> seo.v1.GetSitemapInfoRequest
-	1, // 4: seo.v1.Seo.GetDoctorSeoData:output_type -> seo.v1.GetDoctorSeoDataResponse
-	3, // 5: seo.v1.Seo.GetFreelancersSeoData:output_type -> seo.v1.GetFreelancersSeoDataResponse
-	5, // 6: seo.v1.Seo.GetSitemapInfo:output_type -> seo.v1.GetSitemapInfoResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	10, // 0: seo.v1.GetSitemapInfoResponse.items:type_name -> seo.v1.GetSitemapInfoResponse.SitemapItem
+	0,  // 1: seo.v1.Seo.GetDoctorSeoData:input_type -> seo.v1.GetDoctorSeoDataRequest
+	2,  // 2: seo.v1.Seo.GetFreelancersSeoData:input_type -> seo.v1.GetFreelancersSeoDataRequest
+	4,  // 3: seo.v1.Seo.GetSitemapInfo:input_type -> seo.v1.GetSitemapInfoRequest
+	6,  // 4: seo.v1.Seo.GetBrandSeoData:input_type -> seo.v1.GetBrandSeoDataRequest
+	8,  // 5: seo.v1.Seo.GetPromoOfferSeoData:input_type -> seo.v1.GetPromoOfferSeoDataRequest
+	1,  // 6: seo.v1.Seo.GetDoctorSeoData:output_type -> seo.v1.GetDoctorSeoDataResponse
+	3,  // 7: seo.v1.Seo.GetFreelancersSeoData:output_type -> seo.v1.GetFreelancersSeoDataResponse
+	5,  // 8: seo.v1.Seo.GetSitemapInfo:output_type -> seo.v1.GetSitemapInfoResponse
+	7,  // 9: seo.v1.Seo.GetBrandSeoData:output_type -> seo.v1.GetBrandSeoDataResponse
+	9,  // 10: seo.v1.Seo.GetPromoOfferSeoData:output_type -> seo.v1.GetPromoOfferSeoDataResponse
+	6,  // [6:11] is the sub-list for method output_type
+	1,  // [1:6] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_seo_v1_seo_proto_init() }
@@ -460,7 +691,7 @@ func file_seo_v1_seo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_seo_v1_seo_proto_rawDesc), len(file_seo_v1_seo_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

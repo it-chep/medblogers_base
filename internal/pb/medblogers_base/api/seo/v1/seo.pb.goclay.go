@@ -108,3 +108,39 @@ func (w *SeoServiceDesc) GetSitemapInfo(ctx context.Context, in *GetSitemapInfoR
 	}
 	return resp.(*GetSitemapInfoResponse), err
 }
+
+func (w *SeoServiceDesc) GetBrandSeoData(ctx context.Context, in *GetBrandSeoDataRequest) (*GetBrandSeoDataResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBrandSeoData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/seo.v1.Seo/GetBrandSeoData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBrandSeoData(ctx, req.(*GetBrandSeoDataRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBrandSeoDataResponse), err
+}
+
+func (w *SeoServiceDesc) GetPromoOfferSeoData(ctx context.Context, in *GetPromoOfferSeoDataRequest) (*GetPromoOfferSeoDataResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetPromoOfferSeoData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/seo.v1.Seo/GetPromoOfferSeoData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetPromoOfferSeoData(ctx, req.(*GetPromoOfferSeoDataRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetPromoOfferSeoDataResponse), err
+}

@@ -22,6 +22,8 @@ const (
 	Seo_GetDoctorSeoData_FullMethodName      = "/seo.v1.Seo/GetDoctorSeoData"
 	Seo_GetFreelancersSeoData_FullMethodName = "/seo.v1.Seo/GetFreelancersSeoData"
 	Seo_GetSitemapInfo_FullMethodName        = "/seo.v1.Seo/GetSitemapInfo"
+	Seo_GetBrandSeoData_FullMethodName       = "/seo.v1.Seo/GetBrandSeoData"
+	Seo_GetPromoOfferSeoData_FullMethodName  = "/seo.v1.Seo/GetPromoOfferSeoData"
 )
 
 // SeoClient is the client API for Seo service.
@@ -31,6 +33,8 @@ type SeoClient interface {
 	GetDoctorSeoData(ctx context.Context, in *GetDoctorSeoDataRequest, opts ...grpc.CallOption) (*GetDoctorSeoDataResponse, error)
 	GetFreelancersSeoData(ctx context.Context, in *GetFreelancersSeoDataRequest, opts ...grpc.CallOption) (*GetFreelancersSeoDataResponse, error)
 	GetSitemapInfo(ctx context.Context, in *GetSitemapInfoRequest, opts ...grpc.CallOption) (*GetSitemapInfoResponse, error)
+	GetBrandSeoData(ctx context.Context, in *GetBrandSeoDataRequest, opts ...grpc.CallOption) (*GetBrandSeoDataResponse, error)
+	GetPromoOfferSeoData(ctx context.Context, in *GetPromoOfferSeoDataRequest, opts ...grpc.CallOption) (*GetPromoOfferSeoDataResponse, error)
 }
 
 type seoClient struct {
@@ -71,6 +75,26 @@ func (c *seoClient) GetSitemapInfo(ctx context.Context, in *GetSitemapInfoReques
 	return out, nil
 }
 
+func (c *seoClient) GetBrandSeoData(ctx context.Context, in *GetBrandSeoDataRequest, opts ...grpc.CallOption) (*GetBrandSeoDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBrandSeoDataResponse)
+	err := c.cc.Invoke(ctx, Seo_GetBrandSeoData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seoClient) GetPromoOfferSeoData(ctx context.Context, in *GetPromoOfferSeoDataRequest, opts ...grpc.CallOption) (*GetPromoOfferSeoDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPromoOfferSeoDataResponse)
+	err := c.cc.Invoke(ctx, Seo_GetPromoOfferSeoData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SeoServer is the server API for Seo service.
 // All implementations should embed UnimplementedSeoServer
 // for forward compatibility.
@@ -78,6 +102,8 @@ type SeoServer interface {
 	GetDoctorSeoData(context.Context, *GetDoctorSeoDataRequest) (*GetDoctorSeoDataResponse, error)
 	GetFreelancersSeoData(context.Context, *GetFreelancersSeoDataRequest) (*GetFreelancersSeoDataResponse, error)
 	GetSitemapInfo(context.Context, *GetSitemapInfoRequest) (*GetSitemapInfoResponse, error)
+	GetBrandSeoData(context.Context, *GetBrandSeoDataRequest) (*GetBrandSeoDataResponse, error)
+	GetPromoOfferSeoData(context.Context, *GetPromoOfferSeoDataRequest) (*GetPromoOfferSeoDataResponse, error)
 }
 
 // UnimplementedSeoServer should be embedded to have
@@ -95,6 +121,12 @@ func (UnimplementedSeoServer) GetFreelancersSeoData(context.Context, *GetFreelan
 }
 func (UnimplementedSeoServer) GetSitemapInfo(context.Context, *GetSitemapInfoRequest) (*GetSitemapInfoResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSitemapInfo not implemented")
+}
+func (UnimplementedSeoServer) GetBrandSeoData(context.Context, *GetBrandSeoDataRequest) (*GetBrandSeoDataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBrandSeoData not implemented")
+}
+func (UnimplementedSeoServer) GetPromoOfferSeoData(context.Context, *GetPromoOfferSeoDataRequest) (*GetPromoOfferSeoDataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPromoOfferSeoData not implemented")
 }
 func (UnimplementedSeoServer) testEmbeddedByValue() {}
 
@@ -170,6 +202,42 @@ func _Seo_GetSitemapInfo_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Seo_GetBrandSeoData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBrandSeoDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeoServer).GetBrandSeoData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seo_GetBrandSeoData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeoServer).GetBrandSeoData(ctx, req.(*GetBrandSeoDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Seo_GetPromoOfferSeoData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPromoOfferSeoDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeoServer).GetPromoOfferSeoData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seo_GetPromoOfferSeoData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeoServer).GetPromoOfferSeoData(ctx, req.(*GetPromoOfferSeoDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Seo_ServiceDesc is the grpc.ServiceDesc for Seo service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -188,6 +256,14 @@ var Seo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSitemapInfo",
 			Handler:    _Seo_GetSitemapInfo_Handler,
+		},
+		{
+			MethodName: "GetBrandSeoData",
+			Handler:    _Seo_GetBrandSeoData_Handler,
+		},
+		{
+			MethodName: "GetPromoOfferSeoData",
+			Handler:    _Seo_GetPromoOfferSeoData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -161,7 +161,7 @@ func (a *App) initControllers(_ context.Context) *App {
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
 		promoOffersDesc.NewPromoOffersServiceServiceDesc(promoOffersV1.NewService(a.modules.promoOffers)),
-		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.seo)),
+		seoDesc.NewSeoServiceDesc(seoV1.NewSeoService(a.modules.doctors, a.modules.freelancers, a.modules.promoOffers, a.modules.seo)),
 
 		// ADMIN
 		blogAdminDesc.NewAdminServiceServiceDesc(blogAdminV1.NewAdminService(a.modules.admin, a.modules.auth, a.config)),

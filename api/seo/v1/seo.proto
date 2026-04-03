@@ -20,6 +20,15 @@ service Seo {
     option (google.api.http) = {get: "/api/v1/seo/sitemap_info"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение урлов для генерации sitemap"};
   }
+  rpc GetBrandSeoData(GetBrandSeoDataRequest) returns (GetBrandSeoDataResponse) {
+    option (google.api.http) = {get: "/api/v1/brand/seo/{brand_slug}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение SEO информации для карточки бренда"};
+  }
+  rpc GetPromoOfferSeoData(GetPromoOfferSeoDataRequest) returns (GetPromoOfferSeoDataResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offer/seo/{offer_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение SEO информации для карточки оффера"};
+  }
+
 }
 
 message GetDoctorSeoDataRequest {
@@ -52,4 +61,23 @@ message GetSitemapInfoResponse {
     string change_freq = 3;
     string priority = 4;
   }
+}
+
+
+
+message GetBrandSeoDataRequest{
+  string brand_slug = 1;
+}
+message GetBrandSeoDataResponse{
+  string title = 1;
+  string description = 2;
+  string image = 3;
+}
+message GetPromoOfferSeoDataRequest{
+  string offer_id = 1;
+}
+message GetPromoOfferSeoDataResponse{
+  string title = 1;
+  string description = 2;
+  string image = 3;
 }
