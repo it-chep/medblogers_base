@@ -12,7 +12,7 @@ func HumanPrice(price int64) string {
 
 func HumanPriceFromWithAgreement(price int64) string {
 	if price <= 0 {
-		return "по договоренности"
+		return "цена по договоренности"
 	}
 
 	priceStr := strings.Replace(humanize.Comma(price), ",", " ", -1)

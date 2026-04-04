@@ -6,7 +6,6 @@ import (
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
-	"github.com/samber/lo"
 
 	"medblogers_base/internal/modules/admin/entities/promo_offers/dal/dao"
 	brandDomain "medblogers_base/internal/modules/admin/entities/promo_offers/domain/brand"
@@ -169,64 +168,21 @@ func (r *Repository) GetBrandSocialNetworks(ctx context.Context, brandIDs []int6
 	}
 
 	sql := `
-		select brand_id, social_network_id, link
-		from brand_social_networks
-		where brand_id = any($1::bigint[])
-		order by brand_id, id
+		select bsn.brand_id, bsn.social_network_id, sn.name, sn.slug, bsn.link
+		from brand_social_networks bsn
+			join social_networks sn on sn.id = bsn.social_network_id
+		where bsn.brand_id = any($1::bigint[])
+		order by bsn.brand_id, bsn.id
 	`
 
-	var rows []dao.BrandSocialNetworkLinkDAO
+	var rows []dao.BrandSocialNetworkDAO
 	if err := pgxscan.Select(ctx, r.db, &rows, sql, pq.Int64Array(brandIDs)); err != nil {
-		return nil, err
-	}
-
-	networkIDs := lo.Uniq(lo.Map(rows, func(item dao.BrandSocialNetworkLinkDAO, _ int) int64 {
-		return item.SocialNetworkID
-	}))
-
-	networksMap, err := r.getSocialNetworksByIDs(ctx, networkIDs)
-	if err != nil {
 		return nil, err
 	}
 
 	result := make(map[int64]dictionary.BrandSocialNetworks, len(brandIDs))
 	for _, row := range rows {
-		network, ok := networksMap[row.SocialNetworkID]
-		if !ok {
-			continue
-		}
-
-		result[row.BrandID] = append(result[row.BrandID], dao.BrandSocialNetworkDAO{
-			BrandID:         row.BrandID,
-			SocialNetworkID: row.SocialNetworkID,
-			Name:            network.Name,
-			Slug:            network.Slug,
-			Link:            row.Link,
-		}.ToDomain())
-	}
-
-	return result, nil
-}
-
-func (r *Repository) getSocialNetworksByIDs(ctx context.Context, ids []int64) (map[int64]dao.SocialNetworkDAO, error) {
-	if len(ids) == 0 {
-		return map[int64]dao.SocialNetworkDAO{}, nil
-	}
-
-	sql := `
-		select id, name, slug
-		from social_networks
-		where id = any($1::bigint[])
-	`
-
-	var rows []dao.SocialNetworkDAO
-	if err := pgxscan.Select(ctx, r.db, &rows, sql, pq.Int64Array(ids)); err != nil {
-		return nil, err
-	}
-
-	result := make(map[int64]dao.SocialNetworkDAO, len(rows))
-	for _, row := range rows {
-		result[row.ID] = row
+		result[row.BrandID] = append(result[row.BrandID], row.ToDomain())
 	}
 
 	return result, nil
@@ -238,10 +194,11 @@ func (r *Repository) GetOfferSocialNetworks(ctx context.Context, offerIDs []uuid
 	}
 
 	sql := `
-		select promo_offer_id, social_network_id
-		from promo_offer_social_networks_m2m
-		where promo_offer_id = any($1)
-		order by promo_offer_id, id
+		select posm.promo_offer_id, posm.social_network_id, sn.name, sn.slug
+		from promo_offer_social_networks_m2m posm
+			join social_networks sn on sn.id = posm.social_network_id
+		where posm.promo_offer_id = any($1)
+		order by posm.promo_offer_id, posm.id
 	`
 
 	uuids := make([]string, 0, len(offerIDs))
@@ -249,32 +206,14 @@ func (r *Repository) GetOfferSocialNetworks(ctx context.Context, offerIDs []uuid
 		uuids = append(uuids, id.String())
 	}
 
-	var rows []dao.OfferSocialNetworkLinkDAO
+	var rows []dao.OfferSocialNetworkDAO
 	if err := pgxscan.Select(ctx, r.db, &rows, sql, uuids); err != nil {
-		return nil, err
-	}
-
-	networkIDs := lo.Uniq(lo.Map(rows, func(item dao.OfferSocialNetworkLinkDAO, _ int) int64 {
-		return item.SocialNetworkID
-	}))
-	networksMap, err := r.getSocialNetworksByIDs(ctx, networkIDs)
-	if err != nil {
 		return nil, err
 	}
 
 	result := make(map[uuid.UUID][]dao.OfferSocialNetworkDAO, len(offerIDs))
 	for _, row := range rows {
-		network, ok := networksMap[row.SocialNetworkID]
-		if !ok {
-			continue
-		}
-
-		result[row.OfferID] = append(result[row.OfferID], dao.OfferSocialNetworkDAO{
-			OfferID:         row.OfferID,
-			SocialNetworkID: row.SocialNetworkID,
-			Name:            network.Name,
-			Slug:            network.Slug,
-		})
+		result[row.OfferID] = append(result[row.OfferID], row)
 	}
 
 	return result, nil
