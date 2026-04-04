@@ -11,7 +11,6 @@ import (
 	commonDAO "medblogers_base/internal/modules/promo_offers/dal/dao"
 	brandDomain "medblogers_base/internal/modules/promo_offers/domain/brand"
 	offerDomain "medblogers_base/internal/modules/promo_offers/domain/offer"
-	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -62,45 +61,23 @@ func (a *Action) Do(ctx context.Context, brandSlug string) (dto.Response, error)
 		contentFormatsMap     map[int64]string
 	)
 
-	g, _ := async.WithContext(ctx)
+	socialsMap, err = a.commonDal.GetOfferSocialNetworks(ctx, ids.offerIDs)
+	if err != nil {
+		return dto.Response{}, err
+	}
 
-	g.GoWithContext(func(ctx context.Context) error {
-		items, err := a.commonDal.GetOfferSocialNetworks(ctx, ids.offerIDs)
-		if err != nil {
-			return err
-		}
-		socialsMap = items
-		return nil
-	})
+	cooperationTypesMap, err = a.commonDal.GetCooperationTypesByIDs(ctx, ids.cooperationTypeIDs)
+	if err != nil {
+		return dto.Response{}, err
+	}
 
-	g.GoWithContext(func(ctx context.Context) error {
-		items, err := a.commonDal.GetCooperationTypesByIDs(ctx, ids.cooperationTypeIDs)
-		if err != nil {
-			return err
-		}
-		cooperationTypesMap = items
-		return nil
-	})
+	businessCategoriesMap, err = a.commonDal.GetBusinessCategoriesByIDs(ctx, ids.businessCategoryIDs)
+	if err != nil {
+		return dto.Response{}, err
+	}
 
-	g.GoWithContext(func(ctx context.Context) error {
-		items, err := a.commonDal.GetBusinessCategoriesByIDs(ctx, ids.businessCategoryIDs)
-		if err != nil {
-			return err
-		}
-		businessCategoriesMap = items
-		return nil
-	})
-
-	g.GoWithContext(func(ctx context.Context) error {
-		items, err := a.commonDal.GetContentFormatsByIDs(ctx, ids.contentFormatIDs)
-		if err != nil {
-			return err
-		}
-		contentFormatsMap = items
-		return nil
-	})
-
-	if err := g.Wait(); err != nil {
+	contentFormatsMap, err = a.commonDal.GetContentFormatsByIDs(ctx, ids.contentFormatIDs)
+	if err != nil {
 		return dto.Response{}, err
 	}
 

@@ -13,7 +13,6 @@ import (
 	commonDAO "medblogers_base/internal/modules/promo_offers/dal/dao"
 	brandDomain "medblogers_base/internal/modules/promo_offers/domain/brand"
 	offerDomain "medblogers_base/internal/modules/promo_offers/domain/offer"
-	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -59,49 +58,29 @@ func (a *Action) Do(ctx context.Context, id uuid.UUID) (*dto.Offer, error) {
 		return nil, err
 	}
 
-	g := async.NewGroup()
+	cooperationTypesMap, err = a.commonDal.GetCooperationTypesByIDs(ctx, []int64{offer.GetCooperationTypeID()})
+	if err != nil {
+		logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении типа сотрудничества", err)
+		return nil, err
+	}
 
-	g.Go(func() {
-		items, gErr := a.commonDal.GetCooperationTypesByIDs(ctx, []int64{offer.GetCooperationTypeID()})
-		if gErr != nil {
-			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении типа сотрудничества", gErr)
-			return
-		}
+	brandsMap, err = a.commonDal.GetBrandsByIDs(ctx, []int64{offer.GetBrandID()})
+	if err != nil {
+		logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении бренда", err)
+		return nil, err
+	}
 
-		cooperationTypesMap = items
-	})
+	brandSocialsMap, err = a.commonDal.GetBrandSocialNetworks(ctx, []int64{offer.GetBrandID()})
+	if err != nil {
+		logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении соцсетей бренда", err)
+		return nil, err
+	}
 
-	g.Go(func() {
-		items, gErr := a.commonDal.GetBrandsByIDs(ctx, []int64{offer.GetBrandID()})
-		if gErr != nil {
-			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении бренда", gErr)
-			return
-		}
-
-		brandsMap = items
-	})
-
-	g.Go(func() {
-		items, gErr := a.commonDal.GetBrandSocialNetworks(ctx, []int64{offer.GetBrandID()})
-		if gErr != nil {
-			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении соцсетей бренда", gErr)
-			return
-		}
-
-		brandSocialsMap = items
-	})
-
-	g.Go(func() {
-		items, gErr := a.commonDal.GetOfferSocialNetworks(ctx, []uuid.UUID{offer.GetID()})
-		if gErr != nil {
-			logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении соцсетей оффера", gErr)
-			return
-		}
-
-		socialsMap = items
-	})
-
-	g.Wait()
+	socialsMap, err = a.commonDal.GetOfferSocialNetworks(ctx, []uuid.UUID{offer.GetID()})
+	if err != nil {
+		logger.Error(ctx, "[PromoOffers][OfferDetail] Ошибка при получении соцсетей оффера", err)
+		return nil, err
+	}
 
 	resp := &dto.Offer{
 		Description: offer.GetDescription(),
