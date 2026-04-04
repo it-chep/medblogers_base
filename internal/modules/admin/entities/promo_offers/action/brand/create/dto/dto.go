@@ -12,5 +12,6 @@ type CreateRequest struct {
 	BusinessCategoryID int64
 	Website            string
 	Description        string
+	About              string
 	SocialNetworks     []SocialNetworkInput
 }

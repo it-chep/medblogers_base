@@ -30,6 +30,10 @@ func (b *Brand) GetDescription() string {
 	return b.description
 }
 
+func (b *Brand) GetAbout() string {
+	return b.about
+}
+
 func (b *Brand) GetIsActive() bool {
 	return b.isActive
 }

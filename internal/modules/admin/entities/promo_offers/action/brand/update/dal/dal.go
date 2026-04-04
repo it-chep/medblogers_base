@@ -22,7 +22,8 @@ func (r *Repository) UpdateBrand(ctx context.Context, brandID int64, req dto.Upd
 			slug = $3,
 			business_category_id = $4,
 			website = $5,
-			description = $6
+			description = $6,
+			about = $7
 		where id = $1
 	`
 
@@ -33,6 +34,7 @@ func (r *Repository) UpdateBrand(ctx context.Context, brandID int64, req dto.Upd
 		req.BusinessCategoryID,
 		req.Website,
 		req.Description,
+		req.About,
 	)
 	return err
 }

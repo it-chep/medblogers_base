@@ -25,7 +25,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) GetBrandByID(ctx context.Context, brandID int64) (*brandDomain.Brand, error) {
 	sql := `
-		select id, photo, title, slug, business_category_id, website, description, is_active, created_at
+		select id, photo, title, slug, business_category_id, website, description, about, is_active, created_at
 		from brand
 		where id = $1
 	`
@@ -96,7 +96,7 @@ func (r *Repository) GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64
 	}
 
 	sql := `
-		select id, photo, title, slug, business_category_id, website, description, is_active, created_at
+		select id, photo, title, slug, business_category_id, website, description, about, is_active, created_at
 		from brand
 		where id = any($1::bigint[])
 	`

@@ -27,7 +27,7 @@ func (r *Repository) GetBrandsByIDs(ctx context.Context, ids []int64) (map[int64
 	}
 
 	sql := `
-		select id, photo, title, slug, business_category_id, website, description, is_active, created_at
+		select id, photo, title, slug, business_category_id, website, description, about, is_active, created_at
 		from brand
 		where id = any($1::bigint[])
 	`

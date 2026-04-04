@@ -16,6 +16,7 @@ func newCreateBrandDTO(req *desc.CreateBrandRequest) createDTO.CreateRequest {
 		BusinessCategoryID: req.GetBusinessCategoryId(),
 		Website:            req.GetWebsite(),
 		Description:        req.GetDescription(),
+		About:              req.GetAbout(),
 		SocialNetworks:     newCreateBrandSocialNetworks(req.GetSocialNetworks()),
 	}
 }
@@ -27,6 +28,7 @@ func newUpdateBrandDTO(req *desc.UpdateBrandRequest) updateDTO.UpdateRequest {
 		BusinessCategoryID: req.GetBusinessCategoryId(),
 		Website:            req.GetWebsite(),
 		Description:        req.GetDescription(),
+		About:              req.GetAbout(),
 		SocialNetworks:     newUpdateBrandSocialNetworks(req.GetSocialNetworks()),
 	}
 }
@@ -65,6 +67,7 @@ func newGetBrandByIDResponse(item *getDTO.Brand) *desc.GetBrandByIDResponse {
 			BusinessCategory: newNamedItem(item.BusinessCategory),
 			Website:          item.Website,
 			Description:      item.Description,
+			About:            item.About,
 			SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
 			IsActive:         item.IsActive,
 			CreatedAt:        formatDateTime(item.CreatedAt),

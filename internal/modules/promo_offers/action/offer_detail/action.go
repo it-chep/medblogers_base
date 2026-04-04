@@ -118,7 +118,7 @@ func (a *Action) Do(ctx context.Context, id uuid.UUID) (*dto.Offer, error) {
 			Photo:       a.image.EnrichPhotoByKey(brandItem.GetPhoto()),
 			Title:       brandItem.GetTitle(),
 			Description: brandItem.GetDescription(),
-			About:       brandItem.GetDescription(),
+			About:       brandItem.GetAbout(),
 		}
 
 		if brandItem.GetBusinessCategoryID() > 0 {

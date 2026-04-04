@@ -28,7 +28,7 @@ func (r *Repository) FilterBrands(ctx context.Context, filter filterDTO.BrandFil
 		phValues []any
 		ph       = 1
 		sql      = `
-			select id, photo, title, slug, business_category_id, website, description, is_active, created_at
+			select id, photo, title, slug, business_category_id, website, description, about, is_active, created_at
 			from brand b
 			where b.is_active is true
 		`

@@ -46,6 +46,12 @@ func WithDescription(description string) Option {
 	}
 }
 
+func WithAbout(about string) Option {
+	return func(b *Brand) {
+		b.about = about
+	}
+}
+
 func WithIsActive(isActive bool) Option {
 	return func(b *Brand) {
 		b.isActive = isActive

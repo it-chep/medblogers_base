@@ -20,7 +20,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) GetBrandByOffer(ctx context.Context, offerID string) (*brandDomain.Brand, error) {
 	sql := `
-		select distinct b.id, b.photo, b.title, b.slug, b.business_category_id, b.website, b.description, b.is_active, b.created_at
+		select distinct b.id, b.photo, b.title, b.slug, b.business_category_id, b.website, b.description, b.about, b.is_active, b.created_at
 		from brand b
 			join promo_offer po on b.id = po.brand_id
 		where po.id = $1 and b.is_active is true

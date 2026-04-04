@@ -553,8 +553,7 @@
           "$ref": "#/definitions/promo_offers.v1.NamedItem"
         },
         "price": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "socialNetworks": {
           "type": "array",
@@ -581,8 +580,7 @@
           "type": "string"
         },
         "price": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "publicationDate": {
           "type": "string"

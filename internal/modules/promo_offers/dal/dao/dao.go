@@ -18,6 +18,7 @@ type BrandDAO struct {
 	BusinessCategoryID sql.NullInt64  `db:"business_category_id"`
 	Website            sql.NullString `db:"website"`
 	Description        sql.NullString `db:"description"`
+	About              sql.NullString `db:"about"`
 	IsActive           sql.NullBool   `db:"is_active"`
 	CreatedAt          sql.NullTime   `db:"created_at"`
 }
@@ -31,6 +32,7 @@ func (d BrandDAO) ToDomain() *brandDomain.Brand {
 		brandDomain.WithBusinessCategoryID(d.BusinessCategoryID.Int64),
 		brandDomain.WithWebsite(d.Website.String),
 		brandDomain.WithDescription(d.Description.String),
+		brandDomain.WithAbout(d.About.String),
 		brandDomain.WithIsActive(d.IsActive.Valid && d.IsActive.Bool),
 		brandDomain.WithCreatedAt(&d.CreatedAt.Time),
 	)

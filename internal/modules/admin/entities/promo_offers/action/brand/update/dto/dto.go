@@ -12,5 +12,6 @@ type UpdateRequest struct {
 	BusinessCategoryID int64
 	Website            string
 	Description        string
+	About              string
 	SocialNetworks     []SocialNetworkInput
 }

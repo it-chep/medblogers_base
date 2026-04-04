@@ -17,8 +17,8 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) CreateBrand(ctx context.Context, req dto.CreateRequest) (int64, error) {
 	sql := `
-		insert into brand (title, slug, business_category_id, website, description)
-		values ($1, $2, $3, $4, $5)
+		insert into brand (title, slug, business_category_id, website, description, about)
+		values ($1, $2, $3, $4, $5, $6)
 		returning id
 	`
 
@@ -29,6 +29,7 @@ func (r *Repository) CreateBrand(ctx context.Context, req dto.CreateRequest) (in
 		req.BusinessCategoryID,
 		req.Website,
 		req.Description,
+		req.About,
 	).Scan(&brandID)
 
 	return brandID, err

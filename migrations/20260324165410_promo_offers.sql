@@ -25,15 +25,16 @@ create table if not exists promo_offer_content_format
 -- Бренды
 create table if not exists brand
 (
-    id          bigserial primary key,
-    photo       text,                    -- фото бренда/компании
-    title       text,                    -- заголовок
-    slug        text not null unique,    -- slug бренда
-    business_category_id bigint,         -- бизнес-категория компании
-    website     text,                    -- сайт компании
-    description text,                    -- описание компании
-    is_active   bool      default false, -- признак активности
-    created_at  timestamp default now()  -- дата создания
+    id                   bigserial primary key,
+    photo                text,                    -- фото бренда/компании
+    title                text,                    -- заголовок
+    slug                 text not null unique,    -- slug бренда
+    business_category_id bigint,                  -- бизнес-категория компании
+    website              text,                    -- сайт компании
+    description          text,                    -- короткое описание компании
+    about                text,                    -- описание компании
+    is_active            bool      default false, -- признак активности
+    created_at           timestamp default now()  -- дата создания
 );
 
 -- Социальные сети бренда/компании
@@ -51,25 +52,25 @@ create table if not exists brand_social_networks
 create table if not exists promo_offer
 (
     id                     uuid primary key default gen_random_uuid(),
-    cooperation_type_id    bigint,                  -- тип сотрудничества
-    business_category_id   bigint,                  -- бизнес-категория оффера
-    title                  text not null,           -- заголовок
-    description            text,                    -- описание, что надо сделать и что прорекламировать
-    price                  bigint,                  -- цена
-    content_format_id      bigint,                  -- вид размещения / формат контента
-    brand_id               bigint,                  -- бренд
-    publication_date       timestamp,               -- дата публикации
-    ad_marking_responsible text,                    -- кто маркирует рекламу
-    responses_capacity     integer   default 0,     -- объем откликов
-    is_active              bool      default false, -- признак активности
-    created_at             timestamp default now()  -- дата создания
+    cooperation_type_id    bigint,                         -- тип сотрудничества
+    business_category_id   bigint,                         -- бизнес-категория оффера
+    title                  text not null,                  -- заголовок
+    description            text,                           -- описание, что надо сделать и что прорекламировать
+    price                  bigint,                         -- цена
+    content_format_id      bigint,                         -- вид размещения / формат контента
+    brand_id               bigint,                         -- бренд
+    publication_date       timestamp,                      -- дата публикации
+    ad_marking_responsible text,                           -- кто маркирует рекламу
+    responses_capacity     integer          default 0,     -- объем откликов
+    is_active              bool             default false, -- признак активности
+    created_at             timestamp        default now()  -- дата создания
 );
 
 -- Социальные сети оффера
 create table if not exists promo_offer_social_networks_m2m
 (
     id                bigserial primary key,
-    promo_offer_id    uuid not null,
+    promo_offer_id    uuid   not null,
     social_network_id bigint not null,
 
     unique (promo_offer_id, social_network_id)

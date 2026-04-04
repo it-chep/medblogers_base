@@ -439,6 +439,9 @@
         },
         "createdAt": {
           "type": "string"
+        },
+        "about": {
+          "type": "string"
         }
       }
     },
@@ -527,6 +530,9 @@
             "type": "object",
             "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandSocialNetworkInput"
           }
+        },
+        "about": {
+          "type": "string"
         }
       }
     },
@@ -641,6 +647,9 @@
             "type": "object",
             "$ref": "#/definitions/admin.promo_offers.brand.v1.BrandSocialNetworkInput"
           }
+        },
+        "about": {
+          "type": "string"
         }
       }
     },

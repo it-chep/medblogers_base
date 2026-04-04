@@ -14,6 +14,7 @@ type Brand struct {
 	businessCategoryID int64
 	website            string
 	description        string
+	about              string
 	isActive           bool
 	createdAt          *time.Time
 }

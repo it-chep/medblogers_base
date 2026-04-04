@@ -27,6 +27,7 @@ type Brand struct {
 	BusinessCategory *NamedItem
 	Website          string
 	Description      string
+	About            string
 	SocialNetworks   []SocialNetwork
 	IsActive         bool
 	CreatedAt        *time.Time
@@ -40,6 +41,7 @@ func NewBrand(item *brandDomain.Brand, businessCategoryName string, socials dict
 		Photo:          photo,
 		Website:        item.GetWebsite(),
 		Description:    item.GetDescription(),
+		About:          item.GetAbout(),
 		SocialNetworks: make([]SocialNetwork, 0, len(socials)),
 		IsActive:       item.GetIsActive(),
 		CreatedAt:      item.GetCreatedAt(),

@@ -376,7 +376,7 @@ type OfferItem struct {
 	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description          string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Price                int64                  `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
+	Price                string                 `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"`
 	PublicationDate      string                 `protobuf:"bytes,5,opt,name=publication_date,json=publicationDate,proto3" json:"publication_date,omitempty"`
 	AdMarkingResponsible string                 `protobuf:"bytes,6,opt,name=ad_marking_responsible,json=adMarkingResponsible,proto3" json:"ad_marking_responsible,omitempty"`
 	ResponsesCapacity    int64                  `protobuf:"varint,7,opt,name=responses_capacity,json=responsesCapacity,proto3" json:"responses_capacity,omitempty"`
@@ -440,11 +440,11 @@ func (x *OfferItem) GetDescription() string {
 	return ""
 }
 
-func (x *OfferItem) GetPrice() int64 {
+func (x *OfferItem) GetPrice() string {
 	if x != nil {
 		return x.Price
 	}
-	return 0
+	return ""
 }
 
 func (x *OfferItem) GetPublicationDate() string {
@@ -592,7 +592,7 @@ type OfferCardItem struct {
 	Brand           *OfferCardBrandItem    `protobuf:"bytes,1,opt,name=brand,proto3" json:"brand,omitempty"`
 	Description     string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	CooperationType *NamedItem             `protobuf:"bytes,3,opt,name=cooperation_type,json=cooperationType,proto3" json:"cooperation_type,omitempty"`
-	Price           int64                  `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
+	Price           string                 `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"`
 	SocialNetworks  []*SocialNetworkItem   `protobuf:"bytes,5,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
 	CreatedAt       string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -650,11 +650,11 @@ func (x *OfferCardItem) GetCooperationType() *NamedItem {
 	return nil
 }
 
-func (x *OfferCardItem) GetPrice() int64 {
+func (x *OfferCardItem) GetPrice() string {
 	if x != nil {
 		return x.Price
 	}
-	return 0
+	return ""
 }
 
 func (x *OfferCardItem) GetSocialNetworks() []*SocialNetworkItem {
@@ -1498,7 +1498,7 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x03R\x05price\x12)\n" +
+	"\x05price\x18\x04 \x01(\tR\x05price\x12)\n" +
 	"\x10publication_date\x18\x05 \x01(\tR\x0fpublicationDate\x124\n" +
 	"\x16ad_marking_responsible\x18\x06 \x01(\tR\x14adMarkingResponsible\x12-\n" +
 	"\x12responses_capacity\x18\a \x01(\x03R\x11responsesCapacity\x12E\n" +
@@ -1519,7 +1519,7 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x05brand\x18\x01 \x01(\v2#.promo_offers.v1.OfferCardBrandItemR\x05brand\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12E\n" +
 	"\x10cooperation_type\x18\x03 \x01(\v2\x1a.promo_offers.v1.NamedItemR\x0fcooperationType\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x03R\x05price\x12K\n" +
+	"\x05price\x18\x04 \x01(\tR\x05price\x12K\n" +
 	"\x0fsocial_networks\x18\x05 \x03(\v2\".promo_offers.v1.SocialNetworkItemR\x0esocialNetworks\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\tR\tcreatedAt\"\x98\x03\n" +

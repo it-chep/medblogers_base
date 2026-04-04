@@ -90,7 +90,7 @@ func newOfferItemFromFilter(item filterOffersDTO.Offer) *desc.FilterOfferItem {
 		CooperationType:  newNamedItemFromFilter(item.CooperationType),
 		Description:      item.Description,
 		BusinessCategory: newNamedItemFromFilter(item.BusinessCategory),
-		CreatedAt:        formatters.TimeRuFormat(item.CreatedAt),
+		CreatedAt:        formatters.OnlyDateRuFormat(item.CreatedAt),
 		SocialNetworks:   make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
@@ -114,8 +114,8 @@ func newOfferCardItem(item *offerDetailDTO.Offer) *desc.OfferCardItem {
 		Brand:           newOfferCardBrandItem(item.Brand),
 		Description:     item.Description,
 		CooperationType: newNamedItemFromDetail(item.CooperationType),
-		Price:           item.Price,
-		CreatedAt:       formatters.TimeRuFormat(item.CreatedAt),
+		Price:           formatters.HumanPriceFromWithAgreement(item.Price),
+		CreatedAt:       formatters.OnlyDateRuFormat(item.CreatedAt),
 		SocialNetworks:  make([]*desc.SocialNetworkItem, 0, len(item.SocialNetworks)),
 	}
 
@@ -161,8 +161,8 @@ func newOfferItemFromBrandOffers(item brandOffersDTO.Offer) *desc.OfferItem {
 		Id:                   item.ID,
 		Title:                item.Title,
 		Description:          item.Description,
-		Price:                item.Price,
-		PublicationDate:      formatters.TimeRuFormat(lo.FromPtr(item.PublicationDate)),
+		Price:                formatters.HumanPriceFromWithAgreement(item.Price),
+		PublicationDate:      formatters.OnlyDateRuFormat(lo.FromPtr(item.PublicationDate)),
 		AdMarkingResponsible: item.AdMarkingResponsible,
 		ResponsesCapacity:    item.ResponsesCapacity,
 		CooperationType:      newNamedItemFromBrandOffers(item.CooperationType),

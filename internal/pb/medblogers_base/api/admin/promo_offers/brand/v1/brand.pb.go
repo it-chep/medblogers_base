@@ -299,6 +299,7 @@ type BrandItem struct {
 	SocialNetworks   []*BrandSocialNetworkItem `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
 	IsActive         bool                      `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	CreatedAt        string                    `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	About            string                    `protobuf:"bytes,11,opt,name=about,proto3" json:"about,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -399,6 +400,13 @@ func (x *BrandItem) GetIsActive() bool {
 func (x *BrandItem) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *BrandItem) GetAbout() string {
+	if x != nil {
+		return x.About
 	}
 	return ""
 }
@@ -628,6 +636,7 @@ type CreateBrandRequest struct {
 	Website            string                     `protobuf:"bytes,5,opt,name=website,proto3" json:"website,omitempty"`
 	Description        string                     `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
 	SocialNetworks     []*BrandSocialNetworkInput `protobuf:"bytes,7,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	About              string                     `protobuf:"bytes,8,opt,name=about,proto3" json:"about,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -711,6 +720,13 @@ func (x *CreateBrandRequest) GetSocialNetworks() []*BrandSocialNetworkInput {
 	return nil
 }
 
+func (x *CreateBrandRequest) GetAbout() string {
+	if x != nil {
+		return x.About
+	}
+	return ""
+}
+
 type CreateBrandResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	BrandId       int64                  `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
@@ -765,6 +781,7 @@ type UpdateBrandRequest struct {
 	Website            string                     `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
 	Description        string                     `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	SocialNetworks     []*BrandSocialNetworkInput `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	About              string                     `protobuf:"bytes,9,opt,name=about,proto3" json:"about,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -853,6 +870,13 @@ func (x *UpdateBrandRequest) GetSocialNetworks() []*BrandSocialNetworkInput {
 		return x.SocialNetworks
 	}
 	return nil
+}
+
+func (x *UpdateBrandRequest) GetAbout() string {
+	if x != nil {
+		return x.About
+	}
+	return ""
 }
 
 type UpdateBrandResponse struct {
@@ -1355,7 +1379,7 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x11business_category\x18\x05 \x01(\v2&.admin.promo_offers.brand.v1.NamedItemR\x10businessCategory\x12\x1b\n" +
 	"\tis_active\x18\x06 \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\"\x86\x03\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\"\x9c\x03\n" +
 	"\tBrandItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
@@ -1368,7 +1392,8 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\tis_active\x18\t \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\tR\tcreatedAt\"\xe4\x01\n" +
+	" \x01(\tR\tcreatedAt\x12\x14\n" +
+	"\x05about\x18\v \x01(\tR\x05about\"\xe4\x01\n" +
 	"\x10GetBrandsRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x122\n" +
 	"\x15business_category_ids\x18\x02 \x03(\x03R\x13businessCategoryIds\x12,\n" +
@@ -1383,7 +1408,7 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x13GetBrandByIDRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"T\n" +
 	"\x14GetBrandByIDResponse\x12<\n" +
-	"\x05brand\x18\x01 \x01(\v2&.admin.promo_offers.brand.v1.BrandItemR\x05brand\"\xa1\x02\n" +
+	"\x05brand\x18\x01 \x01(\v2&.admin.promo_offers.brand.v1.BrandItemR\x05brand\"\xb7\x02\n" +
 	"\x12CreateBrandRequest\x12\x14\n" +
 	"\x05photo\x18\x01 \x01(\tR\x05photo\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
@@ -1391,9 +1416,10 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x14business_category_id\x18\x04 \x01(\x03R\x12businessCategoryId\x12\x18\n" +
 	"\awebsite\x18\x05 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\x06 \x01(\tR\vdescription\x12]\n" +
-	"\x0fsocial_networks\x18\a \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\"0\n" +
+	"\x0fsocial_networks\x18\a \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\x12\x14\n" +
+	"\x05about\x18\b \x01(\tR\x05about\"0\n" +
 	"\x13CreateBrandResponse\x12\x19\n" +
-	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\xbc\x02\n" +
+	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\xd2\x02\n" +
 	"\x12UpdateBrandRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12\x14\n" +
 	"\x05photo\x18\x02 \x01(\tR\x05photo\x12\x14\n" +
@@ -1402,7 +1428,8 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x14business_category_id\x18\x05 \x01(\x03R\x12businessCategoryId\x12\x18\n" +
 	"\awebsite\x18\x06 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12]\n" +
-	"\x0fsocial_networks\x18\b \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\"\x15\n" +
+	"\x0fsocial_networks\x18\b \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\x12\x14\n" +
+	"\x05about\x18\t \x01(\tR\x05about\"\x15\n" +
 	"\x13UpdateBrandResponse\"n\n" +
 	"\x11AddNetworkRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12*\n" +

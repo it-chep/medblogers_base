@@ -21,7 +21,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) GetBrandBySlug(ctx context.Context, slug string) (*brandDomain.Brand, error) {
 	sql := `
-		select id, photo, title, slug, business_category_id, website, description, is_active, created_at
+		select id, photo, title, slug, business_category_id, website, description, about, is_active, created_at
 		from brand
 		where slug = $1 and is_active is true
 	`

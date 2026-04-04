@@ -105,6 +105,7 @@ message BrandItem {
   repeated BrandSocialNetworkItem social_networks = 8;
   bool is_active = 9;
   string created_at = 10;
+  string about = 11;
 }
 
 message GetBrandsRequest {
@@ -136,6 +137,7 @@ message CreateBrandRequest {
   string website = 5;
   string description = 6;
   repeated BrandSocialNetworkInput social_networks = 7;
+  string about = 8;
 }
 
 message CreateBrandResponse {
@@ -151,6 +153,7 @@ message UpdateBrandRequest {
   string website = 6;
   string description = 7;
   repeated BrandSocialNetworkInput social_networks = 8;
+  string about = 9;
 }
 
 message UpdateBrandResponse {}
