@@ -1,0 +1,367 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin/promo_offers/dictionary/v1/dictionary.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PromoOffersAdminDictionaryService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/admin/promo_offers/business_categories": {
+      "get": {
+        "summary": "Получение бизнес-категорий",
+        "operationId": "PromoOffersAdminDictionaryService_GetBusinessCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/business_categories/create": {
+      "post": {
+        "summary": "Создание бизнес-категории",
+        "operationId": "PromoOffersAdminDictionaryService_CreateBusinessCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/content_formats": {
+      "get": {
+        "summary": "Получение форматов контента",
+        "operationId": "PromoOffersAdminDictionaryService_GetContentFormats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.GetContentFormatsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/content_formats/create": {
+      "post": {
+        "summary": "Создание формата контента",
+        "operationId": "PromoOffersAdminDictionaryService_CreateContentFormat",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateContentFormatResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateContentFormatRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/cooperation_types": {
+      "get": {
+        "summary": "Получение типов сотрудничества",
+        "operationId": "PromoOffersAdminDictionaryService_GetCooperationTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.GetCooperationTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/cooperation_types/create": {
+      "post": {
+        "summary": "Создание типа сотрудничества",
+        "operationId": "PromoOffersAdminDictionaryService_CreateCooperationType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateCooperationTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.CreateCooperationTypeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    },
+    "/api/v1/admin/promo_offers/social_networks": {
+      "get": {
+        "summary": "Получение социальных сетей",
+        "operationId": "PromoOffersAdminDictionaryService_GetSocialNetworks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.promo_offers.dictionary.v1.GetSocialNetworksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "PromoOffersAdminDictionaryService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "admin.promo_offers.dictionary.v1.CreateBusinessCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.CreateBusinessCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.CreateContentFormatRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.CreateContentFormatResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.CreateCooperationTypeRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.CreateCooperationTypeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.GetBusinessCategoriesResponse": {
+      "type": "object",
+      "properties": {
+        "businessCategories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.dictionary.v1.NamedItem"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.GetContentFormatsResponse": {
+      "type": "object",
+      "properties": {
+        "contentFormats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.dictionary.v1.NamedItem"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.GetCooperationTypesResponse": {
+      "type": "object",
+      "properties": {
+        "cooperationTypes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.dictionary.v1.NamedItem"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.GetSocialNetworksResponse": {
+      "type": "object",
+      "properties": {
+        "socialNetworks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.promo_offers.dictionary.v1.SocialNetworkItem"
+          }
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.NamedItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.promo_offers.dictionary.v1.SocialNetworkItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

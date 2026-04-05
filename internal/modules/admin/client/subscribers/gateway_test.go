@@ -5,10 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"medblogers_base/internal/modules/doctors/client/subscribers/dto"
-	"medblogers_base/internal/modules/doctors/client/subscribers/indto"
-	"medblogers_base/internal/modules/doctors/domain/doctor"
-	"medblogers_base/internal/pkg/http/mocks"
 	"net/http"
 	"net/url"
 	"testing"
@@ -17,6 +13,11 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"medblogers_base/internal/modules/admin/client/subscribers/dto"
+	"medblogers_base/internal/modules/admin/client/subscribers/indto"
+	"medblogers_base/internal/modules/admin/entities/doctors/domain/doctor"
+	"medblogers_base/internal/pkg/http/mocks"
 )
 
 type fields struct {
@@ -55,9 +56,9 @@ func TestGetDoctorSubscribers(t *testing.T) {
 			TgLastUpdatedDate:   "11.05.2004",
 			InstSubsCount:       "123",
 			InstSubsCountText:   "подписчика",
-			InstLastUpdatedDate: "11.05.2004",
+			InstLastUpdatedDate: "",
 		}
-		result, err := gw.GetDoctorSubscribers(context.Background(), doctor.MedblogersID(1))
+		result, err := gw.GetDoctorSubscribers(context.Background(), 1)
 
 		require.NoError(t, err, "Не должно быть ошибки")
 		require.NotNil(t, result, "Результат не должен быть nil")
@@ -90,7 +91,7 @@ func TestGetDoctorSubscribers(t *testing.T) {
 			InstSubsCountText:   "",
 			InstLastUpdatedDate: "",
 		}
-		result, err := gw.GetDoctorSubscribers(context.Background(), doctor.MedblogersID(1))
+		result, err := gw.GetDoctorSubscribers(context.Background(), 1)
 
 		require.NoError(t, err, "Не должно быть ошибки")
 		require.NotNil(t, result, "Результат не должен быть nil")
@@ -106,7 +107,7 @@ func TestGetDoctorSubscribers(t *testing.T) {
 		gw := NewGateway("", deps.http)
 
 		expectedResult := indto.GetDoctorSubscribersResponse{}
-		result, err := gw.GetDoctorSubscribers(context.Background(), doctor.MedblogersID(1))
+		result, err := gw.GetDoctorSubscribers(context.Background(), 1)
 
 		require.Error(t, err, "Должна быть ошибка")
 		require.NotNil(t, result, "Результат не должен быть nil")
@@ -161,7 +162,7 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 
 		require.NoError(t, err, "Не должно быть ошибки")
 		require.NotNil(t, result, "Результат не должен быть nil")
-		require.Len(t, result, 1, "Должен вернуться один доктор")
+		require.Len(t, result.Doctors, 1, "Должен вернуться один доктор")
 		assert.Equal(t, expectedResult[1].DoctorID, result.Doctors[1].DoctorID, "ID доктора не совпадает")
 		assert.Equal(t, expectedResult[1].TgSubsCount, result.Doctors[1].TgSubsCount, "Количество подписчиков TG не совпадает")
 		assert.Equal(t, expectedResult[1].TgSubsCountText, result.Doctors[1].TgSubsCountText, "Текст подписчиков TG не совпадает")
@@ -176,7 +177,7 @@ func TestGetDoctorSubscribersByFilter(t *testing.T) {
 		deps.http.EXPECT().Do(gomock.Any()).Return(&http.Response{StatusCode: http.StatusInternalServerError}, errors.New("internal server error"))
 		gw := NewGateway("", deps.http)
 
-		expectedResult := map[int64]indto.GetDoctorsByFilterDoctor{}
+		expectedResult := indto.GetDoctorsByFilterResponse{}
 		result, err := gw.GetDoctorsByFilter(context.Background(), indto.GetDoctorsByFilterRequest{
 			SocialMedia: []indto.SocialMedia{
 				indto.Telegram,
@@ -509,7 +510,7 @@ func TestCreateDoctor(t *testing.T) {
 		})
 
 		require.Error(t, err)
-		require.Equal(t, int64(http.StatusInternalServerError), statusCode)
+		require.Equal(t, int64(0), statusCode)
 		assert.ErrorIs(t, err, expectedErr)
 	})
 

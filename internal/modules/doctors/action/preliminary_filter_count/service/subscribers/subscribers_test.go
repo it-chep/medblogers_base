@@ -30,9 +30,9 @@ func TestService_FilterDoctorsBySubscribers(t *testing.T) {
 	tests := []struct {
 		name           string
 		filter         dto.Filter
-		mockResponse   map[int64]indto.GetDoctorsByFilterDoctor
+		mockResponse   indto.GetDoctorsByFilterResponse
 		mockError      error
-		expectedResult []int64
+		expectedResult int64
 		expectedError  error
 	}{
 		{
@@ -42,13 +42,11 @@ func TestService_FilterDoctorsBySubscribers(t *testing.T) {
 				MaxSubscribers: 1000,
 				SocialMedia:    []string{"telegram", "vk"},
 			},
-			mockResponse: map[int64]indto.GetDoctorsByFilterDoctor{
-				1: {},
-				2: {},
-				3: {},
+			mockResponse: indto.GetDoctorsByFilterResponse{
+				DoctorsCount: 3,
 			},
 			mockError:      nil,
-			expectedResult: []int64{1, 2, 3},
+			expectedResult: 3,
 			expectedError:  nil,
 		},
 		{
@@ -58,9 +56,9 @@ func TestService_FilterDoctorsBySubscribers(t *testing.T) {
 				MaxSubscribers: 2000,
 				SocialMedia:    []string{"telegram"},
 			},
-			mockResponse:   map[int64]indto.GetDoctorsByFilterDoctor{},
+			mockResponse:   indto.GetDoctorsByFilterResponse{},
 			mockError:      nil,
-			expectedResult: []int64{},
+			expectedResult: 0,
 			expectedError:  nil,
 		},
 		{
@@ -70,9 +68,9 @@ func TestService_FilterDoctorsBySubscribers(t *testing.T) {
 				MaxSubscribers: 1000,
 				SocialMedia:    []string{"vk"},
 			},
-			mockResponse:   nil,
+			mockResponse:   indto.GetDoctorsByFilterResponse{},
 			mockError:      errors.New("database error"),
-			expectedResult: nil,
+			expectedResult: 0,
 			expectedError:  errors.New("database error"),
 		},
 	}
@@ -101,7 +99,7 @@ func TestService_FilterDoctorsBySubscribers(t *testing.T) {
 				assert.EqualError(t, err, tt.expectedError.Error())
 			} else {
 				assert.NoError(t, err)
-				assert.ElementsMatch(t, tt.expectedResult, result)
+				assert.Equal(t, tt.expectedResult, result)
 			}
 		})
 	}

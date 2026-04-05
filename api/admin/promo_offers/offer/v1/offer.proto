@@ -1,0 +1,179 @@
+syntax = "proto3";
+
+package admin.promo_offers.offer.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/admin/promo_offers/offer/v1";
+
+service PromoOffersAdminOfferService {
+  rpc GetOffers(GetOffersRequest) returns (GetOffersResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/offers"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение офферов"};
+  }
+  rpc FilterOffers(FilterOffersRequest) returns (FilterOffersResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/offers/filter"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация офферов по брендам"};
+  }
+  rpc GetOfferByID(GetOfferByIDRequest) returns (GetOfferByIDResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/offer/{offer_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение карточки оффера"};
+  }
+  rpc CreateOffer(CreateOfferRequest) returns (CreateOfferResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/offers/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание оффера"};
+  }
+  rpc UpdateOffer(UpdateOfferRequest) returns (UpdateOfferResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/offer/{offer_id}/update"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление оффера"};
+  }
+  rpc ActivateOffer(ActivateOfferRequest) returns (ActivateOfferResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/offer/{offer_id}/activate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Активация оффера"};
+  }
+  rpc DeactivateOffer(DeactivateOfferRequest) returns (DeactivateOfferResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/offer/{offer_id}/deactivate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Деактивация оффера"};
+  }
+}
+
+message NamedItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SocialNetworkItem {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+}
+
+message BrandPreview {
+  int64 id = 1;
+  string title = 2;
+  string slug = 3;
+  string photo = 4;
+}
+
+message OfferListItem {
+  string id = 1;
+  string title = 2;
+  int64 price = 3;
+  string publication_date = 4;
+  int64 responses_capacity = 5;
+  NamedItem cooperation_type = 6;
+  NamedItem business_category = 7;
+  NamedItem content_format = 8;
+  BrandPreview brand = 9;
+  bool is_active = 10;
+  string created_at = 11;
+}
+
+message OfferItem {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  int64 price = 4;
+  string publication_date = 5;
+  string ad_marking_responsible = 6;
+  int64 responses_capacity = 7;
+  NamedItem cooperation_type = 8;
+  NamedItem business_category = 9;
+  NamedItem content_format = 10;
+  BrandPreview brand = 11;
+  repeated SocialNetworkItem social_networks = 12;
+  bool is_active = 13;
+  string created_at = 14;
+}
+
+message GetOffersRequest {
+  optional bool is_active = 1;
+  int64 page = 2;
+  int64 limit = 3;
+}
+
+message GetOffersResponse {
+  repeated OfferListItem offers = 1;
+}
+
+message FilterOffersRequest {
+  repeated int64 brand_ids = 1;
+  optional bool is_active = 2;
+  int64 page = 3;
+  int64 limit = 4;
+}
+
+message FilterOffersResponse {
+  repeated OfferListItem offers = 1;
+}
+
+message GetOfferByIDRequest {
+  string offer_id = 1;
+}
+
+message GetOfferByIDResponse {
+  OfferItem offer = 1;
+}
+
+message CreateOfferRequest {
+  int64 cooperation_type_id = 1;
+  int64 business_category_id = 2;
+  string title = 3;
+  string description = 4;
+  int64 price = 5;
+  int64 content_format_id = 6;
+  int64 brand_id = 7;
+  string publication_date = 8;
+  string ad_marking_responsible = 9;
+  int64 responses_capacity = 10;
+  repeated int64 social_network_ids = 11;
+}
+
+message CreateOfferResponse {
+  string offer_id = 1;
+}
+
+message UpdateOfferRequest {
+  string offer_id = 1;
+  int64 cooperation_type_id = 2;
+  int64 business_category_id = 3;
+  string title = 4;
+  string description = 5;
+  int64 price = 6;
+  int64 content_format_id = 7;
+  int64 brand_id = 8;
+  string publication_date = 9;
+  string ad_marking_responsible = 10;
+  int64 responses_capacity = 11;
+  repeated int64 social_network_ids = 12;
+}
+
+message UpdateOfferResponse {}
+
+message ActivateOfferRequest {
+  string offer_id = 1;
+}
+
+message ActivateOfferResponse {}
+
+message DeactivateOfferRequest {
+  string offer_id = 1;
+}
+
+message DeactivateOfferResponse {}

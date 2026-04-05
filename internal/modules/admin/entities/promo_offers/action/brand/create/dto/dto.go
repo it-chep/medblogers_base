@@ -1,0 +1,17 @@
+package dto
+
+type SocialNetworkInput struct {
+	SocialNetworkID int64
+	Link            string
+}
+
+type CreateRequest struct {
+	Photo              string
+	Title              string
+	Slug               string
+	BusinessCategoryID int64
+	Website            string
+	Description        string
+	About              string
+	SocialNetworks     []SocialNetworkInput
+}

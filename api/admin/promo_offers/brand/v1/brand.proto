@@ -1,0 +1,195 @@
+syntax = "proto3";
+
+package admin.promo_offers.brand.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/admin/promo_offers/brand/v1";
+
+service PromoOffersAdminBrandService {
+  rpc GetBrands(GetBrandsRequest) returns (GetBrandsResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/brands"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение брендов"};
+  }
+  rpc GetBrandByID(GetBrandByIDRequest) returns (GetBrandByIDResponse) {
+    option (google.api.http) = {get: "/api/v1/admin/promo_offers/brand/{brand_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение карточки бренда"};
+  }
+  rpc CreateBrand(CreateBrandRequest) returns (CreateBrandResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brands/create"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Создание бренда"};
+  }
+  rpc UpdateBrand(UpdateBrandRequest) returns (UpdateBrandResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/update"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Обновление бренда"};
+  }
+  rpc AddNetwork(AddNetworkRequest) returns (AddNetworkResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/add_network"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Добавление соцсети бренду"};
+  }
+  rpc DeleteNetwork(DeleteNetworkRequest) returns (DeleteNetworkResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/delete_network"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Удаление соцсети у бренда"};
+  }
+  rpc SaveBrandPhoto(SaveBrandPhotoRequest) returns (SaveBrandPhotoResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/save_photo"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Сохранение фотографии бренда"};
+  }
+  rpc ActivateBrand(ActivateBrandRequest) returns (ActivateBrandResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/activate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Активация бренда"};
+  }
+  rpc DeactivateBrand(DeactivateBrandRequest) returns (DeactivateBrandResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/promo_offers/brand/{brand_id}/deactivate"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Деактивация бренда"};
+  }
+}
+
+message NamedItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message BrandSocialNetworkItem {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+  string link = 4;
+}
+
+message BrandSocialNetworkInput {
+  int64 social_network_id = 1;
+  string link = 2;
+}
+
+message BrandListItem {
+  int64 id = 1;
+  string title = 2;
+  string slug = 3;
+  string photo = 4;
+  NamedItem business_category = 5;
+  bool is_active = 6;
+  string created_at = 7;
+}
+
+message BrandItem {
+  int64 id = 1;
+  string title = 2;
+  string slug = 3;
+  string photo = 4;
+  NamedItem business_category = 5;
+  string website = 6;
+  string description = 7;
+  repeated BrandSocialNetworkItem social_networks = 8;
+  bool is_active = 9;
+  string created_at = 10;
+  string about = 11;
+}
+
+message GetBrandsRequest {
+  string query = 1;
+  repeated int64 business_category_ids = 2;
+  repeated int64 social_network_ids = 3;
+  optional bool is_active = 4;
+  int64 page = 5;
+  int64 limit = 6;
+}
+
+message GetBrandsResponse {
+  repeated BrandListItem brands = 1;
+}
+
+message GetBrandByIDRequest {
+  int64 brand_id = 1;
+}
+
+message GetBrandByIDResponse {
+  BrandItem brand = 1;
+}
+
+message CreateBrandRequest {
+  string photo = 1;
+  string title = 2;
+  string slug = 3;
+  int64 business_category_id = 4;
+  string website = 5;
+  string description = 6;
+  repeated BrandSocialNetworkInput social_networks = 7;
+  string about = 8;
+}
+
+message CreateBrandResponse {
+  int64 brand_id = 1;
+}
+
+message UpdateBrandRequest {
+  int64 brand_id = 1;
+  string photo = 2;
+  string title = 3;
+  string slug = 4;
+  int64 business_category_id = 5;
+  string website = 6;
+  string description = 7;
+  repeated BrandSocialNetworkInput social_networks = 8;
+  string about = 9;
+}
+
+message UpdateBrandResponse {}
+
+message AddNetworkRequest {
+  int64 brand_id = 1;
+  int64 social_network_id = 2;
+  string link = 3;
+}
+
+message AddNetworkResponse {}
+
+message DeleteNetworkRequest {
+  int64 brand_id = 1;
+  int64 social_network_id = 2;
+}
+
+message DeleteNetworkResponse {}
+
+message SaveBrandPhotoRequest {
+  int64 brand_id = 1;
+  string image_data = 2; // файл в строке base64
+}
+
+message SaveBrandPhotoResponse {
+  string image = 1;
+}
+
+message ActivateBrandRequest {
+  int64 brand_id = 1;
+}
+
+message ActivateBrandResponse {}
+
+message DeactivateBrandRequest {
+  int64 brand_id = 1;
+}
+
+message DeactivateBrandResponse {}

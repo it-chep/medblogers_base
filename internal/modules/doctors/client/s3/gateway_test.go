@@ -3,6 +3,7 @@ package s3
 import (
 	"context"
 	"medblogers_base/internal/modules/doctors/client/s3/mocks"
+	"medblogers_base/internal/modules/doctors/domain/doctor"
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -34,7 +35,7 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 	tests := []struct {
 		name        string
 		setupMock   func(*mocks.MockS3Client)
-		expected    map[string]string
+		expected    map[doctor.S3Key]string
 		expectedErr string
 	}{
 		{
@@ -43,7 +44,7 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 				m.EXPECT().ListObjectsV2(gomock.Any(), &s3.ListObjectsV2Input{
 					Bucket: aws.String("test"),
 					Prefix: aws.String("images/user_"),
-				}).Return(&s3.ListObjectsV2Output{
+				}, gomock.Any()).Return(&s3.ListObjectsV2Output{
 					Contents: []types.Object{
 						{Key: aws.String("images/user_maxim_photo1.png")},
 						{Key: aws.String("images/user_marina_photo2.jpg")},
@@ -51,24 +52,24 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 					},
 				}, nil)
 			},
-			expected: map[string]string{
-				"maxim":  "https://storage.yandexcloud.net/test/images/user_maxim_photo1.png",
-				"marina": "https://storage.yandexcloud.net/test/images/user_marina_photo2.jpg",
-				"alina":  "https://storage.yandexcloud.net/test/images/user_alina_photo3.jpeg",
+			expected: map[doctor.S3Key]string{
+				doctor.S3Key("images/user_maxim_photo1.png"):  "https://storage.yandexcloud.net/test/images/user_maxim_photo1.png",
+				doctor.S3Key("images/user_marina_photo2.jpg"): "https://storage.yandexcloud.net/test/images/user_marina_photo2.jpg",
+				doctor.S3Key("images/user_alina_photo3.jpeg"): "https://storage.yandexcloud.net/test/images/user_alina_photo3.jpeg",
 			},
 		},
 		{
 			name: "пустая директория",
 			setupMock: func(m *mocks.MockS3Client) {
-				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any()).
+				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any(), gomock.Any()).
 					Return(&s3.ListObjectsV2Output{Contents: []types.Object{}}, nil)
 			},
-			expected: map[string]string{},
+			expected: map[doctor.S3Key]string{},
 		},
 		{
 			name: "ошибка при запросе к S3",
 			setupMock: func(m *mocks.MockS3Client) {
-				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any()).
+				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any(), gomock.Any()).
 					Return(nil, errors.New("s3 internal error"))
 			},
 			expectedErr: "failed to list objects",

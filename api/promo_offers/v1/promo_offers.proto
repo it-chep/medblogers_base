@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+package promo_offers.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "api/promo_offers/v1";
+
+service PromoOffersService {
+  rpc GetFilterSettings(GetFilterSettingsRequest) returns (GetFilterSettingsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/promo_offers/filter/settings"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Доступные фильтры по промо-офферам"};
+  }
+
+  rpc FilterOffers(FilterOffersRequest) returns (FilterOffersResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/promo_offers/filter"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация промо-офферов"};
+  }
+
+  rpc FilterBrands(FilterBrandsRequest) returns (FilterBrandsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/promo_offers/brands/filter"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Фильтрация брендов"};
+  }
+
+  rpc GetBrandCard(GetBrandCardRequest) returns (GetBrandCardResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offers/brand/{brand_slug}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка бренда"};
+  }
+
+  rpc GetBrandOffers(GetBrandOffersRequest) returns (GetBrandOffersResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offers/brand/{brand_slug}/offers"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Офферы конкретного бренда"};
+  }
+
+  rpc GetOfferCard(GetOfferCardRequest) returns (GetOfferCardResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offers/offer/{offer_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка оффера"};
+  }
+
+  rpc GetBrandByOffer(GetBrandByOfferRequest) returns (GetBrandByOfferResponse) {
+    option (google.api.http) = {get: "/api/v1/promo_offers/brand/by_offer/{offer_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Карточка оффера"};
+  }
+}
+
+message NamedItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SocialNetworkItem {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+}
+
+message BrandSocialNetworkItem {
+  int64 id = 1;
+  string name = 2;
+  string slug = 3;
+  string link = 4;
+}
+
+message BrandPreview {
+  int64 id = 1;
+  string title = 2;
+  string slug = 3;
+  string photo = 4;
+}
+
+message BrandItem {
+  int64 id = 1;
+  string title = 2;
+  string slug = 3;
+  string photo = 4;
+  NamedItem business_category = 5;
+  string site_link = 6;
+  string description = 7;
+  repeated BrandSocialNetworkItem social_networks = 8;
+}
+
+message OfferItem {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string price = 4;
+  string publication_date = 5;
+  string ad_marking_responsible = 6;
+  int64 responses_capacity = 7;
+  NamedItem cooperation_type = 8;
+  NamedItem business_category = 9;
+  NamedItem content_format = 10;
+  BrandPreview brand = 11;
+  repeated SocialNetworkItem social_networks = 12;
+}
+
+message OfferCardBrandItem {
+  string photo = 1;
+  string title = 2;
+  string description = 3;
+  string about = 4;
+  repeated BrandSocialNetworkItem social_networks = 5;
+  NamedItem business_category = 6;
+}
+
+message OfferCardItem {
+  OfferCardBrandItem brand = 1;
+  string description = 2;
+  NamedItem cooperation_type = 3;
+  string price = 4;
+  repeated SocialNetworkItem social_networks = 5;
+  string created_at = 6;
+}
+
+message FilterOfferItem {
+  string id = 1;
+  string photo = 2;
+  string title = 3;
+  string brand_description = 4;
+  NamedItem cooperation_type = 5;
+  string description = 6;
+  repeated SocialNetworkItem social_networks = 7;
+  NamedItem business_category = 8;
+  string created_at = 9;
+}
+
+message FilterOffersRequest {
+  repeated int64 cooperation_type_ids = 1;
+  repeated int64 business_category_ids = 2;
+}
+
+message FilterOffersResponse {
+  repeated FilterOfferItem offers = 1;
+}
+
+message FilterBrandsRequest {
+  repeated int64 business_category_ids = 1;
+}
+
+message FilterBrandsResponse {
+  repeated BrandItem brands = 1;
+}
+
+message GetBrandCardRequest {
+  string brand_slug = 1;
+}
+
+message GetBrandCardResponse {
+  BrandItem brand = 1;
+}
+
+message GetBrandOffersRequest {
+  string brand_slug = 1;
+}
+
+message GetBrandOffersResponse {
+  repeated OfferItem offers = 1;
+}
+
+message GetOfferCardRequest {
+  string offer_id = 1;
+}
+
+message GetOfferCardResponse {
+  OfferCardItem offer = 1;
+}
+
+message FilterCountItem {
+  int64 id = 1;
+  string name = 2;
+  int64 offers_count = 3;
+}
+
+message GetFilterSettingsRequest {}
+
+message GetFilterSettingsResponse {
+  repeated FilterCountItem cooperation_types = 1;
+  int64 all = 2;
+}
+
+
+message GetBrandByOfferRequest {
+  string offer_id = 1;
+}
+message GetBrandByOfferResponse {
+  BrandItem brand = 1;
+}

@@ -12,56 +12,55 @@ import (
 )
 
 type fields struct {
-	storage *mocks.MockStorage
+	storage   *mocks.MockStorage
+	commonDal *mocks.MockCommonDal
 }
 
 func p(t *testing.T) fields {
+	ctrl := gomock.NewController(t)
 	f := fields{
-		storage: mocks.NewMockStorage(gomock.NewController(t)),
+		storage:   mocks.NewMockStorage(ctrl),
+		commonDal: mocks.NewMockCommonDal(ctrl),
 	}
 	return f
 }
 
-func TestService_GetDoctorsByFilter(t *testing.T) {
+func TestService_GetDoctorsIDsByFilter(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
-		name          string
-		filter        dto.Filter
-		mockCount     int64
-		mockError     error
-		expectedCount int64
-		expectedError error
+		name        string
+		filter      dto.Filter
+		mockIDs     []int64
+		mockError   error
+		expectedIDs []int64
 	}{
 		{
 			name: "successful count",
 			filter: dto.Filter{
 				Specialities: []int64{1, 2, 3},
 			},
-			mockCount:     42,
-			mockError:     nil,
-			expectedCount: 42,
-			expectedError: nil,
+			mockIDs:     []int64{10, 20, 30},
+			mockError:   nil,
+			expectedIDs: []int64{10, 20, 30},
 		},
 		{
 			name: "empty result",
 			filter: dto.Filter{
 				Specialities: []int64{1, 2, 3},
 			},
-			mockCount:     0,
-			mockError:     nil,
-			expectedCount: 0,
-			expectedError: nil,
+			mockIDs:     []int64{},
+			mockError:   nil,
+			expectedIDs: []int64{},
 		},
 		{
 			name: "database error",
 			filter: dto.Filter{
 				Specialities: []int64{1, 2, 3},
 			},
-			mockCount:     0,
-			mockError:     errors.New("database connection failed"),
-			expectedCount: 0,
-			expectedError: errors.New("database connection failed"),
+			mockIDs:     nil,
+			mockError:   errors.New("database connection failed"),
+			expectedIDs: nil,
 		},
 	}
 
@@ -70,21 +69,21 @@ func TestService_GetDoctorsByFilter(t *testing.T) {
 			t.Parallel()
 
 			deps := p(t)
-			service := New(deps.storage)
+			service := New(deps.storage, deps.commonDal)
 
 			deps.storage.EXPECT().FilterDoctors(gomock.Any(), tt.filter).
-				Return(tt.mockCount, tt.mockError)
+				Return(tt.mockIDs, tt.mockError)
 
-			count, err := service.GetDoctorsByFilter(context.Background(), tt.filter)
+			ids, err := service.GetDoctorsIDsByFilter(context.Background(), tt.filter)
 
-			if tt.expectedError != nil {
+			if tt.mockError != nil {
 				assert.Error(t, err)
-				assert.EqualError(t, err, tt.expectedError.Error())
+				assert.EqualError(t, err, tt.mockError.Error())
 			} else {
 				assert.NoError(t, err)
 			}
 
-			assert.Equal(t, tt.expectedCount, count)
+			assert.Equal(t, tt.expectedIDs, ids)
 		})
 	}
 }

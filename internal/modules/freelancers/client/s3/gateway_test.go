@@ -2,7 +2,6 @@ package s3
 
 import (
 	"context"
-	"medblogers_base/internal/modules/doctors/client/s3/mocks"
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -12,6 +11,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"medblogers_base/internal/modules/freelancers/client/s3/mocks"
 )
 
 type fields struct {
@@ -43,7 +44,7 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 				m.EXPECT().ListObjectsV2(gomock.Any(), &s3.ListObjectsV2Input{
 					Bucket: aws.String("test"),
 					Prefix: aws.String("images/user_"),
-				}).Return(&s3.ListObjectsV2Output{
+				}, gomock.Any()).Return(&s3.ListObjectsV2Output{
 					Contents: []types.Object{
 						{Key: aws.String("images/user_maxim_photo1.png")},
 						{Key: aws.String("images/user_marina_photo2.jpg")},
@@ -60,7 +61,7 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 		{
 			name: "пустая директория",
 			setupMock: func(m *mocks.MockS3Client) {
-				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any()).
+				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any(), gomock.Any()).
 					Return(&s3.ListObjectsV2Output{Contents: []types.Object{}}, nil)
 			},
 			expected: map[string]string{},
@@ -68,7 +69,7 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 		{
 			name: "ошибка при запросе к S3",
 			setupMock: func(m *mocks.MockS3Client) {
-				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any()).
+				m.EXPECT().ListObjectsV2(gomock.Any(), gomock.Any(), gomock.Any()).
 					Return(nil, errors.New("s3 internal error"))
 			},
 			expectedErr: "failed to list objects",
@@ -82,7 +83,7 @@ func TestGateway_GetUserPhotos(t *testing.T) {
 			deps := p(t)
 			tt.setupMock(deps.Client)
 
-			gw := NewGateway(deps.BucketName, deps.Client, deps.PresignClient)
+			gw := NewGateway(deps.BucketName, deps.BucketName, deps.Client, deps.PresignClient)
 			photosMap, err := gw.GetUserPhotos(context.Background())
 
 			if tt.expectedErr != "" {
