@@ -221,6 +221,7 @@ func newBrandItemFromDetail(item *brandDetailDTO.Brand) *desc.BrandItem {
 		SiteLink:         item.Website,
 		Description:      item.Description,
 		SocialNetworks:   make([]*desc.BrandSocialNetworkItem, 0, len(item.SocialNetworks)),
+		About:            item.About,
 	}
 
 	for _, social := range item.SocialNetworks {

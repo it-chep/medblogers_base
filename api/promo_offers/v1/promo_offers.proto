@@ -87,6 +87,7 @@ message BrandItem {
   string site_link = 6;
   string description = 7;
   repeated BrandSocialNetworkItem social_networks = 8;
+  string about = 9;
 }
 
 message OfferItem {

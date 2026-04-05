@@ -281,6 +281,7 @@ type BrandItem struct {
 	SiteLink         string                    `protobuf:"bytes,6,opt,name=site_link,json=siteLink,proto3" json:"site_link,omitempty"`
 	Description      string                    `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	SocialNetworks   []*BrandSocialNetworkItem `protobuf:"bytes,8,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	About            string                    `protobuf:"bytes,9,opt,name=about,proto3" json:"about,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -369,6 +370,13 @@ func (x *BrandItem) GetSocialNetworks() []*BrandSocialNetworkItem {
 		return x.SocialNetworks
 	}
 	return nil
+}
+
+func (x *BrandItem) GetAbout() string {
+	if x != nil {
+		return x.About
+	}
+	return ""
 }
 
 type OfferItem struct {
@@ -1484,7 +1492,7 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x14\n" +
-	"\x05photo\x18\x04 \x01(\tR\x05photo\"\xb5\x02\n" +
+	"\x05photo\x18\x04 \x01(\tR\x05photo\"\xcb\x02\n" +
 	"\tBrandItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
@@ -1493,7 +1501,8 @@ const file_promo_offers_v1_promo_offers_proto_rawDesc = "" +
 	"\x11business_category\x18\x05 \x01(\v2\x1a.promo_offers.v1.NamedItemR\x10businessCategory\x12\x1b\n" +
 	"\tsite_link\x18\x06 \x01(\tR\bsiteLink\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12P\n" +
-	"\x0fsocial_networks\x18\b \x03(\v2'.promo_offers.v1.BrandSocialNetworkItemR\x0esocialNetworks\"\xce\x04\n" +
+	"\x0fsocial_networks\x18\b \x03(\v2'.promo_offers.v1.BrandSocialNetworkItemR\x0esocialNetworks\x12\x14\n" +
+	"\x05about\x18\t \x01(\tR\x05about\"\xce\x04\n" +
 	"\tOfferItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +

@@ -62,6 +62,7 @@ func (a *Action) Do(ctx context.Context, slug string) (*dto.Brand, error) {
 		Photo:       a.image.EnrichPhotoByKey(brand.GetPhoto()),
 		Website:     brand.GetWebsite(),
 		Description: brand.GetDescription(),
+		About:       brand.GetAbout(),
 	}
 
 	if topicName, ok := businessCategoriesMap[brand.GetBusinessCategoryID()]; ok {

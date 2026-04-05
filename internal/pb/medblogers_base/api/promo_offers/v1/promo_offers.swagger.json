@@ -300,6 +300,9 @@
             "type": "object",
             "$ref": "#/definitions/promo_offers.v1.BrandSocialNetworkItem"
           }
+        },
+        "about": {
+          "type": "string"
         }
       }
     },

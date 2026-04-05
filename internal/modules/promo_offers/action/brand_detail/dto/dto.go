@@ -20,5 +20,6 @@ type Brand struct {
 	BusinessCategory *BusinessCategory
 	Website          string
 	Description      string
+	About            string
 	SocialNetworks   []SocialNetwork
 }
