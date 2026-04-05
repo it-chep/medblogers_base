@@ -45,7 +45,7 @@ func (r *Repository) FilterOffers(ctx context.Context, req filterDTO.Request) (o
 	` + whereStmt + `
 		order by created_at desc, id desc
 	`
-
+	// todo убрать where 1 = 1
 	if req.Limit > 0 {
 		sql += fmt.Sprintf(" limit $%d", nextPH)
 		phValues = append(phValues, req.Limit)

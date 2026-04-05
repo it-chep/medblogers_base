@@ -61,8 +61,8 @@ type OfferSocialNetworkLinkDAO struct {
 }
 
 type OfferSocialNetworkDAO struct {
-	OfferID         uuid.UUID
-	SocialNetworkID int64
-	Name            string
-	Slug            string
+	OfferID         uuid.UUID `db:"promo_offer_id"`
+	SocialNetworkID int64     `db:"social_network_id"`
+	Name            string    `db:"name"`
+	Slug            string    `db:"slug"`
 }
