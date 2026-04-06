@@ -47,6 +47,45 @@
         ]
       }
     },
+    "/api/v1/blog/{blogSlug}/add_view": {
+      "post": {
+        "summary": "Добавить просмотр статьи",
+        "operationId": "BlogService_AddBlogView",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.AddBlogViewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.BlogService.AddBlogViewBody"
+            }
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
     "/api/v1/blogs": {
       "get": {
         "summary": "Все статьи",
@@ -182,6 +221,9 @@
     }
   },
   "definitions": {
+    "blogs.v1.AddBlogViewResponse": {
+      "type": "object"
+    },
     "blogs.v1.BlogMiniatures": {
       "type": "object",
       "properties": {
@@ -206,6 +248,17 @@
             "type": "object",
             "$ref": "#/definitions/blogs.v1.Category"
           }
+        },
+        "viewsCount": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs.v1.BlogService.AddBlogViewBody": {
+      "type": "object",
+      "properties": {
+        "cookieId": {
+          "type": "string"
         }
       }
     },
@@ -287,6 +340,9 @@
             "type": "object",
             "$ref": "#/definitions/blogs.v1.Category"
           }
+        },
+        "viewsCount": {
+          "type": "string"
         }
       }
     },
