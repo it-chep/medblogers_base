@@ -5,6 +5,7 @@ import (
 	"medblogers_base/internal/modules/blogs/domain/category"
 	desc "medblogers_base/internal/pb/medblogers_base/api/blogs/v1"
 	"medblogers_base/internal/pkg/converter"
+	"strconv"
 
 	"github.com/samber/lo"
 )
@@ -28,6 +29,7 @@ func (i *Implementation) GetBlogDetail(ctx context.Context, req *desc.GetBlogDet
 		AdditionalSeoText: blog.GetAdditionalSEOText(),
 		CreatedAt:         converter.FormatDateRussian(blog.GetCreatedAt()),
 		PhotoLink:         blog.GetPrimaryPhotoURL(),
+		ViewsCount:        strconv.FormatInt(blog.GetViewsCount(), 10),
 
 		Doctor: &desc.GetBlogDetailResponse_Doctor{
 			Name:           doc.Name,

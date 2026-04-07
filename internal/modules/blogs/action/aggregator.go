@@ -2,6 +2,7 @@ package action
 
 import (
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/blogs/action/add_blog_view"
 	"medblogers_base/internal/modules/blogs/action/filter_blogs"
 	"medblogers_base/internal/modules/blogs/action/get_blog_detail"
 	"medblogers_base/internal/modules/blogs/action/get_blogs"
@@ -14,6 +15,7 @@ import (
 
 // Aggregator собирает все процессы модуля в одно целое
 type Aggregator struct {
+	AddBlogView        *add_blog_view.Action
 	GetBlogDetail      *get_blog_detail.Action
 	GetBlogs           *get_blogs.Action
 	GetTopBlogs        *get_top_blogs.Action
@@ -25,6 +27,7 @@ type Aggregator struct {
 // NewAggregator конструктор
 func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppConfig) *Aggregator {
 	return &Aggregator{
+		AddBlogView:        add_blog_view.New(pool),
 		GetBlogs:           get_blogs.New(pool, cfg),
 		GetTopBlogs:        get_top_blogs.New(pool, cfg),
 		GetBlogDetail:      get_blog_detail.New(pool, clients, cfg),

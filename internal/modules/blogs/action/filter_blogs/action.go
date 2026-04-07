@@ -48,6 +48,11 @@ func (a *Action) Do(ctx context.Context, req dto.FilterRequest) (dto.Response, e
 		return dto.Response{}, err
 	}
 
+	viewsMap, err := a.commonDal.GetBlogsViewsCount(ctx, blogs.GetIDs())
+	if err != nil {
+		return dto.Response{}, err
+	}
+
 	bucket := a.config.GetS3Config().Bucket.Blogs
 	resp := dto.Response{}
 	for _, bl := range blogs {
@@ -55,6 +60,8 @@ func (a *Action) Do(ctx context.Context, req dto.FilterRequest) (dto.Response, e
 		if !ok {
 			continue
 		}
+
+		bl.SetViewsCount(viewsMap[bl.GetID()])
 		bl.SetPrimaryPhotoURL(bucket, photo.GetID(), photo.GetFileType())
 		resp.Blogs = append(resp.Blogs, dto.Blog{
 			Blog:       bl,
