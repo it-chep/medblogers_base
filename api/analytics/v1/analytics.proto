@@ -21,7 +21,8 @@ service AnalyticsService {
 }
 
 message CreateCookieIDRequest {
-  string auth_token = 1; // todo надо подумать над решением
+  string token = 1;
+  string domain = 2;
 }
 
 message CreateCookieIDResponse {

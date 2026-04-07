@@ -54,9 +54,11 @@
     "analytics.v1.CreateCookieIDRequest": {
       "type": "object",
       "properties": {
-        "authToken": {
-          "type": "string",
-          "title": "todo надо подумать над решением"
+        "token": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
         }
       }
     },

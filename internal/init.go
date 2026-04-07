@@ -14,6 +14,7 @@ import (
 	promoOfferBrandAdminV1 "medblogers_base/internal/app/api/admin/promo_offers/brand/v1"
 	promoOfferDictionaryAdminV1 "medblogers_base/internal/app/api/admin/promo_offers/dictionary/v1"
 	promoOfferOfferAdminV1 "medblogers_base/internal/app/api/admin/promo_offers/offer/v1"
+	analyticsV1 "medblogers_base/internal/app/api/analytics/v1"
 	authV1 "medblogers_base/internal/app/api/auth"
 	blogsV1 "medblogers_base/internal/app/api/blogs/v1"
 	doctorsV1 "medblogers_base/internal/app/api/doctors/v1"
@@ -41,9 +42,11 @@ import (
 	freelancerNetworkAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/network/v1"
 	freelancerSpecialityAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/freelancers/speciality/v1"
 
+	analyticsDesc "medblogers_base/internal/pb/medblogers_base/api/analytics/v1"
 	authDesc "medblogers_base/internal/pb/medblogers_base/api/auth/v1"
 
 	"medblogers_base/internal/app/middleware"
+	moduleAnalytics "medblogers_base/internal/modules/analytics"
 	moduleAuth "medblogers_base/internal/modules/auth"
 	blogAdminDesc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
 	mmDesc "medblogers_base/internal/pb/medblogers_base/api/admin/mastermind/v1"
@@ -128,6 +131,7 @@ func (a *App) initHttpConns(_ context.Context) *App {
 
 func (a *App) initModules(_ context.Context) *App {
 	a.modules = modules{
+		analytics:   moduleAnalytics.New(a.postgres),
 		admin:       moduleadmin.New(a.httpConns, a.config, a.postgres),
 		doctors:     moduledoctors.New(a.httpConns, a.config, a.postgres),
 		freelancers: moduleFreelancers.New(a.httpConns, a.config, a.postgres),
@@ -157,6 +161,7 @@ func (a *App) initCache(_ context.Context) *App {
 
 func (a *App) initControllers(_ context.Context) *App {
 	a.controllers = []transport.ServiceDesc{
+		analyticsDesc.NewAnalyticsServiceServiceDesc(analyticsV1.NewService(a.modules.analytics)),
 		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
@@ -205,6 +210,7 @@ func (a *App) initServer(_ context.Context) *App {
 			middleware.ConfigMiddleware(a.mutableConfig),
 			middleware.EmailMiddleware(a.config),
 			middleware.LoggerMiddleware(logger.New()),
+			middleware.CookieActivityMiddleware(a.modules.analytics.Actions.UpdateCookieActivity),
 			middleware.FormURLEncodedMiddleware,
 			middleware.RateLimitMiddleware,
 			middleware.ResponseTimeMiddleware,

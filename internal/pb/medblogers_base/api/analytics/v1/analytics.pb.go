@@ -25,7 +25,8 @@ const (
 
 type CreateCookieIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AuthToken     string                 `protobuf:"bytes,1,opt,name=auth_token,json=authToken,proto3" json:"auth_token,omitempty"` // todo надо подумать над решением
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Domain        string                 `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60,9 +61,16 @@ func (*CreateCookieIDRequest) Descriptor() ([]byte, []int) {
 	return file_analytics_v1_analytics_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateCookieIDRequest) GetAuthToken() string {
+func (x *CreateCookieIDRequest) GetToken() string {
 	if x != nil {
-		return x.AuthToken
+		return x.Token
+	}
+	return ""
+}
+
+func (x *CreateCookieIDRequest) GetDomain() string {
+	if x != nil {
+		return x.Domain
 	}
 	return ""
 }
@@ -115,10 +123,10 @@ var File_analytics_v1_analytics_proto protoreflect.FileDescriptor
 
 const file_analytics_v1_analytics_proto_rawDesc = "" +
 	"\n" +
-	"\x1canalytics/v1/analytics.proto\x12\fanalytics.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"6\n" +
-	"\x15CreateCookieIDRequest\x12\x1d\n" +
-	"\n" +
-	"auth_token\x18\x01 \x01(\tR\tauthToken\"5\n" +
+	"\x1canalytics/v1/analytics.proto\x12\fanalytics.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"E\n" +
+	"\x15CreateCookieIDRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
+	"\x06domain\x18\x02 \x01(\tR\x06domain\"5\n" +
 	"\x16CreateCookieIDResponse\x12\x1b\n" +
 	"\tcookie_id\x18\x01 \x01(\tR\bcookieId2\xed\x01\n" +
 	"\x10AnalyticsService\x12\xd8\x01\n" +
