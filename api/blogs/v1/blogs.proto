@@ -58,6 +58,15 @@ service BlogService {
             summary: "Фильтрация категорий по каким-то критериям"
         };
     }
+    rpc AddBlogView(AddBlogViewRequest) returns(AddBlogViewResponse)  {
+        option (google.api.http) = {
+            post: "/api/v1/blog/{blog_slug}/add_view"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Добавить просмотр статьи"
+        };
+    }
 }
 
 message Category {
@@ -75,6 +84,7 @@ message BlogMiniatures {
     string photo_link = 5;
 
     repeated Category categories = 6;
+    string views_count = 7;
 }
 
 message GetTopBlogsRequest{}
@@ -104,6 +114,7 @@ message GetBlogDetailResponse{
     string photo_link = 8;
     Doctor doctor = 9;
     repeated Category categories = 10;
+    string views_count = 11;
 
     message Doctor {
         string name = 1;
@@ -142,3 +153,10 @@ message FilterBlogsRequest {
 message FilterBlogsResponse {
     repeated BlogMiniatures blogs = 1;
 }
+
+message AddBlogViewRequest {
+    string blog_slug = 1;
+    string cookie_id = 2;
+}
+
+message AddBlogViewResponse {}

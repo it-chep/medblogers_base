@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"medblogers_base/internal/config"
+	"medblogers_base/internal/modules/analytics"
 	"medblogers_base/internal/modules/auth"
 	"medblogers_base/internal/modules/blogs"
 	"medblogers_base/internal/modules/freelancers"
@@ -25,6 +26,7 @@ import (
 )
 
 type modules struct {
+	analytics   *analytics.Module
 	auth        *auth.Module
 	admin       *admin.Module
 	doctors     *doctors.Module
@@ -60,9 +62,9 @@ func New(ctx context.Context) *App {
 	a.initConfig(ctx).
 		initPostgres(ctx).
 		initMutableConfig(ctx).
-		initServer(ctx).
 		initHttpConns(ctx).
 		initModules(ctx).
+		initServer(ctx).
 		initWorkers(ctx).
 		initControllers(ctx)
 

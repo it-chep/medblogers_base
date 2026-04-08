@@ -1,0 +1,102 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "analytics/v1/analytics.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AnalyticsService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/analytics/create_cookie_id": {
+      "post": {
+        "summary": "Создать идентификатор для пользователя",
+        "operationId": "AnalyticsService_CreateCookieID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/analytics.v1.CreateCookieIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/analytics.v1.CreateCookieIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AnalyticsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "analytics.v1.CreateCookieIDRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        }
+      }
+    },
+    "analytics.v1.CreateCookieIDResponse": {
+      "type": "object",
+      "properties": {
+        "cookieId": {
+          "type": "string"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

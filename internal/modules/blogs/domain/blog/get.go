@@ -48,6 +48,11 @@ func (b *Blog) GetOrderingNumber() int64 {
 	return b.orderingNumber
 }
 
+// GetViewsCount возвращает количество просмотров.
+func (b *Blog) GetViewsCount() int64 {
+	return b.viewsCount
+}
+
 // GetCreatedAt возвращает время создания.
 func (b *Blog) GetCreatedAt() time.Time {
 	return b.createdAt

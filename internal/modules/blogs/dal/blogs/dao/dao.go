@@ -105,6 +105,13 @@ func (d PrimaryPhotoDAO) ToDomain() *blog_photo.BlogPhoto {
 	)
 }
 
+type BlogViewsDAO struct {
+	BlogUUID   uuid.UUID `db:"blog_uuid"`
+	ViewsCount int64     `db:"views_count"`
+}
+
+type BlogViewsDAOs []*BlogViewsDAO
+
 // CategoryDAO .
 type CategoryDAO struct {
 	ID        int64     `db:"id"`

@@ -9,6 +9,8 @@ import (
 	"medblogers_base/internal/modules/blogs/client"
 	"medblogers_base/internal/modules/blogs/dal/blogs"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/google/uuid"
 )
 
 type Config interface {
@@ -63,6 +65,13 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.BlogDTO, error) {
 	if err != nil {
 		return dto.BlogDTO{}, err
 	}
+
+	viewsMap, err := a.commonDal.GetBlogsViewsCount(ctx, []uuid.UUID{blogEntity.GetID()})
+	if err != nil {
+		return dto.BlogDTO{}, err
+	}
+
+	blogEntity.SetViewsCount(viewsMap[blogEntity.GetID()])
 
 	return dto.BlogDTO{
 		BlogEntity: blogEntity,

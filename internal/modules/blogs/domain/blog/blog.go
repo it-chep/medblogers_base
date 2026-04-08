@@ -15,6 +15,7 @@ type Blog struct {
 	societyPreviewText string
 	additionalSEOText  string
 	orderingNumber     int64
+	viewsCount         int64
 	createdAt          time.Time
 
 	isActive        bool

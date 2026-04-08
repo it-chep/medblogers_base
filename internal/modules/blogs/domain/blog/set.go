@@ -12,3 +12,8 @@ func (b *Blog) SetPrimaryPhotoURL(bucket string, photoID uuid.UUID, fileType str
 
 	b.primaryPhotoURL = fmt.Sprintf("https://storage.yandexcloud.net/%s/images/%s", bucket, filename)
 }
+
+// SetViewsCount устанавливает количество просмотров статьи.
+func (b *Blog) SetViewsCount(viewsCount int64) {
+	b.viewsCount = viewsCount
+}

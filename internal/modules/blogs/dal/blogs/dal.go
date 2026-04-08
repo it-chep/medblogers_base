@@ -83,3 +83,34 @@ func (r *Repository) GetPrimaryPhotos(ctx context.Context, blogIDs []uuid.UUID) 
 	})
 	return blogPhotoMap, nil
 }
+
+// GetBlogsViewsCount получение количества просмотров для списка статей.
+func (r *Repository) GetBlogsViewsCount(ctx context.Context, blogIDs []uuid.UUID) (map[uuid.UUID]int64, error) {
+	if len(blogIDs) == 0 {
+		return map[uuid.UUID]int64{}, nil
+	}
+
+	sql := `
+		select blog_uuid, count(*) as views_count
+		from blogs_views
+		where blog_uuid = any($1::uuid[])
+		group by blog_uuid
+	`
+
+	ids := lo.Map(blogIDs, func(item uuid.UUID, _ int) string {
+		return item.String()
+	})
+
+	var views dao.BlogViewsDAOs
+	err := pgxscan.Select(ctx, r.db, &views, sql, ids)
+	if err != nil {
+		return nil, err
+	}
+
+	viewsMap := make(map[uuid.UUID]int64, len(blogIDs))
+	for _, item := range views {
+		viewsMap[item.BlogUUID] = item.ViewsCount
+	}
+
+	return viewsMap, nil
+}
