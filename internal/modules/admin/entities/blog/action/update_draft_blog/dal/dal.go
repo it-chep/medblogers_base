@@ -22,7 +22,21 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // GetBlogByID получение статьи по ID
 func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, error) {
-	sql := `select * from blog where id = $1`
+	sql := `
+		select id,
+		       name,
+		       created_at,
+		       slug,
+		       body,
+		       is_active,
+		       preview_text,
+		       society_preview,
+		       additional_seo_text,
+		       ordering_number,
+		       doctor_id
+		from blog
+		where id = $1
+	`
 
 	var blog dto.Blog
 	err := pgxscan.Get(ctx, r.db, &blog, sql, id.String())
