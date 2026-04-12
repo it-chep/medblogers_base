@@ -34,7 +34,7 @@ func (a *Action) Do(ctx context.Context, slug string) (dto.Response, error) {
 	}
 
 	if len(blogsResp) == 0 {
-		blogsResp, err = a.dal.GetTopBlogsFallback(ctx, slug)
+		blogsResp, err = a.dal.GetTopBlogsFallback(ctx)
 		if err != nil {
 			return dto.Response{}, err
 		}

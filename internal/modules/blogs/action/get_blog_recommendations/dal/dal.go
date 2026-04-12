@@ -40,7 +40,7 @@ func (r *Repository) GetBlogRecommendations(ctx context.Context, slug string) (b
 	return blogs.ToDomain(), nil
 }
 
-func (r *Repository) GetTopBlogsFallback(ctx context.Context, slug string) (blog.Blogs, error) {
+func (r *Repository) GetTopBlogsFallback(ctx context.Context) (blog.Blogs, error) {
 	sql := `
 		select id, name, slug, preview_text, created_at, ordering_number 
 		from blog 
@@ -50,7 +50,7 @@ func (r *Repository) GetTopBlogsFallback(ctx context.Context, slug string) (blog
 	`
 
 	var blogs dao.BlogMiniatureDAOs
-	err := pgxscan.Select(ctx, r.db, &blogs, sql, slug)
+	err := pgxscan.Select(ctx, r.db, &blogs, sql)
 	if err != nil {
 		return nil, err
 	}
