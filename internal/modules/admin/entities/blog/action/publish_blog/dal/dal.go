@@ -23,7 +23,17 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetBlogByID получение статьи по ID
 func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, error) {
 	sql := `
-		select b.*,
+		select b.id,
+		       b.name,
+		       b.created_at,
+		       b.slug,
+		       b.body,
+		       b.is_active,
+		       b.preview_text,
+		       b.society_preview,
+		       b.additional_seo_text,
+		       b.ordering_number,
+		       b.doctor_id,
 		       (select count(*) from blogs_recommendations br where br.blog_id = b.id) as recommendations_count
 		from blog b
 		where b.id = $1
