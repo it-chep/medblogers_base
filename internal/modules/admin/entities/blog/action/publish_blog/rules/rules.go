@@ -44,3 +44,17 @@ var RuleNotPublished = func() func(_ context.Context, blog *dto.Blog) (bool, err
 		return true, dto.ValidationError{}
 	}
 }
+
+// RuleRecommendationsCountToPublish проверяет что у статьи ровно 3 рекомендации.
+var RuleRecommendationsCountToPublish = func() func(_ context.Context, blog *dto.Blog) (bool, error) {
+	return func(_ context.Context, blog *dto.Blog) (bool, error) {
+		if blog.RecommendationsCount != 0 && blog.RecommendationsCount != 3 {
+			return false, dto.ValidationError{
+				Text:  "Если рекомендации указаны, их должно быть ровно 3",
+				Field: "recommendations",
+			}
+		}
+
+		return true, dto.ValidationError{}
+	}
+}

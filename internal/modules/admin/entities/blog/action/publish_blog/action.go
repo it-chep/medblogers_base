@@ -32,7 +32,9 @@ func (a *Action) Do(ctx context.Context, blogID uuid.UUID, primaryImageUUID *uui
 
 	validationErrors := spec.NewIndependentSpecification[*dto.Blog]().
 		And(rules.RuleFieldsAvailableToPublish()).
-		And(rules.RuleNotPublished()).Validate(ctx, &blog)
+		And(rules.RuleNotPublished()).
+		And(rules.RuleRecommendationsCountToPublish()).
+		Validate(ctx, &blog)
 
 	if len(validationErrors) > 0 {
 		return validationErrors[0]

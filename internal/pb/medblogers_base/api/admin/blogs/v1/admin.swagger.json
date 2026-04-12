@@ -165,6 +165,45 @@
         ]
       }
     },
+    "/api/v1/admin/blog/{blogId}/add_recommendation": {
+      "post": {
+        "summary": "Добавление рекомендации к статье",
+        "operationId": "AdminService_AddBlogRecommendation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.AddBlogRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.AddBlogRecommendationBody"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
     "/api/v1/admin/blog/{blogId}/delete_category": {
       "post": {
         "summary": "Удаление тега у статьи",
@@ -249,6 +288,45 @@
         ]
       }
     },
+    "/api/v1/admin/blog/{blogId}/delete_recommendation": {
+      "post": {
+        "summary": "Удаление рекомендации у статьи",
+        "operationId": "AdminService_DeleteBlogRecommendation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.DeleteBlogRecommendationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.AdminService.DeleteBlogRecommendationBody"
+            }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
     "/api/v1/admin/blog/{blogId}/publish": {
       "post": {
         "summary": "Публикация статьи",
@@ -281,6 +359,37 @@
             "schema": {
               "$ref": "#/definitions/admin.blogs.v1.AdminService.PublishBlogBody"
             }
+          }
+        ],
+        "tags": [
+          "AdminService"
+        ]
+      }
+    },
+    "/api/v1/admin/blog/{blogId}/recommendations": {
+      "get": {
+        "summary": "Получение рекомендаций статьи",
+        "operationId": "AdminService_GetBlogRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.blogs.v1.GetBlogRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -410,12 +519,23 @@
     "admin.blogs.v1.AddBlogCategoryResponse": {
       "type": "object"
     },
+    "admin.blogs.v1.AddBlogRecommendationResponse": {
+      "type": "object"
+    },
     "admin.blogs.v1.AdminService.AddBlogCategoryBody": {
       "type": "object",
       "properties": {
         "categoryId": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "admin.blogs.v1.AdminService.AddBlogRecommendationBody": {
+      "type": "object",
+      "properties": {
+        "recommendationBlogId": {
+          "type": "string"
         }
       }
     },
@@ -430,6 +550,14 @@
     },
     "admin.blogs.v1.AdminService.DeleteBlogImageBody": {
       "type": "object"
+    },
+    "admin.blogs.v1.AdminService.DeleteBlogRecommendationBody": {
+      "type": "object",
+      "properties": {
+        "recommendationBlogId": {
+          "type": "string"
+        }
+      }
     },
     "admin.blogs.v1.AdminService.PublishBlogBody": {
       "type": "object",
@@ -508,6 +636,9 @@
       "type": "object"
     },
     "admin.blogs.v1.DeleteBlogImageResponse": {
+      "type": "object"
+    },
+    "admin.blogs.v1.DeleteBlogRecommendationResponse": {
       "type": "object"
     },
     "admin.blogs.v1.GetBlogByIDResponse": {
@@ -597,6 +728,32 @@
           "format": "int64"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.blogs.v1.GetBlogRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/admin.blogs.v1.GetBlogRecommendationsResponse.Recommendation"
+          }
+        }
+      }
+    },
+    "admin.blogs.v1.GetBlogRecommendationsResponse.Recommendation": {
+      "type": "object",
+      "properties": {
+        "blogId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "slug": {
           "type": "string"
         }
       }

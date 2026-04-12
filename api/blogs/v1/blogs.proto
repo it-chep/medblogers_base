@@ -67,6 +67,14 @@ service BlogService {
             summary: "Добавить просмотр статьи"
         };
     }
+    rpc GetBlogRecommendations(GetBlogRecommendationsRequest) returns(GetBlogRecommendationsResponse)  {
+        option (google.api.http) = {
+            get: "/api/v1/blog/{blog_slug}/recommendations"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получение рекомендованных статей"
+        };
+    }
 }
 
 message Category {
@@ -160,3 +168,11 @@ message AddBlogViewRequest {
 }
 
 message AddBlogViewResponse {}
+
+message GetBlogRecommendationsRequest{
+  string blog_slug = 1;
+}
+
+message GetBlogRecommendationsResponse{
+  repeated BlogMiniatures blogs = 1;
+}

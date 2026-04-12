@@ -5,6 +5,7 @@ import (
 	"medblogers_base/internal/modules/blogs/action/add_blog_view"
 	"medblogers_base/internal/modules/blogs/action/filter_blogs"
 	"medblogers_base/internal/modules/blogs/action/get_blog_detail"
+	"medblogers_base/internal/modules/blogs/action/get_blog_recommendations"
 	"medblogers_base/internal/modules/blogs/action/get_blogs"
 	"medblogers_base/internal/modules/blogs/action/get_blogs_categories"
 	"medblogers_base/internal/modules/blogs/action/get_doctor_blogs"
@@ -15,24 +16,26 @@ import (
 
 // Aggregator собирает все процессы модуля в одно целое
 type Aggregator struct {
-	AddBlogView        *add_blog_view.Action
-	GetBlogDetail      *get_blog_detail.Action
-	GetBlogs           *get_blogs.Action
-	GetTopBlogs        *get_top_blogs.Action
-	GetDoctorBlogs     *get_doctor_blogs.Action
-	GetBlogsCategories *get_blogs_categories.Action
-	FilterBlogs        *filter_blogs.Action
+	AddBlogView            *add_blog_view.Action
+	GetBlogDetail          *get_blog_detail.Action
+	GetBlogs               *get_blogs.Action
+	GetTopBlogs            *get_top_blogs.Action
+	GetBlogRecommendations *get_blog_recommendations.Action
+	GetDoctorBlogs         *get_doctor_blogs.Action
+	GetBlogsCategories     *get_blogs_categories.Action
+	FilterBlogs            *filter_blogs.Action
 }
 
 // NewAggregator конструктор
 func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppConfig) *Aggregator {
 	return &Aggregator{
-		AddBlogView:        add_blog_view.New(pool),
-		GetBlogs:           get_blogs.New(pool, cfg),
-		GetTopBlogs:        get_top_blogs.New(pool, cfg),
-		GetBlogDetail:      get_blog_detail.New(pool, clients, cfg),
-		GetDoctorBlogs:     get_doctor_blogs.New(pool, cfg),
-		GetBlogsCategories: get_blogs_categories.New(pool),
-		FilterBlogs:        filter_blogs.New(pool, cfg),
+		AddBlogView:            add_blog_view.New(pool),
+		GetBlogs:               get_blogs.New(pool, cfg),
+		GetTopBlogs:            get_top_blogs.New(pool, cfg),
+		GetBlogRecommendations: get_blog_recommendations.New(pool, cfg),
+		GetBlogDetail:          get_blog_detail.New(pool, clients, cfg),
+		GetDoctorBlogs:         get_doctor_blogs.New(pool, cfg),
+		GetBlogsCategories:     get_blogs_categories.New(pool),
+		FilterBlogs:            filter_blogs.New(pool, cfg),
 	}
 }
