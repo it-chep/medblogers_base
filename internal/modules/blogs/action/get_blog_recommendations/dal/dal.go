@@ -42,11 +42,10 @@ func (r *Repository) GetBlogRecommendations(ctx context.Context, slug string) (b
 
 func (r *Repository) GetTopBlogsFallback(ctx context.Context, slug string) (blog.Blogs, error) {
 	sql := `
-		select id, name, slug, preview_text, created_at, ordering_number
-		from blog
-		where is_active is true
-		  and slug <> $1
-		order by ordering_number
+		select id, name, slug, preview_text, created_at, ordering_number 
+		from blog 
+		where is_active is true 
+		order by ordering_number 
 		limit 3
 	`
 
