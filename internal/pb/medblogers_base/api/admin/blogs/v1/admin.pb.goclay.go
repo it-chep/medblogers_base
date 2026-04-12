@@ -252,3 +252,57 @@ func (w *AdminServiceServiceDesc) GetBlogCategories(ctx context.Context, in *Get
 	}
 	return resp.(*GetBlogCategoriesResponse), err
 }
+
+func (w *AdminServiceServiceDesc) AddBlogRecommendation(ctx context.Context, in *AddBlogRecommendationRequest) (*AddBlogRecommendationResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.AddBlogRecommendation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.blogs.v1.AdminService/AddBlogRecommendation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.AddBlogRecommendation(ctx, req.(*AddBlogRecommendationRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*AddBlogRecommendationResponse), err
+}
+
+func (w *AdminServiceServiceDesc) DeleteBlogRecommendation(ctx context.Context, in *DeleteBlogRecommendationRequest) (*DeleteBlogRecommendationResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.DeleteBlogRecommendation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.blogs.v1.AdminService/DeleteBlogRecommendation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.DeleteBlogRecommendation(ctx, req.(*DeleteBlogRecommendationRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*DeleteBlogRecommendationResponse), err
+}
+
+func (w *AdminServiceServiceDesc) GetBlogRecommendations(ctx context.Context, in *GetBlogRecommendationsRequest) (*GetBlogRecommendationsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBlogRecommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.blogs.v1.AdminService/GetBlogRecommendations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBlogRecommendations(ctx, req.(*GetBlogRecommendationsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBlogRecommendationsResponse), err
+}

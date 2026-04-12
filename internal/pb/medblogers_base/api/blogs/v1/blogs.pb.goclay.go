@@ -180,3 +180,21 @@ func (w *BlogServiceServiceDesc) AddBlogView(ctx context.Context, in *AddBlogVie
 	}
 	return resp.(*AddBlogViewResponse), err
 }
+
+func (w *BlogServiceServiceDesc) GetBlogRecommendations(ctx context.Context, in *GetBlogRecommendationsRequest) (*GetBlogRecommendationsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBlogRecommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/blogs.v1.BlogService/GetBlogRecommendations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBlogRecommendations(ctx, req.(*GetBlogRecommendationsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBlogRecommendationsResponse), err
+}

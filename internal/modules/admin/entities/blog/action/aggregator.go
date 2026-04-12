@@ -4,10 +4,13 @@ import (
 	"medblogers_base/internal/config"
 	"medblogers_base/internal/modules/admin/client"
 	"medblogers_base/internal/modules/admin/entities/blog/action/add_blog_category"
+	"medblogers_base/internal/modules/admin/entities/blog/action/add_blog_recommendation"
 	"medblogers_base/internal/modules/admin/entities/blog/action/create_draft_blog"
 	"medblogers_base/internal/modules/admin/entities/blog/action/delete_blog_category"
 	"medblogers_base/internal/modules/admin/entities/blog/action/delete_blog_image"
+	"medblogers_base/internal/modules/admin/entities/blog/action/delete_blog_recommendation"
 	"medblogers_base/internal/modules/admin/entities/blog/action/get_blog_by_id"
+	"medblogers_base/internal/modules/admin/entities/blog/action/get_blog_recommendations"
 	"medblogers_base/internal/modules/admin/entities/blog/action/get_blogs"
 	"medblogers_base/internal/modules/admin/entities/blog/action/get_categories"
 	"medblogers_base/internal/modules/admin/entities/blog/action/publish_blog"
@@ -30,9 +33,12 @@ type BlogModuleAggregator struct {
 	PublishBlog   *publish_blog.Action
 	UnPublishBlog *unpublish_blog.Action
 
-	AddBlogCategory    *add_blog_category.Action
-	DeleteBlogCategory *delete_blog_category.Action
-	GetCategories      *get_categories.Action
+	AddBlogCategory          *add_blog_category.Action
+	DeleteBlogCategory       *delete_blog_category.Action
+	GetCategories            *get_categories.Action
+	AddBlogRecommendation    *add_blog_recommendation.Action
+	DeleteBlogRecommendation *delete_blog_recommendation.Action
+	GetBlogRecommendations   *get_blog_recommendations.Action
 }
 
 func New(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppConfig) *BlogModuleAggregator {
@@ -49,8 +55,11 @@ func New(pool postgres.PoolWrapper, clients *client.Aggregator, cfg config.AppCo
 		PublishBlog:   publish_blog.New(pool),
 		UnPublishBlog: unpublish_blog.New(pool),
 
-		AddBlogCategory:    add_blog_category.New(pool),
-		DeleteBlogCategory: delete_blog_category.New(pool),
-		GetCategories:      get_categories.New(pool),
+		AddBlogCategory:          add_blog_category.New(pool),
+		DeleteBlogCategory:       delete_blog_category.New(pool),
+		GetCategories:            get_categories.New(pool),
+		AddBlogRecommendation:    add_blog_recommendation.New(pool),
+		DeleteBlogRecommendation: delete_blog_recommendation.New(pool),
+		GetBlogRecommendations:   get_blog_recommendations.New(pool),
 	}
 }

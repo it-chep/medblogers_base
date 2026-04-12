@@ -19,17 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AdminService_GetBlogs_FullMethodName           = "/admin.blogs.v1.AdminService/GetBlogs"
-	AdminService_GetBlogByID_FullMethodName        = "/admin.blogs.v1.AdminService/GetBlogByID"
-	AdminService_CreateDraftBlog_FullMethodName    = "/admin.blogs.v1.AdminService/CreateDraftBlog"
-	AdminService_UpdateDraftBlog_FullMethodName    = "/admin.blogs.v1.AdminService/UpdateDraftBlog"
-	AdminService_SaveBlogImage_FullMethodName      = "/admin.blogs.v1.AdminService/SaveBlogImage"
-	AdminService_DeleteBlogImage_FullMethodName    = "/admin.blogs.v1.AdminService/DeleteBlogImage"
-	AdminService_PublishBlog_FullMethodName        = "/admin.blogs.v1.AdminService/PublishBlog"
-	AdminService_UnPublishBlog_FullMethodName      = "/admin.blogs.v1.AdminService/UnPublishBlog"
-	AdminService_AddBlogCategory_FullMethodName    = "/admin.blogs.v1.AdminService/AddBlogCategory"
-	AdminService_DeleteBlogCategory_FullMethodName = "/admin.blogs.v1.AdminService/DeleteBlogCategory"
-	AdminService_GetBlogCategories_FullMethodName  = "/admin.blogs.v1.AdminService/GetBlogCategories"
+	AdminService_GetBlogs_FullMethodName                 = "/admin.blogs.v1.AdminService/GetBlogs"
+	AdminService_GetBlogByID_FullMethodName              = "/admin.blogs.v1.AdminService/GetBlogByID"
+	AdminService_CreateDraftBlog_FullMethodName          = "/admin.blogs.v1.AdminService/CreateDraftBlog"
+	AdminService_UpdateDraftBlog_FullMethodName          = "/admin.blogs.v1.AdminService/UpdateDraftBlog"
+	AdminService_SaveBlogImage_FullMethodName            = "/admin.blogs.v1.AdminService/SaveBlogImage"
+	AdminService_DeleteBlogImage_FullMethodName          = "/admin.blogs.v1.AdminService/DeleteBlogImage"
+	AdminService_PublishBlog_FullMethodName              = "/admin.blogs.v1.AdminService/PublishBlog"
+	AdminService_UnPublishBlog_FullMethodName            = "/admin.blogs.v1.AdminService/UnPublishBlog"
+	AdminService_AddBlogCategory_FullMethodName          = "/admin.blogs.v1.AdminService/AddBlogCategory"
+	AdminService_DeleteBlogCategory_FullMethodName       = "/admin.blogs.v1.AdminService/DeleteBlogCategory"
+	AdminService_GetBlogCategories_FullMethodName        = "/admin.blogs.v1.AdminService/GetBlogCategories"
+	AdminService_AddBlogRecommendation_FullMethodName    = "/admin.blogs.v1.AdminService/AddBlogRecommendation"
+	AdminService_DeleteBlogRecommendation_FullMethodName = "/admin.blogs.v1.AdminService/DeleteBlogRecommendation"
+	AdminService_GetBlogRecommendations_FullMethodName   = "/admin.blogs.v1.AdminService/GetBlogRecommendations"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -50,6 +53,9 @@ type AdminServiceClient interface {
 	AddBlogCategory(ctx context.Context, in *AddBlogCategoryRequest, opts ...grpc.CallOption) (*AddBlogCategoryResponse, error)
 	DeleteBlogCategory(ctx context.Context, in *DeleteBlogCategoryRequest, opts ...grpc.CallOption) (*DeleteBlogCategoryResponse, error)
 	GetBlogCategories(ctx context.Context, in *GetBlogCategoriesRequest, opts ...grpc.CallOption) (*GetBlogCategoriesResponse, error)
+	AddBlogRecommendation(ctx context.Context, in *AddBlogRecommendationRequest, opts ...grpc.CallOption) (*AddBlogRecommendationResponse, error)
+	DeleteBlogRecommendation(ctx context.Context, in *DeleteBlogRecommendationRequest, opts ...grpc.CallOption) (*DeleteBlogRecommendationResponse, error)
+	GetBlogRecommendations(ctx context.Context, in *GetBlogRecommendationsRequest, opts ...grpc.CallOption) (*GetBlogRecommendationsResponse, error)
 }
 
 type adminServiceClient struct {
@@ -170,6 +176,36 @@ func (c *adminServiceClient) GetBlogCategories(ctx context.Context, in *GetBlogC
 	return out, nil
 }
 
+func (c *adminServiceClient) AddBlogRecommendation(ctx context.Context, in *AddBlogRecommendationRequest, opts ...grpc.CallOption) (*AddBlogRecommendationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddBlogRecommendationResponse)
+	err := c.cc.Invoke(ctx, AdminService_AddBlogRecommendation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) DeleteBlogRecommendation(ctx context.Context, in *DeleteBlogRecommendationRequest, opts ...grpc.CallOption) (*DeleteBlogRecommendationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteBlogRecommendationResponse)
+	err := c.cc.Invoke(ctx, AdminService_DeleteBlogRecommendation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) GetBlogRecommendations(ctx context.Context, in *GetBlogRecommendationsRequest, opts ...grpc.CallOption) (*GetBlogRecommendationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBlogRecommendationsResponse)
+	err := c.cc.Invoke(ctx, AdminService_GetBlogRecommendations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations should embed UnimplementedAdminServiceServer
 // for forward compatibility.
@@ -188,6 +224,9 @@ type AdminServiceServer interface {
 	AddBlogCategory(context.Context, *AddBlogCategoryRequest) (*AddBlogCategoryResponse, error)
 	DeleteBlogCategory(context.Context, *DeleteBlogCategoryRequest) (*DeleteBlogCategoryResponse, error)
 	GetBlogCategories(context.Context, *GetBlogCategoriesRequest) (*GetBlogCategoriesResponse, error)
+	AddBlogRecommendation(context.Context, *AddBlogRecommendationRequest) (*AddBlogRecommendationResponse, error)
+	DeleteBlogRecommendation(context.Context, *DeleteBlogRecommendationRequest) (*DeleteBlogRecommendationResponse, error)
+	GetBlogRecommendations(context.Context, *GetBlogRecommendationsRequest) (*GetBlogRecommendationsResponse, error)
 }
 
 // UnimplementedAdminServiceServer should be embedded to have
@@ -229,6 +268,15 @@ func (UnimplementedAdminServiceServer) DeleteBlogCategory(context.Context, *Dele
 }
 func (UnimplementedAdminServiceServer) GetBlogCategories(context.Context, *GetBlogCategoriesRequest) (*GetBlogCategoriesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBlogCategories not implemented")
+}
+func (UnimplementedAdminServiceServer) AddBlogRecommendation(context.Context, *AddBlogRecommendationRequest) (*AddBlogRecommendationResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddBlogRecommendation not implemented")
+}
+func (UnimplementedAdminServiceServer) DeleteBlogRecommendation(context.Context, *DeleteBlogRecommendationRequest) (*DeleteBlogRecommendationResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteBlogRecommendation not implemented")
+}
+func (UnimplementedAdminServiceServer) GetBlogRecommendations(context.Context, *GetBlogRecommendationsRequest) (*GetBlogRecommendationsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBlogRecommendations not implemented")
 }
 func (UnimplementedAdminServiceServer) testEmbeddedByValue() {}
 
@@ -448,6 +496,60 @@ func _AdminService_GetBlogCategories_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_AddBlogRecommendation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBlogRecommendationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).AddBlogRecommendation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_AddBlogRecommendation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).AddBlogRecommendation(ctx, req.(*AddBlogRecommendationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_DeleteBlogRecommendation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBlogRecommendationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).DeleteBlogRecommendation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_DeleteBlogRecommendation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).DeleteBlogRecommendation(ctx, req.(*DeleteBlogRecommendationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_GetBlogRecommendations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBlogRecommendationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).GetBlogRecommendations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_GetBlogRecommendations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).GetBlogRecommendations(ctx, req.(*GetBlogRecommendationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -498,6 +600,18 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBlogCategories",
 			Handler:    _AdminService_GetBlogCategories_Handler,
+		},
+		{
+			MethodName: "AddBlogRecommendation",
+			Handler:    _AdminService_AddBlogRecommendation_Handler,
+		},
+		{
+			MethodName: "DeleteBlogRecommendation",
+			Handler:    _AdminService_DeleteBlogRecommendation_Handler,
+		},
+		{
+			MethodName: "GetBlogRecommendations",
+			Handler:    _AdminService_GetBlogRecommendations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

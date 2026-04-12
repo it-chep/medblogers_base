@@ -86,6 +86,37 @@
         ]
       }
     },
+    "/api/v1/blog/{blogSlug}/recommendations": {
+      "get": {
+        "summary": "Получение рекомендованных статей",
+        "operationId": "BlogService_GetBlogRecommendations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.GetBlogRecommendationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blogSlug",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
     "/api/v1/blogs": {
       "get": {
         "summary": "Все статьи",
@@ -360,6 +391,18 @@
         },
         "specialityName": {
           "type": "string"
+        }
+      }
+    },
+    "blogs.v1.GetBlogRecommendationsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.BlogMiniatures"
+          }
         }
       }
     },

@@ -106,6 +106,32 @@ service AdminService {
             summary: "Получение тегов статей"
         };
     }
+    rpc AddBlogRecommendation(AddBlogRecommendationRequest) returns (AddBlogRecommendationResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/add_recommendation"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Добавление рекомендации к статье"
+        };
+    }
+    rpc DeleteBlogRecommendation(DeleteBlogRecommendationRequest) returns (DeleteBlogRecommendationResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/admin/blog/{blog_id}/delete_recommendation"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Удаление рекомендации у статьи"
+        };
+    }
+    rpc GetBlogRecommendations(GetBlogRecommendationsRequest) returns (GetBlogRecommendationsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/admin/blog/{blog_id}/recommendations"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Получение рекомендаций статьи"
+        };
+    }
     //  rpc MoveOrdering(MoveOrderingRequest) returns (MoveOrderingResponse) {
     //    option (google.api.http) = {
     //      post: "/api/v1/blog/{blog_id}/move_ordering"
@@ -253,5 +279,33 @@ message GetBlogCategoriesResponse{
     message Category {
         int64 id = 1;
         string name = 2;
+    }
+}
+
+message AddBlogRecommendationRequest {
+    string blog_id = 1;
+    string recommendation_blog_id = 2;
+}
+
+message AddBlogRecommendationResponse {}
+
+message DeleteBlogRecommendationRequest {
+    string blog_id = 1;
+    string recommendation_blog_id = 2;
+}
+
+message DeleteBlogRecommendationResponse {}
+
+message GetBlogRecommendationsRequest {
+    string blog_id = 1;
+}
+
+message GetBlogRecommendationsResponse {
+    repeated Recommendation recommendations = 1;
+
+    message Recommendation {
+        string blog_id = 1;
+        string title = 2;
+        string slug = 3;
     }
 }
