@@ -11,6 +11,7 @@ type Request struct {
 	Name               string
 	Slug               string
 	Body               string
+	SearchText         string
 	IsActive           bool
 	PreviewText        string
 	SocietyPreviewText string

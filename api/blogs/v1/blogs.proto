@@ -75,6 +75,15 @@ service BlogService {
             summary: "Получение рекомендованных статей"
         };
     }
+    rpc SearchBlogs(SearchBlogsRequest) returns(SearchBlogsResponse)  {
+        option (google.api.http) = {
+            post: "/api/v1/blogs/search"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Поиск статей по ключевым словам"
+        };
+    }
 }
 
 message Category {
@@ -175,4 +184,20 @@ message GetBlogRecommendationsRequest{
 
 message GetBlogRecommendationsResponse{
   repeated BlogMiniatures blogs = 1;
+}
+
+message SearchBlogsRequest {
+    string query = 1;
+}
+
+message SearchBlogsResponse {
+    repeated SearchItem blogs = 1;
+
+    message SearchItem {
+        string title = 1;
+        string slug = 2;
+        string preview_text = 3;
+        string photo_link = 4;
+        string views_count = 5;
+    }
 }

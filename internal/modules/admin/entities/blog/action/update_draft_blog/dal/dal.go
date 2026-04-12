@@ -43,7 +43,12 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 			society_preview = $6,
 			additional_seo_text = $7,
 			ordering_number = $8,
-			doctor_id = $9
+			doctor_id = $9,
+			search_text = $10,
+			search_vector =
+				setweight(to_tsvector('russian', coalesce($2, '')), 'A') ||
+				setweight(to_tsvector('russian', coalesce($5, '')), 'B') ||
+				setweight(to_tsvector('russian', coalesce($10, '')), 'C')
 		where id = $1
 	`
 
@@ -63,6 +68,8 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 	} else {
 		args = append(args, nil)
 	}
+
+	args = append(args, req.SearchText)
 
 	_, err := r.db.Exec(ctx, sql, args...)
 	if err != nil {
