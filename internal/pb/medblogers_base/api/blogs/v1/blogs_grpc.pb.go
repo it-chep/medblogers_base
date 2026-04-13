@@ -27,6 +27,7 @@ const (
 	BlogService_FilterBlogs_FullMethodName            = "/blogs.v1.BlogService/FilterBlogs"
 	BlogService_AddBlogView_FullMethodName            = "/blogs.v1.BlogService/AddBlogView"
 	BlogService_GetBlogRecommendations_FullMethodName = "/blogs.v1.BlogService/GetBlogRecommendations"
+	BlogService_SearchBlogs_FullMethodName            = "/blogs.v1.BlogService/SearchBlogs"
 )
 
 // BlogServiceClient is the client API for BlogService service.
@@ -43,6 +44,7 @@ type BlogServiceClient interface {
 	FilterBlogs(ctx context.Context, in *FilterBlogsRequest, opts ...grpc.CallOption) (*FilterBlogsResponse, error)
 	AddBlogView(ctx context.Context, in *AddBlogViewRequest, opts ...grpc.CallOption) (*AddBlogViewResponse, error)
 	GetBlogRecommendations(ctx context.Context, in *GetBlogRecommendationsRequest, opts ...grpc.CallOption) (*GetBlogRecommendationsResponse, error)
+	SearchBlogs(ctx context.Context, in *SearchBlogsRequest, opts ...grpc.CallOption) (*SearchBlogsResponse, error)
 }
 
 type blogServiceClient struct {
@@ -133,6 +135,16 @@ func (c *blogServiceClient) GetBlogRecommendations(ctx context.Context, in *GetB
 	return out, nil
 }
 
+func (c *blogServiceClient) SearchBlogs(ctx context.Context, in *SearchBlogsRequest, opts ...grpc.CallOption) (*SearchBlogsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchBlogsResponse)
+	err := c.cc.Invoke(ctx, BlogService_SearchBlogs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BlogServiceServer is the server API for BlogService service.
 // All implementations should embed UnimplementedBlogServiceServer
 // for forward compatibility.
@@ -147,6 +159,7 @@ type BlogServiceServer interface {
 	FilterBlogs(context.Context, *FilterBlogsRequest) (*FilterBlogsResponse, error)
 	AddBlogView(context.Context, *AddBlogViewRequest) (*AddBlogViewResponse, error)
 	GetBlogRecommendations(context.Context, *GetBlogRecommendationsRequest) (*GetBlogRecommendationsResponse, error)
+	SearchBlogs(context.Context, *SearchBlogsRequest) (*SearchBlogsResponse, error)
 }
 
 // UnimplementedBlogServiceServer should be embedded to have
@@ -179,6 +192,9 @@ func (UnimplementedBlogServiceServer) AddBlogView(context.Context, *AddBlogViewR
 }
 func (UnimplementedBlogServiceServer) GetBlogRecommendations(context.Context, *GetBlogRecommendationsRequest) (*GetBlogRecommendationsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetBlogRecommendations not implemented")
+}
+func (UnimplementedBlogServiceServer) SearchBlogs(context.Context, *SearchBlogsRequest) (*SearchBlogsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SearchBlogs not implemented")
 }
 func (UnimplementedBlogServiceServer) testEmbeddedByValue() {}
 
@@ -344,6 +360,24 @@ func _BlogService_GetBlogRecommendations_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BlogService_SearchBlogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchBlogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).SearchBlogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BlogService_SearchBlogs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).SearchBlogs(ctx, req.(*SearchBlogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BlogService_ServiceDesc is the grpc.ServiceDesc for BlogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -382,6 +416,10 @@ var BlogService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBlogRecommendations",
 			Handler:    _BlogService_GetBlogRecommendations_Handler,
+		},
+		{
+			MethodName: "SearchBlogs",
+			Handler:    _BlogService_SearchBlogs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

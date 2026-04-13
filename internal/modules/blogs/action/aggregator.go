@@ -10,6 +10,7 @@ import (
 	"medblogers_base/internal/modules/blogs/action/get_blogs_categories"
 	"medblogers_base/internal/modules/blogs/action/get_doctor_blogs"
 	"medblogers_base/internal/modules/blogs/action/get_top_blogs"
+	"medblogers_base/internal/modules/blogs/action/search_blogs"
 	"medblogers_base/internal/modules/blogs/client"
 	"medblogers_base/internal/pkg/postgres"
 )
@@ -24,6 +25,7 @@ type Aggregator struct {
 	GetDoctorBlogs         *get_doctor_blogs.Action
 	GetBlogsCategories     *get_blogs_categories.Action
 	FilterBlogs            *filter_blogs.Action
+	SearchBlogs            *search_blogs.Action
 }
 
 // NewAggregator конструктор
@@ -37,5 +39,6 @@ func NewAggregator(pool postgres.PoolWrapper, clients *client.Aggregator, cfg co
 		GetDoctorBlogs:         get_doctor_blogs.New(pool, cfg),
 		GetBlogsCategories:     get_blogs_categories.New(pool),
 		FilterBlogs:            filter_blogs.New(pool, cfg),
+		SearchBlogs:            search_blogs.New(pool, cfg),
 	}
 }

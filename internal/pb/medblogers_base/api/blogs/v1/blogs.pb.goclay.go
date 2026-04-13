@@ -198,3 +198,21 @@ func (w *BlogServiceServiceDesc) GetBlogRecommendations(ctx context.Context, in 
 	}
 	return resp.(*GetBlogRecommendationsResponse), err
 }
+
+func (w *BlogServiceServiceDesc) SearchBlogs(ctx context.Context, in *SearchBlogsRequest) (*SearchBlogsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.SearchBlogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/blogs.v1.BlogService/SearchBlogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.SearchBlogs(ctx, req.(*SearchBlogsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*SearchBlogsResponse), err
+}

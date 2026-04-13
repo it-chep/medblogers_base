@@ -227,6 +227,39 @@
         ]
       }
     },
+    "/api/v1/blogs/search": {
+      "post": {
+        "summary": "Поиск статей по ключевым словам",
+        "operationId": "BlogService_SearchBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.SearchBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blogs.v1.SearchBlogsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlogService"
+        ]
+      }
+    },
     "/api/v1/blogs/top": {
       "get": {
         "summary": "Топ-3 или топ статей, для главной и тд",
@@ -477,6 +510,46 @@
             "type": "object",
             "$ref": "#/definitions/blogs.v1.BlogMiniatures"
           }
+        }
+      }
+    },
+    "blogs.v1.SearchBlogsRequest": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs.v1.SearchBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/blogs.v1.SearchBlogsResponse.SearchItem"
+          }
+        }
+      }
+    },
+    "blogs.v1.SearchBlogsResponse.SearchItem": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "previewText": {
+          "type": "string"
+        },
+        "photoLink": {
+          "type": "string"
+        },
+        "viewsCount": {
+          "type": "string"
         }
       }
     },

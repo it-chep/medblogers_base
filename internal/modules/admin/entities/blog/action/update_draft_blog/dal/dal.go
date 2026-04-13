@@ -22,7 +22,21 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 // GetBlogByID получение статьи по ID
 func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, error) {
-	sql := `select * from blog where id = $1`
+	sql := `
+		select id,
+		       name,
+		       created_at,
+		       slug,
+		       body,
+		       is_active,
+		       preview_text,
+		       society_preview,
+		       additional_seo_text,
+		       ordering_number,
+		       doctor_id
+		from blog
+		where id = $1
+	`
 
 	var blog dto.Blog
 	err := pgxscan.Get(ctx, r.db, &blog, sql, id.String())
@@ -43,7 +57,12 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 			society_preview = $6,
 			additional_seo_text = $7,
 			ordering_number = $8,
-			doctor_id = $9
+			doctor_id = $9,
+			search_text = $10,
+			search_vector =
+				setweight(to_tsvector('russian', coalesce($2, '')), 'A') ||
+				setweight(to_tsvector('russian', coalesce($5, '')), 'B') ||
+				setweight(to_tsvector('russian', coalesce($10, '')), 'C')
 		where id = $1
 	`
 
@@ -63,6 +82,8 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 	} else {
 		args = append(args, nil)
 	}
+
+	args = append(args, req.SearchText)
 
 	_, err := r.db.Exec(ctx, sql, args...)
 	if err != nil {
