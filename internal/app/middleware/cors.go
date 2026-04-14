@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"fmt"
-	"medblogers_base/internal/pkg/logger"
 	"net/http"
 	"net/url"
 	"os"
@@ -23,7 +22,7 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 			origin := r.Header.Get("Origin")
 			allowedOrigin := ""
 
-			logger.Message(r.Context(), fmt.Sprintf("ORIGIN: %s", origin))
+			fmt.Printf("ORIGIN: %s\n", origin)
 
 			if origin != "" {
 				if os.Getenv("DEBUG") == "true" {
