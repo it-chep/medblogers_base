@@ -26,6 +26,9 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 				fmt.Printf("%s: %v", key, values)
 			}
 
+			u, _ := url.Parse(origin)
+			fmt.Printf("URL-Origin: %s\n", u)
+
 			if origin != "" {
 				if os.Getenv("DEBUG") == "true" {
 					allowedOrigin = origin
