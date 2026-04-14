@@ -48,6 +48,39 @@
           "AnalyticsService"
         ]
       }
+    },
+    "/api/v1/analytics/save": {
+      "post": {
+        "summary": "Сохранить аналитику на сайте",
+        "operationId": "AnalyticsService_SaveAnalytics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/analytics.v1.SaveAnalyticsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/analytics.v1.SaveAnalyticsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AnalyticsService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -69,6 +102,42 @@
           "type": "string"
         }
       }
+    },
+    "analytics.v1.SaveAnalyticsRequest": {
+      "type": "object",
+      "properties": {
+        "utmSource": {
+          "type": "string"
+        },
+        "utmMedium": {
+          "type": "string"
+        },
+        "utmCampaign": {
+          "type": "string"
+        },
+        "utmTerm": {
+          "type": "string"
+        },
+        "utmContent": {
+          "type": "string"
+        },
+        "domainName": {
+          "type": "string"
+        },
+        "cookieId": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string",
+          "title": "todo неточные поля"
+        },
+        "event": {
+          "type": "string"
+        }
+      }
+    },
+    "analytics.v1.SaveAnalyticsResponse": {
+      "type": "object"
     },
     "google.protobuf.Any": {
       "type": "object",

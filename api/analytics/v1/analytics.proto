@@ -9,13 +9,22 @@ option go_package = "api/analytics/v1";
 
 // Сервис для работы со статьями
 service AnalyticsService {
-  rpc CreateCookieID(CreateCookieIDRequest) returns(CreateCookieIDResponse)  {
+  rpc CreateCookieID(CreateCookieIDRequest) returns (CreateCookieIDResponse)  {
     option (google.api.http) = {
       post: "/api/v1/analytics/create_cookie_id"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Создать идентификатор для пользователя"
+    };
+  }
+  rpc SaveAnalytics(SaveAnalyticsRequest) returns (SaveAnalyticsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/analytics/save"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Сохранить аналитику на сайте"
     };
   }
 }
@@ -28,3 +37,19 @@ message CreateCookieIDRequest {
 message CreateCookieIDResponse {
   string cookie_id = 1;
 }
+
+message SaveAnalyticsRequest {
+  string utm_source = 1;
+  string utm_medium = 2;
+  string utm_campaign = 3;
+  string utm_term = 4;
+  string utm_content = 5;
+
+  string domain_name = 6;
+  string cookie_id = 7;
+  // todo неточные поля
+  optional string company = 8;
+  optional string event = 9;
+}
+
+message SaveAnalyticsResponse {}

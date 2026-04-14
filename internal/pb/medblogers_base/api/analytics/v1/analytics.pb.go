@@ -119,6 +119,151 @@ func (x *CreateCookieIDResponse) GetCookieId() string {
 	return ""
 }
 
+type SaveAnalyticsRequest struct {
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	UtmSource   string                 `protobuf:"bytes,1,opt,name=utm_source,json=utmSource,proto3" json:"utm_source,omitempty"`
+	UtmMedium   string                 `protobuf:"bytes,2,opt,name=utm_medium,json=utmMedium,proto3" json:"utm_medium,omitempty"`
+	UtmCampaign string                 `protobuf:"bytes,3,opt,name=utm_campaign,json=utmCampaign,proto3" json:"utm_campaign,omitempty"`
+	UtmTerm     string                 `protobuf:"bytes,4,opt,name=utm_term,json=utmTerm,proto3" json:"utm_term,omitempty"`
+	UtmContent  string                 `protobuf:"bytes,5,opt,name=utm_content,json=utmContent,proto3" json:"utm_content,omitempty"`
+	DomainName  string                 `protobuf:"bytes,6,opt,name=domain_name,json=domainName,proto3" json:"domain_name,omitempty"`
+	CookieId    string                 `protobuf:"bytes,7,opt,name=cookie_id,json=cookieId,proto3" json:"cookie_id,omitempty"`
+	// todo неточные поля
+	Company       *string `protobuf:"bytes,8,opt,name=company,proto3,oneof" json:"company,omitempty"`
+	Event         *string `protobuf:"bytes,9,opt,name=event,proto3,oneof" json:"event,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveAnalyticsRequest) Reset() {
+	*x = SaveAnalyticsRequest{}
+	mi := &file_analytics_v1_analytics_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveAnalyticsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveAnalyticsRequest) ProtoMessage() {}
+
+func (x *SaveAnalyticsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_analytics_v1_analytics_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveAnalyticsRequest.ProtoReflect.Descriptor instead.
+func (*SaveAnalyticsRequest) Descriptor() ([]byte, []int) {
+	return file_analytics_v1_analytics_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *SaveAnalyticsRequest) GetUtmSource() string {
+	if x != nil {
+		return x.UtmSource
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetUtmMedium() string {
+	if x != nil {
+		return x.UtmMedium
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetUtmCampaign() string {
+	if x != nil {
+		return x.UtmCampaign
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetUtmTerm() string {
+	if x != nil {
+		return x.UtmTerm
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetUtmContent() string {
+	if x != nil {
+		return x.UtmContent
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetDomainName() string {
+	if x != nil {
+		return x.DomainName
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetCookieId() string {
+	if x != nil {
+		return x.CookieId
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetCompany() string {
+	if x != nil && x.Company != nil {
+		return *x.Company
+	}
+	return ""
+}
+
+func (x *SaveAnalyticsRequest) GetEvent() string {
+	if x != nil && x.Event != nil {
+		return *x.Event
+	}
+	return ""
+}
+
+type SaveAnalyticsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveAnalyticsResponse) Reset() {
+	*x = SaveAnalyticsResponse{}
+	mi := &file_analytics_v1_analytics_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveAnalyticsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveAnalyticsResponse) ProtoMessage() {}
+
+func (x *SaveAnalyticsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_analytics_v1_analytics_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveAnalyticsResponse.ProtoReflect.Descriptor instead.
+func (*SaveAnalyticsResponse) Descriptor() ([]byte, []int) {
+	return file_analytics_v1_analytics_proto_rawDescGZIP(), []int{3}
+}
+
 var File_analytics_v1_analytics_proto protoreflect.FileDescriptor
 
 const file_analytics_v1_analytics_proto_rawDesc = "" +
@@ -128,9 +273,28 @@ const file_analytics_v1_analytics_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06domain\x18\x02 \x01(\tR\x06domain\"5\n" +
 	"\x16CreateCookieIDResponse\x12\x1b\n" +
-	"\tcookie_id\x18\x01 \x01(\tR\bcookieId2\xed\x01\n" +
+	"\tcookie_id\x18\x01 \x01(\tR\bcookieId\"\xc1\x02\n" +
+	"\x14SaveAnalyticsRequest\x12\x1d\n" +
+	"\n" +
+	"utm_source\x18\x01 \x01(\tR\tutmSource\x12\x1d\n" +
+	"\n" +
+	"utm_medium\x18\x02 \x01(\tR\tutmMedium\x12!\n" +
+	"\futm_campaign\x18\x03 \x01(\tR\vutmCampaign\x12\x19\n" +
+	"\butm_term\x18\x04 \x01(\tR\autmTerm\x12\x1f\n" +
+	"\vutm_content\x18\x05 \x01(\tR\n" +
+	"utmContent\x12\x1f\n" +
+	"\vdomain_name\x18\x06 \x01(\tR\n" +
+	"domainName\x12\x1b\n" +
+	"\tcookie_id\x18\a \x01(\tR\bcookieId\x12\x1d\n" +
+	"\acompany\x18\b \x01(\tH\x00R\acompany\x88\x01\x01\x12\x19\n" +
+	"\x05event\x18\t \x01(\tH\x01R\x05event\x88\x01\x01B\n" +
+	"\n" +
+	"\b_companyB\b\n" +
+	"\x06_event\"\x17\n" +
+	"\x15SaveAnalyticsResponse2\xa5\x03\n" +
 	"\x10AnalyticsService\x12\xd8\x01\n" +
-	"\x0eCreateCookieID\x12#.analytics.v1.CreateCookieIDRequest\x1a$.analytics.v1.CreateCookieIDResponse\"{\x92AK\x12IСоздать идентификатор для пользователя\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/analytics/create_cookie_idB\x12Z\x10api/analytics/v1b\x06proto3"
+	"\x0eCreateCookieID\x12#.analytics.v1.CreateCookieIDRequest\x1a$.analytics.v1.CreateCookieIDResponse\"{\x92AK\x12IСоздать идентификатор для пользователя\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/analytics/create_cookie_id\x12\xb5\x01\n" +
+	"\rSaveAnalytics\x12\".analytics.v1.SaveAnalyticsRequest\x1a#.analytics.v1.SaveAnalyticsResponse\"[\x92A7\x125Сохранить аналитику на сайте\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/api/v1/analytics/saveB\x12Z\x10api/analytics/v1b\x06proto3"
 
 var (
 	file_analytics_v1_analytics_proto_rawDescOnce sync.Once
@@ -144,16 +308,20 @@ func file_analytics_v1_analytics_proto_rawDescGZIP() []byte {
 	return file_analytics_v1_analytics_proto_rawDescData
 }
 
-var file_analytics_v1_analytics_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_analytics_v1_analytics_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_analytics_v1_analytics_proto_goTypes = []any{
 	(*CreateCookieIDRequest)(nil),  // 0: analytics.v1.CreateCookieIDRequest
 	(*CreateCookieIDResponse)(nil), // 1: analytics.v1.CreateCookieIDResponse
+	(*SaveAnalyticsRequest)(nil),   // 2: analytics.v1.SaveAnalyticsRequest
+	(*SaveAnalyticsResponse)(nil),  // 3: analytics.v1.SaveAnalyticsResponse
 }
 var file_analytics_v1_analytics_proto_depIdxs = []int32{
 	0, // 0: analytics.v1.AnalyticsService.CreateCookieID:input_type -> analytics.v1.CreateCookieIDRequest
-	1, // 1: analytics.v1.AnalyticsService.CreateCookieID:output_type -> analytics.v1.CreateCookieIDResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: analytics.v1.AnalyticsService.SaveAnalytics:input_type -> analytics.v1.SaveAnalyticsRequest
+	1, // 2: analytics.v1.AnalyticsService.CreateCookieID:output_type -> analytics.v1.CreateCookieIDResponse
+	3, // 3: analytics.v1.AnalyticsService.SaveAnalytics:output_type -> analytics.v1.SaveAnalyticsResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -164,13 +332,14 @@ func file_analytics_v1_analytics_proto_init() {
 	if File_analytics_v1_analytics_proto != nil {
 		return
 	}
+	file_analytics_v1_analytics_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_analytics_v1_analytics_proto_rawDesc), len(file_analytics_v1_analytics_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

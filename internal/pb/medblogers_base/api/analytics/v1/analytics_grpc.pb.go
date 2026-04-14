@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	AnalyticsService_CreateCookieID_FullMethodName = "/analytics.v1.AnalyticsService/CreateCookieID"
+	AnalyticsService_SaveAnalytics_FullMethodName  = "/analytics.v1.AnalyticsService/SaveAnalytics"
 )
 
 // AnalyticsServiceClient is the client API for AnalyticsService service.
@@ -29,6 +30,7 @@ const (
 // Сервис для работы со статьями
 type AnalyticsServiceClient interface {
 	CreateCookieID(ctx context.Context, in *CreateCookieIDRequest, opts ...grpc.CallOption) (*CreateCookieIDResponse, error)
+	SaveAnalytics(ctx context.Context, in *SaveAnalyticsRequest, opts ...grpc.CallOption) (*SaveAnalyticsResponse, error)
 }
 
 type analyticsServiceClient struct {
@@ -49,6 +51,16 @@ func (c *analyticsServiceClient) CreateCookieID(ctx context.Context, in *CreateC
 	return out, nil
 }
 
+func (c *analyticsServiceClient) SaveAnalytics(ctx context.Context, in *SaveAnalyticsRequest, opts ...grpc.CallOption) (*SaveAnalyticsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveAnalyticsResponse)
+	err := c.cc.Invoke(ctx, AnalyticsService_SaveAnalytics_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AnalyticsServiceServer is the server API for AnalyticsService service.
 // All implementations should embed UnimplementedAnalyticsServiceServer
 // for forward compatibility.
@@ -56,6 +68,7 @@ func (c *analyticsServiceClient) CreateCookieID(ctx context.Context, in *CreateC
 // Сервис для работы со статьями
 type AnalyticsServiceServer interface {
 	CreateCookieID(context.Context, *CreateCookieIDRequest) (*CreateCookieIDResponse, error)
+	SaveAnalytics(context.Context, *SaveAnalyticsRequest) (*SaveAnalyticsResponse, error)
 }
 
 // UnimplementedAnalyticsServiceServer should be embedded to have
@@ -67,6 +80,9 @@ type UnimplementedAnalyticsServiceServer struct{}
 
 func (UnimplementedAnalyticsServiceServer) CreateCookieID(context.Context, *CreateCookieIDRequest) (*CreateCookieIDResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateCookieID not implemented")
+}
+func (UnimplementedAnalyticsServiceServer) SaveAnalytics(context.Context, *SaveAnalyticsRequest) (*SaveAnalyticsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SaveAnalytics not implemented")
 }
 func (UnimplementedAnalyticsServiceServer) testEmbeddedByValue() {}
 
@@ -106,6 +122,24 @@ func _AnalyticsService_CreateCookieID_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AnalyticsService_SaveAnalytics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveAnalyticsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AnalyticsServiceServer).SaveAnalytics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AnalyticsService_SaveAnalytics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AnalyticsServiceServer).SaveAnalytics(ctx, req.(*SaveAnalyticsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AnalyticsService_ServiceDesc is the grpc.ServiceDesc for AnalyticsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -116,6 +150,10 @@ var AnalyticsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCookieID",
 			Handler:    _AnalyticsService_CreateCookieID_Handler,
+		},
+		{
+			MethodName: "SaveAnalytics",
+			Handler:    _AnalyticsService_SaveAnalytics_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
