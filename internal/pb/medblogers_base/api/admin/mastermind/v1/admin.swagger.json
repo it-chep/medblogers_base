@@ -16,6 +16,39 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/admin/gk/subscription_renewal": {
+      "post": {
+        "summary": "Продление подписки на геткурсе",
+        "operationId": "AdminMastermindService_GetCourseSubscriptionRenewal",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.GetCourseSubscriptionRenewalResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/admin.mastermind.v1.GetCourseSubscriptionRenewalRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AdminMastermindService"
+        ]
+      }
+    },
     "/api/v1/admin/gk_order/create": {
       "post": {
         "summary": "Создание заказа от геткурса",
@@ -239,6 +272,25 @@
       }
     },
     "admin.mastermind.v1.CreateMMResponse": {
+      "type": "object"
+    },
+    "admin.mastermind.v1.GetCourseSubscriptionRenewalRequest": {
+      "type": "object",
+      "properties": {
+        "gkId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "daysCount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "admin.mastermind.v1.GetCourseSubscriptionRenewalResponse": {
       "type": "object"
     },
     "admin.mastermind.v1.GetMMListResponse": {

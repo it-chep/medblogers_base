@@ -48,6 +48,15 @@ service AdminMastermindService {
       consumes: "application/x-www-form-urlencoded"
     };
   }
+  rpc GetCourseSubscriptionRenewal(GetCourseSubscriptionRenewalRequest) returns (GetCourseSubscriptionRenewalResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/admin/gk/subscription_renewal"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Продление подписки на геткурсе"
+    };
+  }
 }
 
 message CreateMMRequest {
@@ -96,3 +105,12 @@ message CreateGetCourseOrderRequest {
 // name: Максим тест
 
 message CreateGetCourseOrderResponse {}
+
+
+message GetCourseSubscriptionRenewalRequest{
+  int64 gk_id = 1;
+  int64 days_count = 2;
+  string api_key = 3;
+}
+
+message GetCourseSubscriptionRenewalResponse{}

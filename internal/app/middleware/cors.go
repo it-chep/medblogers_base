@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"fmt"
+	"medblogers_base/internal/pkg/logger"
 	"net/http"
 	"net/url"
 	"os"
@@ -19,30 +21,35 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			origin := r.Header.Get("Origin")
+			allowedOrigin := ""
+
+			logger.Message(r.Context(), fmt.Sprintf("ORIGIN: %s", origin))
 
 			if origin != "" {
-				if u, err := url.Parse(origin); err == nil {
-					host := u.Host
-
-					if _, exists := allowedHosts[host]; exists {
-						w.Header().Set("Access-Control-Allow-Origin", origin)
-						w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
-						w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
-						w.Header().Set("Access-Control-Allow-Credentials", "true")
+				if os.Getenv("DEBUG") == "true" {
+					allowedOrigin = origin
+				} else if u, err := url.Parse(origin); err == nil {
+					if _, exists := allowedHosts[u.Host]; exists {
+						allowedOrigin = origin
 					}
 				}
 			}
 
-			if r.Method == "OPTIONS" {
-				w.WriteHeader(http.StatusNoContent)
-				return
-			}
-
-			if os.Getenv("DEBUG") == "true" {
-				w.Header().Set("Access-Control-Allow-Origin", origin)
+			if allowedOrigin != "" {
+				w.Header().Set("Vary", "Origin")
+				w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
 				w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
 				w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
 				w.Header().Set("Access-Control-Allow-Credentials", "true")
+			}
+
+			if r.Method == "OPTIONS" {
+				if origin != "" && allowedOrigin == "" {
+					w.WriteHeader(http.StatusForbidden)
+					return
+				}
+				w.WriteHeader(http.StatusNoContent)
+				return
 			}
 
 			next.ServeHTTP(w, r)

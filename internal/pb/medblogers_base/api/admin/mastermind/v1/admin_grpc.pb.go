@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AdminMastermindService_CreateMM_FullMethodName             = "/admin.mastermind.v1.AdminMastermindService/CreateMM"
-	AdminMastermindService_ManualNotificationMM_FullMethodName = "/admin.mastermind.v1.AdminMastermindService/ManualNotificationMM"
-	AdminMastermindService_ChangeMMActivity_FullMethodName     = "/admin.mastermind.v1.AdminMastermindService/ChangeMMActivity"
-	AdminMastermindService_GetMMList_FullMethodName            = "/admin.mastermind.v1.AdminMastermindService/GetMMList"
-	AdminMastermindService_CreateGetCourseOrder_FullMethodName = "/admin.mastermind.v1.AdminMastermindService/CreateGetCourseOrder"
+	AdminMastermindService_CreateMM_FullMethodName                     = "/admin.mastermind.v1.AdminMastermindService/CreateMM"
+	AdminMastermindService_ManualNotificationMM_FullMethodName         = "/admin.mastermind.v1.AdminMastermindService/ManualNotificationMM"
+	AdminMastermindService_ChangeMMActivity_FullMethodName             = "/admin.mastermind.v1.AdminMastermindService/ChangeMMActivity"
+	AdminMastermindService_GetMMList_FullMethodName                    = "/admin.mastermind.v1.AdminMastermindService/GetMMList"
+	AdminMastermindService_CreateGetCourseOrder_FullMethodName         = "/admin.mastermind.v1.AdminMastermindService/CreateGetCourseOrder"
+	AdminMastermindService_GetCourseSubscriptionRenewal_FullMethodName = "/admin.mastermind.v1.AdminMastermindService/GetCourseSubscriptionRenewal"
 )
 
 // AdminMastermindServiceClient is the client API for AdminMastermindService service.
@@ -40,6 +41,7 @@ type AdminMastermindServiceClient interface {
 	GetMMList(ctx context.Context, in *GetMMListRequest, opts ...grpc.CallOption) (*GetMMListResponse, error)
 	// Создание заказа от геткурса
 	CreateGetCourseOrder(ctx context.Context, in *CreateGetCourseOrderRequest, opts ...grpc.CallOption) (*CreateGetCourseOrderResponse, error)
+	GetCourseSubscriptionRenewal(ctx context.Context, in *GetCourseSubscriptionRenewalRequest, opts ...grpc.CallOption) (*GetCourseSubscriptionRenewalResponse, error)
 }
 
 type adminMastermindServiceClient struct {
@@ -100,6 +102,16 @@ func (c *adminMastermindServiceClient) CreateGetCourseOrder(ctx context.Context,
 	return out, nil
 }
 
+func (c *adminMastermindServiceClient) GetCourseSubscriptionRenewal(ctx context.Context, in *GetCourseSubscriptionRenewalRequest, opts ...grpc.CallOption) (*GetCourseSubscriptionRenewalResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCourseSubscriptionRenewalResponse)
+	err := c.cc.Invoke(ctx, AdminMastermindService_GetCourseSubscriptionRenewal_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminMastermindServiceServer is the server API for AdminMastermindService service.
 // All implementations should embed UnimplementedAdminMastermindServiceServer
 // for forward compatibility.
@@ -114,6 +126,7 @@ type AdminMastermindServiceServer interface {
 	GetMMList(context.Context, *GetMMListRequest) (*GetMMListResponse, error)
 	// Создание заказа от геткурса
 	CreateGetCourseOrder(context.Context, *CreateGetCourseOrderRequest) (*CreateGetCourseOrderResponse, error)
+	GetCourseSubscriptionRenewal(context.Context, *GetCourseSubscriptionRenewalRequest) (*GetCourseSubscriptionRenewalResponse, error)
 }
 
 // UnimplementedAdminMastermindServiceServer should be embedded to have
@@ -137,6 +150,9 @@ func (UnimplementedAdminMastermindServiceServer) GetMMList(context.Context, *Get
 }
 func (UnimplementedAdminMastermindServiceServer) CreateGetCourseOrder(context.Context, *CreateGetCourseOrderRequest) (*CreateGetCourseOrderResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateGetCourseOrder not implemented")
+}
+func (UnimplementedAdminMastermindServiceServer) GetCourseSubscriptionRenewal(context.Context, *GetCourseSubscriptionRenewalRequest) (*GetCourseSubscriptionRenewalResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCourseSubscriptionRenewal not implemented")
 }
 func (UnimplementedAdminMastermindServiceServer) testEmbeddedByValue() {}
 
@@ -248,6 +264,24 @@ func _AdminMastermindService_CreateGetCourseOrder_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminMastermindService_GetCourseSubscriptionRenewal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCourseSubscriptionRenewalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminMastermindServiceServer).GetCourseSubscriptionRenewal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminMastermindService_GetCourseSubscriptionRenewal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminMastermindServiceServer).GetCourseSubscriptionRenewal(ctx, req.(*GetCourseSubscriptionRenewalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminMastermindService_ServiceDesc is the grpc.ServiceDesc for AdminMastermindService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -274,6 +308,10 @@ var AdminMastermindService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateGetCourseOrder",
 			Handler:    _AdminMastermindService_CreateGetCourseOrder_Handler,
+		},
+		{
+			MethodName: "GetCourseSubscriptionRenewal",
+			Handler:    _AdminMastermindService_GetCourseSubscriptionRenewal_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

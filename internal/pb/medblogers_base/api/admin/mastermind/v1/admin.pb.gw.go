@@ -200,6 +200,33 @@ func local_request_AdminMastermindService_CreateGetCourseOrder_0(ctx context.Con
 	return msg, metadata, err
 }
 
+func request_AdminMastermindService_GetCourseSubscriptionRenewal_0(ctx context.Context, marshaler runtime.Marshaler, client AdminMastermindServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetCourseSubscriptionRenewalRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetCourseSubscriptionRenewal(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AdminMastermindService_GetCourseSubscriptionRenewal_0(ctx context.Context, marshaler runtime.Marshaler, server AdminMastermindServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetCourseSubscriptionRenewalRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetCourseSubscriptionRenewal(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterAdminMastermindServiceHandlerServer registers the http handlers for service AdminMastermindService to "mux".
 // UnaryRPC     :call AdminMastermindServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -305,6 +332,26 @@ func RegisterAdminMastermindServiceHandlerServer(ctx context.Context, mux *runti
 			return
 		}
 		forward_AdminMastermindService_CreateGetCourseOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_AdminMastermindService_GetCourseSubscriptionRenewal_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/admin.mastermind.v1.AdminMastermindService/GetCourseSubscriptionRenewal", runtime.WithHTTPPathPattern("/api/v1/admin/gk/subscription_renewal"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AdminMastermindService_GetCourseSubscriptionRenewal_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminMastermindService_GetCourseSubscriptionRenewal_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -431,21 +478,40 @@ func RegisterAdminMastermindServiceHandlerClient(ctx context.Context, mux *runti
 		}
 		forward_AdminMastermindService_CreateGetCourseOrder_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_AdminMastermindService_GetCourseSubscriptionRenewal_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/admin.mastermind.v1.AdminMastermindService/GetCourseSubscriptionRenewal", runtime.WithHTTPPathPattern("/api/v1/admin/gk/subscription_renewal"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AdminMastermindService_GetCourseSubscriptionRenewal_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AdminMastermindService_GetCourseSubscriptionRenewal_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_AdminMastermindService_CreateMM_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "mm"}, ""))
-	pattern_AdminMastermindService_ManualNotificationMM_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "mm", "mm_id", "manual_notification"}, ""))
-	pattern_AdminMastermindService_ChangeMMActivity_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "mm", "mm_id", "change_mm_activity"}, ""))
-	pattern_AdminMastermindService_GetMMList_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "mm"}, ""))
-	pattern_AdminMastermindService_CreateGetCourseOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "gk_order", "create"}, ""))
+	pattern_AdminMastermindService_CreateMM_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "mm"}, ""))
+	pattern_AdminMastermindService_ManualNotificationMM_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "mm", "mm_id", "manual_notification"}, ""))
+	pattern_AdminMastermindService_ChangeMMActivity_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "admin", "mm", "mm_id", "change_mm_activity"}, ""))
+	pattern_AdminMastermindService_GetMMList_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "admin", "mm"}, ""))
+	pattern_AdminMastermindService_CreateGetCourseOrder_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "gk_order", "create"}, ""))
+	pattern_AdminMastermindService_GetCourseSubscriptionRenewal_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "admin", "gk", "subscription_renewal"}, ""))
 )
 
 var (
-	forward_AdminMastermindService_CreateMM_0             = runtime.ForwardResponseMessage
-	forward_AdminMastermindService_ManualNotificationMM_0 = runtime.ForwardResponseMessage
-	forward_AdminMastermindService_ChangeMMActivity_0     = runtime.ForwardResponseMessage
-	forward_AdminMastermindService_GetMMList_0            = runtime.ForwardResponseMessage
-	forward_AdminMastermindService_CreateGetCourseOrder_0 = runtime.ForwardResponseMessage
+	forward_AdminMastermindService_CreateMM_0                     = runtime.ForwardResponseMessage
+	forward_AdminMastermindService_ManualNotificationMM_0         = runtime.ForwardResponseMessage
+	forward_AdminMastermindService_ChangeMMActivity_0             = runtime.ForwardResponseMessage
+	forward_AdminMastermindService_GetMMList_0                    = runtime.ForwardResponseMessage
+	forward_AdminMastermindService_CreateGetCourseOrder_0         = runtime.ForwardResponseMessage
+	forward_AdminMastermindService_GetCourseSubscriptionRenewal_0 = runtime.ForwardResponseMessage
 )

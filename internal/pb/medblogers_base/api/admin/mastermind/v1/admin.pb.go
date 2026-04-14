@@ -471,6 +471,102 @@ func (*CreateGetCourseOrderResponse) Descriptor() ([]byte, []int) {
 	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{9}
 }
 
+type GetCourseSubscriptionRenewalRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	GkId          int64                  `protobuf:"varint,1,opt,name=gk_id,json=gkId,proto3" json:"gk_id,omitempty"`
+	DaysCount     int64                  `protobuf:"varint,2,opt,name=days_count,json=daysCount,proto3" json:"days_count,omitempty"`
+	ApiKey        string                 `protobuf:"bytes,3,opt,name=api_key,json=apiKey,proto3" json:"api_key,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCourseSubscriptionRenewalRequest) Reset() {
+	*x = GetCourseSubscriptionRenewalRequest{}
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCourseSubscriptionRenewalRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCourseSubscriptionRenewalRequest) ProtoMessage() {}
+
+func (x *GetCourseSubscriptionRenewalRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCourseSubscriptionRenewalRequest.ProtoReflect.Descriptor instead.
+func (*GetCourseSubscriptionRenewalRequest) Descriptor() ([]byte, []int) {
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetCourseSubscriptionRenewalRequest) GetGkId() int64 {
+	if x != nil {
+		return x.GkId
+	}
+	return 0
+}
+
+func (x *GetCourseSubscriptionRenewalRequest) GetDaysCount() int64 {
+	if x != nil {
+		return x.DaysCount
+	}
+	return 0
+}
+
+func (x *GetCourseSubscriptionRenewalRequest) GetApiKey() string {
+	if x != nil {
+		return x.ApiKey
+	}
+	return ""
+}
+
+type GetCourseSubscriptionRenewalResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCourseSubscriptionRenewalResponse) Reset() {
+	*x = GetCourseSubscriptionRenewalResponse{}
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCourseSubscriptionRenewalResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCourseSubscriptionRenewalResponse) ProtoMessage() {}
+
+func (x *GetCourseSubscriptionRenewalResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCourseSubscriptionRenewalResponse.ProtoReflect.Descriptor instead.
+func (*GetCourseSubscriptionRenewalResponse) Descriptor() ([]byte, []int) {
+	return file_admin_mastermind_v1_admin_proto_rawDescGZIP(), []int{11}
+}
+
 type GetMMListResponse_Mm struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MmId          int64                  `protobuf:"varint,1,opt,name=mm_id,json=mmId,proto3" json:"mm_id,omitempty"`
@@ -486,7 +582,7 @@ type GetMMListResponse_Mm struct {
 
 func (x *GetMMListResponse_Mm) Reset() {
 	*x = GetMMListResponse_Mm{}
-	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -498,7 +594,7 @@ func (x *GetMMListResponse_Mm) String() string {
 func (*GetMMListResponse_Mm) ProtoMessage() {}
 
 func (x *GetMMListResponse_Mm) ProtoReflect() protoreflect.Message {
-	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[10]
+	mi := &file_admin_mastermind_v1_admin_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -599,13 +695,21 @@ const file_admin_mastermind_v1_admin_proto_rawDesc = "" +
 	"\fgetcource_id\x18\x02 \x01(\x03R\vgetcourceId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\tR\bposition\"\x1e\n" +
-	"\x1cCreateGetCourseOrderResponse2\xc2\b\n" +
+	"\x1cCreateGetCourseOrderResponse\"r\n" +
+	"#GetCourseSubscriptionRenewalRequest\x12\x13\n" +
+	"\x05gk_id\x18\x01 \x01(\x03R\x04gkId\x12\x1d\n" +
+	"\n" +
+	"days_count\x18\x02 \x01(\x03R\tdaysCount\x12\x17\n" +
+	"\aapi_key\x18\x03 \x01(\tR\x06apiKey\"&\n" +
+	"$GetCourseSubscriptionRenewalResponse2\xc8\n" +
+	"\n" +
 	"\x16AdminMastermindService\x12\xa2\x01\n" +
 	"\bCreateMM\x12$.admin.mastermind.v1.CreateMMRequest\x1a%.admin.mastermind.v1.CreateMMResponse\"I\x92A+\x12)Создание мастермайнда\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/admin/mm\x12\xdb\x01\n" +
 	"\x14ManualNotificationMM\x120.admin.mastermind.v1.ManualNotificationMMRequest\x1a1.admin.mastermind.v1.ManualNotificationMMResponse\"^\x92A$\x12\"Ручная рассылка ММ\x82\xd3\xe4\x93\x021:\x01*\",/api/v1/admin/mm/{mm_id}/manual_notification\x12\xea\x01\n" +
 	"\x10ChangeMMActivity\x12,.admin.mastermind.v1.ChangeMMActivityRequest\x1a-.admin.mastermind.v1.ChangeMMActivityResponse\"y\x92A@\x12>Изменение активности ММ (вкл/выкл)\x82\xd3\xe4\x93\x020:\x01*\"+/api/v1/admin/mm/{mm_id}/change_mm_activity\x12\xb3\x01\n" +
 	"\tGetMMList\x12%.admin.mastermind.v1.GetMMListRequest\x1a&.admin.mastermind.v1.GetMMListResponse\"W\x92A<\x12:Получение списка мастермайндов\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/admin/mm\x12\x81\x02\n" +
-	"\x14CreateGetCourseOrder\x120.admin.mastermind.v1.CreateGetCourseOrderRequest\x1a1.admin.mastermind.v1.CreateGetCourseOrderResponse\"\x83\x01\x92AX\x123Создание заказа от геткурса2!application/x-www-form-urlencoded\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/createB\x15Z\x13admin/mastermind/v1b\x06proto3"
+	"\x14CreateGetCourseOrder\x120.admin.mastermind.v1.CreateGetCourseOrderRequest\x1a1.admin.mastermind.v1.CreateGetCourseOrderResponse\"\x83\x01\x92AX\x123Создание заказа от геткурса2!application/x-www-form-urlencoded\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/api/v1/admin/gk_order/create\x12\x83\x02\n" +
+	"\x1cGetCourseSubscriptionRenewal\x128.admin.mastermind.v1.GetCourseSubscriptionRenewalRequest\x1a9.admin.mastermind.v1.GetCourseSubscriptionRenewalResponse\"n\x92A;\x129Продление подписки на геткурсе\x82\xd3\xe4\x93\x02*:\x01*\"%/api/v1/admin/gk/subscription_renewalB\x15Z\x13admin/mastermind/v1b\x06proto3"
 
 var (
 	file_admin_mastermind_v1_admin_proto_rawDescOnce sync.Once
@@ -619,34 +723,38 @@ func file_admin_mastermind_v1_admin_proto_rawDescGZIP() []byte {
 	return file_admin_mastermind_v1_admin_proto_rawDescData
 }
 
-var file_admin_mastermind_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_admin_mastermind_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_admin_mastermind_v1_admin_proto_goTypes = []any{
-	(*CreateMMRequest)(nil),              // 0: admin.mastermind.v1.CreateMMRequest
-	(*CreateMMResponse)(nil),             // 1: admin.mastermind.v1.CreateMMResponse
-	(*ManualNotificationMMRequest)(nil),  // 2: admin.mastermind.v1.ManualNotificationMMRequest
-	(*ManualNotificationMMResponse)(nil), // 3: admin.mastermind.v1.ManualNotificationMMResponse
-	(*ChangeMMActivityRequest)(nil),      // 4: admin.mastermind.v1.ChangeMMActivityRequest
-	(*ChangeMMActivityResponse)(nil),     // 5: admin.mastermind.v1.ChangeMMActivityResponse
-	(*GetMMListRequest)(nil),             // 6: admin.mastermind.v1.GetMMListRequest
-	(*GetMMListResponse)(nil),            // 7: admin.mastermind.v1.GetMMListResponse
-	(*CreateGetCourseOrderRequest)(nil),  // 8: admin.mastermind.v1.CreateGetCourseOrderRequest
-	(*CreateGetCourseOrderResponse)(nil), // 9: admin.mastermind.v1.CreateGetCourseOrderResponse
-	(*GetMMListResponse_Mm)(nil),         // 10: admin.mastermind.v1.GetMMListResponse.Mm
+	(*CreateMMRequest)(nil),                      // 0: admin.mastermind.v1.CreateMMRequest
+	(*CreateMMResponse)(nil),                     // 1: admin.mastermind.v1.CreateMMResponse
+	(*ManualNotificationMMRequest)(nil),          // 2: admin.mastermind.v1.ManualNotificationMMRequest
+	(*ManualNotificationMMResponse)(nil),         // 3: admin.mastermind.v1.ManualNotificationMMResponse
+	(*ChangeMMActivityRequest)(nil),              // 4: admin.mastermind.v1.ChangeMMActivityRequest
+	(*ChangeMMActivityResponse)(nil),             // 5: admin.mastermind.v1.ChangeMMActivityResponse
+	(*GetMMListRequest)(nil),                     // 6: admin.mastermind.v1.GetMMListRequest
+	(*GetMMListResponse)(nil),                    // 7: admin.mastermind.v1.GetMMListResponse
+	(*CreateGetCourseOrderRequest)(nil),          // 8: admin.mastermind.v1.CreateGetCourseOrderRequest
+	(*CreateGetCourseOrderResponse)(nil),         // 9: admin.mastermind.v1.CreateGetCourseOrderResponse
+	(*GetCourseSubscriptionRenewalRequest)(nil),  // 10: admin.mastermind.v1.GetCourseSubscriptionRenewalRequest
+	(*GetCourseSubscriptionRenewalResponse)(nil), // 11: admin.mastermind.v1.GetCourseSubscriptionRenewalResponse
+	(*GetMMListResponse_Mm)(nil),                 // 12: admin.mastermind.v1.GetMMListResponse.Mm
 }
 var file_admin_mastermind_v1_admin_proto_depIdxs = []int32{
-	10, // 0: admin.mastermind.v1.GetMMListResponse.mms:type_name -> admin.mastermind.v1.GetMMListResponse.Mm
+	12, // 0: admin.mastermind.v1.GetMMListResponse.mms:type_name -> admin.mastermind.v1.GetMMListResponse.Mm
 	0,  // 1: admin.mastermind.v1.AdminMastermindService.CreateMM:input_type -> admin.mastermind.v1.CreateMMRequest
 	2,  // 2: admin.mastermind.v1.AdminMastermindService.ManualNotificationMM:input_type -> admin.mastermind.v1.ManualNotificationMMRequest
 	4,  // 3: admin.mastermind.v1.AdminMastermindService.ChangeMMActivity:input_type -> admin.mastermind.v1.ChangeMMActivityRequest
 	6,  // 4: admin.mastermind.v1.AdminMastermindService.GetMMList:input_type -> admin.mastermind.v1.GetMMListRequest
 	8,  // 5: admin.mastermind.v1.AdminMastermindService.CreateGetCourseOrder:input_type -> admin.mastermind.v1.CreateGetCourseOrderRequest
-	1,  // 6: admin.mastermind.v1.AdminMastermindService.CreateMM:output_type -> admin.mastermind.v1.CreateMMResponse
-	3,  // 7: admin.mastermind.v1.AdminMastermindService.ManualNotificationMM:output_type -> admin.mastermind.v1.ManualNotificationMMResponse
-	5,  // 8: admin.mastermind.v1.AdminMastermindService.ChangeMMActivity:output_type -> admin.mastermind.v1.ChangeMMActivityResponse
-	7,  // 9: admin.mastermind.v1.AdminMastermindService.GetMMList:output_type -> admin.mastermind.v1.GetMMListResponse
-	9,  // 10: admin.mastermind.v1.AdminMastermindService.CreateGetCourseOrder:output_type -> admin.mastermind.v1.CreateGetCourseOrderResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
+	10, // 6: admin.mastermind.v1.AdminMastermindService.GetCourseSubscriptionRenewal:input_type -> admin.mastermind.v1.GetCourseSubscriptionRenewalRequest
+	1,  // 7: admin.mastermind.v1.AdminMastermindService.CreateMM:output_type -> admin.mastermind.v1.CreateMMResponse
+	3,  // 8: admin.mastermind.v1.AdminMastermindService.ManualNotificationMM:output_type -> admin.mastermind.v1.ManualNotificationMMResponse
+	5,  // 9: admin.mastermind.v1.AdminMastermindService.ChangeMMActivity:output_type -> admin.mastermind.v1.ChangeMMActivityResponse
+	7,  // 10: admin.mastermind.v1.AdminMastermindService.GetMMList:output_type -> admin.mastermind.v1.GetMMListResponse
+	9,  // 11: admin.mastermind.v1.AdminMastermindService.CreateGetCourseOrder:output_type -> admin.mastermind.v1.CreateGetCourseOrderResponse
+	11, // 12: admin.mastermind.v1.AdminMastermindService.GetCourseSubscriptionRenewal:output_type -> admin.mastermind.v1.GetCourseSubscriptionRenewalResponse
+	7,  // [7:13] is the sub-list for method output_type
+	1,  // [1:7] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -663,7 +771,7 @@ func file_admin_mastermind_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_mastermind_v1_admin_proto_rawDesc), len(file_admin_mastermind_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
