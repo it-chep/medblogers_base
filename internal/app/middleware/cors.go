@@ -22,7 +22,9 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 			origin := r.Header.Get("Origin")
 			allowedOrigin := ""
 
-			fmt.Printf("ORIGIN: %s\n", origin)
+			for key, values := range r.Header {
+				fmt.Printf("%s: %v", key, values)
+			}
 
 			if origin != "" {
 				if os.Getenv("DEBUG") == "true" {
