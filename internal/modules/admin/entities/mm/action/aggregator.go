@@ -8,16 +8,18 @@ import (
 	"medblogers_base/internal/modules/admin/entities/mm/action/create_getcourse_order"
 	"medblogers_base/internal/modules/admin/entities/mm/action/create_mm"
 	"medblogers_base/internal/modules/admin/entities/mm/action/get_mm_list"
+	"medblogers_base/internal/modules/admin/entities/mm/action/getcourse_subscription_renewal"
 	"medblogers_base/internal/modules/admin/entities/mm/action/manual_notification_mm"
 	"medblogers_base/internal/modules/admin/entities/mm/action/push_users_to_mm"
 	"medblogers_base/internal/pkg/postgres"
 )
 
 type MMActionAggregator struct {
-	ChangeMMActivity     *change_mm_activity.Action
-	CreateMM             *create_mm.Action
-	CreateGetcourceOrder *create_getcourse_order.Action
-	GetMMList            *get_mm_list.Action
+	ChangeMMActivity             *change_mm_activity.Action
+	CreateMM                     *create_mm.Action
+	CreateGetcourceOrder         *create_getcourse_order.Action
+	GetCourseSubscriptionRenewal *getcourse_subscription_renewal.Action
+	GetMMList                    *get_mm_list.Action
 
 	ManualNotificationMM *manual_notification_mm.Action
 
@@ -28,10 +30,11 @@ type MMActionAggregator struct {
 
 func New(pool postgres.PoolWrapper, clients *client.Aggregator, config config.AppConfig) *MMActionAggregator {
 	return &MMActionAggregator{
-		ChangeMMActivity:     change_mm_activity.New(pool),
-		CreateMM:             create_mm.New(pool),
-		GetMMList:            get_mm_list.New(pool),
-		CreateGetcourceOrder: create_getcourse_order.New(pool, clients, config),
+		ChangeMMActivity:             change_mm_activity.New(pool),
+		CreateMM:                     create_mm.New(pool),
+		GetMMList:                    get_mm_list.New(pool),
+		CreateGetcourceOrder:         create_getcourse_order.New(pool, clients, config),
+		GetCourseSubscriptionRenewal: getcourse_subscription_renewal.New(pool, clients, config),
 
 		ManualNotificationMM: manual_notification_mm.New(pool, clients),
 
