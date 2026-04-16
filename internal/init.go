@@ -161,7 +161,7 @@ func (a *App) initCache(_ context.Context) *App {
 
 func (a *App) initControllers(_ context.Context) *App {
 	a.controllers = []transport.ServiceDesc{
-		analyticsDesc.NewAnalyticsServiceServiceDesc(analyticsV1.NewService(a.modules.analytics)),
+		analyticsDesc.NewAnalyticsServiceServiceDesc(analyticsV1.NewService(a.modules.analytics, a.config)),
 		doctorsDesc.NewDoctorServiceServiceDesc(doctorsV1.NewDoctorsService(a.modules.doctors, a.mutableConfig)),
 		freelancersDesc.NewFreelancerServiceServiceDesc(freelancersV1.NewFreelancersService(a.modules.freelancers)),
 		blogsDesc.NewBlogServiceServiceDesc(blogsV1.NewService(a.modules.blogs)),
