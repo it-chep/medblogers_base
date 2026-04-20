@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AnalyticsService_CreateCookieID_FullMethodName = "/analytics.v1.AnalyticsService/CreateCookieID"
-	AnalyticsService_SaveAnalytics_FullMethodName  = "/analytics.v1.AnalyticsService/SaveAnalytics"
+	AnalyticsService_CreateCookieID_FullMethodName     = "/analytics.v1.AnalyticsService/CreateCookieID"
+	AnalyticsService_SaveAnalytics_FullMethodName      = "/analytics.v1.AnalyticsService/SaveAnalytics"
+	AnalyticsService_SaveSiteFormAnswer_FullMethodName = "/analytics.v1.AnalyticsService/SaveSiteFormAnswer"
 )
 
 // AnalyticsServiceClient is the client API for AnalyticsService service.
@@ -31,6 +32,7 @@ const (
 type AnalyticsServiceClient interface {
 	CreateCookieID(ctx context.Context, in *CreateCookieIDRequest, opts ...grpc.CallOption) (*CreateCookieIDResponse, error)
 	SaveAnalytics(ctx context.Context, in *SaveAnalyticsRequest, opts ...grpc.CallOption) (*SaveAnalyticsResponse, error)
+	SaveSiteFormAnswer(ctx context.Context, in *SaveSiteFormAnswerRequest, opts ...grpc.CallOption) (*SaveSiteFormAnswerResponse, error)
 }
 
 type analyticsServiceClient struct {
@@ -61,6 +63,16 @@ func (c *analyticsServiceClient) SaveAnalytics(ctx context.Context, in *SaveAnal
 	return out, nil
 }
 
+func (c *analyticsServiceClient) SaveSiteFormAnswer(ctx context.Context, in *SaveSiteFormAnswerRequest, opts ...grpc.CallOption) (*SaveSiteFormAnswerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SaveSiteFormAnswerResponse)
+	err := c.cc.Invoke(ctx, AnalyticsService_SaveSiteFormAnswer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AnalyticsServiceServer is the server API for AnalyticsService service.
 // All implementations should embed UnimplementedAnalyticsServiceServer
 // for forward compatibility.
@@ -69,6 +81,7 @@ func (c *analyticsServiceClient) SaveAnalytics(ctx context.Context, in *SaveAnal
 type AnalyticsServiceServer interface {
 	CreateCookieID(context.Context, *CreateCookieIDRequest) (*CreateCookieIDResponse, error)
 	SaveAnalytics(context.Context, *SaveAnalyticsRequest) (*SaveAnalyticsResponse, error)
+	SaveSiteFormAnswer(context.Context, *SaveSiteFormAnswerRequest) (*SaveSiteFormAnswerResponse, error)
 }
 
 // UnimplementedAnalyticsServiceServer should be embedded to have
@@ -83,6 +96,9 @@ func (UnimplementedAnalyticsServiceServer) CreateCookieID(context.Context, *Crea
 }
 func (UnimplementedAnalyticsServiceServer) SaveAnalytics(context.Context, *SaveAnalyticsRequest) (*SaveAnalyticsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SaveAnalytics not implemented")
+}
+func (UnimplementedAnalyticsServiceServer) SaveSiteFormAnswer(context.Context, *SaveSiteFormAnswerRequest) (*SaveSiteFormAnswerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SaveSiteFormAnswer not implemented")
 }
 func (UnimplementedAnalyticsServiceServer) testEmbeddedByValue() {}
 
@@ -140,6 +156,24 @@ func _AnalyticsService_SaveAnalytics_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AnalyticsService_SaveSiteFormAnswer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SaveSiteFormAnswerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AnalyticsServiceServer).SaveSiteFormAnswer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AnalyticsService_SaveSiteFormAnswer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AnalyticsServiceServer).SaveSiteFormAnswer(ctx, req.(*SaveSiteFormAnswerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AnalyticsService_ServiceDesc is the grpc.ServiceDesc for AnalyticsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -154,6 +188,10 @@ var AnalyticsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SaveAnalytics",
 			Handler:    _AnalyticsService_SaveAnalytics_Handler,
+		},
+		{
+			MethodName: "SaveSiteFormAnswer",
+			Handler:    _AnalyticsService_SaveSiteFormAnswer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

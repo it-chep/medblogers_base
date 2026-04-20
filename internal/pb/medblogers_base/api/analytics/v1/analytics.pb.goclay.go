@@ -90,3 +90,21 @@ func (w *AnalyticsServiceServiceDesc) SaveAnalytics(ctx context.Context, in *Sav
 	}
 	return resp.(*SaveAnalyticsResponse), err
 }
+
+func (w *AnalyticsServiceServiceDesc) SaveSiteFormAnswer(ctx context.Context, in *SaveSiteFormAnswerRequest) (*SaveSiteFormAnswerResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.SaveSiteFormAnswer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/analytics.v1.AnalyticsService/SaveSiteFormAnswer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.SaveSiteFormAnswer(ctx, req.(*SaveSiteFormAnswerRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*SaveSiteFormAnswerResponse), err
+}

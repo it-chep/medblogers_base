@@ -49,6 +49,39 @@
         ]
       }
     },
+    "/api/v1/analytics/form/save": {
+      "post": {
+        "summary": "Сохранить ответ формы сайта",
+        "operationId": "AnalyticsService_SaveSiteFormAnswer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/analytics.v1.SaveSiteFormAnswerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/analytics.v1.SaveSiteFormAnswerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AnalyticsService"
+        ]
+      }
+    },
     "/api/v1/analytics/save": {
       "post": {
         "summary": "Сохранить аналитику на сайте",
@@ -139,6 +172,29 @@
     "analytics.v1.SaveAnalyticsResponse": {
       "type": "object"
     },
+    "analytics.v1.SaveSiteFormAnswerRequest": {
+      "type": "object",
+      "properties": {
+        "formName": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "object"
+        },
+        "cookieId": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "tg": {
+          "type": "string"
+        }
+      }
+    },
+    "analytics.v1.SaveSiteFormAnswerResponse": {
+      "type": "object"
+    },
     "google.protobuf.Any": {
       "type": "object",
       "properties": {
@@ -147,6 +203,14 @@
         }
       },
       "additionalProperties": {}
+    },
+    "google.protobuf.NullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
     "google.rpc.Status": {
       "type": "object",

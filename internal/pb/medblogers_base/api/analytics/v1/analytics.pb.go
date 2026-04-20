@@ -11,6 +11,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -264,11 +265,123 @@ func (*SaveAnalyticsResponse) Descriptor() ([]byte, []int) {
 	return file_analytics_v1_analytics_proto_rawDescGZIP(), []int{3}
 }
 
+type SaveSiteFormAnswerRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FormName      string                 `protobuf:"bytes,1,opt,name=form_name,json=formName,proto3" json:"form_name,omitempty"`
+	Answer        *structpb.Struct       `protobuf:"bytes,2,opt,name=answer,proto3" json:"answer,omitempty"`
+	CookieId      string                 `protobuf:"bytes,3,opt,name=cookie_id,json=cookieId,proto3" json:"cookie_id,omitempty"`
+	Source        string                 `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Tg            *string                `protobuf:"bytes,5,opt,name=tg,proto3,oneof" json:"tg,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveSiteFormAnswerRequest) Reset() {
+	*x = SaveSiteFormAnswerRequest{}
+	mi := &file_analytics_v1_analytics_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveSiteFormAnswerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveSiteFormAnswerRequest) ProtoMessage() {}
+
+func (x *SaveSiteFormAnswerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_analytics_v1_analytics_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveSiteFormAnswerRequest.ProtoReflect.Descriptor instead.
+func (*SaveSiteFormAnswerRequest) Descriptor() ([]byte, []int) {
+	return file_analytics_v1_analytics_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *SaveSiteFormAnswerRequest) GetFormName() string {
+	if x != nil {
+		return x.FormName
+	}
+	return ""
+}
+
+func (x *SaveSiteFormAnswerRequest) GetAnswer() *structpb.Struct {
+	if x != nil {
+		return x.Answer
+	}
+	return nil
+}
+
+func (x *SaveSiteFormAnswerRequest) GetCookieId() string {
+	if x != nil {
+		return x.CookieId
+	}
+	return ""
+}
+
+func (x *SaveSiteFormAnswerRequest) GetSource() string {
+	if x != nil {
+		return x.Source
+	}
+	return ""
+}
+
+func (x *SaveSiteFormAnswerRequest) GetTg() string {
+	if x != nil && x.Tg != nil {
+		return *x.Tg
+	}
+	return ""
+}
+
+type SaveSiteFormAnswerResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveSiteFormAnswerResponse) Reset() {
+	*x = SaveSiteFormAnswerResponse{}
+	mi := &file_analytics_v1_analytics_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveSiteFormAnswerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveSiteFormAnswerResponse) ProtoMessage() {}
+
+func (x *SaveSiteFormAnswerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_analytics_v1_analytics_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveSiteFormAnswerResponse.ProtoReflect.Descriptor instead.
+func (*SaveSiteFormAnswerResponse) Descriptor() ([]byte, []int) {
+	return file_analytics_v1_analytics_proto_rawDescGZIP(), []int{5}
+}
+
 var File_analytics_v1_analytics_proto protoreflect.FileDescriptor
 
 const file_analytics_v1_analytics_proto_rawDesc = "" +
 	"\n" +
-	"\x1canalytics/v1/analytics.proto\x12\fanalytics.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"E\n" +
+	"\x1canalytics/v1/analytics.proto\x12\fanalytics.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"E\n" +
 	"\x15CreateCookieIDRequest\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x16\n" +
 	"\x06domain\x18\x02 \x01(\tR\x06domain\"5\n" +
@@ -291,10 +404,19 @@ const file_analytics_v1_analytics_proto_rawDesc = "" +
 	"\n" +
 	"\b_companyB\b\n" +
 	"\x06_event\"\x17\n" +
-	"\x15SaveAnalyticsResponse2\xa5\x03\n" +
+	"\x15SaveAnalyticsResponse\"\xba\x01\n" +
+	"\x19SaveSiteFormAnswerRequest\x12\x1b\n" +
+	"\tform_name\x18\x01 \x01(\tR\bformName\x12/\n" +
+	"\x06answer\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x06answer\x12\x1b\n" +
+	"\tcookie_id\x18\x03 \x01(\tR\bcookieId\x12\x16\n" +
+	"\x06source\x18\x04 \x01(\tR\x06source\x12\x13\n" +
+	"\x02tg\x18\x05 \x01(\tH\x00R\x02tg\x88\x01\x01B\x05\n" +
+	"\x03_tg\"\x1c\n" +
+	"\x1aSaveSiteFormAnswerResponse2\xef\x04\n" +
 	"\x10AnalyticsService\x12\xd8\x01\n" +
 	"\x0eCreateCookieID\x12#.analytics.v1.CreateCookieIDRequest\x1a$.analytics.v1.CreateCookieIDResponse\"{\x92AK\x12IСоздать идентификатор для пользователя\x82\xd3\xe4\x93\x02':\x01*\"\"/api/v1/analytics/create_cookie_id\x12\xb5\x01\n" +
-	"\rSaveAnalytics\x12\".analytics.v1.SaveAnalyticsRequest\x1a#.analytics.v1.SaveAnalyticsResponse\"[\x92A7\x125Сохранить аналитику на сайте\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/api/v1/analytics/saveB\x12Z\x10api/analytics/v1b\x06proto3"
+	"\rSaveAnalytics\x12\".analytics.v1.SaveAnalyticsRequest\x1a#.analytics.v1.SaveAnalyticsResponse\"[\x92A7\x125Сохранить аналитику на сайте\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/api/v1/analytics/save\x12\xc7\x01\n" +
+	"\x12SaveSiteFormAnswer\x12'.analytics.v1.SaveSiteFormAnswerRequest\x1a(.analytics.v1.SaveSiteFormAnswerResponse\"^\x92A5\x123Сохранить ответ формы сайта\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/api/v1/analytics/form/saveB\x12Z\x10api/analytics/v1b\x06proto3"
 
 var (
 	file_analytics_v1_analytics_proto_rawDescOnce sync.Once
@@ -308,23 +430,29 @@ func file_analytics_v1_analytics_proto_rawDescGZIP() []byte {
 	return file_analytics_v1_analytics_proto_rawDescData
 }
 
-var file_analytics_v1_analytics_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_analytics_v1_analytics_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_analytics_v1_analytics_proto_goTypes = []any{
-	(*CreateCookieIDRequest)(nil),  // 0: analytics.v1.CreateCookieIDRequest
-	(*CreateCookieIDResponse)(nil), // 1: analytics.v1.CreateCookieIDResponse
-	(*SaveAnalyticsRequest)(nil),   // 2: analytics.v1.SaveAnalyticsRequest
-	(*SaveAnalyticsResponse)(nil),  // 3: analytics.v1.SaveAnalyticsResponse
+	(*CreateCookieIDRequest)(nil),      // 0: analytics.v1.CreateCookieIDRequest
+	(*CreateCookieIDResponse)(nil),     // 1: analytics.v1.CreateCookieIDResponse
+	(*SaveAnalyticsRequest)(nil),       // 2: analytics.v1.SaveAnalyticsRequest
+	(*SaveAnalyticsResponse)(nil),      // 3: analytics.v1.SaveAnalyticsResponse
+	(*SaveSiteFormAnswerRequest)(nil),  // 4: analytics.v1.SaveSiteFormAnswerRequest
+	(*SaveSiteFormAnswerResponse)(nil), // 5: analytics.v1.SaveSiteFormAnswerResponse
+	(*structpb.Struct)(nil),            // 6: google.protobuf.Struct
 }
 var file_analytics_v1_analytics_proto_depIdxs = []int32{
-	0, // 0: analytics.v1.AnalyticsService.CreateCookieID:input_type -> analytics.v1.CreateCookieIDRequest
-	2, // 1: analytics.v1.AnalyticsService.SaveAnalytics:input_type -> analytics.v1.SaveAnalyticsRequest
-	1, // 2: analytics.v1.AnalyticsService.CreateCookieID:output_type -> analytics.v1.CreateCookieIDResponse
-	3, // 3: analytics.v1.AnalyticsService.SaveAnalytics:output_type -> analytics.v1.SaveAnalyticsResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	6, // 0: analytics.v1.SaveSiteFormAnswerRequest.answer:type_name -> google.protobuf.Struct
+	0, // 1: analytics.v1.AnalyticsService.CreateCookieID:input_type -> analytics.v1.CreateCookieIDRequest
+	2, // 2: analytics.v1.AnalyticsService.SaveAnalytics:input_type -> analytics.v1.SaveAnalyticsRequest
+	4, // 3: analytics.v1.AnalyticsService.SaveSiteFormAnswer:input_type -> analytics.v1.SaveSiteFormAnswerRequest
+	1, // 4: analytics.v1.AnalyticsService.CreateCookieID:output_type -> analytics.v1.CreateCookieIDResponse
+	3, // 5: analytics.v1.AnalyticsService.SaveAnalytics:output_type -> analytics.v1.SaveAnalyticsResponse
+	5, // 6: analytics.v1.AnalyticsService.SaveSiteFormAnswer:output_type -> analytics.v1.SaveSiteFormAnswerResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_analytics_v1_analytics_proto_init() }
@@ -333,13 +461,14 @@ func file_analytics_v1_analytics_proto_init() {
 		return
 	}
 	file_analytics_v1_analytics_proto_msgTypes[2].OneofWrappers = []any{}
+	file_analytics_v1_analytics_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_analytics_v1_analytics_proto_rawDesc), len(file_analytics_v1_analytics_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
