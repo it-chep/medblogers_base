@@ -72,3 +72,21 @@ func (w *AnalyticsServiceServiceDesc) CreateCookieID(ctx context.Context, in *Cr
 	}
 	return resp.(*CreateCookieIDResponse), err
 }
+
+func (w *AnalyticsServiceServiceDesc) SaveAnalytics(ctx context.Context, in *SaveAnalyticsRequest) (*SaveAnalyticsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.SaveAnalytics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/analytics.v1.AnalyticsService/SaveAnalytics",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.SaveAnalytics(ctx, req.(*SaveAnalyticsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*SaveAnalyticsResponse), err
+}

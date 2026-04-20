@@ -17,28 +17,36 @@ type CorsConfig interface {
 func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler {
 	allowedHosts := make(map[string]struct{})
 	for _, host := range corsConfig.GetAllowedHosts() {
-		allowedHosts[host] = struct{}{}
+		allowedHosts[normalizeHost(host)] = struct{}{}
 	}
 
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			origin := r.Header.Get("Origin")
+			source := r.Header.Get("X-Medblogers-Source")
 			allowedOrigin := ""
 			hasValidAPIKey := requestHasValidAPIKey(r)
+			isDebug := os.Getenv("DEBUG") == "true"
 
 			if len(origin) != 0 {
-				if os.Getenv("DEBUG") == "true" {
+				if isDebug {
 					allowedOrigin = origin
 				} else if hasValidAPIKey {
 					allowedOrigin = origin
 				} else if u, err := url.Parse(origin); err == nil {
-					if _, exists := allowedHosts[u.Host]; exists {
+					if _, exists := allowedHosts[normalizeHost(u.Host)]; exists {
 						allowedOrigin = origin
 					}
 				}
+			} else if isDebug {
+				allowedOrigin = "*"
+			} else if normalizedSource := normalizeHost(source); normalizedSource != "" {
+				if _, exists := allowedHosts[normalizedSource]; exists {
+					allowedOrigin = source
+				}
 			}
 
-			if len(origin) == 0 && !hasValidAPIKey {
+			if len(origin) == 0 && len(source) == 0 && !hasValidAPIKey && !isDebug {
 				w.WriteHeader(http.StatusForbidden)
 				return
 			}
@@ -51,12 +59,12 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 				w.Header().Set("Vary", "Origin")
 				w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
 				w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
-				w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+				w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, X-Medblogers-Source")
 				w.Header().Set("Access-Control-Allow-Credentials", "true")
 			}
 
 			if r.Method == "OPTIONS" {
-				if len(origin) != 0 && len(allowedOrigin) == 0 {
+				if (len(origin) != 0 || len(source) != 0) && len(allowedOrigin) == 0 && !isDebug {
 					w.WriteHeader(http.StatusForbidden)
 					return
 				}
@@ -67,6 +75,23 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 			next.ServeHTTP(w, r)
 		})
 	}
+}
+
+func normalizeHost(value string) string {
+	trimmed := strings.ToLower(strings.TrimSpace(value))
+	if trimmed == "" {
+		return ""
+	}
+
+	if parsed, err := url.Parse(trimmed); err == nil && parsed.Hostname() != "" {
+		return strings.ToLower(parsed.Hostname())
+	}
+
+	if parsed, err := url.Parse("https://" + trimmed); err == nil && parsed.Hostname() != "" {
+		return strings.ToLower(parsed.Hostname())
+	}
+
+	return trimmed
 }
 
 func requestHasValidAPIKey(r *http.Request) bool {
