@@ -45,7 +45,8 @@ func (r *Repository) GetDoctorByID(ctx context.Context, doctorID int64) (*doctor
 			s3_image,
 			is_kf_doctor,
 			cooperation_type,
-			is_active
+			is_active,
+			deactivate_reason
 		from docstar_site_doctor where id = $1`
 
 	var doctorDAO dao.FullDoctorDAO

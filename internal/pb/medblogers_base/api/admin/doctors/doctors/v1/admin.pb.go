@@ -499,6 +499,7 @@ type GetDoctorByIDResponse struct {
 	MedicalDirections    string                                   `protobuf:"bytes,24,opt,name=medical_directions,json=medicalDirections,proto3" json:"medical_directions,omitempty"`
 	MarketingPreferences string                                   `protobuf:"bytes,25,opt,name=marketing_preferences,json=marketingPreferences,proto3" json:"marketing_preferences,omitempty"`
 	Email                string                                   `protobuf:"bytes,26,opt,name=email,proto3" json:"email,omitempty"`
+	DeactivateReason     *string                                  `protobuf:"bytes,27,opt,name=deactivate_reason,json=deactivateReason,proto3,oneof" json:"deactivate_reason,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -697,6 +698,13 @@ func (x *GetDoctorByIDResponse) GetMarketingPreferences() string {
 func (x *GetDoctorByIDResponse) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *GetDoctorByIDResponse) GetDeactivateReason() string {
+	if x != nil && x.DeactivateReason != nil {
+		return *x.DeactivateReason
 	}
 	return ""
 }
@@ -1095,10 +1103,11 @@ func (*ActivateDoctorResponse) Descriptor() ([]byte, []int) {
 }
 
 type DeactivateDoctorRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DoctorId      int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	DoctorId         int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	DeactivateReason *string                `protobuf:"bytes,2,opt,name=deactivate_reason,json=deactivateReason,proto3,oneof" json:"deactivate_reason,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *DeactivateDoctorRequest) Reset() {
@@ -1136,6 +1145,13 @@ func (x *DeactivateDoctorRequest) GetDoctorId() int64 {
 		return x.DoctorId
 	}
 	return 0
+}
+
+func (x *DeactivateDoctorRequest) GetDeactivateReason() string {
+	if x != nil && x.DeactivateReason != nil {
+		return *x.DeactivateReason
+	}
+	return ""
 }
 
 type DeactivateDoctorResponse struct {
@@ -3299,7 +3315,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12T\n" +
 	"\x10cooperation_type\x18\x05 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\"3\n" +
 	"\x14GetDoctorByIDRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xda\b\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\xa2\t\n" +
 	"\x15GetDoctorByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3330,13 +3346,15 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x10cooperation_type\x18\x17 \x01(\v2).admin.doctors.doctors.v1.CooperationTypeR\x0fcooperationType\x12-\n" +
 	"\x12medical_directions\x18\x18 \x01(\tR\x11medicalDirections\x123\n" +
 	"\x15marketing_preferences\x18\x19 \x01(\tR\x14marketingPreferences\x12\x14\n" +
-	"\x05email\x18\x1a \x01(\tR\x05email\x1a\x96\x01\n" +
+	"\x05email\x18\x1a \x01(\tR\x05email\x120\n" +
+	"\x11deactivate_reason\x18\x1b \x01(\tH\x00R\x10deactivateReason\x88\x01\x01\x1a\x96\x01\n" +
 	"\x0fSubscribersItem\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x1d\n" +
 	"\n" +
 	"subs_count\x18\x02 \x01(\tR\tsubsCount\x12&\n" +
 	"\x0fsubs_count_text\x18\x03 \x01(\tR\rsubsCountText\x12*\n" +
-	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDate\"\xa4\x05\n" +
+	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDateB\x14\n" +
+	"\x12_deactivate_reason\"\xa4\x05\n" +
 	"\x13UpdateDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3370,9 +3388,11 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x14DeleteDoctorResponse\"4\n" +
 	"\x15ActivateDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x18\n" +
-	"\x16ActivateDoctorResponse\"6\n" +
+	"\x16ActivateDoctorResponse\"~\n" +
 	"\x17DeactivateDoctorRequest\x12\x1b\n" +
-	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x1a\n" +
+	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x120\n" +
+	"\x11deactivate_reason\x18\x02 \x01(\tH\x00R\x10deactivateReason\x88\x01\x01B\x14\n" +
+	"\x12_deactivate_reason\"\x1a\n" +
 	"\x18DeactivateDoctorResponse\"T\n" +
 	"\x16SaveDoctorPhotoRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1d\n" +
@@ -3657,6 +3677,8 @@ func file_admin_doctors_doctors_v1_admin_proto_init() {
 	if File_admin_doctors_doctors_v1_admin_proto != nil {
 		return
 	}
+	file_admin_doctors_doctors_v1_admin_proto_msgTypes[10].OneofWrappers = []any{}
+	file_admin_doctors_doctors_v1_admin_proto_msgTypes[17].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

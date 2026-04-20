@@ -175,3 +175,7 @@ func (d *Doctor) GetCreatedAt() time.Time {
 func (d *Doctor) GetMarketingPreferences() string {
 	return d.marketingPreferences
 }
+
+func (d *Doctor) GetDeactivateReason() *string {
+	return d.deactivateReason
+}

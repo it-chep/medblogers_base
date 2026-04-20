@@ -691,9 +691,6 @@
           "type": "boolean",
           "title": "Есть команда"
         },
-        "hasMedEducation": {
-          "type": "boolean"
-        },
         "priceCategory": {
           "type": "string",
           "format": "int64",
@@ -706,6 +703,9 @@
             "$ref": "#/definitions/freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItem"
           },
           "title": "Соцсети"
+        },
+        "hasMedEducation": {
+          "type": "boolean"
         }
       }
     },

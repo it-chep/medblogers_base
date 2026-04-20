@@ -176,3 +176,10 @@ func WithCooperationType(cooperationType int64) Option {
 		s.cooperationType = CooperationType{id: cooperationType}
 	}
 }
+
+// WithDeactivateReason .
+func WithDeactivateReason(deactivateReason *string) Option {
+	return func(s *Doctor) {
+		s.deactivateReason = deactivateReason
+	}
+}

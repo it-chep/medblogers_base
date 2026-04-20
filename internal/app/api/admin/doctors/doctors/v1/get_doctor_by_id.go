@@ -56,11 +56,12 @@ func (i *Implementation) GetDoctorByID(ctx context.Context, req *desc.GetDoctorB
 				}
 			}),
 
-			Image:      docDTO.Image,
-			IsKfDoctor: docDTO.IsKfDoctor,
-			IsActive:   docDTO.IsActive,
-			BirthDate:  docDTO.BirthDate,
-			CreatedAt:  docDTO.CreatedAt,
+			Image:            docDTO.Image,
+			IsKfDoctor:       docDTO.IsKfDoctor,
+			IsActive:         docDTO.IsActive,
+			BirthDate:        docDTO.BirthDate,
+			CreatedAt:        docDTO.CreatedAt,
+			DeactivateReason: docDTO.DeactivateReason,
 		}
 		return nil
 	})

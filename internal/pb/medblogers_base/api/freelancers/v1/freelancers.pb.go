@@ -2227,13 +2227,13 @@ type FilterResponse_FreelancerItem struct {
 	Image string      `protobuf:"bytes,5,opt,name=image,proto3" json:"image,omitempty"`
 	// Есть команда
 	AgencyRepresentative bool `protobuf:"varint,7,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
-	HasMedEducation      bool `protobuf:"varint,10,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"`
 	// Ценовая категория
 	PriceCategory int64 `protobuf:"varint,8,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	// Соцсети
-	SocialNetworks []*FilterResponse_FreelancerItem_SocialNetworkItem `protobuf:"bytes,9,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	SocialNetworks  []*FilterResponse_FreelancerItem_SocialNetworkItem `protobuf:"bytes,9,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	HasMedEducation bool                                               `protobuf:"varint,10,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *FilterResponse_FreelancerItem) Reset() {
@@ -2308,13 +2308,6 @@ func (x *FilterResponse_FreelancerItem) GetAgencyRepresentative() bool {
 	return false
 }
 
-func (x *FilterResponse_FreelancerItem) GetHasMedEducation() bool {
-	if x != nil {
-		return x.HasMedEducation
-	}
-	return false
-}
-
 func (x *FilterResponse_FreelancerItem) GetPriceCategory() int64 {
 	if x != nil {
 		return x.PriceCategory
@@ -2327,6 +2320,13 @@ func (x *FilterResponse_FreelancerItem) GetSocialNetworks() []*FilterResponse_Fr
 		return x.SocialNetworks
 	}
 	return nil
+}
+
+func (x *FilterResponse_FreelancerItem) GetHasMedEducation() bool {
+	if x != nil {
+		return x.HasMedEducation
+	}
+	return false
 }
 
 type FilterResponse_FreelancerItem_SocialNetworkItem struct {
@@ -2966,11 +2966,11 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"speciality\x12,\n" +
 	"\x04city\x18\x04 \x03(\v2\x18.freelancers.v1.CityItemR\x04city\x12\x14\n" +
 	"\x05image\x18\x05 \x01(\tR\x05image\x123\n" +
-	"\x15agency_representative\x18\a \x01(\bR\x14agencyRepresentative\x12*\n" +
-	"\x11has_med_education\x18\n" +
-	" \x01(\bR\x0fhasMedEducation\x12%\n" +
+	"\x15agency_representative\x18\a \x01(\bR\x14agencyRepresentative\x12%\n" +
 	"\x0eprice_category\x18\b \x01(\x03R\rpriceCategory\x12h\n" +
-	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
+	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x12*\n" +
+	"\x11has_med_education\x18\n" +
+	" \x01(\bR\x0fhasMedEducation\x1aK\n" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
