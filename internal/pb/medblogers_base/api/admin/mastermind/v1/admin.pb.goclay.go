@@ -144,3 +144,21 @@ func (w *AdminMastermindServiceServiceDesc) CreateGetCourseOrder(ctx context.Con
 	}
 	return resp.(*CreateGetCourseOrderResponse), err
 }
+
+func (w *AdminMastermindServiceServiceDesc) GetCourseSubscriptionRenewal(ctx context.Context, in *GetCourseSubscriptionRenewalRequest) (*GetCourseSubscriptionRenewalResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetCourseSubscriptionRenewal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/admin.mastermind.v1.AdminMastermindService/GetCourseSubscriptionRenewal",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetCourseSubscriptionRenewal(ctx, req.(*GetCourseSubscriptionRenewalRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetCourseSubscriptionRenewalResponse), err
+}
