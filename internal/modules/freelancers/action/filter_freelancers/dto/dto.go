@@ -20,6 +20,7 @@ type Freelancer struct {
 	MainSpecialityID     int64
 	PriceCategory        int64
 	AgencyRepresentative bool
+	HasMedEducation      bool
 
 	Networks []NetworkItem
 }

@@ -38,6 +38,7 @@ type FreelancerMiniature struct {
 	S3Image              sql.NullString `db:"s3_image"`
 	PriceCategory        int64          `db:"price_category"`
 	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
+	HasMedEducation      sql.NullBool   `db:"has_med_education"`
 	SpecialityID         int64          `db:"speciality_id"`
 	CityID               int64          `db:"city_id"`
 }
@@ -50,6 +51,7 @@ func (m FreelancerMiniature) ToDomain() *freelancer.Freelancer {
 		freelancer.WithPriceCategory(m.PriceCategory),
 		freelancer.WithS3Image(m.S3Image.String),
 		freelancer.WithIsAgencyRepresentative(m.AgencyRepresentative.Bool),
+		freelancer.WithHasMedEducation(m.HasMedEducation.Bool),
 		freelancer.WithMainCityID(m.CityID),
 		freelancer.WithMainSpecialityID(m.SpecialityID),
 	)
@@ -72,6 +74,7 @@ type FreelancerSearch struct {
 	S3Image              sql.NullString `db:"s3_image"`
 	PriceCategory        int64          `db:"price_category"`
 	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
+	HasMedEducation      sql.NullBool   `db:"has_med_education"`
 	CityName             string         `db:"city_name"`
 	SpecialityName       string         `db:"speciality_name"`
 }
@@ -84,6 +87,7 @@ func (f *FreelancerSearch) ToDomain() *freelancer.Freelancer {
 		freelancer.WithPriceCategory(f.PriceCategory),
 		freelancer.WithS3Image(f.S3Image.String),
 		freelancer.WithIsAgencyRepresentative(f.AgencyRepresentative.Bool),
+		freelancer.WithHasMedEducation(f.HasMedEducation.Bool),
 		freelancer.WithCityName(f.CityName),
 		freelancer.WithSpecialityName(f.SpecialityName),
 	)
@@ -107,6 +111,7 @@ type FreelancerDetail struct {
 	PriceCategory        int64          `db:"price_category"`
 	S3Image              sql.NullString `db:"s3_image"`
 	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
+	HasMedEducation      sql.NullBool   `db:"has_med_education"`
 	StartWorking         sql.NullTime   `db:"start_working_date"`
 }
 
@@ -122,6 +127,7 @@ func (f FreelancerDetail) ToDomain() *freelancer.Freelancer {
 		freelancer.WithMainCityID(f.CityID),
 		freelancer.WithS3Image(f.S3Image.String),
 		freelancer.WithIsAgencyRepresentative(f.AgencyRepresentative.Bool),
+		freelancer.WithHasMedEducation(f.HasMedEducation.Bool),
 		freelancer.WithStartWorkingTime(f.StartWorking.Time),
 	)
 }

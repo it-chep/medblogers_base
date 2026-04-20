@@ -18,8 +18,9 @@ type SpecialityItem struct {
 
 // PriceListItem .
 type PriceListItem struct {
-	Name  string
-	Price int64
+	Name    string
+	Price   int64
+	PriceTo *int64
 }
 
 // SocialNetworkItem .
@@ -53,6 +54,7 @@ type FreelancerDTO struct {
 	Image string
 
 	AgencyRepresentative bool
+	HasMedEducation      bool
 	WorkingExperience    string
 }
 
@@ -70,6 +72,7 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 		MainSpecialityID: frlncr.GetMainSpecialityID(),
 
 		AgencyRepresentative: frlncr.IsAgencyRepresentative(),
+		HasMedEducation:      frlncr.HasMedEducation(),
 		WorkingExperience:    frlncr.GetWorkingExperience(),
 	}
 }

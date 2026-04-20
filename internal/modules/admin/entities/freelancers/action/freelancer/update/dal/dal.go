@@ -30,7 +30,8 @@ func (r *Repository) UpdateFreelancer(ctx context.Context, freelancerID int64, r
 		price_category = $8,
 		start_working_date = $9,
 		agency_representative = $10,
-		cooperation_type_id = $11
+		cooperation_type_id = $11,
+		has_med_education = $12
    	where id = $1
 	`
 
@@ -46,6 +47,7 @@ func (r *Repository) UpdateFreelancer(ctx context.Context, freelancerID int64, r
 		req.DateStarted,
 		req.AgencyRepresentative,
 		req.CooperationTypeID,
+		req.HasMedEducation,
 	}
 
 	_, err := r.db.Exec(ctx, sql, args...)

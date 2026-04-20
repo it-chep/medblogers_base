@@ -10,6 +10,7 @@ type UpdateRequest struct {
 	MainSpecialityID int64
 
 	AgencyRepresentative bool
+	HasMedEducation      bool
 
 	DateStarted       string
 	CooperationTypeID int64

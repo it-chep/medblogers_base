@@ -5,8 +5,9 @@ import "time"
 type Freelancer struct {
 	id int64
 
-	isActive             bool      // Признак активности фрилансера
-	agencyRepresentative bool      // Есть своя команда
+	isActive             bool // Признак активности фрилансера
+	agencyRepresentative bool // Есть своя команда
+	hasMedEducation      bool
 	priceCategory        int64     // Ценовая категория
 	startWorking         time.Time // Примерная дата начала работы
 

@@ -23,6 +23,7 @@ type FullFreelancerDAO struct {
 	StartWorkingDate     *time.Time     `db:"start_working_date"`
 	CooperationTypeId    sql.NullInt64  `db:"cooperation_type_id"`
 	AgencyRepresentative sql.NullBool   `db:"agency_representative"`
+	HasMedEducation      sql.NullBool   `db:"has_med_education"`
 }
 
 func (d FullFreelancerDAO) ToDomain() *freelancer.Freelancer {
@@ -33,6 +34,7 @@ func (d FullFreelancerDAO) ToDomain() *freelancer.Freelancer {
 		freelancer.WithSlug(d.Slug),
 		freelancer.WithIsActive(d.IsActive),
 		freelancer.WithIsAgencyRepresentative(d.AgencyRepresentative.Bool),
+		freelancer.WithHasMedEducation(d.HasMedEducation.Bool),
 		freelancer.WithMainSpecialityID(d.SpecialityId.Int64),
 		freelancer.WithMainCityID(d.CityId.Int64),
 		freelancer.WithPriceCategory(d.PriceCategory.Int64),
@@ -87,7 +89,8 @@ func (r Recommendations) ToDomain() []*doctor.Doctor {
 }
 
 type PriceListDao struct {
-	ID    int64  `db:"id"`
-	Name  string `db:"name"`
-	Price int64  `db:"price"`
+	ID      int64         `db:"id"`
+	Name    string        `db:"name"`
+	Price   int64         `db:"price"`
+	PriceTo sql.NullInt64 `db:"price_to"`
 }

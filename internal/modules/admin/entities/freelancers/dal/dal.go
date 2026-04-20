@@ -36,7 +36,8 @@ func (r *Repository) GetFreelancerByID(ctx context.Context, freelancerID int64) 
 		    s3_image, 
 		    start_working_date, 
 		    cooperation_type_id, 
-		    agency_representative
+		    agency_representative,
+		    has_med_education
 		from freelancer where id = $1
 	`
 

@@ -600,6 +600,9 @@
           "type": "string",
           "format": "int64",
           "title": "Опыт работы в годах"
+        },
+        "hasMedEducation": {
+          "type": "boolean"
         }
       }
     },
@@ -614,6 +617,10 @@
           "type": "string",
           "format": "int64",
           "title": "Стоимость услуги"
+        },
+        "amountTo": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -683,6 +690,9 @@
         "agencyRepresentative": {
           "type": "boolean",
           "title": "Есть команда"
+        },
+        "hasMedEducation": {
+          "type": "boolean"
         },
         "priceCategory": {
           "type": "string",
@@ -828,6 +838,9 @@
         "agencyRepresentative": {
           "type": "boolean",
           "title": "Представитель агентства"
+        },
+        "hasMedEducation": {
+          "type": "boolean"
         }
       }
     },

@@ -92,8 +92,9 @@ func (s *Service) GetPriceList(ctx context.Context, freelancerID int64) ([]dto.P
 	dtoPriceList := make([]dto.PriceListItem, 0, len(priceList))
 	for _, item := range priceList {
 		dtoPriceList = append(dtoPriceList, dto.PriceListItem{
-			Name:  item.GetName(),
-			Price: item.GetPrice(),
+			Name:    item.GetName(),
+			Price:   item.GetPrice(),
+			PriceTo: item.GetPriceTo(),
 		})
 	}
 

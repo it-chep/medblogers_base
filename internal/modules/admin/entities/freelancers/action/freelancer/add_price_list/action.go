@@ -14,7 +14,7 @@ type CommonDal interface {
 }
 
 type ActionDal interface {
-	AddPriceList(ctx context.Context, freelancerID int64, name string, price int64) error
+	AddPriceList(ctx context.Context, freelancerID int64, name string, price int64, priceTo *int64) error
 }
 
 type Action struct {
@@ -30,7 +30,7 @@ func New(pool postgres.PoolWrapper) *Action {
 	}
 }
 
-func (a *Action) Do(ctx context.Context, freelancerID int64, name string, price int64) error {
+func (a *Action) Do(ctx context.Context, freelancerID int64, name string, price int64, priceTo *int64) error {
 	_, err := a.commonDal.GetFreelancerByID(ctx, freelancerID)
 	if err != nil {
 		return err
@@ -39,5 +39,9 @@ func (a *Action) Do(ctx context.Context, freelancerID int64, name string, price 
 	if price < 0 {
 		return errors.New("invalid price")
 	}
-	return a.actionDal.AddPriceList(ctx, freelancerID, name, price)
+	if priceTo != nil && *priceTo < price {
+		return errors.New("invalid price_to")
+	}
+
+	return a.actionDal.AddPriceList(ctx, freelancerID, name, price, priceTo)
 }

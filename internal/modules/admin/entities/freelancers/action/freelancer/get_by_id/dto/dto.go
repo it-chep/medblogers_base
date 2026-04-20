@@ -23,8 +23,9 @@ type CooperationType struct {
 type FreelancerDTO struct {
 	ID int64
 
-	IsActive             bool      // Признак активности фрилансера
-	AgencyRepresentative bool      // Есть своя команда
+	IsActive             bool // Признак активности фрилансера
+	AgencyRepresentative bool // Есть своя команда
+	HasMedEducation      bool
 	PriceCategory        int64     // Ценовая категория
 	StartWorking         time.Time // Примерная дата начала работы
 
@@ -51,6 +52,7 @@ func New(frlncr *freelancer.Freelancer) *FreelancerDTO {
 		ID:                   frlncr.GetID(),
 		IsActive:             frlncr.IsActive(),
 		AgencyRepresentative: frlncr.IsAgencyRepresentative(),
+		HasMedEducation:      frlncr.HasMedEducation(),
 		PriceCategory:        frlncr.GetPriceCategory(),
 		StartWorking:         frlncr.GetStartWorking(),
 		Name:                 frlncr.GetName(),

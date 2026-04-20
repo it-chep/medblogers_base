@@ -17,6 +17,7 @@ func (f *Freelancer) Json() ([]byte, error) {
 		"s3_image":              f.s3Image,
 		"cooperation_type":      f.cooperationType.id,
 		"agency_representative": f.agencyRepresentative,
+		"has_med_education":     f.hasMedEducation,
 		"price_category":        f.priceCategory,
 		"start_working":         f.startWorking.Format(time.DateTime),
 		"portfolio_link":        f.portfolioLink,

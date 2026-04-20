@@ -54,6 +54,12 @@ func WithIsAgencyRepresentative(agencyRepresentative bool) Option {
 	}
 }
 
+func WithHasMedEducation(hasMedEducation bool) Option {
+	return func(s *Freelancer) {
+		s.hasMedEducation = hasMedEducation
+	}
+}
+
 // WithStartWorkingTime .
 func WithStartWorkingTime(startWorkingTime time.Time) Option {
 	return func(s *Freelancer) {

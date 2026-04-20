@@ -202,6 +202,7 @@ message PriceList {
   int64 id = 1;
   string name = 2;
   string amount = 3;
+  optional int64 amount_to = 4;
 }
 
 message GetFreelancersRequest {}
@@ -273,6 +274,7 @@ message GetFreelancerByIDResponse {
   string date_started = 13;
   int64 price_category = 14;
   string email = 15;
+  bool has_med_education = 16;
   //  todo года работы
 }
 
@@ -293,6 +295,7 @@ message UpdateFreelancerRequest {
   string date_started = 10;
   int64 price_category = 11;
   string email = 12;
+  bool has_med_education = 13;
 }
 
 message UpdateFreelancerResponse {}
@@ -391,6 +394,7 @@ message AddPriceListRequest {
   string name = 2;
   // Стоимость услуги
   int64 amount = 3;
+  optional int64 amount_to = 4;
 }
 
 message AddPriceListResponse {
