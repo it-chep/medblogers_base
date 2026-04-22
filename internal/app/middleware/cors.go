@@ -59,7 +59,7 @@ func CORSMiddleware(corsConfig CorsConfig) func(next http.Handler) http.Handler 
 				w.Header().Set("Vary", "Origin")
 				w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
 				w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
-				w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+				w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, X-Medblogers-Source")
 				w.Header().Set("Access-Control-Allow-Credentials", "true")
 			}
 
