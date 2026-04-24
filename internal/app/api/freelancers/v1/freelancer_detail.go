@@ -69,5 +69,6 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 		Image:                freelancer.Image,
 		AgencyRepresentative: freelancer.AgencyRepresentative,
 		WorkingExperience:    freelancer.WorkingExperience,
+		HasMedEducation:      freelancer.HasMedEducation,
 	}
 }
