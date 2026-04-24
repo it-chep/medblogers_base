@@ -29,5 +29,5 @@ func FormatPriceRange(price int64, priceTo *int64) string {
 		return fmt.Sprintf("от %s ₽", HumanPrice(price))
 	}
 
-	return fmt.Sprintf("%s - %s", HumanPrice(price), HumanPrice(*priceTo))
+	return fmt.Sprintf("%s - %s ₽", HumanPrice(price), HumanPrice(*priceTo))
 }
