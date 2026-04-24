@@ -21,9 +21,13 @@ func HumanPriceFromWithAgreement(price int64) string {
 }
 
 func FormatPriceRange(price int64, priceTo *int64) string {
-	if priceTo == nil || *priceTo <= 0 {
-		return fmt.Sprintf("от %s", HumanPrice(price))
+	if price <= 0 {
+		return "по договоренности"
 	}
 
-	return fmt.Sprintf("от %s до %s", HumanPrice(price), HumanPrice(*priceTo))
+	if priceTo == nil || *priceTo <= 0 {
+		return fmt.Sprintf("от %s ₽", HumanPrice(price))
+	}
+
+	return fmt.Sprintf("%s - %s", HumanPrice(price), HumanPrice(*priceTo))
 }
