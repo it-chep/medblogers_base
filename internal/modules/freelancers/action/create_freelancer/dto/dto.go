@@ -3,8 +3,9 @@ package dto
 import "time"
 
 type PriceListItem struct {
-	Name  string
-	Price int64
+	Name    string
+	Price   int64
+	PriceTo *int64
 }
 
 type PriceList []PriceListItem
@@ -21,6 +22,7 @@ type CreateRequest struct {
 	Name  string
 
 	AgencyRepresentative   bool
+	HasMedEducation        bool
 	WorkingExperience      int64
 	StartWorkingExperience time.Time
 

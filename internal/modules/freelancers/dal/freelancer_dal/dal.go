@@ -130,7 +130,7 @@ func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 // GetFreelancerInfo детальная информация о фрилансере
 func (r *Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	sql := `
-		select id, slug, name, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, agency_representative, start_working_date
+		select id, slug, name, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, agency_representative, has_med_education, start_working_date
 		    from freelancer
 		where slug = $1 and is_active = true
 	`

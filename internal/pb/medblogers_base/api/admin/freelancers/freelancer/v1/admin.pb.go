@@ -296,6 +296,7 @@ type PriceList struct {
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Amount        string                 `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	AmountTo      *int64                 `protobuf:"varint,4,opt,name=amount_to,json=amountTo,proto3,oneof" json:"amount_to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -349,6 +350,13 @@ func (x *PriceList) GetAmount() string {
 		return x.Amount
 	}
 	return ""
+}
+
+func (x *PriceList) GetAmountTo() int64 {
+	if x != nil && x.AmountTo != nil {
+		return *x.AmountTo
+	}
+	return 0
 }
 
 type GetFreelancersRequest struct {
@@ -659,7 +667,8 @@ type GetFreelancerByIDResponse struct {
 	CreatedAt            string                 `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	DateStarted          string                 `protobuf:"bytes,13,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
 	PriceCategory        int64                  `protobuf:"varint,14,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
-	Email                string                 `protobuf:"bytes,15,opt,name=email,proto3" json:"email,omitempty"` //  todo года работы
+	Email                string                 `protobuf:"bytes,15,opt,name=email,proto3" json:"email,omitempty"`
+	HasMedEducation      bool                   `protobuf:"varint,16,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"` //  todo года работы
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -799,6 +808,13 @@ func (x *GetFreelancerByIDResponse) GetEmail() string {
 	return ""
 }
 
+func (x *GetFreelancerByIDResponse) GetHasMedEducation() bool {
+	if x != nil {
+		return x.HasMedEducation
+	}
+	return false
+}
+
 type UpdateFreelancerRequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	FreelancerId         int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
@@ -813,6 +829,7 @@ type UpdateFreelancerRequest struct {
 	DateStarted          string                 `protobuf:"bytes,10,opt,name=date_started,json=dateStarted,proto3" json:"date_started,omitempty"`
 	PriceCategory        int64                  `protobuf:"varint,11,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	Email                string                 `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
+	HasMedEducation      bool                   `protobuf:"varint,13,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -929,6 +946,13 @@ func (x *UpdateFreelancerRequest) GetEmail() string {
 		return x.Email
 	}
 	return ""
+}
+
+func (x *UpdateFreelancerRequest) GetHasMedEducation() bool {
+	if x != nil {
+		return x.HasMedEducation
+	}
+	return false
 }
 
 type UpdateFreelancerResponse struct {
@@ -1941,7 +1965,8 @@ type AddPriceListRequest struct {
 	// Название услуги
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Стоимость услуги
-	Amount        int64 `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount        int64  `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	AmountTo      *int64 `protobuf:"varint,4,opt,name=amount_to,json=amountTo,proto3,oneof" json:"amount_to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1993,6 +2018,13 @@ func (x *AddPriceListRequest) GetName() string {
 func (x *AddPriceListRequest) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
+	}
+	return 0
+}
+
+func (x *AddPriceListRequest) GetAmountTo() int64 {
+	if x != nil && x.AmountTo != nil {
+		return *x.AmountTo
 	}
 	return 0
 }
@@ -3158,11 +3190,14 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\x0eRecommendation\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x1f\n" +
 	"\vdoctor_name\x18\x02 \x01(\tR\n" +
-	"doctorName\"G\n" +
+	"doctorName\"w\n" +
 	"\tPriceList\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\tR\x06amount\"\x17\n" +
+	"\x06amount\x18\x03 \x01(\tR\x06amount\x12 \n" +
+	"\tamount_to\x18\x04 \x01(\x03H\x00R\bamountTo\x88\x01\x01B\f\n" +
+	"\n" +
+	"_amount_to\"\x17\n" +
 	"\x15GetFreelancersRequest\"\xc1\x02\n" +
 	"\x16GetFreelancersResponse\x12d\n" +
 	"\vfreelancers\x18\x01 \x03(\v2B.admin.freelancers.freelancer.v1.GetFreelancersResponse.FreelancerR\vfreelancers\x1a\xc0\x01\n" +
@@ -3195,7 +3230,7 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12[\n" +
 	"\x10cooperation_type\x18\x05 \x01(\v20.admin.freelancers.freelancer.v1.CooperationTypeR\x0fcooperationType\"?\n" +
 	"\x18GetFreelancerByIDRequest\x12#\n" +
-	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xf7\x04\n" +
+	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\xa3\x05\n" +
 	"\x19GetFreelancerByIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3213,7 +3248,8 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12!\n" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
 	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\x12\x14\n" +
-	"\x05email\x18\x0f \x01(\tR\x05email\"\xb9\x03\n" +
+	"\x05email\x18\x0f \x01(\tR\x05email\x12*\n" +
+	"\x11has_med_education\x18\x10 \x01(\bR\x0fhasMedEducation\"\xe5\x03\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -3228,7 +3264,8 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\fdate_started\x18\n" +
 	" \x01(\tR\vdateStarted\x12%\n" +
 	"\x0eprice_category\x18\v \x01(\x03R\rpriceCategory\x12\x14\n" +
-	"\x05email\x18\f \x01(\tR\x05email\"\x1a\n" +
+	"\x05email\x18\f \x01(\tR\x05email\x12*\n" +
+	"\x11has_med_education\x18\r \x01(\bR\x0fhasMedEducation\"\x1a\n" +
 	"\x18UpdateFreelancerResponse\">\n" +
 	"\x17DeleteFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +
@@ -3281,11 +3318,14 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12+\n" +
 	"\x11recommendation_id\x18\x02 \x01(\x03R\x10recommendationId\x12\x12\n" +
 	"\x04sort\x18\x03 \x01(\x03R\x04sort\"\"\n" +
-	" ChangeRecommendationSortResponse\"f\n" +
+	" ChangeRecommendationSortResponse\"\x96\x01\n" +
 	"\x13AddPriceListRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x03R\x06amount\"C\n" +
+	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12 \n" +
+	"\tamount_to\x18\x04 \x01(\x03H\x00R\bamountTo\x88\x01\x01B\f\n" +
+	"\n" +
+	"_amount_to\"C\n" +
 	"\x14AddPriceListResponse\x12+\n" +
 	"\x12price_list_item_id\x18\x01 \x01(\x03R\x0fpriceListItemId\"j\n" +
 	"\x16DeletePriceListRequest\x12#\n" +
@@ -3513,6 +3553,8 @@ func file_admin_freelancers_freelancer_v1_admin_proto_init() {
 	if File_admin_freelancers_freelancer_v1_admin_proto != nil {
 		return
 	}
+	file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[5].OneofWrappers = []any{}
+	file_admin_freelancers_freelancer_v1_admin_proto_msgTypes[38].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

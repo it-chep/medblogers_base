@@ -4,6 +4,8 @@ import (
 	"context"
 	"medblogers_base/internal/modules/freelancers/action/create_freelancer/dto"
 	"medblogers_base/internal/pkg/postgres"
+
+	"github.com/jackc/pgtype"
 )
 
 type Repository struct {
@@ -29,8 +31,9 @@ func (r *Repository) CreateFreelancer(ctx context.Context, createDTO dto.CreateR
 						city_id,
 						price_category,
 		                agency_representative,
+		                has_med_education,
 		                start_working_date)
-		values ($1, $2, $3, false, $4, $5, $6, $7, $8, $9, $10)
+		values ($1, $2, $3, false, $4, $5, $6, $7, $8, $9, $10, $11)
 		returning id;
 	`
 
@@ -44,6 +47,7 @@ func (r *Repository) CreateFreelancer(ctx context.Context, createDTO dto.CreateR
 		createDTO.MainCityID,
 		createDTO.PriceCategory,
 		createDTO.AgencyRepresentative,
+		createDTO.HasMedEducation,
 		createDTO.StartWorkingExperience,
 	}
 
@@ -99,20 +103,41 @@ func (r *Repository) CreatePriceList(ctx context.Context, freelancerID int64, pr
 		return nil
 	}
 
-	names := make([]string, len(priceList))
-	prices := make([]int64, len(priceList))
+	names := make([]string, 0, len(priceList))
+	prices := make([]int64, 0, len(priceList))
+	priceToElements := make([]pgtype.Int8, 0, len(priceList))
 
-	for i, item := range priceList {
-		names[i] = item.Name
-		prices[i] = item.Price
+	for _, item := range priceList {
+		names = append(names, item.Name)
+		prices = append(prices, item.Price)
+
+		if item.PriceTo == nil {
+			priceToElements = append(priceToElements, pgtype.Int8{Status: pgtype.Null})
+			continue
+		}
+
+		priceToElements = append(priceToElements, pgtype.Int8{
+			Int:    *item.PriceTo,
+			Status: pgtype.Present,
+		})
+	}
+
+	priceToArray := pgtype.Int8Array{
+		Elements:   priceToElements,
+		Dimensions: []pgtype.ArrayDimension{{Length: int32(len(priceToElements)), LowerBound: 1}},
+		Status:     pgtype.Present,
 	}
 
 	sql := `
-	insert into freelancers_price_list (freelancer_id, name, price)
-         select $1, name, price
-         from unnest($2::text[], $3::bigint[]) as t(name, price)
-         on conflict (freelancer_id, name, price) do nothing`
+	insert into freelancers_price_list (freelancer_id, name, price, price_to, search_vector)
+	select $1,
+	       t.name,
+	       t.price,
+	       t.price_to,
+	       to_tsvector('russian', coalesce(t.name, ''))
+	from unnest($2::text[], $3::bigint[], $4::bigint[]) as t(name, price, price_to)
+	`
 
-	_, err := r.db.Exec(ctx, sql, freelancerID, names, prices)
+	_, err := r.db.Exec(ctx, sql, freelancerID, names, prices, &priceToArray)
 	return err
 }

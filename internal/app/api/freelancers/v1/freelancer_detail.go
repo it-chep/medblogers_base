@@ -52,7 +52,7 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 		PriceList: lo.Map(freelancer.PriceList, func(item indto.PriceListItem, index int) *desc.GetFreelancerResponse_PriceListItem {
 			return &desc.GetFreelancerResponse_PriceListItem{
 				Name:   item.Name,
-				Amount: formatters.HumanPrice(item.Price),
+				Amount: formatters.FormatPriceRange(item.Price, item.PriceTo),
 			}
 		}),
 
@@ -69,5 +69,6 @@ func (i *Implementation) newDoctorDetailResponse(freelancer *indto.FreelancerDTO
 		Image:                freelancer.Image,
 		AgencyRepresentative: freelancer.AgencyRepresentative,
 		WorkingExperience:    freelancer.WorkingExperience,
+		HasMedEducation:      freelancer.HasMedEducation,
 	}
 }

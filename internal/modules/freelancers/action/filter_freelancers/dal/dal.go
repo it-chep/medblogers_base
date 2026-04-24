@@ -35,7 +35,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 func (r *Repository) GetFreelancers(ctx context.Context, filter freelancer.Filter) (map[int64]*freelancer.Freelancer, []int64, error) {
 	sql := `
 	select 
-	    id, name, slug, s3_image, price_category, agency_representative, speciality_id, city_id
+	    id, name, slug, s3_image, price_category, agency_representative, has_med_education, speciality_id, city_id
 	from
     	freelancer f
 	where 
@@ -121,7 +121,7 @@ func sqlAddLimitOffset(sql string, phValues []any, filter freelancer.Filter) (_ 
 func sqlStmt(filter freelancer.Filter) (_ string, phValues []any) {
 	defaultSql := `
 	select 
-	    id, name, slug, s3_image, price_category, agency_representative
+	    id, name, slug, s3_image, price_category, agency_representative, has_med_education
 	from
     	freelancer f
 	where 

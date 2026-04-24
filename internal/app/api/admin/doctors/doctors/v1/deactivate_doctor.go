@@ -10,6 +10,6 @@ func (i *Implementation) DeactivateDoctor(ctx context.Context, req *desc.Deactiv
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions) // todo лог действия
 
 	return resp, executor(ctx, "/api/v1/admin/doctor/{id}/deactivate", func(ctx context.Context) error {
-		return i.admin.Actions.DoctorModule.DoctorAgg.DeactivateDoctor.Do(ctx, req.GetDoctorId())
+		return i.admin.Actions.DoctorModule.DoctorAgg.DeactivateDoctor.Do(ctx, req.GetDoctorId(), req.DeactivateReason)
 	})
 }

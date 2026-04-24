@@ -33,7 +33,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetFreelancerInfo детальная информация о фрилансере
 func (r *Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freelancer.Freelancer, error) {
 	sql := `
-		select id, slug, name, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, agency_representative, start_working_date
+		select id, slug, name, tg_username, portfolio_link, speciality_id, city_id, price_category, s3_image, agency_representative, has_med_education, start_working_date
 		    from freelancer
 		where slug = $1 and is_active = true
 	`
@@ -49,7 +49,7 @@ func (r *Repository) GetFreelancerInfo(ctx context.Context, slug string) (*freel
 // GetPriceList получение прайс-листа фрилансера
 func (r *Repository) GetPriceList(ctx context.Context, freelancerID int64) (price_list.PriceList, error) {
 	sql := `
-		select name, price from freelancers_price_list where freelancer_id = $1
+		select name, price, price_to from freelancers_price_list where freelancer_id = $1
 	`
 
 	var priceList priceListDao.PriceList

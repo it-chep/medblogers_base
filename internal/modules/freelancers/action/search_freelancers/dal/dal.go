@@ -16,6 +16,7 @@ import (
 
 	pkgconfig "medblogers_base/internal/pkg/config"
 	"medblogers_base/internal/pkg/postgres"
+	"strings"
 )
 
 const (
@@ -45,20 +46,30 @@ func (r Repository) SearchFreelancers(ctx context.Context, query string) ([]*fre
 			   f.s3_image,
 			   c.name as "city_name",
 			   s.name as "speciality_name",
-			   f.agency_representative
+			   f.agency_representative,
+			   f.has_med_education
 		from freelancer f
 				 join freelancers_city c on f.city_id = c.id
 				 join freelancers_speciality s on f.speciality_id = s.id
 		where f.is_active = true
-		  and f.name ilike $1
+		  and (
+			  f.name ilike $1
+			  or exists(
+			      select 1
+			      from freelancers_price_list fpl
+			      where fpl.freelancer_id = f.id
+			        and fpl.search_vector @@ websearch_to_tsquery('russian', $2)
+			  )
+		  )
 		order by f.name
-		limit $2;
+		limit $3;
 	`
-	query = fmt.Sprintf("%s%s%s", "%", query, "%")
+	rawQuery := strings.TrimSpace(query)
+	query = fmt.Sprintf("%s%s%s", "%", rawQuery, "%")
 	limit := r.getLimit(ctx, defaultFreelancersLimit, config.SearchDoctorsLimit)
 
 	var freelancers []*dao.FreelancerSearch
-	if err := pgxscan.Select(ctx, r.db, &freelancers, sql, query, limit); err != nil {
+	if err := pgxscan.Select(ctx, r.db, &freelancers, sql, query, rawQuery, limit); err != nil {
 		return []*freelancer.Freelancer{}, err
 	}
 

@@ -31,6 +31,7 @@ type FullDoctorDAO struct {
 	IsKFDoctor        sql.NullBool   `json:"is_kf_doctor" db:"is_kf_doctor"`
 	CooperationType   sql.NullInt64  `json:"cooperation_type" db:"cooperation_type"`
 	IsActive          bool           `json:"is_active" db:"is_active"`
+	DeactivateReason  sql.NullString `json:"deactivate_reason" db:"deactivate_reason"`
 }
 
 // ToDomain конвертирует DAO в доменный объект
@@ -58,6 +59,7 @@ func (d FullDoctorDAO) ToDomain() *doctor.Doctor {
 		doctor.WithIsKFDoctor(d.IsKFDoctor.Bool),
 		doctor.WithIsActive(d.IsActive),
 		doctor.WithCooperationType(d.CooperationType.Int64),
+		doctor.WithDeactivateReason(lo.ToPtr(d.DeactivateReason.String)),
 	)
 }
 

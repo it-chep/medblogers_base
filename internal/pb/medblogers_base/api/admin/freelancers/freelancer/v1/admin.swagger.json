@@ -1111,6 +1111,10 @@
           "type": "string",
           "format": "int64",
           "title": "Стоимость услуги"
+        },
+        "amountTo": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -1231,6 +1235,9 @@
         },
         "email": {
           "type": "string"
+        },
+        "hasMedEducation": {
+          "type": "boolean"
         }
       }
     },
@@ -1306,7 +1313,10 @@
           "format": "int64"
         },
         "email": {
-          "type": "string",
+          "type": "string"
+        },
+        "hasMedEducation": {
+          "type": "boolean",
           "title": "todo года работы"
         }
       }
@@ -1404,6 +1414,10 @@
         },
         "amount": {
           "type": "string"
+        },
+        "amountTo": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

@@ -94,6 +94,10 @@ func (f *Freelancer) IsAgencyRepresentative() bool {
 	return f.agencyRepresentative
 }
 
+func (f *Freelancer) HasMedEducation() bool {
+	return f.hasMedEducation
+}
+
 func (f *Freelancer) GetWorkingExperience() string {
 	years := time.Now().Year() - f.startWorking.Year()
 	if years != 1 && years != 0 {

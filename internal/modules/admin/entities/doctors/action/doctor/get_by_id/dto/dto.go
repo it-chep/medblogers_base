@@ -39,6 +39,7 @@ type DoctorDTO struct {
 
 	MedicalDirections    string
 	MarketingPreferences string
+	DeactivateReason     *string
 
 	SubscribersInfo []Subscribers
 	CooperationType CooperationType
@@ -95,6 +96,7 @@ func New(doc *doctor.Doctor) *DoctorDTO {
 		CreatedAt:            doc.GetCreatedAt().Format(time.DateTime),
 		MedicalDirections:    doc.GetMedicalDirection(),
 		MarketingPreferences: doc.GetMarketingPreferences(),
+		DeactivateReason:     doc.GetDeactivateReason(),
 		CooperationType: CooperationType{
 			ID: cooperationType.ID(),
 		},

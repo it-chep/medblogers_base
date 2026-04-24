@@ -1012,6 +1012,7 @@ type CreateFreelancersRequest struct {
 	AgencyRepresentative bool `protobuf:"varint,15,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
 	// Опыт работы в годах
 	WorkingExperience int64 `protobuf:"varint,16,opt,name=working_experience,json=workingExperience,proto3" json:"working_experience,omitempty"`
+	HasMedEducation   bool  `protobuf:"varint,17,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -1151,6 +1152,13 @@ func (x *CreateFreelancersRequest) GetWorkingExperience() int64 {
 	return 0
 }
 
+func (x *CreateFreelancersRequest) GetHasMedEducation() bool {
+	if x != nil {
+		return x.HasMedEducation
+	}
+	return false
+}
+
 type CreateFreelancersResponse struct {
 	state         protoimpl.MessageState                       `protogen:"open.v1"`
 	Errors        []*CreateFreelancersResponse_ValidationError `protobuf:"bytes,1,rep,name=errors,proto3" json:"errors,omitempty"`
@@ -1267,6 +1275,7 @@ type GetFreelancerResponse struct {
 	WorkingExperience string `protobuf:"bytes,13,opt,name=working_experience,json=workingExperience,proto3" json:"working_experience,omitempty"`
 	// Представитель агентства
 	AgencyRepresentative bool `protobuf:"varint,14,opt,name=agency_representative,json=agencyRepresentative,proto3" json:"agency_representative,omitempty"`
+	HasMedEducation      bool `protobuf:"varint,16,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -1395,6 +1404,13 @@ func (x *GetFreelancerResponse) GetWorkingExperience() string {
 func (x *GetFreelancerResponse) GetAgencyRepresentative() bool {
 	if x != nil {
 		return x.AgencyRepresentative
+	}
+	return false
+}
+
+func (x *GetFreelancerResponse) GetHasMedEducation() bool {
+	if x != nil {
+		return x.HasMedEducation
 	}
 	return false
 }
@@ -2214,9 +2230,10 @@ type FilterResponse_FreelancerItem struct {
 	// Ценовая категория
 	PriceCategory int64 `protobuf:"varint,8,opt,name=price_category,json=priceCategory,proto3" json:"price_category,omitempty"`
 	// Соцсети
-	SocialNetworks []*FilterResponse_FreelancerItem_SocialNetworkItem `protobuf:"bytes,9,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	SocialNetworks  []*FilterResponse_FreelancerItem_SocialNetworkItem `protobuf:"bytes,9,rep,name=social_networks,json=socialNetworks,proto3" json:"social_networks,omitempty"`
+	HasMedEducation bool                                               `protobuf:"varint,10,opt,name=has_med_education,json=hasMedEducation,proto3" json:"has_med_education,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *FilterResponse_FreelancerItem) Reset() {
@@ -2305,6 +2322,13 @@ func (x *FilterResponse_FreelancerItem) GetSocialNetworks() []*FilterResponse_Fr
 	return nil
 }
 
+func (x *FilterResponse_FreelancerItem) GetHasMedEducation() bool {
+	if x != nil {
+		return x.HasMedEducation
+	}
+	return false
+}
+
 type FilterResponse_FreelancerItem_SocialNetworkItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -2370,7 +2394,8 @@ type CreateFreelancersRequest_PriceListItem struct {
 	// Название услуги
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Стоимость услуги
-	Amount        int64 `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount        int64  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	AmountTo      *int64 `protobuf:"varint,3,opt,name=amount_to,json=amountTo,proto3,oneof" json:"amount_to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2415,6 +2440,13 @@ func (x *CreateFreelancersRequest_PriceListItem) GetName() string {
 func (x *CreateFreelancersRequest_PriceListItem) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
+	}
+	return 0
+}
+
+func (x *CreateFreelancersRequest_PriceListItem) GetAmountTo() int64 {
+	if x != nil && x.AmountTo != nil {
+		return *x.AmountTo
 	}
 	return 0
 }
@@ -2923,9 +2955,9 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x0eprice_category\x18\x02 \x03(\x03R\rpriceCategory\x12\x16\n" +
 	"\x06cities\x18\x03 \x03(\x03R\x06cities\x12\"\n" +
 	"\fspecialities\x18\x04 \x03(\x03R\fspecialities\x12\x12\n" +
-	"\x04page\x18\x06 \x01(\x03R\x04pageJ\x04\b\x05\x10\x06\"\xb9\x04\n" +
+	"\x04page\x18\x06 \x01(\x03R\x04pageJ\x04\b\x05\x10\x06\"\xe5\x04\n" +
 	"\x0eFilterResponse\x12O\n" +
-	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.FilterResponse.FreelancerItemR\vfreelancers\x1a\xd5\x03\n" +
+	"\vfreelancers\x18\x01 \x03(\v2-.freelancers.v1.FilterResponse.FreelancerItemR\vfreelancers\x1a\x81\x04\n" +
 	"\x0eFreelancerItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12>\n" +
@@ -2936,11 +2968,13 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\x05image\x18\x05 \x01(\tR\x05image\x123\n" +
 	"\x15agency_representative\x18\a \x01(\bR\x14agencyRepresentative\x12%\n" +
 	"\x0eprice_category\x18\b \x01(\x03R\rpriceCategory\x12h\n" +
-	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x1aK\n" +
+	"\x0fsocial_networks\x18\t \x03(\v2?.freelancers.v1.FilterResponse.FreelancerItem.SocialNetworkItemR\x0esocialNetworks\x12*\n" +
+	"\x11has_med_education\x18\n" +
+	" \x01(\bR\x0fhasMedEducation\x1aK\n" +
 	"\x11SocialNetworkItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slugJ\x04\b\x06\x10\a\"\xda\x06\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slugJ\x04\b\x06\x10\a\"\xb6\a\n" +
 	"\x18CreateFreelancersRequest\x12 \n" +
 	"\x05email\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x18\xff\x01`\x01R\x05email\x12&\n" +
@@ -2961,17 +2995,21 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\n" +
 	"price_list\x18\x0e \x03(\v26.freelancers.v1.CreateFreelancersRequest.PriceListItemR\tpriceList\x12<\n" +
 	"\x15agency_representative\x18\x0f \x01(\bB\a\xbaH\x04j\x02\b\x01R\x14agencyRepresentative\x126\n" +
-	"\x12working_experience\x18\x10 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x11workingExperience\x1a;\n" +
+	"\x12working_experience\x18\x10 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x11workingExperience\x12*\n" +
+	"\x11has_med_education\x18\x11 \x01(\bR\x0fhasMedEducation\x1ak\n" +
 	"\rPriceListItem\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amountJ\x04\b\a\x10\b\"\xab\x01\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amount\x12 \n" +
+	"\tamount_to\x18\x03 \x01(\x03H\x00R\bamountTo\x88\x01\x01B\f\n" +
+	"\n" +
+	"_amount_toJ\x04\b\a\x10\b\"\xab\x01\n" +
 	"\x19CreateFreelancersResponse\x12Q\n" +
 	"\x06errors\x18\x01 \x03(\v29.freelancers.v1.CreateFreelancersResponse.ValidationErrorR\x06errors\x1a;\n" +
 	"\x0fValidationError\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\"?\n" +
 	"\x14GetFreelancerRequest\x12'\n" +
-	"\x0ffreelancer_slug\x18\x01 \x01(\tR\x0efreelancerSlug\"\x98\b\n" +
+	"\x0ffreelancer_slug\x18\x01 \x01(\tR\x0efreelancerSlug\"\xc4\b\n" +
 	"\x15GetFreelancerResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x15\n" +
@@ -2988,7 +3026,8 @@ const file_freelancers_v1_freelancers_proto_rawDesc = "" +
 	"\n" +
 	"price_list\x18\f \x03(\v23.freelancers.v1.GetFreelancerResponse.PriceListItemR\tpriceList\x12-\n" +
 	"\x12working_experience\x18\r \x01(\tR\x11workingExperience\x123\n" +
-	"\x15agency_representative\x18\x0e \x01(\bR\x14agencyRepresentative\x1a.\n" +
+	"\x15agency_representative\x18\x0e \x01(\bR\x14agencyRepresentative\x12*\n" +
+	"\x11has_med_education\x18\x10 \x01(\bR\x0fhasMedEducation\x1a.\n" +
 	"\bCityItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x1a4\n" +
@@ -3162,6 +3201,7 @@ func file_freelancers_v1_freelancers_proto_init() {
 	if File_freelancers_v1_freelancers_proto != nil {
 		return
 	}
+	file_freelancers_v1_freelancers_proto_msgTypes[40].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -16,11 +16,19 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) AddPriceList(ctx context.Context, freelancerID int64, name string, price int64) error {
+func (r *Repository) AddPriceList(ctx context.Context, freelancerID int64, name string, price int64, priceTo *int64) error {
 	sql := `
-		insert into freelancers_price_list (freelancer_id, name, price) values ($1, $2, $3)
+		insert into freelancers_price_list (freelancer_id, name, price, price_to, search_vector)
+		values ($1, $2, $3, $4, to_tsvector('russian', coalesce($2, '')))
 	`
 
-	_, err := r.db.Exec(ctx, sql, freelancerID, name, price)
+	args := []interface{}{
+		freelancerID,
+		name,
+		price,
+		priceTo,
+	}
+
+	_, err := r.db.Exec(ctx, sql, args...)
 	return err
 }

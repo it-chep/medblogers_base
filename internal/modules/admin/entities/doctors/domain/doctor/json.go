@@ -30,6 +30,7 @@ func (d *Doctor) Json() ([]byte, error) {
 		"is_kf_doctor":          d.isKFDoctor,
 		"created_at":            d.createdAt.Format(time.RFC3339),
 		"marketing_preferences": d.marketingPreferences,
+		"deactivate_reason":     d.deactivateReason,
 	}
 
 	return json.Marshal(data)

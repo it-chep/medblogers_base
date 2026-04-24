@@ -44,6 +44,7 @@ type Doctor struct {
 	isKFDoctor           bool // доктор из клиники фомина
 	createdAt            time.Time
 	marketingPreferences string
+	deactivateReason     *string
 }
 
 func New(options ...Option) *Doctor {

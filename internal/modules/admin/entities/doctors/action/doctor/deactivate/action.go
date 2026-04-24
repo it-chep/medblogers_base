@@ -8,6 +8,7 @@ import (
 	common_dal "medblogers_base/internal/modules/admin/entities/doctors/dal"
 	"medblogers_base/internal/modules/admin/entities/doctors/domain/doctor"
 	"medblogers_base/internal/pkg/postgres"
+	"strings"
 )
 
 type Subscribers interface {
@@ -19,7 +20,7 @@ type CommonDal interface {
 }
 
 type ActionDal interface {
-	DeactivateDoctor(ctx context.Context, doctorID int64) (err error)
+	DeactivateDoctor(ctx context.Context, doctorID int64, deactivateReason *string) (err error)
 }
 
 // Action деактивация доктора
@@ -38,7 +39,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper) *Action {
 	}
 }
 
-func (a *Action) Do(ctx context.Context, doctorID int64) error {
+func (a *Action) Do(ctx context.Context, doctorID int64, deactivateReason *string) error {
 	doc, err := a.commonDal.GetDoctorByID(ctx, doctorID)
 	if err != nil {
 		return err
@@ -53,5 +54,18 @@ func (a *Action) Do(ctx context.Context, doctorID int64) error {
 		return err
 	}
 
-	return a.actionDal.DeactivateDoctor(ctx, doctorID)
+	return a.actionDal.DeactivateDoctor(ctx, doctorID, normalizeDeactivateReason(deactivateReason))
+}
+
+func normalizeDeactivateReason(deactivateReason *string) *string {
+	if deactivateReason == nil {
+		return nil
+	}
+
+	trimmed := strings.TrimSpace(*deactivateReason)
+	if trimmed == "" {
+		return nil
+	}
+
+	return &trimmed
 }

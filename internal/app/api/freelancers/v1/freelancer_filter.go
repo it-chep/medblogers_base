@@ -64,6 +64,7 @@ func (i *Implementation) newFilterResponse(freelancers []dto.Freelancer) *desc.F
 				}
 			}),
 			AgencyRepresentative: item.AgencyRepresentative,
+			HasMedEducation:      item.HasMedEducation,
 		})
 	}
 

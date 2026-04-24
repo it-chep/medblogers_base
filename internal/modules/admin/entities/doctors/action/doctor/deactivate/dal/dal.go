@@ -16,10 +16,13 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 	}
 }
 
-func (r *Repository) DeactivateDoctor(ctx context.Context, doctorID int64) (err error) {
+func (r *Repository) DeactivateDoctor(ctx context.Context, doctorID int64, deactivateReason *string) (err error) {
 	sql := `
-		update docstar_site_doctor set is_active = false where id = $1
+		update docstar_site_doctor
+		set is_active = false,
+		    deactivate_reason = $2
+		where id = $1
 	`
-	_, err = r.db.Exec(ctx, sql, doctorID)
+	_, err = r.db.Exec(ctx, sql, doctorID, deactivateReason)
 	return err
 }

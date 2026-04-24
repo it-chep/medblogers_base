@@ -250,6 +250,8 @@ message FilterResponse {
     // Соцсети
     repeated SocialNetworkItem social_networks = 9;
 
+    bool has_med_education = 10;
+
     message SocialNetworkItem {
       int64 id = 1;
       string name = 2;
@@ -300,12 +302,14 @@ message CreateFreelancersRequest {
   bool agency_representative = 15 [(buf.validate.field).bool.const = true];
   // Опыт работы в годах
   int64 working_experience = 16 [(buf.validate.field).int64.gt = 0];
+  bool has_med_education = 17;
 
   message PriceListItem {
     // Название услуги
     string name = 1;
     // Стоимость услуги
     int64 amount = 2;
+    optional int64 amount_to = 3;
   }
 }
 
@@ -356,6 +360,7 @@ message GetFreelancerResponse {
   bool agency_representative = 14;
   // DEPRECATED: Опыт работы с врачами
   reserved 15;
+  bool has_med_education = 16;
 
   message CityItem {
     int64 id = 1;

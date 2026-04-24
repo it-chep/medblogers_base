@@ -3,6 +3,7 @@ syntax = "proto3";
 package analytics.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "api/analytics/v1";
@@ -25,6 +26,15 @@ service AnalyticsService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Сохранить аналитику на сайте"
+    };
+  }
+  rpc SaveSiteFormAnswer(SaveSiteFormAnswerRequest) returns (SaveSiteFormAnswerResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/analytics/form/save"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Сохранить ответ формы сайта"
     };
   }
 }
@@ -53,3 +63,13 @@ message SaveAnalyticsRequest {
 }
 
 message SaveAnalyticsResponse {}
+
+message SaveSiteFormAnswerRequest {
+  string form_name = 1;
+  google.protobuf.Struct answer = 2;
+  string cookie_id = 3;
+  string source = 4;
+  optional string tg = 5;
+}
+
+message SaveSiteFormAnswerResponse {}

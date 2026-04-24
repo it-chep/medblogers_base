@@ -1,7 +1,8 @@
 package dto
 
 type PriceList struct {
-	ID     int64
-	Name   string
-	Amount string
+	ID       int64
+	Name     string
+	Amount   string
+	AmountTo *int64
 }

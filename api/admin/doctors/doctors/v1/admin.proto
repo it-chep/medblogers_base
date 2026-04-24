@@ -259,6 +259,7 @@ message GetDoctorByIDResponse {
   string medical_directions = 24;
   string marketing_preferences = 25;
   string email = 26;
+  optional string deactivate_reason = 27;
 
   message SubscribersItem {
     string key = 1; // todo сделать текстовый енам
@@ -314,6 +315,7 @@ message ActivateDoctorResponse {}
 
 message DeactivateDoctorRequest {
   int64 doctor_id = 1;
+  optional string deactivate_reason = 2;
 }
 
 message DeactivateDoctorResponse {}

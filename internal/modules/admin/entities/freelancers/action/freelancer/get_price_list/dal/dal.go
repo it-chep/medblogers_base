@@ -25,7 +25,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 
 func (r *Repository) GetPriceList(ctx context.Context, freelancerID int64) ([]dto.PriceList, error) {
 	sql := `
-		select id, name, price from freelancers_price_list where freelancer_id = $1
+		select id, name, price, price_to from freelancers_price_list where freelancer_id = $1
 	`
 
 	var priceList []dao.PriceListDao
@@ -39,9 +39,10 @@ func (r *Repository) GetPriceList(ctx context.Context, freelancerID int64) ([]dt
 
 	return lo.Map(priceList, func(item dao.PriceListDao, _ int) dto.PriceList {
 		return dto.PriceList{
-			ID:     item.ID,
-			Name:   item.Name,
-			Amount: strconv.FormatInt(item.Price, 10),
+			ID:       item.ID,
+			Name:     item.Name,
+			Amount:   strconv.FormatInt(item.Price, 10),
+			AmountTo: lo.Ternary(item.PriceTo.Int64 != 0, &item.PriceTo.Int64, nil),
 		}
 	}), nil
 }

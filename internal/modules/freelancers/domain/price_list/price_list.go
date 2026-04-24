@@ -1,14 +1,15 @@
 package price_list
 
 type PriceListItem struct {
-	name  string
-	price int64
+	name    string
+	price   int64
+	priceTo *int64
 }
 
 type PriceList []PriceListItem
 
-func NewPriceListItem(name string, price int64) PriceListItem {
-	return PriceListItem{name, price}
+func NewPriceListItem(name string, price int64, priceTo *int64) PriceListItem {
+	return PriceListItem{name: name, price: price, priceTo: priceTo}
 }
 
 func (p PriceListItem) GetName() string {
@@ -17,4 +18,8 @@ func (p PriceListItem) GetName() string {
 
 func (p PriceListItem) GetPrice() int64 {
 	return p.price
+}
+
+func (p PriceListItem) GetPriceTo() *int64 {
+	return p.priceTo
 }

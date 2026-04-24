@@ -987,7 +987,12 @@
       }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.DeactivateDoctorBody": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "deactivateReason": {
+          "type": "string"
+        }
+      }
     },
     "admin.doctors.doctors.v1.DoctorAdminService.DeleteAdditionalCityBody": {
       "type": "object",
@@ -1277,6 +1282,9 @@
           "type": "string"
         },
         "email": {
+          "type": "string"
+        },
+        "deactivateReason": {
           "type": "string"
         }
       }
