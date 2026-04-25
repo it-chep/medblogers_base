@@ -61,7 +61,7 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 			search_vector =
 				setweight(to_tsvector('russian', coalesce($2, '')), 'A') ||
 				setweight(to_tsvector('russian', coalesce($5, '')), 'B') ||
-				setweight(to_tsvector('russian', coalesce($10, '')), 'C')
+				setweight(to_tsvector('russian', coalesce($9, '')), 'C')
 		where id = $1
 	`
 
