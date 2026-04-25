@@ -6,6 +6,7 @@ import (
 	"medblogers_base/internal/modules/admin/entities/blog/action/update_draft_blog/dal"
 	"medblogers_base/internal/modules/admin/entities/blog/action/update_draft_blog/dto"
 	"medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/transaction"
 	"strings"
 
 	"github.com/google/uuid"
@@ -15,7 +16,13 @@ import (
 
 // Action .
 type Action struct {
-	dal *dal.Repository
+	dal ActionDal
+}
+
+type ActionDal interface {
+	GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, error)
+	UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.Request) error
+	UpdateBreadcrumb(ctx context.Context, slug, name string) error
 }
 
 // New .
@@ -38,7 +45,13 @@ func (a *Action) Do(ctx context.Context, blogID uuid.UUID, req dto.Request) erro
 
 	req.SearchText = extractSearchText(req.Body)
 
-	return a.dal.UpdateBlog(ctx, blogID, req)
+	return transaction.Exec(ctx, func(ctx context.Context) error {
+		if err = a.dal.UpdateBlog(ctx, blogID, req); err != nil {
+			return err
+		}
+
+		return a.dal.UpdateBreadcrumb(ctx, blog.Slug.String, req.Name)
+	})
 }
 
 func extractSearchText(body string) string {

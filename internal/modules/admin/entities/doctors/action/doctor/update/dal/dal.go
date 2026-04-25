@@ -71,3 +71,14 @@ func (r *Repository) UpdateDoctor(ctx context.Context, doctorID int64, req dto.U
 
 	return nil
 }
+
+func (r *Repository) UpdateBreadcrumb(ctx context.Context, slug, name string) error {
+	sql := `
+		update breadcrumbs
+		set name = $2
+		where url = '/doctors/' || $1
+	`
+
+	_, err := r.db.Exec(ctx, sql, slug, name)
+	return err
+}

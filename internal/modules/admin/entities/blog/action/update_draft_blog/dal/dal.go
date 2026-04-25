@@ -89,3 +89,14 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 	}
 	return nil
 }
+
+func (r *Repository) UpdateBreadcrumb(ctx context.Context, slug, name string) error {
+	sql := `
+		update breadcrumbs
+		set name = $2
+		where url = '/blogs/' || $1
+	`
+
+	_, err := r.db.Exec(ctx, sql, slug, name)
+	return err
+}

@@ -776,7 +776,6 @@ type UpdateBrandRequest struct {
 	BrandId            int64                      `protobuf:"varint,1,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
 	Photo              string                     `protobuf:"bytes,2,opt,name=photo,proto3" json:"photo,omitempty"`
 	Title              string                     `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Slug               string                     `protobuf:"bytes,4,opt,name=slug,proto3" json:"slug,omitempty"`
 	BusinessCategoryId int64                      `protobuf:"varint,5,opt,name=business_category_id,json=businessCategoryId,proto3" json:"business_category_id,omitempty"`
 	Website            string                     `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
 	Description        string                     `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
@@ -833,13 +832,6 @@ func (x *UpdateBrandRequest) GetPhoto() string {
 func (x *UpdateBrandRequest) GetTitle() string {
 	if x != nil {
 		return x.Title
-	}
-	return ""
-}
-
-func (x *UpdateBrandRequest) GetSlug() string {
-	if x != nil {
-		return x.Slug
 	}
 	return ""
 }
@@ -1419,17 +1411,16 @@ const file_admin_promo_offers_brand_v1_brand_proto_rawDesc = "" +
 	"\x0fsocial_networks\x18\a \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\x12\x14\n" +
 	"\x05about\x18\b \x01(\tR\x05about\"0\n" +
 	"\x13CreateBrandResponse\x12\x19\n" +
-	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\xd2\x02\n" +
+	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\"\xc4\x02\n" +
 	"\x12UpdateBrandRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12\x14\n" +
 	"\x05photo\x18\x02 \x01(\tR\x05photo\x12\x14\n" +
-	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
-	"\x04slug\x18\x04 \x01(\tR\x04slug\x120\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x120\n" +
 	"\x14business_category_id\x18\x05 \x01(\x03R\x12businessCategoryId\x12\x18\n" +
 	"\awebsite\x18\x06 \x01(\tR\awebsite\x12 \n" +
 	"\vdescription\x18\a \x01(\tR\vdescription\x12]\n" +
 	"\x0fsocial_networks\x18\b \x03(\v24.admin.promo_offers.brand.v1.BrandSocialNetworkInputR\x0esocialNetworks\x12\x14\n" +
-	"\x05about\x18\t \x01(\tR\x05about\"\x15\n" +
+	"\x05about\x18\t \x01(\tR\x05aboutJ\x04\b\x04\x10\x05\"\x15\n" +
 	"\x13UpdateBrandResponse\"n\n" +
 	"\x11AddNetworkRequest\x12\x19\n" +
 	"\bbrand_id\x18\x01 \x01(\x03R\abrandId\x12*\n" +

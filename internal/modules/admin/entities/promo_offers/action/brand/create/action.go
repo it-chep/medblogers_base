@@ -12,6 +12,7 @@ import (
 type ActionDal interface {
 	CreateBrand(ctx context.Context, req dto.CreateRequest) (int64, error)
 	ReplaceBrandSocialNetworks(ctx context.Context, brandID int64, items []dto.SocialNetworkInput) error
+	CreateBreadcrumb(ctx context.Context, name, slug string) error
 }
 
 type Action struct {
@@ -29,7 +30,11 @@ func (a *Action) Do(ctx context.Context, req dto.CreateRequest) (brandID int64, 
 			return err
 		}
 
-		return a.actionDal.ReplaceBrandSocialNetworks(ctx, brandID, req.SocialNetworks)
+		if err = a.actionDal.ReplaceBrandSocialNetworks(ctx, brandID, req.SocialNetworks); err != nil {
+			return err
+		}
+
+		return a.actionDal.CreateBreadcrumb(ctx, req.Title, req.Slug)
 	})
 
 	return brandID, err

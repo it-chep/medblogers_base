@@ -148,7 +148,8 @@ message UpdateBrandRequest {
   int64 brand_id = 1;
   string photo = 2;
   string title = 3;
-  string slug = 4;
+  // был slug
+  reserved 4;
   int64 business_category_id = 5;
   string website = 6;
   string description = 7;

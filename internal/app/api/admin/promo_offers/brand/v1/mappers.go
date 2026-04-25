@@ -24,7 +24,6 @@ func newCreateBrandDTO(req *desc.CreateBrandRequest) createDTO.CreateRequest {
 func newUpdateBrandDTO(req *desc.UpdateBrandRequest) updateDTO.UpdateRequest {
 	return updateDTO.UpdateRequest{
 		Title:              req.GetTitle(),
-		Slug:               req.GetSlug(),
 		BusinessCategoryID: req.GetBusinessCategoryId(),
 		Website:            req.GetWebsite(),
 		Description:        req.GetDescription(),

@@ -55,3 +55,14 @@ func (r *Repository) UpdateFreelancer(ctx context.Context, freelancerID int64, r
 
 	return nil
 }
+
+func (r *Repository) UpdateBreadcrumb(ctx context.Context, slug, name string) error {
+	sql := `
+		update breadcrumbs
+		set name = $2
+		where url = '/helpers/' || $1
+	`
+
+	_, err := r.db.Exec(ctx, sql, slug, name)
+	return err
+}

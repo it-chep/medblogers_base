@@ -13,8 +13,9 @@ import (
 )
 
 type Action struct {
-	audit      *audit.Service
-	freelancer *freelancer.Service
+	audit         *audit.Service
+	freelancer    *freelancer.Service
+	breadcrumbDal *dal.Repository
 }
 
 func New(pool postgres.PoolWrapper) *Action {
@@ -24,6 +25,7 @@ func New(pool postgres.PoolWrapper) *Action {
 			commondal.NewRepository(pool),
 			dal.NewRepository(pool),
 		),
+		breadcrumbDal: dal.NewRepository(pool),
 	}
 }
 
@@ -39,6 +41,10 @@ func (a *Action) Do(ctx context.Context, doctorID int64, updateReq dto.UpdateReq
 			return err
 		}
 
-		return a.freelancer.UpdateFreelancer(ctx, doctorID, updateReq)
+		if err = a.freelancer.UpdateFreelancer(ctx, doctorID, updateReq); err != nil {
+			return err
+		}
+
+		return a.breadcrumbDal.UpdateBreadcrumb(ctx, frlncr.GetSlug(), updateReq.Name)
 	})
 }

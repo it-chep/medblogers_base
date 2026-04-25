@@ -14,6 +14,7 @@ import (
 type ActionDal interface {
 	CreateOffer(ctx context.Context, req dto.CreateRequest) (uuid.UUID, error)
 	ReplaceOfferSocialNetworks(ctx context.Context, offerID uuid.UUID, socialNetworkIDs []int64) error
+	CreateBreadcrumb(ctx context.Context, offerID uuid.UUID, name string) error
 }
 
 type Action struct {
@@ -31,7 +32,11 @@ func (a *Action) Do(ctx context.Context, req dto.CreateRequest) (offerID uuid.UU
 			return err
 		}
 
-		return a.actionDal.ReplaceOfferSocialNetworks(ctx, offerID, req.SocialNetworkIDs)
+		if err = a.actionDal.ReplaceOfferSocialNetworks(ctx, offerID, req.SocialNetworkIDs); err != nil {
+			return err
+		}
+
+		return a.actionDal.CreateBreadcrumb(ctx, offerID, req.Title)
 	})
 
 	return offerID, err

@@ -70,3 +70,20 @@ func (r *Repository) ReplaceOfferSocialNetworks(ctx context.Context, offerID uui
 
 	return nil
 }
+
+func (r *Repository) CreateBreadcrumb(ctx context.Context, offerID uuid.UUID, name string) error {
+	sql := `
+		insert into breadcrumbs (name, url, parent_id)
+		values (
+			$1,
+			'/promotional_offers/' || $2::text,
+			(select id from breadcrumbs where url = '/promotional_offers' limit 1)
+		)
+		on conflict (url) do update
+		set name = excluded.name,
+			parent_id = excluded.parent_id
+	`
+
+	_, err := r.db.Exec(ctx, sql, name, offerID)
+	return err
+}

@@ -19,22 +19,20 @@ func (r *Repository) UpdateBrand(ctx context.Context, brandID int64, req dto.Upd
 	sql := `
 		update brand
 		set title = $2,
-			slug = $3,
-			business_category_id = $4,
-			website = $5,
-			description = $6,
-			about = $7
+			business_category_id = $3,
+			website = $4,
+			description = $5,
+			about = $6
 		where id = $1
 	`
 
 	_, err := r.db.Exec(ctx, sql,
-		brandID,
-		req.Title,
-		req.Slug,
-		req.BusinessCategoryID,
-		req.Website,
-		req.Description,
-		req.About,
+		brandID,                // $1
+		req.Title,              // $2
+		req.BusinessCategoryID, // $3
+		req.Website,            // $4
+		req.Description,        // $5
+		req.About,              // $6
 	)
 	return err
 }
@@ -57,4 +55,15 @@ func (r *Repository) ReplaceBrandSocialNetworks(ctx context.Context, brandID int
 	}
 
 	return nil
+}
+
+func (r *Repository) UpdateBreadcrumb(ctx context.Context, slug, name string) error {
+	sql := `
+		update breadcrumbs
+		set name = $2
+		where url = '/brands/' || $1
+	`
+
+	_, err := r.db.Exec(ctx, sql, slug, name)
+	return err
 }
