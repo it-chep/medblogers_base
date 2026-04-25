@@ -2,11 +2,10 @@ package v1
 
 import (
 	"context"
+	"github.com/samber/lo"
 	"medblogers_base/internal/app/interceptor"
 	"medblogers_base/internal/modules/admin/entities/blog/action/get_blogs/dto"
 	desc "medblogers_base/internal/pb/medblogers_base/api/admin/blogs/v1"
-
-	"github.com/samber/lo"
 )
 
 func (i *Implementation) GetBlogs(ctx context.Context, req *desc.GetBlogsRequest) (resp *desc.GetBlogsResponse, _ error) {
@@ -26,6 +25,7 @@ func (i *Implementation) GetBlogs(ctx context.Context, req *desc.GetBlogsRequest
 				Title:          item.Name,
 				IsActive:       item.IsActive.Bool,
 				OrderingNumber: item.OrderingNumber.Int64,
+				ViewsCount:     item.ViewsCount,
 			}
 		})
 

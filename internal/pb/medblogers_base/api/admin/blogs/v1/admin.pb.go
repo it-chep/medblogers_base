@@ -1413,6 +1413,7 @@ type GetBlogsResponse_Blog struct {
 	Title          string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	IsActive       bool                   `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	OrderingNumber int64                  `protobuf:"varint,4,opt,name=ordering_number,json=orderingNumber,proto3" json:"ordering_number,omitempty"`
+	ViewsCount     int64                  `protobuf:"varint,5,opt,name=views_count,json=viewsCount,proto3" json:"views_count,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1471,6 +1472,13 @@ func (x *GetBlogsResponse_Blog) GetIsActive() bool {
 func (x *GetBlogsResponse_Blog) GetOrderingNumber() int64 {
 	if x != nil {
 		return x.OrderingNumber
+	}
+	return 0
+}
+
+func (x *GetBlogsResponse_Blog) GetViewsCount() int64 {
+	if x != nil {
+		return x.ViewsCount
 	}
 	return 0
 }
@@ -1852,14 +1860,16 @@ var File_admin_blogs_v1_admin_proto protoreflect.FileDescriptor
 const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\n" +
 	"\x1aadmin/blogs/v1/admin.proto\x12\x0eadmin.blogs.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x11\n" +
-	"\x0fGetBlogsRequest\"\xcc\x01\n" +
+	"\x0fGetBlogsRequest\"\xee\x01\n" +
 	"\x10GetBlogsResponse\x12;\n" +
-	"\x05blogs\x18\x01 \x03(\v2%.admin.blogs.v1.GetBlogsResponse.BlogR\x05blogs\x1a{\n" +
+	"\x05blogs\x18\x01 \x03(\v2%.admin.blogs.v1.GetBlogsResponse.BlogR\x05blogs\x1a\x9c\x01\n" +
 	"\x04Blog\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1b\n" +
 	"\tis_active\x18\x03 \x01(\bR\bisActive\x12'\n" +
-	"\x0fordering_number\x18\x04 \x01(\x03R\x0eorderingNumber\"-\n" +
+	"\x0fordering_number\x18\x04 \x01(\x03R\x0eorderingNumber\x12\x1f\n" +
+	"\vviews_count\x18\x05 \x01(\x03R\n" +
+	"viewsCount\"-\n" +
 	"\x12GetBlogByIDRequest\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xb8\x04\n" +
 	"\x13GetBlogByIDResponse\x12\x17\n" +

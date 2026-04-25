@@ -21,5 +21,19 @@ func New(pool postgres.PoolWrapper) *Action {
 
 // Do .
 func (a *Action) Do(ctx context.Context) (dto.Blogs, error) {
-	return a.dal.GetBlogs(ctx)
+	blogs, err := a.dal.GetBlogs(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	viewsMap, err := a.dal.GetBlogsViewsCount(ctx, blogs.GetIDs())
+	if err != nil {
+		return nil, err
+	}
+
+	for idx := range blogs {
+		blogs[idx].ViewsCount = viewsMap[blogs[idx].BlogID]
+	}
+
+	return blogs, nil
 }

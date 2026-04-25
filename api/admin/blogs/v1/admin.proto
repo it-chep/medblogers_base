@@ -155,6 +155,7 @@ message GetBlogsResponse {
         string title = 2;
         bool is_active = 3;
         int64 ordering_number = 4;
+        int64 views_count = 5;
     }
 
 }
