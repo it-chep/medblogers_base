@@ -23,9 +23,10 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 // GetEmptySBIDUsers получаем пользаков без SB_ID
 func (r *Repository) GetEmptySBIDUsers(ctx context.Context) (dto.GetcourseUsers, error) {
 	sql := `
-		select * 
+		select id, sb_id, gk_id, name, end_date, days_count
 			from getcourse_users 
 			where sb_id is null
+			  and is_active is true
 	`
 
 	var users dto.GetcourseUsers

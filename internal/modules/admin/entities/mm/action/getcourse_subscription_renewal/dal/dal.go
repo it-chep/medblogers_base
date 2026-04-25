@@ -23,7 +23,7 @@ func NewRepository(db postgres.PoolWrapper) *Repository {
 }
 
 func (r *Repository) GetUserByGKID(ctx context.Context, gkID int64) (dto.GetcourseUserDAO, error) {
-	sql := `select * from getcourse_users where gk_id = $1`
+	sql := `select id, sb_id, gk_id, name, end_date, days_count from getcourse_users where gk_id = $1`
 
 	var user dto.GetcourseUserDAO
 	err := pgxscan.Get(ctx, r.db, &user, sql, gkID)

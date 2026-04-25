@@ -63,7 +63,7 @@ func (r *Repository) SetMMPassed(ctx context.Context, mmID int64) error {
 
 // GetUserToNotificate получаем пользователей для рассылки у кого больше 6 месяцев клуба в общем
 func (r *Repository) GetUserToNotificate(ctx context.Context) (dto.GetcourseUsers, error) {
-	sql := `select * from getcourse_users where days_count >= 180 and sb_id is not null and end_date >= now()`
+	sql := `select id, sb_id, gk_id, name, end_date, days_count from getcourse_users where days_count >= 180 and sb_id is not null and end_date >= now()`
 
 	var users dto.GetcourseUsers
 	err := pgxscan.Select(ctx, r.db, &users, sql)
