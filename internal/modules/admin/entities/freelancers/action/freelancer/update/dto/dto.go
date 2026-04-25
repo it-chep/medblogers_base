@@ -2,7 +2,6 @@ package dto
 
 type UpdateRequest struct {
 	Name          string
-	Slug          string
 	PortfolioLink string
 	TgURL         string
 

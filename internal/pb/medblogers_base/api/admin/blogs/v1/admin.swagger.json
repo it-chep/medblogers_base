@@ -582,9 +582,6 @@
     "admin.blogs.v1.AdminService.UpdateDraftBlogBody": {
       "type": "object",
       "properties": {
-        "slug": {
-          "type": "string"
-        },
         "title": {
           "type": "string"
         },

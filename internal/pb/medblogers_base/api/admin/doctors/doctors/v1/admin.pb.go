@@ -713,7 +713,6 @@ type UpdateDoctorRequest struct {
 	state    protoimpl.MessageState `protogen:"open.v1"`
 	DoctorId int64                  `protobuf:"varint,1,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
 	Name     string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Slug     string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
 	// Соцсети
 	InstUrl              string `protobuf:"bytes,4,opt,name=inst_url,json=instUrl,proto3" json:"inst_url,omitempty"`
 	VkUrl                string `protobuf:"bytes,5,opt,name=vk_url,json=vkUrl,proto3" json:"vk_url,omitempty"`
@@ -776,13 +775,6 @@ func (x *UpdateDoctorRequest) GetDoctorId() int64 {
 func (x *UpdateDoctorRequest) GetName() string {
 	if x != nil {
 		return x.Name
-	}
-	return ""
-}
-
-func (x *UpdateDoctorRequest) GetSlug() string {
-	if x != nil {
-		return x.Slug
 	}
 	return ""
 }
@@ -3354,11 +3346,10 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"subs_count\x18\x02 \x01(\tR\tsubsCount\x12&\n" +
 	"\x0fsubs_count_text\x18\x03 \x01(\tR\rsubsCountText\x12*\n" +
 	"\x11last_updated_date\x18\x04 \x01(\tR\x0flastUpdatedDateB\x14\n" +
-	"\x12_deactivate_reason\"\xa4\x05\n" +
+	"\x12_deactivate_reason\"\x96\x05\n" +
 	"\x13UpdateDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x19\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x19\n" +
 	"\binst_url\x18\x04 \x01(\tR\ainstUrl\x12\x15\n" +
 	"\x06vk_url\x18\x05 \x01(\tR\x05vkUrl\x12\x19\n" +
 	"\bdzen_url\x18\x06 \x01(\tR\adzenUrl\x12\x15\n" +
@@ -3381,7 +3372,7 @@ const file_admin_doctors_doctors_v1_admin_proto_rawDesc = "" +
 	"\x13cooperation_type_id\x18\x11 \x01(\x03R\x11cooperationTypeId\x12-\n" +
 	"\x12medical_directions\x18\x12 \x01(\tR\x11medicalDirections\x123\n" +
 	"\x15marketing_preferences\x18\x13 \x01(\tR\x14marketingPreferences\x12\x14\n" +
-	"\x05email\x18\x14 \x01(\tR\x05email\"\x16\n" +
+	"\x05email\x18\x14 \x01(\tR\x05emailJ\x04\b\x03\x10\x04\"\x16\n" +
 	"\x14UpdateDoctorResponse\"2\n" +
 	"\x13DeleteDoctorRequest\x12\x1b\n" +
 	"\tdoctor_id\x18\x01 \x01(\x03R\bdoctorId\"\x16\n" +

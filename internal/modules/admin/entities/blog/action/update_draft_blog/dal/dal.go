@@ -51,14 +51,13 @@ func (r *Repository) GetBlogByID(ctx context.Context, id uuid.UUID) (dto.Blog, e
 func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.Request) error {
 	sql := `
 		update blog set name = $2, 
-			slug = $3,
-			body = $4,
-			preview_text = $5,
-			society_preview = $6,
-			additional_seo_text = $7,
-			ordering_number = $8,
-			doctor_id = $9,
-			search_text = $10,
+			body = $3,
+			preview_text = $4,
+			society_preview = $5,
+			additional_seo_text = $6,
+			ordering_number = $7,
+			doctor_id = $8,
+			search_text = $9,
 			search_vector =
 				setweight(to_tsvector('russian', coalesce($2, '')), 'A') ||
 				setweight(to_tsvector('russian', coalesce($5, '')), 'B') ||
@@ -67,23 +66,22 @@ func (r *Repository) UpdateBlog(ctx context.Context, blogID uuid.UUID, req dto.R
 	`
 
 	args := []interface{}{
-		blogID.String(),
-		req.Name,
-		req.Slug,
-		req.Body,
-		req.PreviewText,
-		req.SocietyPreviewText,
-		req.AdditionalSEOText,
-		req.OrderingNumber,
+		blogID.String(),        // $1
+		req.Name,               // $2
+		req.Body,               // $3
+		req.PreviewText,        // $4
+		req.SocietyPreviewText, // $5
+		req.AdditionalSEOText,  // $6
+		req.OrderingNumber,     // $7
 	}
 
 	if req.DoctorID != 0 {
-		args = append(args, req.DoctorID)
+		args = append(args, req.DoctorID) // $8
 	} else {
-		args = append(args, nil)
+		args = append(args, nil) // $8
 	}
 
-	args = append(args, req.SearchText)
+	args = append(args, req.SearchText) // $9
 
 	_, err := r.db.Exec(ctx, sql, args...)
 	if err != nil {

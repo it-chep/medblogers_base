@@ -22,32 +22,30 @@ func (r *Repository) UpdateFreelancer(ctx context.Context, freelancerID int64, r
 	sql := `
 	update freelancer set 
 		name = $2,
-		slug = $3,
-		tg_username = $4,
-		portfolio_link = $5,
-		speciality_id = $6,
-		city_id = $7,
-		price_category = $8,
-		start_working_date = $9,
-		agency_representative = $10,
-		cooperation_type_id = $11,
-		has_med_education = $12
+		tg_username = $3,
+		portfolio_link = $4,
+		speciality_id = $5,
+		city_id = $6,
+		price_category = $7,
+		start_working_date = $8,
+		agency_representative = $9,
+		cooperation_type_id = $10,
+		has_med_education = $11
    	where id = $1
 	`
 
 	args := []interface{}{
-		freelancerID,
-		req.Name,
-		req.Slug,
-		req.TgURL,
-		req.PortfolioLink,
-		req.MainSpecialityID,
-		req.MainCityID,
-		req.PriceCategory,
-		req.DateStarted,
-		req.AgencyRepresentative,
-		req.CooperationTypeID,
-		req.HasMedEducation,
+		freelancerID,             // $1
+		req.Name,                 // $2
+		req.TgURL,                // $3
+		req.PortfolioLink,        // $4
+		req.MainSpecialityID,     // $5
+		req.MainCityID,           // $6
+		req.PriceCategory,        // $7
+		req.DateStarted,          // $8
+		req.AgencyRepresentative, // $9
+		req.CooperationTypeID,    // $10
+		req.HasMedEducation,      // $11
 	}
 
 	_, err := r.db.Exec(ctx, sql, args...)

@@ -819,7 +819,6 @@ type UpdateFreelancerRequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	FreelancerId         int64                  `protobuf:"varint,1,opt,name=freelancer_id,json=freelancerId,proto3" json:"freelancer_id,omitempty"`
 	Name                 string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Slug                 string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
 	PortfolioLink        string                 `protobuf:"bytes,4,opt,name=portfolio_link,json=portfolioLink,proto3" json:"portfolio_link,omitempty"`
 	TgUrl                string                 `protobuf:"bytes,5,opt,name=tg_url,json=tgUrl,proto3" json:"tg_url,omitempty"`
 	MainCityId           int64                  `protobuf:"varint,6,opt,name=main_city_id,json=mainCityId,proto3" json:"main_city_id,omitempty"`
@@ -874,13 +873,6 @@ func (x *UpdateFreelancerRequest) GetFreelancerId() int64 {
 func (x *UpdateFreelancerRequest) GetName() string {
 	if x != nil {
 		return x.Name
-	}
-	return ""
-}
-
-func (x *UpdateFreelancerRequest) GetSlug() string {
-	if x != nil {
-		return x.Slug
 	}
 	return ""
 }
@@ -3249,11 +3241,10 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	"\fdate_started\x18\r \x01(\tR\vdateStarted\x12%\n" +
 	"\x0eprice_category\x18\x0e \x01(\x03R\rpriceCategory\x12\x14\n" +
 	"\x05email\x18\x0f \x01(\tR\x05email\x12*\n" +
-	"\x11has_med_education\x18\x10 \x01(\bR\x0fhasMedEducation\"\xe5\x03\n" +
+	"\x11has_med_education\x18\x10 \x01(\bR\x0fhasMedEducation\"\xd7\x03\n" +
 	"\x17UpdateFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04slug\x18\x03 \x01(\tR\x04slug\x12%\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12%\n" +
 	"\x0eportfolio_link\x18\x04 \x01(\tR\rportfolioLink\x12\x15\n" +
 	"\x06tg_url\x18\x05 \x01(\tR\x05tgUrl\x12 \n" +
 	"\fmain_city_id\x18\x06 \x01(\x03R\n" +
@@ -3265,7 +3256,7 @@ const file_admin_freelancers_freelancer_v1_admin_proto_rawDesc = "" +
 	" \x01(\tR\vdateStarted\x12%\n" +
 	"\x0eprice_category\x18\v \x01(\x03R\rpriceCategory\x12\x14\n" +
 	"\x05email\x18\f \x01(\tR\x05email\x12*\n" +
-	"\x11has_med_education\x18\r \x01(\bR\x0fhasMedEducation\"\x1a\n" +
+	"\x11has_med_education\x18\r \x01(\bR\x0fhasMedEducationJ\x04\b\x03\x10\x04\"\x1a\n" +
 	"\x18UpdateFreelancerResponse\">\n" +
 	"\x17DeleteFreelancerRequest\x12#\n" +
 	"\rfreelancer_id\x18\x01 \x01(\x03R\ffreelancerId\"\x1a\n" +

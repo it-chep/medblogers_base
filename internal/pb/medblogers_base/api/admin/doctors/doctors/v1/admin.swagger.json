@@ -1039,9 +1039,6 @@
         "name": {
           "type": "string"
         },
-        "slug": {
-          "type": "string"
-        },
         "instUrl": {
           "type": "string",
           "title": "Соцсети"

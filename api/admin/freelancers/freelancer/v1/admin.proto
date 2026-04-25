@@ -282,7 +282,8 @@ message UpdateFreelancerRequest {
   int64 freelancer_id = 1;
 
   string name = 2;
-  string slug = 3;
+  // был slug
+  reserved 3;
   string portfolio_link = 4;
   string tg_url = 5;
 

@@ -1202,9 +1202,6 @@
         "name": {
           "type": "string"
         },
-        "slug": {
-          "type": "string"
-        },
         "portfolioLink": {
           "type": "string"
         },
