@@ -519,6 +519,94 @@ func (x *GetPromoOfferSeoDataResponse) GetImage() string {
 	return ""
 }
 
+type GetBreadcrumbsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBreadcrumbsRequest) Reset() {
+	*x = GetBreadcrumbsRequest{}
+	mi := &file_seo_v1_seo_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBreadcrumbsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBreadcrumbsRequest) ProtoMessage() {}
+
+func (x *GetBreadcrumbsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBreadcrumbsRequest.ProtoReflect.Descriptor instead.
+func (*GetBreadcrumbsRequest) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetBreadcrumbsRequest) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+type GetBreadcrumbsResponse struct {
+	state         protoimpl.MessageState               `protogen:"open.v1"`
+	Breadcrumbs   []*GetBreadcrumbsResponse_Breadcrumb `protobuf:"bytes,1,rep,name=breadcrumbs,proto3" json:"breadcrumbs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBreadcrumbsResponse) Reset() {
+	*x = GetBreadcrumbsResponse{}
+	mi := &file_seo_v1_seo_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBreadcrumbsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBreadcrumbsResponse) ProtoMessage() {}
+
+func (x *GetBreadcrumbsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBreadcrumbsResponse.ProtoReflect.Descriptor instead.
+func (*GetBreadcrumbsResponse) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetBreadcrumbsResponse) GetBreadcrumbs() []*GetBreadcrumbsResponse_Breadcrumb {
+	if x != nil {
+		return x.Breadcrumbs
+	}
+	return nil
+}
+
 type GetSitemapInfoResponse_SitemapItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
@@ -531,7 +619,7 @@ type GetSitemapInfoResponse_SitemapItem struct {
 
 func (x *GetSitemapInfoResponse_SitemapItem) Reset() {
 	*x = GetSitemapInfoResponse_SitemapItem{}
-	mi := &file_seo_v1_seo_proto_msgTypes[10]
+	mi := &file_seo_v1_seo_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -543,7 +631,7 @@ func (x *GetSitemapInfoResponse_SitemapItem) String() string {
 func (*GetSitemapInfoResponse_SitemapItem) ProtoMessage() {}
 
 func (x *GetSitemapInfoResponse_SitemapItem) ProtoReflect() protoreflect.Message {
-	mi := &file_seo_v1_seo_proto_msgTypes[10]
+	mi := &file_seo_v1_seo_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -587,6 +675,58 @@ func (x *GetSitemapInfoResponse_SitemapItem) GetPriority() string {
 	return ""
 }
 
+type GetBreadcrumbsResponse_Breadcrumb struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBreadcrumbsResponse_Breadcrumb) Reset() {
+	*x = GetBreadcrumbsResponse_Breadcrumb{}
+	mi := &file_seo_v1_seo_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBreadcrumbsResponse_Breadcrumb) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBreadcrumbsResponse_Breadcrumb) ProtoMessage() {}
+
+func (x *GetBreadcrumbsResponse_Breadcrumb) ProtoReflect() protoreflect.Message {
+	mi := &file_seo_v1_seo_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBreadcrumbsResponse_Breadcrumb.ProtoReflect.Descriptor instead.
+func (*GetBreadcrumbsResponse_Breadcrumb) Descriptor() ([]byte, []int) {
+	return file_seo_v1_seo_proto_rawDescGZIP(), []int{11, 0}
+}
+
+func (x *GetBreadcrumbsResponse_Breadcrumb) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetBreadcrumbsResponse_Breadcrumb) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
 var File_seo_v1_seo_proto protoreflect.FileDescriptor
 
 const file_seo_v1_seo_proto_rawDesc = "" +
@@ -626,13 +766,22 @@ const file_seo_v1_seo_proto_rawDesc = "" +
 	"\x1cGetPromoOfferSeoDataResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
-	"\x05image\x18\x03 \x01(\tR\x05image2\xbd\b\n" +
+	"\x05image\x18\x03 \x01(\tR\x05image\"+\n" +
+	"\x15GetBreadcrumbsRequest\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\"\x9b\x01\n" +
+	"\x16GetBreadcrumbsResponse\x12K\n" +
+	"\vbreadcrumbs\x18\x01 \x03(\v2).seo.v1.GetBreadcrumbsResponse.BreadcrumbR\vbreadcrumbs\x1a4\n" +
+	"\n" +
+	"Breadcrumb\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04path\x18\x02 \x01(\tR\x04path2\xe2\t\n" +
 	"\x03Seo\x12\xcb\x01\n" +
 	"\x10GetDoctorSeoData\x12\x1f.seo.v1.GetDoctorSeoDataRequest\x1a .seo.v1.GetDoctorSeoDataResponse\"t\x92AP\x12NПолучение SEO информации для карточки врача\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/v1/seo/{doctor_slug}\x12\xf8\x01\n" +
 	"\x15GetFreelancersSeoData\x12$.seo.v1.GetFreelancersSeoDataRequest\x1a%.seo.v1.GetFreelancersSeoDataResponse\"\x91\x01\x92A\\\x12ZПолучение SEO информации для карточки специалиста\x82\xd3\xe4\x93\x02,\x12*/api/v1/freelancers/seo/{freelancers_slug}\x12\xb5\x01\n" +
 	"\x0eGetSitemapInfo\x12\x1d.seo.v1.GetSitemapInfoRequest\x1a\x1e.seo.v1.GetSitemapInfoResponse\"d\x92AA\x12?Получение урлов для генерации sitemap\x82\xd3\xe4\x93\x02\x1a\x12\x18/api/v1/seo/sitemap_info\x12\xcf\x01\n" +
 	"\x0fGetBrandSeoData\x12\x1e.seo.v1.GetBrandSeoDataRequest\x1a\x1f.seo.v1.GetBrandSeoDataResponse\"{\x92AR\x12PПолучение SEO информации для карточки бренда\x82\xd3\xe4\x93\x02 \x12\x1e/api/v1/brand/seo/{brand_slug}\x12\xe2\x01\n" +
-	"\x14GetPromoOfferSeoData\x12#.seo.v1.GetPromoOfferSeoDataRequest\x1a$.seo.v1.GetPromoOfferSeoDataResponse\"\x7f\x92AR\x12PПолучение SEO информации для карточки оффера\x82\xd3\xe4\x93\x02$\x12\"/api/v1/promo_offer/seo/{offer_id}B\fZ\n" +
+	"\x14GetPromoOfferSeoData\x12#.seo.v1.GetPromoOfferSeoDataRequest\x1a$.seo.v1.GetPromoOfferSeoDataResponse\"\x7f\x92AR\x12PПолучение SEO информации для карточки оффера\x82\xd3\xe4\x93\x02$\x12\"/api/v1/promo_offer/seo/{offer_id}\x12\xa2\x01\n" +
+	"\x0eGetBreadcrumbs\x12\x1d.seo.v1.GetBreadcrumbsRequest\x1a\x1e.seo.v1.GetBreadcrumbsResponse\"Q\x92A0\x12.Получение хлебных крошек\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/breadcrumbsB\fZ\n" +
 	"api/seo/v1b\x06proto3"
 
 var (
@@ -647,7 +796,7 @@ func file_seo_v1_seo_proto_rawDescGZIP() []byte {
 	return file_seo_v1_seo_proto_rawDescData
 }
 
-var file_seo_v1_seo_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_seo_v1_seo_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_seo_v1_seo_proto_goTypes = []any{
 	(*GetDoctorSeoDataRequest)(nil),            // 0: seo.v1.GetDoctorSeoDataRequest
 	(*GetDoctorSeoDataResponse)(nil),           // 1: seo.v1.GetDoctorSeoDataResponse
@@ -659,25 +808,31 @@ var file_seo_v1_seo_proto_goTypes = []any{
 	(*GetBrandSeoDataResponse)(nil),            // 7: seo.v1.GetBrandSeoDataResponse
 	(*GetPromoOfferSeoDataRequest)(nil),        // 8: seo.v1.GetPromoOfferSeoDataRequest
 	(*GetPromoOfferSeoDataResponse)(nil),       // 9: seo.v1.GetPromoOfferSeoDataResponse
-	(*GetSitemapInfoResponse_SitemapItem)(nil), // 10: seo.v1.GetSitemapInfoResponse.SitemapItem
+	(*GetBreadcrumbsRequest)(nil),              // 10: seo.v1.GetBreadcrumbsRequest
+	(*GetBreadcrumbsResponse)(nil),             // 11: seo.v1.GetBreadcrumbsResponse
+	(*GetSitemapInfoResponse_SitemapItem)(nil), // 12: seo.v1.GetSitemapInfoResponse.SitemapItem
+	(*GetBreadcrumbsResponse_Breadcrumb)(nil),  // 13: seo.v1.GetBreadcrumbsResponse.Breadcrumb
 }
 var file_seo_v1_seo_proto_depIdxs = []int32{
-	10, // 0: seo.v1.GetSitemapInfoResponse.items:type_name -> seo.v1.GetSitemapInfoResponse.SitemapItem
-	0,  // 1: seo.v1.Seo.GetDoctorSeoData:input_type -> seo.v1.GetDoctorSeoDataRequest
-	2,  // 2: seo.v1.Seo.GetFreelancersSeoData:input_type -> seo.v1.GetFreelancersSeoDataRequest
-	4,  // 3: seo.v1.Seo.GetSitemapInfo:input_type -> seo.v1.GetSitemapInfoRequest
-	6,  // 4: seo.v1.Seo.GetBrandSeoData:input_type -> seo.v1.GetBrandSeoDataRequest
-	8,  // 5: seo.v1.Seo.GetPromoOfferSeoData:input_type -> seo.v1.GetPromoOfferSeoDataRequest
-	1,  // 6: seo.v1.Seo.GetDoctorSeoData:output_type -> seo.v1.GetDoctorSeoDataResponse
-	3,  // 7: seo.v1.Seo.GetFreelancersSeoData:output_type -> seo.v1.GetFreelancersSeoDataResponse
-	5,  // 8: seo.v1.Seo.GetSitemapInfo:output_type -> seo.v1.GetSitemapInfoResponse
-	7,  // 9: seo.v1.Seo.GetBrandSeoData:output_type -> seo.v1.GetBrandSeoDataResponse
-	9,  // 10: seo.v1.Seo.GetPromoOfferSeoData:output_type -> seo.v1.GetPromoOfferSeoDataResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	12, // 0: seo.v1.GetSitemapInfoResponse.items:type_name -> seo.v1.GetSitemapInfoResponse.SitemapItem
+	13, // 1: seo.v1.GetBreadcrumbsResponse.breadcrumbs:type_name -> seo.v1.GetBreadcrumbsResponse.Breadcrumb
+	0,  // 2: seo.v1.Seo.GetDoctorSeoData:input_type -> seo.v1.GetDoctorSeoDataRequest
+	2,  // 3: seo.v1.Seo.GetFreelancersSeoData:input_type -> seo.v1.GetFreelancersSeoDataRequest
+	4,  // 4: seo.v1.Seo.GetSitemapInfo:input_type -> seo.v1.GetSitemapInfoRequest
+	6,  // 5: seo.v1.Seo.GetBrandSeoData:input_type -> seo.v1.GetBrandSeoDataRequest
+	8,  // 6: seo.v1.Seo.GetPromoOfferSeoData:input_type -> seo.v1.GetPromoOfferSeoDataRequest
+	10, // 7: seo.v1.Seo.GetBreadcrumbs:input_type -> seo.v1.GetBreadcrumbsRequest
+	1,  // 8: seo.v1.Seo.GetDoctorSeoData:output_type -> seo.v1.GetDoctorSeoDataResponse
+	3,  // 9: seo.v1.Seo.GetFreelancersSeoData:output_type -> seo.v1.GetFreelancersSeoDataResponse
+	5,  // 10: seo.v1.Seo.GetSitemapInfo:output_type -> seo.v1.GetSitemapInfoResponse
+	7,  // 11: seo.v1.Seo.GetBrandSeoData:output_type -> seo.v1.GetBrandSeoDataResponse
+	9,  // 12: seo.v1.Seo.GetPromoOfferSeoData:output_type -> seo.v1.GetPromoOfferSeoDataResponse
+	11, // 13: seo.v1.Seo.GetBreadcrumbs:output_type -> seo.v1.GetBreadcrumbsResponse
+	8,  // [8:14] is the sub-list for method output_type
+	2,  // [2:8] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_seo_v1_seo_proto_init() }
@@ -691,7 +846,7 @@ func file_seo_v1_seo_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_seo_v1_seo_proto_rawDesc), len(file_seo_v1_seo_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

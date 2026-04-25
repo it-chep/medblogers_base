@@ -47,6 +47,39 @@
         ]
       }
     },
+    "/api/v1/breadcrumbs": {
+      "post": {
+        "summary": "Получение хлебных крошек",
+        "operationId": "Seo_GetBreadcrumbs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/seo.v1.GetBreadcrumbsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/seo.v1.GetBreadcrumbsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Seo"
+        ]
+      }
+    },
     "/api/v1/freelancers/seo/{freelancersSlug}": {
       "get": {
         "summary": "Получение SEO информации для карточки специалиста",
@@ -203,6 +236,37 @@
           "type": "string"
         },
         "image": {
+          "type": "string"
+        }
+      }
+    },
+    "seo.v1.GetBreadcrumbsRequest": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "seo.v1.GetBreadcrumbsResponse": {
+      "type": "object",
+      "properties": {
+        "breadcrumbs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/seo.v1.GetBreadcrumbsResponse.Breadcrumb"
+          }
+        }
+      }
+    },
+    "seo.v1.GetBreadcrumbsResponse.Breadcrumb": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "path": {
           "type": "string"
         }
       }

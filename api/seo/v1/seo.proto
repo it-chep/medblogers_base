@@ -28,7 +28,13 @@ service Seo {
     option (google.api.http) = {get: "/api/v1/promo_offer/seo/{offer_id}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение SEO информации для карточки оффера"};
   }
-
+  rpc GetBreadcrumbs(GetBreadcrumbsRequest) returns (GetBreadcrumbsResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/breadcrumbs",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {summary: "Получение хлебных крошек"};
+  }
 }
 
 message GetDoctorSeoDataRequest {
@@ -52,6 +58,7 @@ message GetFreelancersSeoDataResponse {
 }
 
 message GetSitemapInfoRequest {}
+
 message GetSitemapInfoResponse {
   repeated SitemapItem items = 1;
 
@@ -63,21 +70,35 @@ message GetSitemapInfoResponse {
   }
 }
 
-
-
 message GetBrandSeoDataRequest{
   string brand_slug = 1;
 }
+
 message GetBrandSeoDataResponse{
   string title = 1;
   string description = 2;
   string image = 3;
 }
+
 message GetPromoOfferSeoDataRequest{
   string offer_id = 1;
 }
+
 message GetPromoOfferSeoDataResponse{
   string title = 1;
   string description = 2;
   string image = 3;
+}
+
+message GetBreadcrumbsRequest {
+  string path = 1;
+}
+
+message GetBreadcrumbsResponse {
+  repeated Breadcrumb breadcrumbs = 1;
+
+  message Breadcrumb {
+    string name = 1;
+    string path = 2;
+  }
 }
