@@ -12,7 +12,7 @@ import (
 func (i *Implementation) SaveBrandPhoto(ctx context.Context, req *desc.SaveBrandPhotoRequest) (resp *desc.SaveBrandPhotoResponse, err error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return resp, executor(ctx, "/api/v1/admin/promo_offers/brand/{brand_id}/save_photo", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/promo_offers/brand/{id}/save_photo", func(ctx context.Context) error {
 		data, err := base64.StdEncoding.DecodeString(req.GetImageData())
 		if err != nil {
 			log.Fatal("Ошибка декодирования:", err)

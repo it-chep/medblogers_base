@@ -10,7 +10,7 @@ import (
 func (i *Implementation) UpdateBrand(ctx context.Context, req *desc.UpdateBrandRequest) (resp *desc.UpdateBrandResponse, _ error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return resp, executor(ctx, "/api/v1/admin/promo_offers/brand/{brand_id}/update", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/promo_offers/brand/{id}/update", func(ctx context.Context) error {
 		if err := i.admin.Actions.PromoOffers.BrandAgg.UpdateBrand.Do(ctx, req.GetBrandId(), newUpdateBrandDTO(req)); err != nil {
 			return err
 		}

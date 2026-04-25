@@ -10,7 +10,7 @@ import (
 func (i *Implementation) DeleteNetwork(ctx context.Context, req *desc.DeleteNetworkRequest) (resp *desc.DeleteNetworkResponse, _ error) {
 	executor := interceptor.ExecuteWithPermissions(i.auth.Actions.CheckPermissions)
 
-	return resp, executor(ctx, "/api/v1/admin/promo_offers/brand/{brand_id}/delete_network", func(ctx context.Context) error {
+	return resp, executor(ctx, "/api/v1/admin/promo_offers/brand/{id}/delete_network", func(ctx context.Context) error {
 		if err := i.admin.Actions.PromoOffers.BrandAgg.DeleteNetwork.Do(ctx, req.GetBrandId(), req.GetSocialNetworkId()); err != nil {
 			return err
 		}
