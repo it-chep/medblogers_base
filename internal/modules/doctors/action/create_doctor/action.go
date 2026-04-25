@@ -15,6 +15,7 @@ import (
 	"medblogers_base/internal/pkg/async"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/transaction"
 )
 
 // Action создание врача в базе
@@ -22,6 +23,7 @@ type Action struct {
 	doctorService     *doctor.Service
 	externalService   *external.Service
 	validationService *validate.Service
+	breadcrumbDal     *dal.Repository
 }
 
 // New .
@@ -29,6 +31,7 @@ func New(clients *client.Aggregator, pool postgres.PoolWrapper, config config.Ap
 	return &Action{
 		doctorService:     doctor.NewService(dal.NewRepository(pool)),
 		externalService:   external.NewService(clients.Subscribers, clients.Salebot, config),
+		breadcrumbDal:     dal.NewRepository(pool),
 		validationService: validate.NewService(city_dal.NewRepository(pool), speciality_dal.NewRepository(pool)),
 	}
 }
@@ -49,11 +52,20 @@ func (a *Action) Create(ctx context.Context, createDTO dto.CreateDoctorRequest) 
 		return validationErrors, nil
 	}
 
-	createdDoctor, err := a.doctorService.CreateOrUpdate(ctx, createDTO)
+	var createdDoctor dto.CreateDoctorRequest
+	err = transaction.Exec(ctx, func(ctx context.Context) error {
+		createdDoctor, err = a.doctorService.CreateOrUpdate(ctx, createDTO)
+		if err != nil {
+			return err
+		}
+
+		return a.breadcrumbDal.CreateBreadcrumb(ctx, createdDoctor.FullName, createdDoctor.Slug)
+	})
 	if err != nil {
-		logger.Error(ctx, "Ошибка при сохранении доктора в базе", err)
+		logger.Error(ctx, "Ошибка при сохранении доктора и его breadcrumbs в базе", err)
 		return nil, err
 	}
+
 	g := async.NewGroup()
 	g.Go(func() {
 		a.externalService.NotificatorAdmins(ctx, createdDoctor)

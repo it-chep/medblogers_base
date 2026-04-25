@@ -15,18 +15,21 @@ import (
 	"medblogers_base/internal/modules/freelancers/dal/speciality_dal"
 	"medblogers_base/internal/pkg/logger"
 	"medblogers_base/internal/pkg/postgres"
+	"medblogers_base/internal/pkg/transaction"
 )
 
 type Action struct {
 	creationService   *freelancer.Service
 	externalService   *external.Service
 	validationService *validate.Service
+	breadcrumbDal     *dal.Repository
 }
 
 func New(clients *client.Aggregator, pool postgres.PoolWrapper, config config.AppConfig) *Action {
 	return &Action{
 		creationService: freelancer.NewService(dal.NewRepository(pool)),
 		externalService: external.NewService(clients.Salebot, config),
+		breadcrumbDal:   dal.NewRepository(pool),
 		validationService: validate.NewService(
 			city_dal.NewRepository(pool),
 			speciality_dal.NewRepository(pool),
@@ -49,9 +52,17 @@ func (a *Action) Do(ctx context.Context, createDTO dto.CreateRequest) ([]dto.Val
 		return validationErrors, nil
 	}
 
-	_, err = a.creationService.CreateOrUpdate(ctx, createDTO)
+	var createdFreelancer dto.CreateRequest
+	err = transaction.Exec(ctx, func(ctx context.Context) error {
+		createdFreelancer, err = a.creationService.CreateOrUpdate(ctx, createDTO)
+		if err != nil {
+			return err
+		}
+
+		return a.breadcrumbDal.CreateBreadcrumb(ctx, createdFreelancer.Name, createdFreelancer.Slug)
+	})
 	if err != nil {
-		logger.Error(ctx, "Ошибка при сохранении фрилансера в базе", err)
+		logger.Error(ctx, "Ошибка при сохранении фрилансера и его breadcrumbs в базе", err)
 		return nil, err
 	}
 

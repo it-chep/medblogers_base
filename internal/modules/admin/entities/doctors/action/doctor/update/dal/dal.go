@@ -22,48 +22,46 @@ func (r *Repository) UpdateDoctor(ctx context.Context, doctorID int64, req dto.U
 	sql := `
 	update docstar_site_doctor set 
 		name = $2,
-		slug = $3,
-		inst_url = $4,
-		vk_url = $5,
-		dzen_url = $6,
-		tg_url = $7,
-		tg_channel_url = $8,
-		youtube_url = $9,
-		tiktok_url = $10,
-		prodoctorov = $11,
-		city_id = $12,
-		speciallity_id = $13,
-		main_blog_theme = $14,
-		is_kf_doctor = $15,
-		birth_date = $16,
-		cooperation_type = $17,
-		medical_directions = $18,
-		marketing_preferences = $19,
-		email = $20
+		inst_url = $3,
+		vk_url = $4,
+		dzen_url = $5,
+		tg_url = $6,
+		tg_channel_url = $7,
+		youtube_url = $8,
+		tiktok_url = $9,
+		prodoctorov = $10,
+		city_id = $11,
+		speciallity_id = $12,
+		main_blog_theme = $13,
+		is_kf_doctor = $14,
+		birth_date = $15,
+		cooperation_type = $16,
+		medical_directions = $17,
+		marketing_preferences = $18,
+		email = $19
    	where id = $1
 	`
 
 	args := []interface{}{
-		doctorID,
-		req.Name,
-		req.Slug,
-		req.InstURL,
-		req.VkURL,
-		req.DzenURL,
-		req.TgURL,
-		req.TgChannelURL,
-		req.YouTubeURL,
-		req.TikTokURL,
-		req.SiteLink,
-		req.MainCityID,
-		req.MainSpecialityID,
-		req.MainBlogTheme,
-		req.IsKFDoctor,
-		req.BirthDate,
-		req.CooperationTypeID,
-		req.MedicalDirections,
-		req.MarketingPreferences,
-		req.Email,
+		doctorID,                 // $1
+		req.Name,                 // $2
+		req.InstURL,              // $3
+		req.VkURL,                // $4
+		req.DzenURL,              // $5
+		req.TgURL,                // $6
+		req.TgChannelURL,         // $7
+		req.YouTubeURL,           // $8
+		req.TikTokURL,            // $9
+		req.SiteLink,             // $10
+		req.MainCityID,           // $11
+		req.MainSpecialityID,     // $12
+		req.MainBlogTheme,        // $13
+		req.IsKFDoctor,           // $14
+		req.BirthDate,            // $15
+		req.CooperationTypeID,    // $16
+		req.MedicalDirections,    // $17
+		req.MarketingPreferences, // $18
+		req.Email,                // $19
 	}
 
 	_, err := r.db.Exec(ctx, sql, args...)
@@ -72,4 +70,15 @@ func (r *Repository) UpdateDoctor(ctx context.Context, doctorID int64, req dto.U
 	}
 
 	return nil
+}
+
+func (r *Repository) UpdateBreadcrumb(ctx context.Context, slug, name string) error {
+	sql := `
+		update breadcrumbs
+		set name = $2
+		where url = '/doctors/' || $1
+	`
+
+	_, err := r.db.Exec(ctx, sql, slug, name)
+	return err
 }

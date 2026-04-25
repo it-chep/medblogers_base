@@ -17,7 +17,6 @@ func (i *Implementation) UpdateDraftBlog(ctx context.Context, req *desc.UpdateDr
 
 		updateRequest := dto.Request{
 			Name:               req.GetTitle(),
-			Slug:               req.GetSlug(),
 			Body:               req.GetBody(),
 			IsActive:           req.GetIsActive(),
 			PreviewText:        req.GetPreviewText(),

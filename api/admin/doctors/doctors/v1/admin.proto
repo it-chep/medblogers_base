@@ -273,7 +273,8 @@ message UpdateDoctorRequest {
   int64 doctor_id = 1;
 
   string name = 2;
-  string slug = 3;
+  // был slug
+  reserved 3;
 
   // Соцсети
   string inst_url = 4;

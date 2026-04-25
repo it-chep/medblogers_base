@@ -199,7 +199,8 @@ message CreateDraftBlogResponse {
 
 message UpdateDraftBlogRequest {
     string blog_id = 1;
-    string slug = 2;
+    // был slug
+    reserved 2;
     string title = 3;
     string body = 4;
     bool is_active = 5;

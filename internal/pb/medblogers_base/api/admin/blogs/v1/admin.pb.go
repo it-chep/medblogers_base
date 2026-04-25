@@ -370,7 +370,6 @@ func (x *CreateDraftBlogResponse) GetBlogId() string {
 type UpdateDraftBlogRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	BlogId            string                 `protobuf:"bytes,1,opt,name=blog_id,json=blogId,proto3" json:"blog_id,omitempty"`
-	Slug              string                 `protobuf:"bytes,2,opt,name=slug,proto3" json:"slug,omitempty"`
 	Title             string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Body              string                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
 	IsActive          bool                   `protobuf:"varint,5,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
@@ -416,13 +415,6 @@ func (*UpdateDraftBlogRequest) Descriptor() ([]byte, []int) {
 func (x *UpdateDraftBlogRequest) GetBlogId() string {
 	if x != nil {
 		return x.BlogId
-	}
-	return ""
-}
-
-func (x *UpdateDraftBlogRequest) GetSlug() string {
-	if x != nil {
-		return x.Slug
 	}
 	return ""
 }
@@ -1898,10 +1890,9 @@ const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\"2\n" +
 	"\x17CreateDraftBlogResponse\x12\x17\n" +
-	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xce\x02\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\"\xc0\x02\n" +
 	"\x16UpdateDraftBlogRequest\x12\x17\n" +
-	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x12\n" +
-	"\x04slug\x18\x02 \x01(\tR\x04slug\x12\x14\n" +
+	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x04 \x01(\tR\x04body\x12\x1b\n" +
 	"\tis_active\x18\x05 \x01(\bR\bisActive\x12!\n" +
@@ -1910,7 +1901,7 @@ const file_admin_blogs_v1_admin_proto_rawDesc = "" +
 	"\x13additional_seo_text\x18\b \x01(\tR\x11additionalSeoText\x12'\n" +
 	"\x0fordering_number\x18\t \x01(\x03R\x0eorderingNumber\x12\x1b\n" +
 	"\tdoctor_id\x18\n" +
-	" \x01(\x03R\bdoctorId\"\x19\n" +
+	" \x01(\x03R\bdoctorIdJ\x04\b\x02\x10\x03\"\x19\n" +
 	"\x17UpdateDraftBlogResponse\"N\n" +
 	"\x14SaveBlogImageRequest\x12\x17\n" +
 	"\ablog_id\x18\x01 \x01(\tR\x06blogId\x12\x1d\n" +

@@ -18,6 +18,7 @@ type CommonDal interface {
 type ActionDal interface {
 	UpdateBrand(ctx context.Context, brandID int64, req dto.UpdateRequest) error
 	ReplaceBrandSocialNetworks(ctx context.Context, brandID int64, items []dto.SocialNetworkInput) error
+	UpdateBreadcrumb(ctx context.Context, slug, name string) error
 }
 
 type Action struct {
@@ -33,7 +34,8 @@ func New(pool postgres.PoolWrapper) *Action {
 }
 
 func (a *Action) Do(ctx context.Context, brandID int64, req dto.UpdateRequest) error {
-	if _, err := a.commonDal.GetBrandByID(ctx, brandID); err != nil {
+	item, err := a.commonDal.GetBrandByID(ctx, brandID)
+	if err != nil {
 		return err
 	}
 
@@ -43,6 +45,10 @@ func (a *Action) Do(ctx context.Context, brandID int64, req dto.UpdateRequest) e
 			return err
 		}
 
-		return a.actionDal.ReplaceBrandSocialNetworks(ctx, brandID, req.SocialNetworks)
+		if err := a.actionDal.ReplaceBrandSocialNetworks(ctx, brandID, req.SocialNetworks); err != nil {
+			return err
+		}
+
+		return a.actionDal.UpdateBreadcrumb(ctx, item.GetSlug(), req.Title)
 	})
 }

@@ -107,3 +107,20 @@ func (r *Repository) CreateAdditionalSpecialities(ctx context.Context, medbloger
 
 	return nil
 }
+
+func (r *Repository) CreateBreadcrumb(ctx context.Context, name, slug string) error {
+	sql := `
+		insert into breadcrumbs (name, url, parent_id)
+		values (
+			$1,
+			'/doctors/' || $2,
+			(select id from breadcrumbs where url = '/' limit 1)
+		)
+		on conflict (url) do update
+		set name = excluded.name,
+			parent_id = excluded.parent_id
+	`
+
+	_, err := r.db.Exec(ctx, sql, name, slug)
+	return err
+}

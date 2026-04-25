@@ -23,7 +23,6 @@ func (i *Implementation) UpdateFreelancer(ctx context.Context, req *desc.UpdateF
 func getUpdateFreelancerReq(req *desc.UpdateFreelancerRequest) dto.UpdateRequest {
 	return dto.UpdateRequest{
 		Name:                 req.GetName(),
-		Slug:                 req.GetSlug(),
 		PortfolioLink:        req.GetPortfolioLink(),
 		TgURL:                req.GetTgUrl(),
 		MainCityID:           req.GetMainCityId(),

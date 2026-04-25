@@ -144,3 +144,21 @@ func (w *SeoServiceDesc) GetPromoOfferSeoData(ctx context.Context, in *GetPromoO
 	}
 	return resp.(*GetPromoOfferSeoDataResponse), err
 }
+
+func (w *SeoServiceDesc) GetBreadcrumbs(ctx context.Context, in *GetBreadcrumbsRequest) (*GetBreadcrumbsResponse, error) {
+	if w.opts.UnaryInterceptor == nil {
+		return w.svc.GetBreadcrumbs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     w,
+		FullMethod: "/seo.v1.Seo/GetBreadcrumbs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return w.svc.GetBreadcrumbs(ctx, req.(*GetBreadcrumbsRequest))
+	}
+	resp, err := w.opts.UnaryInterceptor(ctx, in, info, handler)
+	if err != nil || resp == nil {
+		return nil, err
+	}
+	return resp.(*GetBreadcrumbsResponse), err
+}

@@ -35,3 +35,20 @@ func (r *Repository) CreateDraftBlogs(ctx context.Context, title, slug string, i
 
 	return nil
 }
+
+func (r *Repository) CreateBlogBreadcrumb(ctx context.Context, title, slug string) error {
+	sql := `
+		insert into breadcrumbs (name, url, parent_id)
+		values (
+			$1,
+			'/blogs/' || $2,
+			(select id from breadcrumbs where url = '/blogs' limit 1)
+		)
+		on conflict (url) do update
+		set name = excluded.name,
+			parent_id = excluded.parent_id
+	`
+
+	_, err := r.db.Exec(ctx, sql, title, slug)
+	return err
+}

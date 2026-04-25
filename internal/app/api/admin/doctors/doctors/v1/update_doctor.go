@@ -25,7 +25,6 @@ func (i *Implementation) UpdateDoctor(ctx context.Context, req *desc.UpdateDocto
 func getUpdateDoctorReq(req *desc.UpdateDoctorRequest) dto.UpdateRequest {
 	return dto.UpdateRequest{
 		Name:                 req.GetName(),
-		Slug:                 req.GetSlug(),
 		InstURL:              req.GetInstUrl(),
 		VkURL:                req.GetVkUrl(),
 		DzenURL:              req.GetDzenUrl(),

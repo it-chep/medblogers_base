@@ -24,6 +24,7 @@ const (
 	Seo_GetSitemapInfo_FullMethodName        = "/seo.v1.Seo/GetSitemapInfo"
 	Seo_GetBrandSeoData_FullMethodName       = "/seo.v1.Seo/GetBrandSeoData"
 	Seo_GetPromoOfferSeoData_FullMethodName  = "/seo.v1.Seo/GetPromoOfferSeoData"
+	Seo_GetBreadcrumbs_FullMethodName        = "/seo.v1.Seo/GetBreadcrumbs"
 )
 
 // SeoClient is the client API for Seo service.
@@ -35,6 +36,7 @@ type SeoClient interface {
 	GetSitemapInfo(ctx context.Context, in *GetSitemapInfoRequest, opts ...grpc.CallOption) (*GetSitemapInfoResponse, error)
 	GetBrandSeoData(ctx context.Context, in *GetBrandSeoDataRequest, opts ...grpc.CallOption) (*GetBrandSeoDataResponse, error)
 	GetPromoOfferSeoData(ctx context.Context, in *GetPromoOfferSeoDataRequest, opts ...grpc.CallOption) (*GetPromoOfferSeoDataResponse, error)
+	GetBreadcrumbs(ctx context.Context, in *GetBreadcrumbsRequest, opts ...grpc.CallOption) (*GetBreadcrumbsResponse, error)
 }
 
 type seoClient struct {
@@ -95,6 +97,16 @@ func (c *seoClient) GetPromoOfferSeoData(ctx context.Context, in *GetPromoOfferS
 	return out, nil
 }
 
+func (c *seoClient) GetBreadcrumbs(ctx context.Context, in *GetBreadcrumbsRequest, opts ...grpc.CallOption) (*GetBreadcrumbsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBreadcrumbsResponse)
+	err := c.cc.Invoke(ctx, Seo_GetBreadcrumbs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SeoServer is the server API for Seo service.
 // All implementations should embed UnimplementedSeoServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type SeoServer interface {
 	GetSitemapInfo(context.Context, *GetSitemapInfoRequest) (*GetSitemapInfoResponse, error)
 	GetBrandSeoData(context.Context, *GetBrandSeoDataRequest) (*GetBrandSeoDataResponse, error)
 	GetPromoOfferSeoData(context.Context, *GetPromoOfferSeoDataRequest) (*GetPromoOfferSeoDataResponse, error)
+	GetBreadcrumbs(context.Context, *GetBreadcrumbsRequest) (*GetBreadcrumbsResponse, error)
 }
 
 // UnimplementedSeoServer should be embedded to have
@@ -127,6 +140,9 @@ func (UnimplementedSeoServer) GetBrandSeoData(context.Context, *GetBrandSeoDataR
 }
 func (UnimplementedSeoServer) GetPromoOfferSeoData(context.Context, *GetPromoOfferSeoDataRequest) (*GetPromoOfferSeoDataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPromoOfferSeoData not implemented")
+}
+func (UnimplementedSeoServer) GetBreadcrumbs(context.Context, *GetBreadcrumbsRequest) (*GetBreadcrumbsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBreadcrumbs not implemented")
 }
 func (UnimplementedSeoServer) testEmbeddedByValue() {}
 
@@ -238,6 +254,24 @@ func _Seo_GetPromoOfferSeoData_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Seo_GetBreadcrumbs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBreadcrumbsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeoServer).GetBreadcrumbs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seo_GetBreadcrumbs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeoServer).GetBreadcrumbs(ctx, req.(*GetBreadcrumbsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Seo_ServiceDesc is the grpc.ServiceDesc for Seo service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -264,6 +298,10 @@ var Seo_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPromoOfferSeoData",
 			Handler:    _Seo_GetPromoOfferSeoData_Handler,
+		},
+		{
+			MethodName: "GetBreadcrumbs",
+			Handler:    _Seo_GetBreadcrumbs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
